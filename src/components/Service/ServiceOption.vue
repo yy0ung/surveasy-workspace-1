@@ -1,5 +1,5 @@
 <template>
-  <h1>Login</h1>
+  <h1>ServiceOption</h1>
 </template>
 
 <script>

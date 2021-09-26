@@ -1,5 +1,7 @@
 <template>
-  <h1>Login</h1>
+  <div>
+    <h1>KnowHowDetail</h1>
+  </div>
 </template>
 
 <script>

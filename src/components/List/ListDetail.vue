@@ -1,5 +1,7 @@
 <template>
-  <h1>Login</h1>
+  <div>
+    <h1>ListDetail</h1>
+  </div>
 </template>
 
 <script>
