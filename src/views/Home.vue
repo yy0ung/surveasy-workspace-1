@@ -1,12 +1,13 @@
 <template>
   <div>
-    <h1>Home</h1>
+    
     <div class="home-contents">
       <HomeMainContent class="home-contents-child"/>
       <HomeNumberMarketing class="home-contents-child"/>
       <HomeReview class="home-contents-child"/>
       <HomeBrandStory class="home-contents-child"/>
       <HomeSiteMap class="home-contents-child"/>
+      <Footer class="home-contents-child"/>
     </div>
     
     
@@ -19,6 +20,7 @@ import HomeNumberMarketing from '../components/Home/HomeNumberMarketing.vue'
 import HomeReview from '../components/Home/HomeReview.vue'
 import HomeSiteMap from '../components/Home/HomeSiteMap.vue'
 import HomeBrandStory from '../components/Home/HomeBrandStory.vue'
+import Footer from '../components/Footer.vue'
 
 export default {
 
@@ -28,7 +30,8 @@ export default {
     HomeNumberMarketing,
     HomeReview,
     HomeSiteMap,
-    HomeBrandStory
+    HomeBrandStory,
+    Footer
   }
 }
 </script>
@@ -36,5 +39,19 @@ export default {
 <style>
 .home-contents-child{
   border-bottom: 1px solid black;
+}
+.HomeMainContent-btn{
+  color:#42b983;
+  background-color: #fff;
+  border: 1.5px solid #42b983;
+  padding: 5px 13px;
+  border-radius: 30px;
+}
+
+.HomeMainContent-btn:hover{
+  background-color: #42b983;
+  color: #fff;
+  animation-delay: 10ms;
+  
 }
 </style>
