@@ -50,8 +50,6 @@ export default {
 
 .HomeMainContent-btn:hover{
   background-color: #42b983;
-  color: #fff;
-  animation-delay: 10ms;
-  
+  color: #fff;  
 }
 </style>

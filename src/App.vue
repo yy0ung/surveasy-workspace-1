@@ -5,9 +5,13 @@
 
     <div class="nav-links">
       <router-link to="/service"><span class="nav-element">서비스 이용</span></router-link> 
+      <span class="nav-element-">|</span>
       <router-link to="/surveylist"><span class="nav-element">설문 리스트</span></router-link> 
+      <span class="nav-element-">|</span>
       <router-link to="/knowhow"><span class="nav-element">설문 노하우</span></router-link> 
+      <span class="nav-element-">|</span>
       <router-link to="/story"><span class="nav-element">브랜드 스토리</span></router-link> 
+      <span class="nav-element-">|</span>
       <router-link to="/contact"><span class="nav-element">문의</span></router-link> 
     </div>
     
