@@ -1,8 +1,8 @@
 <template>
 <div id="Register">
-  <h2>회원가입</h2>
-  <form>
-      <ul id="registerForm">
+  <h3 class="registertitle">회원가입</h3>
+  <form class="form-center">
+
           <li>
               <ul class="cols">
                   <li class="col1">이메일 주소</li>
@@ -37,15 +37,20 @@
               <ul class="cols">
                   <li class="col1">유입경로</li>
                   <li class="col2">
-                      <input type="radio" name="from" id="everytime">에브리타임
-                      <input type="radio" name="from" id="blog">서베이지 네이버 블로그
-                      <input type="radio" name="from" id="kakaotalk">카카오톡 단톡방
-                      <input type="radio" name="from" id="instagram">서베이지 인스타그램
-                      <input type="radio" name="from" id="search">인터넷 검색(구글 / 네이버 / 기타)
+                      <div class="radio-container">
+                      <div class="radio-item">
+                          <span><input type="radio" class="radio" name="from" id="everytime">에브리타임</span>
+                          <span><input type="radio" class="radio" name="from" id="kakaotalk">학과 카카오톡 단톡방</span>
+                          <span><input type="radio" class="radio" name="from" id="search">인터넷 검색(구글 / 네이버 / 기타)</span>
+                      </div>
+                      <div class="radio-item">
+                          <span><input type="radio" class="radio" name="from" id="blog">서베이지 네이버 블로그</span>                         
+                          <span><input type="radio" class="radio" name="from" id="instagram">서베이지 인스타그램</span>
+                      </div>                      
+                      </div>
                   </li>
               </ul>
           </li>
-        </ul>
 
      </form>
 </div>
@@ -58,16 +63,17 @@ export default {
 </script>
 
 <style>
-ul {
+.registertitle {
+    margin-top: 50px;
+}
+li {
     list-style-type: none;
 }
-#registerForm {
-    width: 500px;
-    margin: 10px 0 0 50px;
+.form-center {
+    position: center;
 }
 .cols li {
     display: inline-block;
-    margin-top: 5px;
 }
 .cols li.col1 {
     width: 70px;
@@ -75,8 +81,9 @@ ul {
     padding: 10px;
     font-size: 8px;
 }
+
 .cols li.col2 {
-    width: 300px;
+    width: 420px;
     font-size: 8px;
 }
 .cols li.col2 input {
@@ -84,9 +91,23 @@ ul {
     border: none;
     background-color: rgb(228, 228, 228);
 }
+.cols li.col2 input.radio {
+    width: 20px;
+}
 .cols li.col2 .inflow .from {
     width: 120px;
     border: none;
     background-color: rgb(228, 228, 228);
 }
+.radio-container {
+    display: flex;
+    margin-left: 75px;
+}
+.radio-item {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    margin-right: 15px;
+}
+
 </style>
