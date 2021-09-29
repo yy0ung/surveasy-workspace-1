@@ -94,11 +94,6 @@ li {
 .cols li.col2 input.radio {
     width: 20px;
 }
-.cols li.col2 .inflow .from {
-    width: 120px;
-    border: none;
-    background-color: rgb(228, 228, 228);
-}
 .radio-container {
     display: flex;
     margin-left: 75px;

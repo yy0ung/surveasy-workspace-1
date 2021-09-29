@@ -1,10 +1,9 @@
 <template>
-<div>
-  <h1>service</h1>
-  <ServiceOption />
-  <ServiceDetail />
-
-</div>
+  <div class="service-container">
+      <ServiceDetail />
+      <ServiceOption />
+  </div>
+  
 </template>
 
 <script>
@@ -20,5 +19,8 @@ export default {
 </script>
 
 <style>
-
+.service-container {
+  display: flex;
+  flex-direction: row;
+}
 </style>
