@@ -1,7 +1,7 @@
 <template>
 <div>
   <div id="nav">
-    <router-link to="/">서베이지 로고</router-link> 
+    <router-link to="/">서베이지 Surveasy 로고</router-link> 
 
     <div class="nav-links">
       <router-link to="/service"><span class="nav-element">서비스 이용</span></router-link> 

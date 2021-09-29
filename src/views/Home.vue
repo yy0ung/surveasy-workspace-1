@@ -1,6 +1,8 @@
 <template>
   <div>
-    
+
+    <h1>HOME</h1>
+
     <div class="home-contents">
       <HomeMainContent class="home-contents-child"/>
       <HomeNumberMarketing class="home-contents-child"/>
