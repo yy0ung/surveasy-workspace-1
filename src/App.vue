@@ -19,6 +19,10 @@
     
   </div>
   <router-view/>
+
+  <div id="footer">
+    <p>footer</p>
+  </div>
 </div>
 </template>
 
@@ -58,7 +62,7 @@ body {
 #nav a {
   font-weight: bold;
   color: #2c3e50;
-  padding: 30px;
+  padding: 10px;
   text-decoration: none;
   
 }
@@ -67,11 +71,16 @@ body {
   color: #42b983;
 }
 
+
+#footer {
+  height: 100px;
+
 .link-underline{
   text-decoration: none;
 }
 
 .link-underline:hover{
   text-decoration: underline;
+
 }
 </style>

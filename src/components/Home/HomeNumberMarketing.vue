@@ -1,4 +1,5 @@
 <template>
+
 <div id="number-marketing-container">
   <div class="number-contents">
     <p>134명</p>
@@ -6,6 +7,7 @@
     <p>1시간 12분</p>
   </div>
   
+
 </div>
 </template>
 
