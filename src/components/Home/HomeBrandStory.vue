@@ -1,5 +1,7 @@
 <template>
+<div id="main-content-container">
   <p>HomeBrandStory</p>
+</div>
 </template>
 
 <script>
