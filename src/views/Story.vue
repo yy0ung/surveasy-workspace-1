@@ -1,9 +1,11 @@
 <template>
 <div>
-  <h1>story</h1>
+  
   <StoryPainPoint />
   <StoryStoryTelling />
   <StoryMembers />
+  <HomeSiteMap />
+  <Footer />
 </div>
 </template>
 
@@ -11,11 +13,15 @@
 import StoryMembers from '../components/Story/StoryMembers.vue'
 import StoryPainPoint from '../components/Story/StoryPainPoint.vue'
 import StoryStoryTelling from '../components/Story/StoryStoryTelling.vue'
+import HomeSiteMap from '../components/Home/HomeSiteMap.vue'
+import Footer from '../components/Footer.vue'
 export default {
   components :{
     StoryMembers,
     StoryPainPoint,
-    StoryStoryTelling
+    StoryStoryTelling,
+    HomeSiteMap,
+    Footer
   }
 }
 </script>
