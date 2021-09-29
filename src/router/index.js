@@ -6,6 +6,7 @@ import KnowHow from '../views/KnowHow.vue'
 import Story from '../views/Story.vue'
 import Contact from '../views/Contact.vue'
 import Login from '../views/Login/Login.vue'
+import Register from '../views/Login/Register.vue'
 const routes = [
   {
     path: '/',
@@ -41,6 +42,11 @@ const routes = [
     path: '/login',
     name: 'Login',
     component: Login
+  },
+  {
+    path: '/register',
+    name: 'Register',
+    component: Register
   },
 ]
 
