@@ -4,14 +4,18 @@
     <router-link to="/">서베이지 Surveasy 로고</router-link> 
 
     <div class="nav-links">
-      <router-link to="/service">서비스 이용</router-link> 
-      <router-link to="/surveylist">설문 리스트</router-link> 
-      <router-link to="/knowhow">설문 노하우</router-link> 
-      <router-link to="/story">브랜드 스토리</router-link> 
-      <router-link to="/contact">문의</router-link> 
+      <router-link to="/service"><span class="nav-element">서비스 이용</span></router-link> 
+      <span class="nav-element-">|</span>
+      <router-link to="/surveylist"><span class="nav-element">설문 리스트</span></router-link> 
+      <span class="nav-element-">|</span>
+      <router-link to="/knowhow"><span class="nav-element">설문 노하우</span></router-link> 
+      <span class="nav-element-">|</span>
+      <router-link to="/story"><span class="nav-element">브랜드 스토리</span></router-link> 
+      <span class="nav-element-">|</span>
+      <router-link to="/contact"><span class="nav-element">문의</span></router-link> 
     </div>
     
-    <router-link to="/login">LOGIN</router-link> 
+    <router-link to="/login"><span class="nav-element">LOGIN</span></router-link> 
     
   </div>
   <router-view/>
@@ -21,6 +25,8 @@
   </div>
 </div>
 </template>
+
+
 
 <style>
 body {
@@ -46,7 +52,7 @@ body {
 }
 
 #nav {
-  padding: 30px;
+  padding: 20px;
   border-bottom: 1px solid black;
   height: 40px;
   display: flex;
@@ -61,11 +67,20 @@ body {
   
 }
 
-#nav a:hover {
+#nav .nav-element:hover {
   color: #42b983;
 }
 
+
 #footer {
   height: 100px;
+
+.link-underline{
+  text-decoration: none;
+}
+
+.link-underline:hover{
+  text-decoration: underline;
+
 }
 </style>
