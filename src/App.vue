@@ -28,6 +28,7 @@
 <script>
 import { initializeApp } from 'firebase/app'
 import { getFirestore,collection, getDocs } from 'firebase/firestore'
+import { orderBy } from 'lodash'
 
 export default {
   mounted(){
@@ -36,6 +37,8 @@ export default {
     this.$store.commit('setDB', db)
     this.fetchUserData()
     this.fetchSurveyData()
+
+    
     
     
   },
@@ -62,6 +65,8 @@ export default {
         dataSet.push(doc.data(), upTime, dueTime)
         surveyData.push(dataSet)
       })
+      const sorted = orderBy(this.$store.state.surveyData, this.$store.state.surveyData.id, "desc")
+      this.$store.state.surveyData = sorted
       
     }
   }
