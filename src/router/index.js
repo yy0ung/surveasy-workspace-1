@@ -1,11 +1,13 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/Home.vue'
 import Service from '../views/Service/Service.vue'
+import ServiceInputForm from '../views/Service/ServiceInputForm.vue'
 import SurveyList from '../views/SurveyList.vue'
 import KnowHow from '../views/KnowHow.vue'
 import Story from '../views/Story.vue'
 import Contact from '../views/Contact.vue'
 import Login from '../views/Login/Login.vue'
+import Register from '../views/Login/Register.vue'
 const routes = [
   {
     path: '/',
@@ -16,6 +18,11 @@ const routes = [
     path: '/service',
     name: 'Service',
     component: Service
+  },
+  {
+    path: '/serviceinputform',
+    name: 'ServiceInputForm',
+    component: ServiceInputForm
   },
   {
     path: '/surveylist',
@@ -41,6 +48,11 @@ const routes = [
     path: '/login',
     name: 'Login',
     component: Login
+  },
+  {
+    path: '/register',
+    name: 'Register',
+    component: Register
   },
 ]
 

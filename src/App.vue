@@ -25,6 +25,48 @@
   </div>
 </div>
 </template>
+<script>
+import { initializeApp } from 'firebase/app'
+import { getFirestore,collection, getDocs } from 'firebase/firestore'
+
+export default {
+  mounted(){
+    const firebaseApp = initializeApp(this.$store.state.firebaseConfig)
+    const db = getFirestore();
+    this.$store.commit('setDB', db)
+    this.fetchUserData()
+    this.fetchSurveyData()
+    
+    
+  },
+  methods:{
+    async fetchUserData(){
+      const db = this.$store.state.db
+      const userData = this.$store.state.userData
+      const querySnapshot = await getDocs(collection(db,"userData"))
+      querySnapshot.forEach((doc) => {
+        userData.push(doc.data())
+      })
+      
+    },
+
+    async fetchSurveyData(){
+      const db = this.$store.state.db
+      const surveyData = this.$store.state.surveyData
+      const querySnapshot = await getDocs(collection(db, "surveyData"))
+      querySnapshot.forEach((doc)=> {
+        const upTime = new Date(doc.data().uploadTime.seconds*1000)
+        const dueTime = new Date(doc.data().dueTime.seconds*1000)
+        
+        var dataSet = []
+        dataSet.push(doc.data(), upTime, dueTime)
+        surveyData.push(dataSet)
+      })
+      
+    }
+  }
+}
+</script>
 
 
 
@@ -75,6 +117,7 @@ body {
 #footer {
   height: 100px;
 }
+
 .link-underline{
   text-decoration: none;
 }
