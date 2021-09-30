@@ -116,6 +116,7 @@ body {
 
 #footer {
   height: 100px;
+}
 
 }
 
