@@ -1,5 +1,5 @@
 import { createStore } from 'vuex'
-import { initializeApp } from 'firebase/app'
+
 
 export default createStore({
   state: {
@@ -11,11 +11,19 @@ export default createStore({
       messagingSenderId: "1077091709710",
       appId: "1:1077091709710:web:0fb6f216a86dfd3a87dd5f",
       measurementId: "G-9XLHWG8GKQ"
-    }
+    },
+
+    db: null,
+    userData: [],
+    surveyData: []
   },
   mutations: {
+    setDB(state, payload){
+      state.db = payload
+    }
   },
   actions: {
+
   },
   modules: {
   }
