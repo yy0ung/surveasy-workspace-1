@@ -1,9 +1,10 @@
 <template>
 <div>
-  <h1>knowhow</h1>
+  
   <KnowHowRecommend />
   <KnowHowItem />
-  <KnowHowDetail />
+  
+  <Footer />
 </div>
 </template>
 
@@ -11,15 +12,26 @@
 import KnowHowRecommend from '../components/KnowHow/KnowHowRecommend.vue'
 import KnowHowItem from '../components/KnowHow/KnowHowItem.vue'
 import KnowHowDetail from '../components/KnowHow/KnowHowDetail.vue'
+import Footer from '../components/Footer.vue'
 export default {
   components:{
     KnowHowRecommend,
     KnowHowDetail,
-    KnowHowItem
+    KnowHowItem,
+    Footer
   }
 }
 </script>
 
 <style>
-
+#knowhow-recommend-container{
+  margin-top: 30px;
+}
+  .knowhow-title{
+    display:flex;
+    padding-left: 200px;
+    font-size: 1.2rem;
+    color: #42b983;
+    font-weight: bold;
+  }
 </style>
