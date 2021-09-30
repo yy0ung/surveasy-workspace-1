@@ -3,7 +3,7 @@
     <p>service option</p>
     <label>옵션선택</label>
     <div>
-      <select class="dropdown" name="respondent" required>
+      <select class="selectbox" name="respondent" required>
         <option selected>요구 응답수</option>
         <option value="30명">30명</option>
         <option value="31~35명">31~35명</option>
@@ -11,13 +11,13 @@
         <option value="41~45명">41~45명</option>
         <option value="46~60명">46~60명</option>
       </select>
-      <select class="dropdown" name="time" required>
+      <select class="selectbox" name="time" required>
         <option selected>소요 시간</option>
         <option value="5분 이하">5분 이하</option>
         <option value="5분~10분">5분~10분</option>
         <option value="10분 이상">10분 이상</option>
       </select>
-      <select class="dropdown" name="deadline" required>
+      <select class="selectbox" name="deadline" required>
         <option selected>마감 기한 지정</option>
         <option value="5분 이하">24시간 이하</option>
         <option value="5분~10분">24시간~48시간</option>
@@ -54,7 +54,7 @@ label {
   background-color: rgb(209, 209, 209);
   border-radius: 10px;
 }
-.dropdown {
+.selectbox {
   margin: 5px;
   width: 70%;
   height: 30px;
