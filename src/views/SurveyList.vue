@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>surveylist</h1>
+    
     <ListList />
   </div>
   
