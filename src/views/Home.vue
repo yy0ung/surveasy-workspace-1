@@ -1,7 +1,7 @@
 <template>
   <div>
 
-    <h1>HOME</h1>
+    
 
     <div class="home-contents">
       <HomeMainContent class="home-contents-child"/>
@@ -9,7 +9,7 @@
       <HomeReview class="home-contents-child"/>
       <HomeBrandStory class="home-contents-child"/>
       <HomeSiteMap class="home-contents-child"/>
-      <Footer class="home-contents-child"/>
+      
     </div>
     
     
@@ -22,7 +22,7 @@ import HomeNumberMarketing from '../components/Home/HomeNumberMarketing.vue'
 import HomeReview from '../components/Home/HomeReview.vue'
 import HomeSiteMap from '../components/Home/HomeSiteMap.vue'
 import HomeBrandStory from '../components/Home/HomeBrandStory.vue'
-import Footer from '../components/Footer.vue'
+
 
 export default {
 
@@ -33,7 +33,7 @@ export default {
     HomeReview,
     HomeSiteMap,
     HomeBrandStory,
-    Footer
+    
   }
 }
 </script>

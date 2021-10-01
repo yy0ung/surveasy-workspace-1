@@ -4,7 +4,7 @@
   <KnowHowRecommend />
   <KnowHowItem />
   
-  <Footer />
+
 </div>
 </template>
 
@@ -12,13 +12,13 @@
 import KnowHowRecommend from '../components/KnowHow/KnowHowRecommend.vue'
 import KnowHowItem from '../components/KnowHow/KnowHowItem.vue'
 import KnowHowDetail from '../components/KnowHow/KnowHowDetail.vue'
-import Footer from '../components/Footer.vue'
+
 export default {
   components:{
     KnowHowRecommend,
     KnowHowDetail,
     KnowHowItem,
-    Footer
+    
   }
 }
 </script>
