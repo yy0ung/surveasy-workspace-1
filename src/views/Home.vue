@@ -43,15 +43,15 @@ export default {
   border-bottom: 1px solid black;
 }
 .HomeMainContent-btn{
-  color:#42b983;
+  color:#0CAE02;
   background-color: #fff;
-  border: 1.5px solid #42b983;
+  border: 1.5px solid #0CAE02;
   padding: 5px 13px;
   border-radius: 30px;
 }
 
 .HomeMainContent-btn:hover{
-  background-color: #42b983;
+  background-color: #0CAE02;
   color: #fff;  
 }
 </style>

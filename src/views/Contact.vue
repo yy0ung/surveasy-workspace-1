@@ -30,16 +30,16 @@ export default {
 
 <style>
   .ContactContactUs-btn{
-  color:#42b983;
+  color:#0CAE02;
   background-color: rgb(238, 238, 238);
-  border: 2px solid #42b983;
+  border: 2px solid #0CAE02;
   padding: 5px 13px;
   border-radius: 30px;
   font-weight: bold;
 }
 
 .ContactContactUs-btn:hover{
-  background-color: #42b983;
+  background-color: #0CAE02;
   color: #fff;
 }
 #contactus-container .contactus-contents .contactus-bold{

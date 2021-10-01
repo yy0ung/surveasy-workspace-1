@@ -115,7 +115,7 @@ body {
 }
 
 #nav .nav-element:hover {
-  color: #42b983;
+  color: #0CAE02;
 }
 
 

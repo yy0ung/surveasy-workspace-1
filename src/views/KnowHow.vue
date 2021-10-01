@@ -31,7 +31,7 @@ export default {
     display:flex;
     padding-left: 200px;
     font-size: 1.2rem;
-    color: #42b983;
+    color: #0CAE02;
     font-weight: bold;
   }
 </style>
