@@ -6,7 +6,7 @@
   <ContactFAQ />
   <ContactFAQList />
   <HomeSiteMap />
-  <Footer />
+ 
 </div>
 </template>
 
@@ -15,14 +15,14 @@ import ContactContactUs from '../components/Contact/ContactContactUs.vue'
 import ContactFAQ from '../components/Contact/ContactFAQ.vue'
 import ContactFAQList from '../components/Contact/ContactFAQList.vue'
 import HomeSiteMap from '../components/Home/HomeSiteMap.vue'
-import Footer from '../components/Footer.vue'
+
 export default {
   components:{
     ContactContactUs,
     ContactFAQ,
     ContactFAQList,
     HomeSiteMap,
-    Footer
+  
 
   }
 }
