@@ -41,6 +41,7 @@ export default {
 <style>
 
 .HomeMainContent-btn{
+<<<<<<< HEAD
   font-family: 'Noto Sans KR', sans-serif;
   color: #0AAC00;
   background-color: #fff;
@@ -52,6 +53,8 @@ export default {
 
 .HomeMainContent-btn:hover{
   background-color: #0AAC00;
+
+
   color: #fff;  
 }
 </style>

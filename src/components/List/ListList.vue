@@ -164,9 +164,9 @@ export default {
 }
 
 #list-table th{
-  border-bottom: 1px solid green;
+  border-bottom: 1px solid #0CAE02;
   padding-bottom: 20px;
-  color: green;
+  color: #0CAE02;
 }
 #list-table-title {
   width: 70%;

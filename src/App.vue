@@ -154,7 +154,7 @@ body {
   margin-left: 15px;
 }
 #nav .nav-element:hover {
-  color: #0AAC00;;
+  color: #0CAE02;
 }
 
 

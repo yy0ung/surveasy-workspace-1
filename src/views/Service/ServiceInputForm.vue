@@ -31,7 +31,7 @@
 
 <script>
 export default {
-
+  
 }
 </script>
 
@@ -39,7 +39,7 @@ export default {
 .serviceInputForm-container {
     margin: 35px;
     border-radius: 10px;
-    background-color: rgb(209, 209, 209);
+    background-color: rgb(231, 231, 231);
     display: flex;
     flex-direction: row;
 }
@@ -67,7 +67,7 @@ export default {
   height: 30px;
   margin: 40px;
   color:#0CAE02;
-  background-color: rgb(209, 209, 209);
+  background-color: rgb(231, 231, 231);
   border: 1.5px solid #0CAE02;
   border-radius: 30px;
   font-size: 10px;

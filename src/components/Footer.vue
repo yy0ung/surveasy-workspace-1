@@ -46,6 +46,6 @@ export default {
   }
   #footer-container .footer-icon{
     padding: 15px;
-    color: #42b983;
+    color: #0CAE02;
   }
 </style>
