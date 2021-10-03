@@ -3,6 +3,7 @@ import Home from '../views/Home.vue'
 import Service from '../views/Service/Service.vue'
 import ServiceInputForm from '../views/Service/ServiceInputForm.vue'
 import SurveyList from '../views/SurveyList.vue'
+import SurveyTemplate from '../views/SurveyTemplate.vue'
 import KnowHow from '../views/KnowHow.vue'
 import Story from '../views/Story.vue'
 import Contact from '../views/Contact.vue'
@@ -28,6 +29,11 @@ const routes = [
     path: '/surveylist',
     name: 'SurveyList',
     component: SurveyList
+  },
+  {
+    path: '/surveytemplate',
+    name: 'SurveyTemplate',
+    component: SurveyTemplate
   },
   {
     path: '/knowhow',

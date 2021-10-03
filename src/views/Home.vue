@@ -39,19 +39,19 @@ export default {
 </script>
 
 <style>
-.home-contents-child{
-  border-bottom: 1px solid black;
-}
+
 .HomeMainContent-btn{
-  color:#42b983;
+  font-family: 'Noto Sans KR', sans-serif;
+  color: #0AAC00;
   background-color: #fff;
-  border: 1.5px solid #42b983;
-  padding: 5px 13px;
-  border-radius: 30px;
+  border: 1px solid #0AAC00;
+  padding: 9px 20px;
+  border-radius: 24px;
+  font-size: 19px;
 }
 
 .HomeMainContent-btn:hover{
-  background-color: #42b983;
+  background-color: #0AAC00;
   color: #fff;  
 }
 </style>
