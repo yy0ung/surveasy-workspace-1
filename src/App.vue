@@ -4,7 +4,13 @@
     <router-link to="/"><img class="logoimg" src="@/assets/logo.png" width="190"></router-link> 
 
     <div class="nav-links">
-      <router-link to="/service"><span class="nav-element">서비스 이용</span></router-link> 
+      <router-link to="/service">
+        <span class="nav-element" id="nav-service">서비스 이용
+          <span class="nav-icon" >
+            <i class="fas fa-chevron-down"></i>
+          </span>
+        </span>        
+      </router-link> 
       <span class="nav-element-">|</span>
       <router-link to="/surveylist"><span class="nav-element">설문 리스트</span></router-link> 
       <span class="nav-element-">|</span>
@@ -17,6 +23,7 @@
     <div class="nav-login">
       <router-link to="/login"><span class="nav-element" >LOGIN</span></router-link> 
     </div>
+  
     
     
   </div>
@@ -29,11 +36,14 @@
       <p>사업자등록번호 : 000-00-00000</p>
       <p>이메일 : surveasy2019@yonsei.ac.kr</p>
   </div>
-  <div class="footer-icons" style="font-size: 1.5rem;">
-    <span class="footer-icon"><i class="fab fa-facebook-square"></i></span>
-    <span class="footer-icon"><i class="fab fa-instagram"></i></span>
-    <span class="footer-icon"><i class="fab fa-google"></i></span>
-    <span class="footer-icon"><i class="fas fa-comment"></i></span>
+  <div class="footer-icons" >
+    <span class="footer-icon"><img class="footerimg" src="@/assets/Footer/IHEI.jpg" width="130"></span>
+    <span class="footer-icon"><img class="footerimg" src="@/assets/Footer/insta.jpg" width="31.3"></span>
+    <span class="footer-icon"><img class="footerimg" src="@/assets/Footer/facebook.jpg" width="32.05"></span>
+    <span class="footer-icon"><img class="footerimg" src="@/assets/Footer/blog.jpg" width="32.05"></span>
+    <span class="footer-icon"><img class="footerimg" src="@/assets/Footer/kakao.jpg" width="33.86"></span>
+    <span class="footer-icon"><img class="footerimg" src="@/assets/Footer/youtube.jpg" width="34.09"></span>
+    
   </div>
   </div>
 </div>
@@ -93,11 +103,13 @@ body {
   margin: 0;
 }
 
-.nav-links {
-  flex: 1;
+#nav .nav-links {
+  flex:1;
   margin-top: 57px;
   height: 27px;
   width: 918px;
+  font-size: 17px;
+  
 
 }
 
@@ -125,6 +137,7 @@ body {
 
 
 
+
 #nav a {
   font-weight: bold;
   color: #2c3e50;
@@ -132,7 +145,14 @@ body {
   text-decoration: none;
   
 }
-
+#nav .nav-element{
+  
+  margin-right: 30px;
+  margin-left: 30px;
+}
+#nav .nav-icon{
+  margin-left: 15px;
+}
 #nav .nav-element:hover {
   color: #0CAE02;
 }
