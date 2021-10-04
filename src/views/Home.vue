@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="home">
 
     
 
@@ -7,6 +7,7 @@
       <HomeMainContent class="home-contents-child"/>
       <HomeNumberMarketing class="home-contents-child"/>
       <HomeReview class="home-contents-child"/>
+      <HomeSurveyTemplate class="home-contents-child"/>
       <HomeBrandStory class="home-contents-child"/>
       <HomeSiteMap class="home-contents-child"/>
       
@@ -20,6 +21,7 @@
 import HomeMainContent from '../components/Home/HomeMainContent.vue'
 import HomeNumberMarketing from '../components/Home/HomeNumberMarketing.vue'
 import HomeReview from '../components/Home/HomeReview.vue'
+import HomeSurveyTemplate from '../components/Home/HomeSurveyTemplate.vue'
 import HomeSiteMap from '../components/Home/HomeSiteMap.vue'
 import HomeBrandStory from '../components/Home/HomeBrandStory.vue'
 
@@ -31,6 +33,7 @@ export default {
     HomeMainContent,
     HomeNumberMarketing,
     HomeReview,
+    HomeSurveyTemplate,
     HomeSiteMap,
     HomeBrandStory,
     
@@ -40,8 +43,9 @@ export default {
 
 <style>
 
+
 .HomeMainContent-btn{
-<<<<<<< HEAD
+
   font-family: 'Noto Sans KR', sans-serif;
   color: #0AAC00;
   background-color: #fff;

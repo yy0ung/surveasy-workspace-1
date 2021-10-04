@@ -40,11 +40,12 @@ export default {
     height: 300px;
   }
   #site-map-container .map-contents{
-    margin-left: 1300px;
+    
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     padding-top: 35px;
+    padding-left: 1000px;
   }
    #site-map-container .map-contents p{
      color: black;

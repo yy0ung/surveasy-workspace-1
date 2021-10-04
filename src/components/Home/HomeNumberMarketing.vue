@@ -39,14 +39,15 @@ export default {
   height: 400px;
   margin-top: 60px;
   border:none;
+  
 
 }
 #number-marketing-container .number-contents{
-  
+  margin-left: 0;
+  margin-right:0;
   display: flex;
   justify-content: space-around;
-  
-  padding-top: 85px;
+  padding-top: 80px;
   color: #fff;
   
 }
@@ -60,9 +61,10 @@ export default {
 
 #number-marketing-container #number-bold{
   font-family: 'Noto Sans KR', sans-serif;
-  font-size: 90px;
+  font-size: 80px;
   font-weight: 900;
-
 }
+
+
 
 </style>
