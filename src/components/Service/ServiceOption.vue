@@ -2,35 +2,24 @@
   <div class="serviceOption-container">
     <label id="service-option-title">옵션선택</label>
       <div>
-          <select class="selectbox" id="select1" v-model.number="requiredHeadCount" @click="calculatePrice()">
+          <select class="selectbox" id="select1" v-model.number="price1" @click="calculatePrice()">
           <option disabled value=0>요구 응답수</option>
-          <option value=0>30명</option>
-          <option value=2500>31~35명</option>
-          <option value=5000>36~40명</option>
-          <option value=7500>41~45명</option>
-          <option value=9000>46~50명</option>
+          <option v-for="option1 in requiredHeadCount_Options" :value=option1.value :key="option1">{{ option1.text }}</option>
         </select>
 
-        <select class="selectbox" id="select2" v-model.number="spendTime" @click="calculatePrice()">
+        <select class="selectbox" id="select2" v-model.number="price2" @click="calculatePrice()">
           <option disabled value=0>소요시간</option>
-          <option value=0>5분 이하</option>
-          <option value=11000>6분~10분</option>
-          <option value=24000>11분~15분</option>
-          <option value=40000>16분~20분</option>
+          <option v-for="option2 in spendTime_Options" :value=option2.value :key="option2">{{ option2.text }}</option>
         </select>
 
-        <select class="selectbox" id="select3" v-model.number="dueTime" @click="calculatePrice()">
+        <select class="selectbox" id="select3" v-model.number="price3" @click="calculatePrice()">
           <option disabled value=0>마감 기한 지정</option>
-          <option value=10000>24시간 이하</option>
-          <option value=5000>24시간~48시간</option>
-          <option value=0>48시간 이상</option>
+          <option v-for="option3 in dueTime_Options" :value=option3.value :key="option3">{{ option3.text }}</option>
         </select>
 
-        <select class="selectbox" id="select4" v-model.number="discount" @click="calculatePrice()">
+        <select class="selectbox" id="select4" v-model.number="price4" @click="calculatePrice()">
           <option disabled value=0>할인 대상 여부</option>
-          <option value=5000>대학생 할인</option>
-          <option value=25000>대학원생 할인</option>
-          <option value=55000>대학생 및 대학원생이 아닙니다.</option>
+          <option v-for="option4 in discount_Options" :value=option4.value :key="option4">{{ option4.text }}</option>
         </select>
         <p id="service-option-notice">*대학생 및 대학원생임을 인증해야만 할인을 받으실 수 있습니다.</p>
         <br>
@@ -49,23 +38,38 @@
 
 
 <script>
+
 export default {
   data() {
     return {
-      requiredHeadCount: 0,
-      spendTime: 0,
-      dueTime: 0,
-      discount: 0,
-      totalPrice: 0
+      requiredHeadCount: '',
+      spendTime: '',
+      dueTime: '',
+      discount: '',
+      totalPrice: 0,
+
+      price1: 0,
+      price2: 0,
+      price3: 0,
+      price4: 0,
+      
+      requiredHeadCount_Options: [ {value: 0, text: '30명'}, { value: 2500, text: '31명~35명'}, 
+      {value: 5000, text: '36명~40명'}, {value: 7500, text: '41~45명'}, {value: 9000, text: '46~50명'} ],
+
+      spendTime_Options: [ {value: 0, text: '5분 이하'}, {value: 11000, text: '6분~10분'}, 
+      {value: 24000, text: '11분~15분'}, {value: 40000, text: '16분~20분'} ],
+
+      dueTime_Options: [ {value: 10000, text: '24시간 이하'}, {value: 5000, text: '24시간~48시간'}, {value: 0, text: '48시간 이상'} ],
+
+      discount_Options: [ {value: 5000, text: '대학생 할인'}, {value: 25000, text: '대학원생 할인'}, 
+      {value: 55000, text: '대학생 및 대학원생이 아닙니다.'} ]
+
+    
     }
   },
   methods: {
     calculatePrice() {
-      var price1 = this.requiredHeadCount;
-      var price2 = this.spendTime;
-      var price3 = this.dueTime;
-      var price4 = this.discount;
-      this.totalPrice = price1 + price2 + price3 + price4;
+      this.totalPrice = this.price1 + this.price2 + this.price3 + this.price4;
     }
   }
    

@@ -30,7 +30,7 @@
 </template>
 
 <script>
-import ServiceOption from '../../components/Service/ServiceOption.vue'
+import { eventBus } from '../main'
 export default {
     components: {
         ServiceOption
