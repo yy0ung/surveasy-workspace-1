@@ -1,5 +1,5 @@
 <template>
-<div>
+<div id="app">
   <div id="nav">
     <router-link to="/"><img class="logoimg" src="@/assets/logo.png" width="190"></router-link> 
 
@@ -99,7 +99,11 @@ export default {
 
 
 <style>
+#app{
+  min-width: 1900px;
+}
 body {
+ 
   margin: 0;
 }
 
@@ -109,13 +113,14 @@ body {
   height: 27px;
   width: 918px;
   font-size: 17px;
-  
+  padding-bottom: 30px;
 
 }
 
 .nav-links a {
   padding-left: 30px;
   padding-right: 30px;
+  
 }
 
 
@@ -128,11 +133,14 @@ body {
 }
 
 #nav {
+  background-color: #fff;
   padding: 20px;
-  
-  height: 40px;
+  height: 70px;
   display: flex;
   align-items: center;
+  position: sticky;
+  top:0;
+  
 }
 
 
@@ -143,6 +151,7 @@ body {
   color: #2c3e50;
   padding: 10px;
   text-decoration: none;
+  
   
 }
 #nav .nav-element{
@@ -173,7 +182,7 @@ body {
 
 }
 .logoimg{
-  margin-top: 50px;
+  margin-top: 25px;
   margin-left: 60px;
   height: 44px;
 }
@@ -181,6 +190,7 @@ body {
   text-align: right;
   letter-spacing: 1.5px;
   margin-top: 57px;
+  padding-bottom: 30px;
 
 }
 #footer-container{
