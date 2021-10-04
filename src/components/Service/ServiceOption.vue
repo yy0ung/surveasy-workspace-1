@@ -4,7 +4,7 @@
       <div>
           <select class="selectbox" id="select1" v-model.number="price1" @click="calculatePrice()">
           <option disabled value=0>요구 응답수</option>
-          <option v-for="option1 in requiredHeadCount_Options" :value=option1.value :key="option1">{{ option1.text }}</option>
+          <option selected v-for="option1 in requiredHeadCount_Options" :value=option1.value :key="option1">{{ option1.text }}</option>
         </select>
 
         <select class="selectbox" id="select2" v-model.number="price2" @click="calculatePrice()">
@@ -30,7 +30,9 @@
         </div>
       
         <div>
-          <router-link to="/serviceinputform"><button class="goServiceInputForm-btn">설문 정보 입력하러 가기</button></router-link>
+          <router-link to="/serviceinputform">
+          <button class="goServiceInputForm-btn">설문 정보 입력하러 가기</button>
+          </router-link>
         </div>
     </div>
 </div>
@@ -46,8 +48,8 @@ export default {
       spendTime: '',
       dueTime: '',
       discount: '',
+    
       totalPrice: 0,
-
       price1: 0,
       price2: 0,
       price3: 0,
@@ -70,8 +72,10 @@ export default {
   methods: {
     calculatePrice() {
       this.totalPrice = this.price1 + this.price2 + this.price3 + this.price4;
-    }
-  }
+    },
+    
+  },
+  
    
 }
 </script>

@@ -15,12 +15,21 @@ export default createStore({
 
     db: null,
     userData: [],
-    surveyData: []
+    surveyData: [],
+
+    surveyInfo: {
+      totalPrice: 0,
+      requiredHeadCount: '',
+      dueTime: '',
+      spendTime: '',
+      discount: '',
+    }
   },
   mutations: {
     setDB(state, payload){
       state.db = payload
-    }
+    },
+
   },
   actions: {
 

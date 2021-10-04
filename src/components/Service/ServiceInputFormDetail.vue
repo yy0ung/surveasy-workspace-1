@@ -30,11 +30,16 @@
 </template>
 
 <script>
-import { eventBus } from '../main'
+
 export default {
-    components: {
-        ServiceOption
-    }
+    data() {
+        return {
+            
+        }
+    },
+    methods: {
+    },
+  
   
 }
 </script>
