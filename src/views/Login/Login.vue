@@ -3,13 +3,13 @@
   <img class="checkimg" src="@/assets/check.png" width="50">
   <div class="loginform">
     <li>
-      <input type="email" placeholder="아이디 (이메일)">
+      <input type="email" placeholder="아이디 (이메일)" v-model="email">
     </li>
     <li>
-      <input type="password" placeholder="비밀번호">
+      <input type="password" placeholder="비밀번호" v-model="password">
     </li>
     <li>
-      <button class="loginbtn">로그인하기</button>
+      <button class="loginbtn" @click="signIn">로그인하기</button>
     </li>
     
   </div>
@@ -29,8 +29,39 @@
 </template>
 
 <script>
+import { getAuth, signInWithEmailAndPassword } from 'firebase/auth'
 export default {
+  data(){
+    return{
+      email:'',
+      password:''
+    }
+  },
 
+  methods:{
+    signIn(){
+      const auth = getAuth();
+      signInWithEmailAndPassword(auth, this.email, this.password)
+        .then((userCredential) => {
+          
+          const user = userCredential.user
+          this.$store.state.currentUser = user
+          console.log('current User: ', user)
+          this.$store.state.isLoggedIn = true
+          console.log('여기부터 currentUser 메소드 실험 -----')
+          console.log(auth.currentUser.email)
+          this.$store.dispatch('setCurrentUser', {
+            payload: auth.currentUser.email
+          })
+          this.$router.push('/')
+        })
+        
+
+      
+      
+    }
+
+  }
 }
 </script>
 

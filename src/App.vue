@@ -20,8 +20,21 @@
       <span class="nav-element-">|</span>
       <router-link to="/contact"><span class="nav-element">문의</span></router-link> 
     </div>
-    <div class="nav-login">
-      <router-link to="/login"><span class="nav-element" >LOGIN</span></router-link> 
+    <div class="nav-login" >
+      <div v-if="this.$store.state.isLoggedIn == false">
+        <router-link to="/login"><span class="nav-element" >LOGIN</span></router-link> 
+      </div>
+      <div v-else>
+        <div class='my-dropdown'>
+          <p class="my-dropdown-btn">안녕하세요 {{this.$store.state.currentUser.nickname}}님</p>
+          <div class='my-dropdown-content'>
+            <router-link to="/mypage">마이페이지</router-link>
+            <p @click="logout">로그아웃</p>
+            
+          </div>
+        </div>
+      </div>
+      
     </div>
   
     
@@ -52,6 +65,8 @@
 import { initializeApp } from 'firebase/app'
 import { getFirestore,collection, getDocs } from 'firebase/firestore'
 import { orderBy } from 'lodash'
+import { getAuth, onAuthStateChanged } from 'firebase/auth'
+import _ from 'lodash'
 
 export default {
   mounted(){
@@ -60,6 +75,18 @@ export default {
     this.$store.commit('setDB', db)
     this.fetchUserData()
     this.fetchSurveyData()
+
+    // 로그인관리 방법 중 하나
+    //     const auth = getAuth();
+    //     onAuthStateChanged(auth, (user) => {  
+    //       if (user) {
+    //         console.log('authStateChanged!')
+    //         this.$store.dispatch('setCurrentUser', {
+    //           payload: user.email
+    //         })
+        
+    //   }
+    // })
 
     
     
@@ -88,9 +115,15 @@ export default {
         dataSet.push(doc.data(), upTime, dueTime)
         surveyData.push(dataSet)
       })
-      const sorted = orderBy(this.$store.state.surveyData, this.$store.state.surveyData.id, "desc")
+      const sorted = orderBy(this.$store.state.surveyData, this.$store.state.surveyData[0].id, "asc")
       this.$store.state.surveyData = sorted
+      console.log(sorted)
       
+    },
+
+    logout(){
+      this.$router.push('/')
+      this.$store.dispatch('logout')
     }
   }
 }
@@ -209,5 +242,38 @@ body {
   #footer-container .footer-icon{
     padding: 15px;
     color: #42b983;
+  }
+
+  .my-dropdown{
+    position: relative;
+    display: inline-block;
+  }
+  .my-dropdown:hover .my-dropdown-content{
+    display: block;
+  }
+
+  .my-dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+.my-dropdown-content a:hover {background-color: #aaa;}
+
+  .my-dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+  }
+
+  .my-dropdown-content p {
+    cursor: pointer;
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+  .my-dropdown-content p:hover {
+    background-color: #aaa;
   }
 </style>
