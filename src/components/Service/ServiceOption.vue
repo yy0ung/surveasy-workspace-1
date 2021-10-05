@@ -86,7 +86,7 @@ export default {
 </script>
 
 
-<style scoped>
+<style>
 #service-option-title {
   text-align: left;
   margin: 80px 0 10px 40px;
