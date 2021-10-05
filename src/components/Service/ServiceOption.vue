@@ -55,16 +55,17 @@ export default {
       price3: 0,
       price4: 0,
       
-      requiredHeadCount_Options: [ {value: 0, text: '30명'}, { value: 2500, text: '31명~35명'}, 
-      {value: 5000, text: '36명~40명'}, {value: 7500, text: '41~45명'}, {value: 9000, text: '46~50명'} ],
+      requiredHeadCount_Options: [ {value: 1000, text: '30명'}, { value: 3500, text: '31명~35명'}, 
+      {value: 6000, text: '36명~40명'}, {value: 8500, text: '41~45명'}, {value: 10000, text: '46~50명'} ],
 
-      spendTime_Options: [ {value: 0, text: '5분 이하'}, {value: 11000, text: '6분~10분'}, 
-      {value: 24000, text: '11분~15분'}, {value: 40000, text: '16분~20분'} ],
+      spendTime_Options: [ {value: 1000, text: '5분 이하'}, {value: 12000, text: '6분~10분'}, 
+      {value: 25000, text: '11분~15분'}, {value: 41000, text: '16분~20분'} ],
 
-      dueTime_Options: [ {value: 10000, text: '24시간 이하'}, {value: 5000, text: '24시간~48시간'}, {value: 0, text: '48시간 이상'} ],
+      dueTime_Options: [ {value: 11000, text: '24시간 이하'}, {value: 6000, text: '24시간~48시간'}, {value: 1000, text: '48시간 이상'} ],
 
-      discount_Options: [ {value: 5000, text: '대학생 할인'}, {value: 25000, text: '대학원생 할인'}, 
-      {value: 55000, text: '대학생 및 대학원생이 아닙니다.'} ]
+      discount_Options: [ {value: 2000, text: '대학생 할인'}, {value: 22000, text: '대학원생 할인'}, 
+      {value: 52000, text: '대학생 및 대학원생이 아닙니다.'} ]
+
 
     
     }
