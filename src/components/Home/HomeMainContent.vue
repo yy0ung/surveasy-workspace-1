@@ -35,6 +35,7 @@ export default {
   display: flex;
   justify-content: space-between;
   margin-top: 30px;
+  
 }
 
 #main-content-container .main-left{
