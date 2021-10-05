@@ -24,6 +24,10 @@
                   <input type="text" id="survey-link" placeholder="설문 링크를 입력해주세요." required>
               </ul>
             </form>
+            <div class="show-price-container">
+                    <span class="service-option-totalprice-word">총 금액</span>
+                    <span class="service-option-totalprice-price">&nbsp; &nbsp; &nbsp; &nbsp;{{ this.$store.state.surveyLocal.price }}원</span>
+            </div>
             <div><button class="goServicePayDone-btn">결제하기</button></div>
       </div>
   </div>

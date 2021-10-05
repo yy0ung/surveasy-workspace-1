@@ -31,7 +31,7 @@
       
         <div>
           <router-link to="/serviceinputform">
-          <button class="goServiceInputForm-btn">설문 정보 입력하러 가기</button>
+          <button class="goServiceInputForm-btn" @click="getPrice(this.totalPrice)">설문 정보 입력하러 가기</button>
           </router-link>
         </div>
     </div>
@@ -74,6 +74,9 @@ export default {
     calculatePrice() {
       this.totalPrice = this.price1 + this.price2 + this.price3 + this.price4;
     },
+    getPrice(Price) {
+      this.$store.commit('setSurvey', {price: Price});
+    }
     
   },
   
