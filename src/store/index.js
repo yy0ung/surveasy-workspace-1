@@ -17,13 +17,6 @@ export default createStore({
     userData: [],
     surveyData: [],
 
-    surveyInfo: {
-      totalPrice: 0,
-      requiredHeadCount: '',
-      dueTime: '',
-      spendTime: '',
-      discount: '',
-    },
 
     surveyLocal: {
       price: 0,
