@@ -73,6 +73,7 @@ export default {
   methods: {
     calculatePrice() {
       this.totalPrice = this.price1 + this.price2 + this.price3 + this.price4;
+      this.$store.state.surveyLocal.price = this.totalPrice;
     },
     getPrice(Price) {
       this.$store.commit('setSurvey', {price: Price});

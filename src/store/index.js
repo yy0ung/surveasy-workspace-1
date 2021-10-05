@@ -23,7 +23,20 @@ export default createStore({
       dueTime: '',
       spendTime: '',
       discount: '',
-    }
+    },
+
+    surveyLocal: {
+      price: 0,
+      head: '',
+      spendtime: '',
+      duetime: '',
+      discount: '',
+      title: '',
+      keyword: '',
+      institute: '',
+      link: ''
+    }, 
+    
   },
   mutations: {
     setDB(state, payload){
