@@ -16,7 +16,7 @@
         <td>{{item[0].surveyTitle}}</td>
         <td>{{item[0].uploader}}</td>
         <td>{{item[0].headCount}}/{{item[0].requireHeadCount}}</td>
-        <td>{{item[1].getUTCFullYear()}}.{{item[1].getUTCMonth()}}.{{item[1].getUTCDate()}}</td>
+        <td>{{item[1].getUTCFullYear()}}.{{item[1].getUTCMonth()+1}}.{{item[1].getUTCDate()}}</td>
       </tr>
     </table>
     <br>
@@ -34,7 +34,7 @@
     <hr>
     <h3>더미데이터 입력란</h3>
     <br>
-    ID <input type="text" v-model="dataSet.id">
+    ID <input type="number" v-model="dataSet.id">
     <br>
     isDone <input type="checkbox" v-model="dataSet.isDone" value="isDone">
     <br>

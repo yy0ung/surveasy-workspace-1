@@ -6,31 +6,33 @@
           <li>
               <ul class="cols">
                   <li class="col1">이메일 주소</li>
-                  <li class="col2"><input type="email" id="email" required></li>
+                  <li class="col2"><input type="email" id="email" v-model="dataSet.email" required></li>
+                  
               </ul>
           </li>
           <li>
               <ul class="cols">
                   <li class="col1">비밀번호</li>
-                  <li class="col2"><input type="password" id="password" required></li>
+                  <li class="col2"><input type="password" id="password" v-model="dataSet.password" required></li>
+                  
               </ul>
           </li>
           <li>
               <ul class="cols">
                   <li class="col1">비밀번호 확인</li>
-                  <li class="col2"><input type="password" id="passwordcheck" required></li>
+                  <li class="col2"><input type="password" id="passwordcheck"  required></li>
               </ul>
           </li>
           <li>
               <ul class="cols">
                   <li class="col1">닉네임</li>
-                  <li class="col2"><input type="text" id="nickname" required></li>
+                  <li class="col2"><input type="text" id="nickname" v-model="dataSet.nickname" required></li>
               </ul>
           </li>
           <li>
               <ul class="cols">
                   <li class="col1">휴대폰 번호</li>
-                  <li class="col2"><input type="tel" id="tel" required></li>
+                  <li class="col2"><input type="tel" id="tel" v-model="dataSet.phoneNumber" required></li>
               </ul>
           </li>
           <li>
@@ -51,13 +53,59 @@
                   </li>
               </ul>
           </li>
+          
 
      </form>
+     <button @click="addUserData(this.dataSet); create();"> 가입하기 </button>
 </div>
 </template>
 
 <script>
+import { getAuth,  createUserWithEmailAndPassword } from 'firebase/auth'
+import { setDoc, doc } from 'firebase/firestore';
 export default {
+    data(){
+        
+        return{
+            dataSet:{
+              email:null,
+              password:null,
+              phoneNumber:null,
+              nickname:null   
+            }
+            
+        }
+    }
+    ,
+    methods:{
+        
+        create(){
+            const auth = getAuth();
+            createUserWithEmailAndPassword(auth, this.dataSet.email, this.dataSet.password)
+                .then((userCredential) => {
+                    const user = userCredential.user;
+                    console.log(user)
+                })
+            this.$router.push('/')
+            
+        },
+
+        async addUserData(dataSet){
+            console.log(dataSet)
+            var db = this.$store.state.db
+            await setDoc(doc(db, "userData", dataSet.email),{
+                nickname: dataSet.nickname,
+                email: dataSet.email,
+                phoneNumber: dataSet.phoneNumber,
+                isPanel: false,
+                name: null,
+                uploadIndex: [],
+                identity: 'hakbu'
+                
+                
+            })
+        }
+    }
 
 }
 </script>
