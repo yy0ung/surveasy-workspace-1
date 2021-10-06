@@ -27,7 +27,7 @@ export default createStore({
       duetime: '',
       discount: '',
       title: '',
-      keyword: '',
+      keyword: [],
       institute: '',
       link: ''
     }, 
@@ -40,6 +40,7 @@ export default createStore({
       state.db = payload
     },
 
+    
 
     setSurveyMutation1(state, payload) {
       state.localSurveyState.price = payload.price,
