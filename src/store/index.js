@@ -20,9 +20,9 @@ export default createStore({
 
 
 
-    surveyLocal: {
+    localSurveyState: {
       price: 0,
-      head: '',
+      requiredheadcount: '',
       spendtime: '',
       duetime: '',
       discount: '',
@@ -41,16 +41,16 @@ export default createStore({
     },
 
 
-    setSurvey(state, payload2) {
-      state.surveyLocal.price = payload2.price,
-      state.surveyLocal.head = payload2.head,
-      state.surveyLocal.spendtime = payload2.spendtime,
-      state.surveyLocal.duetime = payload2.duetime,
-      state.surveyLocal.discount = payload2.discount,
-      state.surveyLocal.title = payload2.title,
-      state.surveyLocal.keyword = payload2.keyword,
-      state.surveyLocal.institute = payload2.institute,
-      state.surveyLocal.link = payload2.link
+    setSurveyMutation(state, payload) {
+      state.localSurveyState.price = payload.price,
+      state.localSurveyState.requiredheadcount = payload.requiredheadcount,
+      state.localSurveyState.spendtime = payload.spendtime,
+      state.localSurveyState.duetime = payload.duetime,
+      state.localSurveyState.discount = payload.discount,
+      state.localSurveyState.title = payload.title,
+      state.localSurveyState.keyword = payload.keyword,
+      state.localSurveyState.institute = payload.institute,
+      state.localSurveyState.link = payload.link
     },
 
 
