@@ -41,12 +41,14 @@ export default createStore({
     },
 
 
-    setSurveyMutation(state, payload) {
+    setSurveyMutation1(state, payload) {
       state.localSurveyState.price = payload.price,
       state.localSurveyState.requiredheadcount = payload.requiredheadcount,
       state.localSurveyState.spendtime = payload.spendtime,
       state.localSurveyState.duetime = payload.duetime,
-      state.localSurveyState.discount = payload.discount,
+      state.localSurveyState.discount = payload.discount
+    },
+    setSurveyMutation2(state, payload){
       state.localSurveyState.title = payload.title,
       state.localSurveyState.keyword = payload.keyword,
       state.localSurveyState.institute = payload.institute,

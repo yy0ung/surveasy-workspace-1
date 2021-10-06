@@ -18,29 +18,27 @@
             <div class="option">
                 <ul id="showOption-title">할인 대상 여부</ul>
                 <ul id="showOption-value">{{ this.$store.state.localSurveyState.discount }}</ul>
+                <ul>{{ this.$store.state.localSurveyState.title }}</ul>
+                <ul>{{ this.$store.state.localSurveyState.keyword }}</ul>
+                <ul>{{ this.$store.state.localSurveyState.institute }}</ul>
+                <ul>{{ this.$store.state.localSurveyState.link }}</ul>
             </div>              
       </div>
 
-      <div class="serviceInputForm-container-survey">
-        <form class="survey-info">
-            <ul id="info-title">설문 정보</ul>
-            <ul class="input"><input type="text" id="survey-title" placeholder="설문 제목을 입력해주세요." required></ul>
-            <ul class="input"><input type="text" id="survey-keyword" placeholder="설문 주제 키워드를 입력해주세요." required></ul>
-            <ul class="input"><input type="text" id="survey-institution" placeholder="소속된 직장/학교를 입력해주세요." required></ul>
-            <ul class="input"><input type="text" id="survey-link" placeholder="설문 링크를 입력해주세요." required></ul>
-            <ul>
-                <div class="show-price-container2">
-
-               
+        <div class="serviceInputForm-container-survey">
+            <div class="survey-info">
+                <ul id="info-title">설문 정보</ul>
+                <ul class="input"><input type="text" v-model="title" placeholder="설문 제목을 입력해주세요." required></ul>
+                <ul class="input"><input type="text" v-model="keyword" placeholder="설문 주제 키워드를 입력해주세요." required></ul>
+                <ul class="input"><input type="text" v-model="institute" placeholder="소속된 직장/학교를 입력해주세요." required></ul>
+                <ul class="input"><input type="text" v-model="link" placeholder="설문 링크를 입력해주세요." required></ul>
+            </div>
+            <div class="show-price-container2">
                 <span class="service-option-totalprice-word">총 금액</span>
                 <span class="service-option-totalprice-price">&nbsp; &nbsp; &nbsp; &nbsp;{{ this.$store.state.localSurveyState.price }}원</span>
-                <div><button class="goServicePayDone-btn" @click="show()">결제하기</button></div>
-                </div>
-            </ul>
-        </form>
-        
-            
-      </div>
+            </div>
+            <button class="goServicePayDone-btn" @click="getInputForm()">결제하기</button>
+        </div>
   </div>
 </template>
 
@@ -49,13 +47,15 @@
 export default {
     data() {
         return {
-            
+            title: '',
+            keyword: [],
+            institute: '',
+            link: ''
         }
     },
     methods: {
-        show() {
-            console.log(this.$store.state.localSurveyState.price);
-            console.log(this.$store.state.localSurveyState.requiredheadcount);
+        getInputForm() {
+            this.$store.commit('setSurveyMutation2', {title: this.title, keyword: this.keyword, institute: this.institute, link: this.link});
         }
     },
   
@@ -120,14 +120,15 @@ export default {
     color:#0CAE02;
 }
 .goServicePayDone-btn {
-  width: 100px;
-  height: 30px;
-  margin: 40px;
-  color:#0CAE02;
-  background-color: rgb(231, 231, 231);
-  border: 1.5px solid #0CAE02;
-  border-radius: 30px;
-  font-size: 15px;
-  cursor: pointer;
+    float: right;
+    width: 100px;
+    height: 30px;
+    margin: 20px 190px 20px 0;
+    color:#0CAE02;
+    background-color: rgb(231, 231, 231);
+    border: 1.5px solid #0CAE02;
+    border-radius: 30px;
+    font-size: 15px;
+    cursor: pointer;
 }
 </style>

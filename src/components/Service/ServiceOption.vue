@@ -75,7 +75,7 @@ export default {
     },
 
     getOptions() {
-      this.$store.commit('setSurveyMutation', {price: this.totalPrice, requiredheadcount: this.requiredHeadCount, spendtime: this.spendTime,
+      this.$store.commit('setSurveyMutation1', {price: this.totalPrice, requiredheadcount: this.requiredHeadCount, spendtime: this.spendTime,
       duetime: this.dueTime, discount: this.discount});
       console.log(this.$store.state.localSurveyState.price);
       console.log(this.$store.state.localSurveyState.requiredheadcount);
