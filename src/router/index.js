@@ -10,6 +10,8 @@ import Contact from '../views/Contact.vue'
 import Login from '../views/Login/Login.vue'
 import Register from '../views/Login/Register.vue'
 import MyPage from '../views/MyPage/MyPage.vue'
+import MyInfo from '../components/MyPage/MyInfo.vue'
+import Payment from '../components/MyPage/Payment.vue'
 const routes = [
   {
     path: '/',
@@ -64,7 +66,11 @@ const routes = [
   {
     path: '/mypage',
     name: 'MyPage',
-    component: MyPage
+    component: MyPage,
+    children: [
+      { path: "payment", component: Payment },
+      { path: "myinfo", component: MyInfo }
+    ]
   },
 ]
 
