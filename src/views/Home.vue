@@ -45,7 +45,6 @@ export default {
 
 
 .HomeMainContent-btn{
-
   font-family: 'Noto Sans KR', sans-serif;
   color: #0AAC00;
   background-color: #fff;
