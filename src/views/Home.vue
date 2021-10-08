@@ -42,7 +42,9 @@ export default {
 </script>
 
 <style>
-
+.home-contents-child{
+  margin-top:0;
+}
 
 .HomeMainContent-btn{
 

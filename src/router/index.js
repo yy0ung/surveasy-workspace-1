@@ -10,6 +10,7 @@ import Contact from '../views/Contact.vue'
 import Login from '../views/Login/Login.vue'
 import Register from '../views/Login/Register.vue'
 import MyPage from '../views/MyPage/MyPage.vue'
+import SurveyResponse from '../views/SurveyResponse.vue'
 const routes = [
   {
     path: '/',
@@ -66,6 +67,11 @@ const routes = [
     name: 'MyPage',
     component: MyPage
   },
+  {
+    path: '/response',
+    name: 'SurveyResponse',
+    component: SurveyResponse
+  }
 ]
 
 const router = createRouter({

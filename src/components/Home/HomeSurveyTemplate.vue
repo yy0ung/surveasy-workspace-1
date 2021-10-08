@@ -9,7 +9,7 @@
       <br>
       <span class="template-bold">단돈 500원에 <span class="template-green">설문 템플릿</span>을 구매하여 사용해보세요!</span>
     </p>
-    <button class="HomeSurveyTemplate-btn" id="template-btn">설문 템플릿 보기</button>
+    <router-link to="/surveytemplate"><button class="HomeSurveyTemplate-btn" id="template-btn">설문 템플릿 보기</button></router-link>
   </div>
     
   </div>
