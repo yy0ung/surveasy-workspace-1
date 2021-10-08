@@ -4,7 +4,7 @@
     <p><span class="story-bold">"왜 대학생을 위한 설문조사 플랫폼은 없을까?"</span></p>
     <p><span class="story-none">설문 제작부터 배포, 분석까지. 대학생으로서 느낀 문제를 직접 해결하고자 시작된 서베이지의 이야기,</span>
       <br> <span id="story-none-bold">한번 들어보실래요?</span></p>
-    <button class="HomeBrandStory-btn">더 알아보기</button>
+    <router-link to="/story"><button class="HomeBrandStory-btn">더 알아보기</button></router-link>
   </div>
   
 </div>
@@ -43,7 +43,7 @@ export default {
 
   #brand-story-container #story-none-bold{
     font-family: 'Noto Sans KR', sans-serif;
-    font-weight: 900;
+    font-weight: 700;
     font-size: 20px;
     color: #fff;
   }

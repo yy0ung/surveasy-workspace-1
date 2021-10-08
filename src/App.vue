@@ -4,13 +4,17 @@
     <router-link to="/"><img class="logoimg" src="@/assets/logo.png" width="190"></router-link> 
 
     <div class="nav-links">
-      <router-link to="/service">
+      <div class="my-dropdown">
         <span class="nav-element" id="nav-service">서비스 이용
           <span class="nav-icon" >
             <i class="fas fa-chevron-down"></i>
           </span>
         </span>        
-      </router-link> 
+        <div class="my-dropdown-content">
+          <router-link to="/service">설문 응답 서비스</router-link>
+          <router-link to="/surveytemplate">설문 템플릿</router-link>
+        </div>
+       </div>
       <span class="nav-element-">|</span>
       <router-link to="/surveylist"><span class="nav-element">설문 리스트</span></router-link> 
       <span class="nav-element-">|</span>
@@ -46,7 +50,6 @@
     <div class="footer-contents">
       <p>서베이지 Surveasy</p>
       <p>상호 : 서베이지</p>
-      <p>사업자등록번호 : 000-00-00000</p>
       <p>이메일 : surveasy2019@yonsei.ac.kr</p>
   </div>
   <div class="footer-icons" >
@@ -189,7 +192,10 @@ body {
   
 }
 #nav .nav-element{
-  
+  font-weight: bold;
+  color: #2c3e50;
+  padding: 10px;
+  text-decoration: none;
   margin-right: 30px;
   margin-left: 30px;
 }
@@ -261,6 +267,8 @@ body {
   }
   .my-dropdown:hover .my-dropdown-content{
     display: block;
+    margin-top:5px;
+    margin-left: 5px;
   }
 
   .my-dropdown-content a {
