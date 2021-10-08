@@ -35,7 +35,7 @@ export default {
 .serviceDetail-container {
   width: 100%;
   border-radius: 10px;
-  margin: 40px;
+  margin: 80px;
   display: flex;
   flex-direction: column;
   background-color: rgb(231, 231, 231);
@@ -43,7 +43,7 @@ export default {
 
 }
 .serviceDetail-container-child {
-  height: 150px;
+  height: 300px;
   margin: 3px;
   padding: 50px;
   border-bottom: 1px solid grey;
