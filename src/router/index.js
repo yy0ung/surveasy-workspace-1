@@ -13,6 +13,7 @@ import MyPage from '../views/MyPage/MyPage.vue'
 import SurveyResponse from '../views/SurveyResponse.vue'
 import MyInfo from '../components/MyPage/MyInfo.vue'
 import Payment from '../components/MyPage/Payment.vue'
+import ListDetail from '../components/List/ListDetail.vue'
 
 const routes = [
   {
@@ -34,6 +35,10 @@ const routes = [
     path: '/surveylist',
     name: 'SurveyList',
     component: SurveyList
+  },
+  {
+    path: '/surveylist/:id',
+    component: ListDetail
   },
   {
     path: '/surveytemplate',

@@ -33,7 +33,8 @@ export default createStore({
     }, 
     
 
-    currentUser:null
+    currentUser:null,
+    surveyListStatus:["응답 완료","응답 인증","설문 마감"]
   },
   mutations: {
     setDB(state, payload){

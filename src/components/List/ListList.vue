@@ -10,13 +10,29 @@
         <th>설문 작성자</th>
         <th>응답 수</th>
         <th>업로드 날짜</th>
+        <th></th>
       </tr>
       <tr v-for="item in (this.$store.state.surveyData.slice(currentPage*5-5,currentPage*5))" :key="item.id">
         <td>{{item[0].id}}</td>
-        <td>{{item[0].surveyTitle}}</td>
+        <td>
+          <router-link :to="`/surveylist/${item[0].id}`">{{item[0].surveyTitle}}</router-link>
+
+        </td>
         <td>{{item[0].uploader}}</td>
         <td>{{item[0].headCount}}/{{item[0].requireHeadCount}}</td>
         <td>{{item[1].getUTCFullYear()}}.{{item[1].getUTCMonth()+1}}.{{item[1].getUTCDate()}}</td>
+        <td>
+          <div v-if="this.$store.state.currentUser">
+            <div v-if="this.$store.state.currentUser.respondArray.includes(item[0].id)" class="responded">
+            {{this.$store.state.surveyListStatus[0]}}
+            </div>
+            <div v-else>{{this.$store.state.surveyListStatus[1]}}</div>
+          </div>
+          <div v-else>
+            로그인 필요
+          </div>
+          
+        </td>
       </tr>
     </table>
     <br>
@@ -29,7 +45,7 @@
     <br>
     <br><br>
     
-
+    <p>{{this.$store.state.currentUser}}</p>
     
     <hr>
     <h3>더미데이터 입력란</h3>
@@ -92,7 +108,7 @@ export default {
         spendTime: 0,
         requireHeadCount: 0,
         surveyInstitute: '',
-        surveyLink: 'www.naver.com',
+        surveyLink: 'https://docs.google.com/forms/d/e/1FAIpQLSdTWah7LXvFHOBk6RZowuyaNk_xfRssgtH29zRJPoAfygEKnQ/viewform?embedded=true',
         surveyTitle: '',
         uploadTime:'time',
         uploader:'',
@@ -182,5 +198,9 @@ export default {
 
 #page-button{
   display: inline;
+}
+
+.responded {
+  color: #af2232
 }
 </style>
