@@ -61,6 +61,8 @@
     <button @click="addData(this.dataSet)">submit</button>
     
     <hr> 
+
+    
     
   </div>
 </template>
@@ -107,7 +109,7 @@ export default {
       var dueTime = new Date()
       
       dueTime.setDate(dueTime.getDate() + 7)
-      await setDoc(doc(db, "surveyData", dataSet.id),{
+      await setDoc(doc(db, "surveyData", dataSet.id.toString()),{
         id: dataSet.id,
         isDone: dataSet.isDone,
         uploader: dataSet.uploader,
@@ -130,7 +132,8 @@ export default {
     },
     dec(){
       this.currentPage -= 1
-    }
+    },
+    
   },
   computed:{
     totalPage(){

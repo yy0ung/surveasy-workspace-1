@@ -64,7 +64,7 @@
 <script>
 import { initializeApp } from 'firebase/app'
 import { getFirestore,collection, getDocs } from 'firebase/firestore'
-import { orderBy } from 'lodash'
+import { orderBy,sortBy } from 'lodash'
 import { getAuth, onAuthStateChanged } from 'firebase/auth'
 import _ from 'lodash'
 
@@ -110,14 +110,18 @@ export default {
       querySnapshot.forEach((doc)=> {
         const upTime = new Date(doc.data().uploadTime.seconds*1000)
         const dueTime = new Date(doc.data().dueTime.seconds*1000)
-        
+        var docID = Number(doc.data().id)
         var dataSet = []
-        dataSet.push(doc.data(), upTime, dueTime)
+        dataSet.push(doc.data(), upTime, dueTime, {'docID':docID})
         surveyData.push(dataSet)
       })
-      const sorted = orderBy(this.$store.state.surveyData, this.$store.state.surveyData[0].id, "asc")
+      
+      const sorted = this.$store.state.surveyData.sort(function(a,b){return b[0].id - a[0].id })
+      // const sorted = sortBy(this.$store.state.surveyData, [function(o) {return o.docID}])
+      // var test = sorted.sort(function(a,b){return b[0].id - a[0].id })
+      // console.log(test)
       this.$store.state.surveyData = sorted
-      console.log(sorted)
+      
       
     },
 
