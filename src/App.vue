@@ -124,6 +124,7 @@ export default {
       // var test = sorted.sort(function(a,b){return b[0].id - a[0].id })
       // console.log(test)
       this.$store.state.surveyData = sorted
+      console.log((this.$store.state.surveyData).length)
       
       
     },
