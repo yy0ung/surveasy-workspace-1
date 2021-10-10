@@ -37,6 +37,8 @@
           </router-link>
         </div>
     </div>
+
+    
 </div>
 </template>
 
@@ -46,6 +48,7 @@
 export default {
   data() {
     return {
+      currentTime : new Date(),
       requiredHeadCount: '',
       spendTime: '',
       dueTime: '',

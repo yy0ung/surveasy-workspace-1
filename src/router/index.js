@@ -14,6 +14,7 @@ import SurveyResponse from '../views/SurveyResponse.vue'
 import MyInfo from '../components/MyPage/MyInfo.vue'
 import Payment from '../components/MyPage/Payment.vue'
 import ListDetail from '../components/List/ListDetail.vue'
+import ServiceTest from '../components/Service/ServiceTest.vue'
 
 const routes = [
   {
@@ -26,6 +27,11 @@ const routes = [
     name: 'Service',
     component: Service
   },
+  {
+    path: '/servicetest',
+    component: ServiceTest
+  },
+
   {
     path: '/serviceinputform',
     name: 'ServiceInputForm',
