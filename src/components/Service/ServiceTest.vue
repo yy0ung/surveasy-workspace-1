@@ -1,7 +1,7 @@
 <template>
   <div>
     <p>serviceTest</p>
-    <p>{{Number(this.$store.state.priceTable[priceIdentity][priceSpendTime][priceSpendTime])+Number(this.$store.state.addOptionArray[0][addGenderTarget])+Number(this.$store.state.addOptionArray[1][addAgeTarget])+Number(this.$store.state.addOptionArray[2][addENTarget])}}</p>
+    <p>{{Number(this.$store.state.priceTable[priceIdentity][priceSpendTime][priceRequireHeadCount])+Number(this.$store.state.addOptionArray[0][addGenderTarget])+Number(this.$store.state.addOptionArray[1][addAgeTarget])+Number(this.$store.state.addOptionArray[2][addENTarget])}}</p>
     
     <select v-model="priceIdentity">
       <option :value=0>대학생</option>

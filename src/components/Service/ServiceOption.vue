@@ -16,8 +16,10 @@
           <option disabled value=0>마감 기한 지정</option>
           <option v-for="option3 in dueTime_Options" :value=option3.value :key="option3">{{ option3.text }}</option>
         </select>
-        <input type="Date" :value="today" :min="min" :max="getDateStr" >
-        <input type="time" :value="getTimeStr">
+        <input type="Date"  :min="min" :max="getDateStr" v-model="aa">
+        <input type="time"  v-model="bb">
+        
+        <p>{{this.$store.state.addOptionArray[3][timeOptionCal]}}</p>
 
         <select class="selectbox" id="select4" v-model.number="price4" @click="calculatePrice(); getDiscount();" required>
           <option disabled value=0>할인 대상 여부</option>
@@ -73,6 +75,12 @@ export default {
 
       today: new Date().toISOString().substring(0,10),
       min: new Date().toISOString().substring(0,10),
+
+      aa:'',
+      bb:'',
+      cc: this.aa+' '+this.bb,
+      dd: new Date()
+      
     
       
       
@@ -95,6 +103,25 @@ export default {
 
       return now
 
+    },
+    timeOptionCal(){
+      var ab = this.aa + ' ' + this.bb
+      var asdf = new Date(ab).getTime()
+      var hourGap = parseInt((asdf - this.dd.getTime())/3600000) 
+      var hourOptionIndex = 0
+      if (hourGap >= 18 && hourGap < 24){
+        hourOptionIndex = 1
+      } else if (hourGap >= 24 && hourGap < 36){
+        hourOptionIndex = 2
+      } else if (hourGap >= 36 && hourGap < 48){
+        hourOptionIndex = 3
+      } else if (hourGap >= 48 && hourGap < 72){
+        hourOptionIndex = 4
+      } else if (hourGap >= 72){
+        hourOptionIndex = 5
+      }
+      return hourOptionIndex
+      
     }
   },
   methods: {
