@@ -141,7 +141,10 @@ export default {
 
 <style>
 #app{
-  min-width: 1900px;
+  margin-left : auto;
+  margin-right: auto;
+  min-width: 1190px;
+  
 }
 body {
  
