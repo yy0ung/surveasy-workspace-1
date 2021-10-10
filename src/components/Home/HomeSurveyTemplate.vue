@@ -1,7 +1,7 @@
 <template>
 <div id="template-container">
   <div class="template-image">
-    <img class="templateimg" src="@/assets/Home/template.png" width="575">
+    <img class="templateimg" src="@/assets/Home/template.png" >
   </div>
   <div class="template-content">
     <p>
@@ -24,19 +24,29 @@ export default {
 
 <style>
   #template-container{
-    height: 580px;
+    padding: 40px 40px;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #EEEEEE;
+    background: #EEEEEE 0% 0% no-repeat padding-box;
+    border-radius: 24px;
+    margin-bottom: 50px;
   }
 
   #template-container .template-content{
     text-align: left;
-    margin-left: 178px;
+    margin-left: 90px;
     font-family: 'Noto Sans KR', sans-serif;
-    font-size: 30px;
+    font-size: 1.4rem;
+    
+    
 
+  }
+  
+  .templateimg{
+    margin-left : 60px;
+    width: 20rem;
+    
   }
 
   #template-container .template-bold{
@@ -48,14 +58,14 @@ export default {
     background-color: #0AAC00;
   }  
   .HomeSurveyTemplate-btn{
-    margin-top: 82px;
+    margin-top: 42px;
     font-family: 'Noto Sans KR', sans-serif;
     color: #0AAC00;
     background-color: #EEEEEE;
     border: 1px solid #0AAC00;
     padding: 9px 20px;
     border-radius: 24px;
-    font-size: 19px;
+    font-size: 1rem;
 }
 
 .HomeSurveyTemplate-btn:hover{

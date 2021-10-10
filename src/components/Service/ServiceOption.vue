@@ -16,8 +16,8 @@
           <option disabled value=0>마감 기한 지정</option>
           <option v-for="option3 in dueTime_Options" :value=option3.value :key="option3">{{ option3.text }}</option>
         </select>
-        <input type="Date" :value="today" :min="min" :max="getDateStr" >
-        <input type="time" :value="getTimeStr">
+        <input type="Date" v-model="today" :min="min" :max="getDateStr" >
+        <input type="time" v-model="getTimeStr">
 
         <select class="selectbox" id="select4" v-model.number="price4" @click="calculatePrice(); getDiscount();" required>
           <option disabled value=0>할인 대상 여부</option>
@@ -74,11 +74,11 @@ export default {
       today: new Date().toISOString().substring(0,10),
       min: new Date().toISOString().substring(0,10),
     
-      
+    
       
     }
   },
-  computed:{
+  computed :{
     getDateStr(){
       var today = new Date()
       var a = today.setDate(today.getDate()+7)
@@ -92,8 +92,8 @@ export default {
       var kr_diff = 9*60*60*1000
       var krr = new Date(utc+(kr_diff))
       var now = krr.toString().substring(16,21)
-
       return now
+      
 
     }
   },
