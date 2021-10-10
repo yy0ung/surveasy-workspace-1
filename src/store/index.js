@@ -55,8 +55,6 @@ export default createStore({
     ],
 
 
-
-
     localSurveyState: {
       price: 0,
       identity: '',
@@ -82,7 +80,6 @@ export default createStore({
       state.db = payload
     },
 
-    
 
     setSurveyMutation1(state, payload) {
       state.localSurveyState.price = payload.price,

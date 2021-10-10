@@ -48,12 +48,13 @@
       <input type="radio" v-model="addENTarget" :value=1 name="enTarget">영어 설문(50명 이하)<br>
       <input type="radio" v-model="addENTarget" :value=2 name="enTarget">영어 설문(50명 초과)
     </div>
-      
         <br>
       
         <div class="show-price-container">
           <span class="service-option-totalprice-word">총 금액</span>
+
           <span class="service-option-totalprice-price">&nbsp; &nbsp; &nbsp; &nbsp;{{Number(this.$store.state.priceTable[priceIdentity][priceSpendTime][priceRequireHeadCount])+Number(this.$store.state.addOptionArray[0][addGenderTarget])+Number(this.$store.state.addOptionArray[1][addAgeTarget])+Number(this.$store.state.addOptionArray[2][addENTarget])}}원</span>
+
         </div>
       
         <div>

@@ -141,7 +141,7 @@ export default {
 
 <style>
 #app{
-  min-width: 1900px;
+  min-width: 1000px;
 }
 body {
  

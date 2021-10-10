@@ -39,6 +39,7 @@
             <ul>{{ this.$store.state.localSurveyState.institute }}</ul>
             <ul>{{ this.$store.state.localSurveyState.link }}</ul>
                         
+
       </div>
 
         <div class="serviceInputForm-container-survey">
@@ -46,6 +47,7 @@
                 <ul id="info-title">설문 정보</ul>
                 <ul class="input"><input type="text" v-model="title" placeholder="설문 제목을 입력해주세요." required></ul>
                 <ul class="input"><input type="text" v-model="target" placeholder="설문 대상을 입력해주세요." required></ul>
+
                 <ul class="input"><input type="text" v-model="institute" placeholder="소속된 직장/학교를 입력해주세요." required></ul>
                 <ul class="input"><input type="text" v-model="link" placeholder="설문 링크를 입력해주세요." required></ul>
             </div>
@@ -54,6 +56,8 @@
                 <span class="service-option-totalprice-price">&nbsp; &nbsp; &nbsp; &nbsp;{{ this.$store.state.localSurveyState.price }}원</span>
             </div>
             <button class="goServicePayDone-btn" @click="setOption2()">결제하기</button>
+
+
         </div>
   </div>
 </template>
@@ -72,6 +76,7 @@ export default {
     methods: {
         setOption2() {
             this.$store.commit('setSurveyMutation2', {title: this.title, target: this.target, institute: this.institute, link: this.link});
+
         }
     },
   
