@@ -16,6 +16,8 @@
           <option disabled value=0>마감 기한 지정</option>
           <option v-for="option3 in dueTime_Options" :value=option3.value :key="option3">{{ option3.text }}</option>
         </select>
+        <input type="Date" :value="today" :min="min" :max="getDateStr" >
+        <input type="time" :value="getTimeStr">
 
         <select class="selectbox" id="select4" v-model.number="price4" @click="calculatePrice(); getDiscount();" required>
           <option disabled value=0>할인 대상 여부</option>
@@ -64,8 +66,31 @@ export default {
       dueTime_Options: [ {value: 11000, text: '24시간 이하'}, {value: 6000, text: '24시간~48시간'}, {value: 1000, text: '48시간 이상'} ],
 
       discount_Options: [ {value: 2000, text: '대학생 할인'}, {value: 22000, text: '대학원생 할인'}, 
-      {value: 52000, text: '대학생 및 대학원생이 아닙니다.'} ]
+      {value: 52000, text: '대학생 및 대학원생이 아닙니다.'} ],
 
+      today: new Date().toISOString().substring(0,10),
+      min: new Date().toISOString().substring(0,10),
+    
+      
+      
+    }
+  },
+  computed:{
+    getDateStr(){
+      var today = new Date()
+      var a = today.setDate(today.getDate()+7)
+      var m = new Date(a)
+      var max = m.toISOString().substring(0,10) 
+      return max
+    },
+    getTimeStr(){
+      var time = new Date()
+      var utc = time.getTime() + (time.getTimezoneOffset() *60 *1000)
+      var kr_diff = 9*60*60*1000
+      var krr = new Date(utc+(kr_diff))
+      var now = krr.toString().substring(16,21)
+
+      return now
 
     }
   },
