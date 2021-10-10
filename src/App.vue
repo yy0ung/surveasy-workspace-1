@@ -11,7 +11,7 @@
           </span>
         </span>        
         <div class="my-dropdown-content">
-          <router-link to="/servicetest">설문 응답 서비스</router-link>
+          <router-link to="/service">설문 응답 서비스</router-link>
           <router-link to="/surveytemplate">설문 템플릿</router-link>
         </div>
        </div>
@@ -141,7 +141,7 @@ export default {
 
 <style>
 #app{
-  min-width: 1900px;
+  min-width: 1000px;
 }
 body {
  
