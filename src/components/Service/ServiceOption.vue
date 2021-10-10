@@ -58,7 +58,7 @@
       
         <div>
           <router-link to="/serviceinputform">
-          <button class="goServiceInputForm-btn" @click="getOptions()">설문 정보 입력하러 가기</button>
+          <button class="goServiceInputForm-btn" @click="setOption1()">설문 정보 입력하러 가기</button>
           </router-link>
         </div>
     </div>
@@ -80,6 +80,14 @@ export default {
       addGenderTarget:0,
       addAgeTarget:0,
       addENTarget:0,
+
+      price: 0,
+      identity: '',
+      spendTime: '',
+      requiredHeadCount: '',
+      genderTarget: '',
+      ageTarget: '',
+      ENTarget: '',
 
       today: new Date().toISOString().substring(0,10),
       min: new Date().toISOString().substring(0,10),
@@ -108,6 +116,29 @@ export default {
     }
   },
   methods: {    
+    setOption1() {
+      this.price = Number(this.$store.state.priceTable[this.priceIdentity][this.priceSpendTime][this.priceRequireHeadCount])+Number(this.$store.state.addOptionArray[0][this.addGenderTarget])+Number(this.$store.state.addOptionArray[1][this.addAgeTarget])+Number(this.$store.state.addOptionArray[2][this.addENTarget]);
+      this.identity = String(this.$store.state.priceTextTable[0][this.priceIdentity]);
+      this.spendTime = String(this.$store.state.priceTextTable[1][this.priceSpendTime]);
+      this.requiredHeadCount = String(this.$store.state.priceTextTable[2][this.priceRequireHeadCount]);
+      this.genderTarget = String(this.$store.state.priceTextTable[3][this.addGenderTarget]);
+      this.ageTarget = String(this.$store.state.priceTextTable[4][this.addAgeTarget]);
+      this.ENTarget = String(this.$store.state.priceTextTable[5][this.addENTarget]);
+
+      
+      this.$store.commit('setSurveyMutation1', {price: this.price, identity: this.identity, spendTime: this.spendTime,
+      requiredHeadCount: this.requiredHeadCount, genderTarget: this.genderTarget, ageTarget: this.ageTarget, ENTarget: this.ENTarget});
+
+      
+      console.log(this.$store.state.localSurveyState.price);
+      console.log(this.$store.state.localSurveyState.identity);
+      console.log(this.$store.state.localSurveyState.spendTime);
+      console.log(this.$store.state.localSurveyState.requiredHeadCount);
+      console.log(this.$store.state.localSurveyState.genderTarget);
+      console.log(this.$store.state.localSurveyState.ageTarget);
+      console.log(this.$store.state.localSurveyState.ENTarget);
+      
+    }
   },
   
    
