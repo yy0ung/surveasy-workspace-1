@@ -39,11 +39,7 @@ export default createStore({
     ],
       
     
-    addOptionArray:[
-      ['0','10000'],
-      ['0','15000'],
-      ['0','30000','60000']
-    ],
+    EngOptionArray:[ '0','30000','60000' ],
 
 
 

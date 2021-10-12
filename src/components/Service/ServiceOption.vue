@@ -35,14 +35,6 @@
         <input type="time" :value="getTimeStr">
 
       <div>
-      성별 타깃
-      <input type="radio" v-model="addGenderTarget" :value=0 name="genderTarget">선택 안함
-      <input type="radio" v-model="addGenderTarget" :value=1 name="genderTarget">남/여 타겟팅
-      <br>
-      나이/학년 타깃
-      <input type="radio" v-model="addAgeTarget" :value=0 name="ageTarget">선택 안함
-      <input type="radio" v-model="addAgeTarget" :value=1 name="ageTarget">나이/학년 타겟팅
-      <br>
       영어 설문 여부
       <input type="radio" v-model="addENTarget" :value=0 name="enTarget">선택 안함<br>
       <input type="radio" v-model="addENTarget" :value=1 name="enTarget">영어 설문(50명 이하)<br>
@@ -53,7 +45,7 @@
       
         <div class="show-price-container">
           <span class="service-option-totalprice-word">총 금액</span>
-          <span class="service-option-totalprice-price">&nbsp; &nbsp; &nbsp; &nbsp;{{Number(this.$store.state.priceTable[priceIdentity][priceSpendTime][priceRequireHeadCount])+Number(this.$store.state.addOptionArray[0][addGenderTarget])+Number(this.$store.state.addOptionArray[1][addAgeTarget])+Number(this.$store.state.addOptionArray[2][addENTarget])}}원</span>
+          <span class="service-option-totalprice-price">&nbsp; &nbsp; &nbsp; &nbsp;{{Number(this.$store.state.priceTable[priceIdentity][priceSpendTime][priceRequireHeadCount])+Number(this.$store.state.EngOptionArray[addENTarget])}}원</span>
         </div>
       
         <div>

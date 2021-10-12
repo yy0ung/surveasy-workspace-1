@@ -13,7 +13,8 @@
     </div>
     <div class="HomeMainContent-btns">
       <router-link to="/service"><button class="HomeMainContent-btn" id="response-btn">서비스 이용하기</button></router-link>
-      <button class="HomeMainContent-btn" id="calculator-btn">내 설문은 얼마일까?</button>
+      <button class="HomeMainContent-btn" id="calculator-btn" @click="handle_Modal()">내 설문은 얼마일까?</button>
+      <HomeCalculator :showCalculator="showCalculator" @close="handle_Modal()" />
     </div>
   </div>
   <div class="main-right">
@@ -25,7 +26,21 @@
 
 
 <script>
+import HomeCalculator from './HomeCalculator.vue'
 export default {
+  data() {
+    return {
+      showCalculator: false
+    }
+  },
+
+  components: { HomeCalculator },
+
+  methods: {
+    handle_Modal() {
+      this.showCalculator = !this.showCalculator
+    }
+  }
 
 }
 </script>
