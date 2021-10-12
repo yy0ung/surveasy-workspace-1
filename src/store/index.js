@@ -42,17 +42,12 @@ export default createStore({
       [ '대학생 할인', '대학원생 할인', '대학생 및 대학원생이 아닙니다.' ],
       [ '1~3분', '4~6분', '7~10분', '11~15분', '16~20분' ],
       [ '30명', '40명', '50명', '60명', '70명', '80명', '90명', '100명' ],
-      [ '선택 안함', '남/여 타겟팅' ],
-      [ '선택 안함', '나이 타겟팅' ],
       [ '선택 안함', '영어 설문(50명 이하)', '영어 설문(50명 초과)' ]
     ],
       
-    
-    addOptionArray: [
-      ['0','10000'],
-      ['0','15000'],
-      ['0','30000','60000']
-    ],
+
+    EngOptionArray: [ '0','30000','60000' ],
+
 
 
     localSurveyState: {
@@ -61,8 +56,6 @@ export default createStore({
       spendTime: '',
       requiredHeadCount: '',
       dueTime: '',
-      genderTarget: '',
-      ageTarget: '',
       ENTarget: '',
 
       title: '',
@@ -87,8 +80,6 @@ export default createStore({
       state.localSurveyState.spendTime = payload.spendTime,
       state.localSurveyState.requiredHeadCount = payload.requiredHeadCount,
       state.localSurveyState.dueTime = payload.dueTime,
-      state.localSurveyState.genderTarget = payload.genderTarget,
-      state.localSurveyState.ageTarget = payload.ageTarget,
       state.localSurveyState.ENTarget = payload.ENTarget
     },
     
