@@ -35,14 +35,6 @@
         <input type="time" :value="getTimeStr">
 
       <div>
-      성별 타깃
-      <input type="radio" v-model="addGenderTarget" :value=0 name="genderTarget">선택 안함
-      <input type="radio" v-model="addGenderTarget" :value=1 name="genderTarget">남/여 타겟팅
-      <br>
-      나이/학년 타깃
-      <input type="radio" v-model="addAgeTarget" :value=0 name="ageTarget">선택 안함
-      <input type="radio" v-model="addAgeTarget" :value=1 name="ageTarget">나이/학년 타겟팅
-      <br>
       영어 설문 여부
       <input type="radio" v-model="addENTarget" :value=0 name="enTarget">선택 안함<br>
       <input type="radio" v-model="addENTarget" :value=1 name="enTarget">영어 설문(50명 이하)<br>
@@ -52,9 +44,7 @@
       
         <div class="show-price-container">
           <span class="service-option-totalprice-word">총 금액</span>
-
-          <span class="service-option-totalprice-price">&nbsp; &nbsp; &nbsp; &nbsp;{{Number(this.$store.state.priceTable[priceIdentity][priceSpendTime][priceRequireHeadCount])+Number(this.$store.state.addOptionArray[0][addGenderTarget])+Number(this.$store.state.addOptionArray[1][addAgeTarget])+Number(this.$store.state.addOptionArray[2][addENTarget])}}원</span>
-
+          <span class="service-option-totalprice-price">&nbsp; &nbsp; &nbsp; &nbsp;{{Number(this.$store.state.priceTable[priceIdentity][priceSpendTime][priceRequireHeadCount])+Number(this.$store.state.EngOptionArray[addENTarget])}}원</span>
         </div>
       
         <div>
@@ -78,16 +68,12 @@ export default {
       priceIdentity:0,
       priceSpendTime:0,
       priceRequireHeadCount:0,
-      addGenderTarget:0,
-      addAgeTarget:0,
       addENTarget:0,
 
       price: 0,
       identity: '',
       spendTime: '',
       requiredHeadCount: '',
-      genderTarget: '',
-      ageTarget: '',
       ENTarget: '',
 
       today: new Date().toISOString().substring(0,10),
@@ -118,25 +104,21 @@ export default {
   },
   methods: {    
     setOption1() {
-      this.price = Number(this.$store.state.priceTable[this.priceIdentity][this.priceSpendTime][this.priceRequireHeadCount])+Number(this.$store.state.addOptionArray[0][this.addGenderTarget])+Number(this.$store.state.addOptionArray[1][this.addAgeTarget])+Number(this.$store.state.addOptionArray[2][this.addENTarget]);
+      this.price = Number(this.$store.state.priceTable[this.priceIdentity][this.priceSpendTime][this.priceRequireHeadCount])+Number(this.$store.state.EngOptionArray[this.addENTarget]);
       this.identity = String(this.$store.state.priceTextTable[0][this.priceIdentity]);
       this.spendTime = String(this.$store.state.priceTextTable[1][this.priceSpendTime]);
       this.requiredHeadCount = String(this.$store.state.priceTextTable[2][this.priceRequireHeadCount]);
-      this.genderTarget = String(this.$store.state.priceTextTable[3][this.addGenderTarget]);
-      this.ageTarget = String(this.$store.state.priceTextTable[4][this.addAgeTarget]);
-      this.ENTarget = String(this.$store.state.priceTextTable[5][this.addENTarget]);
+      this.ENTarget = String(this.$store.state.priceTextTable[3][this.addENTarget]);
 
       
       this.$store.commit('setSurveyMutation1', {price: this.price, identity: this.identity, spendTime: this.spendTime,
-      requiredHeadCount: this.requiredHeadCount, genderTarget: this.genderTarget, ageTarget: this.ageTarget, ENTarget: this.ENTarget});
+      requiredHeadCount: this.requiredHeadCount, ENTarget: this.ENTarget});
 
       
       console.log(this.$store.state.localSurveyState.price);
       console.log(this.$store.state.localSurveyState.identity);
       console.log(this.$store.state.localSurveyState.spendTime);
       console.log(this.$store.state.localSurveyState.requiredHeadCount);
-      console.log(this.$store.state.localSurveyState.genderTarget);
-      console.log(this.$store.state.localSurveyState.ageTarget);
       console.log(this.$store.state.localSurveyState.ENTarget);
       
     }

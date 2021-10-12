@@ -20,14 +20,6 @@
                 <ul id="showOption-value">{{ this.$store.state.localSurveyState.dueTime }}</ul>
             </div>
             <div class="option">
-                <ul id="showOption-title">성별 타깃</ul>
-                <ul id="showOption-value">{{ this.$store.state.localSurveyState.genderTarget }}</ul>
-            </div>
-            <div class="option">
-                <ul id="showOption-title">나이/학년 타깃</ul>
-                <ul id="showOption-value">{{ this.$store.state.localSurveyState.ageTarget }}</ul>
-            </div>
-            <div class="option">
                 <ul id="showOption-title">영어 설문 여부</ul>
                 <ul id="showOption-value">{{ this.$store.state.localSurveyState.ENTarget }}</ul>
             </div>
