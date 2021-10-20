@@ -1,11 +1,11 @@
 <template>
-<div>
+<div id="contact">
 
   <h1>Contact</h1>
   <ContactContactUs />
   <ContactFAQ />
   <ContactFAQList />
-  <HomeSiteMap />
+
  
 </div>
 </template>
@@ -14,14 +14,14 @@
 import ContactContactUs from '../components/Contact/ContactContactUs.vue'
 import ContactFAQ from '../components/Contact/ContactFAQ.vue'
 import ContactFAQList from '../components/Contact/ContactFAQList.vue'
-import HomeSiteMap from '../components/Home/HomeSiteMap.vue'
+
 
 export default {
   components:{
     ContactContactUs,
     ContactFAQ,
     ContactFAQList,
-    HomeSiteMap,
+  
   
 
   }
@@ -29,6 +29,12 @@ export default {
 </script>
 
 <style>
+#contact{
+  max-width: 1190px;
+  margin-right: auto;
+  margin-left: auto;
+
+}
   .ContactContactUs-btn{
   color:#0CAE02;
   background-color: rgb(238, 238, 238);

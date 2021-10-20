@@ -76,11 +76,11 @@
   </div>
   <div class="footer-icons" >
     <span class="footer-icon"><img class="footerimg" src="@/assets/Footer/IHEI.jpg" width="130"></span>
-    <span class="footer-icon"><img class="footerimg" src="@/assets/Footer/insta.jpg" width="31.3"></span>
-    <span class="footer-icon"><img class="footerimg" src="@/assets/Footer/facebook.jpg" width="32.05"></span>
-    <span class="footer-icon"><img class="footerimg" src="@/assets/Footer/blog.jpg" width="32.05"></span>
-    <span class="footer-icon"><img class="footerimg" src="@/assets/Footer/kakao.jpg" width="33.86"></span>
-    <span class="footer-icon"><img class="footerimg" src="@/assets/Footer/youtube.jpg" width="34.09"></span>
+    <span class="footer-icon"><a href="https://www.instagram.com/surveasy/"><img class="footerimg" src="@/assets/Footer/insta.jpg" width="31.3"></a></span>
+    <span class="footer-icon"><a href=""><img class="footerimg" src="@/assets/Footer/facebook.jpg" width="32.05"></a></span>
+    <span class="footer-icon"><a href="https://blog.naver.com/surveasy"><img class="footerimg" src="@/assets/Footer/blog.jpg" width="32.05"></a></span>
+    <span class="footer-icon"><a href=""><img class="footerimg" src="@/assets/Footer/kakao.jpg" width="33.86"></a></span>
+    <span class="footer-icon"><a href="https://www.youtube.com/c/Surveasy/featured"><img class="footerimg" src="@/assets/Footer/youtube.jpg" width="34.09"></a></span>
     
   </div>
   </div>
@@ -163,9 +163,10 @@ export default {
 
 <style>
 #app{
-
-  min-width: 1000px;
-
+  margin-left : auto;
+  margin-right: auto;
+  min-width: 1190px;
+  
 }
 body {
  
@@ -330,6 +331,7 @@ body {
     border:none;
     text-align: left;
     height: 300px;
+    
   }
   #site-map-container .map-contents{
     
@@ -337,7 +339,7 @@ body {
     flex-direction: row;
     justify-content: space-around;
     padding-top: 35px;
-    padding-left: 900px;
+    padding-left: 500px;
   }
    #site-map-container .map-contents p{
      color: black;
