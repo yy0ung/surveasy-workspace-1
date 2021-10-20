@@ -24,6 +24,9 @@ export default {
 <style>
   #FAQ-container{
     margin-top: 50px;
+    max-width: 1190px;
+    margin-right: auto;
+    margin-left: auto;
   }
   #FAQ-container .FAQ-contents-index{
     display: flex;

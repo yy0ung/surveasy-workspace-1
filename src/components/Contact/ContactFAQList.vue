@@ -47,6 +47,9 @@ export default {
 <style>
   #FAQ-list-container{
     margin-bottom: 50px;
+    max-width: 1190px;
+    margin-right: auto;
+    margin-left: auto;
   }
   #FAQ-list-container .FAQ-list-contents{
     display: flex;
