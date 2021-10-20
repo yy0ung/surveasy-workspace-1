@@ -2,7 +2,6 @@
   <div class="serviceOption-container">
     <label id="service-option-title">옵션선택</label>
       <div>
-
       <select class="selectbox" id="select1" v-model="priceIdentity">
         <option :value=0>대학생</option>
         <option :value=1>대학원생</option>
@@ -33,6 +32,7 @@
       <span>설문 마감일자 선택</span>
         <input type="Date" :value="today" :min="min" :max="getDateStr" >
         <input type="time" :value="getTimeStr">
+
 
       <div>
       영어 설문 여부
@@ -79,11 +79,11 @@ export default {
       today: new Date().toISOString().substring(0,10),
       min: new Date().toISOString().substring(0,10),
     
-      
+    
       
     }
   },
-  computed:{
+  computed :{
     getDateStr(){
       var today = new Date()
       var a = today.setDate(today.getDate()+7)
@@ -97,8 +97,8 @@ export default {
       var kr_diff = 9*60*60*1000
       var krr = new Date(utc+(kr_diff))
       var now = krr.toString().substring(16,21)
-
       return now
+      
 
     }
   },

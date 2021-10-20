@@ -18,7 +18,7 @@
     </div>
   </div>
   <div class="main-right">
-    <img class="maincontentimg" src="@/assets/Home/maincontent.png" width="740">
+    <img class="maincontentimg" src="@/assets/Home/maincontent.png">
   </div>
   
 </div>
@@ -53,19 +53,25 @@ export default {
   
 }
 
+#main-content-container .main-right .maincontentimg{
+  width: 34rem;
+}
+
 #main-content-container .main-left{
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin-left: 160px;
 }
 
-#main-content-container .main-right{
-  margin-right: 111px;
+
+
+#main-content-container .maincontent-title p {
+  font-size: 1.4rem;
+  text-align: left;
 }
 
-#main-content-container p {
-  font-size: 30px;
+#main-content-container .maincontent-list p{
+  font-size: 1.3rem;
   text-align: left;
 }
 

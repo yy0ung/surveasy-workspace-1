@@ -38,32 +38,35 @@ export default {
 <style>
 #number-marketing-container{
   background: #0AAC00 0% 0% no-repeat padding-box;
-  height: 400px;
+  
   margin-top: 60px;
   border:none;
+  border-radius: 24px;
   
 
 }
 #number-marketing-container .number-contents{
-  margin-left: 0;
+  margin-left: 0px;
   margin-right:0;
   display: flex;
-  justify-content: space-around;
-  padding-top: 80px;
+  justify-content: space-evenly;
+  padding-top: 90px;
   color: #fff;
+  padding: 60px 40px;
   
 }
 
 #number-marketing-container #number-none{
   font-family: 'Noto Sans KR', sans-serif;
-  font-size: 25px;
+  font-size: 1.1rem;
   font-weight: 500;
+  
 
 }
 
 #number-marketing-container #number-bold{
   font-family: 'Noto Sans KR', sans-serif;
-  font-size: 80px;
+  font-size: 4rem;
   font-weight: 900;
 }
 

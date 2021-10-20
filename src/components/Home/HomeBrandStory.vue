@@ -18,45 +18,45 @@ export default {
 
 <style>
   #brand-story-container{
-    margin-top:0;
-    min-width: 1919;
-    height: 532px;
+    margin-top: 20px;
+    padding: 55px 40px;
     background: transparent url('~@/assets/Home/brandstory.jpg') no-repeat padding-box;
     background-size: cover;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    
+    border-radius: 24px;
+    margin-bottom: 50px;
   }
   #brand-story-container .story-bold{
     font-family: 'Noto Sans KR', sans-serif;
     font-weight: 900;
-    font-size: 40px;
+    font-size: 1.5rem;
     color: #fff;
   }
   #brand-story-container .story-none{
     font-family: 'Noto Sans KR', sans-serif;
     font-weight: 500;
-    font-size: 20px;
+    font-size: 1rem;
     color: #fff;
   }
 
   #brand-story-container #story-none-bold{
     font-family: 'Noto Sans KR', sans-serif;
     font-weight: 700;
-    font-size: 20px;
+    font-size: 1rem;
     color: #fff;
   }
 
   #brand-story-container .HomeBrandStory-btn{
-    margin-top: 82px;
+    margin-top: 42px;
     font-family: 'Noto Sans KR', sans-serif;
     color: #fff;
     background-color: transparent;
     border: 1px solid #fff;
     padding: 9px 20px;
     border-radius: 24px;
-    font-size: 19px;
+    font-size: 0.9rem;
 }
 
 #brand-story-container .HomeBrandStory-btn:hover{
