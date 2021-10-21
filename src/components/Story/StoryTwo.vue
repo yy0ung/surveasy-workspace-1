@@ -4,14 +4,14 @@
     <div class="client">
       <p class="black">설문</p>
       <p class="green">배포자</p>
-       <p class="left"><img class="checkimg" src="@/assets/check.png" width="20"> 응답률 저조 및 표본 수 부족</p>
-       <p class="left"> <img class="checkimg" src="@/assets/check.png" width="20"> 설문 제작 시 참고할 가이드 부재</p>
+       <p class="left"><img class="checkimg" src="@/assets/brandstory/checkblack.png" width="20"> 응답률 저조 및 표본 수 부족</p>
+       <p class="left"> <img class="checkimg" src="@/assets/brandstory/checkblack.png" width="20"> 설문 제작 시 참고할 가이드 부재</p>
     </div>
     <div class="panel">
       <p class="black">설문</p>
       <p class="green">응답자</p>
-       <p class="left"> <img class="checkimg" src="@/assets/check.png" width="20"> 설문 참여 시 리워드 부재</p>
-       <p class="left"><img class="checkimg" src="@/assets/check.png" width="20"> 설문 리워드의 신뢰도 문제</p>
+       <p class="left"> <img class="checkimg" src="@/assets/brandstory/checkblack.png" width="20"> 설문 참여 시 리워드 부재</p>
+       <p class="left"><img class="checkimg" src="@/assets/brandstory/checkblack.png" width="20"> 설문 리워드의 신뢰도 문제</p>
     </div>
   </div>
   
