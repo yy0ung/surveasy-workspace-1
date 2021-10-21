@@ -1,7 +1,7 @@
 <template>
 <div id="contact">
 
-  <h1>Contact</h1>
+
   <ContactContactUs />
   <ContactFAQ />
   <ContactFAQList />
@@ -35,21 +35,6 @@ export default {
   margin-left: auto;
 
 }
-  .ContactContactUs-btn{
-  color:#0CAE02;
-  background-color: rgb(238, 238, 238);
-  border: 2px solid #0CAE02;
-  padding: 5px 13px;
-  border-radius: 30px;
-  font-weight: bold;
-}
+ 
 
-.ContactContactUs-btn:hover{
-  background-color: #0CAE02;
-  color: #fff;
-}
-#contactus-container .contactus-contents .contactus-bold{
-    font-weight: bold;
-    font-size: 1.1rem;
-  }
 </style>

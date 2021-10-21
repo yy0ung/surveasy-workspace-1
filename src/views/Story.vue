@@ -7,6 +7,7 @@
   <StoryLine />
   <StoryPicture />
   <StoryMembers />
+  <StoryVideo />
 
   
 </div>
@@ -19,6 +20,7 @@ import StoryStoryTelling from '../components/Story/StoryStoryTelling.vue'
 import StoryTwo from '../components/Story/StoryTwo.vue'
 import StoryLine from '../components/Story/StoryLine.vue'
 import StoryPicture from '../components/Story/StoryPicture.vue'
+import StoryVideo from '../components/Story/StoryVideo.vue'
 
 
 export default {
@@ -28,7 +30,8 @@ export default {
     StoryStoryTelling,
     StoryTwo,
     StoryLine,
-    StoryPicture
+    StoryPicture,
+    StoryVideo
     
     
   }
