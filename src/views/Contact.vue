@@ -4,7 +4,7 @@
 
   <ContactContactUs />
   <ContactFAQ />
-  <ContactFAQList />
+ 
 
  
 </div>
@@ -13,14 +13,14 @@
 <script>
 import ContactContactUs from '../components/Contact/ContactContactUs.vue'
 import ContactFAQ from '../components/Contact/ContactFAQ.vue'
-import ContactFAQList from '../components/Contact/ContactFAQList.vue'
+
 
 
 export default {
   components:{
     ContactContactUs,
     ContactFAQ,
-    ContactFAQList,
+    
   
   
 
