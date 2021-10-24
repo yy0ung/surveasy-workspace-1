@@ -71,6 +71,9 @@ export default {
      border-radius: 15px;
      padding: 24px 47px;
    }
+   #FAQ-container .FAQ-router-link-container a.router-link-exact-active {
+  color: #76917a;
+}
 
  
 </style>

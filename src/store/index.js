@@ -11,7 +11,7 @@ export default createStore({
       storageBucket: "surveasy-workspace.appspot.com",
       messagingSenderId: "1077091709710",
       appId: "1:1077091709710:web:0fb6f216a86dfd3a87dd5f",
-      measurementId: "G-9XLHWG8GKQ"
+      measurementId: "G-9XLHWG8GKQ",
     },
     isLoggedIn:false,
     db: null,
@@ -66,7 +66,8 @@ export default createStore({
     
 
     currentUser:null,
-    surveyListStatus:["응답 완료","응답 인증","설문 마감"]
+    surveyListStatus:["응답 완료","응답 인증","설문 마감"],
+    showModal: false,
   },
   mutations: {
     setDB(state, payload){
