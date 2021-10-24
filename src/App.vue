@@ -353,6 +353,8 @@ body {
      font-family: 'Noto Sans KR', sans-serif;
      font-size: 0.8rem;
      font-weight: 300;
-     
    }
+   #nav .nav-links a.router-link-exact-active {
+  color: #0f5219;
+}
 </style>

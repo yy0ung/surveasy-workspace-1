@@ -14,7 +14,7 @@
       <input type="hidden" id="email" :value="email">
     </div>
     <div>
-      <button class="ContactContactUs-btn">소개서 받기</button>
+      <button class="ContactContactUs-btn" @click="handleModal">소개서 받기</button>
       <p class="bold">B2B 문의</p>
       <p class="light">기업 배너 광고, 설문 응답 서비스, 등</p>
     </div>
@@ -24,7 +24,11 @@
 
 <script>
 export default {
-  
+  methods:{
+    handleModal(){
+      this.$store.state.showModal=true
+    }
+  }
 }
 </script>
 
