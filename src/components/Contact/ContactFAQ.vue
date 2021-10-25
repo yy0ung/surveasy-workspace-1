@@ -1,21 +1,23 @@
 <template>
 <div id="FAQ-container">
   <div class="FAQ-router-link-container">
-    <router-link to="/contact/respondService" class="FAQ-router-link"><button class="FAQ-btn" id="left">설문 응답 서비스</button></router-link>
-    <router-link to="/contact/template" class="FAQ-router-link"><button class="FAQ-btn">설문 템플릿</button></router-link>
-    <router-link to="/contact/memberInfo" class="FAQ-router-link"><button class="FAQ-btn">회원 정보</button></router-link>
-    <router-link to="/contact/payment" class="FAQ-router-link"><button class="FAQ-btn">결제 / 환불</button></router-link>
+    <div class="FAQ-router-link"><button @click="button(0)" class="FAQ-btn" id="left" :class="{active:this.$store.state.FAQbutton==0}">설문 응답 서비스</button></div>
+    <div class="FAQ-router-link"><button @click="button(1)" class="FAQ-btn" :class="{active:this.$store.state.FAQbutton==1}">설문 템플릿</button></div>
+    <div class="FAQ-router-link"><button @click="button(2)" class="FAQ-btn" :class="{active:this.$store.state.FAQbutton==2}">회원 정보</button></div>
+    <div class="FAQ-router-link"><button @click="button(3)" class="FAQ-btn" :class="{active:this.$store.state.FAQbutton==3}">결제 / 환불</button></div>
   </div>
-  <div class="FAQ-router-view-container">
-    <router-view></router-view>
-  </div> 
+  
 </div>
 </template>
 
 <script>
 
 export default {
-  
+  methods:{
+    button(num){
+      this.$store.state.FAQbutton=num
+    }
+  }
  
 }
 </script>
@@ -26,7 +28,7 @@ export default {
     max-width: 1190px;
     margin-right: auto;
     margin-left: auto;
-    margin-bottom: 100px;
+    margin-bottom: 30px;
   }
   #FAQ-container .FAQ-router-link-container{
     display: flex;
@@ -71,8 +73,9 @@ export default {
      border-radius: 15px;
      padding: 24px 47px;
    }
-   #FAQ-container .FAQ-router-link-container a.router-link-exact-active {
-  color: #76917a;
+   #FAQ-container .FAQ-router-link-container .FAQ-btn.active {
+    background-color: #0AAC00;
+     color:#ffff;
 }
 
  

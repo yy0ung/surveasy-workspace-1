@@ -1,5 +1,5 @@
 <template>
-<div id="app">
+<div id="app" :class="{backactive: this.$store.state.showModal}">
   <div id="nav">
     <router-link to="/"><img class="logoimg" src="@/assets/logo.png" width="190"></router-link> 
 
@@ -22,7 +22,7 @@
       <span class="nav-element-">|</span>
       <router-link to="/story"><span class="nav-element">브랜드 스토리</span></router-link> 
       <span class="nav-element-">|</span>
-      <router-link to="/contact"><span class="nav-element">문의</span></router-link> 
+      <router-link to="/contact"><span class="nav-element" @click="handleFAQ">문의</span></router-link> 
     </div>
     <div class="nav-login" >
       <div v-if="this.$store.state.isLoggedIn == false">
@@ -154,6 +154,9 @@ export default {
     logout(){
       this.$router.push('/')
       this.$store.dispatch('logout')
+    },
+    handleFAQ(){
+      this.$store.state.FAQbutton=0
     }
   }
 }
@@ -357,4 +360,12 @@ body {
    #nav .nav-links a.router-link-exact-active {
   color: #0f5219;
 }
+/*.backactive{
+  background: rgb(202, 202, 202);
+  width: 100%;
+  height: 100%;
+  
+  }*/
+  
+
 </style>

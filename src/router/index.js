@@ -18,6 +18,7 @@ import RespondService from '../components/Contact/RespondService.vue'
 import Template from '../components/Contact/Template.vue'
 import MemberInfo from '../components/Contact/MemberInfo.vue'
 import PaymentInfo from '../components/Contact/Payment.vue'
+import FinalModal from '../components/Contact/ContactFinalModal.vue'
 
 const routes = [
   {
@@ -67,7 +68,8 @@ const routes = [
       { path: "respondService", component: RespondService },
       { path: "template", component: Template },
       { path: "memberInfo", component: MemberInfo },
-      { path: "payment", component: PaymentInfo }
+      { path: "payment", component: PaymentInfo },
+      { path: "finalmodal", component: FinalModal }
     ]
   },
   {

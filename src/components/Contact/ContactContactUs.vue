@@ -1,7 +1,7 @@
 <template>
-<div id="contactus-container">
+<div class="contactus-container" :class="{active:this.$store.state.showModal}">
   <p class="title">도움이 필요하신가요?</p>
-  <div class="contactus-contents">
+  <div class="contactus-contents" >
     <div>
       <a href="http://pf.kakao.com/_xfialK/chat"><button class="ContactContactUs-btn">채팅하기</button></a>
       <p class="bold">@Surveasy 카카오톡 플러스 친구</p>
@@ -27,13 +27,14 @@ export default {
   methods:{
     handleModal(){
       this.$store.state.showModal=true
+      this.$store.state.showFinalModal=false
     }
   }
 }
 </script>
 
 <style>
-  #contactus-container{
+  .contactus-container{
     max-width: 1190px;
     margin-right: auto;
     margin-left: auto;
@@ -44,12 +45,12 @@ export default {
     padding-top: 40px;
     padding-bottom: 40px;
   }
-  #contactus-container .title{
+  .contactus-container .title{
     font-size: 1.7rem;
     font-weight: 700;
     
   }
-  #contactus-container .contactus-contents .ContactContactUs-btn{
+  .contactus-container .contactus-contents .ContactContactUs-btn{
   color:#0CAE02;
   border: 1px solid #0AAC00;
   background-color: #EEEEEE;
@@ -60,15 +61,15 @@ export default {
   font-size: 1rem;
   margin-bottom: 25px;
 }
-#contactus-container .contactus-contents .light{
+.contactus-container .contactus-contents .light{
   font-weight: 300;
   color:#848484;
 }
-#contactus-container .contactus-contents .ContactContactUs-btn:hover{
+.contactus-container .contactus-contents .ContactContactUs-btn:hover{
   background-color: #0AAC00;
   color: #fff;
 }
-  #contactus-container .contactus-contents {
+  .contactus-container .contactus-contents {
     margin-top: 60px;
     display: flex;
     align-items: center;
@@ -76,10 +77,11 @@ export default {
 
   }
   
-  #contactus-container .contactus-contents .contactus-contents-text{
+  .contactus-container .contactus-contents .contactus-contents-text{
     text-align: left;
     margin-right:80px;
   }
+ 
 
   
 

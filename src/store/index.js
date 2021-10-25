@@ -68,6 +68,8 @@ export default createStore({
     currentUser:null,
     surveyListStatus:["응답 완료","응답 인증","설문 마감"],
     showModal: false,
+    showFinalModal: false,
+    FAQbutton: 0,
   },
   mutations: {
     setDB(state, payload){
