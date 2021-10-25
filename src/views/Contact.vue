@@ -12,11 +12,19 @@
 
   <ContactContactUs />
   <ContactFAQ />
-  
-  
- 
+  <div v-if="this.$store.state.FAQbutton==0">
+  <RespondService />
+  </div>
+  <div v-if="this.$store.state.FAQbutton==1">
+  <Template />
+  </div>
+  <div v-if="this.$store.state.FAQbutton==2">
+  <MemberInfo />
+  </div>
+  <div v-if="this.$store.state.FAQbutton==3">
+  <Payment />
+  </div>
 
- 
 
 </div>
 
@@ -27,6 +35,10 @@ import ContactContactUs from '../components/Contact/ContactContactUs.vue'
 import ContactFAQ from '../components/Contact/ContactFAQ.vue'
 import ContactModal from '../components/Contact/ContactModal.vue'
 import ContactFinalModal from '../components/Contact/ContactFinalModal.vue'
+import RespondService from '../components/Contact/RespondService.vue'
+import Template from '../components/Contact/Template.vue'
+import MemberInfo from '../components/Contact/MemberInfo.vue'
+import Payment from '../components/Contact/Payment.vue'
 
 
 
@@ -38,7 +50,11 @@ export default {
     ContactContactUs,
     ContactFAQ,
     ContactModal,
-    ContactFinalModal
+    ContactFinalModal,
+    RespondService,
+    Template,
+    MemberInfo,
+    Payment
     
     
   
@@ -53,6 +69,7 @@ export default {
   max-width: 1190px;
   margin-right: auto;
   margin-left: auto;
+  margin-bottom: 100px;
 
 }
 #contact .modal{
@@ -60,10 +77,12 @@ export default {
   margin-top: 230px;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: white;
+  background: white;
   width: 700px;
   height: 600px;
   border-radius: 15px;
+  
+  
   
 }
 #contact .f-modal{
@@ -71,7 +90,7 @@ export default {
   margin-top: 230px;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: white;
+  background: white;
   width: 700px;
   height: 300px;
   border-radius: 15px;
