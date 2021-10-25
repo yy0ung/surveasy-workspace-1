@@ -1,5 +1,5 @@
 <template>
-<div id="app">
+<div id="app" :class="{active: this.$store.state.showModal}">
   <div id="nav">
     <router-link to="/"><img class="logoimg" src="@/assets/logo.png" width="190"></router-link> 
 
@@ -357,4 +357,11 @@ body {
    #nav .nav-links a.router-link-exact-active {
   color: #0f5219;
 }
+/*.active{
+  background: rgb(0,0,0,0.5);
+  width: 100%;
+  height: 100%;
+  }*/
+  
+
 </style>

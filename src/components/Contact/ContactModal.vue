@@ -5,14 +5,16 @@
   <p class="green">서베이지 B2B 소개서를 받아보세요!</p>
   <p>입력해주시는 이메일 주소로 소개서를 발송하고 있습니다. 
     <br>정확한 정보 입력 후, 메일함을 확인해주세요</p>
-  <div class="input-box">
-    <input type="text" placeholder="성함" class="box">
-    <input type="text" placeholder="이메일" class="box">
-    <input type="text" placeholder="회사" class="box">
-  </div>
+  <form class="input-box">
+    <input type="text" placeholder="성함" class="box" required>
+    <input type="text" placeholder="이메일" class="box" required>
+    <input type="text" placeholder="회사" class="box" required>
+ 
   <label><input type="checkbox" value="agree"><span class="green">개인정보수집</span> 및 <span class="green">이용약관</span>에 동의합니다.</label>
-  <div><button class="ContactModal-btn">소개서 받기</button></div>
+  <div><button type="submit" @click="goNext" class="ContactModal-btn">소개서 받기</button></div>
+   </form>
 </div>  
+
 </template>
 
 <script>
@@ -20,6 +22,11 @@ export default {
   methods:{
     closeModal(){
       this.$store.state.showModal=false
+      this.$store.state.showFinalModal=false
+    },
+    goNext(){
+      this.$store.state.showModal=false
+      this.$store.state.showFinalModal=true
     }
   }
 }
