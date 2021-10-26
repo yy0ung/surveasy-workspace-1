@@ -1,14 +1,8 @@
 <template>
 <div id="contact" >
 
-  <div class="modal" v-if="this.$store.state.showModal==true">
     <ContactModal />
-  
-</div>
-<div class="f-modal" v-if="this.$store.state.showFinalModal==true">
     <ContactFinalModal />
-  
-</div>
 
   <ContactContactUs />
   <ContactFAQ />
@@ -72,19 +66,7 @@ export default {
   margin-bottom: 100px;
 
 }
-#contact .modal{
-  position: fixed;
-  margin-top: 230px;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: white;
-  width: 700px;
-  height: 600px;
-  border-radius: 15px;
-  
-  
-  
-}
+
 #contact .f-modal{
   position: fixed;
   margin-top: 230px;

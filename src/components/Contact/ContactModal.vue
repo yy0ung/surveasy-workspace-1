@@ -1,5 +1,6 @@
 <template>
-<div id="modal-container">
+<div class="modal-container-box" v-if="this.$store.state.showModal==true">
+<div id="modal-container" > 
   <div id="close-icon" @click="closeModal"><i class="fas fa-times"></i></div>
   <img class="checkimg" src="@/assets/check.png" width="100">
   <p class="green">서베이지 B2B 소개서를 받아보세요!</p>
@@ -13,6 +14,7 @@
     <label><input type="checkbox" value="agree"><span class="green">개인정보수집</span> 및 <span class="green">이용약관</span>에 동의합니다.</label>
     <div><button @click="goNext" class="ContactModal-btn">소개서 받기</button></div>
    </form>
+   </div>
 </div>  
 
 
@@ -45,19 +47,40 @@ export default {
 </script>
 
 <style>
+.modal-container-box{
+  position: fixed;
+  z-index: 9998;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.524);
+  display: table;
+  transition: opacity .3s ease;
+}
 #modal-container{
+  position: fixed;
+  top:50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  width: 700px;
+  height: 600px;
+  border-radius: 15px;
   display: flex;
   flex-direction: column;
-  margin-top: 30px;
+  box-shadow: 0px 0px 20px #00000026;
   font-family: 'Noto Sans KR', sans-serif;
   
   
  
 }
 #modal-container .checkimg{
+ 
   margin-left: 300px;
 }
 #modal-container #close-icon{
+  margin-top: 30px;
   display: flex;
   justify-content: right;
   margin-right: 30px;
