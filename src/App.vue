@@ -1,5 +1,5 @@
 <template>
-<div id="app">
+<div id="app" :class="{backactive: this.$store.state.showModal}">
   <div id="nav">
     <router-link to="/"><img class="logoimg" src="@/assets/logo.png" width="190"></router-link> 
 
@@ -22,7 +22,7 @@
       <span class="nav-element-">|</span>
       <router-link to="/story"><span class="nav-element">브랜드 스토리</span></router-link> 
       <span class="nav-element-">|</span>
-      <router-link to="/contact"><span class="nav-element">문의</span></router-link> 
+      <router-link to="/contact"><span class="nav-element" @click="handleFAQ">문의</span></router-link> 
     </div>
     <div class="nav-login" >
       <div v-if="this.$store.state.isLoggedIn == false">
@@ -45,6 +45,28 @@
     
   </div>
   <router-view/>
+  <div id="site-map-container">
+  <div class="map-contents">
+    <p><span id="sitemap-bold">사이트맵</span></p>
+    <p><span id="sitemap-bold">서비스</span>
+      <router-link class="link-underline" to="/service"><p><span id="sitemap-none">설문 응답 서비스</span></p></router-link>
+      <router-link class="link-underline" to="/surveylist"><p><span id="sitemap-none">설문 리스트</span></p></router-link>
+      <router-link class="link-underline" to="/surveytemplate"><p><span id="sitemap-none">설문 템플릿</span></p></router-link>
+      <router-link class="link-underline" to="/knowhow"><p><span id="sitemap-none">설문 노하우</span></p></router-link>
+    </p>
+    <p><span id="sitemap-bold">회사</span>
+      <router-link class="link-underline" to="/story"><p><span id="sitemap-none">브랜드 스토리</span></p></router-link>
+    </p>
+    <p><span id="sitemap-bold">문의</span>
+      <router-link class="link-underline" to="/contact"><p><span id="sitemap-none">1:1 문의</span></p></router-link>
+      <router-link class="link-underline" to="/contact"><p><span id="sitemap-none">B2B 문의</span></p></router-link>
+      <router-link class="link-underline" to="/contact"><p><span id="sitemap-none">FAQ</span></p></router-link>
+    </p>
+    
+    
+    </div>
+    
+  </div>
 
   <div id="footer-container">
     <div class="footer-contents">
@@ -54,11 +76,11 @@
   </div>
   <div class="footer-icons" >
     <span class="footer-icon"><img class="footerimg" src="@/assets/Footer/IHEI.jpg" width="130"></span>
-    <span class="footer-icon"><img class="footerimg" src="@/assets/Footer/insta.jpg" width="31.3"></span>
-    <span class="footer-icon"><img class="footerimg" src="@/assets/Footer/facebook.jpg" width="32.05"></span>
-    <span class="footer-icon"><img class="footerimg" src="@/assets/Footer/blog.jpg" width="32.05"></span>
-    <span class="footer-icon"><img class="footerimg" src="@/assets/Footer/kakao.jpg" width="33.86"></span>
-    <span class="footer-icon"><img class="footerimg" src="@/assets/Footer/youtube.jpg" width="34.09"></span>
+    <span class="footer-icon"><a href="https://www.instagram.com/surveasy/"><img class="footerimg" src="@/assets/Footer/insta.jpg" width="31.3"></a></span>
+    <span class="footer-icon"><a href=""><img class="footerimg" src="@/assets/Footer/facebook.jpg" width="32.05"></a></span>
+    <span class="footer-icon"><a href="https://blog.naver.com/surveasy"><img class="footerimg" src="@/assets/Footer/blog.jpg" width="32.05"></a></span>
+    <span class="footer-icon"><a href=""><img class="footerimg" src="@/assets/Footer/kakao.jpg" width="33.86"></a></span>
+    <span class="footer-icon"><a href="https://www.youtube.com/c/Surveasy/featured"><img class="footerimg" src="@/assets/Footer/youtube.jpg" width="34.09"></a></span>
     
   </div>
   </div>
@@ -132,6 +154,9 @@ export default {
     logout(){
       this.$router.push('/')
       this.$store.dispatch('logout')
+    },
+    handleFAQ(){
+      this.$store.state.FAQbutton=0
     }
   }
 }
@@ -141,9 +166,15 @@ export default {
 
 <style>
 #app{
+
   min-width: 1190px;
   margin-left: auto;
   margin-right: auto;
+
+  margin-left : auto;
+  margin-right: auto;
+  min-width: 1190px;
+
 }
 body {
  
@@ -155,7 +186,7 @@ body {
   margin-top: 57px;
   height: 27px;
   width: 918px;
-  font-size: 17px;
+  font-size: 1rem;
   padding-bottom: 30px;
 
 }
@@ -306,4 +337,44 @@ body {
   .my-dropdown-content p:hover {
     background-color: #aaa;
   }
+
+  #site-map-container{
+    background: #E3E3E3 0% 0% no-repeat padding-box;;
+    border:none;
+    text-align: left;
+    height: 300px;
+    
+  }
+  #site-map-container .map-contents{
+    
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding-top: 35px;
+    padding-left: 500px;
+  }
+   #site-map-container .map-contents p{
+     color: black;
+   }
+   #site-map-container #sitemap-bold{
+     font-family: 'Noto Sans KR', sans-serif;
+     font-size: 1rem;
+     font-weight: 500;
+   }
+   #site-map-container #sitemap-none{
+     font-family: 'Noto Sans KR', sans-serif;
+     font-size: 0.8rem;
+     font-weight: 300;
+   }
+   #nav .nav-links a.router-link-exact-active {
+  color: #0f5219;
+}
+/*.backactive{
+  background: rgb(202, 202, 202);
+  width: 100%;
+  height: 100%;
+  
+  }*/
+  
+
 </style>

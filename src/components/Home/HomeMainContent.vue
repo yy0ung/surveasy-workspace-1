@@ -13,11 +13,12 @@
     </div>
     <div class="HomeMainContent-btns">
       <router-link to="/service"><button class="HomeMainContent-btn" id="response-btn">서비스 이용하기</button></router-link>
-      <button class="HomeMainContent-btn" id="calculator-btn">내 설문은 얼마일까?</button>
+      <button class="HomeMainContent-btn" id="calculator-btn" @click="handle_Modal()">내 설문은 얼마일까?</button>
+      <HomeCalculator :showCalculator="showCalculator" @close="handle_Modal()" />
     </div>
   </div>
   <div class="main-right">
-    <img class="maincontentimg" src="@/assets/Home/maincontent.png" width="740">
+    <img class="maincontentimg" src="@/assets/Home/maincontent.png">
   </div>
   
 </div>
@@ -25,7 +26,21 @@
 
 
 <script>
+import HomeCalculator from './HomeCalculator.vue'
 export default {
+  data() {
+    return {
+      showCalculator: false
+    }
+  },
+
+  components: { HomeCalculator },
+
+  methods: {
+    handle_Modal() {
+      this.showCalculator = !this.showCalculator
+    }
+  }
 
 }
 </script>
@@ -38,19 +53,25 @@ export default {
   
 }
 
+#main-content-container .main-right .maincontentimg{
+  width: 34rem;
+}
+
 #main-content-container .main-left{
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin-left: 160px;
 }
 
-#main-content-container .main-right{
-  margin-right: 111px;
+
+
+#main-content-container .maincontent-title p {
+  font-size: 1.4rem;
+  text-align: left;
 }
 
-#main-content-container p {
-  font-size: 30px;
+#main-content-container .maincontent-list p{
+  font-size: 1.3rem;
   text-align: left;
 }
 

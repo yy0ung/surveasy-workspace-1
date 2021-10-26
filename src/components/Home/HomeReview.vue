@@ -30,14 +30,14 @@
     </div>
   </div>
   <div class="review-group">
-      <img class="groupimg" src="@/assets/Home/MARP.jpg" width="153">
-      <img class="groupimg" src="@/assets/Home/ISSU.png" width="131">
-      <img class="groupimg" id="groupimgleft" src="@/assets/Home/BIT.jpg" width="175">
-      <img class="groupimg-" src="@/assets/Home/yonsei.jpg" width="100">
-      <img class="groupimg-" src="@/assets/Home/kor.jpg" width="74">
-      <img class="groupimg-" src="@/assets/Home/hong.jpg" width="100">
-      <img class="groupimg-" src="@/assets/Home/sung.jpg" width="109">
-      <img class="groupimg-" src="@/assets/Home/cau.jpg" width="121">
+      <img class="groupimg" src="@/assets/Home/MARP.jpg" width="133">
+      <img class="groupimg" src="@/assets/Home/ISSU.png" width="111">
+      <img class="groupimg" id="groupimgleft" src="@/assets/Home/BIT.jpg" width="155">
+      <img class="groupimg-" src="@/assets/Home/yonsei.jpg" width="80">
+      <img class="groupimg-" src="@/assets/Home/kor.jpg" width="54">
+      <img class="groupimg-" src="@/assets/Home/hong.jpg" width="80">
+      <img class="groupimg-" src="@/assets/Home/sung.jpg" width="89">
+      <img class="groupimg-" src="@/assets/Home/cau.jpg" width="101">
   </div>
 
 </div>
@@ -52,7 +52,7 @@ export default {
 <style>
   #review-container{
     
-    height: 660px;
+    height: 560px;
     display: flex;
     flex-direction: column;
     margin-top: 125px;
@@ -72,26 +72,26 @@ export default {
   #review-container .review-bold{
     font-family: 'Noto Sans KR', sans-serif;
     font-weight: 500;
-    font-size: 25px;
+    font-size: 1.2rem;
   }
   #review-container .review-none{
     font-family: 'Noto Sans KR', sans-serif;
     font-weight: 300;
-    font-size: 20px;
+    font-size: 1rem;
   }
 
   #review-container .groupimg{
-    margin-left: 63px;
+    margin-left: 25px;
     padding-bottom: 20px;
-    margin-top: 140px;
+    margin-top: 110px;
 
   }
   #review-container #groupimgleft{
-    margin-right: 300px;
+    margin-right: 70px;
   }
   #review-container .groupimg-{
-    margin-left: 63px;
-    margin-top: 140px;
+    margin-left: 35px;
+    margin-top: 110px;
     
   }
 </style>

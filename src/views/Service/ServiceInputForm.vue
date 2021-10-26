@@ -4,32 +4,42 @@
       <div class="serviceInputForm-container-option">
             <ul id="info-title">옵션 정보</ul>
             <div class="option">
-                <ul id="showOption-title">요구 응답 수</ul>
-                <ul id="showOption-value">{{ this.$store.state.localSurveyState.requiredheadcount }}</ul>
-            </div>
+                <ul id="showOption-title">할인 대상 여부</ul>
+                <ul id="showOption-value">{{ this.$store.state.localSurveyState.identity }}</ul>
+            </div>            
             <div class="option">
                 <ul id="showOption-title">소요 시간</ul>
-                <ul id="showOption-value">{{ this.$store.state.localSurveyState.spendtime }}</ul>
+                <ul id="showOption-value">{{ this.$store.state.localSurveyState.spendTime }}</ul>
+            </div>
+            <div class="option">
+                <ul id="showOption-title">요구 응답 수</ul>
+                <ul id="showOption-value">{{ this.$store.state.localSurveyState.requiredHeadCount }}</ul>
             </div>
             <div class="option">
                 <ul id="showOption-title">마감 기한 지정</ul>
-                <ul id="showOption-value">{{ this.$store.state.localSurveyState.duetime }}</ul>
+                <ul id="showOption-value">{{ this.$store.state.localSurveyState.dueTime }}</ul>
             </div>
             <div class="option">
-                <ul id="showOption-title">할인 대상 여부</ul>
-                <ul id="showOption-value">{{ this.$store.state.localSurveyState.discount }}</ul>
-                <ul>{{ this.$store.state.localSurveyState.title }}</ul>
-                <ul>{{ this.$store.state.localSurveyState.keyword }}</ul>
-                <ul>{{ this.$store.state.localSurveyState.institute }}</ul>
-                <ul>{{ this.$store.state.localSurveyState.link }}</ul>
-            </div>              
+                <ul id="showOption-title">영어 설문 여부</ul>
+                <ul id="showOption-value">{{ this.$store.state.localSurveyState.ENTarget }}</ul>
+            </div>
+            
+            
+
+            <ul>{{ this.$store.state.localSurveyState.title }}</ul>
+            <ul>{{ this.$store.state.localSurveyState.target }}</ul>
+            <ul>{{ this.$store.state.localSurveyState.institute }}</ul>
+            <ul>{{ this.$store.state.localSurveyState.link }}</ul>
+                        
+
       </div>
 
         <div class="serviceInputForm-container-survey">
             <div class="survey-info">
                 <ul id="info-title">설문 정보</ul>
                 <ul class="input"><input type="text" v-model="title" placeholder="설문 제목을 입력해주세요." required></ul>
-                <ul class="input"><input type="text" v-model="keyword" placeholder="설문 주제 키워드를 입력해주세요." required></ul>
+                <ul class="input"><input type="text" v-model="target" placeholder="설문 대상을 입력해주세요." required></ul>
+
                 <ul class="input"><input type="text" v-model="institute" placeholder="소속된 직장/학교를 입력해주세요." required></ul>
                 <ul class="input"><input type="text" v-model="link" placeholder="설문 링크를 입력해주세요." required></ul>
             </div>
@@ -37,7 +47,9 @@
                 <span class="service-option-totalprice-word">총 금액</span>
                 <span class="service-option-totalprice-price">&nbsp; &nbsp; &nbsp; &nbsp;{{ this.$store.state.localSurveyState.price }}원</span>
             </div>
-            <button class="goServicePayDone-btn" @click="getInputForm()">결제하기</button>
+            <button class="goServicePayDone-btn" @click="setOption2()">결제하기</button>
+
+
         </div>
   </div>
 </template>
@@ -48,14 +60,15 @@ export default {
     data() {
         return {
             title: '',
-            keyword: [],
+            target: '',
             institute: '',
             link: ''
         }
     },
     methods: {
-        getInputForm() {
-            this.$store.commit('setSurveyMutation2', {title: this.title, keyword: this.keyword, institute: this.institute, link: this.link});
+        setOption2() {
+            this.$store.commit('setSurveyMutation2', {title: this.title, target: this.target, institute: this.institute, link: this.link});
+
         }
     },
   

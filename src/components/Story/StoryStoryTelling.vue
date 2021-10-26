@@ -1,8 +1,9 @@
 <template>
 <div id="story-telling-container">
-  <div>
-    <h1>StoryTelling</h1>
+  <div class="telling-contents">
+    <img src="@/assets/brandstory/브랜드스토리1.png">
   </div>
+  
 </div>
 </template>
 
@@ -14,14 +15,17 @@ export default {
 
 <style>
   #story-telling-container{
-    border: 1px solid black;
-    border-radius: 10px;
-    margin: 20px;
-    height: 250px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding-left: 30px;
-    padding-right: 30px;
+    max-width: 1190px;
+    margin-right: auto;
+    margin-left: auto;
+    
+    margin-top: 60px;
+    border:none;
+    border-radius: 24px;
 }
+ #story-telling-container .telling-contents img{
+   width: 1190px;
+   border-radius: 24px;
+ }
+
 </style>

@@ -14,7 +14,11 @@ import SurveyResponse from '../views/SurveyResponse.vue'
 import MyInfo from '../components/MyPage/MyInfo.vue'
 import Payment from '../components/MyPage/Payment.vue'
 import ListDetail from '../components/List/ListDetail.vue'
-import ServiceTest from '../components/Service/ServiceTest.vue'
+import RespondService from '../components/Contact/RespondService.vue'
+import Template from '../components/Contact/Template.vue'
+import MemberInfo from '../components/Contact/MemberInfo.vue'
+import PaymentInfo from '../components/Contact/Payment.vue'
+import FinalModal from '../components/Contact/ContactFinalModal.vue'
 
 const routes = [
   {
@@ -27,11 +31,6 @@ const routes = [
     name: 'Service',
     component: Service
   },
-  {
-    path: '/servicetest',
-    component: ServiceTest
-  },
-
   {
     path: '/serviceinputform',
     name: 'ServiceInputForm',
@@ -64,7 +63,14 @@ const routes = [
   {
     path: '/contact',
     name: 'Contact',
-    component: Contact
+    component: Contact,
+    children: [
+      { path: "respondService", component: RespondService },
+      { path: "template", component: Template },
+      { path: "memberInfo", component: MemberInfo },
+      { path: "payment", component: PaymentInfo },
+      { path: "finalmodal", component: FinalModal }
+    ]
   },
   {
     path: '/login',

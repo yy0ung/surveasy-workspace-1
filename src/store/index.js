@@ -11,7 +11,7 @@ export default createStore({
       storageBucket: "surveasy-workspace.appspot.com",
       messagingSenderId: "1077091709710",
       appId: "1:1077091709710:web:0fb6f216a86dfd3a87dd5f",
-      measurementId: "G-9XLHWG8GKQ"
+      measurementId: "G-9XLHWG8GKQ",
     },
     isLoggedIn:false,
     db: null,
@@ -37,51 +37,67 @@ export default createStore({
         [12000, 141000, 162000, 183000, 204000, 225000, 246000, 267000] ]
 
     ],
+
       
     
     addOptionArray:[
       ['0','10000'],
       ['0','15000'],
       ['0','30000','60000'],
-      [0,15000,12000,8000,5000,0]
-    ],
+      [0,15000,12000,8000,5000,0],],
 
+
+    priceTextTable: [
+      [ '대학생 할인', '대학원생 할인', '대학생 및 대학원생이 아닙니다.' ],
+      [ '1~3분', '4~6분', '7~10분', '11~15분', '16~20분' ],
+      [ '30명', '40명', '50명', '60명', '70명', '80명', '90명', '100명' ],
+      [ '선택 안함', '영어 설문(50명 이하)', '영어 설문(50명 초과)' ]
+    ],
+      
+
+    EngOptionArray: [ '0','30000','60000' ],
 
 
 
     localSurveyState: {
       price: 0,
-      requiredheadcount: '',
-      spendtime: '',
-      duetime: '',
-      discount: '',
+      identity: '',
+      spendTime: '',
+      requiredHeadCount: '',
+      dueTime: '',
+      ENTarget: '',
+
       title: '',
-      keyword: [],
+      target: '',
       institute: '',
       link: ''
     }, 
     
 
     currentUser:null,
-    surveyListStatus:["응답 완료","응답 인증","설문 마감"]
+    surveyListStatus:["응답 완료","응답 인증","설문 마감"],
+    showModal: false,
+    showFinalModal: false,
+    FAQbutton: 0,
   },
   mutations: {
     setDB(state, payload){
       state.db = payload
     },
 
-    
 
     setSurveyMutation1(state, payload) {
       state.localSurveyState.price = payload.price,
-      state.localSurveyState.requiredheadcount = payload.requiredheadcount,
-      state.localSurveyState.spendtime = payload.spendtime,
-      state.localSurveyState.duetime = payload.duetime,
-      state.localSurveyState.discount = payload.discount
+      state.localSurveyState.identity = payload.identity,
+      state.localSurveyState.spendTime = payload.spendTime,
+      state.localSurveyState.requiredHeadCount = payload.requiredHeadCount,
+      state.localSurveyState.dueTime = payload.dueTime,
+      state.localSurveyState.ENTarget = payload.ENTarget
     },
+    
     setSurveyMutation2(state, payload){
       state.localSurveyState.title = payload.title,
-      state.localSurveyState.keyword = payload.keyword,
+      state.localSurveyState.target = payload.target,
       state.localSurveyState.institute = payload.institute,
       state.localSurveyState.link = payload.link
     },
