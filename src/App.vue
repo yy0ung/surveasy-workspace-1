@@ -166,10 +166,15 @@ export default {
 
 <style>
 #app{
+
+  min-width: 1190px;
+  margin-left: auto;
+  margin-right: auto;
+
   margin-left : auto;
   margin-right: auto;
   min-width: 1190px;
-  
+
 }
 body {
  
@@ -192,7 +197,11 @@ body {
   
 }
 
-
+#home {
+  max-width: 1190px;
+  margin-left: auto;
+  margin-right: auto;
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

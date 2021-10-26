@@ -2,6 +2,26 @@
   <div class="serviceOption-container">
     <label id="service-option-title">옵션선택</label>
       <div>
+
+          <select class="selectbox" id="select1" v-model.number="price1" @click="calculatePrice(); getRequiredHeadCount();" required>
+          <option disabled value=0>요구 응답수</option>
+          <option selected v-for="option1 in requiredHeadCount_Options" :value=option1.value :key="option1">{{ option1.text }}</option>
+        </select>
+
+        <select class="selectbox" id="select2" v-model.number="price2" @click="calculatePrice(); getSpendTime();" required>
+          <option disabled value=0>소요시간</option>
+          <option v-for="option2 in spendTime_Options" :value=option2.value :key="option2">{{ option2.text }}</option>
+        </select>
+
+        <select class="selectbox" id="select3" v-model.number="price3" @click="calculatePrice(); getDueTime();" required>
+          <option disabled value=0>마감 기한 지정</option>
+          <option v-for="option3 in dueTime_Options" :value=option3.value :key="option3">{{ option3.text }}</option>
+        </select>
+        <input type="Date"  :min="min" :max="getDateStr" v-model="aa">
+        <input type="time"  v-model="bb">
+        
+        <p>{{this.$store.state.addOptionArray[3][timeOptionCal]}}</p>
+
       <select class="selectbox" id="select1" v-model="priceIdentity">
         <option :value=0>대학생</option>
         <option :value=1>대학원생</option>
@@ -32,6 +52,7 @@
       <span>설문 마감일자 선택</span>
         <input type="Date" :value="today" :min="min" :max="getDateStr" >
         <input type="time" :value="getTimeStr">
+
 
 
       <div>
@@ -78,6 +99,12 @@ export default {
 
       today: new Date().toISOString().substring(0,10),
       min: new Date().toISOString().substring(0,10),
+
+      aa:'',
+      bb:'',
+      cc: this.aa+' '+this.bb,
+      dd: new Date()
+      
     
     
       
@@ -100,6 +127,25 @@ export default {
       return now
       
 
+    },
+    timeOptionCal(){
+      var ab = this.aa + ' ' + this.bb
+      var asdf = new Date(ab).getTime()
+      var hourGap = parseInt((asdf - this.dd.getTime())/3600000) 
+      var hourOptionIndex = 0
+      if (hourGap >= 18 && hourGap < 24){
+        hourOptionIndex = 1
+      } else if (hourGap >= 24 && hourGap < 36){
+        hourOptionIndex = 2
+      } else if (hourGap >= 36 && hourGap < 48){
+        hourOptionIndex = 3
+      } else if (hourGap >= 48 && hourGap < 72){
+        hourOptionIndex = 4
+      } else if (hourGap >= 72){
+        hourOptionIndex = 5
+      }
+      return hourOptionIndex
+      
     }
   },
   methods: {    
