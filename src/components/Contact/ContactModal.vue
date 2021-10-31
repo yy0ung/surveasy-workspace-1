@@ -6,14 +6,14 @@
   <p class="green">서베이지 B2B 소개서를 받아보세요!</p>
   <p>입력해주시는 이메일 주소로 소개서를 발송하고 있습니다. 
     <br>정확한 정보 입력 후, 메일함을 확인해주세요</p>
-  <form class="input-box">
-    <input type="text" placeholder="성함" class="box" v-model="modalName">
-    <input type="text" placeholder="이메일" class="box" v-model="modalMail">
-    <input type="text" placeholder="회사" class="box" v-model="modalCompany">
+  <div class="input-box">
+    <input type="text" placeholder="성함" class="box" v-model="infoData.name">
+    <input type="text" placeholder="이메일" class="box" v-model="infoData.email">
+    <input type="text" placeholder="회사" class="box" v-model="infoData.company">
  
-    <label><input type="checkbox" value="agree"><span class="green">개인정보수집</span> 및 <span class="green">이용약관</span>에 동의합니다.</label>
-    <div><button @click="goNext" class="ContactModal-btn">소개서 받기</button></div>
-   </form>
+    <label><input type="checkbox" v-model="checked"><span class="green">개인정보수집</span> 및 <span class="green">이용약관</span>에 동의합니다.</label>
+    <div><button @click="addData(this.infoData); goNext()" class="ContactModal-btn">소개서 받기</button></div>
+   </div>
    </div>
 </div>  
 
@@ -21,26 +21,51 @@
 </template>
 
 <script>
+import { setDoc, doc } from 'firebase/firestore';
 export default {
   data() {
     return {
-      modalName:"",
-      modalMail:"",
-      modalCompany:""
+      infoData:{
+        name:null,
+        email:null,
+        company:null
+      },
+      checked:[]
+      
     }
   },
   methods:{
     closeModal(){
+      this.$router.go('/contact')
       this.$store.state.showModal=false
       this.$store.state.showFinalModal=false
     },
-    goNext(){
-        this.$store.state.showModal=false
-        this.$store.state.showFinalModal=true
+    async addData(infoData){
+        console.log(infoData)
+        var db = this.$store.state.db
+        if(infoData.name==null || infoData.email==null || infoData.company==null || this.checked.length==0){
+          alert('필수항목입니다')
+        }
+        else{
+          this.$store.state.showModal=false
+          this.$store.state.showFinalModal=true
+    
+        await setDoc(doc(db, "B2BData", infoData.company),{
+          name: infoData.name,
+          email: infoData.email,
+          company: infoData.company,
+          isresponded: false
+        })
+        }
+        
       
       
       
      
+    },
+    goNext(){
+      
+      
     }
   }
 }

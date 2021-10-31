@@ -11,7 +11,7 @@
       <button @click="copyEmail" class="ContactContactUs-btn">이메일 복사하기</button>
       <p class="bold">surveasy2019@yonsei.ac.kr</p>
       <p class="light">이메일 문의</p>
-      <input type="hidden" id="email" :value="email">
+      <input type="text" id="email" class="email-input">
     </div>
     <div>
       <button class="ContactContactUs-btn" @click="handleModal">소개서 받기</button>
@@ -28,12 +28,28 @@ export default {
     handleModal(){
       this.$store.state.showModal=true
       this.$store.state.showFinalModal=false
+    },
+    copyEmail(){
+      const mail = document.getElementById("email")
+      mail.value = "surveasy@yonsei.ac.kr"
+      mail.select()
+      document.execCommand("copy")
+      alert("이메일 주소가 복사되었습니다.")
     }
   }
 }
 </script>
 
 <style>
+  .email-input{
+    position: absolute;
+    top:0.1px;
+    left:0.1px;
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    cursor: default;
+  }
   .contactus-container{
     max-width: 1190px;
     margin-right: auto;

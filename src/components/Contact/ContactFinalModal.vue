@@ -13,6 +13,7 @@
 export default {
   methods:{
     closeModal(){
+      this.$router.go('/contact')
       this.$store.state.showModal=false
       this.$store.state.showFinalModal=false
     },
