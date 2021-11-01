@@ -1,26 +1,7 @@
 <template>
 
 <div class="serviceDetail-container">
-
-  <div class="serviceDetail-container-child" id="WHAT-containter">
-    <div>서비스 설명 WHAT</div>
-  </div>
-
-  <div class="serviceDetail-container-child" id="HOW-containter">
-    <div>운영 과정 HOW</div>
-  </div>
-
-  <div class="serviceDetail-container-child" id="WHO-container">
-    <div>패널 데모그래픽 WHO</div>
-  </div>
-
-  <div class="serviceDetail-container-child" id="WHY-container">
-    <div>서비스의 장점/효과 WHY</div>
-  </div>
-
-  <div class="serviceDetail-container-child" id="note">
-    <div>유의사항</div>
-  </div>
+  <img class="serviceDetail-img" src="@/assets/service/설문응답_상세페이지.png" width="900">
   
 </div>
 </template>
@@ -33,19 +14,8 @@ export default {
 
 <style>
 .serviceDetail-container {
-  width: 100%;
-  border-radius: 10px;
-  margin: 80px;
-  display: flex;
-  flex-direction: column;
-  background-color: rgb(231, 231, 231);
-  border-radius: 10px;
+  width: auto;
+  margin: 80px 23px 135px 100px;
+}
 
-}
-.serviceDetail-container-child {
-  height: 300px;
-  margin: 3px;
-  padding: 50px;
-  border-bottom: 1px solid grey;
-}
 </style>

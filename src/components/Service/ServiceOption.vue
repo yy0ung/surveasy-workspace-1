@@ -1,71 +1,50 @@
 <template>
   <div class="serviceOption-container">
-    <label id="service-option-title">옵션선택</label>
+    <label id="service-option-title">설문 응답 서비스</label>
       <div>
-
-          <select class="selectbox" id="select1" v-model.number="price1" @click="calculatePrice(); getRequiredHeadCount();" required>
-          <option disabled value=0>요구 응답수</option>
-          <option selected v-for="option1 in requiredHeadCount_Options" :value=option1.value :key="option1">{{ option1.text }}</option>
+        <select class="selectbox" v-model="priceRequireHeadCount">
+          <option :value=0>30명</option>
+          <option :value=1>40명</option>
+          <option :value=2>50명</option>
+          <option :value=3>60명</option>
+          <option :value=4>70명</option>
+          <option :value=5>80명</option>
+          <option :value=6>90명</option>
+          <option :value=7>100명</option>
         </select>
 
-        <select class="selectbox" id="select2" v-model.number="price2" @click="calculatePrice(); getSpendTime();" required>
-          <option disabled value=0>소요시간</option>
-          <option v-for="option2 in spendTime_Options" :value=option2.value :key="option2">{{ option2.text }}</option>
-        </select>
+        <select class="selectbox" v-model="priceSpendTime">
+          <option :value=0>1-3분</option>
+          <option :value=1>4-6분</option>
+          <option :value=2>7-10분</option>
+          <option :value=3>11-15분</option>
+          <option :value=4>16-20분</option>
+        </select> 
 
-        <select class="selectbox" id="select3" v-model.number="price3" @click="calculatePrice(); getDueTime();" required>
-          <option disabled value=0>마감 기한 지정</option>
-          <option v-for="option3 in dueTime_Options" :value=option3.value :key="option3">{{ option3.text }}</option>
-        </select>
         <input type="Date"  :min="min" :max="getDateStr" v-model="aa">
         <input type="time"  v-model="bb">
         
-        <p>{{this.$store.state.addOptionArray[3][timeOptionCal]}}</p>
+        <div>영어 설문 여부
+          <input type="radio" v-model="addENTarget" :value=0 name="enTarget">선택 안함<br>
+          <input type="radio" v-model="addENTarget" :value=1 name="enTarget">영어 설문(50명 이하)<br>
+          <input type="radio" v-model="addENTarget" :value=2 name="enTarget">영어 설문(50명 초과)
+        </div>
 
-      <select class="selectbox" id="select1" v-model="priceIdentity">
-        <option :value=0>대학생</option>
-        <option :value=1>대학원생</option>
-        <option :value=2>일반</option>
-      </select>
-      <p id="service-option-notice">*대학생 및 대학원생임을 인증해야만 할인을 받으실 수 있습니다.</p>
-
-      <select class="selectbox" id="select2" v-model="priceSpendTime">
-        <option :value=0>1-3분</option>
-        <option :value=1>4-6분</option>
-        <option :value=2>7-10분</option>
-        <option :value=3>11-15분</option>
-        <option :value=4>16-20분</option>
-      </select>
-
-      <select class="selectbox" id="select3" v-model="priceRequireHeadCount">
-        <option :value=0>30명</option>
-        <option :value=1>40명</option>
-        <option :value=2>50명</option>
-        <option :value=3>60명</option>
-        <option :value=4>70명</option>
-        <option :value=5>80명</option>
-        <option :value=6>90명</option>
-        <option :value=7>100명</option>
-      </select>
-      <br>
-
-      <span>설문 마감일자 선택</span>
-        <input type="Date" :value="today" :min="min" :max="getDateStr" >
-        <input type="time" :value="getTimeStr">
-
-
-
-      <div>
-      영어 설문 여부
-      <input type="radio" v-model="addENTarget" :value=0 name="enTarget">선택 안함<br>
-      <input type="radio" v-model="addENTarget" :value=1 name="enTarget">영어 설문(50명 이하)<br>
-      <input type="radio" v-model="addENTarget" :value=2 name="enTarget">영어 설문(50명 초과)
-    </div>
+        <select class="selectbox" v-model="priceIdentity">
+          <option :value=0>대학생</option>
+          <option :value=1>대학원생</option>
+          <option :value=2>일반</option>
+        </select>
+        <p id="service-option-notice">*대학생 및 대학원생임을 인증해야만 할인을 받으실 수 있습니다.</p>
+      
         <br>
       
         <div class="show-price-container">
           <span class="service-option-totalprice-word">총 금액</span>
-          <span class="service-option-totalprice-price">&nbsp; &nbsp; &nbsp; &nbsp;{{Number(this.$store.state.priceTable[priceIdentity][priceSpendTime][priceRequireHeadCount])+Number(this.$store.state.EngOptionArray[addENTarget])}}원</span>
+          <span class="service-option-totalprice-price">&nbsp; &nbsp; &nbsp; &nbsp;
+            {{ Number(this.$store.state.priceTable[priceIdentity][priceSpendTime][priceRequireHeadCount])
+              +Number(this.$store.state.EngOptionArray[addENTarget])
+              +Number(this.$store.state.TimeOptionArray[timeOptionCal]) }}원</span>
         </div>
       
         <div>
@@ -90,12 +69,14 @@ export default {
       priceSpendTime:0,
       priceRequireHeadCount:0,
       addENTarget:0,
+      timeOption:0,
 
       price: 0,
       identity: '',
       spendTime: '',
       requiredHeadCount: '',
       ENTarget: '',
+      dueTime: '',
 
       today: new Date().toISOString().substring(0,10),
       min: new Date().toISOString().substring(0,10),
@@ -150,15 +131,24 @@ export default {
   },
   methods: {    
     setOption1() {
-      this.price = Number(this.$store.state.priceTable[this.priceIdentity][this.priceSpendTime][this.priceRequireHeadCount])+Number(this.$store.state.EngOptionArray[this.addENTarget]);
-      this.identity = String(this.$store.state.priceTextTable[0][this.priceIdentity]);
+      this.timeOption = this.timeOptionCal;
+
+      this.price = Number(this.$store.state.priceTable[this.priceIdentity][this.priceSpendTime][this.priceRequireHeadCount])
+      +Number(this.$store.state.EngOptionArray[this.addENTarget])
+      +Number(this.$store.state.TimeOptionArray[this.timeOption]);
+      
+      this.requiredHeadCount = String(this.$store.state.priceTextTable[0][this.priceRequireHeadCount]);
       this.spendTime = String(this.$store.state.priceTextTable[1][this.priceSpendTime]);
-      this.requiredHeadCount = String(this.$store.state.priceTextTable[2][this.priceRequireHeadCount]);
+      this.dueTime = String(this.$store.state.priceTextTable[2][this.timeOption]);
       this.ENTarget = String(this.$store.state.priceTextTable[3][this.addENTarget]);
+      this.identity = String(this.$store.state.priceTextTable[4][this.priceIdentity]);
+      
+      
+      
 
       
-      this.$store.commit('setSurveyMutation1', {price: this.price, identity: this.identity, spendTime: this.spendTime,
-      requiredHeadCount: this.requiredHeadCount, ENTarget: this.ENTarget});
+      this.$store.commit('setSurveyMutation1', {price: this.price, requiredHeadCount: this.requiredHeadCount, 
+      spendTime: this.spendTime, dueTime: this.dueTime, ENTarget: this.ENTarget, identity: this.identity});
 
       
       console.log(this.$store.state.localSurveyState.price);
@@ -166,6 +156,7 @@ export default {
       console.log(this.$store.state.localSurveyState.spendTime);
       console.log(this.$store.state.localSurveyState.requiredHeadCount);
       console.log(this.$store.state.localSurveyState.ENTarget);
+      console.log(this.$store.state.localSurveyState.dueTime);
       
     }
   },
@@ -176,22 +167,25 @@ export default {
 
 
 <style>
-#service-option-title {
-  text-align: left;
-  margin: 70px 0 15px 55px;
-  font-size: 20px;
-  font-weight: bold;
-}
 .serviceOption-container {
-  width: 50%;
-  height: 500px;
+  position: sticky;
+  top: 108px;
+  z-index: 1;
+  width: 506px;
+  height: 496px;
   border-radius: 10px;
-  margin: 80px;
-  margin-left: 0;
+  margin: 80px 100px 139px 0px;
   display: flex;
   flex-direction: column;
   background-color: rgb(231, 231, 231);
   border-radius: 10px;
+}
+#service-option-title {
+  text-align: left;
+  margin: 40px 0 15px 50px;
+  color: #0CAE02;
+  font-size: 20px;
+  font-weight: bold;
 }
 .selectbox {
   margin: 10px;
@@ -208,8 +202,8 @@ export default {
 #service-option-notice {
   text-align: left;
   color: #0CAE02;
-  font-size: 12px;
-  margin: 1px 0 0 60px;
+  font-size: 11px;
+  margin: 1px 0 0 40px;
 }
 .show-price-container {
   margin-top: 10px;
@@ -221,7 +215,7 @@ export default {
   font-size: 18px;
 }
 .service-option-totalprice-price {
-  margin-right: 40px;
+  margin-right: 25px;
   font-size: 25px;
   font-weight: bold;
 }
