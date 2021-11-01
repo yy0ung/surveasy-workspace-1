@@ -1,16 +1,19 @@
 <template>
+<div class="f-modal-container-box" v-if="this.$store.state.showFinalModal==true">
 <div id="f-modal-container">
   <div id="close-icon" @click="closeModal"><i class="fas fa-times"></i></div>
   <img class="checkimg" src="@/assets/check.png" width="100">
   <p class="green">서베이지 B2B 소개서 신청이 완료되었습니다!</p>
   <p>입력해주신 이메일 주소로 1~2일안에 보내드리겠습니다.</p>
 </div>  
+</div>
 </template>
 
 <script>
 export default {
   methods:{
     closeModal(){
+      this.$router.go('/contact')
       this.$store.state.showModal=false
       this.$store.state.showFinalModal=false
     },
@@ -20,18 +23,40 @@ export default {
 </script>
 
 <style>
+.f-modal-container-box{
+  position: fixed;
+  z-index: 9998;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.524);
+  display: table;
+  transition: opacity .3s ease;
+}
 #f-modal-container{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  width: 700px;
+  height: 300px;
+  border-radius: 15px;
   display: flex;
   flex-direction: column;
   margin-top: 20px;
+  box-shadow: 0px 0px 20px #00000026;
   font-family: 'Noto Sans KR', sans-serif;
  
 }
 #f-modal-container .checkimg{
   margin-left: 300px;
   margin-bottom: 30px;
+  
 }
 #f-modal-container #close-icon{
+  margin-top: 20px;
   display: flex;
   justify-content: right;
   margin-right: 30px;

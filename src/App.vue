@@ -188,6 +188,7 @@ body {
   width: 918px;
   font-size: 1rem;
   padding-bottom: 30px;
+  white-space:nowrap;
 
 }
 
