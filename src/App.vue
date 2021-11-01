@@ -218,6 +218,7 @@ body {
   display: flex;
   align-items: center;
   position: sticky;
+  z-index: 2;
   top:0;
   
 }

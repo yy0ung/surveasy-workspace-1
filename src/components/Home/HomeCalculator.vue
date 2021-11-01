@@ -1,55 +1,55 @@
 <template>
   <div class="home-calculator" v-if="showCalculator">
     <div class="home-calculator-contentsbox">
-      <h2>가격계산기
+      <h2 class="calc-title">가격계산기
         <button class="modal-close-button" @click="$emit('close')">X</button>
       </h2> 
       <div class="calc-option-container">
-        <label id="service-option-title">옵션선택</label>
+        <label id="calc-option-title">옵션선택</label>
         <div>
-          <select class="selectbox" id="select1" v-model="priceIdentity">
-            <option :value=0>대학생</option>
-            <option :value=1>대학원생</option>
-            <option :value=2>일반</option>
-          </select>
-          <p id="calc-option-notice">*대학생 및 대학원생임을 인증해야만 할인을 받으실 수 있습니다.</p>
+          <select class="selectbox" v-model="priceRequireHeadCount">
+          <option :value=0>30명</option>
+          <option :value=1>40명</option>
+          <option :value=2>50명</option>
+          <option :value=3>60명</option>
+          <option :value=4>70명</option>
+          <option :value=5>80명</option>
+          <option :value=6>90명</option>
+          <option :value=7>100명</option>
+        </select>
 
-          <select class="selectbox" id="select2" v-model="priceSpendTime">
-            <option :value=0>1-3분</option>
-            <option :value=1>4-6분</option>
-            <option :value=2>7-10분</option>
-            <option :value=3>11-15분</option>
-            <option :value=4>16-20분</option>
-          </select>
+        <select class="selectbox" v-model="priceSpendTime">
+          <option :value=0>1-3분</option>
+          <option :value=1>4-6분</option>
+          <option :value=2>7-10분</option>
+          <option :value=3>11-15분</option>
+          <option :value=4>16-20분</option>
+        </select> 
 
-          <select class="selectbox" id="select3" v-model="priceRequireHeadCount">
-            <option :value=0>30명</option>
-            <option :value=1>40명</option>
-            <option :value=2>50명</option>
-            <option :value=3>60명</option>
-            <option :value=4>70명</option>
-            <option :value=5>80명</option>
-            <option :value=6>90명</option>
-            <option :value=7>100명</option>
-          </select>
-          <br>
+        <input type="Date"  :min="min" :max="getDateStr" v-model="aa">
+        <input type="time"  v-model="bb">
+        
+        <div>영어 설문 여부
+          <input type="radio" v-model="addENTarget" :value=0 name="enTarget">선택 안함<br>
+          <input type="radio" v-model="addENTarget" :value=1 name="enTarget">영어 설문(50명 이하)<br>
+          <input type="radio" v-model="addENTarget" :value=2 name="enTarget">영어 설문(50명 초과)
+        </div>
 
-          <span>설문 마감일자 선택</span>
-            <input type="Date" :value="today" :min="min" :max="getDateStr" >
-            <input type="time" :value="getTimeStr">
-        <div>
-
-        영어 설문 여부
-        <input type="radio" v-model="addENTarget" :value=0 name="enTarget">선택 안함<br>
-        <input type="radio" v-model="addENTarget" :value=1 name="enTarget">영어 설문(50명 이하)<br>
-        <input type="radio" v-model="addENTarget" :value=2 name="enTarget">영어 설문(50명 초과)
-      </div>
+        <select class="selectbox" v-model="priceIdentity">
+          <option :value=0>대학생</option>
+          <option :value=1>대학원생</option>
+          <option :value=2>일반</option>
+        </select>
+        <p id="calc-option-notice">*대학생 및 대학원생임을 인증해야만 할인을 받으실 수 있습니다.</p>
       
-      <br>
+        <br>
       
-        <div class="show-price-container">
-          <span class="service-option-totalprice-word">총 금액</span>
-          <span class="service-option-totalprice-price">&nbsp; &nbsp; &nbsp; &nbsp;{{Number(this.$store.state.priceTable[priceIdentity][priceSpendTime][priceRequireHeadCount])+Number(this.$store.state.EngOptionArray[addENTarget])}}원</span>
+        <div class="calc-show-price-container">
+          <span class="calc-option-totalprice-word">총 금액</span>
+          <span class="calc-option-totalprice-price">&nbsp; &nbsp; &nbsp; &nbsp;
+            {{ Number(this.$store.state.priceTable[priceIdentity][priceSpendTime][priceRequireHeadCount])
+              +Number(this.$store.state.EngOptionArray[addENTarget])
+              +Number(this.$store.state.TimeOptionArray[timeOptionCal]) }}원</span>
         </div>
       
         <div>
@@ -75,28 +75,36 @@ export default {
       default: false
     }
   },
-  data() {
+   data() {
     return {
       currentTime : new Date(),
       priceIdentity:0,
       priceSpendTime:0,
       priceRequireHeadCount:0,
       addENTarget:0,
+      timeOption:0,
 
       price: 0,
       identity: '',
       spendTime: '',
       requiredHeadCount: '',
       ENTarget: '',
+      dueTime: '',
 
       today: new Date().toISOString().substring(0,10),
       min: new Date().toISOString().substring(0,10),
-    
+
+      aa:'',
+      bb:'',
+      cc: this.aa+' '+this.bb,
+      dd: new Date()
       
+    
+    
       
     }
   },
-  computed:{
+  computed :{
     getDateStr(){
       var today = new Date()
       var a = today.setDate(today.getDate()+7)
@@ -110,22 +118,50 @@ export default {
       var kr_diff = 9*60*60*1000
       var krr = new Date(utc+(kr_diff))
       var now = krr.toString().substring(16,21)
-
       return now
+      
 
+    },
+    timeOptionCal(){
+      var ab = this.aa + ' ' + this.bb
+      var asdf = new Date(ab).getTime()
+      var hourGap = parseInt((asdf - this.dd.getTime())/3600000) 
+      var hourOptionIndex = 0
+      if (hourGap >= 18 && hourGap < 24){
+        hourOptionIndex = 1
+      } else if (hourGap >= 24 && hourGap < 36){
+        hourOptionIndex = 2
+      } else if (hourGap >= 36 && hourGap < 48){
+        hourOptionIndex = 3
+      } else if (hourGap >= 48 && hourGap < 72){
+        hourOptionIndex = 4
+      } else if (hourGap >= 72){
+        hourOptionIndex = 5
+      }
+      return hourOptionIndex
+      
     }
   },
-   methods: {    
+  methods: {    
     setOption1() {
-      this.price = Number(this.$store.state.priceTable[this.priceIdentity][this.priceSpendTime][this.priceRequireHeadCount])+Number(this.$store.state.EngOptionArray[this.addENTarget]);
-      this.identity = String(this.$store.state.priceTextTable[0][this.priceIdentity]);
+      this.timeOption = this.timeOptionCal;
+
+      this.price = Number(this.$store.state.priceTable[this.priceIdentity][this.priceSpendTime][this.priceRequireHeadCount])
+      +Number(this.$store.state.EngOptionArray[this.addENTarget])
+      +Number(this.$store.state.TimeOptionArray[this.timeOption]);
+      
+      this.requiredHeadCount = String(this.$store.state.priceTextTable[0][this.priceRequireHeadCount]);
       this.spendTime = String(this.$store.state.priceTextTable[1][this.priceSpendTime]);
-      this.requiredHeadCount = String(this.$store.state.priceTextTable[2][this.priceRequireHeadCount]);
+      this.dueTime = String(this.$store.state.priceTextTable[2][this.timeOption]);
       this.ENTarget = String(this.$store.state.priceTextTable[3][this.addENTarget]);
+      this.identity = String(this.$store.state.priceTextTable[4][this.priceIdentity]);
+      
+      
+      
 
       
-      this.$store.commit('setSurveyMutation1', {price: this.price, identity: this.identity, spendTime: this.spendTime,
-      requiredHeadCount: this.requiredHeadCount, ENTarget: this.ENTarget});
+      this.$store.commit('setSurveyMutation1', {price: this.price, requiredHeadCount: this.requiredHeadCount, 
+      spendTime: this.spendTime, dueTime: this.dueTime, ENTarget: this.ENTarget, identity: this.identity});
 
       
       console.log(this.$store.state.localSurveyState.price);
@@ -133,10 +169,12 @@ export default {
       console.log(this.$store.state.localSurveyState.spendTime);
       console.log(this.$store.state.localSurveyState.requiredHeadCount);
       console.log(this.$store.state.localSurveyState.ENTarget);
+      console.log(this.$store.state.localSurveyState.dueTime);
       
     }
   },
-     
+  
+   
 }
 </script>
 
@@ -153,41 +191,64 @@ export default {
   transition: opacity .3s ease;
 }
 .home-calculator-contentsbox {
-  width: 800px;
-  height: 600px;
-  margin: 200px auto;
+  width: 500px;
+  height: 500px;
+  margin: 150px auto;
   padding: 20px 30px;
   background-color: #fff;
   border-radius: 20px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, .33);
   transition: all .3s ease;
 }
+.calc-title {
+  color: grey;
+}
 .modal-close-button {
   float: right;
-  color: black;
+  color: grey;
   font-size: 20px;
   background-color: #fff;
   border: none;
   cursor: pointer;
 }
 .calc-option-container {
-  height: 500px;
+  width: 500px;
+  height: 420px;
   border-radius: 10px;
-  margin: 30px;
+  margin: 20px auto;
   display: flex;
   flex-direction: column;
   background-color: rgb(231, 231, 231);
   border-radius: 10px;
 }
+#calc-option-title {
+  text-align: left;
+  margin: 20px 0 15px 50px;
+  color: #0CAE02;
+  font-size: 18px;
+  font-weight: bold;
+}
 .calc-option-container #calc-option-notice {
   font-size: 12px;
   color: #0CAE02;
-  margin: 5px 0 5px 75px;
+  margin: 0;
+}
+.calc-show-price-container {
+  text-align: right;
+  color:#0CAE02;
+}
+.calc-option-totalprice-word {
+  font-size: 18px;
+}
+.calc-option-totalprice-price {
+  margin-right: 25px;
+  font-size: 25px;
+  font-weight: bold;
 }
 .calc-goServiceInputForm-btn {
   width: 70%;
   height: 25px;
-  margin: 2px;
+  margin: 15px;
   color:#0CAE02;
   background-color: rgb(231, 231, 231);
   border: 1.5px solid #0CAE02;
