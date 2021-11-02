@@ -3,6 +3,7 @@
     <label id="service-option-title">설문 응답 서비스</label>
       <div>
         <select class="selectbox" v-model="priceRequireHeadCount">
+          <option value=0 selected disabled hidden>요구 응답수</option>
           <option :value=0>30명</option>
           <option :value=1>40명</option>
           <option :value=2>50명</option>
@@ -14,6 +15,7 @@
         </select>
 
         <select class="selectbox" v-model="priceSpendTime">
+          <option value=0 selected disabled hidden>소요 시간</option>
           <option :value=0>1-3분</option>
           <option :value=1>4-6분</option>
           <option :value=2>7-10분</option>
@@ -21,16 +23,20 @@
           <option :value=4>16-20분</option>
         </select> 
 
-        <input type="Date"  :min="min" :max="getDateStr" v-model="aa">
-        <input type="time"  v-model="bb">
+        <input type="Date" class="date" :min="min" :max="getDateStr" v-model="aa" required>
+        <input type="time" class="time" v-model="bb" required>
         
-        <div>영어 설문 여부
-          <input type="radio" v-model="addENTarget" :value=0 name="enTarget">선택 안함<br>
-          <input type="radio" v-model="addENTarget" :value=1 name="enTarget">영어 설문(50명 이하)<br>
-          <input type="radio" v-model="addENTarget" :value=2 name="enTarget">영어 설문(50명 초과)
-        </div>
+        
+
+        <select class="selectbox" v-model="addENTarget">
+          <option value=0 selected disabled hidden>영어 설문 여부</option>
+          <option :value=0>선택 안함</option>
+          <option :value=1>영어 설문(50명 이하)</option>
+          <option :value=2>영어 설문(50명 초과)</option>
+        </select>
 
         <select class="selectbox" v-model="priceIdentity">
+          <option value=0 selected disabled hidden>할인 대상 여부</option>
           <option :value=0>대학생</option>
           <option :value=1>대학원생</option>
           <option :value=2>일반</option>
@@ -105,6 +111,7 @@ export default {
       var kr_diff = 9*60*60*1000
       var krr = new Date(utc+(kr_diff))
       var now = krr.toString().substring(16,21)
+      console.log(now);
       return now
       
 
@@ -190,7 +197,7 @@ export default {
 .selectbox {
   margin: 10px;
   padding: 5px;
-  width: 80%;
+  width: 310px;
   height: 30px;
   background-color: rgb(231, 231, 231);
   font-size: 15px;
