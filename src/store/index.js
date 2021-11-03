@@ -49,15 +49,8 @@ export default createStore({
       [ '', '18~24시간', '24~36시간', '36~48시간', '48~72시간', '72시간~168시간' ],
       [ '선택 안함', '영어 설문(50명 이하)', '영어 설문(50명 초과)' ],
       [ '대학생 할인', '대학원생 할인', '대학생 및 대학원생이 아닙니다.' ],
-      
-      
-      
     ],
       
-
-    
-
-
 
     localSurveyState: {
       price: 0,
@@ -73,7 +66,9 @@ export default createStore({
       link: '',
       notice: ''
     }, 
-    
+
+    showLinkModal: false,
+    checklink: null,
 
     currentUser:null,
     surveyListStatus:["응답 완료","응답 인증","설문 마감"],

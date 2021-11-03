@@ -52,7 +52,8 @@
                     <ul class="info-detail-text">설문 링크</ul>
                     <ul class="info-detail-input"><input type="text" v-model="link" placeholder="링크가 잘 작동하는지 꼭 확인해주세요." required></ul>
                 </ul>
-                <ul><button class="link-check-btn">링크 확인하기</button></ul>
+                <ul><button class="link-check-btn" @click="showLinkModal()">링크 확인하기</button></ul>
+                <LinkCheckModal :showLinkIframe="showLinkIframe" @closeIframe="showLinkModal()" />
                 <ul id="info-detail">
                     <ul class="info-detail-text">설문 참여 유의사항</ul>
                     <ul class="info-detail-input"><input type="text" v-model="notice" placeholder="예) PC참여 권장, 영상 시청 필요, 외부 링크 이동 필요"></ul>
@@ -71,7 +72,7 @@
 </template>
 
 <script>
-
+import LinkCheckModal from '../../components/Service/LinkCheckModal.vue'
 export default {
     data() {
         return {
@@ -79,12 +80,21 @@ export default {
             target: '',
             institute: '',
             link: '',
-            notice:''
+            notice:'',
+
+            showLinkIframe: false,
+            
+
         }
     },
-    methods: {
-        checkLink() {
 
+    components: { LinkCheckModal },
+
+    methods: {
+        showLinkModal() {
+            this.showLinkIframe = !this.showLinkIframe
+            this.$store.state.checklink = this.link
+            console.log(this.$store.state.checklink)
         },
 
         setOption2() {

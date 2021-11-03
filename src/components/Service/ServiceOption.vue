@@ -25,6 +25,7 @@
 
         <input type="Date" class="date" :min="min" :max="getDateStr" v-model="aa" required>
         <input type="time" class="time" v-model="bb" required>
+        <input type="datetime-local" :min="min" :max="getDateStr">
         
         
 
