@@ -28,9 +28,6 @@
         <input type="Date" class="date" :min="min" :max="getDateStr" v-model="aa" required>
         <input type="time" class="time" v-model="bb" required>
         
-        
-
-        
         <br>
         <span>영어설문 여부</span>
           <label class="switch">
@@ -38,13 +35,8 @@
             <span class="slider"></span>
           </label>
           <span>{{ this.EngText }}</span>
-        
-
+  
         <br>
-        
-        
-        
-
         <select class="selectbox" v-model="priceIdentity">
           <option :value=0 selected disabled hidden>할인 대상 여부</option>
           <option :value=1>대학생</option>
@@ -64,9 +56,9 @@
         </div>
       
         <div>
-          <router-link to="/serviceinputform">
+          
           <button class="goServiceInputForm-btn" @click="setOption1()">설문 정보 입력하러 가기</button>
-          </router-link>
+          
         </div>
     </div>
 
@@ -94,7 +86,7 @@ export default {
       ENTarget: '',
       dueTime: '',
 
-      EngText: '선택 안함',
+      EngText: '',
 
       today: new Date().toISOString().substring(0,10),
       min: new Date().toISOString().substring(0,10),
@@ -103,10 +95,7 @@ export default {
       bb:'',
       cc: this.aa+' '+this.bb,
       dd: new Date()
-      
-    
-    
-      
+
     }
   },
   computed :{
@@ -168,42 +157,46 @@ export default {
   },
   methods: {    
     setOption1() {
-      this.timeOption = this.timeOptionCal;
-      this.addENTarget = this.EngOptionCal;
+      if((this.priceIdentity==0) || (this.priceSpendTime==0) || (this.priceRequireHeadCount==0) || (this.timeOptionCal==0)) {
+        alert("필수 옵션을 모두 입력해주세요.")
+      }
+      else {
+        
+        this.timeOption = this.timeOptionCal;
+        this.addENTarget = this.EngOptionCal;
 
-      this.price = Number(this.$store.state.priceTable[this.priceIdentity][this.priceSpendTime][this.priceRequireHeadCount])
-      +Number(this.$store.state.EngOptionArray[this.addENTarget])
-      +Number(this.$store.state.TimeOptionArray[this.timeOption]);
+        this.price = Number(this.$store.state.priceTable[this.priceIdentity][this.priceSpendTime][this.priceRequireHeadCount])
+        +Number(this.$store.state.EngOptionArray[this.addENTarget])
+        +Number(this.$store.state.TimeOptionArray[this.timeOption]);
       
-      this.requiredHeadCount = String(this.$store.state.priceTextTable[0][this.priceRequireHeadCount]);
-      this.spendTime = String(this.$store.state.priceTextTable[1][this.priceSpendTime]);
-      this.dueTime = String(this.$store.state.priceTextTable[2][this.timeOption]);
-      this.ENTarget = String(this.$store.state.priceTextTable[3][this.addENTarget]);
-      this.identity = String(this.$store.state.priceTextTable[4][this.priceIdentity]);
+        this.requiredHeadCount = String(this.$store.state.priceTextTable[0][this.priceRequireHeadCount]);
+        this.spendTime = String(this.$store.state.priceTextTable[1][this.priceSpendTime]);
+        this.dueTime = String(this.$store.state.priceTextTable[2][this.timeOption]);
+        this.ENTarget = String(this.$store.state.priceTextTable[3][this.addENTarget]);
+        this.identity = String(this.$store.state.priceTextTable[4][this.priceIdentity]);
       
       
+        this.$store.commit('setSurveyMutation1', {price: this.price, requiredHeadCount: this.requiredHeadCount, 
+        spendTime: this.spendTime, dueTime: this.dueTime, ENTarget: this.ENTarget, identity: this.identity});
+
+        this.$router.push('/serviceinputform');
       
 
-      
-      this.$store.commit('setSurveyMutation1', {price: this.price, requiredHeadCount: this.requiredHeadCount, 
-      spendTime: this.spendTime, dueTime: this.dueTime, ENTarget: this.ENTarget, identity: this.identity});
 
-      
-      console.log(this.$store.state.localSurveyState.price);
-      console.log(this.$store.state.localSurveyState.identity);
-      console.log(this.$store.state.localSurveyState.spendTime);
-      console.log(this.$store.state.localSurveyState.requiredHeadCount);
-      console.log(this.$store.state.localSurveyState.ENTarget);
-      console.log(this.$store.state.localSurveyState.dueTime);
-      
-    },
+        console.log(this.$store.state.localSurveyState.price);
+        console.log(this.$store.state.localSurveyState.identity);
+        console.log(this.$store.state.localSurveyState.spendTime);
+        console.log(this.$store.state.localSurveyState.requiredHeadCount);
+        console.log(this.$store.state.localSurveyState.ENTarget);
+        console.log(this.$store.state.localSurveyState.dueTime);
+      }
     
-  },
+ 
+    }     
   
-   
+  }
 }
 </script>
-
 
 <style>
 .serviceOption-container {
@@ -276,7 +269,7 @@ export default {
 .switch {
   position: relative;
   display: inline-block;
-  width: 45px;
+  width: 38px;
   height: 20px;
 }
 .switch input { 
@@ -315,7 +308,7 @@ input:checked + .slider {
 input:checked + .slider:before {
   -webkit-transform: translateX(26px);
   -ms-transform: translateX(26px);
-  transform: translateX(22px);
+  transform: translateX(16px);
 }
 
 </style>

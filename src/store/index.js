@@ -79,6 +79,7 @@ export default createStore({
     }, 
 
     showLinkModal: false,
+    goServiceInputForm: false,
     checklink: null,
 
     currentUser:null,
