@@ -3,44 +3,53 @@
     <label id="service-option-title">설문 응답 서비스</label>
       <div>
         <select class="selectbox" v-model="priceRequireHeadCount">
-          <option value=0 selected disabled hidden>요구 응답수</option>
-          <option :value=0>30명</option>
-          <option :value=1>40명</option>
-          <option :value=2>50명</option>
-          <option :value=3>60명</option>
-          <option :value=4>70명</option>
-          <option :value=5>80명</option>
-          <option :value=6>90명</option>
-          <option :value=7>100명</option>
+          <option :value=0 selected disabled hidden>요구 응답수</option>
+          <option :value=1>30명</option>
+          <option :value=2>40명</option>
+          <option :value=3>50명</option>
+          <option :value=4>60명</option>
+          <option :value=5>70명</option>
+          <option :value=6>80명</option>
+          <option :value=7>90명</option>
+          <option :value=8>100명</option>
         </select>
 
         <select class="selectbox" v-model="priceSpendTime">
-          <option value=0 selected disabled hidden>소요 시간</option>
-          <option :value=0>1-3분</option>
-          <option :value=1>4-6분</option>
-          <option :value=2>7-10분</option>
-          <option :value=3>11-15분</option>
-          <option :value=4>16-20분</option>
+          <option :value=0 selected disabled hidden>소요 시간</option>
+          <option :value=1>1-3분</option>
+          <option :value=2>4-6분</option>
+          <option :value=3>7-10분</option>
+          <option :value=4>11-15분</option>
+          <option :value=5>16-20분</option>
         </select> 
 
+        <br>
+        <span>마감 기한</span>
         <input type="Date" class="date" :min="min" :max="getDateStr" v-model="aa" required>
         <input type="time" class="time" v-model="bb" required>
-        <input type="datetime-local" :min="min" :max="getDateStr">
         
         
 
-        <select class="selectbox" v-model="addENTarget">
-          <option value=0 selected disabled hidden>영어 설문 여부</option>
-          <option :value=0>선택 안함</option>
-          <option :value=1>영어 설문(50명 이하)</option>
-          <option :value=2>영어 설문(50명 초과)</option>
-        </select>
+        
+        <br>
+        <span>영어설문 여부</span>
+          <label class="switch">
+            <input v-model="addENTarget" @click="EngOptionCal()" type="checkbox" class="EngRadio" name="Eng">
+            <span class="slider"></span>
+          </label>
+          <span>{{ this.EngText }}</span>
+        
+
+        <br>
+        
+        
+        
 
         <select class="selectbox" v-model="priceIdentity">
-          <option value=0 selected disabled hidden>할인 대상 여부</option>
-          <option :value=0>대학생</option>
-          <option :value=1>대학원생</option>
-          <option :value=2>일반</option>
+          <option :value=0 selected disabled hidden>할인 대상 여부</option>
+          <option :value=1>대학생</option>
+          <option :value=2>대학원생</option>
+          <option :value=3>일반</option>
         </select>
         <p id="service-option-notice">*대학생 및 대학원생임을 인증해야만 할인을 받으실 수 있습니다.</p>
       
@@ -50,7 +59,7 @@
           <span class="service-option-totalprice-word">총 금액</span>
           <span class="service-option-totalprice-price">&nbsp; &nbsp; &nbsp; &nbsp;
             {{ Number(this.$store.state.priceTable[priceIdentity][priceSpendTime][priceRequireHeadCount])
-              +Number(this.$store.state.EngOptionArray[addENTarget])
+              +Number(this.$store.state.EngOptionArray[EngOptionCal])
               +Number(this.$store.state.TimeOptionArray[timeOptionCal]) }}원</span>
         </div>
       
@@ -84,6 +93,8 @@ export default {
       requiredHeadCount: '',
       ENTarget: '',
       dueTime: '',
+
+      EngText: '선택 안함',
 
       today: new Date().toISOString().substring(0,10),
       min: new Date().toISOString().substring(0,10),
@@ -134,12 +145,31 @@ export default {
         hourOptionIndex = 5
       }
       return hourOptionIndex
-      
+    }, 
+    EngOptionCal() {
+      var EngIndex = 0
+      var HeadCount = this.priceRequireHeadCount
+      var Eng = this.addENTarget
+      if(Eng==false) {
+        EngIndex = 0
+        this.EngText = "선택 안함"
+      }
+      else if((HeadCount<=3) && (Eng==true)) {
+        EngIndex = 1
+        this.EngText = "영어 설문"
+      }
+      else if((HeadCount>3) && (Eng==true)) {
+        EngIndex = 2
+        this.EngText = "영어 설문"
+      }
+      console.log(EngIndex)
+      return EngIndex
     }
   },
   methods: {    
     setOption1() {
       this.timeOption = this.timeOptionCal;
+      this.addENTarget = this.EngOptionCal;
 
       this.price = Number(this.$store.state.priceTable[this.priceIdentity][this.priceSpendTime][this.priceRequireHeadCount])
       +Number(this.$store.state.EngOptionArray[this.addENTarget])
@@ -166,7 +196,8 @@ export default {
       console.log(this.$store.state.localSurveyState.ENTarget);
       console.log(this.$store.state.localSurveyState.dueTime);
       
-    }
+    },
+    
   },
   
    
@@ -237,6 +268,54 @@ export default {
   border-radius: 30px;
   font-size: 12px;
   cursor: pointer;
+}
+
+
+
+/* Eng switch */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 45px;
+  height: 20px;
+}
+.switch input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 34px;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 15px;
+  width: 15px;
+  left: 4px;
+  bottom: 3px;
+  border-radius: 50%;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+input:checked + .slider {
+  background-color: #0CAE02;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(22px);
 }
 
 </style>

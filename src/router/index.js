@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/Home.vue'
 import Service from '../views/Service/Service.vue'
 import ServiceInputForm from '../views/Service/ServiceInputForm.vue'
+import ServicePayVer2 from '../views/Service/ServicePayVer2.vue'
 import SurveyList from '../views/SurveyList.vue'
 import SurveyTemplate from '../views/SurveyTemplate.vue'
 import KnowHow from '../views/KnowHow.vue'
@@ -35,6 +36,11 @@ const routes = [
     path: '/serviceinputform',
     name: 'ServiceInputForm',
     component: ServiceInputForm
+  },
+  {
+    path: '/servicepayver2',
+    name: 'ServicePayVer2',
+    component: ServicePayVer2
   },
   {
     path: '/surveylist',

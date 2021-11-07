@@ -64,7 +64,7 @@
                 <span class="service-option-totalprice-word">총 금액</span>
                 <span class="service-option-totalprice-price">&nbsp; &nbsp; &nbsp; &nbsp;{{ this.$store.state.localSurveyState.price }}원</span>
             </div>
-            <button class="goServicePayDone-btn" @click="setOption2()">결제하기</button>
+            <router-link to="/servicepayver2"><button class="goServicePay2-btn" @click="setOption2()">결제하기</button></router-link>
 
 
         </div>
@@ -94,7 +94,6 @@ export default {
         showLinkModal() {
             this.showLinkIframe = !this.showLinkIframe
             this.$store.state.checklink = this.link
-            console.log(this.$store.state.checklink)
         },
 
         setOption2() {
@@ -190,7 +189,7 @@ export default {
 .show-price-container2 .service-option-totalprice-price {
     margin-right: 60px;
 }
-.goServicePayDone-btn {
+.goServicePay2-btn {
     float: right;
     width: 100px;
     height: 30px;
