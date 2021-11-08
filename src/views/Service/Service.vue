@@ -7,8 +7,8 @@
 </template>
 
 <script>
-import ServiceDetail from '../../components/Service/ServiceDetail.vue'
-import ServiceOption from '../../components/Service/ServiceOption.vue'
+import ServiceDetail from '../../components/Service/Service1/ServiceDetail.vue'
+import ServiceOption from '../../components/Service/Service1/ServiceOption.vue'
 export default {
   components:{
     ServiceDetail,

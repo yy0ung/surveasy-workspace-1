@@ -2,7 +2,8 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/Home.vue'
 import Service from '../views/Service/Service.vue'
 import ServiceInputForm from '../views/Service/ServiceInputForm.vue'
-import ServicePayVer2 from '../views/Service/ServicePayVer2.vue'
+import ServicePay from '../views/Service/ServicePay.vue'
+import ServicePayDone2 from '../views/Service/ServicePayDone2.vue'
 import SurveyList from '../views/SurveyList.vue'
 import SurveyTemplate from '../views/SurveyTemplate.vue'
 import KnowHow from '../views/KnowHow.vue'
@@ -38,9 +39,14 @@ const routes = [
     component: ServiceInputForm
   },
   {
-    path: '/servicepayver2',
-    name: 'ServicePayVer2',
-    component: ServicePayVer2
+    path: '/servicepay',
+    name: 'ServicePay',
+    component: ServicePay
+  },
+  {
+    path: '/servicepaydone2',
+    name: 'ServicePayDone2',
+    component: ServicePayDone2
   },
   {
     path: '/surveylist',

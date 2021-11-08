@@ -64,7 +64,7 @@
                 <span class="service-option-totalprice-word">총 금액</span>
                 <span class="service-option-totalprice-price">&nbsp; &nbsp; &nbsp; &nbsp;{{ this.$store.state.localSurveyState.price }}원</span>
             </div>
-            <router-link to="/servicepayver2"><button class="goServicePay2-btn" @click="setOption2()">결제하기</button></router-link>
+            <router-link to="/servicepaydone2"><button class="goServicePay2-btn" @click="setOption2()">결제하기</button></router-link>
 
 
         </div>
@@ -72,7 +72,7 @@
 </template>
 
 <script>
-import LinkCheckModal from '../../components/Service/LinkCheckModal.vue'
+import LinkCheckModal from '../../components/Service/Service2/LinkCheckModal.vue'
 export default {
     data() {
         return {

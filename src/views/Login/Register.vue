@@ -7,7 +7,7 @@
               <ul class="cols">
                   <li class="col1">이메일 주소</li>
                   <li class="col2"><input type="email" id="email" v-model="dataSet.email" required></li>
-                  
+
               </ul>
           </li>
           <li>

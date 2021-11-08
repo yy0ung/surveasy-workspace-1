@@ -24,24 +24,28 @@
         </select> 
 
         <br>
-        <span>마감 기한</span>
-        <input type="Date" class="date" :min="min" :max="getDateStr" v-model="aa" required>
-        <input type="time" class="time" v-model="bb" required>
+        <li class="hasTitleOption">
+          <span class="option-title">마감기한 지정</span>
+          <input type="Date" class="date" :min="min" :max="getDateStr" v-model="aa" required> 
+          <input type="time" class="time" v-model="bb" required>
+        </li>
         
-        <br>
-        <span>영어설문 여부</span>
+        <li class="hasTitleOption">
+          <span class="option-title">영어설문</span> 
           <label class="switch">
             <input v-model="addENTarget" @click="EngOptionCal()" type="checkbox" class="EngRadio" name="Eng">
             <span class="slider"></span>
           </label>
-          <span>{{ this.EngText }}</span>
+          <span class="Eng-text">{{ this.EngText }}</span>
+        </li>
+        
   
-        <br>
+       
         <select class="selectbox" v-model="priceIdentity">
-          <option :value=0 selected disabled hidden>할인 대상 여부</option>
-          <option :value=1>대학생</option>
-          <option :value=2>대학원생</option>
-          <option :value=3>일반</option>
+          <option :value=0 selected disabled hidden>대학생 / 대학원생 할인</option>
+          <option :value=1>대학생입니다.</option>
+          <option :value=2>대학원생입니다.</option>
+          <option :value=3>할인대상이 아닙니다.</option>
         </select>
         <p id="service-option-notice">*대학생 및 대학원생임을 인증해야만 할인을 받으실 수 있습니다.</p>
       
@@ -141,15 +145,15 @@ export default {
       var Eng = this.addENTarget
       if(Eng==false) {
         EngIndex = 0
-        this.EngText = "선택 안함"
+        this.EngText = "영어 설문이 아닙니다."
       }
       else if((HeadCount<=3) && (Eng==true)) {
         EngIndex = 1
-        this.EngText = "영어 설문"
+        this.EngText = "영어 설문입니다."
       }
       else if((HeadCount>3) && (Eng==true)) {
         EngIndex = 2
-        this.EngText = "영어 설문"
+        this.EngText = "영어 설문입니다."
       }
       console.log(EngIndex)
       return EngIndex
@@ -179,7 +183,7 @@ export default {
         this.$store.commit('setSurveyMutation1', {price: this.price, requiredHeadCount: this.requiredHeadCount, 
         spendTime: this.spendTime, dueTime: this.dueTime, ENTarget: this.ENTarget, identity: this.identity});
 
-        this.$router.push('/serviceinputform');
+        this.$router.push('/servicepay');
       
 
 
@@ -209,27 +213,51 @@ export default {
   margin: 80px 100px 139px 0px;
   display: flex;
   flex-direction: column;
-  background-color: rgb(231, 231, 231);
+  background-color: #EEEEEE;
   border-radius: 10px;
 }
 #service-option-title {
   text-align: left;
-  margin: 40px 0 15px 50px;
+  margin: 45px 0 30px 35px;
   color: #0CAE02;
   font-size: 20px;
   font-weight: bold;
 }
 .selectbox {
-  margin: 10px;
+  margin: 8px;
   padding: 5px;
-  width: 310px;
+  width: 330px;
   height: 30px;
-  background-color: rgb(231, 231, 231);
+  background-color: #EEEEEE;
   font-size: 15px;
   cursor: pointer;
 }
+.hasTitleOption {
+  text-align: left;
+  margin: 10px 0 8px 0;
+  
+}
+.option-title {
+  font-family: 'Noto Sans KR', sans-serif;
+  text-align: left;
+  font-size: 14px;
+  font-weight: bolder;
+  margin: 10px 0 0 33px;
+}
+.date {
+  height: 22px;
+  margin-left: 12px;
+  margin-bottom: 6px;
+}
+.time {
+  height: 22px;
+}
+.Eng-text {
+  font-size: 13px;
+  color: rgb(137, 135, 135);
+}
 .selectbox option {
-  background-color: rgb(238, 238, 238);
+  background-color: #EEEEEE;
 }
 #service-option-notice {
   text-align: left;
@@ -256,7 +284,7 @@ export default {
   height: 25px;
   margin: 20px;
   color:#0CAE02;
-  background-color: rgb(231, 231, 231);
+  background-color: #EEEEEE;
   border: 1.5px solid #0CAE02;
   border-radius: 30px;
   font-size: 12px;
@@ -271,6 +299,8 @@ export default {
   display: inline-block;
   width: 38px;
   height: 20px;
+  margin-left: 41px;
+  margin-right: 10px;
 }
 .switch input { 
   opacity: 0;
@@ -295,7 +325,7 @@ export default {
   height: 15px;
   width: 15px;
   left: 4px;
-  bottom: 3px;
+  bottom: 2.5px;
   border-radius: 50%;
   background-color: white;
   -webkit-transition: .4s;
