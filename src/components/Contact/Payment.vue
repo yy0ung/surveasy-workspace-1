@@ -31,8 +31,9 @@
           <span v-if="showDetail3==true"><i class="fas fa-chevron-up"></i></span>
         </span>
       </p>
-      <p class="detail" v-if="showDetail3==true">응답 수 미충족 시, 입력하신 연락처로 환불 내역을 안내드립니다. 
-        <br>결제 금액에서 ‘도달한 응답수 x 패널당 지급금액’을 제외한 금액이 환불됩니다.</p>
+      <p class="detail" v-if="showDetail3==true">응답수 미충족 시, 미달 응답 수에 해당하는 비율만큼 부분 환불을 도와드리고 있습니다. 
+        환불 절차는 회원가입 시 <br>기입한 연락처 또는 문의하신 연락처로 안내드립니다.
+        <br>환불 예시 : 30명 요청, 20명 응답 시 →결제 금액의 1/3 환불 진행</p>
     </div>
     
     </div>

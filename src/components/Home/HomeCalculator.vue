@@ -1,30 +1,78 @@
 <template>
   <div class="home-calculator" v-if="showCalculator">
     <div class="home-calculator-contentsbox">
-      <h2 class="calc-title">가격계산기
+      <p class="calc-title">내 설문은 얼마일까?
         <button class="modal-close-button" @click="$emit('close')">X</button>
-      </h2> 
+      </p> 
       <div class="calc-option-container">
-        <label id="calc-option-title">옵션선택</label>
-        <div>
-          <select class="selectbox" v-model="priceRequireHeadCount">
-          <option :value=0>30명</option>
-          <option :value=1>40명</option>
-          <option :value=2>50명</option>
-          <option :value=3>60명</option>
-          <option :value=4>70명</option>
-          <option :value=5>80명</option>
-          <option :value=6>90명</option>
-          <option :value=7>100명</option>
-        </select>
+          <div class="respond-content">
+            <div class="calc-option-title">요구 응답 수</div>
+          
+          <div class="pro-one" :class="{active: priceRequireHeadCount>=0}">
+            <div class="step-counter" @click="HeadCount(0)"></div>
+            <div class="step-name">30명</div>
+          </div>
+          <div class="pro-one" :class="{active: priceRequireHeadCount>=1}">
+            <div class="step-counter" @click="HeadCount(1)"></div>
+            <div class="step-name">40명</div>
+          </div>
+          <div class="pro-one" :class="{active: priceRequireHeadCount>=2}">
+            <div class="step-counter" @click="HeadCount(2)"></div>
+            <div class="step-name">50명</div>
+          </div>
+          <div class="pro-one" :class="{active: priceRequireHeadCount>=3}">
+            <div class="step-counter" @click="HeadCount(3)"></div>
+            <div class="step-name">60명</div>
+          </div>
+          <div class="pro-one" :class="{active: priceRequireHeadCount>=4}">
+            <div class="step-counter" @click="HeadCount(4)"></div>
+            <div class="step-name">70명</div>
+          </div>
+          <div class="pro-one" :class="{active: priceRequireHeadCount>=5}">
+            <div class="step-counter" @click="HeadCount(5)"></div>
+            <div class="step-name">80명</div>
+          </div>
+          <div class="pro-one" :class="{active: priceRequireHeadCount>=6}">
+            <div class="step-counter" @click="HeadCount(6)"></div>
+            <div class="step-name">90명</div>
+          </div>
+          <div class="pro-one" :class="{active: priceRequireHeadCount==7}">
+            <div class="step-counter" @click="HeadCount(7)"></div>
+            <div class="step-name">100명</div>
+          </div>
+        </div>
 
-        <select class="selectbox" v-model="priceSpendTime">
-          <option :value=0>1-3분</option>
-          <option :value=1>4-6분</option>
-          <option :value=2>7-10분</option>
-          <option :value=3>11-15분</option>
-          <option :value=4>16-20분</option>
-        </select> 
+        <div class="respond-content">
+            <div class="calc-option-title">소요시간</div>
+          <div class="pro-one" :class="{active: priceSpendTime>=0}">
+            <div class="step-counter" @click="TimeCount(0)"></div>
+            <div class="step-name">1-3분</div>
+          </div>
+          <div class="pro-one" :class="{active: priceSpendTime>=1}">
+            <div class="step-counter" @click="TimeCount(1)"></div>
+            <div class="step-name">4-6분</div>
+          </div>
+          <div class="pro-one" :class="{active: priceSpendTime>=2}">
+            <div class="step-counter" @click="TimeCount(2)"></div>
+            <div class="step-name">7-10분</div>
+          </div>
+          <div class="pro-one" :class="{active: priceSpendTime>=3}">
+            <div class="step-counter" @click="TimeCount(3)"></div>
+            <div class="step-name">11-15분</div>
+          </div>
+          <div class="pro-one" :class="{active: priceSpendTime==4}">
+            <div class="step-counter" @click="TimeCount(4)"></div>
+            <div class="step-name">16-20분</div>
+          </div>
+          
+        
+        </div>
+       
+        <div>
+          
+          
+
+        
 
         <input type="Date"  :min="min" :max="getDateStr" v-model="aa">
         <input type="time"  v-model="bb">
@@ -60,9 +108,10 @@
     </div>
 
     
-</div>
+
     </div>
   </div>  
+  </div>
 </template>
 
 <script>
@@ -97,7 +146,9 @@ export default {
       aa:'',
       bb:'',
       cc: this.aa+' '+this.bb,
-      dd: new Date()
+      dd: new Date(),
+
+      
       
     
     
@@ -171,6 +222,12 @@ export default {
       console.log(this.$store.state.localSurveyState.ENTarget);
       console.log(this.$store.state.localSurveyState.dueTime);
       
+    },
+    HeadCount(Person){
+      this.priceRequireHeadCount = Person
+    },
+    TimeCount(Time){
+      this.priceSpendTime= Time
     }
   },
   
@@ -181,7 +238,7 @@ export default {
 <style>
 .home-calculator {
   position: fixed;
-  z-index: 9998;
+  z-index: 1;
   top: 0;
   left: 0;
   width: 100%;
@@ -191,17 +248,19 @@ export default {
   transition: opacity .3s ease;
 }
 .home-calculator-contentsbox {
-  width: 500px;
-  height: 500px;
+  font-family: 'Noto Sans KR', sans-serif;
+  width: 900px;
+  height: 580px;
   margin: 150px auto;
   padding: 20px 30px;
   background-color: #fff;
   border-radius: 20px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, .33);
   transition: all .3s ease;
+  z-index: 1;
 }
 .calc-title {
-  color: grey;
+  color: #0AAB00;
 }
 .modal-close-button {
   float: right;
@@ -211,20 +270,94 @@ export default {
   border: none;
   cursor: pointer;
 }
+.respond-content{
+  display: flex;
+  flex-direction: column;
+  
+}
+.respond-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+.pro-one {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+}
+.pro-one:before {
+  position: absolute;
+  content: "";
+  border-bottom: 3px solid #ccc;
+  width: 100%;
+  top: 5px;
+  left: -5%;
+  z-index: 2;
+}
+.pro-one:after {
+  position: absolute;
+  content: "";
+  border-bottom: 3px solid #ccc;
+  width: 100%;
+  top: 5px;
+  left: 50%;
+  z-index: 2;
+}
+.pro-one .step-counter {
+  position: relative;
+  z-index: 5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: #ccc;
+  margin-bottom: 6px;
+}
+.pro-one.active::after {
+  position: absolute;
+  content: "";
+  border-bottom: 3px solid #0AAB00;
+  width: 100%;
+  top: 5px;
+  left: 50%;
+  z-index: 3;
+}
+.pro-one.active {
+  font-weight: bold;
+  color:#0AAB00;
+}
+.pro-one:first-child::before {
+  content: none;
+  border-bottom: none;
+}
+.pro-one:last-child::after {
+  content: none;
+  border-bottom: none;
+}
+
+.pro-one.active .step-counter {
+  background-color: #0AAB00;
+  
+}
 .calc-option-container {
-  width: 500px;
-  height: 420px;
+  width: 100%;
+  height: 100%;
   border-radius: 10px;
   margin: 20px auto;
   display: flex;
   flex-direction: column;
-  background-color: rgb(231, 231, 231);
+ 
   border-radius: 10px;
 }
-#calc-option-title {
+.calc-option-title {
   text-align: left;
   margin: 20px 0 15px 50px;
-  color: #0CAE02;
+  color: black;
   font-size: 18px;
   font-weight: bold;
 }
