@@ -19,6 +19,7 @@ import Template from '../components/Contact/Template.vue'
 import MemberInfo from '../components/Contact/MemberInfo.vue'
 import PaymentInfo from '../components/Contact/Payment.vue'
 import FinalModal from '../components/Contact/ContactFinalModal.vue'
+import AdminMain from '../views/Admin/AdminMain.vue'
 
 const routes = [
   {
@@ -95,6 +96,11 @@ const routes = [
     path: '/response',
     name: 'SurveyResponse',
     component: SurveyResponse
+  },
+  {
+    path: '/adminmain',
+    name: 'AdminMain',
+    component: AdminMain
   }
 ]
 

@@ -1,5 +1,6 @@
 import { createStore } from 'vuex'
 import { doc, getDoc } from 'firebase/firestore'
+import createPersistedState from 'vuex-persistedstate'
 
 
 export default createStore({
@@ -80,6 +81,9 @@ export default createStore({
     showModal: false,
     showFinalModal: false,
     FAQbutton: 0,
+
+    isAdmin: false,
+    AdminPassword: 1111,
   },
   mutations: {
     setDB(state, payload){
@@ -111,6 +115,9 @@ export default createStore({
     logoutMutation(state){
       state.currentUser = null
       state.isLoggedIn = false
+    },
+    setAdminState(state){
+      state.isAdmin = true
     }
   },
   actions: {
@@ -132,5 +139,10 @@ export default createStore({
     }
   },
   modules: {
-  }
+  },
+  plugins: [
+    createPersistedState({
+      // paths : ['isLoggedIn', 'currentUser']
+    })
+  ]
 })

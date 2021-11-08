@@ -26,6 +26,7 @@ export default {
   },
   methods:{
     async addToRespondedArray(respondID){
+      console.log('add')
       var db = this.$store.state.db
       var currentUser = this.$store.state.currentUser
       const userRef = doc(db, "userData", currentUser.email);
@@ -34,6 +35,8 @@ export default {
       await updateDoc(userRef, {
         respondArray: arrayUnion(Number(respondID))
       });
+      // this.$store.dispatch('setCurrentUser')
+      console.log('add2')
     }
   },
   computed: {
