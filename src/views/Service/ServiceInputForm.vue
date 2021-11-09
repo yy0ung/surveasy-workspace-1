@@ -52,7 +52,8 @@
                     <ul class="info-detail-text">설문 링크</ul>
                     <ul class="info-detail-input"><input type="text" v-model="link" placeholder="링크가 잘 작동하는지 꼭 확인해주세요." required></ul>
                 </ul>
-                <ul><button class="link-check-btn">링크 확인하기</button></ul>
+                <ul><button class="link-check-btn" @click="showLinkModal()">링크 확인하기</button></ul>
+                <LinkCheckModal :showLinkIframe="showLinkIframe" @closeIframe="showLinkModal()" />
                 <ul id="info-detail">
                     <ul class="info-detail-text">설문 참여 유의사항</ul>
                     <ul class="info-detail-input"><input type="text" v-model="notice" placeholder="예) PC참여 권장, 영상 시청 필요, 외부 링크 이동 필요"></ul>
@@ -63,7 +64,10 @@
                 <span class="service-option-totalprice-word">총 금액</span>
                 <span class="service-option-totalprice-price">&nbsp; &nbsp; &nbsp; &nbsp;{{ this.$store.state.localSurveyState.price }}원</span>
             </div>
+
+
             <button class="goServicePayDone-btn" @click="sendToAdmin(this.$store.state.localSurveyState)">결제하기</button>
+
 
 
         </div>
@@ -71,6 +75,7 @@
 </template>
 
 <script>
+import LinkCheckModal from '../../components/Service/Service2/LinkCheckModal.vue'
 import { arrayUnion, doc, setDoc, updateDoc } from '@firebase/firestore';
 
 export default {
@@ -80,12 +85,20 @@ export default {
             target: '',
             institute: '',
             link: '',
-            notice:''
+            notice:'',
+
+            showLinkIframe: false,
+            
+
         }
     },
-    methods: {
-        checkLink() {
 
+    components: { LinkCheckModal },
+
+    methods: {
+        showLinkModal() {
+            this.showLinkIframe = !this.showLinkIframe
+            this.$store.state.checklink = this.link
         },
 
         // setOption2() {
@@ -132,7 +145,7 @@ export default {
                 uploadIndex: arrayUnion(localLastID)
             })
 
-            
+            this.$router.push('/servicepay')
             
         }
 
@@ -224,7 +237,7 @@ export default {
 .show-price-container2 .service-option-totalprice-price {
     margin-right: 60px;
 }
-.goServicePayDone-btn {
+.goServicePay2-btn {
     float: right;
     width: 100px;
     height: 30px;
