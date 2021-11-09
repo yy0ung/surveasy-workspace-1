@@ -70,12 +70,13 @@ export default createStore({
       dueTime: '',
       ENTarget: '',
       identity: '',
-
+      
       title: '',
       target: '',
       institute: '',
       link: '',
-      notice: ''
+      notice: '',
+      account_userName:''
     }, 
 
     showLinkModal: false,
@@ -88,6 +89,7 @@ export default createStore({
     showFinalModal: false,
     FAQbutton: 0,
   },
+
   mutations: {
     setDB(state, payload){
       state.db = payload
@@ -107,7 +109,9 @@ export default createStore({
       state.localSurveyState.title = payload.title,
       state.localSurveyState.target = payload.target,
       state.localSurveyState.institute = payload.institute,
-      state.localSurveyState.link = payload.link
+      state.localSurveyState.link = payload.link,
+      state.localSurveyState.notice = payload.notice,
+      state.localSurveyState.account_userName = payload.account_userName
     },
 
 

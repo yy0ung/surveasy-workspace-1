@@ -1,6 +1,6 @@
 <template>
   <div class="OptionInfo">
-    <div class="serviceInputForm-container-option">
+    <div class="OptionInfo-container">
       <ul id="info-title">옵션 정보</ul>
         <div class="option">
           <ul id="showOption-title">요구 응답 수</ul>
@@ -34,35 +34,42 @@ export default {
 
 <style>
 .OptionInfo {
-  width: 920px;
+  width: 900px;
   height: 400px;
-  margin: 70px 5px 5px 100px;
+  margin: 70px 0px 5px 110px;
   background-color: #EEEEEE;
   border-radius: 12px;
 }
-.serviceInputForm-container-option {
-    width: 1300px;
-    z-index: 1;
+.OptionInfo-container {
+  width: 1300px;
+  padding: 25px;
+  z-index: 1;
 }
-.serviceInputForm-container-option ul {
-    text-align: left;
-    font-size: 13px;
-    margin: 0;
+.OptionInfo-container ul {
+  text-align: left;
+  font-size: 13px;
+  margin: 0;
 }
-#info-title {
-    margin: 0px 0 50px 0;
-    font-size: 25px;
-    font-weight: bold;
+.OptionInfo-container #info-title {
+  font-family: 'Noto Sans KR', sans-serif;
+  color: black;
+  margin: 7px 0 30px 0;
+  font-size: 19px;
+  font-weight: bold;
 }
 .option {
-    margin-bottom: 20px;
+    margin-bottom: 17px;
 }
-.serviceInputForm-container-option #showOption-title {
-    color: grey;
+.OptionInfo-container #showOption-title {
+  font-family: 'Noto Sans KR';
+  font-weight: 200;
+  font-size: 12px;
+  color: grey;
 }
-.serviceInputForm-container-option #showOption-value {
-    font-size: 20px;
-    font-weight: bold;
-    margin: 0;
+.OptionInfo-container #showOption-value {
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 16px;
+  color: #0CAE02;
+  margin-top: 2px;
 }
 </style>

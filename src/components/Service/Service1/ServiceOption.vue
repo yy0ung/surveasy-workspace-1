@@ -1,6 +1,6 @@
 <template>
   <div class="serviceOption-container">
-    <label id="service-option-title">설문 응답 서비스</label>
+    <div id="service-option-title">설문 응답 서비스</div>
       <div>
         <select class="selectbox" v-model="priceRequireHeadCount">
           <option :value=0 selected disabled hidden>요구 응답수</option>
@@ -53,7 +53,7 @@
       
         <div class="show-price-container">
           <span class="service-option-totalprice-word">총 금액</span>
-          <span class="service-option-totalprice-price">&nbsp; &nbsp; &nbsp; &nbsp;
+          <span class="service-option-totalprice-price">
             {{ Number(this.$store.state.priceTable[priceIdentity][priceSpendTime][priceRequireHeadCount])
               +Number(this.$store.state.EngOptionArray[EngOptionCal])
               +Number(this.$store.state.TimeOptionArray[timeOptionCal]) }}원</span>
@@ -211,14 +211,12 @@ export default {
   height: 496px;
   border-radius: 10px;
   margin: 80px 100px 139px 0px;
-  display: flex;
-  flex-direction: column;
   background-color: #EEEEEE;
   border-radius: 10px;
 }
 #service-option-title {
   text-align: left;
-  margin: 45px 0 30px 35px;
+  margin: 40px 0 35px 32px;
   color: #0CAE02;
   font-size: 20px;
   font-weight: bold;
@@ -246,11 +244,14 @@ export default {
 }
 .date {
   height: 22px;
-  margin-left: 12px;
+  margin-left: 15px;
+  margin-right: 4px;
   margin-bottom: 6px;
+  border: none;
 }
 .time {
   height: 22px;
+  border: none;
 }
 .Eng-text {
   font-size: 13px;
@@ -272,9 +273,14 @@ export default {
   color:#0CAE02;
 }
 .service-option-totalprice-word {
+  position: absolute;
+  top: 380px;
+  left: 150px;
   font-size: 18px;
 }
 .service-option-totalprice-price {
+  position: absolute;
+  left: 260px;
   margin-right: 25px;
   font-size: 25px;
   font-weight: bold;
@@ -282,7 +288,7 @@ export default {
 .goServiceInputForm-btn {
   width: 70%;
   height: 25px;
-  margin: 20px;
+  margin-top: 40px;
   color:#0CAE02;
   background-color: #EEEEEE;
   border: 1.5px solid #0CAE02;
@@ -299,7 +305,7 @@ export default {
   display: inline-block;
   width: 38px;
   height: 20px;
-  margin-left: 41px;
+  margin-left: 45px;
   margin-right: 10px;
 }
 .switch input { 
