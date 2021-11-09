@@ -270,11 +270,7 @@ export default {
   border: none;
   cursor: pointer;
 }
-.respond-content{
-  display: flex;
-  flex-direction: column;
-  
-}
+
 .respond-content {
   display: flex;
   flex-direction: row;
@@ -356,10 +352,11 @@ export default {
 }
 .calc-option-title {
   text-align: left;
-  margin: 20px 0 15px 50px;
+  margin: 0px 10px 25px 10px;
   color: black;
   font-size: 18px;
   font-weight: bold;
+  
 }
 .calc-option-container #calc-option-notice {
   font-size: 12px;
