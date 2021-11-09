@@ -15,12 +15,12 @@
       <tr v-for="item in (this.$store.state.surveyData.slice(currentPage*5-5,currentPage*5))" :key="item.id">
         <td>{{item[0].id}}</td>
         <td>
-          <router-link :to="`/surveylist/${item[0].id}`">{{item[0].surveyTitle}}</router-link>
+          <router-link :to="`/surveylist/${item[0].id}`">{{item[0].title}}</router-link>
 
         </td>
         <td>{{item[0].uploader}}</td>
-        <td>{{item[0].headCount}}/{{item[0].requireHeadCount}}</td>
-        <td>{{item[1].getUTCFullYear()}}.{{item[1].getUTCMonth()+1}}.{{item[1].getUTCDate()}}</td>
+        <td>{{item[0].requiredHeadCount}}</td>
+        <td>time</td>
         <td>
           <div v-if="this.$store.state.currentUser">
             <div v-if="this.$store.state.currentUser.respondArray.includes(item[0].id)" class="responded">
@@ -47,7 +47,7 @@
     
     <p>{{this.$store.state.currentUser}}</p>
     
-    <hr>
+    <!-- <hr>
     <h3>더미데이터 입력란</h3>
     <br>
     ID <input type="number" v-model="dataSet.id">
@@ -76,7 +76,7 @@
     <br>
     <button @click="addData(this.dataSet)">submit</button>
     
-    <hr> 
+    <hr>  -->
 
     
     
@@ -119,30 +119,30 @@ export default {
   },
   
   methods:{
-    async addData(dataSet){
-      var db = this.$store.state.db
-      var uploadTime = new Date()
-      var dueTime = new Date()
+    // async addData(dataSet){
+    //   var db = this.$store.state.db
+    //   var uploadTime = new Date()
+    //   var dueTime = new Date()
       
-      dueTime.setDate(dueTime.getDate() + 7)
-      await setDoc(doc(db, "surveyData", dataSet.id.toString()),{
-        id: dataSet.id,
-        isDone: dataSet.isDone,
-        uploader: dataSet.uploader,
-        surveyTitle: dataSet.surveyTitle,
-        surveyLink: dataSet.surveyLink,
-        surveyInstitute: dataSet.surveyInstitute,
-        headCount: dataSet.headCount,
-        paidPrice: dataSet.paidPrice,
-        spendTime: dataSet.spendTime,
-        keyword: dataSet.keyword,
-        requireHeadCount: dataSet.requireHeadCount,
-        uploadTime: uploadTime,
-        dueTime: dueTime
+    //   dueTime.setDate(dueTime.getDate() + 7)
+    //   await setDoc(doc(db, "surveyData", dataSet.id.toString()),{
+    //     id: dataSet.id,
+    //     isDone: dataSet.isDone,
+    //     uploader: dataSet.uploader,
+    //     surveyTitle: dataSet.surveyTitle,
+    //     surveyLink: dataSet.surveyLink,
+    //     surveyInstitute: dataSet.surveyInstitute,
+    //     headCount: dataSet.headCount,
+    //     paidPrice: dataSet.paidPrice,
+    //     spendTime: dataSet.spendTime,
+    //     keyword: dataSet.keyword,
+    //     requireHeadCount: dataSet.requireHeadCount,
+    //     uploadTime: uploadTime,
+    //     dueTime: dueTime
         
-      })
-      this.$router.go('/')
-    },
+    //   })
+    //   this.$router.go('/')
+    // },
     inc(){
       this.currentPage += 1
     },
