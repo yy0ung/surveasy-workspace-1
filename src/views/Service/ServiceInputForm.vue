@@ -63,7 +63,7 @@
                 <span class="service-option-totalprice-word">총 금액</span>
                 <span class="service-option-totalprice-price">&nbsp; &nbsp; &nbsp; &nbsp;{{ this.$store.state.localSurveyState.price }}원</span>
             </div>
-            <button class="goServicePayDone-btn" @click="setOption2()">결제하기</button>
+            <button class="goServicePayDone-btn" @click="sendToAdmin(this.$store.state.localSurveyState)">결제하기</button>
 
 
         </div>
@@ -71,6 +71,7 @@
 </template>
 
 <script>
+import { arrayUnion, doc, setDoc, updateDoc } from '@firebase/firestore';
 
 export default {
     data() {
@@ -87,9 +88,52 @@ export default {
 
         },
 
-        setOption2() {
-            this.$store.commit('setSurveyMutation2', {title: this.title, target: this.target, institute: this.institute, link: this.link, notice: this.notice});
+        // setOption2() {
+        //     this.$store.commit('setSurveyMutation2', {title: this.title, target: this.target, institute: this.institute, link: this.link, notice: this.notice});
+        //     console.log(this.$store.state.localSurveyState)
 
+        // },
+
+        async sendToAdmin(dataset) {
+            var db = this.$store.state.db
+            var localLastID = this.$store.state.lastID[0].lastID
+            var currentUserEmail = this.$store.state.currentUser.email
+            
+            
+            this.$store.commit('setSurveyMutation2', {title: this.title, target: this.target, institute: this.institute, link: this.link, notice: this.notice, uploader: this.$store.state.currentUser.email});
+            console.log(this.$store.state.localSurveyState)
+            
+            await setDoc(doc(db, "adminRequired", localLastID.toString()), {
+                price : dataset.price,
+                requiredHeadCount : dataset.requiredHeadCount,
+                spendTime: dataset.spendTime,
+                dueTime: dataset.dueTime,
+                ENTarget: dataset.ENTarget,
+
+                title: dataset.title,
+                target: dataset.target,
+                institute : dataset.institute,
+                link : dataset.link,
+                notice : dataset.notice,
+                adminApproved : dataset.adminApproved,
+                uploader : dataset.uploader,
+                uploadTime : new Date(),
+                id : localLastID
+                
+            })
+
+            var idDocref = doc(db, "lastID", "lastID")
+            var currentUserRef = doc(db, "userData", currentUserEmail)
+            await updateDoc(idDocref, {
+                lastID : (localLastID + 1)
+            })
+
+            await updateDoc(currentUserRef, {
+                uploadIndex: arrayUnion(localLastID)
+            })
+
+            
+            
         }
 
     },

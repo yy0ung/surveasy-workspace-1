@@ -50,6 +50,7 @@ export default {
           this.$store.state.isLoggedIn = true
           console.log('여기부터 currentUser 메소드 실험 -----')
           console.log(auth.currentUser.email)
+          console.log(this.$store.state.currentUser.email)
           this.$store.dispatch('setCurrentUser', {
             payload: auth.currentUser.email
           })

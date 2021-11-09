@@ -18,6 +18,7 @@ export default createStore({
     db: null,
     userData: [],
     surveyData: [],
+    adminData: [],
    
     priceTable: [
       [ [5000, 9000, 13000, 17000, 21000, 25000, 29000, 33000 ], 
@@ -72,7 +73,9 @@ export default createStore({
       target: '',
       institute: '',
       link: '',
-      notice: ''
+      notice: '',
+      adminApproved: false,
+      uploader: '',
     }, 
     
 
@@ -84,6 +87,7 @@ export default createStore({
 
     isAdmin: false,
     AdminPassword: 1111,
+    lastID : [],
   },
   mutations: {
     setDB(state, payload){
@@ -105,6 +109,7 @@ export default createStore({
       state.localSurveyState.target = payload.target,
       state.localSurveyState.institute = payload.institute,
       state.localSurveyState.link = payload.link
+      state.localSurveyState.uploader = payload.uploader
     },
 
 
@@ -140,9 +145,9 @@ export default createStore({
   },
   modules: {
   },
-  plugins: [
-    createPersistedState({
-      // paths : ['isLoggedIn', 'currentUser']
-    })
-  ]
-})
+//   plugins: [
+//     createPersistedState({
+//       // paths : ['isLoggedIn', 'currentUser']
+//     })
+//   ]
+ })
