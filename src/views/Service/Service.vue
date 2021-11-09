@@ -22,5 +22,7 @@ export default {
 .service-container {
   display: flex;
   flex-direction: row;
+  justify-content: center;
+  
 }
 </style>

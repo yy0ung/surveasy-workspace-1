@@ -70,26 +70,24 @@ export default {
 
 <style>
 .SurveyInfo {
-  width: 900px;
-  height: 620px;
-  margin: 25px 0 100px 110px;
-  background-color: #EEEEEE;
-  border-radius: 12px;
-}
-.SurveyInfo-container {
-  width: 1300px;
-  padding: 25px;
-  z-index: 1;
+  background: #EEEEEE 0% 0% no-repeat padding-box;
+  margin-top: 20px;
+  border-radius: 15px;
+  opacity: 1;
 }
 .survey-info {
-    text-align: left;
+  text-align: left;
 }
 .SurveyInfo-container #info-title {
-  font-family: 'Noto Sans KR', sans-serif;
-  color: black;
-  margin: 7px 0 38px 0;
-  font-size: 19px;
-  font-weight: bold;
+  top: 740px;
+  left: 185px;
+  width: 80px;
+  height: 29px;
+  text-align: left;
+  font: normal normal bold 20px/20px 'Noto Sans KR';
+  letter-spacing: 0px;
+  color: #000000;
+  opacity: 1;
 }
 .survey-info .info-detail {
     display: flex;
@@ -100,28 +98,34 @@ export default {
   display: inline-block;
 }
 .survey-info .info-detail-text {
-  width: 300px;
-  padding: 0;
-  margin: 0 0 5px 6px;
-  color: black;
+  left: 187px;
+  width: 200px;
+  height: 25px;
   text-align: left;
-  font-size: 14px;
+  font: normal normal normal 17px/20px 'Noto Sans KR';
+  letter-spacing: 0px;
+  color: #000000;
+  opacity: 1;
   
 }
 .survey-info input {
-  font-family: 'Noto Sans KR';
+  left: 190px;
+  width: 854px;
+  height: 53px;
+  border: 0.75px solid #BCBCBC;
+  opacity: 1;
   background-color: #EEEEEE;
-  width: 630px;
-  height: 10px;
-  margin-bottom: 10px;
-  border: 1px solid rgb(187, 187, 187);
-  padding: 15px;
-  font-size: 14px;
-  font-weight: lighter;
   
 }
 .survey-info input::placeholder {
-  color: rgb(187, 187, 187);
+  left: 211px;
+  width: 600px;
+  height: 25px;
+  text-align: left;
+  font: normal normal normal 17px/20px 'Noto Sans KR';
+  letter-spacing: 0px;
+  color: #BCBCBC;
+  opacity: 1;
   
 }
 .link-check-btn {

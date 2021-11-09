@@ -1,73 +1,74 @@
 <template>
+<div class="ServiceOption">
   <div class="serviceOption-container">
-    <div id="service-option-title">설문 응답 서비스</div>
-      <div>
-        <select class="selectbox" v-model="priceRequireHeadCount">
-          <option :value=0 selected disabled hidden>요구 응답수</option>
-          <option :value=1>30명</option>
-          <option :value=2>40명</option>
-          <option :value=3>50명</option>
-          <option :value=4>60명</option>
-          <option :value=5>70명</option>
-          <option :value=6>80명</option>
-          <option :value=7>90명</option>
-          <option :value=8>100명</option>
-        </select>
-
-        <select class="selectbox" v-model="priceSpendTime">
-          <option :value=0 selected disabled hidden>소요 시간</option>
-          <option :value=1>1-3분</option>
-          <option :value=2>4-6분</option>
-          <option :value=3>7-10분</option>
-          <option :value=4>11-15분</option>
-          <option :value=5>16-20분</option>
-        </select> 
-
-        <br>
-        <li class="hasTitleOption">
-          <span class="option-title">마감기한 지정</span>
-          <input type="Date" class="date" :min="min" :max="getDateStr" v-model="aa" required> 
-          <input type="time" class="time" v-model="bb" required>
-        </li>
-        
-        <li class="hasTitleOption">
-          <span class="option-title">영어설문</span> 
-          <label class="switch">
-            <input v-model="addENTarget" @click="EngOptionCal()" type="checkbox" class="EngRadio" name="Eng">
-            <span class="slider"></span>
-          </label>
-          <span class="Eng-text">{{ this.EngText }}</span>
-        </li>
-        
-  
-       
-        <select class="selectbox" v-model="priceIdentity">
-          <option :value=0 selected disabled hidden>대학생 / 대학원생 할인</option>
-          <option :value=1>대학생입니다.</option>
-          <option :value=2>대학원생입니다.</option>
-          <option :value=3>할인대상이 아닙니다.</option>
-        </select>
-        <p id="service-option-notice">*대학생 및 대학원생임을 인증해야만 할인을 받으실 수 있습니다.</p>
-      
-        <br>
-      
-        <div class="show-price-container">
-          <span class="service-option-totalprice-word">총 금액</span>
-          <span class="service-option-totalprice-price">
-            {{ Number(this.$store.state.priceTable[priceIdentity][priceSpendTime][priceRequireHeadCount])
-              +Number(this.$store.state.EngOptionArray[EngOptionCal])
-              +Number(this.$store.state.TimeOptionArray[timeOptionCal]) }}원</span>
-        </div>
-      
+      <div id="service-option-title">설문 응답 서비스</div>
         <div>
-          
-          <button class="goServiceInputForm-btn" @click="setOption1()">설문 정보 입력하러 가기</button>
-          
-        </div>
-    </div>
+          <select class="selectbox" v-model="priceRequireHeadCount">
+            <option :value=0 selected disabled hidden>요구 응답수</option>
+            <option :value=1>30명</option>
+            <option :value=2>40명</option>
+            <option :value=3>50명</option>
+            <option :value=4>60명</option>
+            <option :value=5>70명</option>
+            <option :value=6>80명</option>
+            <option :value=7>90명</option>
+            <option :value=8>100명</option>
+          </select>
 
+          <select class="selectbox" v-model="priceSpendTime">
+            <option :value=0 selected disabled hidden>소요 시간</option>
+            <option :value=1>1-3분</option>
+            <option :value=2>4-6분</option>
+            <option :value=3>7-10분</option>
+            <option :value=4>11-15분</option>
+            <option :value=5>16-20분</option>
+          </select> 
+
+          <br>
+          <li class="hasTitleOption">
+            <span class="option-title">마감기한 지정</span>
+            <input type="Date" class="date" :min="min" :max="getDateStr" v-model="aa" required> 
+            <input type="time" class="time" v-model="bb" required>
+          </li>
+          
+          <li class="hasTitleOption">
+            <span class="option-title">영어설문</span> 
+            <label class="switch">
+              <input v-model="addENTarget" @click="EngOptionCal" type="checkbox" class="EngRadio" name="Eng">
+              <span class="slider"></span>
+            </label>
+            <span class="Eng-text">{{ this.EngText }}</span>
+          </li>
+          
     
+        
+          <select class="selectbox" v-model="priceIdentity">
+            <option :value=0 selected disabled hidden>대학생 / 대학원생 할인</option>
+            <option :value=1>대학생입니다.</option>
+            <option :value=2>대학원생입니다.</option>
+            <option :value=3>할인대상이 아닙니다.</option>
+          </select>
+          <p id="service-option-notice">*대학생 및 대학원생임을 인증해야만 할인을 받으실 수 있습니다.</p>
+        
+          <br>
+        
+          <div class="show-price-container">
+            <span class="service-option-totalprice-word">총 금액</span>
+            <span class="service-option-totalprice-price">
+              {{ Number(this.$store.state.priceTable[priceIdentity][priceSpendTime][priceRequireHeadCount])
+                +Number(this.$store.state.EngOptionArray[EngOptionCal])
+                +Number(this.$store.state.TimeOptionArray[timeOptionCal]) }}원</span>
+          </div>
+        
+          <div>
+            
+            <button class="goServicePay-btn" @click="setOption1()">설문 정보 입력하러 가기</button>
+            
+          </div>
+      </div>
+  </div>
 </div>
+  
 </template>
 
 
@@ -126,6 +127,7 @@ export default {
       var asdf = new Date(ab).getTime()
       var hourGap = parseInt((asdf - this.dd.getTime())/3600000) 
       var hourOptionIndex = 0
+      var Exception = 0
       if (hourGap >= 18 && hourGap < 24){
         hourOptionIndex = 1
       } else if (hourGap >= 24 && hourGap < 36){
@@ -136,6 +138,9 @@ export default {
         hourOptionIndex = 4
       } else if (hourGap >= 72){
         hourOptionIndex = 5
+      } else if ((hourGap > 0 && hourGap <18) || (hourGap < 0)) {
+        Exception = 6
+        return Exception
       }
       return hourOptionIndex
     }, 
@@ -163,6 +168,9 @@ export default {
     setOption1() {
       if((this.priceIdentity==0) || (this.priceSpendTime==0) || (this.priceRequireHeadCount==0) || (this.timeOptionCal==0)) {
         alert("필수 옵션을 모두 입력해주세요.")
+      }
+      else if(this.timeOptionCal==6) {
+         alert('설문 마감일은 최소 18시간 이후부터 가능합니다.')
       }
       else {
         
@@ -203,23 +211,32 @@ export default {
 </script>
 
 <style>
+.ServiceOption {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: auto;
+  max-width: 500px;
+  min-width: 500px;
+  height: 5468px;
+  
+}
 .serviceOption-container {
   position: sticky;
   top: 108px;
   z-index: 1;
-  width: 506px;
   height: 496px;
   border-radius: 10px;
-  margin: 80px 100px 139px 0px;
+  margin: 80px 80px 135px 10px;
   background-color: #EEEEEE;
   border-radius: 10px;
 }
 #service-option-title {
   text-align: left;
-  margin: 40px 0 35px 32px;
   color: #0CAE02;
   font-size: 20px;
   font-weight: bold;
+  margin: 30px 0 30px 30px;
 }
 .selectbox {
   margin: 8px;
@@ -230,41 +247,42 @@ export default {
   font-size: 15px;
   cursor: pointer;
 }
+.selectbox option {
+  background-color: #EEEEEE;
+}
 .hasTitleOption {
   text-align: left;
   margin: 10px 0 8px 0;
   
 }
-.option-title {
+.hasTitleOption .option-title {
   font-family: 'Noto Sans KR', sans-serif;
   text-align: left;
   font-size: 14px;
   font-weight: bolder;
-  margin: 10px 0 0 33px;
+  margin: 10px 0 0 41px;
 }
-.date {
+.hasTitleOption .date {
   height: 22px;
   margin-left: 15px;
   margin-right: 4px;
   margin-bottom: 6px;
   border: none;
 }
-.time {
+.hasTitleOption .time {
   height: 22px;
   border: none;
 }
-.Eng-text {
+.hasTitleOption .Eng-text {
   font-size: 13px;
   color: rgb(137, 135, 135);
 }
-.selectbox option {
-  background-color: #EEEEEE;
-}
+
 #service-option-notice {
   text-align: left;
   color: #0CAE02;
-  font-size: 11px;
-  margin: 1px 0 0 40px;
+  font-size: 11.5px;
+  margin: 1px 0 0 42px;
 }
 .show-price-container {
   margin-top: 10px;
@@ -272,23 +290,24 @@ export default {
   text-align: right;
   color:#0CAE02;
 }
-.service-option-totalprice-word {
+.show-price-container  .service-option-totalprice-word {
   position: absolute;
   top: 380px;
-  left: 150px;
+  left: 160px;
   font-size: 18px;
 }
-.service-option-totalprice-price {
+.show-price-container  .service-option-totalprice-price {
   position: absolute;
-  left: 260px;
+  top: 375px;
+  left: 263px;
   margin-right: 25px;
   font-size: 25px;
   font-weight: bold;
 }
-.goServiceInputForm-btn {
-  width: 70%;
+.goServicePay-btn {
+  width: 270px;
   height: 25px;
-  margin-top: 40px;
+  margin-top: 60px;
   color:#0CAE02;
   background-color: #EEEEEE;
   border: 1.5px solid #0CAE02;

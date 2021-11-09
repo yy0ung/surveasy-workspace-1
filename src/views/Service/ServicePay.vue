@@ -32,9 +32,21 @@ export default {
 .ServicePay {
   display: flex;
   flex-direction: row;
+  justify-content: center;
+  
+  height: 2000px;
 }
-.ServicePay-row {
+.ServicePay-col {
   display: flex;
   flex-direction: column;
+}
+
+.OptionInfo {
+  width: 1123px;
+  height: 408px;
+}
+.SurveyInfo {
+  width: 1123px;
+  height: 814px;
 }
 </style>

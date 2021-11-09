@@ -34,11 +34,10 @@ export default {
 
 <style>
 .OptionInfo {
-  width: 900px;
-  height: 400px;
-  margin: 70px 0px 5px 110px;
-  background-color: #EEEEEE;
-  border-radius: 12px;
+  background: #EEEEEE 0% 0% no-repeat padding-box;
+  margin-top: 69px;
+  border-radius: 15px;
+  opacity: 1;
 }
 .OptionInfo-container {
   width: 1300px;
