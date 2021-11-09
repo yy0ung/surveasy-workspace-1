@@ -1,5 +1,6 @@
 import { createStore } from 'vuex'
 import { doc, getDoc } from 'firebase/firestore'
+import createPersistedState from 'vuex-persistedstate'
 
 
 export default createStore({
@@ -17,6 +18,7 @@ export default createStore({
     db: null,
     userData: [],
     surveyData: [],
+    adminData: [],
    
     priceTable: [
       [ [5000, 5000, 9000, 13000, 17000, 21000, 25000, 29000, 33000 ], 
@@ -76,7 +78,11 @@ export default createStore({
       institute: '',
       link: '',
       notice: '',
-      account_userName:''
+
+      account_userName:'',
+
+      adminApproved: false,
+      uploader: '',
     }, 
 
     showLinkModal: false,
@@ -88,6 +94,10 @@ export default createStore({
     showModal: false,
     showFinalModal: false,
     FAQbutton: 0,
+
+    isAdmin: false,
+    AdminPassword: 1111,
+    lastID : [],
   },
 
   mutations: {
@@ -109,9 +119,14 @@ export default createStore({
       state.localSurveyState.title = payload.title,
       state.localSurveyState.target = payload.target,
       state.localSurveyState.institute = payload.institute,
+
       state.localSurveyState.link = payload.link,
       state.localSurveyState.notice = payload.notice,
       state.localSurveyState.account_userName = payload.account_userName
+
+      
+      state.localSurveyState.uploader = payload.uploader
+
     },
 
 
@@ -122,6 +137,9 @@ export default createStore({
     logoutMutation(state){
       state.currentUser = null
       state.isLoggedIn = false
+    },
+    setAdminState(state){
+      state.isAdmin = true
     }
   },
   actions: {
@@ -143,5 +161,10 @@ export default createStore({
     }
   },
   modules: {
-  }
-})
+  },
+//   plugins: [
+//     createPersistedState({
+//       // paths : ['isLoggedIn', 'currentUser']
+//     })
+//   ]
+ })

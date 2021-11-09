@@ -100,6 +100,7 @@ export default {
     this.$store.commit('setDB', db)
     this.fetchUserData()
     this.fetchSurveyData()
+    this.fetchLastID()
 
     // 로그인관리 방법 중 하나
     //     const auth = getAuth();
@@ -131,14 +132,18 @@ export default {
     async fetchSurveyData(){
       const db = this.$store.state.db
       const surveyData = this.$store.state.surveyData
-      const querySnapshot = await getDocs(collection(db, "surveyData"))
+      const querySnapshot = await getDocs(collection(db, "adminRequired"))
       querySnapshot.forEach((doc)=> {
-        const upTime = new Date(doc.data().uploadTime.seconds*1000)
-        const dueTime = new Date(doc.data().dueTime.seconds*1000)
-        var docID = Number(doc.data().id)
+        // const upTime = new Date(doc.data().uploadTime.seconds*1000)
+        // const dueTime = new Date(doc.data().dueTime.seconds*1000)
+        // var docID = Number(doc.data().id)
         var dataSet = []
-        dataSet.push(doc.data(), upTime, dueTime, {'docID':docID})
-        surveyData.push(dataSet)
+        if (doc.data().adminApproved) {
+          dataSet.push(doc.data())
+          surveyData.push(dataSet)
+        }
+        // dataSet.push(doc.data(), upTime, dueTime, {'docID':docID})
+        
       })
       
       const sorted = this.$store.state.surveyData.sort(function(a,b){return b[0].id - a[0].id })
@@ -149,6 +154,16 @@ export default {
       console.log((this.$store.state.surveyData).length)
       
       
+    },
+
+    async fetchLastID(){
+      const db = this.$store.state.db
+      const lastID = this.$store.state.lastID
+      const querySnapshot = await getDocs(collection(db, "lastID"))
+      querySnapshot.forEach((doc) => {
+        lastID.push(doc.data())
+      })
+      console.log(this.$store.state.lastID[0].lastID)
     },
 
     logout(){
@@ -308,6 +323,9 @@ body {
   .my-dropdown{
     position: relative;
     display: inline-block;
+  }
+  .my-dropdown .my-dropdown-btn{
+    white-space:nowrap;
   }
   .my-dropdown:hover .my-dropdown-content{
     display: block;
