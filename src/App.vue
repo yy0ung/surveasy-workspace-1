@@ -324,6 +324,9 @@ body {
     position: relative;
     display: inline-block;
   }
+  .my-dropdown .my-dropdown-btn{
+    white-space:nowrap;
+  }
   .my-dropdown:hover .my-dropdown-content{
     display: block;
     margin-top:5px;
