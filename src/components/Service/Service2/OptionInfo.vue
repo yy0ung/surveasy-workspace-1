@@ -19,7 +19,7 @@
           <ul id="showOption-value">{{ this.$store.state.localSurveyState.ENTarget }}</ul>
         </div>
         <div class="option">
-          <ul id="showOption-title">할인 대상 여부</ul>
+          <ul id="showOption-title">대학생 및 대학원생 할인</ul>
           <ul id="showOption-value">{{ this.$store.state.localSurveyState.identity }}</ul>
         </div>            
     </div>
@@ -34,15 +34,14 @@ export default {
 
 <style>
 .OptionInfo {
-  width: 900px;
-  height: 400px;
-  margin: 70px 0px 5px 110px;
-  background-color: #EEEEEE;
-  border-radius: 12px;
+  background: #EEEEEE 0% 0% no-repeat padding-box;
+  margin-top: 70px;
+  border-radius: 15px;
+  opacity: 1;
 }
 .OptionInfo-container {
-  width: 1300px;
-  padding: 25px;
+  width: 1123px;
+  padding: 20px;
   z-index: 1;
 }
 .OptionInfo-container ul {
@@ -52,13 +51,13 @@ export default {
 }
 .OptionInfo-container #info-title {
   font-family: 'Noto Sans KR', sans-serif;
-  color: black;
-  margin: 7px 0 30px 0;
-  font-size: 19px;
+  font-size: 20px;
   font-weight: bold;
+  color: black;
+  margin: 25px 0 30px 0;
 }
 .option {
-    margin-bottom: 17px;
+  margin-bottom: 17px;
 }
 .OptionInfo-container #showOption-title {
   font-family: 'Noto Sans KR';
@@ -68,7 +67,7 @@ export default {
 }
 .OptionInfo-container #showOption-value {
   font-family: 'Noto Sans KR', sans-serif;
-  font-size: 16px;
+  font-size: 17px;
   color: #0CAE02;
   margin-top: 2px;
 }

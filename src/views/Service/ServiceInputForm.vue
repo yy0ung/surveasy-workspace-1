@@ -145,7 +145,7 @@ export default {
                 uploadIndex: arrayUnion(localLastID)
             })
 
-            this.$router.push('/servicepay')
+            
             
         }
 

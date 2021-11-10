@@ -70,26 +70,26 @@ export default {
 
 <style>
 .SurveyInfo {
-  width: 900px;
-  height: 620px;
-  margin: 25px 0 100px 110px;
-  background-color: #EEEEEE;
-  border-radius: 12px;
+  background: #EEEEEE 0% 0% no-repeat padding-box;
+  margin-top: 20px;
+  border-radius: 15px;
+  opacity: 1;
 }
 .SurveyInfo-container {
-  width: 1300px;
-  padding: 25px;
+  width: 1123px;
+  padding: 20px;
   z-index: 1;
 }
 .survey-info {
-    text-align: left;
+  text-align: left;
 }
 .SurveyInfo-container #info-title {
   font-family: 'Noto Sans KR', sans-serif;
-  color: black;
-  margin: 7px 0 38px 0;
-  font-size: 19px;
+  font-size: 20px;
   font-weight: bold;
+  color: black;
+  margin: 25px 0 30px 0;
+  
 }
 .survey-info .info-detail {
     display: flex;
@@ -100,39 +100,49 @@ export default {
   display: inline-block;
 }
 .survey-info .info-detail-text {
-  width: 300px;
-  padding: 0;
-  margin: 0 0 5px 6px;
-  color: black;
+  left: 187px;
+  width: 200px;
+  height: 25px;
+  margin-top: 15px;
+  margin-bottom: 5px;
   text-align: left;
-  font-size: 14px;
-  
+  font-family: 'Noto Sans KR';
+  font-size: 17px;
+  font-weight: normal;
+  letter-spacing: 0px;
+  color: #000000;
+  opacity: 1;
 }
 .survey-info input {
-  font-family: 'Noto Sans KR';
+  left: 190px;
+  width: 680px;
+  height: 35px;
+  margin-left: 0;
+  padding-left: 25px;
+  border: 0.75px solid #BCBCBC;
+  opacity: 1;
   background-color: #EEEEEE;
-  width: 630px;
-  height: 10px;
-  margin-bottom: 10px;
-  border: 1px solid rgb(187, 187, 187);
-  padding: 15px;
-  font-size: 14px;
-  font-weight: lighter;
-  
 }
 .survey-info input::placeholder {
-  color: rgb(187, 187, 187);
-  
+  width: 600px;
+  height: 25px;
+  text-align: left;
+  font-family: 'Noto Sans KR' normal;
+  font-size: 15px;
+  letter-spacing: 0px;
+  color: #BCBCBC;
+  opacity: 1;
 }
 .link-check-btn {
   background-color: #EEEEEE;
   border: 1px solid #0CAE02;
-  width: 90px;
-  height: 40px;
+  width: 112px;
+  height: 46px;
   margin-left: 20px;
   color: #0CAE02;
+  font-size: 15px;
   font-weight: 800;
-  border-radius: 30px;
+  border-radius: 26px;
   cursor: pointer;   
 }
 </style>

@@ -53,15 +53,15 @@ export default createStore({
       
     EngOptionArray: [ '0','30000','60000' ],
 
-    TimeOptionArray: [ '0','15000','12000','8000','5000','0' ],
+    TimeOptionArray: [ '0','15000','12000','8000','5000','0','0' ],
 
 
     priceTextTable: [
       [ '', '30명', '40명', '50명', '60명', '70명', '80명', '90명', '100명' ],
       [ '', '1~3분', '4~6분', '7~10분', '11~15분', '16~20분' ],
       [ '', '18~24시간', '24~36시간', '36~48시간', '48~72시간', '72시간~168시간' ],
-      [ '선택 안함', '영어 설문(50명 이하)', '영어 설문(50명 초과)' ],
-      [ '', '대학생 할인', '대학원생 할인', '대학생 및 대학원생이 아닙니다.' ],
+      [ '선택 안함', '영어 설문 (50명 이하)', '영어 설문 (50명 초과)' ],
+      [ '', '대학생 할인', '대학원생 할인', '할인 대상이 아닙니다.' ],
     ],
       
 
@@ -119,14 +119,13 @@ export default createStore({
       state.localSurveyState.title = payload.title,
       state.localSurveyState.target = payload.target,
       state.localSurveyState.institute = payload.institute,
-
       state.localSurveyState.link = payload.link,
-      state.localSurveyState.notice = payload.notice,
+      state.localSurveyState.notice = payload.notice
+    },
+
+    setSurveyMutation3(state, payload) {
       state.localSurveyState.account_userName = payload.account_userName
-
-      
       state.localSurveyState.uploader = payload.uploader
-
     },
 
 
