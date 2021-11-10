@@ -44,7 +44,7 @@ export default {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(255, 255, 255, 0.469);
+  background-color: rgba(255, 255, 255, 0.296);
   display: table;
 }
 .link-modal-contentsbox {
@@ -56,14 +56,14 @@ export default {
   background-color: #fff;
   border-radius: 20px;
   text-align: center;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, .33);
+  box-shadow: 0 2px 3px rgba(0, 0, 0, .33);
 }
 .link-modal-title {
   display: inline-block;
   margin: 23px 0 30px 40px;
   font-family: 'Noto Sans KR', sans-serif;
   font-size: 22px;
-  font-weight: normal;
+  font-weight: bold;
 }
 .modal-close-button {
   margin: 10px;

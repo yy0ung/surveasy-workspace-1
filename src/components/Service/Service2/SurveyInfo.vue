@@ -6,25 +6,25 @@
 
           <ul id="info-detail">
             <ul class="info-detail-text">설문 제목</ul>
-            <div class="info-detail-input"><input type="text" v-model="title" @change="setOption2()"  placeholder="   예) 쓰레기 분리수거에 대한 대학생 인식조사 (최대 20자)" required></div>
+            <div class="info-detail-input"><input type="text" v-model="title" @change="setOption2()"  placeholder="예) 쓰레기 분리수거에 대한 대학생 인식조사 (최대 20자)" required></div>
           </ul>
           <ul id="info-detail">
             <ul class="info-detail-text">설문 대상</ul>
-            <div class="info-detail-input"><input type="text" v-model="target" @change="setOption2()" placeholder="   예) 20대 여성, 1인 가구" required></div>
+            <div class="info-detail-input"><input type="text" v-model="target" @change="setOption2()" placeholder="예) 20대 여성, 1인 가구" required></div>
           </ul>
           <ul id="info-detail">
             <ul class="info-detail-text">설문 기관</ul>
-            <div class="info-detail-input"><input type="text" v-model="institute" @change="setOption2()" placeholder="   예) OO학교 ㅁㅁ수업, @@학회, **기업" required></div>
+            <div class="info-detail-input"><input type="text" v-model="institute" @change="setOption2()" placeholder="예) OO학교 ㅁㅁ수업, @@학회, **기업" required></div>
           </ul>
           <ul id="info-detail">
             <ul class="info-detail-text">설문 링크</ul>
-            <div class="info-detail-input"><input type="text" v-model="link" @change="setOption2()" placeholder="   링크가 잘 작동하는지 꼭 확인해주세요." required><button class="link-check-btn" @click="showLinkModal()">링크 확인</button></div>
+            <div class="info-detail-input"><input type="text" v-model="link" @change="setOption2()" placeholder="링크가 잘 작동하는지 꼭 확인해주세요." required><button class="link-check-btn" @click="showLinkModal()">링크 확인</button></div>
           </ul>
           <span></span>
             <LinkCheckModal :showLinkIframe="showLinkIframe" @closeIframe="showLinkModal" />
           <ul id="info-detail">
             <ul class="info-detail-text">설문 참여시 유의사항 (선택)</ul>
-            <div class="info-detail-input"><input type="text" v-model="notice" @change="setOption2()" placeholder="   예) PC참여 권장, 외부 링크 이동 필요"></div>
+            <div class="info-detail-input"><input type="text" v-model="notice" @change="setOption2()" placeholder="예) PC참여 권장, 외부 링크 이동 필요"></div>
           </ul>              
       </div>
     </div>
@@ -117,6 +117,8 @@ export default {
   left: 190px;
   width: 680px;
   height: 35px;
+  margin-left: 0;
+  padding-left: 25px;
   border: 0.75px solid #BCBCBC;
   opacity: 1;
   background-color: #EEEEEE;

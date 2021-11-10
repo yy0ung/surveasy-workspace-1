@@ -69,7 +69,7 @@ export default {
 }
 .Coupon-selectbox {
   left: 190px;
-  width: 695px;
+  width: 707px;
   height: 55px;
   border: 0.75px solid #BCBCBC;
   opacity: 1;
@@ -80,7 +80,7 @@ export default {
   border: 1px solid #0CAE02;
   width: 112px;
   height: 46px;
-  margin-left: 28px;
+  margin-left: 40px;
   color: #0CAE02;
   font-size: 15px;
   font-weight: 800;

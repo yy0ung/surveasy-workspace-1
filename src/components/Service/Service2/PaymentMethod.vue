@@ -29,54 +29,62 @@ import { arrayUnion, doc, setDoc, updateDoc } from '@firebase/firestore';
 export default {
   data() {
     return {
-      accont_userName: ''
+      accont_userName: '',
+      uploader: '',
+
     }
   },
 
   methods: {
     setOption3() {
-      this.$store.commit('setSurveyMutation3', {account_userName: this.accont_userName, uploader: this.$store.state.currentUser.email})
+      this.uploader = this.$store.state.currentUser.email
+      this.$store.commit('setSurveyMutation3', {account_userName: this.accont_userName, uploader: this.uploader})
       console.log(this.$store.state.localSurveyState)
     },
+
 
     async sendToAdmin(dataset) {
       var db = this.$store.state.db
       var localLastID = this.$store.state.lastID[0].lastID
-      var currentUserEmail = this.$store.state.currentUser.email
-            
-            
-      await setDoc(doc(db, "adminRequired", localLastID.toString()), {
-        price : dataset.price,
-        requiredHeadCount : dataset.requiredHeadCount,
-        spendTime: dataset.spendTime,
-        dueTime: dataset.dueTime,
-        ENTarget: dataset.ENTarget,
+      var currentUserEmail = await this.$store.state.currentUser.email
+      
+        await setDoc(doc(db, "adminRequired", localLastID.toString()), {
+          price : dataset.price,
+          requiredHeadCount : dataset.requiredHeadCount,
+          spendTime: dataset.spendTime,
+          dueTime: dataset.dueTime,
+          ENTarget: dataset.ENTarget,
 
-        title: dataset.title,
-        target: dataset.target,
-        institute : dataset.institute,
-        link : dataset.link,
-        notice : dataset.notice,
-        adminApproved : dataset.adminApproved,
-        uploader : dataset.uploader,
-        uploadTime : new Date(),
-        id : localLastID
+          title: dataset.title,
+          target: dataset.target,
+          institute : dataset.institute,
+          link : dataset.link,
+          notice : dataset.notice,
+          adminApproved : dataset.adminApproved,
+          uploader : dataset.uploader,
+          uploadTime : new Date(),
+          id : localLastID
                 
-      })
+        })
 
-      var idDocref = doc(db, "lastID", "lastID")
-      var currentUserRef = doc(db, "userData", currentUserEmail)
-      await updateDoc(idDocref, {
-        lastID : (localLastID + 1)
-      })
+        var idDocref = doc(db, "lastID", "lastID")
+        var currentUserRef = doc(db, "userData", currentUserEmail)
+        await updateDoc(idDocref, {
+          lastID : (localLastID + 1)
+        })
 
-      await updateDoc(currentUserRef, {
-        uploadIndex: arrayUnion(localLastID)
-      })
+        await updateDoc(currentUserRef, {
+          uploadIndex: arrayUnion(localLastID)
+        })
 
-      console.log("fin")
+        console.log("fin")
+
+        this.$router.push('/servicepaydone')
+
+
     }
-  }
+
+  },
 
 }
 </script>
@@ -117,7 +125,7 @@ export default {
   font-family: 'Noto Sans KR';
   background-color: #EEEEEE;
   justify-content: center;
-  width: 285px;
+  width: 282px;
   height: 10px;
   margin-top: 20px;
   border: 1px solid rgb(187, 187, 187);
