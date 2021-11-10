@@ -119,14 +119,13 @@ export default createStore({
       state.localSurveyState.title = payload.title,
       state.localSurveyState.target = payload.target,
       state.localSurveyState.institute = payload.institute,
-
       state.localSurveyState.link = payload.link,
-      state.localSurveyState.notice = payload.notice,
+      state.localSurveyState.notice = payload.notice
+    },
+
+    setSurveyMutation3(state, payload) {
       state.localSurveyState.account_userName = payload.account_userName
-
-      
       state.localSurveyState.uploader = payload.uploader
-
     },
 
 

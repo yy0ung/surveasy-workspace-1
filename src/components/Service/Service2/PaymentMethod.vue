@@ -7,7 +7,7 @@
         <span id="Account-address">카카오뱅크 3333-17-5341775 (장서준)</span>
       </ul>
       
-      <ul><div><input v-model="accont_userName" id="Account-input" placeholder="입금자명"></div></ul>
+      <ul><div><input v-model="accont_userName" @change="setOption3()" id="Account-input" placeholder="입금자명"></div></ul>
       
       <ul>
         <div class="PaymentMethod-text">
@@ -19,12 +19,13 @@
           <p>{{ this.$props.title }}</p>
         </div>
       </ul>
-      <button class="Payment-btn" @click="PayFin()">결제하기</button>
+      <button class="Payment-btn" @click="sendToAdmin(this.$store.state.localSurveyState)">결제하기</button>
     </div>
   </div>  
 </template>
 
 <script>
+import { arrayUnion, doc, setDoc, updateDoc } from '@firebase/firestore';
 export default {
   data() {
     return {
@@ -33,13 +34,50 @@ export default {
   },
 
   methods: {
-    PayFin() {
-      this.$store.commit('setSurveyMutation2', { account_userName: this.accont_userName });
-      
+    setOption3() {
+      this.$store.commit('setSurveyMutation3', {account_userName: this.accont_userName, uploader: this.$store.state.currentUser.email})
       console.log(this.$store.state.localSurveyState)
-      
+    },
+
+    async sendToAdmin(dataset) {
+      var db = this.$store.state.db
+      var localLastID = this.$store.state.lastID[0].lastID
+      var currentUserEmail = this.$store.state.currentUser.email
+            
+            
+      await setDoc(doc(db, "adminRequired", localLastID.toString()), {
+        price : dataset.price,
+        requiredHeadCount : dataset.requiredHeadCount,
+        spendTime: dataset.spendTime,
+        dueTime: dataset.dueTime,
+        ENTarget: dataset.ENTarget,
+
+        title: dataset.title,
+        target: dataset.target,
+        institute : dataset.institute,
+        link : dataset.link,
+        notice : dataset.notice,
+        adminApproved : dataset.adminApproved,
+        uploader : dataset.uploader,
+        uploadTime : new Date(),
+        id : localLastID
+                
+      })
+
+      var idDocref = doc(db, "lastID", "lastID")
+      var currentUserRef = doc(db, "userData", currentUserEmail)
+      await updateDoc(idDocref, {
+        lastID : (localLastID + 1)
+      })
+
+      await updateDoc(currentUserRef, {
+        uploadIndex: arrayUnion(localLastID)
+      })
+
+      console.log("fin")
     }
   }
+
 }
 </script>
 
