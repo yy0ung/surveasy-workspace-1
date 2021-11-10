@@ -51,7 +51,6 @@ export default {
 
 <style>
   #review-container{
-    
     height: 560px;
     display: flex;
     flex-direction: column;

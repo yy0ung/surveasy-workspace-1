@@ -2,7 +2,8 @@
   <div class="PaymentPrice">
     <div class="PaymentPrice-container">
       <ul id="PaymentPrice-title">결제금액</ul>
-      <ul><hr align="left" style="width:300px;"></ul>
+      <br>
+    <hr align="left"> 
       <ul class="showPrice">
         <span id="showPrice-text">총 결제금액</span> 
         <span id="showPrice-num">{{ this.$store.state.localSurveyState.price }} 원</span>
@@ -19,41 +20,42 @@ export default {
 
 <style>
 .PaymentPrice {
-  z-index: -10;
-  width: 400px;
-  height: 180px;
+  background: #EEEEEE 0% 0% no-repeat padding-box;
   margin-top: 70px;
   margin-left: 20px;
-  background-color: #EEEEEE;
-  border-radius: 12px;
+  border-radius: 15px;
 }
 .PaymentPrice-container {
-  padding: 1px;
+  width: 380px;
+  padding-top: 20px;
   z-index: 1;
 }
 .PaymentPrice-container ul{
   text-align: left;
   font-size: 13px;
   margin: 0;
+  padding-left: 45px;
 }
 #PaymentPrice-title {
   font-family: 'Noto Sans KR', sans-serif;
   color: black;
-  margin: 27px 0 50px 0;
-  font-size: 19px;
+  margin: 25px 0 30px 0;
+  font-size: 20px;
   font-weight: bold;
 }
 hr {
+  width: 300px;
+  margin-left: 45px;
   margin-bottom: 20px;
 }
 
 .showPrice #showPrice-text {
   font-family: 'Noto Sans KR', sans-serif;
   color: black;
-  font-size: 14px;
+  font-size: 17px;
   font-weight: bold;
-  margin-left: 70px;
-  margin-right: 80px;
+  margin-left: 60px;
+  margin-right: 70px;
 }
 .showPrice #showPrice-num{
   font-family: 'Noto Sans KR', sans-serif;

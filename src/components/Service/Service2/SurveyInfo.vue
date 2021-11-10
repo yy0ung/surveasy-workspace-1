@@ -6,25 +6,25 @@
 
           <ul id="info-detail">
             <ul class="info-detail-text">설문 제목</ul>
-            <div class="info-detail-input"><input type="text" v-model="title" @change="setOption2()"  placeholder="예) 쓰레기 분리수거에 대한 대학생 인식조사 (최대 20자)" required></div>
+            <div class="info-detail-input"><input type="text" v-model="title" @change="setOption2()"  placeholder="   예) 쓰레기 분리수거에 대한 대학생 인식조사 (최대 20자)" required></div>
           </ul>
           <ul id="info-detail">
             <ul class="info-detail-text">설문 대상</ul>
-            <div class="info-detail-input"><input type="text" v-model="target" @change="setOption2()" placeholder="예) 20대 여성, 1인 가구" required></div>
+            <div class="info-detail-input"><input type="text" v-model="target" @change="setOption2()" placeholder="   예) 20대 여성, 1인 가구" required></div>
           </ul>
           <ul id="info-detail">
             <ul class="info-detail-text">설문 기관</ul>
-            <div class="info-detail-input"><input type="text" v-model="institute" @change="setOption2()" placeholder="예) OO학교 ㅁㅁ수업, @@학회, **기업" required></div>
+            <div class="info-detail-input"><input type="text" v-model="institute" @change="setOption2()" placeholder="   예) OO학교 ㅁㅁ수업, @@학회, **기업" required></div>
           </ul>
           <ul id="info-detail">
             <ul class="info-detail-text">설문 링크</ul>
-            <div class="info-detail-input"><input type="text" v-model="link" @change="setOption2()" placeholder="링크가 잘 작동하는지 꼭 확인해주세요." required><button class="link-check-btn" @click="showLinkModal()">링크 확인</button></div>
+            <div class="info-detail-input"><input type="text" v-model="link" @change="setOption2()" placeholder="   링크가 잘 작동하는지 꼭 확인해주세요." required><button class="link-check-btn" @click="showLinkModal()">링크 확인</button></div>
           </ul>
           <span></span>
             <LinkCheckModal :showLinkIframe="showLinkIframe" @closeIframe="showLinkModal" />
           <ul id="info-detail">
             <ul class="info-detail-text">설문 참여시 유의사항 (선택)</ul>
-            <div class="info-detail-input"><input type="text" v-model="notice" @change="setOption2()" placeholder="예) PC참여 권장, 외부 링크 이동 필요"></div>
+            <div class="info-detail-input"><input type="text" v-model="notice" @change="setOption2()" placeholder="   예) PC참여 권장, 외부 링크 이동 필요"></div>
           </ul>              
       </div>
     </div>
@@ -75,19 +75,21 @@ export default {
   border-radius: 15px;
   opacity: 1;
 }
+.SurveyInfo-container {
+  width: 1123px;
+  padding: 20px;
+  z-index: 1;
+}
 .survey-info {
   text-align: left;
 }
 .SurveyInfo-container #info-title {
-  top: 740px;
-  left: 185px;
-  width: 80px;
-  height: 29px;
-  text-align: left;
-  font: normal normal bold 20px/20px 'Noto Sans KR';
-  letter-spacing: 0px;
-  color: #000000;
-  opacity: 1;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 20px;
+  font-weight: bold;
+  color: black;
+  margin: 25px 0 30px 0;
+  
 }
 .survey-info .info-detail {
     display: flex;
@@ -101,42 +103,44 @@ export default {
   left: 187px;
   width: 200px;
   height: 25px;
+  margin-top: 15px;
+  margin-bottom: 5px;
   text-align: left;
-  font: normal normal normal 17px/20px 'Noto Sans KR';
+  font-family: 'Noto Sans KR';
+  font-size: 17px;
+  font-weight: normal;
   letter-spacing: 0px;
   color: #000000;
   opacity: 1;
-  
 }
 .survey-info input {
   left: 190px;
-  width: 854px;
-  height: 53px;
+  width: 680px;
+  height: 35px;
   border: 0.75px solid #BCBCBC;
   opacity: 1;
   background-color: #EEEEEE;
-  
 }
 .survey-info input::placeholder {
-  left: 211px;
   width: 600px;
   height: 25px;
   text-align: left;
-  font: normal normal normal 17px/20px 'Noto Sans KR';
+  font-family: 'Noto Sans KR' normal;
+  font-size: 15px;
   letter-spacing: 0px;
   color: #BCBCBC;
   opacity: 1;
-  
 }
 .link-check-btn {
   background-color: #EEEEEE;
   border: 1px solid #0CAE02;
-  width: 90px;
-  height: 40px;
+  width: 112px;
+  height: 46px;
   margin-left: 20px;
   color: #0CAE02;
+  font-size: 15px;
   font-weight: 800;
-  border-radius: 30px;
+  border-radius: 26px;
   cursor: pointer;   
 }
 </style>

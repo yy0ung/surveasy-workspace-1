@@ -93,13 +93,15 @@ export default {
 
       EngText: '',
 
+      ex: 0,
+
       today: new Date().toISOString().substring(0,10),
       min: new Date().toISOString().substring(0,10),
 
       aa:'',
       bb:'',
       cc: this.aa+' '+this.bb,
-      dd: new Date()
+      dd: new Date(),
 
     }
   },
@@ -119,15 +121,14 @@ export default {
       var now = krr.toString().substring(16,21)
       console.log(now);
       return now
-      
-
     },
+    
     timeOptionCal(){
       var ab = this.aa + ' ' + this.bb
       var asdf = new Date(ab).getTime()
       var hourGap = parseInt((asdf - this.dd.getTime())/3600000) 
       var hourOptionIndex = 0
-      var Exception = 0
+
       if (hourGap >= 18 && hourGap < 24){
         hourOptionIndex = 1
       } else if (hourGap >= 24 && hourGap < 36){
@@ -138,10 +139,11 @@ export default {
         hourOptionIndex = 4
       } else if (hourGap >= 72){
         hourOptionIndex = 5
-      } else if ((hourGap > 0 && hourGap <18) || (hourGap < 0)) {
-        Exception = 6
-        return Exception
+      } else if (hourGap <18) {
+        hourOptionIndex = 6
       }
+
+      console.log('time', hourOptionIndex)
       return hourOptionIndex
     }, 
     EngOptionCal() {
@@ -166,14 +168,16 @@ export default {
   },
   methods: {    
     setOption1() {
+      
       if((this.priceIdentity==0) || (this.priceSpendTime==0) || (this.priceRequireHeadCount==0) || (this.timeOptionCal==0)) {
-        alert("필수 옵션을 모두 입력해주세요.")
+        alert("모든 옵션을 입력해주세요.")
       }
+
       else if(this.timeOptionCal==6) {
-         alert('설문 마감일은 최소 18시간 이후부터 가능합니다.')
+        alert("마감 기한은 최소 18시간 이상부터 선택 가능합니다.")
       }
-      else {
-        
+
+      else {       
         this.timeOption = this.timeOptionCal;
         this.addENTarget = this.EngOptionCal;
 
@@ -201,13 +205,14 @@ export default {
         console.log(this.$store.state.localSurveyState.requiredHeadCount);
         console.log(this.$store.state.localSurveyState.ENTarget);
         console.log(this.$store.state.localSurveyState.dueTime);
+        }
+        
       }
     
  
     }     
   
   }
-}
 </script>
 
 <style>
