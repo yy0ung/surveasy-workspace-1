@@ -69,42 +69,46 @@
         </div>
        
         <div>
-          
-          
-
+          <div class="date-content">
+            <div class="calc-option-title">마감기한 지정</div>
+            <input type="Date"  :min="min" :max="getDateStr" v-model="aa" required>
+            <input type="time"  v-model="bb" required>
+          </div>
         
-
-        <input type="Date"  :min="min" :max="getDateStr" v-model="aa">
-        <input type="time"  v-model="bb">
+          <div class="eng-content">
+            <div class="calc-option-title">영어설문</div>
+            <label class="switch">
+              <input v-model="addENTarget" @click="EngOptionCal" type="checkbox" class="EngRadio" name="Eng">
+              <span class="slider"></span>
+            </label>
+            <span class="Eng-text">{{ this.EngText }}</span>
+          </div>
+       
+        <div class="discount-content">
+          <div class="calc-option-title">대학생/대학원생 할인</div>
+          <select class="selectbox" v-model="priceIdentity">
+            <option :value=0 selected disabled hidden>대학생 / 대학원생 할인</option>
+            <option :value=1>대학생입니다.</option>
+            <option :value=2>대학원생입니다.</option>
+            <option :value=3>할인대상이 아닙니다.</option>
+          </select>
+          <p id="service-option-notice">*대학생 및 대학원생임을 인증해야만 할인을 받으실 수 있습니다.</p>
+        </div>
         
-        <div>영어 설문 여부
-          <input type="radio" v-model="addENTarget" :value=0 name="enTarget">선택 안함<br>
-          <input type="radio" v-model="addENTarget" :value=1 name="enTarget">영어 설문(50명 이하)<br>
-          <input type="radio" v-model="addENTarget" :value=2 name="enTarget">영어 설문(50명 초과)
-        </div>
-
-        <select class="selectbox" v-model="priceIdentity">
-          <option :value=0>대학생</option>
-          <option :value=1>대학원생</option>
-          <option :value=2>일반</option>
-        </select>
-        <p id="calc-option-notice">*대학생 및 대학원생임을 인증해야만 할인을 받으실 수 있습니다.</p>
-      
-        <br>
-      
-        <div class="calc-show-price-container">
-          <span class="calc-option-totalprice-word">총 금액</span>
-          <span class="calc-option-totalprice-price">&nbsp; &nbsp; &nbsp; &nbsp;
-            {{ Number(this.$store.state.priceTable[priceIdentity][priceSpendTime][priceRequireHeadCount])
-              +Number(this.$store.state.EngOptionArray[addENTarget])
-              +Number(this.$store.state.TimeOptionArray[timeOptionCal]) }}원</span>
-        </div>
-      
-        <div>
-          <router-link to="/serviceinputform">
-          <button class="calc-goServiceInputForm-btn" @click="setOption1()">설문 정보 입력하러 가기</button>
-          </router-link>
-        </div>
+        
+          <div class="price-content">
+            <div class="calc-option-title">총 금액</div>
+            <span class="service-option-totalprice-price">
+              {{ Number(this.$store.state.priceTable[priceIdentity][priceSpendTime][priceRequireHeadCount])
+                +Number(this.$store.state.EngOptionArray[EngOptionCal])
+                +Number(this.$store.state.TimeOptionArray[timeOptionCal]) }}원</span>
+          </div>
+        
+          <div>
+            
+            <button class="goServicePay-btn" @click="setOption1()">설문 정보 입력하러 가기</button>
+            
+          </div>
     </div>
 
     
@@ -140,6 +144,10 @@ export default {
       ENTarget: '',
       dueTime: '',
 
+      EngText: "영어 설문이 아닙니다.",
+
+      ex: 0,
+
       today: new Date().toISOString().substring(0,10),
       min: new Date().toISOString().substring(0,10),
 
@@ -148,11 +156,6 @@ export default {
       cc: this.aa+' '+this.bb,
       dd: new Date(),
 
-      
-      
-    
-    
-      
     }
   },
   computed :{
@@ -169,15 +172,16 @@ export default {
       var kr_diff = 9*60*60*1000
       var krr = new Date(utc+(kr_diff))
       var now = krr.toString().substring(16,21)
+      console.log(now);
       return now
-      
-
     },
+    
     timeOptionCal(){
       var ab = this.aa + ' ' + this.bb
       var asdf = new Date(ab).getTime()
       var hourGap = parseInt((asdf - this.dd.getTime())/3600000) 
       var hourOptionIndex = 0
+
       if (hourGap >= 18 && hourGap < 24){
         hourOptionIndex = 1
       } else if (hourGap >= 24 && hourGap < 36){
@@ -188,41 +192,75 @@ export default {
         hourOptionIndex = 4
       } else if (hourGap >= 72){
         hourOptionIndex = 5
+      } else if (hourGap <18) {
+        hourOptionIndex = 6
       }
+
+      console.log('time', hourOptionIndex)
       return hourOptionIndex
-      
+    }, 
+    EngOptionCal() {
+      var EngIndex = 0
+      var HeadCount = this.priceRequireHeadCount
+      var Eng = this.addENTarget
+      if(Eng==false) {
+        EngIndex = 0
+        this.EngText = "영어 설문이 아닙니다."
+      }
+      else if((HeadCount<=3) && (Eng==true)) {
+        EngIndex = 1
+        this.EngText = "영어 설문입니다."
+      }
+      else if((HeadCount>3) && (Eng==true)) {
+        EngIndex = 2
+        this.EngText = "영어 설문입니다."
+      }
+      console.log(EngIndex)
+      return EngIndex
     }
   },
   methods: {    
     setOption1() {
-      this.timeOption = this.timeOptionCal;
+      
+      if((this.priceIdentity==0) || (this.priceSpendTime==0) || (this.priceRequireHeadCount==0) || (this.timeOptionCal==0)) {
+        alert("모든 옵션을 입력해주세요.")
+      }
 
-      this.price = Number(this.$store.state.priceTable[this.priceIdentity][this.priceSpendTime][this.priceRequireHeadCount])
-      +Number(this.$store.state.EngOptionArray[this.addENTarget])
-      +Number(this.$store.state.TimeOptionArray[this.timeOption]);
+      else if(this.timeOptionCal==6) {
+        alert("마감 기한은 최소 18시간 이상부터 선택 가능합니다.")
+      }
+
+      else {       
+        this.timeOption = this.timeOptionCal;
+        this.addENTarget = this.EngOptionCal;
+
+        this.price = Number(this.$store.state.priceTable[this.priceIdentity][this.priceSpendTime][this.priceRequireHeadCount])
+        +Number(this.$store.state.EngOptionArray[this.addENTarget])
+        +Number(this.$store.state.TimeOptionArray[this.timeOption]);
       
-      this.requiredHeadCount = String(this.$store.state.priceTextTable[0][this.priceRequireHeadCount]);
-      this.spendTime = String(this.$store.state.priceTextTable[1][this.priceSpendTime]);
-      this.dueTime = String(this.$store.state.priceTextTable[2][this.timeOption]);
-      this.ENTarget = String(this.$store.state.priceTextTable[3][this.addENTarget]);
-      this.identity = String(this.$store.state.priceTextTable[4][this.priceIdentity]);
+        this.requiredHeadCount = String(this.$store.state.priceTextTable[0][this.priceRequireHeadCount]);
+        this.spendTime = String(this.$store.state.priceTextTable[1][this.priceSpendTime]);
+        this.dueTime = String(this.$store.state.priceTextTable[2][this.timeOption]);
+        this.ENTarget = String(this.$store.state.priceTextTable[3][this.addENTarget]);
+        this.identity = String(this.$store.state.priceTextTable[4][this.priceIdentity]);
       
       
+        this.$store.commit('setSurveyMutation1', {price: this.price, requiredHeadCount: this.requiredHeadCount, 
+        spendTime: this.spendTime, dueTime: this.dueTime, ENTarget: this.ENTarget, identity: this.identity});
+
+        this.$router.push('/servicepay');
       
 
-      
-      this.$store.commit('setSurveyMutation1', {price: this.price, requiredHeadCount: this.requiredHeadCount, 
-      spendTime: this.spendTime, dueTime: this.dueTime, ENTarget: this.ENTarget, identity: this.identity});
 
-      
-      console.log(this.$store.state.localSurveyState.price);
-      console.log(this.$store.state.localSurveyState.identity);
-      console.log(this.$store.state.localSurveyState.spendTime);
-      console.log(this.$store.state.localSurveyState.requiredHeadCount);
-      console.log(this.$store.state.localSurveyState.ENTarget);
-      console.log(this.$store.state.localSurveyState.dueTime);
-      
+        console.log(this.$store.state.localSurveyState.price);
+        console.log(this.$store.state.localSurveyState.identity);
+        console.log(this.$store.state.localSurveyState.spendTime);
+        console.log(this.$store.state.localSurveyState.requiredHeadCount);
+        console.log(this.$store.state.localSurveyState.ENTarget);
+        console.log(this.$store.state.localSurveyState.dueTime);
+      }
     },
+    
     HeadCount(Person){
       this.priceRequireHeadCount = Person
     },
