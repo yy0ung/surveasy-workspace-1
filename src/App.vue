@@ -31,9 +31,9 @@
       <div v-else>
         <div class='my-dropdown'>
           <p class="my-dropdown-btn">안녕하세요 {{this.$store.state.currentUser.nickname}}님</p>
-          <div class='my-dropdown-content'>
+          <div class='my-dropdown-content' id="dropdown-margin">
             <router-link to="/mypage">마이페이지</router-link>
-            <p @click="logout">로그아웃</p>
+            <p @click="logout" id="logout-dropdown">로그아웃</p>
             
           </div>
         </div>
@@ -329,8 +329,8 @@ body {
   }
   .my-dropdown:hover .my-dropdown-content{
     display: block;
-    margin-top:5px;
-    margin-left: 5px;
+    margin-top:7px;
+    margin-left: 25px;
   }
 
   .my-dropdown-content a {
@@ -346,6 +346,9 @@ body {
     position: absolute;
     background-color: #f9f9f9;
   }
+  .my-dropdown:hover #dropdown-margin{
+    margin-top: 0;
+  }
 
   .my-dropdown-content p {
     cursor: pointer;
@@ -353,9 +356,13 @@ body {
     padding: 12px 16px;
     text-decoration: none;
     display: block;
+    font-weight: bold;
   }
   .my-dropdown-content p:hover {
     background-color: #aaa;
+  }
+  .my-dropdown-content #logout-dropdown{
+    padding: 10px 16px;
   }
 
   #site-map-container{
