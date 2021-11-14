@@ -2,67 +2,67 @@
   <div class="home-calculator" v-if="showCalculator">
     <div class="home-calculator-contentsbox">
       <p class="calc-title">내 설문은 얼마일까?
-        <button class="modal-close-button" @click="$emit('close')">X</button>
+        <button class="modal-close-button" @click="$emit('close'), clear()">X</button>
       </p> 
       <div class="calc-option-container">
           <div class="respond-content">
-            <div class="calc-option-title">요구 응답 수</div>
+            <span class="calc-option-title">요구 응답 수</span>
           
-          <div class="pro-one" :class="{active: priceRequireHeadCount>=0}">
-            <div class="step-counter" @click="HeadCount(0)"></div>
-            <div class="step-name">30명</div>
-          </div>
           <div class="pro-one" :class="{active: priceRequireHeadCount>=1}">
-            <div class="step-counter" @click="HeadCount(1)"></div>
-            <div class="step-name">40명</div>
+            <div class="step-counter" :class="{active: priceRequireHeadCount>=0}" @click="HeadCount(0)"></div>
+            <div class="step-name" :class="{active: priceRequireHeadCount>=0}">30명</div>
           </div>
           <div class="pro-one" :class="{active: priceRequireHeadCount>=2}">
-            <div class="step-counter" @click="HeadCount(2)"></div>
-            <div class="step-name">50명</div>
+            <div class="step-counter" :class="{active: priceRequireHeadCount>=1}" @click="HeadCount(1)"></div>
+            <div class="step-name" :class="{active: priceRequireHeadCount>=1}">40명</div>
           </div>
           <div class="pro-one" :class="{active: priceRequireHeadCount>=3}">
-            <div class="step-counter" @click="HeadCount(3)"></div>
-            <div class="step-name">60명</div>
+            <div class="step-counter" :class="{active: priceRequireHeadCount>=2}" @click="HeadCount(2)"></div>
+            <div class="step-name" :class="{active: priceRequireHeadCount>=2}">50명</div>
           </div>
           <div class="pro-one" :class="{active: priceRequireHeadCount>=4}">
-            <div class="step-counter" @click="HeadCount(4)"></div>
-            <div class="step-name">70명</div>
+            <div class="step-counter" :class="{active: priceRequireHeadCount>=3}" @click="HeadCount(3)"></div>
+            <div class="step-name" :class="{active: priceRequireHeadCount>=3}">60명</div>
           </div>
           <div class="pro-one" :class="{active: priceRequireHeadCount>=5}">
-            <div class="step-counter" @click="HeadCount(5)"></div>
-            <div class="step-name">80명</div>
+            <div class="step-counter" :class="{active: priceRequireHeadCount>=4}" @click="HeadCount(4)"></div>
+            <div class="step-name" :class="{active: priceRequireHeadCount>=4}">70명</div>
           </div>
           <div class="pro-one" :class="{active: priceRequireHeadCount>=6}">
-            <div class="step-counter" @click="HeadCount(6)"></div>
-            <div class="step-name">90명</div>
+            <div class="step-counter" :class="{active: priceRequireHeadCount>=5}" @click="HeadCount(5)"></div>
+            <div class="step-name" :class="{active: priceRequireHeadCount>=5}">80명</div>
           </div>
-          <div class="pro-one" :class="{active: priceRequireHeadCount==7}">
-            <div class="step-counter" @click="HeadCount(7)"></div>
-            <div class="step-name">100명</div>
+          <div class="pro-one" :class="{active: priceRequireHeadCount>=7}">
+            <div class="step-counter" :class="{active: priceRequireHeadCount>=6}" @click="HeadCount(6)"></div>
+            <div class="step-name" :class="{active: priceRequireHeadCount>=6}">90명</div>
+          </div>
+          <div class="pro-one" id="one-last" :class="{active: priceRequireHeadCount==8}">
+            <div class="step-counter" :class="{active: priceRequireHeadCount>=7}" @click="HeadCount(7)"></div>
+            <div class="step-name" :class="{active: priceRequireHeadCount>=7}">100명</div>
           </div>
         </div>
 
         <div class="respond-content">
-            <div class="calc-option-title">소요시간</div>
-          <div class="pro-one" :class="{active: priceSpendTime>=0}">
-            <div class="step-counter" @click="TimeCount(0)"></div>
-            <div class="step-name">1-3분</div>
-          </div>
+            <span class="calc-option-title">소요시간</span>
           <div class="pro-one" :class="{active: priceSpendTime>=1}">
-            <div class="step-counter" @click="TimeCount(1)"></div>
-            <div class="step-name">4-6분</div>
+            <div class="step-counter" :class="{active: priceSpendTime>=0}" @click="TimeCount(0)"></div>
+            <div class="step-name" :class="{active: priceSpendTime>=0}">1-3분</div>
           </div>
           <div class="pro-one" :class="{active: priceSpendTime>=2}">
-            <div class="step-counter" @click="TimeCount(2)"></div>
-            <div class="step-name">7-10분</div>
+            <div class="step-counter" :class="{active: priceSpendTime>=1}" @click="TimeCount(1)"></div>
+            <div class="step-name" :class="{active: priceSpendTime>=1}">4-6분</div>
           </div>
           <div class="pro-one" :class="{active: priceSpendTime>=3}">
-            <div class="step-counter" @click="TimeCount(3)"></div>
-            <div class="step-name">11-15분</div>
+            <div class="step-counter" :class="{active: priceSpendTime>=2}" @click="TimeCount(2)"></div>
+            <div class="step-name" :class="{active: priceSpendTime>=2}">7-10분</div>
           </div>
-          <div class="pro-one" :class="{active: priceSpendTime==4}">
-            <div class="step-counter" @click="TimeCount(4)"></div>
-            <div class="step-name">16-20분</div>
+          <div class="pro-one" :class="{active: priceSpendTime>=4}">
+            <div class="step-counter" :class="{active: priceSpendTime>=3}" @click="TimeCount(3)"></div>
+            <div class="step-name" :class="{active: priceSpendTime>=3}">11-15분</div>
+          </div>
+          <div class="pro-one" id="two-last" :class="{active: priceSpendTime>=5}">
+            <div class="step-counter" :class="{active: priceSpendTime>=4}" @click="TimeCount(4)"></div>
+            <div class="step-name" :class="{active: priceSpendTime>=4}">16-20분</div>
           </div>
           
         
@@ -71,8 +71,10 @@
         <div>
           <div class="date-content">
             <div class="calc-option-title">마감기한 지정</div>
-            <input type="Date"  :min="min" :max="getDateStr" v-model="aa" required>
-            <input type="time"  v-model="bb" required>
+            <div class="date-select">
+              <input type="Date"  :min="min" :max="getDateStr" v-model="aa" required>
+              <input type="time"  v-model="bb" required>
+            </div>
           </div>
         
           <div class="eng-content">
@@ -86,13 +88,25 @@
        
         <div class="discount-content">
           <div class="calc-option-title">대학생/대학원생 할인</div>
-          <select class="selectbox" v-model="priceIdentity">
-            <option :value=0 selected disabled hidden>대학생 / 대학원생 할인</option>
-            <option :value=1>대학생입니다.</option>
-            <option :value=2>대학원생입니다.</option>
-            <option :value=3>할인대상이 아닙니다.</option>
-          </select>
-          <p id="service-option-notice">*대학생 및 대학원생임을 인증해야만 할인을 받으실 수 있습니다.</p>
+               
+          <div class="select-discount">
+            
+            <div>
+              <input type="radio" id="one" name="discount" value="one" checked @click="discount(1)">
+               <label for="one">대학생입니다.</label>
+            </div>
+
+            <div>
+              <input type="radio" id="two" name="discount" value="two" @click="discount(2)">
+              <label for="two">대학원생입니다.</label>
+            </div>
+
+            <div>
+              <input type="radio" id="three" name="discount" value="three" @click="discount(3)">
+              <label for="three">할인대상이 아닙니다.</label>
+            </div>
+          </div>
+          
         </div>
         
         
@@ -104,13 +118,13 @@
                 +Number(this.$store.state.TimeOptionArray[timeOptionCal]) }}원</span>
           </div>
         
-          <div>
+          
             
             <button class="goServicePay-btn" @click="setOption1()">설문 정보 입력하러 가기</button>
             
-          </div>
+          
     </div>
-
+    
     
 
     </div>
@@ -266,6 +280,17 @@ export default {
     },
     TimeCount(Time){
       this.priceSpendTime= Time
+    },
+    discount(select){
+      this.priceIdentity = select
+    },
+    clear(){
+      this.priceIdentity = 0
+      this.priceRequireHeadCount = 0
+      this.priceSpendTime = 0
+      this.aa = ''
+      this.bb = ''
+      this.addENTarget =0
     }
   },
   
@@ -313,7 +338,8 @@ export default {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin-bottom: 20px;
+  
+  width: 85%;
 }
 .pro-one {
   position: relative;
@@ -328,16 +354,18 @@ export default {
   border-bottom: 3px solid #ccc;
   width: 100%;
   top: 5px;
-  left: -5%;
+  left: 50%;
+   
   z-index: 2;
 }
 .pro-one:after {
   position: absolute;
   content: "";
   border-bottom: 3px solid #ccc;
-  width: 100%;
+  width: 50%;
   top: 5px;
-  left: 50%;
+  right: -50%;
+ 
   z-index: 2;
 }
 .pro-one .step-counter {
@@ -346,8 +374,8 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 15px;
-  height: 15px;
+  width: 13px;
+  height: 13px;
   border-radius: 50%;
   background: #ccc;
   margin-bottom: 6px;
@@ -361,7 +389,7 @@ export default {
   left: 50%;
   z-index: 3;
 }
-.pro-one.active {
+.step-name.active {
   font-weight: bold;
   color:#0AAB00;
 }
@@ -373,8 +401,16 @@ export default {
   content: none;
   border-bottom: none;
 }
+#one-last::before{
+  content: none;
+   border-bottom: none;
+}
+#two-last::before{
+  content: none;
+   border-bottom: none;
+}
 
-.pro-one.active .step-counter {
+.step-counter.active {
   background-color: #0AAB00;
   
 }
@@ -385,6 +421,7 @@ export default {
   margin: 20px auto;
   display: flex;
   flex-direction: column;
+  justify-content: space-around;
  
   border-radius: 10px;
 }
@@ -396,21 +433,15 @@ export default {
   font-weight: bold;
   
 }
-.calc-option-container #calc-option-notice {
-  font-size: 12px;
-  color: #0CAE02;
-  margin: 0;
-}
+
 .calc-show-price-container {
   text-align: right;
   color:#0CAE02;
 }
-.calc-option-totalprice-word {
-  font-size: 18px;
-}
+
 .calc-option-totalprice-price {
   margin-right: 25px;
-  font-size: 25px;
+  font-size: 20px;
   font-weight: bold;
 }
 .calc-goServiceInputForm-btn {
@@ -424,4 +455,37 @@ export default {
   font-size: 12px;
   cursor: pointer;
 }
+.date-content, .eng-content{
+  display: flex;
+
+}
+.discount-content {
+  display: flex;
+
+}
+.select-discount{
+  display: flex;
+  flex-direction: row;
+}
+.date-select{
+  margin-left: 120px;
+}
+.calc-option-title{
+  margin-right: 90px;
+}
+.price-content {
+  display: flex;
+  justify-content: space-between;
+  
+  color: #0AAB00;
+  font-weight: 500;
+  background: #EAEAEA 0% 0% no-repeat padding-box;
+  opacity: 1;
+}
+.goServicePay-btn{
+  margin-top: 0px;
+}
+
+
+
 </style>
