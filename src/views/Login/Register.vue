@@ -25,8 +25,8 @@
           </li>
           <li>
               <ul class="cols">
-                  <li class="col1">닉네임</li>
-                  <li class="col2"><input type="text" id="nickname" v-model="dataSet.nickname" required></li>
+                  <li class="col1">이름</li>
+                  <li class="col2"><input type="text" id="name" v-model="dataSet.name" required></li>
               </ul>
           </li>
           <li>
@@ -41,13 +41,13 @@
                   <li class="col2">
                       <div class="radio-container">
                       <div class="radio-item">
-                          <span><input type="radio" class="radio" name="from" id="everytime">에브리타임</span>
-                          <span><input type="radio" class="radio" name="from" id="kakaotalk">학과 카카오톡 단톡방</span>
-                          <span><input type="radio" class="radio" name="from" id="search">인터넷 검색(구글 / 네이버 / 기타)</span>
+                          <span><input type="radio" class="radio" name="from" id="everytime" v-model="funnel" value="everytime">에브리타임</span>
+                          <span><input type="radio" class="radio" name="from" id="kakaotalk" v-model="funnel" value="kakaotalk">학과 카카오톡 단톡방</span>
+                          <span><input type="radio" class="radio" name="from" id="search" v-model="funnel" value="search">인터넷 검색(구글 / 네이버 / 기타)</span>
                       </div>
                       <div class="radio-item">
-                          <span><input type="radio" class="radio" name="from" id="blog">서베이지 네이버 블로그</span>                         
-                          <span><input type="radio" class="radio" name="from" id="instagram">서베이지 인스타그램</span>
+                          <span><input type="radio" class="radio" name="from" id="blog" v-model="funnel" value="blog">서베이지 네이버 블로그</span>                         
+                          <span><input type="radio" class="radio" name="from" id="instagram" v-model="funnel" value="instagram">서베이지 인스타그램</span>
                       </div>                      
                       </div>
                   </li>
@@ -71,7 +71,8 @@ export default {
               email:null,
               password:null,
               phoneNumber:null,
-              nickname:null   
+              name:null,
+              funnel:null,   
             }
             
         }
@@ -94,13 +95,13 @@ export default {
             console.log(dataSet)
             var db = this.$store.state.db
             await setDoc(doc(db, "userData", dataSet.email),{
-                nickname: dataSet.nickname,
+                name: dataSet.name,
                 email: dataSet.email,
                 phoneNumber: dataSet.phoneNumber,
                 isPanel: false,
-                name: null,
                 uploadIndex: [],
-                identity: 'hakbu'
+                identity: 'default',
+                funnel : dataSet.funnel
                 
                 
             })
