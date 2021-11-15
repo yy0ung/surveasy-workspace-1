@@ -87,16 +87,16 @@
           </div>
        
         <div class="discount-content">
-          <div class="calc-option-title">대학생/대학원생 할인</div>
+          <div class="calc-option-title" id="margin-right">대학생/대학원생 할인</div>
                
           <div class="select-discount">
             
-            <div>
+            <div class="radio">
               <input type="radio" id="one" name="discount" value="one" checked @click="discount(1)">
                <label for="one">대학생입니다.</label>
             </div>
 
-            <div>
+            <div class="radio">
               <input type="radio" id="two" name="discount" value="two" @click="discount(2)">
               <label for="two">대학원생입니다.</label>
             </div>
@@ -111,7 +111,7 @@
         
         
           <div class="price-content">
-            <div class="calc-option-title">총 금액</div>
+            <div class="calc-option-title" id="total">총 금액</div>
             <span class="service-option-totalprice-price">
               {{ Number(this.$store.state.priceTable[priceIdentity][priceSpendTime][priceRequireHeadCount])
                 +Number(this.$store.state.EngOptionArray[EngOptionCal])
@@ -119,8 +119,10 @@
           </div>
         
           
+           
+              <button id="go-btn" @click="setOption1()">설문 업로드하러 가기</button>
+        
             
-            <button class="goServicePay-btn" @click="setOption1()">설문 정보 입력하러 가기</button>
             
           
     </div>
@@ -315,7 +317,8 @@ export default {
   width: 900px;
   height: 580px;
   margin: 150px auto;
-  padding: 20px 30px;
+  padding-top: 20px;
+  padding-bottom: 30px;
   background-color: #fff;
   border-radius: 20px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, .33);
@@ -324,6 +327,9 @@ export default {
 }
 .calc-title {
   color: #0AAB00;
+  font-size: 1.18rem;
+  margin-bottom: 40px;
+  margin-left: 60px;
 }
 .modal-close-button {
   float: right;
@@ -332,13 +338,13 @@ export default {
   background-color: #fff;
   border: none;
   cursor: pointer;
+  padding-right: 30px;
+  
 }
-
 .respond-content {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
-  
+   
   width: 85%;
 }
 .pro-one {
@@ -421,16 +427,17 @@ export default {
   margin: 20px auto;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
- 
+  
   border-radius: 10px;
 }
 .calc-option-title {
   text-align: left;
   margin: 0px 10px 25px 10px;
   color: black;
-  font-size: 18px;
+  font-size: 1rem;
   font-weight: bold;
+  margin-bottom: 50px;
+  padding-left: 30px;
   
 }
 
@@ -459,19 +466,35 @@ export default {
   display: flex;
 
 }
+.date-content input{
+  margin-right: 10px;
+  padding: 5px 10px;
+  
+}
 .discount-content {
   display: flex;
 
 }
+.radio{
+  margin-right: 20px;
+} 
 .select-discount{
   display: flex;
   flex-direction: row;
+  
 }
 .date-select{
-  margin-left: 120px;
+  margin-left: 10px;
+}
+#margin-bottom{
+  margin-bottom: 30px;
 }
 .calc-option-title{
   margin-right: 90px;
+}
+#margin-right{
+  margin-right: 45px;
+  margin-bottom: 35px;
 }
 .price-content {
   display: flex;
@@ -481,9 +504,35 @@ export default {
   font-weight: 500;
   background: #EAEAEA 0% 0% no-repeat padding-box;
   opacity: 1;
+  width: 100%;
 }
-.goServicePay-btn{
-  margin-top: 0px;
+#total, .service-option-totalprice-price{
+  margin-top: 25px;
+  margin-bottom: 25px;
+  color: #0AAB00;
+}
+.service-option-totalprice-price{
+  margin-right: 50px;
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+#go-btn{
+  text-align: center;
+  letter-spacing: 0px;
+  color: #0AAC00;
+  background: #fff;
+  margin-top:20px;
+  border: 1px solid #0AAC00;
+  border-radius: 24px;
+  opacity: 1;
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-weight: 700;
+  
+}
+#go-btn:hover{
+  color: #fff;
+  background: #0AAC00;
 }
 
 
