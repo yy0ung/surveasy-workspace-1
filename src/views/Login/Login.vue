@@ -1,12 +1,15 @@
 <template>
 <div class="login">
-  <img class="checkimg" src="@/assets/check.png" width="50">
+  <img class="checkimg" src="@/assets/check.png" width="120">
   <div class="loginform">
     <li>
       <input type="email" placeholder="아이디 (이메일)" v-model="email">
     </li>
     <li>
       <input type="password" placeholder="비밀번호" v-model="password">
+    </li>
+    <li>
+      <div class="error">{{ error }}</div>
     </li>
     <li>
       <button class="loginbtn" @click="signIn">로그인하기</button>
@@ -34,7 +37,8 @@ export default {
   data(){
     return{
       email:'',
-      password:''
+      password:'', 
+      error: ''
     }
   },
 
@@ -60,7 +64,17 @@ export default {
           // 이 부분 alert 말고 다른 디자인 적용해도 좋을 듯.
           const errorCode = error.code;
           const errorMsg = error.message;
-          alert(errorCode)
+
+          console.log(errorCode)
+
+          if(error.code=="auth/invalid-email") {
+            this.error = "유효하지 않은 이메일 형식입니다."
+          }
+
+          if(error.code=="auth/wrong-password") {
+            this.error = "잘못된 비밀번호입니다."
+          }
+
         })
         
 
@@ -75,28 +89,37 @@ export default {
 <style>
 .login {
   margin: 100px;
+  height: 350px;
+}
+.checkimg {
+  margin-bottom: 15px;
 }
 .loginform li {
   list-style-type: none;
   margin: 10px;
 }
 .loginform li input {
-  width: 170px;
+  width: 200px;
+  height: 20px;
   border: none;
   padding: 4px;
-  margin: 7px;
-  font-size: 3px;
+  margin: 5px;
+  
   background-color: rgb(228, 228, 228);
 }
+.error {
+  color: rgb(225, 5, 5);
+  font-size: 10px;
+}
 .loginbtn {
-  width: 80px;
-  height: 20px;
-  margin: 5px;
+  width: 120px;
+  height: 30px;
+  margin: 20px;
   color:#0CAE02;
   background-color: #fff;
   border: 1.5px solid #0CAE02;
   border-radius: 30px;
-  font-size: 10px;
+  font-size: 13px;
   cursor: pointer;
 }
 .loginbtn:hover {
@@ -107,8 +130,11 @@ export default {
   margin: 20px;
 }
 .sublogin .sublogin-element {
-  font-size: 3px;
+  font-size: 12px;
+  margin: 20px;
+}
+a {
   text-decoration: none;
-  margin: 10px;
+  color: rgb(74, 74, 74);
 }
 </style>

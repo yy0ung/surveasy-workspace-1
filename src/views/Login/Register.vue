@@ -1,6 +1,6 @@
 <template>
 <div id="Register">
-  <h3 class="registertitle">회원가입</h3>
+  <h3 class="register-title">회원가입</h3>
   <form class="form-center">
 
           <li>
@@ -14,6 +14,7 @@
               <ul class="cols">
                   <li class="col1">비밀번호</li>
                   <li class="col2"><input type="password" id="password" v-model="dataSet.password" required></li>
+                  <div class="password-notice">* 8자리 이상의 비밀번호를 설정해주세요.</div>
                   
               </ul>
           </li>
@@ -41,7 +42,7 @@
                   <li class="col2">
                       <div class="radio-container">
                         <div class="radio-item">
-                            <span><input type="radio" class="radio" name="from" id="everytime" v-model="dataSet.funnel" value="everytime" >에브리타임</span>
+                            <span class="radio-text"><input type="radio" class="radio" name="from" id="everytime" v-model="dataSet.funnel" value="everytime" >에브리타임</span> 
                             <span><input type="radio" class="radio" name="from" id="kakaotalk" v-model="dataSet.funnel" value="kakaotalk">학과 카카오톡 단톡방</span>
                             <span><input type="radio" class="radio" name="from" id="search" v-model="dataSet.funnel" value="search">인터넷 검색(구글 / 네이버 / 기타)</span>
                         </div>
@@ -57,7 +58,7 @@
 
      </form>
      <!-- <button @click="addUserData(this.dataSet); create();"> 가입하기 </button> -->
-     <button @click="validateRegister(this.dataSet);"> 가입하기 </button>
+     <button class="register-btn" @click="validateRegister(this.dataSet);"> 회원가입하기 </button>
      
 </div>
 </template>
@@ -166,8 +167,13 @@ export default {
 </script>
 
 <style>
-.registertitle {
-    margin-top: 50px;
+#Register {
+    height: 600px;
+}
+.register-title {
+    margin-top: 70px;
+    margin-bottom: 50px;
+    font-size: 25px;
 }
 li {
     list-style-type: none;
@@ -179,33 +185,51 @@ li {
     display: inline-block;
 }
 .cols li.col1 {
-    width: 70px;
+    width: 85px;
     text-align: left;
-    padding: 10px;
-    font-size: 8px;
+    padding: 12px;
+    font-size: 13px;
 }
 
 .cols li.col2 {
-    width: 420px;
+    width: 450px;
     font-size: 8px;
 }
 .cols li.col2 input {
-    width: 250px;
+    width: 300px;
+    height: 23px;
     border: none;
     background-color: rgb(228, 228, 228);
 }
+.password-notice {
+    font-size: 2px;
+    color: grey;
+    margin-left: 5px;
+}
 .cols li.col2 input.radio {
-    width: 20px;
+    width: 14px;
 }
 .radio-container {
     display: flex;
-    margin-left: 75px;
+    margin-left: 67px;
+    
 }
 .radio-item {
     display: flex;
     flex-direction: column;
     text-align: left;
-    margin-right: 15px;
+    margin-right: 10px;
+    font-size: 11px;
 }
-
+.register-btn {
+  width: 120px;
+  height: 30px;
+  margin: 20px;
+  color:#0CAE02;
+  background-color: #fff;
+  border: 1.5px solid #0CAE02;
+  border-radius: 30px;
+  font-size: 13px;
+  cursor: pointer;
+}
 </style>
