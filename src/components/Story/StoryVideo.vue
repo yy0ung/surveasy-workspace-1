@@ -1,6 +1,8 @@
 <template>
   <div id="video-container">
-    <h1>video</h1>
+    
+    <iframe width="1000" height="562.4999999" src="https://www.youtube.com/embed/jbGBsBtyvhw" title="YouTube video player" frameborder="0" 
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
   </div>  
 </template>
 
@@ -15,6 +17,8 @@ export default {
     max-width: 1190px;
     margin-right: auto;
     margin-left: auto;
-    height: 900px;
+    height: 750px;
+    margin-top: 150px;
+    margin-bottom: 0;
   }
 </style>
