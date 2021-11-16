@@ -305,7 +305,7 @@ export default {
   position: absolute;
   top: 375px;
   left: 263px;
-  margin-right: 25px;
+  margin: 0 25px 0 0;
   font-size: 25px;
   font-weight: bold;
 }
