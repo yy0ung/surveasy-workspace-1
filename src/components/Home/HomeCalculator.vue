@@ -8,61 +8,61 @@
           <div class="respond-content">
             <span class="calc-option-title">요구 응답 수</span>
           
-          <div class="pro-one" :class="{active: priceRequireHeadCount>=1}">
-            <div class="step-counter" :class="{active: priceRequireHeadCount>=0}" @click="HeadCount(0)"></div>
-            <div class="step-name" :class="{active: priceRequireHeadCount>=0}">30명</div>
-          </div>
           <div class="pro-one" :class="{active: priceRequireHeadCount>=2}">
             <div class="step-counter" :class="{active: priceRequireHeadCount>=1}" @click="HeadCount(1)"></div>
-            <div class="step-name" :class="{active: priceRequireHeadCount>=1}">40명</div>
+            <div class="step-name" :class="{active: priceRequireHeadCount>=1}">30명</div>
           </div>
           <div class="pro-one" :class="{active: priceRequireHeadCount>=3}">
             <div class="step-counter" :class="{active: priceRequireHeadCount>=2}" @click="HeadCount(2)"></div>
-            <div class="step-name" :class="{active: priceRequireHeadCount>=2}">50명</div>
+            <div class="step-name" :class="{active: priceRequireHeadCount>=2}">40명</div>
           </div>
           <div class="pro-one" :class="{active: priceRequireHeadCount>=4}">
             <div class="step-counter" :class="{active: priceRequireHeadCount>=3}" @click="HeadCount(3)"></div>
-            <div class="step-name" :class="{active: priceRequireHeadCount>=3}">60명</div>
+            <div class="step-name" :class="{active: priceRequireHeadCount>=3}">50명</div>
           </div>
           <div class="pro-one" :class="{active: priceRequireHeadCount>=5}">
             <div class="step-counter" :class="{active: priceRequireHeadCount>=4}" @click="HeadCount(4)"></div>
-            <div class="step-name" :class="{active: priceRequireHeadCount>=4}">70명</div>
+            <div class="step-name" :class="{active: priceRequireHeadCount>=4}">60명</div>
           </div>
           <div class="pro-one" :class="{active: priceRequireHeadCount>=6}">
             <div class="step-counter" :class="{active: priceRequireHeadCount>=5}" @click="HeadCount(5)"></div>
-            <div class="step-name" :class="{active: priceRequireHeadCount>=5}">80명</div>
+            <div class="step-name" :class="{active: priceRequireHeadCount>=5}">70명</div>
           </div>
           <div class="pro-one" :class="{active: priceRequireHeadCount>=7}">
             <div class="step-counter" :class="{active: priceRequireHeadCount>=6}" @click="HeadCount(6)"></div>
-            <div class="step-name" :class="{active: priceRequireHeadCount>=6}">90명</div>
+            <div class="step-name" :class="{active: priceRequireHeadCount>=6}">80명</div>
           </div>
-          <div class="pro-one" id="one-last" :class="{active: priceRequireHeadCount==8}">
+          <div class="pro-one" :class="{active: priceRequireHeadCount>=8}">
             <div class="step-counter" :class="{active: priceRequireHeadCount>=7}" @click="HeadCount(7)"></div>
-            <div class="step-name" :class="{active: priceRequireHeadCount>=7}">100명</div>
+            <div class="step-name" :class="{active: priceRequireHeadCount>=7}">90명</div>
+          </div>
+          <div class="pro-one" id="one-last" :class="{active: priceRequireHeadCount==9}">
+            <div class="step-counter" :class="{active: priceRequireHeadCount>=8}" @click="HeadCount(8)"></div>
+            <div class="step-name" :class="{active: priceRequireHeadCount>=8}">100명</div>
           </div>
         </div>
 
         <div class="respond-content">
             <span class="calc-option-title">소요시간</span>
-          <div class="pro-one" :class="{active: priceSpendTime>=1}">
-            <div class="step-counter" :class="{active: priceSpendTime>=0}" @click="TimeCount(0)"></div>
-            <div class="step-name" :class="{active: priceSpendTime>=0}">1-3분</div>
-          </div>
           <div class="pro-one" :class="{active: priceSpendTime>=2}">
             <div class="step-counter" :class="{active: priceSpendTime>=1}" @click="TimeCount(1)"></div>
-            <div class="step-name" :class="{active: priceSpendTime>=1}">4-6분</div>
+            <div class="step-name" :class="{active: priceSpendTime>=1}">1-3분</div>
           </div>
           <div class="pro-one" :class="{active: priceSpendTime>=3}">
             <div class="step-counter" :class="{active: priceSpendTime>=2}" @click="TimeCount(2)"></div>
-            <div class="step-name" :class="{active: priceSpendTime>=2}">7-10분</div>
+            <div class="step-name" :class="{active: priceSpendTime>=2}">4-6분</div>
           </div>
           <div class="pro-one" :class="{active: priceSpendTime>=4}">
             <div class="step-counter" :class="{active: priceSpendTime>=3}" @click="TimeCount(3)"></div>
-            <div class="step-name" :class="{active: priceSpendTime>=3}">11-15분</div>
+            <div class="step-name" :class="{active: priceSpendTime>=3}">7-10분</div>
           </div>
-          <div class="pro-one" id="two-last" :class="{active: priceSpendTime>=5}">
+          <div class="pro-one" :class="{active: priceSpendTime>=5}">
             <div class="step-counter" :class="{active: priceSpendTime>=4}" @click="TimeCount(4)"></div>
-            <div class="step-name" :class="{active: priceSpendTime>=4}">16-20분</div>
+            <div class="step-name" :class="{active: priceSpendTime>=4}">11-15분</div>
+          </div>
+          <div class="pro-one" id="two-last" :class="{active: priceSpendTime>=6}">
+            <div class="step-counter" :class="{active: priceSpendTime>=5}" @click="TimeCount(5)"></div>
+            <div class="step-name" :class="{active: priceSpendTime>=5}">16-20분</div>
           </div>
           
         
@@ -147,9 +147,9 @@ export default {
    data() {
     return {
       currentTime : new Date(),
-      priceIdentity:0,
-      priceSpendTime:0,
-      priceRequireHeadCount:0,
+      priceIdentity:1,
+      priceSpendTime:1,
+      priceRequireHeadCount:1,
       addENTarget:0,
       timeOption:0,
 
@@ -288,8 +288,8 @@ export default {
     },
     clear(){
       this.priceIdentity = 0
-      this.priceRequireHeadCount = 0
-      this.priceSpendTime = 0
+      this.priceRequireHeadCount = 1
+      this.priceSpendTime = 1
       this.aa = ''
       this.bb = ''
       this.addENTarget =0
