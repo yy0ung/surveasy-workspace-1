@@ -60,6 +60,8 @@ export default {
           institute : dataset.institute,
           link : dataset.link,
           notice : dataset.notice,
+          account_userName : dataset.account_userName,
+          
           adminApproved : dataset.adminApproved,
           uploader : dataset.uploader,
           uploadTime : new Date(),
