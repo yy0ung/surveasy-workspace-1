@@ -10,6 +10,7 @@ import KnowHow from '../views/KnowHow.vue'
 import Story from '../views/Story.vue'
 import Contact from '../views/Contact.vue'
 import Login from '../views/Login/Login.vue'
+import Find from '../views/Login/Find.vue'
 import Register from '../views/Login/Register.vue'
 import MyPage from '../views/MyPage/MyPage.vue'
 import SurveyResponse from '../views/SurveyResponse.vue'
@@ -89,6 +90,11 @@ const routes = [
     path: '/login',
     name: 'Login',
     component: Login
+  },
+  {
+    path : '/find-pw',
+    name : 'Find',
+    component : Find
   },
   {
     path: '/register',

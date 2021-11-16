@@ -80,7 +80,7 @@ methods:{
 
   async updateApproved(payload) {
     var db = this.$store.state.db
-    const docref = doc(db, "adminRequired", payload.title.toString())
+    const docref = doc(db, "adminRequired", payload.id.toString())
 
     await updateDoc(docref ,{
       adminApproved : true
