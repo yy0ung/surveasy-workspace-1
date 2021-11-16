@@ -20,7 +20,7 @@
           <li>
               <ul class="cols">
                   <li class="col1">비밀번호 확인</li>
-                  <li class="col2"><input type="password" id="passwordcheck"  required></li>
+                  <li class="col2"><input type="password" id="passwordcheck" v-model="dataSet.passCheck" required></li>
               </ul>
           </li>
           <li>
@@ -40,15 +40,15 @@
                   <li class="col1">유입경로</li>
                   <li class="col2">
                       <div class="radio-container">
-                      <div class="radio-item">
-                          <span><input type="radio" class="radio" name="from" id="everytime" v-model="funnel" value="everytime">에브리타임</span>
-                          <span><input type="radio" class="radio" name="from" id="kakaotalk" v-model="funnel" value="kakaotalk">학과 카카오톡 단톡방</span>
-                          <span><input type="radio" class="radio" name="from" id="search" v-model="funnel" value="search">인터넷 검색(구글 / 네이버 / 기타)</span>
-                      </div>
-                      <div class="radio-item">
-                          <span><input type="radio" class="radio" name="from" id="blog" v-model="funnel" value="blog">서베이지 네이버 블로그</span>                         
-                          <span><input type="radio" class="radio" name="from" id="instagram" v-model="funnel" value="instagram">서베이지 인스타그램</span>
-                      </div>                      
+                        <div class="radio-item">
+                            <span><input type="radio" class="radio" name="from" id="everytime" v-model="dataSet.funnel" value="everytime" >에브리타임</span>
+                            <span><input type="radio" class="radio" name="from" id="kakaotalk" v-model="dataSet.funnel" value="kakaotalk">학과 카카오톡 단톡방</span>
+                            <span><input type="radio" class="radio" name="from" id="search" v-model="dataSet.funnel" value="search">인터넷 검색(구글 / 네이버 / 기타)</span>
+                        </div>
+                        <div class="radio-item">
+                            <span><input type="radio" class="radio" name="from" id="blog" v-model="dataSet.funnel" value="blog">서베이지 네이버 블로그</span>                         
+                            <span><input type="radio" class="radio" name="from" id="instagram" v-model="dataSet.funnel" value="instagram">서베이지 인스타그램</span>
+                        </div>                      
                       </div>
                   </li>
               </ul>
@@ -56,7 +56,9 @@
           
 
      </form>
-     <button @click="addUserData(this.dataSet); create();"> 가입하기 </button>
+     <!-- <button @click="addUserData(this.dataSet); create();"> 가입하기 </button> -->
+     <button @click="validateRegister(this.dataSet);"> 가입하기 </button>
+     
 </div>
 </template>
 
@@ -70,16 +72,64 @@ export default {
             dataSet:{
               email:null,
               password:null,
+              passCheck:null,
               phoneNumber:null,
               name:null,
-              funnel:null,   
-            }
+              funnel:null,
+                 
+            },
+
+            validReg : false,
             
         }
     }
     ,
     methods:{
         
+        validateRegister(dataSet){
+            var errCode = [];
+            
+            // 입력하지 않은 항목이 있는지 체크
+            for (var key in dataSet) {
+                if (key == null) {
+                    errCode.push(1)
+                }
+            }
+            if (dataSet.password !== dataSet.passCheck){
+                errCode.push(2)
+            }
+            if ((dataSet.password).length < 8) {
+                errCode.push(3)
+            }
+            //휴대폰번호 숫자만있는지 확인 (#Todo)
+            
+            if (errCode.length == 0 ){
+                this.validReg = true
+                this.addUserData(dataSet)
+                this.create()
+                
+            } else {
+                console.log(errCode)
+                var registerErrorMessage =[
+                "",
+                "입력하지 않은 항목이 있습니다. ",
+                "비밀번호 확인란을 올바르게 입력하세요. ",
+                "비밀번호는 8자 이상이여야 합니다.",
+
+                ]
+
+                var errMsgSum =''
+                for (var errMsg in errCode) {
+                    errMsgSum += registerErrorMessage[errMsg]
+                    console.log(errMsgSum)
+                }
+                console.log(errMsgSum)
+                alert(errMsgSum) //에러코드에 해당하는 내용 띄우기
+            }
+
+            
+        }
+        ,
         create(){
             const auth = getAuth();
             createUserWithEmailAndPassword(auth, this.dataSet.email, this.dataSet.password)
@@ -87,12 +137,12 @@ export default {
                     const user = userCredential.user;
                     console.log(user)
                 })
-            this.$router.push('/')
+            
             
         },
 
         async addUserData(dataSet){
-            console.log(dataSet)
+            
             var db = this.$store.state.db
             await setDoc(doc(db, "userData", dataSet.email),{
                 name: dataSet.name,
@@ -105,8 +155,12 @@ export default {
                 
                 
             })
-        }
-    }
+            this.$router.push('/')
+        },
+
+        
+    },
+    
 
 }
 </script>

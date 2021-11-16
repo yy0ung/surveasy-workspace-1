@@ -19,6 +19,7 @@ export default createStore({
     userData: [],
     surveyData: [],
     adminData: [],
+    
    
     priceTable: [
       [ [5000, 5000, 9000, 13000, 17000, 21000, 25000, 29000, 33000 ], 
