@@ -1,6 +1,6 @@
 <template>
 <div class="login">
-  <img class="checkimg" src="@/assets/check.png" width="120">
+  <img class="login-checkimg" src="@/assets/check.png" width="120">
   <div class="loginform">
     <li>
       <input type="email" placeholder="아이디 (이메일)" v-model="email">
@@ -91,7 +91,7 @@ export default {
   margin: 100px;
   height: 350px;
 }
-.checkimg {
+.login-checkimg {
   margin-bottom: 15px;
 }
 .loginform li {

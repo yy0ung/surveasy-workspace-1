@@ -66,6 +66,6 @@ export default {
   font-weight: bold;
 }
 .modal-close-button {
-  margin: 10px;
+  padding-right: 0;
 }
 </style>
