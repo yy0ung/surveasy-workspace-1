@@ -19,6 +19,7 @@ export default createStore({
     userData: [],
     surveyData: [],
     adminData: [],
+    adminDataIdentity:[],
     
    
     priceTable: [
@@ -84,6 +85,7 @@ export default createStore({
 
       adminApproved: false,
       uploader: '',
+      uploaderIdentity: '',
     }, 
 
     showLinkModal: false,
@@ -127,11 +129,14 @@ export default createStore({
     setSurveyMutation3(state, payload) {
       state.localSurveyState.account_userName = payload.account_userName
       state.localSurveyState.uploader = payload.uploader
+      state.localSurveyState.uploaderIdentity = payload.uploaderIdentity
     },
 
 
     setCurrentUserMutation(state, payload){
       state.currentUser = payload
+      console.log(state.currentUser)
+      console.log('currentUser가 설정되었습니다.')
       
     },
     logoutMutation(state){

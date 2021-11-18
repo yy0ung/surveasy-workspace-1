@@ -11,6 +11,8 @@
     <div v-if="this.$store.state.isAdmin">
       <p>admin이 true일때만 보이는 부분</p>
       <div>{{this.$store.state.adminData}}</div>
+      <hr>
+      <div>{{this.$store.state.adminDataIdentity}}</div>
       <div>
         <h2>CONFIRM ME !</h2>
           <table>
@@ -21,6 +23,7 @@
               <th>요구 응답</th>
               <th>마감 기한</th>
               <th>업로더</th>
+              <th>업로더 identity</th>
               <th>결제 확인</th>
               <th>확인 여부</th>
             </tr>
@@ -32,6 +35,7 @@
               <td>{{item.requiredHeadCount}}</td>
               <td>{{item.dueTime}}</td>
               <td>{{item.uploader}}</td>
+              <td>{{item.uploaderIdentity}}</td>
               <td><button @click="updateApproved(item)">결제 확인</button></td>
               <td>{{item.adminApproved}}</td>
             </tr>
@@ -39,6 +43,10 @@
 
 
 
+      </div>
+      <hr>
+      <div>
+        <h1>신분 인증 요청 !!!</h1>
       </div>
     </div>
   </div>
@@ -70,9 +78,15 @@ methods:{
   async fetchAdminData(){
     const db = this.$store.state.db
     const adminData = this.$store.state.adminData
+    const adminDataIdentity = this.$store.state.adminDataIdentity
     const querySnapshot = await getDocs(collection(db,"adminRequired"))
     querySnapshot.forEach((doc) => {
       adminData.push(doc.data())
+    })
+
+    const querySnapshot2 = await getDocs(collection(db, "identityVerifyRequired"))
+    querySnapshot2.forEach((doc) => {
+      adminDataIdentity.push(doc.data())
     })
       
     

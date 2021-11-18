@@ -30,7 +30,7 @@
       </div>
       <div v-else>
         <div class='my-dropdown'>
-          <p class="my-dropdown-btn">안녕하세요 {{this.$store.state.currentUser.nickname}}님</p>
+          <p class="my-dropdown-btn">안녕하세요 {{this.$store.state.currentUser.name}}님</p>
           <div class='my-dropdown-content' id="dropdown-margin">
             <router-link to="/mypage">마이페이지</router-link>
             <p @click="logout" id="logout-dropdown">로그아웃</p>

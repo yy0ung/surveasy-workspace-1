@@ -31,14 +31,18 @@ export default {
     return {
       accont_userName: '',
       uploader: '',
+      uploaderIdentity: '',
 
     }
   },
 
   methods: {
     setOption3() {
-      this.uploader = this.$store.state.currentUser.email
-      this.$store.commit('setSurveyMutation3', {account_userName: this.accont_userName, uploader: this.uploader})
+      this.uploader = this.$store.state.currentUser.name
+      this.uploaderIdentity = this.$store.state.currentUser.identity
+      console.log('identity: ',this.uploaderIdentity)
+
+      this.$store.commit('setSurveyMutation3', {account_userName: this.accont_userName, uploader: this.uploader, uploaderIdentity: this.uploaderIdentity})
       console.log(this.$store.state.localSurveyState)
     },
 
@@ -47,6 +51,7 @@ export default {
       var db = this.$store.state.db
       var localLastID = this.$store.state.lastID[0].lastID
       var currentUserEmail = await this.$store.state.currentUser.email
+      
       
         await setDoc(doc(db, "adminRequired", localLastID.toString()), {
           price : dataset.price,
@@ -61,6 +66,7 @@ export default {
           link : dataset.link,
           notice : dataset.notice,
           account_userName : dataset.account_userName,
+          uploaderIdentity: dataset.uploaderIdentity,
           
           adminApproved : dataset.adminApproved,
           uploader : dataset.uploader,
