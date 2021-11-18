@@ -1,8 +1,9 @@
 <template>
 <div>
   <h1>비밀번호 재설정</h1>
+  <p>{{resetEmail}}</p>
   <input type="text" v-model="resetEmail">
-  <button @click="resetPassword">비번재설정하깅~</button>
+  <button @click="resetPassword(this.resetEmail)">비번재설정하깅~</button>
 
 </div>
   
@@ -17,16 +18,16 @@ export default {
     }
   },
   methods :{
-    resetPassword(){
+    resetPassword(email){
       const auth = getAuth();
       sendPasswordResetEmail(auth, email)
         .then(() => {
-        // Password reset email sent!
-        // ..
+          alert('비밀번호 재설정 메일을 보냈습니다!')
          })
         .catch((error) => {
           const errorCode = error.code;
           const errorMessage = error.message;
+          alert(errorCode)
         // ..
         });
       }

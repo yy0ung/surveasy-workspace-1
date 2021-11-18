@@ -113,7 +113,7 @@ export default {
             var currentUserEmail = this.$store.state.currentUser.email
             
             
-            this.$store.commit('setSurveyMutation2', {title: this.title, target: this.target, institute: this.institute, link: this.link, notice: this.notice, uploader: this.$store.state.currentUser.email});
+            this.$store.commit('setSurveyMutation2', {title: this.title, target: this.target, institute: this.institute, link: this.link, notice: this.notice, uploader: this.$store.state.currentUser.name});
             console.log(this.$store.state.localSurveyState)
             
             await setDoc(doc(db, "adminRequired", localLastID.toString()), {

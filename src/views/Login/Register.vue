@@ -106,8 +106,9 @@ export default {
             
             if (errCode.length == 0 ){
                 this.validReg = true
-                this.addUserData(dataSet)
                 this.create()
+                this.addUserData(dataSet)
+                
                 
             } else {
                 console.log(errCode)
