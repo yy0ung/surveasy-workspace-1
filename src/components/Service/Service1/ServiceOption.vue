@@ -162,7 +162,6 @@ export default {
         EngIndex = 2
         this.EngText = "영어 설문입니다."
       }
-      console.log(EngIndex)
       return EngIndex
     }
   },
@@ -198,13 +197,6 @@ export default {
         this.$router.push('/servicepay');
       
 
-
-        console.log(this.$store.state.localSurveyState.price);
-        console.log(this.$store.state.localSurveyState.identity);
-        console.log(this.$store.state.localSurveyState.spendTime);
-        console.log(this.$store.state.localSurveyState.requiredHeadCount);
-        console.log(this.$store.state.localSurveyState.ENTarget);
-        console.log(this.$store.state.localSurveyState.dueTime);
         }
         
       }

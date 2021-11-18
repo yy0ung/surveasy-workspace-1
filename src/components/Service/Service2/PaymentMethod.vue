@@ -19,7 +19,7 @@
           <p>{{ this.$props.title }}</p>
         </div>
       </ul>
-      <button class="Payment-btn" @click="sendToAdmin(this.$store.state.localSurveyState)">결제하기</button>
+      <button class="Payment-btn" @click="payDone()">결제하기</button>
     </div>
   </div>  
 </template>
@@ -44,6 +44,18 @@ export default {
 
       this.$store.commit('setSurveyMutation3', {account_userName: this.accont_userName, uploader: this.uploader, uploaderIdentity: this.uploaderIdentity})
       console.log(this.$store.state.localSurveyState)
+    },
+
+    payDone() {
+      if(this.$store.state.localSurveyState.title=='' || this.$store.state.localSurveyState.target=='' || this.$store.state.localSurveyState.institute=='' || this.$store.state.localSurveyState.link=='') {
+        alert('필수 설문 정보를 모두 입력해주세요.')
+        console.log('if')
+      }
+
+      else {
+        this.sendToAdmin(this.$store.state.localSurveyState)
+        console.log('else')
+      }
     },
 
 
@@ -88,9 +100,9 @@ export default {
         console.log("fin")
 
         this.$router.push('/servicepaydone')
+      }
 
 
-    }
 
   },
 
