@@ -9,10 +9,7 @@
     <p>{{passInput}}</p>
     <p>{{this.$store.state.isAdmin}}</p>
     <div v-if="this.$store.state.isAdmin">
-      <p>admin이 true일때만 보이는 부분</p>
-      <div>{{this.$store.state.adminData}}</div>
-      <hr>
-      <div>{{this.$store.state.adminDataIdentity}}</div>
+      
       <div>
         <h2>CONFIRM ME !</h2>
           <table>
@@ -47,13 +44,38 @@
       <hr>
       <div>
         <h1>신분 인증 요청 !!!</h1>
+        <hr>
+        <div>{{this.$store.state.adminDataIdentity}}</div>
+        <table>
+          <tr>
+            <th>name</th>
+            <th>email</th>
+            <th>요청 identity</th>
+            <th>수락 여부</th>
+            <th>수락하기</th>
+          </tr>
+
+          <tr v-for="item in (this.$store.state.adminDataIdentity)" :key="item.requestName">
+            <td>{{item.requestName}}</td>
+            <td>{{item.requestEmail}}</td>
+            <td>{{item.requestIdentity}}</td>
+            <td>{{item.requestApproved}}</td>
+            <td><button @click="requestIdentityApprove(item)">확인</button></td>
+
+          </tr>
+        </table>
+      </div>
+
+      <div>
+        <h1>B2B ~!~!~!</h1>
+        <p>{{this.$store.state.adminDataB2B}}</p>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import { getFirestore,collection, getDocs, updateDoc, doc } from 'firebase/firestore'
+import { getFirestore,collection, getDocs, updateDoc, doc, deleteDoc } from 'firebase/firestore'
 //어드민 페이지 접근을 어떻게 해야할지 고민중..
 //일단은 어드민 주소는 접근은 가능하되 비번을 맞게 쳐야 뒤에 부분들이 보이게 하려고함.
 export default {
@@ -79,14 +101,22 @@ methods:{
     const db = this.$store.state.db
     const adminData = this.$store.state.adminData
     const adminDataIdentity = this.$store.state.adminDataIdentity
+    const adminDataB2B = this.$store.state.adminDataB2B
+    // 설문 확인 데이터 받기
     const querySnapshot = await getDocs(collection(db,"adminRequired"))
     querySnapshot.forEach((doc) => {
       adminData.push(doc.data())
     })
 
+    // 신분 전환 요청 데이터 받기
     const querySnapshot2 = await getDocs(collection(db, "identityVerifyRequired"))
     querySnapshot2.forEach((doc) => {
       adminDataIdentity.push(doc.data())
+    })
+
+    const querySnapshot3 = await getDocs(collection(db, "B2BData"))
+    querySnapshot3.forEach((doc) => {
+      adminDataB2B.push(doc.data())
     })
       
     
@@ -102,6 +132,18 @@ methods:{
     this.$store.state.adminData = [];
     this.fetchAdminData()
 
+  },
+
+  async requestIdentityApprove(payload){
+    var db = this.$store.state.db
+    const docref = doc(db, "userData", payload.requestEmail.toString())
+    
+
+    await updateDoc(docref, {
+      identity: payload.requestIdentity
+    })
+
+    await deleteDoc(doc(db, "identityVerifyRequired", payload.requestEmail.toString())).then(alert('ok')) 
   }
 }
 

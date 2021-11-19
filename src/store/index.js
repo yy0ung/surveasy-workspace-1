@@ -20,6 +20,7 @@ export default createStore({
     surveyData: [],
     adminData: [],
     adminDataIdentity:[],
+    adminDataB2B:[],
     
    
     priceTable: [
