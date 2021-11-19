@@ -87,6 +87,7 @@ export default {
     ,
     methods:{
         
+        
         validateRegister(dataSet){
             var errCode = [];
             
@@ -103,6 +104,18 @@ export default {
                 errCode.push(3)
             }
             //휴대폰번호 숫자만있는지 확인 (#Todo)
+            if((dataSet.phoneNumber).length!=11){
+                errCode.push(4)
+               
+            }
+            if(isNaN(dataSet.phoneNumber)==true){
+                 console.log('false')
+                 errCode.push(5)
+            }
+            if((dataSet.phoneNumber).includes('.')==true){
+                console.log('integer')
+                errCode.push(6)
+            }
             
             if (errCode.length == 0 ){
                 this.validReg = true
