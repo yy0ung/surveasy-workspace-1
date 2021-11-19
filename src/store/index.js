@@ -15,6 +15,7 @@ export default createStore({
       measurementId: "G-9XLHWG8GKQ",
     },
     isLoggedIn:false,
+    notLoggedInService: true,
     db: null,
     userData: [],
     surveyData: [],

@@ -58,7 +58,17 @@ export default {
           this.$store.dispatch('setCurrentUser', {
             payload: auth.currentUser.email
           })
-          this.$router.push('/')
+
+          if(this.$store.state.notLoggedInService==false) {
+            console.log('옵션 살리면서 로그인 성공')
+            this.$router.push('/servicepay')
+          }
+
+          if(this.$store.state.notLoggedInService==true) {
+            console.log('걍')
+            this.$router.push('/')
+          }
+
         })
         .catch((error) => {
           // 이 부분 alert 말고 다른 디자인 적용해도 좋을 듯.

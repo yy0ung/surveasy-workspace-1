@@ -42,13 +42,7 @@ export default {
     },
 
     goService() {
-      if(this.$store.state.isLoggedIn==true) {
-        this.$router.push('/service')
-      } 
-      else {
-        alert('로그인이 필요한 서비스입니다.')
-        this.$router.push('/login')
-      }
+      this.$router.push('/service') 
     }
   }
 
