@@ -162,7 +162,6 @@ export default {
         EngIndex = 2
         this.EngText = "영어 설문입니다."
       }
-      console.log(EngIndex)
       return EngIndex
     }
   },
@@ -195,16 +194,20 @@ export default {
         this.$store.commit('setSurveyMutation1', {price: this.price, requiredHeadCount: this.requiredHeadCount, 
         spendTime: this.spendTime, dueTime: this.dueTime, ENTarget: this.ENTarget, identity: this.identity});
 
-        this.$router.push('/servicepay');
+        if(this.$store.state.isLoggedIn==false) {
+          alert('로그인이 필요한 서비스입니다.')
+          this.$store.state.notLoggedInService = false
+          console.log('notLoggedInService')
+          this.$router.push('/login')
+          
+        }
+        if(this.$store.state.isLoggedIn==true) {
+          this.$router.push('/servicepay');
+          console.log('isLoggedInService')
+        }
+        
       
 
-
-        console.log(this.$store.state.localSurveyState.price);
-        console.log(this.$store.state.localSurveyState.identity);
-        console.log(this.$store.state.localSurveyState.spendTime);
-        console.log(this.$store.state.localSurveyState.requiredHeadCount);
-        console.log(this.$store.state.localSurveyState.ENTarget);
-        console.log(this.$store.state.localSurveyState.dueTime);
         }
         
       }

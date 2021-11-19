@@ -12,7 +12,7 @@
       <p><img class="checkimg" src="@/assets/check.png" width="25"> 설문조사 <span id="list-green">의뢰, 업로드, 결제</span>까지 원스톱으로 편리하게</p>
     </div>
     <div class="HomeMainContent-btns">
-      <router-link to="/service"><button class="HomeMainContent-btn" id="response-btn">서비스 이용하기</button></router-link>
+      <button class="HomeMainContent-btn" id="response-btn" @click="goService()">서비스 이용하기</button>
       <button class="HomeMainContent-btn" id="calculator-btn" @click="handle_Modal()">내 설문은 얼마일까?</button>
       <HomeCalculator :showCalculator="showCalculator" @close="handle_Modal()" />
     </div>
@@ -39,6 +39,10 @@ export default {
   methods: {
     handle_Modal() {
       this.showCalculator = !this.showCalculator
+    },
+
+    goService() {
+      this.$router.push('/service') 
     }
   }
 
