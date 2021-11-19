@@ -104,18 +104,11 @@ export default {
                 errCode.push(3)
             }
             //휴대폰번호 숫자만있는지 확인 (#Todo)
-            if((dataSet.phoneNumber).length!=11){
+            if((dataSet.phoneNumber).length!=11 || isNaN(dataSet.phoneNumber)==true || (dataSet.phoneNumber).includes('.')==true){
                 errCode.push(4)
                
             }
-            if(isNaN(dataSet.phoneNumber)==true){
-                 console.log('false')
-                 errCode.push(5)
-            }
-            if((dataSet.phoneNumber).includes('.')==true){
-                console.log('integer')
-                errCode.push(6)
-            }
+            
             
             if (errCode.length == 0 ){
                 this.validReg = true
@@ -125,21 +118,30 @@ export default {
                 
             } else {
                 console.log(errCode)
+                console.log(dataSet)
                 var registerErrorMessage =[
                 "",
-                "입력하지 않은 항목이 있습니다. ",
-                "비밀번호 확인란을 올바르게 입력하세요. ",
+                "입력하지 않은 항목이 있습니다.",
+                "비밀번호 확인란을 올바르게 입력하세요.",
                 "비밀번호는 8자 이상이여야 합니다.",
+                "휴대폰 번호를 올바르게 입력하세요.",
+                
 
                 ]
-
-                var errMsgSum =''
-                for (var errMsg in errCode) {
-                    errMsgSum += registerErrorMessage[errMsg]
-                    console.log(errMsgSum)
+                
+                
+                var errArr =[]
+               
+                for(var i=0; i<errCode.length; i++){
+                    errArr.push(registerErrorMessage[errCode[i]])
+                    
                 }
-                console.log(errMsgSum)
-                alert(errMsgSum) //에러코드에 해당하는 내용 띄우기
+                console.log(errArr)
+                var msg = ''
+                for(var err in errArr){
+                    msg+=errArr[err]+"\n"
+                }
+                alert(msg) //에러코드에 해당하는 내용 띄우기
             }
 
             
