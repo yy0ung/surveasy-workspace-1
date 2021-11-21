@@ -37,7 +37,10 @@ export default {
     
     HomeBrandStory,
     
-  }
+  },
+  mounted() {
+    window.scrollTo(0,0)
+  },
 }
 </script>
 

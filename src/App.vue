@@ -10,7 +10,7 @@
             <i class="fas fa-chevron-down"></i>
           </span>
         </span>        
-        <div class="my-dropdown-content">
+        <div class="my-dropdown-content" id="service-dropdown">
           <router-link to="/service">설문 응답 서비스</router-link>
           <router-link to="/surveytemplate">설문 템플릿</router-link>
         </div>
@@ -29,10 +29,10 @@
         <router-link to="/login"><span class="nav-element" >LOGIN</span></router-link> 
       </div>
       <div v-else>
-        <div class='my-dropdown'>
+        <div class="my-dropdown">
           <p class="my-dropdown-btn">안녕하세요 {{this.$store.state.currentUser.name}}님</p>
-          <div class='my-dropdown-content' id="dropdown-margin">
-            <router-link to="/mypage">마이페이지</router-link>
+          <div class="my-dropdown-content" id="dropdown-margin">
+            <p @click="goMypage">마이페이지</p>
             <p @click="logout" id="logout-dropdown">로그아웃</p>
             
           </div>
@@ -172,6 +172,9 @@ export default {
     },
     handleFAQ(){
       this.$store.state.FAQbutton=0
+    },
+    goMypage(){
+      this.$router.push('/mypage')
     }
   }
 }
@@ -319,23 +322,28 @@ body {
     padding: 15px;
     color: #42b983;
   }
+  #service-dropdown{
+    margin-left: 30px;
+    margin-top: 7px;
+  }
 
   .my-dropdown{
     position: relative;
     display: inline-block;
+    
   }
   .my-dropdown .my-dropdown-btn{
     white-space:nowrap;
   }
   .my-dropdown:hover .my-dropdown-content{
     display: block;
-    margin-top:7px;
-    margin-left: 25px;
+    
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .33);
   }
 
   .my-dropdown-content a {
   color: black;
-  padding: 12px 16px;
+  
   text-decoration: none;
   display: block;
 }
@@ -345,6 +353,7 @@ body {
     display: none;
     position: absolute;
     background-color: #f9f9f9;
+    margin-left: 10px;
   }
   .my-dropdown:hover #dropdown-margin{
     margin-top: 0;
@@ -353,16 +362,18 @@ body {
   .my-dropdown-content p {
     cursor: pointer;
     color: black;
-    padding: 12px 16px;
+    margin: 0;
     text-decoration: none;
     display: block;
     font-weight: bold;
+    padding: 12px 16px;
+    text-align: center;
   }
   .my-dropdown-content p:hover {
     background-color: #aaa;
   }
   .my-dropdown-content #logout-dropdown{
-    padding: 10px 16px;
+    
   }
 
   #site-map-container{
