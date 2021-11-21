@@ -168,7 +168,8 @@ export default {
                 isPanel: false,
                 uploadIndex: [],
                 identity: 'default',
-                funnel : dataSet.funnel
+                funnel : dataSet.funnel,
+                respondArray: [],
                 
                 
             })
