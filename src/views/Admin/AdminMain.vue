@@ -23,6 +23,7 @@
               <th>업로더 identity</th>
               <th>결제 확인</th>
               <th>확인 여부</th>
+              <th>duetime</th>
             </tr>
 
             <tr v-for="item in (this.$store.state.adminData)" :key="item.title">
@@ -35,6 +36,7 @@
               <td>{{item.uploaderIdentity}}</td>
               <td><button @click="updateApproved(item)">결제 확인</button></td>
               <td>{{item.adminApproved}}</td>
+              <td>{{item.dueDate+' '+item.dueTimeTime}}</td>
             </tr>
           </table>
 

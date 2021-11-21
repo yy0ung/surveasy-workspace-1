@@ -83,7 +83,10 @@ export default {
           adminApproved : dataset.adminApproved,
           uploader : dataset.uploader,
           uploadTime : new Date(),
-          id : localLastID
+          id : localLastID,
+          dueDate: dataset.dueDate,
+          dueTimeTime: dataset.dueTimeTime,
+          dueTimeTimeTime: dataset.dueTimeTimeTime
                 
         })
 
@@ -97,7 +100,7 @@ export default {
           uploadIndex: arrayUnion(localLastID)
         })
 
-        console.log("fin")
+        console.log(dataset)
 
         this.$router.push('/servicepaydone')
       }

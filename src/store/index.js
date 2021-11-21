@@ -23,6 +23,7 @@ export default createStore({
     adminDataIdentity:[],
     adminDataB2B:[],
     
+    
    
     priceTable: [
       [ [5000, 5000, 9000, 13000, 17000, 21000, 25000, 29000, 33000 ], 
@@ -88,6 +89,10 @@ export default createStore({
       adminApproved: false,
       uploader: '',
       uploaderIdentity: '',
+
+      dueDate: '',
+      dueTimeTime: '',
+      dueTimeTimeTime: '',
     }, 
 
     showLinkModal: false,
@@ -118,6 +123,8 @@ export default createStore({
       state.localSurveyState.requiredHeadCount = payload.requiredHeadCount,
       state.localSurveyState.dueTime = payload.dueTime,
       state.localSurveyState.ENTarget = payload.ENTarget
+      state.localSurveyState.dueDate = payload.dueDate
+      state.localSurveyState.dueTimeTime = payload.dueTimeTime
     },
     
     setSurveyMutation2(state, payload){
@@ -147,6 +154,13 @@ export default createStore({
     },
     setAdminState(state){
       state.isAdmin = true
+    },
+
+    setSurveyDueTime(state,payload){
+      var dttt = payload.dueDate + '' + payload.dueTime
+      
+      state.localSurveyState.dueTimeTimeTime = new Date(dttt).getTime()
+      console.log(state.localSurveyState.dueTimeTimeTime)
     }
   },
   actions: {
