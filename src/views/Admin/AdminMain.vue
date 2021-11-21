@@ -11,6 +11,7 @@
     <div v-if="this.$store.state.isAdmin">
       
       <div>
+        <!-- <p>{{computedAdmin}}</p> -->
         <h2>CONFIRM ME !</h2>
           <table>
             <tr>
@@ -24,6 +25,7 @@
               <th>결제 확인</th>
               <th>확인 여부</th>
               <th>duetime</th>
+              <th>업로드시간</th>
             </tr>
 
             <tr v-for="item in (this.$store.state.adminData)" :key="item.title">
@@ -36,7 +38,8 @@
               <td>{{item.uploaderIdentity}}</td>
               <td><button @click="updateApproved(item)">결제 확인</button></td>
               <td>{{item.adminApproved}}</td>
-              <td>{{item.dueDate+' '+item.dueTimeTime}}</td>
+              <td>{{item.dueTimeTimeTime}}</td>
+              <td>{{item.uploadTime}}</td>
             </tr>
           </table>
 
@@ -84,6 +87,7 @@ export default {
 data(){
   return{
     passInput:'',
+    nowDate: Date.now(),
   }
 },
 methods:{
@@ -146,8 +150,17 @@ methods:{
     })
 
     await deleteDoc(doc(db, "identityVerifyRequired", payload.requestEmail.toString())).then(alert('ok')) 
+  },
+
+  
+  
+  
+},
+
+computed:{
+    
   }
-}
+
 
 }
 </script>

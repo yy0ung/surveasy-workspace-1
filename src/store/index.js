@@ -157,9 +157,9 @@ export default createStore({
     },
 
     setSurveyDueTime(state,payload){
-      var dttt = payload.dueDate + '' + payload.dueTime
+      var dttt = payload.dueDate + ' ' + payload.dueTime
       
-      state.localSurveyState.dueTimeTimeTime = new Date(dttt).getTime()
+      state.localSurveyState.dueTimeTimeTime = new Date(dttt)
       console.log(state.localSurveyState.dueTimeTimeTime)
     }
   },
