@@ -25,8 +25,10 @@ import PaymentMethod from '../../components/Service/Service2/PaymentMethod.vue'
 
 export default {
 
-  components: { OptionInfo, SurveyInfo, Coupon, PaymentPrice, PaymentMethod }
-
+  components: { OptionInfo, SurveyInfo, Coupon, PaymentPrice, PaymentMethod },
+  mounted() {
+    window.scrollTo(0,0)
+  },
 }
 </script>
 
