@@ -22,6 +22,8 @@ export default createStore({
     adminData: [],
     adminDataIdentity:[],
     adminDataB2B:[],
+
+    adminCoupon: [],
     
    
     priceTable: [
@@ -89,6 +91,7 @@ export default createStore({
       uploader: '',
       uploaderIdentity: '',
     }, 
+
 
     showLinkModal: false,
     goServiceInputForm: false,
