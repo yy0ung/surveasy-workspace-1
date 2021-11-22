@@ -22,6 +22,9 @@ export default createStore({
     adminData: [],
     adminDataIdentity:[],
     adminDataB2B:[],
+
+    adminCoupon: [],
+    myCoupon: [],
     
     
    
@@ -94,6 +97,7 @@ export default createStore({
       dueTimeTime: '',
       dueTimeTimeTime: '',
     }, 
+
 
     showLinkModal: false,
     goServiceInputForm: false,

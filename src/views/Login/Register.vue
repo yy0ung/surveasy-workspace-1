@@ -10,6 +10,7 @@
 
               </ul>
           </li>
+
           <li>
               <ul class="cols">
                   <li class="col1">비밀번호</li>
@@ -18,37 +19,56 @@
                   
               </ul>
           </li>
+
           <li>
               <ul class="cols">
                   <li class="col1">비밀번호 확인</li>
                   <li class="col2"><input type="password" id="passwordcheck" v-model="dataSet.passCheck" required></li>
               </ul>
           </li>
+
           <li>
               <ul class="cols">
                   <li class="col1">이름</li>
                   <li class="col2"><input type="text" id="name" v-model="dataSet.name" required></li>
               </ul>
           </li>
+
           <li>
               <ul class="cols">
                   <li class="col1">휴대폰 번호</li>
                   <li class="col2"><input type="tel" id="tel" v-model="dataSet.phoneNumber" required></li>
               </ul>
           </li>
+
           <li>
               <ul class="cols">
                   <li class="col1">유입경로</li>
                   <li class="col2">
-                      <div class="radio-container">
-                        <div class="radio-item">
-                            <span class="radio-text"><input type="radio" class="radio" name="from" id="everytime" v-model="dataSet.funnel" value="everytime" >에브리타임</span> 
-                            <span><input type="radio" class="radio" name="from" id="kakaotalk" v-model="dataSet.funnel" value="kakaotalk">학과 카카오톡 단톡방</span>
-                            <span><input type="radio" class="radio" name="from" id="search" v-model="dataSet.funnel" value="search">인터넷 검색(구글 / 네이버 / 기타)</span>
+                    <div class="radio-container">
+                        <div class="radio-column">
+                            <div class="radio-option">
+                                <input type="radio" class="radio" name="from" id="everytime" v-model="dataSet.funnel" value="everytime" >
+                                <label class="radio-text">에브리타임</label> 
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" class="radio" name="from" id="kakaotalk" v-model="dataSet.funnel" value="kakaotalk">
+                                <label>학과 카카오톡 단톡방</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" class="radio" name="from" id="search" v-model="dataSet.funnel" value="search">
+                                <label>인터넷 검색(구글 / 네이버 / 기타)</label>
+                            </div>
                         </div>
-                        <div class="radio-item">
-                            <span><input type="radio" class="radio" name="from" id="blog" v-model="dataSet.funnel" value="blog">서베이지 네이버 블로그</span>                         
-                            <span><input type="radio" class="radio" name="from" id="instagram" v-model="dataSet.funnel" value="instagram">서베이지 인스타그램</span>
+                        <div class="radio-column">
+                            <div class="radio-option">
+                                <input type="radio" class="radio" name="from" id="blog" v-model="dataSet.funnel" value="blog">
+                                <label>서베이지 네이버 블로그</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" class="radio" name="from" id="instagram" v-model="dataSet.funnel" value="instagram">
+                                <label>서베이지 인스타그램</label>
+                            </div>
                         </div>                      
                       </div>
                   </li>
@@ -205,14 +225,14 @@ li {
     display: inline-block;
 }
 .cols li.col1 {
-    width: 85px;
+    width: 95px;
     text-align: left;
     padding: 12px;
-    font-size: 13px;
+    font-size: 15px;
 }
 
 .cols li.col2 {
-    width: 450px;
+    width: 520px;
     font-size: 8px;
 }
 .cols li.col2 input {
@@ -222,24 +242,31 @@ li {
     background-color: rgb(228, 228, 228);
 }
 .password-notice {
-    font-size: 2px;
+    font-size: 5px;
     color: grey;
     margin-left: 5px;
 }
 .cols li.col2 input.radio {
-    width: 14px;
+    width: 15px;
+    margin: 0 20px 0 5px;
 }
 .radio-container {
     display: flex;
-    margin-left: 67px;
-    
+    flex-direction: row;
+    width: 500px;
+    margin-left: 105px;
+    font-size: 13px;
 }
-.radio-item {
+.radio-column {
     display: flex;
     flex-direction: column;
     text-align: left;
-    margin-right: 10px;
-    font-size: 11px;
+    margin-right: 20px;
+}
+.radio-option {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 5px;
 }
 .register-btn {
   width: 120px;

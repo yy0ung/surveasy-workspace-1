@@ -86,6 +86,10 @@ export default {
             this.error = "유효하지 않은 이메일 형식입니다."
           }
 
+          if(error.code=="auth/user-not-found") {
+            this.error = "가입되지 않은 이메일 주소입니다."
+          }
+
           if(error.code=="auth/wrong-password") {
             this.error = "잘못된 비밀번호입니다."
           }

@@ -12,9 +12,6 @@ export default {
   data() {
 
   },
-  mounted() {
-    window.scrollTo(0,0)
-  },
   methods: {
     yesFunc() {
       this.$router.push('/servicepaydone')
