@@ -11,10 +11,12 @@
     <div v-if="this.$store.state.isAdmin">
       
       <div>
+        <!-- <p>{{computedAdmin}}</p> -->
         <h2>CONFIRM ME !</h2>
           <table>
             <tr>
               <th>ID</th>
+              <th>주문번호</th>
               <th>제목</th>
               <th>가격</th>
               <th>요구 응답</th>
@@ -23,10 +25,13 @@
               <th>업로더 identity</th>
               <th>결제 확인</th>
               <th>확인 여부</th>
+              <th>duetime</th>
+              
             </tr>
 
             <tr v-for="item in (this.$store.state.adminData)" :key="item.title">
               <td>{{item.id}}</td>
+              <td>{{item.orderNum}}</td>
               <td>{{item.title}}</td>
               <td>{{item.price}}</td>
               <td>{{item.requiredHeadCount}}</td>
@@ -35,6 +40,8 @@
               <td>{{item.uploaderIdentity}}</td>
               <td><button @click="updateApproved(item)">결제 확인</button></td>
               <td>{{item.adminApproved}}</td>
+              <td>{{item.dueTimeTimeTime}}</td>
+              
             </tr>
           </table>
 
@@ -45,7 +52,7 @@
       <div>
         <h1>신분 인증 요청 !!!</h1>
         <hr>
-        <div>{{this.$store.state.adminDataIdentity}}</div>
+        
         <table>
           <tr>
             <th>name</th>
@@ -68,7 +75,23 @@
 
       <div>
         <h1>B2B ~!~!~!</h1>
-        <p>{{this.$store.state.adminDataB2B}}</p>
+       
+        <table>
+          <tr>
+            <th>company</th>
+            <th>email</th>
+            <th>name</th>
+            <th>응답 여부</th>
+          </tr>
+
+          <tr v-for="item in (this.$store.state.adminDataB2B)" :key="item.name">
+            <td>{{item.company}}</td>
+            <td>{{item.email}}</td>
+            <td>{{item.name}}</td>
+            <td>{{item.isresponded}}</td>
+
+          </tr>
+        </table>
       </div>
     </div>
   </div>
@@ -82,6 +105,7 @@ export default {
 data(){
   return{
     passInput:'',
+    nowDate: Date.now(),
   }
 },
 methods:{
@@ -144,8 +168,17 @@ methods:{
     })
 
     await deleteDoc(doc(db, "identityVerifyRequired", payload.requestEmail.toString())).then(alert('ok')) 
+  },
+
+  
+  
+  
+},
+
+computed:{
+    
   }
-}
+
 
 }
 </script>

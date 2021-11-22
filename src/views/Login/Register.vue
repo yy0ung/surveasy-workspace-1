@@ -105,6 +105,9 @@ export default {
         }
     }
     ,
+    mounted() {
+    window.scrollTo(0,0)
+  },
     methods:{
         
         
@@ -188,7 +191,8 @@ export default {
                 isPanel: false,
                 uploadIndex: [],
                 identity: 'default',
-                funnel : dataSet.funnel
+                funnel : dataSet.funnel,
+                respondArray: [],
                 
                 
             })

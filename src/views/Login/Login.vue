@@ -41,6 +41,9 @@ export default {
       error: ''
     }
   },
+  mounted() {
+    window.scrollTo(0,0)
+  },
 
   methods:{
     signIn(){
@@ -58,6 +61,8 @@ export default {
           this.$store.dispatch('setCurrentUser', {
             payload: auth.currentUser.email
           })
+          // .then(this.$store.dispatch('setUploadInfo', {
+          // }))
 
           if(this.$store.state.notLoggedInService==false) {
             console.log('옵션 살리면서 로그인 성공')

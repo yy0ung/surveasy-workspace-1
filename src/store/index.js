@@ -25,6 +25,7 @@ export default createStore({
 
     adminCoupon: [],
     
+    
    
     priceTable: [
       [ [5000, 5000, 9000, 13000, 17000, 21000, 25000, 29000, 33000 ], 
@@ -90,6 +91,10 @@ export default createStore({
       adminApproved: false,
       uploader: '',
       uploaderIdentity: '',
+
+      dueDate: '',
+      dueTimeTime: '',
+      dueTimeTimeTime: '',
     }, 
 
 
@@ -106,6 +111,7 @@ export default createStore({
     isAdmin: false,
     AdminPassword: 1111,
     lastID : [],
+    currentUserUploadInfo:[],
   },
 
   mutations: {
@@ -121,6 +127,8 @@ export default createStore({
       state.localSurveyState.requiredHeadCount = payload.requiredHeadCount,
       state.localSurveyState.dueTime = payload.dueTime,
       state.localSurveyState.ENTarget = payload.ENTarget
+      state.localSurveyState.dueDate = payload.dueDate
+      state.localSurveyState.dueTimeTime = payload.dueTimeTime
     },
     
     setSurveyMutation2(state, payload){
@@ -150,7 +158,18 @@ export default createStore({
     },
     setAdminState(state){
       state.isAdmin = true
-    }
+    },
+
+    setSurveyDueTime(state,payload){
+      var dttt = payload.dueDate + ' ' + payload.dueTime
+      
+      state.localSurveyState.dueTimeTimeTime = new Date(dttt)
+      console.log(state.localSurveyState.dueTimeTimeTime)
+    },
+
+    // setCurrentUserUploadInfo(state, payload){
+    //   state.currentUserUploadInfo.push(payload)
+    // }
   },
   actions: {
     async setCurrentUser({state, commit}, payload){
@@ -165,6 +184,22 @@ export default createStore({
 
       // console.log(docSnap.data());
     },
+
+    // async setUploadInfo({state, commit}){
+    //   console.log('setuploadinfo시작')
+    //   const db = state.db
+    //   const uploadIndex = state.currentUser['uploadIndex']
+    //   console.log(uploadIndex)
+
+    //   for (var index in uploadIndex){
+    //     var docRef = doc(db, "adminRequired", uploadIndex[index].toString())
+    //     var docSnap = await getDoc(docRef)
+    //       .then((data) => {
+    //         commit('setCurrentUserUploadInfo', data.data())
+    //       })
+
+    //   }
+    // },
 
     logout({commit}){
       commit('logoutMutation')
