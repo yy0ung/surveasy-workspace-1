@@ -24,6 +24,8 @@ import MemberInfo from '../components/Contact/MemberInfo.vue'
 import PaymentInfo from '../components/Contact/Payment.vue'
 import FinalModal from '../components/Contact/ContactFinalModal.vue'
 import AdminMain from '../views/Admin/AdminMain.vue'
+import CouponAdmin from '../views/Admin/CouponAdmin.vue'
+
 
 const routes = [
   {
@@ -125,6 +127,11 @@ const routes = [
     path: '/adminmain',
     name: 'AdminMain',
     component: AdminMain
+  },
+  {
+    path: '/couponadmin',
+    name: 'CouponAdmin',
+    component: CouponAdmin
   }
 ]
 

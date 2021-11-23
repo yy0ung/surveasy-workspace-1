@@ -61,6 +61,8 @@ export default {
           this.$store.dispatch('setCurrentUser', {
             payload: auth.currentUser.email
           })
+          // .then(this.$store.dispatch('setUploadInfo', {
+          // }))
 
           if(this.$store.state.notLoggedInService==false) {
             console.log('옵션 살리면서 로그인 성공')
@@ -82,6 +84,10 @@ export default {
 
           if(error.code=="auth/invalid-email") {
             this.error = "유효하지 않은 이메일 형식입니다."
+          }
+
+          if(error.code=="auth/user-not-found") {
+            this.error = "가입되지 않은 이메일 주소입니다."
           }
 
           if(error.code=="auth/wrong-password") {

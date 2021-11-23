@@ -63,6 +63,8 @@ export default {
       var db = this.$store.state.db
       var localLastID = this.$store.state.lastID[0].lastID
       var currentUserEmail = await this.$store.state.currentUser.email
+      var nowDate= new Date()
+      var orderNum = nowDate.getFullYear().toString().substring(2,4) + (nowDate.getMonth()+1).toString() + nowDate.getDate().toString() + localLastID
       
       
         await setDoc(doc(db, "adminRequired", localLastID.toString()), {
@@ -87,7 +89,9 @@ export default {
           dueDate: dataset.dueDate,
           dueTimeTime: dataset.dueTimeTime,
           dueTimeTimeTime: dataset.dueTimeTimeTime,
-          
+
+          orderNum: orderNum
+
                 
         })
 
