@@ -96,7 +96,9 @@ export default createStore({
       dueDate: '',
       dueTimeTime: '',
       dueTimeTimeTime: '',
-    }, 
+      
+    },
+     
 
 
     showLinkModal: false,
@@ -130,6 +132,7 @@ export default createStore({
       state.localSurveyState.ENTarget = payload.ENTarget
       state.localSurveyState.dueDate = payload.dueDate
       state.localSurveyState.dueTimeTime = payload.dueTimeTime
+     
     },
     
     setSurveyMutation2(state, payload){
@@ -164,13 +167,11 @@ export default createStore({
     setSurveyDueTime(state,payload){
       var dttt = payload.dueDate + ' ' + payload.dueTime
       
-      state.localSurveyState.dueTimeTimeTime = new Date(dttt)
+      
+      
+      state.localSurveyState.dueTimeTimeTime= new Date(dttt);
       console.log(state.localSurveyState.dueTimeTimeTime)
-    },
 
-    // setCurrentUserUploadInfo(state, payload){
-    //   state.currentUserUploadInfo.push(payload)
-    // }
   },
   actions: {
     async setCurrentUser({state, commit}, payload){
