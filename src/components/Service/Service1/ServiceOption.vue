@@ -191,10 +191,12 @@ export default {
         this.identity = String(this.$store.state.priceTextTable[4][this.priceIdentity]);
       
       
-        this.$store.commit('setSurveyMutation1', {price: this.price, requiredHeadCount: this.requiredHeadCount, 
+        this.$store.commit('setSurveyMutation1', {price: this.price, beforeCouponPrice: this.price, requiredHeadCount: this.requiredHeadCount, 
         spendTime: this.spendTime, dueTime: this.dueTime, ENTarget: this.ENTarget, identity: this.identity, dueDate: this.aa, dueTimeTime: this.bb});
 
         this.$store.commit('setSurveyDueTime', {dueDate: this.aa, dueTime: this.bb})
+
+       
 
         if(this.$store.state.isLoggedIn==false) {
           alert('로그인이 필요한 서비스입니다.')

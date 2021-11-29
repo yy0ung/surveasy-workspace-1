@@ -6,9 +6,9 @@
       <ul id="Coupon-detail">
         <ul class="Coupon-detail-text">쿠폰</ul>
           <select class="Coupon-selectbox" v-model="selectedCoupon">
-            <option>사용 가능 쿠폰 0장 / 전체 2장</option>
+            <option class="Coupon-option" v-for="item in (this.$store.state.myCoupon)" v-bind:value="{code: item.code, rate: item.rate}" :key="item">{{ item.name }}</option>
           </select>
-          <button class="Coupon-btn">쿠폰 적용</button>
+          <button class="Coupon-btn" @click="useCoupon()">쿠폰 적용</button>
       </ul>
 
     </div>
@@ -16,11 +16,62 @@
 </template>
 
 <script>
+import { doc, setDoc, collection, getDocs, updateDoc } from '@firebase/firestore'
 export default {
   data() {
     return {
-      selectedCoupon: ''
+      selectedCoupon: '',
+
+      selectedCoupon: {
+        code: '',
+        rate: 0
+      }, 
     }
+  },
+
+  methods: {
+    async fetchAdminData_coupon() {
+     const db = this.$store.state.db
+     
+     const adminCoupon = this.$store.state.adminCoupon
+     
+     const querySnapshot = await getDocs(collection(db, "couponData"))
+     querySnapshot.forEach((doc) => {
+       adminCoupon.push(doc.data())
+     })
+
+     const myCoupon = adminCoupon.filter(item => item.user===this.$store.state.currentUser.email && item.isUsed===false)
+     this.$store.state.myCoupon = myCoupon
+     console.log(this.$store.state.myCoupon)
+   },
+
+    async isUsed() {
+      var db = this.$store.state.db
+      const docref = doc(db, "couponData", this.selectedCoupon.code)
+
+      await updateDoc(docref, { 
+          isUsed: true
+        })
+
+      this.$store.state.adminCoupon = []
+      this.fetchAdminData_coupon()
+    },
+
+    useCoupon() {
+      this.$store.state.localSurveyState.beforeCouponPrice = this.$store.state.localSurveyState.price
+      
+      if(this.selectedCoupon.rate == 5) {
+        this.$store.state.localSurveyState.couponDiscount = this.$store.state.localSurveyState.price * 0.05
+        this.$store.state.localSurveyState.price = this.$store.state.localSurveyState.price * 0.95
+      }
+
+      if(this.selectedCoupon.rate == 10) {
+        this.$store.state.localSurveyState.couponDiscount = this.$store.state.localSurveyState.price * 0.1
+        this.$store.state.localSurveyState.price = this.$store.state.localSurveyState.price* 0.9
+      }
+      
+      this.isUsed()
+    },
   }
 
 }
@@ -74,13 +125,19 @@ export default {
   border: 0.75px solid #BCBCBC;
   opacity: 1;
   background-color: #EEEEEE;
+  font-size: 17px;
+  padding: 12px;
+}
+.Coupon-option {
+  padding: 10px;
+  font-size: 17px;
 }
 .Coupon-btn {
   background-color: #EEEEEE;
   border: 1px solid #0CAE02;
   width: 112px;
   height: 46px;
-  margin-left: 40px;
+  margin-left: 28px;
   color: #0CAE02;
   font-size: 15px;
   font-weight: 800;
