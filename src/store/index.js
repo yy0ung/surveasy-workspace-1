@@ -27,6 +27,7 @@ export default createStore({
     myCoupon: [],
     
     
+    
    
     priceTable: [
       [ [5000, 5000, 9000, 13000, 17000, 21000, 25000, 29000, 33000 ], 
@@ -96,6 +97,9 @@ export default createStore({
       dueDate: '',
       dueTimeTime: '',
       dueTimeTimeTime: '',
+
+      beforeCouponPrice:0,
+      couponDiscount:0,
       
     },
      
@@ -125,6 +129,7 @@ export default createStore({
 
     setSurveyMutation1(state, payload) {
       state.localSurveyState.price = payload.price,
+      state.localSurveyState.beforeCouponPrice = payload.beforeCouponPrice,
       state.localSurveyState.identity = payload.identity,
       state.localSurveyState.spendTime = payload.spendTime,
       state.localSurveyState.requiredHeadCount = payload.requiredHeadCount,
@@ -171,6 +176,7 @@ export default createStore({
       
       state.localSurveyState.dueTimeTimeTime= new Date(dttt);
       console.log(state.localSurveyState.dueTimeTimeTime)
+    },
 
   },
   actions: {
@@ -208,7 +214,7 @@ export default createStore({
     }
   },
   modules: {
-  },
+  }
 //   plugins: [
 //     createPersistedState({
 //       // paths : ['isLoggedIn', 'currentUser']

@@ -12,7 +12,7 @@
         </div>
         <div class="option">
           <ul id="showOption-title">마감 기한 지정</ul>
-          <ul id="showOption-value">{{ this.$store.state.localSurveyState.dueTime }}</ul>
+        <ul id="showOption-value">{{ this.$store.state.localSurveyState.dueDate }}    {{ this.$store.state.localSurveyState.dueTimeTime }}</ul>
         </div>
         <div class="option">
           <ul id="showOption-title">영어 설문 여부</ul>

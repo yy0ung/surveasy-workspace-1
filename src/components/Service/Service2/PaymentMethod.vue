@@ -107,7 +107,14 @@ export default {
 
         console.log(dataset)
 
-        this.$router.push('/servicepaydone')
+        if(this.$store.state.localSurveyState.identity=='할인 대상이 아닙니다.' ) {
+          this.$router.push('/servicepaydone')
+        }
+
+        else {
+          this.$router.push('/serviceidentity')
+        }
+        
       }
 
 
