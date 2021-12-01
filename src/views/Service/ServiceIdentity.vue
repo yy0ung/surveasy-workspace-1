@@ -32,35 +32,40 @@ export default {
 
 <style>
 .ServiceIdentity {
-  height: 400px;
+  height: 500px;
 }
 .identity-title {
-  margin-top: 100px;
-  font-size: 20px;
-  font-weight: bold;
+  font-family: 'Noto Sans KR', sans-serif;
+  margin-top: 140px;
+  font-size: 25px;
   color:#0CAE02;
+  
 }
 .identity-detail {
-  font-size: 13px;
-  font-weight: bold;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 17px;
+  font-weight: 500;
   margin-top: 20px;
 }
 .identity-btn {
-  width: 130px;
-  height: 31px;
-  margin-top: 50px;
+  font-family: 'Noto Sans KR', sans-serif;
+  width: 181px;
+  height: 47px;
+  margin-top: 65px;
   color:#0CAE02;
   background-color: white;
-  border: 1.5px solid #0CAE02;
+  border: 1px solid #0CAE02;
   border-radius: 30px;
-  font-size: 12px;
-  font-weight: bold;
+  font-size: 19px;
+  font-weight: lighter;
   cursor: pointer;
 }
 .already-text {
-  margin: 30px;
-  font-size: 10px;
+  font-family: 'Noto Sans KR', sans-serif;
+  margin: 45px;
+  font-size: 15px;
   color: grey;
+  font-weight: lighter;
   text-decoration-line: underline;
   cursor: pointer;
 }
