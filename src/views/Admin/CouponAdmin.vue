@@ -74,6 +74,16 @@
     <div>결제금액: {{ this.price }}원</div>
     <br>
     <button @click="isUsed()">쿠폰 사용 완료</button>
+
+    <br><br><br><br>
+    <div>전달할 쿠폰을 선택하세요.</div>
+    <select v-model="transferCoupon">
+      <option v-for="item in (this.$store.state.myCoupon)" v-bind:value="{code: item.code, rate: item.rate}" :key="item">{{ item.name }}</option>
+    </select>
+    <br>
+    <input type="text" v-model="receiver" placeholder="쿠폰을 받을 사용자의 이메일을 입력하시오."> 
+    <br>
+    <button @click="transferCP(transferCoupon)">쿠폰 전달하기</button>
   </div>
 </div>
 
@@ -101,7 +111,13 @@ export default {
         code: '',
         rate: 0
       },        
-      price: 10000
+      price: 10000,
+      
+      receiver: '',
+      transferCoupon: {
+        code: '',
+      },
+
     }
   },
 
@@ -186,6 +202,36 @@ export default {
 
       this.$store.state.adminCoupon = []
       this.fetchAdminData_coupon()
+    },
+
+    async transferCP(transferCoupon) {
+      var db = this.$store.state.db
+      var validCoupon = false
+      const docref = doc(db, "couponData", this.transferCoupon.code)
+      
+    
+      for(var i=0 ; i<this.$store.state.adminCoupon.length ; i++) {
+        if(this.$store.state.adminCoupon[i].code == transferCoupon.code 
+        && this.$store.state.adminCoupon[i].isUsed==false) {
+          validCoupon = true
+        }
+      }
+
+      if(validCoupon == true) {
+        await updateDoc(docref, { 
+          user: this.receiver
+        })
+        console.log(this.receiver)
+      }
+
+      else {
+        alert('유효하지 않은 쿠폰입니다.')
+      }
+
+      this.receiver = ''
+
+      this.$store.state.adminCoupon = []
+      this.fetchAdminData_coupon()
     }
 
     
@@ -213,5 +259,8 @@ export default {
 }
 .coupon-use {
   margin: 20px;
+}
+.coupon-use input {
+  width: 260px;
 }
 </style>
