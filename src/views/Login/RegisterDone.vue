@@ -1,0 +1,52 @@
+<template>
+<div id="RegisterDone">
+  <img class="login-checkimg" src="@/assets/check.png" width="110">
+  <p>Survey를 Easy하게,<br> Surveasy의 
+    회원이 되신 것을 환영합니다!</p>
+  
+  <div class="button">
+    <router-link to="/service">
+      <button class="goButton">설문 의뢰하러가기</button>
+    </router-link>
+    
+    <router-link to="/service">
+      <button class="goButton">서베이지 패널 되기</button>
+    </router-link>
+    
+  </div>
+</div>
+</template>
+
+<script>
+export default {
+
+}
+</script>
+
+<style>
+#RegisterDone{
+  height: 400px;
+  margin-top: 100px;
+  
+}
+#RegisterDone p{
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 1.2rem;
+}
+.button .goButton{
+  padding: 5px 30px;
+  margin: 20px;
+  color:#0CAE02;
+  background-color: #fff;
+  border: 1.5px solid #0CAE02;
+  border-radius: 30px;
+  font-size: 13px;
+  cursor: pointer;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 1rem;
+}
+.button .goButton:hover{
+  color: white;
+    background-color:#0CAE02;
+}
+</style>

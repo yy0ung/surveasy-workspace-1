@@ -13,6 +13,7 @@ import Contact from '../views/Contact.vue'
 import Login from '../views/Login/Login.vue'
 import Find from '../views/Login/Find.vue'
 import Register from '../views/Login/Register.vue'
+import RegisterDone from '../views/Login/RegisterDone.vue'
 import MyPage from '../views/MyPage/MyPage.vue'
 import SurveyResponse from '../views/SurveyResponse.vue'
 import MyInfo from '../components/MyPage/MyInfo.vue'
@@ -108,6 +109,11 @@ const routes = [
     path: '/register',
     name: 'Register',
     component: Register
+  },
+  {
+    path: '/registerdone',
+    name: 'RegisterDone',
+    component: RegisterDone
   },
   {
     path: '/mypage',
