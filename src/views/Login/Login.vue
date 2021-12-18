@@ -1,6 +1,6 @@
 <template>
 <div class="login">
-  <img class="login-checkimg" src="@/assets/check.png" width="120">
+  <img class="login-checkimg" src="@/assets/check.png" width="110">
   <div class="loginform">
     <li>
       <input type="email" placeholder="아이디 (이메일)" v-model="email">
@@ -127,6 +127,8 @@ export default {
 .login {
   margin: 100px;
   height: 350px;
+
+
 }
 .login-checkimg {
   margin-bottom: 15px;
@@ -136,28 +138,38 @@ export default {
   margin: 10px;
 }
 .loginform li input {
-  width: 200px;
-  height: 20px;
-  border: none;
+  width: 360px;
+  height: 30px;
   padding: 4px;
+  padding-left: 10px;
   margin: 5px;
+  border: 1.5px solid rgb(44, 37, 37);
+  border-radius: 4px;
+  opacity: 1;
+  color: #848484;
+  font: normal normal 300 17px/20px Noto Sans KR;
+  font-size: 0.8rem;
   
-  background-color: rgb(228, 228, 228);
+}
+.loginform li input:focus{
+  outline: none;
+  border: 1.5px solid #0AAB00;
+  
 }
 .error {
   color: rgb(225, 5, 5);
   font-size: 10px;
 }
 .loginbtn {
-  width: 120px;
-  height: 30px;
+  padding: 5px 30px;
   margin: 20px;
   color:#0CAE02;
   background-color: #fff;
   border: 1.5px solid #0CAE02;
   border-radius: 30px;
-  font-size: 13px;
+  font-size: 1rem;
   cursor: pointer;
+  font-family: 'Noto Sans KR', sans-serif;
 }
 .loginbtn:hover {
   background-color: #0CAE02;
@@ -165,9 +177,11 @@ export default {
 }
 .sublogin {
   margin: 20px;
+  font-family: 'Noto Sans KR', sans-serif;
+  
 }
 .sublogin .sublogin-element {
-  font-size: 12px;
+  font-size: 0.8rem;
   margin: 20px;
 }
 a {

@@ -1,3 +1,4 @@
+
 import { createStore } from 'vuex'
 import { doc, getDoc } from 'firebase/firestore'
 import createPersistedState from 'vuex-persistedstate'

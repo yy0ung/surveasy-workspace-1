@@ -1,11 +1,11 @@
 <template>
 <div id="Register">
-  <h3 class="register-title">회원가입</h3>
-  <form class="form-center">
 
+  <form class="form-center">
+        <p class="register-title"><span id="green">서베이지</span> 회원가입</p>
           <li>
               <ul class="cols">
-                  <li class="col1">이메일 주소</li>
+                  <li class="col1">이메일 주소*</li>
                   <li class="col2"><input type="email" id="email" v-model="dataSet.email" required></li>
 
               </ul>
@@ -13,7 +13,7 @@
 
           <li>
               <ul class="cols">
-                  <li class="col1">비밀번호</li>
+                  <li class="col1">비밀번호*</li>
                   <li class="col2"><input type="password" id="password" v-model="dataSet.password" required></li>
                   <div class="password-notice">* 8자리 이상의 비밀번호를 설정해주세요.</div>
                   
@@ -22,28 +22,35 @@
 
           <li>
               <ul class="cols">
-                  <li class="col1">비밀번호 확인</li>
+                  <li class="col1">비밀번호 확인*</li>
                   <li class="col2"><input type="password" id="passwordcheck" v-model="dataSet.passCheck" required></li>
               </ul>
           </li>
 
           <li>
               <ul class="cols">
-                  <li class="col1">이름</li>
-                  <li class="col2"><input type="text" id="name" v-model="dataSet.name" required></li>
+                  <li class="col1">이름*</li>
+                  <li class="col2"><input type="text" id="name" v-model="dataSet.name" required placeholder="꼭 실명을 작성해주세요."></li>
               </ul>
           </li>
 
           <li>
               <ul class="cols">
-                  <li class="col1">휴대폰 번호</li>
-                  <li class="col2"><input type="tel" id="tel" v-model="dataSet.phoneNumber" required></li>
+                  <li class="col1">휴대폰 번호*</li>
+                  <li class="col2"><input type="tel" id="tel" v-model="dataSet.phoneNumber" required placeholder="- 없이 입력해주세요."></li>
+              </ul>
+          </li>
+          <li>
+              <ul class="cols">
+                  <li class="col1">생년월일*</li>
+                  <li class="col2"><input type="tel" id="birth" v-model="dataSet.birth" required placeholder="ex. 20220101"></li>
+                 
               </ul>
           </li>
 
           <li>
               <ul class="cols">
-                  <li class="col1">유입경로</li>
+                  <li class="col1">유입경로*</li>
                   <li class="col2">
                     <div class="radio-container">
                         <div class="radio-column">
@@ -53,30 +60,44 @@
                             </div>
                             <div class="radio-option">
                                 <input type="radio" class="radio" name="from" id="kakaotalk" v-model="dataSet.funnel" value="kakaotalk">
-                                <label>학과 카카오톡 단톡방</label>
+                                <label>카카오톡 단톡방</label>
                             </div>
                             <div class="radio-option">
                                 <input type="radio" class="radio" name="from" id="search" v-model="dataSet.funnel" value="search">
                                 <label>인터넷 검색(구글 / 네이버 / 기타)</label>
                             </div>
+                            <div class="radio-option">
+                                <input type="radio" class="radio" name="from" id="etc" v-model="dataSet.funnel" value="instagram">
+                                <label>기타 </label>
+                            </div>
                         </div>
                         <div class="radio-column">
                             <div class="radio-option">
                                 <input type="radio" class="radio" name="from" id="blog" v-model="dataSet.funnel" value="blog">
-                                <label>서베이지 네이버 블로그</label>
+                                <label>네이버 블로그</label>
                             </div>
                             <div class="radio-option">
                                 <input type="radio" class="radio" name="from" id="instagram" v-model="dataSet.funnel" value="instagram">
-                                <label>서베이지 인스타그램</label>
+                                <label>인스타그램</label>
                             </div>
-                        </div>                      
+                            <div class="radio-option">
+                                <input type="radio" class="radio" name="from" id="facebook" v-model="dataSet.funnel" value="instagram">
+                                <label>페이스북</label>
+                            </div>
+                            
+                        </div> 
                       </div>
+                    <!-- 약관부분 다시 -->
+                      <div class="radio-column">
+                            <div class="all"><input type="checkbox">전체 동의하기</div>
+                        </div>                     
                   </li>
               </ul>
           </li>
           
 
      </form>
+     <br>
      <!-- <button @click="addUserData(this.dataSet); create();"> 가입하기 </button> -->
      <button class="register-btn" @click="validateRegister(this.dataSet);"> 회원가입하기 </button>
      
@@ -97,6 +118,7 @@ export default {
               phoneNumber:null,
               name:null,
               funnel:null,
+              birth:null
                  
             },
 
@@ -132,12 +154,15 @@ export default {
                
             }
             
+            if((dataSet.birth).length!=8){
+                errCode.push(5)
+            }
             
             if (errCode.length == 0 ){
                 this.validReg = true
                 this.create()
                 this.addUserData(dataSet)
-                
+                this.$router.push('/registerdone')
                 
             } else {
                 console.log(errCode)
@@ -148,6 +173,7 @@ export default {
                 "비밀번호 확인란을 올바르게 입력하세요.",
                 "비밀번호는 8자 이상이여야 합니다.",
                 "휴대폰 번호를 올바르게 입력하세요.",
+                "생년월일을 올바르게 입력하세요."
                 
 
                 ]
@@ -208,26 +234,35 @@ export default {
 
 <style>
 #Register {
-    height: 600px;
+    height: 1200px;
+    font-family: 'Noto Sans KR', sans-serif;
+    display: block;
+    text-align: center;
 }
 .register-title {
     margin-top: 70px;
     margin-bottom: 50px;
-    font-size: 25px;
+    font-size: 2rem;
+    text-align: left;
+    margin-left: 40px;
+    
+}
+.register-title #green{
+    color: #0AAB00;
+}
+.form-center{
+    display: inline-block;
+    
+    
 }
 li {
     list-style-type: none;
 }
-.form-center {
-    position: center;
-}
-.cols li {
-    display: inline-block;
-}
+
 .cols li.col1 {
     width: 95px;
     text-align: left;
-    padding: 12px;
+    margin-bottom: 10px;
     font-size: 15px;
 }
 
@@ -236,15 +271,23 @@ li {
     font-size: 8px;
 }
 .cols li.col2 input {
-    width: 300px;
-    height: 23px;
-    border: none;
-    background-color: rgb(228, 228, 228);
+  width: 580px;
+  height: 30px;
+  padding: 3px;
+  margin-bottom: 15px;
+  border: 1px solid #848484;
+  border-radius: 4px;
+  opacity: 1;
+  color: #848484;
+  font: normal normal 300 17px/20px Noto Sans KR;
+  font-size: 0.8rem;
+  padding-left: 15px;
 }
 .password-notice {
     font-size: 5px;
     color: grey;
-    margin-left: 5px;
+    text-align: left;
+    margin-bottom: 10px;
 }
 .cols li.col2 input.radio {
     width: 15px;
@@ -252,9 +295,9 @@ li {
 }
 .radio-container {
     display: flex;
-    flex-direction: row;
+    
     width: 500px;
-    margin-left: 105px;
+    
     font-size: 13px;
 }
 .radio-column {
@@ -269,8 +312,7 @@ li {
     margin-bottom: 5px;
 }
 .register-btn {
-  width: 120px;
-  height: 30px;
+  padding: 5px 30px;
   margin: 20px;
   color:#0CAE02;
   background-color: #fff;
@@ -278,5 +320,11 @@ li {
   border-radius: 30px;
   font-size: 13px;
   cursor: pointer;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 1rem;
+}
+.register-btn:hover{
+    color: white;
+    background-color:#0CAE02;
 }
 </style>

@@ -41,7 +41,7 @@
               <td><button @click="updateApproved(item)">결제 확인</button></td>
               <td>{{item.adminApproved}}</td>
 
-
+              
               <td>{{item.dueTimeTimeTime}}</td>
               
 
