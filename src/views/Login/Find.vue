@@ -31,6 +31,10 @@ export default {
       sendPasswordResetEmail(auth, email)
         .then(() => {
           alert('비밀번호 재설정 메일을 보냈습니다!')
+          if(confirm){
+            this.$router.push('/login')
+          }
+          
           
          })
         .catch((error) => {
@@ -40,6 +44,7 @@ export default {
           
         // ..
         });
+      
         
       }
   }

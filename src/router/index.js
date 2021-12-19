@@ -105,6 +105,7 @@ const routes = [
     name : 'Find',
     component : Find
   },
+  
   {
     path: '/register',
     name: 'Register',
