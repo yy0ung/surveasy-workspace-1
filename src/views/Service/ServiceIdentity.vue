@@ -3,7 +3,9 @@
     <div class="identity-title">대학생 및 대학원생 인증을 진행하시겠습니까?</div>
     <div class="identity-detail">대학(원)생 인증을 완료하셔야 대학(원)생 할인이 적용됩니다. </div>
     <a  href="http://pf.kakao.com/_xfialK/chat" target="_blank"><button class="identity-btn" @click="yesFunc()">인증하러 가기</button></a>
-    <div class="already-text" @click="noFunc()">이미 마이페이지에서 인증 요청을 완료하였습니다.</div>
+
+    <p class="identity-done" @click="noFunc()">이미 마이페이지에서 인증 요청을 완료했습니다.</p>
+
   </div>
 </template>
 
@@ -31,42 +33,43 @@ export default {
 </script>
 
 <style>
-.ServiceIdentity {
-  height: 500px;
+
+.ServiceIdentity{
+  height: 400px;
+  margin-top: 150px;
+  font-family: 'Noto Sans KR', sans-serif;
 }
 .identity-title {
-  font-family: 'Noto Sans KR', sans-serif;
-  margin-top: 140px;
-  font-size: 25px;
-  color:#0CAE02;
-  
+  font-size: 2rem;
+  font-weight: bold;
+  color: #0AAB00;
+  margin-bottom: 35px;
+
 }
-.identity-detail {
-  font-family: 'Noto Sans KR', sans-serif;
-  font-size: 17px;
-  font-weight: 500;
-  margin-top: 20px;
+.identity-detail{
+  font-size: 1.2rem;
 }
 .identity-btn {
-  font-family: 'Noto Sans KR', sans-serif;
-  width: 181px;
-  height: 47px;
-  margin-top: 65px;
+  padding: 10px 30px;
+  margin-top: 50px;
+  margin-bottom: 20px;
   color:#0CAE02;
   background-color: white;
   border: 1px solid #0CAE02;
   border-radius: 30px;
-  font-size: 19px;
-  font-weight: lighter;
+  font-size: 1.1rem;
+  font-weight: 700;
+  font-family: 'Noto Sans KR', sans-serif;
   cursor: pointer;
 }
-.already-text {
-  font-family: 'Noto Sans KR', sans-serif;
-  margin: 45px;
-  font-size: 15px;
-  color: grey;
-  font-weight: lighter;
-  text-decoration-line: underline;
+.identity-btn:hover{
+  color: white;
+  background-color: #0CAE02;
+}
+.identity-done{
+  color: #b4afaf;
+  text-decoration: underline;
+
   cursor: pointer;
 }
 </style>

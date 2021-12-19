@@ -120,6 +120,8 @@ export default createStore({
     AdminPassword: 1111,
     lastID : [],
     currentUserUploadInfo:[],
+
+    
   },
 
   mutations: {
