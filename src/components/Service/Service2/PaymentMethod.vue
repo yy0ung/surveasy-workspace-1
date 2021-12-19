@@ -69,6 +69,8 @@ export default {
       
         await setDoc(doc(db, "adminRequired", localLastID.toString()), {
           price : dataset.price,
+          beforeCouponPrice : dataset.beforeCouponPrice,
+          couponDiscount : dataset.couponDiscount,
           requiredHeadCount : dataset.requiredHeadCount,
           spendTime: dataset.spendTime,
           dueTime: dataset.dueTime,
@@ -79,6 +81,7 @@ export default {
           institute : dataset.institute,
           link : dataset.link,
           notice : dataset.notice,
+          
           account_userName : dataset.account_userName,
           uploaderIdentity: dataset.uploaderIdentity,
           
@@ -107,7 +110,15 @@ export default {
 
         console.log(dataset)
 
-        this.$router.push('/servicepaydone')
+        if(this.$store.state.localSurveyState.identity=='할인 대상이 아닙니다.' ) {
+          this.$router.push('/servicepaydone')
+        }
+
+        else {
+          this.$router.push('/serviceidentity')
+        }
+        
+        this.$store.state.localSurveyState.couponDiscount = 0
       }
 
 
@@ -179,7 +190,7 @@ export default {
 .Payment-btn {
   background-color: #EEEEEE;
   border: 1px solid #0CAE02;
-  width: 100px;
+  width: 110px;
   height: 40px;
   margin-top: 20px;
   color: #0CAE02;

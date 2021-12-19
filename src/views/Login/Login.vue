@@ -33,6 +33,7 @@
 
 <script>
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth'
+import { doc, setDoc, collection, getDocs, updateDoc } from '@firebase/firestore'
 export default {
   data(){
     return{
@@ -46,6 +47,21 @@ export default {
   },
 
   methods:{
+    async fetchAdminData_coupon() {
+     const db = this.$store.state.db
+     
+     const adminCoupon = this.$store.state.adminCoupon
+     
+     const querySnapshot = await getDocs(collection(db, "couponData"))
+     querySnapshot.forEach((doc) => {
+       adminCoupon.push(doc.data())
+     })
+
+     const myCoupon = adminCoupon.filter(item => item.user===this.$store.state.currentUser.email && item.isUsed===false)
+     this.$store.state.myCoupon = myCoupon
+     console.log(this.$store.state.myCoupon)
+   },
+
     signIn(){
       const auth = getAuth();
       signInWithEmailAndPassword(auth, this.email, this.password)
@@ -63,6 +79,8 @@ export default {
           })
           // .then(this.$store.dispatch('setUploadInfo', {
           // }))
+
+          this.fetchAdminData_coupon()
 
           if(this.$store.state.notLoggedInService==false) {
             console.log('옵션 살리면서 로그인 성공')
