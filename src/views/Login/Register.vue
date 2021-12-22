@@ -154,7 +154,7 @@ export default {
                
             }
             
-            if((dataSet.birth).length!=8){
+            if((dataSet.birth).length<8){
                 errCode.push(5)
             }
             
