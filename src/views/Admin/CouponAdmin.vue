@@ -1,7 +1,7 @@
 <template>
 <div class="coupon">
   <div class="coupon-register">
-    <h2>쿠폰 등록</h2>
+    <h2>쿠폰 발급</h2>
     <input v-model="couponInfo.code" type="text" placeholder="쿠폰코드 입력란">
     <br>
     <input v-model="couponInfo.name" type="text" placeholder="쿠폰이름 입력란">
@@ -14,7 +14,7 @@
       <option :value=10>10%</option>
     </select>
     <br><br>
-    <button @click="addCoupon(this.couponInfo)">쿠폰 등록하기</button>
+    <button @click="addCoupon(this.couponInfo)">쿠폰 발급하기</button>
   </div>
 
 
@@ -25,19 +25,24 @@
       <tr>
         <th>쿠폰 코드</th>
         <th>쿠폰 이름</th>
-        <th>유효 기간</th>
         <th>할인율</th>
         <th>등록 사용자</th>
+        <th>유효 기간</th>
+        <th>남은 기한(일)</th>
+        <th>기한 만료</th>
         <th>사용 여부</th>
       </tr>
 
       <tr v-for="item in (this.$store.state.adminCoupon)" :key="item.code">
         <td>{{ item.code }}</td>
         <td>{{ item.name }}</td>
-        <td>{{ item.duedate }}</td>
         <td>{{ item.rate }}</td>
         <td>{{ item.user }}</td>
+        <td>{{ item.duedate }}</td>
+        <td>{{ item.duediff }}</td>
+        <td>{{ item.outOfDate }}</td>
         <td>{{ item.isUsed }}</td>
+        
       </tr>
     </table>
   </div>
@@ -54,14 +59,16 @@
     <table>
       <tr>
         <th>쿠폰 이름</th>
-        <th>유효 기간</th>
         <th>할인율</th>
+        <th>유효 기간</th>
+        <th>남은 기간(일)</th>
         <th>사용 여부</th>
       </tr>
       <tr v-for="item in (this.$store.state.myCoupon)" :key="item.isUsed">
         <td>{{ item.name }}</td>
-        <td>{{ item.duedate }}</td>
         <td>{{ item.rate }}</td>
+        <td>{{ item.duedate }}</td>
+        <td>{{ item.duediff }}</td>
         <td>{{ item.isUsed }}</td>
       </tr>      
     </table>
@@ -123,15 +130,19 @@ export default {
 
   methods: {
    async addCoupon(couponInfo) {
-     var db = this.$store.state.db     
+    var db = this.$store.state.db 
+    var due = new Date(couponInfo.duedate)
+    var diff = Math.floor((due.getTime() - Date.now()) / (24*60*60*1000))
     
       await setDoc(doc(db, "couponData", couponInfo.code), {
         code: couponInfo.code,
         name: couponInfo.name,
         rate: couponInfo.rate,
         duedate: couponInfo.duedate,
+        duediff: diff,
         user: '',
-        isUsed: false
+        isUsed: false,
+        outOfDate: false
       })
 
       this.$store.state.adminCoupon = []
@@ -149,9 +160,29 @@ export default {
        adminCoupon.push(doc.data())
      })
 
-     const myCoupon = adminCoupon.filter(item => item.user===this.$store.state.currentUser.email && item.isUsed===false)
+     const myCoupon = adminCoupon.filter(item => item.user===this.$store.state.currentUser.email && item.isUsed===false && item.outOfDate===false)
      this.$store.state.myCoupon = myCoupon
      console.log(this.$store.state.myCoupon)
+     this.check_outOfDate()
+   },
+
+   async check_outOfDate() {
+      var db = this.$store.state.db
+    
+      for(var i=0 ; i<this.$store.state.myCoupon.length ; i++) {
+        const docref = doc(db, "couponData", this.$store.state.myCoupon[i].code) 
+        var due = new Date(this.$store.state.myCoupon[i].duedate)
+        var diff = Math.floor((due.getTime() - Date.now()) / (24*60*60*1000))
+        await updateDoc(docref, { 
+            duediff: diff
+          })
+        console.log(diff)  // diff : 남은 일수
+        if(diff<0) {
+          await updateDoc(docref, { 
+            outOfDate: true
+          })
+        }
+      }
    },
 
    async addCoupon_user(localCode) {
@@ -162,7 +193,8 @@ export default {
       for(var i=0 ; i<this.$store.state.adminCoupon.length ; i++) {
         if(this.$store.state.adminCoupon[i].code == localCode 
         && this.$store.state.adminCoupon[i].user=='' 
-        && this.$store.state.adminCoupon[i].isUsed==false) {
+        && this.$store.state.adminCoupon[i].isUsed==false
+        && this.$store.state.adminCoupon[i].outOfDate==false) {
           validCode = true
         }
       }
@@ -208,11 +240,10 @@ export default {
       var db = this.$store.state.db
       var validCoupon = false
       const docref = doc(db, "couponData", this.transferCoupon.code)
-      
     
       for(var i=0 ; i<this.$store.state.adminCoupon.length ; i++) {
         if(this.$store.state.adminCoupon[i].code == transferCoupon.code 
-        && this.$store.state.adminCoupon[i].isUsed==false) {
+        && this.$store.state.adminCoupon[i].isUsed==false && this.$store.state.adminCoupon[i].outOfDate==false) {
           validCoupon = true
         }
       }
@@ -253,6 +284,7 @@ export default {
 }
 .coupon-list {
   margin: 20px;
+  font-size: 13px;
 }
 .coupon-mypage {
   margin: 20px;
