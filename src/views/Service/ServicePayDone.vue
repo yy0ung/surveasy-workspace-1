@@ -3,28 +3,8 @@
     <img id="check-img" src='@/assets/check.png' width="182">
     <div class="paydone-title">주문 완료되었습니다!</div>
 
-    <div class="paydone-detail">
-      <p class="detail">설문은 입금 확인과 빠른 검수 후 패널들에게 전달됩니다.</p>
-
-      <div class="table">
-        <div class="line" >
-          <p id="first">결제정보</p>
-        </div>
-        <div class="line">
-          <p class="line-title" >총 결제금액</p>
-          <p class="line-detail" id="green">{{ this.$store.state.localSurveyState.price }}원</p>
-        </div>
-        <div class="line">
-          <p class="line-title">입금자</p>
-          <p class="line-detail">{{ this.$store.state.localSurveyState.account_userName }}</p>
-        </div>
-        <div class="line">
-          <p class="line-title">계좌번호</p>
-          <p class="line-detail">카카오뱅크 3333-17-5341775 (장서준)</p>
-        </div>
-      </div>
-      <p class="end-detail">설문조사의 진행 상황은 마이 페이지에서 확인하실 수 있습니다. <br>
-        문의 사항은 카카오채널 @surveasy로 보내주세요.</p>
+    <div class="paydone-green">
+      설문은 입금 확인과 빠른 검수 후 패널들에게 전달됩니다.
     </div>
     <div class="paydone-contentsbox">
       <ul id="paydone-subtitle">결제 정보</ul>
@@ -49,7 +29,6 @@
 
    
 </template>
-
 <script>
 export default {
   mounted() {
@@ -57,7 +36,6 @@ export default {
   },
 }
 </script>
-
 <style>
 .ServicePayDone {
   font-family: 'Noto Sans KR';
@@ -65,52 +43,20 @@ export default {
   padding: 110px;
   
 }
-.table{
-  display: inline-block;
-  background-color: #EEEEEE;
-  border-radius: 15px;
-  padding: 40px 50px;
-}
-.table .line{
-   display: flex;
-   justify-content: space-between;
-  
-}
-.line .line-title{
-  margin-right: 90px;
-  font-weight: 500;
-}
-.line #first{
-  font-weight: bold;
-  font-size: 1.1rem;
-}
-.line #green{
-  color: #0AAB00;
-}
-.line p{
-  font-weight: 500;
-}
-.line .iine-detail{
-  margin-left: 20px;
-  font-weight: 500;
-}
 .paydone-title {
   font-family: 'Noto Sans KR';
   font-size: 25px;
   font-weight: bold;
-
-  margin: 30px 0 30px 0;
-
+  margin: 30px 0 15px 0;
   color: #000000;
 }
 .paydone-green {
   font-family: 'Noto Sans KR';
   font-size: 17px;
-
   font-weight: lighter;
-
   line-height: 28px;
   color: #0CAE02;
+  margin-bottom: 18px;
 }
 .paydone-contentsbox {
   display: inline-block;
@@ -147,6 +93,7 @@ export default {
   font-family: 'Noto Sans KR';
   color: #0CAE02;
   font-weight: bold;
+  font-size: 20px;
   margin-right: 55px;
 }
 #paydone-detail-value {
@@ -168,7 +115,6 @@ export default {
 .goMyPage-btn {
   padding: 10px 30px;
   margin: 50px;
-
   border: 1px solid #0AAB00;
   border-radius: 24px;
   opacity: 1;
@@ -177,7 +123,6 @@ export default {
   font-family: 'Noto Sans KR';
   font-size: 1.2rem;
   font-weight: normal;
-
 }
 .goMyPage-btn:hover{
   background-color: #0AAB00;

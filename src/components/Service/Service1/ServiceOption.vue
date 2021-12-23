@@ -259,6 +259,10 @@ export default {
   font-size: 15px;
   cursor: pointer;
 }
+.selectbox:focus{
+  outline: none;
+  border: 1.5px solid #0AAB00;
+}
 .selectbox option {
   background-color: #EEEEEE;
 }
@@ -281,9 +285,18 @@ export default {
   margin-bottom: 6px;
   border: none;
 }
+.hasTitleOption .date:focus{
+  outline: none;
+  border: 1.5px solid #0AAB00;
+}
 .hasTitleOption .time {
   height: 22px;
   border: none;
+}
+.hasTitleOption .time:focus{
+  outline: none;
+  border: 1.5px solid #0AAB00;
+  
 }
 .hasTitleOption .Eng-text {
   font-size: 13px;
