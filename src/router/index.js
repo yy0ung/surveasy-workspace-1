@@ -17,6 +17,8 @@ import RegisterDone from '../views/Login/RegisterDone.vue'
 import MyPage from '../views/MyPage/MyPage.vue'
 import SurveyResponse from '../views/SurveyResponse.vue'
 import MyInfo from '../components/MyPage/MyInfo.vue'
+import DashBoard from '../components/MyPage/DashBoard.vue'
+import CouponPoint from '../components/MyPage/CouponPoint.vue'
 import Payment from '../components/MyPage/Payment.vue'
 import ListDetail from '../components/List/ListDetail.vue'
 import RespondService from '../components/Contact/RespondService.vue'
@@ -26,7 +28,7 @@ import PaymentInfo from '../components/Contact/Payment.vue'
 import FinalModal from '../components/Contact/ContactFinalModal.vue'
 import AdminMain from '../views/Admin/AdminMain.vue'
 import CouponAdmin from '../views/Admin/CouponAdmin.vue'
-
+import Withdraw from '../views/MyPage/Withdraw.vue'
 
 const routes = [
   {
@@ -122,8 +124,15 @@ const routes = [
     component: MyPage,
     children: [
       { path: "payment", component: Payment },
-      { path: "myinfo", component: MyInfo }
+      { path: "myinfo", component: MyInfo },
+      { path: "dashboard", component: DashBoard },
+      { path: "couponpoint", component: CouponPoint }
     ]
+  },
+  {
+    path: '/withdraw',
+    name: 'Withdraw',
+    component: Withdraw
   },
   {
     path: '/response',
