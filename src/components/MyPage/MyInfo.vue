@@ -23,6 +23,8 @@
         </select>
         <br>
         <button @click="sendRequestVerifyIdentity(this.identityRequest)">요청 보내기</button>
+        <br>
+        <router-link to="/withdraw" class="go-link">회원 탈퇴하기 ></router-link>
       </div>
 
     </div>
@@ -59,5 +61,9 @@ export default {
 </script>
 
 <style>
-
+.mypage{
+  min-width: 1190px;
+  margin-left: auto;
+  margin-right: auto;
+}
 </style>
