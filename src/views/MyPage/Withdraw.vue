@@ -1,5 +1,5 @@
 <template>
-<!-- 지금 css만, center 안맞음 -->
+<!-- 지금 css만 -->
 <div id="Withdraw-container">
   <div class="wi-title">
     <p><span id="wi-green">서베이지</span> 회원 탈퇴</p>
@@ -47,8 +47,9 @@ export default {
 #Withdraw-container{
   width: 1190px;
   height: 900px;
-  margin-left: 700px;
+  margin-left: auto;
   margin-right: auto;
+  padding-left: 650px;
   text-align: left;
   margin-top: 100px;
   font-family: 'Noto Sans KR', sans-serif;
@@ -56,7 +57,7 @@ export default {
 .wi-title{
   font-size: 2rem;
   font-weight: 600;
-
+  
 }
 #wi-green{
   color:#0AAB00 ;
