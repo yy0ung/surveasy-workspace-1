@@ -88,13 +88,15 @@ export default {
 
 }
 #mypage-container .back-same{
-  padding-top: 80px;
+  padding-top: 70px;
   width: 1190px;
   margin: auto;
+  height: 900px;
   background: #EEEEEE 0% 0% no-repeat padding-box;
   box-shadow: 0px 0px 9px #0000001F;
   text-align: left;
   font-family: 'Noto Sans KR', sans-serif;
+  padding-bottom: 50px;
 }
 
 .mypage-contents {

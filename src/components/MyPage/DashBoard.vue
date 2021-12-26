@@ -54,6 +54,7 @@ export default {
 <style>
 #dashboard-container{
   font-family: 'Noto Sans KR', sans-serif;
+  
 }
 .top{
   display: flex;
@@ -162,5 +163,6 @@ export default {
   margin-top: 50px;
   margin-left: 680px;  
   font-size: 0.9rem;
+  
 }
 </style>
