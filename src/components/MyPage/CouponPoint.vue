@@ -66,8 +66,6 @@
   </div>
 
 </div>
-
-
 </template>
 
 <script>
@@ -254,7 +252,9 @@ export default {
 <style>
 #mycoupon-container{
   font-family: 'Noto Sans KR', sans-serif;
-  margin-bottom: 100px;
+  margin-left: 50px;
+  margin-right: auto;
+  margin-bottom: 70px;
 }
 .mycoupon-title {
   margin-bottom: 15px;
@@ -264,7 +264,7 @@ export default {
   box-shadow: 0px 0px 5px #0000000D;
   border-radius: 12px;
   opacity: 1;
-  width: 760px;
+  width: 710px;
   height: 40px;
   margin-bottom: 15px;
   padding-top: 17px;
@@ -299,7 +299,7 @@ export default {
   border: 1px solid #0AAC00;
   width: 90px;
   height: 40px;
-  margin-left: 340px;
+  margin-left: 290px;
   color: #0AAC00;
   font-size: 12px;
   font-weight: 800;
@@ -311,10 +311,10 @@ export default {
   flex-wrap: wrap;
 }
 .mycoupon-list-detail {
-  width: 186px;
+  width: 175px;
   height: 60px;
   background-color: white;
-  margin: 10px 20px 10px 0;
+  margin: 10px 12px 10px 0;
   padding: 27px;
   border-radius: 12px;
   box-shadow: 0px 0px 5px #0000000D;
@@ -327,6 +327,11 @@ export default {
   font-size: 13px;
   margin-top: 15px;
 }
+#mypoint-container {
+  margin-left: 50px;
+  margin-right: auto;
+  margin-bottom: 30px;
+}
 .mypoint-container {
   display: flex;
   flex-direction: row;
@@ -337,7 +342,7 @@ export default {
   width: 290px;
   height: 110px;
   background-color: white;
-  margin: 10px 20px 50px 0;
+  margin: 10px 20px 40px 0;
   padding: 27px;
   border-radius: 12px;
   box-shadow: 0px 0px 5px #0000000D;
@@ -367,7 +372,6 @@ export default {
   font-size: 13px;
   font-weight: lighter;
   color: rgb(163, 163, 163);
-  margin-bottom: 50px;
 }
 .mypoint-table th {
   width: 120px;
