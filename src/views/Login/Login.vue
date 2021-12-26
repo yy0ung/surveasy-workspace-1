@@ -56,11 +56,35 @@ export default {
      querySnapshot.forEach((doc) => {
        adminCoupon.push(doc.data())
      })
-
-     const myCoupon = adminCoupon.filter(item => item.user===this.$store.state.currentUser.email && item.isUsed===false)
+    
+     const myCoupon = adminCoupon.filter(item => item.user===this.$store.state.currentUser.email && item.isUsed===false && item.outOfDate===false)
      this.$store.state.myCoupon = myCoupon
      console.log(this.$store.state.myCoupon)
+     this.check_outOfDate()
    },
+
+   async check_outOfDate() {
+      var db = this.$store.state.db
+    
+      for(var i=0 ; i<this.$store.state.myCoupon.length ; i++) {
+        const docref = doc(db, "couponData", this.$store.state.myCoupon[i].code) 
+        var duedate = this.$store.state.myCoupon[i].duedate
+        var due = new Date(duedate + ' 24:00:00')
+        var diff = due.getTime()/3600000 - Date.now()/3600000
+        var diffdate = Math.floor(diff/24)
+  
+        await updateDoc(docref, { 
+            duediff: diffdate
+          })
+        
+        if(diff<0) {
+          await updateDoc(docref, { 
+            outOfDate: true
+          })
+        }
+      }
+   },
+
 
     signIn(){
       const auth = getAuth();
@@ -79,7 +103,8 @@ export default {
           })
           // .then(this.$store.dispatch('setUploadInfo', {
           // }))
-
+          this.$store.state.adminCoupon = []
+          this.$store.state.myCoupon = []
           this.fetchAdminData_coupon()
 
           if(this.$store.state.notLoggedInService==false) {

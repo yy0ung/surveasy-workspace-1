@@ -171,12 +171,19 @@ export default {
     
       for(var i=0 ; i<this.$store.state.myCoupon.length ; i++) {
         const docref = doc(db, "couponData", this.$store.state.myCoupon[i].code) 
-        var due = new Date(this.$store.state.myCoupon[i].duedate)
-        var diff = Math.floor((due.getTime() - Date.now()) / (24*60*60*1000))
+        var duedate = this.$store.state.myCoupon[i].duedate
+        var due = new Date(duedate + ' 24:00:00')
+        var diff = due.getTime()/3600000 - Date.now()/3600000
+        var diffdate = Math.floor(diff/24)
+  
+        console.log(due.getTime()/3600000)
+        console.log(Date.now()/3600000)
+        console.log(diff)
+        console.log(diffdate)
         await updateDoc(docref, { 
-            duediff: diff
+            duediff: diffdate
           })
-        console.log(diff)  // diff : 남은 일수
+        
         if(diff<0) {
           await updateDoc(docref, { 
             outOfDate: true

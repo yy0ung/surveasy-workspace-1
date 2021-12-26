@@ -214,6 +214,7 @@ export default createStore({
 
     logout({commit}){
       commit('logoutMutation')
+
     }
   },
   modules: {

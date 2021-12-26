@@ -4,7 +4,7 @@
       <div class="link-modal-title">설문 링크 확인하기</div>
       <button class="modal-close-button" @click="$emit('closeIframe')"><i class="fas fa-times"></i></button>
       <div class="link-modal-container">
-        <iframe :src='iframe()' width="620" height="310"></iframe> 
+        <iframe :src='iframe()' width="650" height="335"></iframe> 
       </div>
     </div>
   </div>
@@ -44,28 +44,29 @@ export default {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(255, 255, 255, 0.296);
+  background-color: rgba(255, 255, 255, 0.419);
   display: table;
 }
 .link-modal-contentsbox {
   position: relative;
-  width: 660px;
+  width: 700px;
   height: 420px;
-  margin: 15% auto;
-  padding: 20px 30px;
+  margin: 13% auto;
+  padding: 20px 20px;
   background-color: #fff;
   border-radius: 20px;
   text-align: center;
-  box-shadow: 0 2px 3px rgba(0, 0, 0, .33);
+  box-shadow: 0px 5px 5px #0000001c;
 }
 .link-modal-title {
   display: inline-block;
-  margin: 23px 0 30px 40px;
+  margin: 10px 0 20px 40px;
   font-family: 'Noto Sans KR', sans-serif;
   font-size: 22px;
   font-weight: bold;
+  color: rgb(123, 123, 123);
 }
 .modal-close-button {
-  padding-right: 0;
+  margin-right: -15px;
 }
 </style>
