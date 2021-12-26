@@ -14,7 +14,7 @@
   <div class="top-right">
     <div class="third-box">
       <p class="black-title">쿠폰 / 적립금</p>
-      <p class="green-box">쿠폰 3개</p>
+      <p class="green-box">쿠폰 {{ this.$store.state.myCoupon.length }}개</p>
       <p class="green-box">적립금 300원</p>
     </div>
   </div>

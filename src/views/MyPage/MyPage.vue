@@ -9,7 +9,7 @@
   <div class="back-same" v-if="show==1">
   
   <span class="title">안녕하세요, <span id="green">{{this.$store.state.currentUser['nickname']}}</span>님 </span>
-  <router-link to="/serviceidentity" class="go-link">대학(원)생 인증하러가기 ></router-link>
+  <router-link to="/serviceidentity_mypage" class="go-link">대학(원)생 인증하러가기 ></router-link>
   <div class="mypage-contents">
   <!-- <p>{{this.$store.state.currentUser}}</p> -->
   <div class="mypage-router-link-container">

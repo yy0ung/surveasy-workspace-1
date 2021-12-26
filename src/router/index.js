@@ -4,6 +4,7 @@ import Service from '../views/Service/Service.vue'
 import ServiceInputForm from '../views/Service/ServiceInputForm.vue'
 import ServicePay from '../views/Service/ServicePay.vue'
 import ServiceIdentity from '../views/Service/ServiceIdentity.vue'
+import ServiceIdentity_mypage from '../views/Service/ServiceIdentity_mypage.vue'
 import ServicePayDone from '../views/Service/ServicePayDone.vue'
 import SurveyList from '../views/SurveyList.vue'
 import SurveyTemplate from '../views/SurveyTemplate.vue'
@@ -55,6 +56,11 @@ const routes = [
     path: '/serviceidentity',
     name: 'ServiceIdentity',
     component: ServiceIdentity
+  },
+  {
+    path: '/serviceidentity_mypage',
+    name: 'ServiceIdentity_mypage',
+    component: ServiceIdentity_mypage
   },
   {
     path: '/servicepaydone',

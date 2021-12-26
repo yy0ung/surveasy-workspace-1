@@ -6,7 +6,7 @@
       <ul id="Coupon-detail">
         <ul class="Coupon-detail-text">쿠폰</ul>
           <select class="Coupon-selectbox" v-model="selectedCoupon">
-            <option class="Coupon-option" v-for="item in (this.$store.state.myCoupon)" v-bind:value="{code: item.code, rate: item.rate}" :key="item">{{ item.name }}</option>
+            <option class="Coupon-option" v-for="item in (this.$store.state.myCoupon)" v-bind:value="{code: item.code, rate: item.rate}" :key="item">{{ item.name }}  : {{ item.duedate }} 까지</option>
           </select>
           <button class="Coupon-btn" @click="useCoupon()">쿠폰 적용</button>
       </ul>
