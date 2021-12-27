@@ -1,21 +1,22 @@
 <template>
   <div class="mypage">
-    <h1>payment?</h1>
+    <h1>주문내역</h1>
     <div>
-      <p>{{this.$store.state.currentUser['uploadIndex']}}</p>
-      <p>{{this.$store.state.currentUserUploadInfo}}</p>
+      <p>{{this.$store.state.currentUserUploadInfo2}}</p>
       
 
       <div>
         <table>
           <tr>
             <th>ID</th>
+            <th>주문번호</th>
             <th>제목</th>
             <th>확인여부</th>
           </tr>
 
-          <tr v-for="item in (currentUserUploadIndexInfo)" :key="item.title">
+          <tr v-for="item in (currentUserUploadIndexInfo2)" :key="item.title">
             <td>{{item.id}}</td>
+            <td>{{item.orderNum}}</td>
             <td>{{item.title}}</td>
             <td>{{item.adminApproved}}</td>
 
@@ -32,6 +33,7 @@ export default {
   data(){
     return {
       currentUserUploadIndexInfo:[],
+      currentUserUploadIndexInfo2:[],
     }
   },
   mounted(){
@@ -57,6 +59,8 @@ export default {
           this.currentUserUploadIndexInfo.push(docSnap.data())
         }
       }
+
+      this.currentUserUploadIndexInfo2 = this.currentUserUploadIndexInfo
     }
   }
 

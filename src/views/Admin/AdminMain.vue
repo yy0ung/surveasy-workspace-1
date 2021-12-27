@@ -101,6 +101,35 @@
       <div>
         <h1>검수후에수정가능하게~</h1>
       </div>
+
+      <div>
+        <h1>리스트 데이터 추가하기</h1>
+        <p>{{UploadInputData.surveyTitle}}</p>
+
+        <div>
+          <div>
+            <input type="text" placeholder="설문 제목" v-model="UploadInputData.surveyTitle">
+          </div>
+          <div>
+            <input type="text" placeholder="설문 업로더" v-model="UploadInputData.uploader">  
+          </div>
+          <div>
+            <input type="text" placeholder="설문 주제" v-model="UploadInputData.theme">  
+          </div>
+          <div>
+            <input type="text" placeholder="요구 응답 수" v-model="UploadInputData.requireHeadCount">
+          </div>
+          <div>
+            <input type="text" placeholder="예상 소요시간" v-model="UploadInputData.spendTime">  
+          </div>
+          <div>
+            <input type="text" placeholder="설문 기관" v-model="UploadInputData.surveyInstitute">
+          </div>
+          <div>
+            <input type="text" placeholder="설문 링크" v-model="UploadInputData.surveyLink">         
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -114,7 +143,20 @@ data(){
   return{
     passInput:'',
     nowDate: Date.now(),
-    val:''
+    val:'',
+
+    UploadInputData:{
+      surveyTitle:'',
+      theme:'',
+      requireHeadCount:'',
+      spendTime:'',
+      pastData: true,
+      surveyInstitute:'',
+      surveyLink: '',
+      uploader:''
+
+      
+    },
   }
 },
 
