@@ -93,6 +93,10 @@
           </tr>
         </table>
       </div>
+
+      <div>
+        <h1>검수후에수정가능하게~</h1>
+      </div>
     </div>
   </div>
 </template>
