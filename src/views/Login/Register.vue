@@ -215,6 +215,7 @@ export default {
                 email: dataSet.email,
                 phoneNumber: dataSet.phoneNumber,
                 isPanel: false,
+                // birth: dataSet.birth,
                 uploadIndex: [],
                 identity: 'default',
                 funnel : dataSet.funnel,

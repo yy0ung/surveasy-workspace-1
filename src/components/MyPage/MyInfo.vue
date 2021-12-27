@@ -49,10 +49,11 @@
         <!-- 환불계좌 언제 작성하게 하는지? -->
       </div>
       </div>
-      <div class="btn">
+      <!-- <div class="btn">
         <button class="btn-info">회원정보수정</button>
-        <!-- router로 해야하는지..? -->
-      </div>
+        router로 해야하는지..? 
+      </div> -->
+      <p class="edit-ment">회원정보 수정을 원하실 경우 서베이지 카카오톡 페이지로 문의 바랍니다.</p>
       
     </div>
     <div class="bottom-box">
@@ -183,5 +184,10 @@ export default {
 .more{
   margin-left: 600px;  
   
+}
+.edit-ment{
+  font-size: 0.8rem;
+  text-align: center;
+  color: #848484;
 }
 </style>
