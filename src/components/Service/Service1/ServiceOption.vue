@@ -269,6 +269,7 @@ export default {
 .hasTitleOption {
   text-align: left;
   margin: 10px 0 8px 0;
+  display: block;
   
 }
 .hasTitleOption .option-title {
@@ -279,9 +280,10 @@ export default {
   margin: 10px 0 0 41px;
 }
 .hasTitleOption .date {
+  width: 123px;
   height: 22px;
-  margin-left: 15px;
-  margin-right: 4px;
+  margin-left: 9px;
+  margin-right: 3px;
   margin-bottom: 6px;
   border: none;
 }
@@ -290,6 +292,7 @@ export default {
   border: 1.5px solid #0AAB00;
 }
 .hasTitleOption .time {
+  width: 105px;
   height: 22px;
   border: none;
 }
