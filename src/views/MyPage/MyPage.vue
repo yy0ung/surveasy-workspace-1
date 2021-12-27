@@ -41,9 +41,12 @@ export default {
       this.color=num
     }
   },
+ 
   mounted() {
     window.scrollTo(0,0)
-  },
+  
+    
+  }
 }
 </script>
 
