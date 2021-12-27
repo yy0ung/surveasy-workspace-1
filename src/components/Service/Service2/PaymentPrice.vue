@@ -68,13 +68,13 @@ hr {
   color: black;
   font-size: 16px;
   margin-left: 5px;
-  margin-right: 165px;
+  margin-right: 160px;
 }
 .showPrice-detail-total #showPrice-num{
   font-family: 'Noto Sans KR', sans-serif;
   color: black;
   font-size: 16px;
-  margin-right: 40px;
+  margin-right: 30px;
 }
 .showPrice-detail-coupon {
   display: flex;
