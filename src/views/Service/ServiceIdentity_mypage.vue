@@ -21,11 +21,11 @@ export default {
 
   methods: {
     yesFunc() {
-      this.$router.push('/servicepaydone')
+      this.$router.push('/mypage/dashboard')
 
     },
     noFunc() {
-      this.$router.push('/servicepaydone')
+      this.$router.push('/mypage/dashboard')
     }
   }
 

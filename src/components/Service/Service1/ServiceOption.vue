@@ -191,10 +191,12 @@ export default {
         this.identity = String(this.$store.state.priceTextTable[4][this.priceIdentity]);
       
       
-        this.$store.commit('setSurveyMutation1', {price: this.price, requiredHeadCount: this.requiredHeadCount, 
+        this.$store.commit('setSurveyMutation1', {price: this.price, beforeCouponPrice: this.price, requiredHeadCount: this.requiredHeadCount, 
         spendTime: this.spendTime, dueTime: this.dueTime, ENTarget: this.ENTarget, identity: this.identity, dueDate: this.aa, dueTimeTime: this.bb});
 
         this.$store.commit('setSurveyDueTime', {dueDate: this.aa, dueTime: this.bb})
+
+       
 
         if(this.$store.state.isLoggedIn==false) {
           alert('로그인이 필요한 서비스입니다.')
@@ -257,6 +259,10 @@ export default {
   font-size: 15px;
   cursor: pointer;
 }
+.selectbox:focus{
+  outline: none;
+  border: 1.5px solid #0AAB00;
+}
 .selectbox option {
   background-color: #EEEEEE;
 }
@@ -279,9 +285,18 @@ export default {
   margin-bottom: 6px;
   border: none;
 }
+.hasTitleOption .date:focus{
+  outline: none;
+  border: 1.5px solid #0AAB00;
+}
 .hasTitleOption .time {
   height: 22px;
   border: none;
+}
+.hasTitleOption .time:focus{
+  outline: none;
+  border: 1.5px solid #0AAB00;
+  
 }
 .hasTitleOption .Eng-text {
   font-size: 13px;

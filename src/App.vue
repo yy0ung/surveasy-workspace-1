@@ -372,9 +372,7 @@ body {
   .my-dropdown-content p:hover {
     background-color: #aaa;
   }
-  .my-dropdown-content #logout-dropdown{
-    
-  }
+ 
 
   #site-map-container{
     background: #E3E3E3 0% 0% no-repeat padding-box;;

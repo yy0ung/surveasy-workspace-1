@@ -40,10 +40,14 @@
               <td>{{item.uploaderIdentity}}</td>
               <td><button @click="updateApproved(item)">결제 확인</button></td>
               <td>{{item.adminApproved}}</td>
+
+              
               <td>{{item.dueTimeTimeTime}}</td>
               
+
             </tr>
           </table>
+          <p>{{dueDate}}</p>
 
 
 
@@ -110,8 +114,10 @@ data(){
   return{
     passInput:'',
     nowDate: Date.now(),
+    val:''
   }
 },
+
 methods:{
   adminCheck(){
     if (this.passInput == this.$store.state.AdminPassword) {
@@ -180,6 +186,25 @@ methods:{
 },
 
 computed:{
+  dueDate(){
+    var date = this.$store.localSurveyState.dueDate
+    var time = this.$store.localSurveyState.dueTime
+    var milli = new Date(date+" "+time);
+
+    var diff = milli.getTime() - Date.now()
+    var due = diff/3600000
+      
+      
+      if(due<24){
+        val =  "D-1"
+      }else if(due<48){
+        val =  "D-2"
+      }else{
+        val =  "진행중"
+      }
+      console.log(val)
+      return val
+  }
     
   }
 

@@ -1,3 +1,4 @@
+
 import { createStore } from 'vuex'
 import { doc, getDoc } from 'firebase/firestore'
 import createPersistedState from 'vuex-persistedstate'
@@ -22,6 +23,10 @@ export default createStore({
     adminData: [],
     adminDataIdentity:[],
     adminDataB2B:[],
+
+    adminCoupon: [],
+    myCoupon: [],
+    
     
     
    
@@ -93,7 +98,13 @@ export default createStore({
       dueDate: '',
       dueTimeTime: '',
       dueTimeTimeTime: '',
-    }, 
+
+      beforeCouponPrice:0,
+      couponDiscount:0,
+      
+    },
+     
+
 
     showLinkModal: false,
     goServiceInputForm: false,
@@ -109,6 +120,8 @@ export default createStore({
     AdminPassword: 1111,
     lastID : [],
     currentUserUploadInfo:[],
+
+    
   },
 
   mutations: {
@@ -119,6 +132,7 @@ export default createStore({
 
     setSurveyMutation1(state, payload) {
       state.localSurveyState.price = payload.price,
+      state.localSurveyState.beforeCouponPrice = payload.beforeCouponPrice,
       state.localSurveyState.identity = payload.identity,
       state.localSurveyState.spendTime = payload.spendTime,
       state.localSurveyState.requiredHeadCount = payload.requiredHeadCount,
@@ -126,6 +140,7 @@ export default createStore({
       state.localSurveyState.ENTarget = payload.ENTarget
       state.localSurveyState.dueDate = payload.dueDate
       state.localSurveyState.dueTimeTime = payload.dueTimeTime
+     
     },
     
     setSurveyMutation2(state, payload){
@@ -160,13 +175,12 @@ export default createStore({
     setSurveyDueTime(state,payload){
       var dttt = payload.dueDate + ' ' + payload.dueTime
       
-      state.localSurveyState.dueTimeTimeTime = new Date(dttt)
+      
+      
+      state.localSurveyState.dueTimeTimeTime= new Date(dttt);
       console.log(state.localSurveyState.dueTimeTimeTime)
     },
 
-    // setCurrentUserUploadInfo(state, payload){
-    //   state.currentUserUploadInfo.push(payload)
-    // }
   },
   actions: {
     async setCurrentUser({state, commit}, payload){
@@ -200,10 +214,11 @@ export default createStore({
 
     logout({commit}){
       commit('logoutMutation')
+
     }
   },
   modules: {
-  },
+  }
 //   plugins: [
 //     createPersistedState({
 //       // paths : ['isLoggedIn', 'currentUser']

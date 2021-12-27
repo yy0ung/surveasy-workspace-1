@@ -1,6 +1,6 @@
 <template>
 <div class="login">
-  <img class="login-checkimg" src="@/assets/check.png" width="120">
+  <img class="login-checkimg" src="@/assets/check.png" width="110">
   <div class="loginform">
     <li>
       <input type="email" placeholder="아이디 (이메일)" v-model="email">
@@ -33,6 +33,7 @@
 
 <script>
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth'
+import { doc, setDoc, collection, getDocs, updateDoc } from '@firebase/firestore'
 export default {
   data(){
     return{
@@ -46,6 +47,45 @@ export default {
   },
 
   methods:{
+    async fetchAdminData_coupon() {
+     const db = this.$store.state.db
+     
+     const adminCoupon = this.$store.state.adminCoupon
+     
+     const querySnapshot = await getDocs(collection(db, "couponData"))
+     querySnapshot.forEach((doc) => {
+       adminCoupon.push(doc.data())
+     })
+    
+     const myCoupon = adminCoupon.filter(item => item.user===this.$store.state.currentUser.email && item.isUsed===false && item.outOfDate===false)
+     this.$store.state.myCoupon = myCoupon
+     console.log(this.$store.state.myCoupon)
+     this.check_outOfDate()
+   },
+
+   async check_outOfDate() {
+      var db = this.$store.state.db
+    
+      for(var i=0 ; i<this.$store.state.myCoupon.length ; i++) {
+        const docref = doc(db, "couponData", this.$store.state.myCoupon[i].code) 
+        var duedate = this.$store.state.myCoupon[i].duedate
+        var due = new Date(duedate + ' 24:00:00')
+        var diff = due.getTime()/3600000 - Date.now()/3600000
+        var diffdate = Math.floor(diff/24)
+  
+        await updateDoc(docref, { 
+            duediff: diffdate
+          })
+        
+        if(diff<0) {
+          await updateDoc(docref, { 
+            outOfDate: true
+          })
+        }
+      }
+   },
+
+
     signIn(){
       const auth = getAuth();
       signInWithEmailAndPassword(auth, this.email, this.password)
@@ -63,6 +103,9 @@ export default {
           })
           // .then(this.$store.dispatch('setUploadInfo', {
           // }))
+          this.$store.state.adminCoupon = []
+          this.$store.state.myCoupon = []
+          this.fetchAdminData_coupon()
 
           if(this.$store.state.notLoggedInService==false) {
             console.log('옵션 살리면서 로그인 성공')
@@ -86,6 +129,10 @@ export default {
             this.error = "유효하지 않은 이메일 형식입니다."
           }
 
+          if(error.code=="auth/user-not-found") {
+            this.error = "가입되지 않은 이메일 주소입니다."
+          }
+
           if(error.code=="auth/wrong-password") {
             this.error = "잘못된 비밀번호입니다."
           }
@@ -105,6 +152,8 @@ export default {
 .login {
   margin: 100px;
   height: 350px;
+
+
 }
 .login-checkimg {
   margin-bottom: 15px;
@@ -114,28 +163,38 @@ export default {
   margin: 10px;
 }
 .loginform li input {
-  width: 200px;
-  height: 20px;
-  border: none;
+  width: 360px;
+  height: 30px;
   padding: 4px;
+  padding-left: 10px;
   margin: 5px;
+  border: 1.5px solid rgb(44, 37, 37);
+  border-radius: 4px;
+  opacity: 1;
+  color: #848484;
+  font: normal normal 300 17px/20px Noto Sans KR;
+  font-size: 0.8rem;
   
-  background-color: rgb(228, 228, 228);
+}
+.loginform li input:focus{
+  outline: none;
+  border: 1.5px solid #0AAB00;
+  
 }
 .error {
   color: rgb(225, 5, 5);
   font-size: 10px;
 }
 .loginbtn {
-  width: 120px;
-  height: 30px;
+  padding: 5px 30px;
   margin: 20px;
   color:#0CAE02;
   background-color: #fff;
   border: 1.5px solid #0CAE02;
   border-radius: 30px;
-  font-size: 13px;
+  font-size: 1rem;
   cursor: pointer;
+  font-family: 'Noto Sans KR', sans-serif;
 }
 .loginbtn:hover {
   background-color: #0CAE02;
@@ -143,9 +202,11 @@ export default {
 }
 .sublogin {
   margin: 20px;
+  font-family: 'Noto Sans KR', sans-serif;
+  
 }
 .sublogin .sublogin-element {
-  font-size: 12px;
+  font-size: 0.8rem;
   margin: 20px;
 }
 a {
