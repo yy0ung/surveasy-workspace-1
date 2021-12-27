@@ -42,7 +42,7 @@
       <div class="info-contents2">
         <p class="info-detail">{{this.$store.state.currentUser['email']}}</p>
         <p class="info-detail">비밀번호</p>
-        <p class="info-detail">{{this.$store.state.currentUser['nickname']}}</p>
+        <p class="info-detail">{{this.$store.state.currentUser['name']}}</p>
         <p class="info-detail">{{this.$store.state.currentUser['phoneNumber']}}</p>
         <p class="info-detail">생년월일</p>
         <p class="info-detail">환불 계좌</p>
