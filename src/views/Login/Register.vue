@@ -87,13 +87,21 @@
                             
                         </div> 
                       </div>
-                    <!-- 약관부분 다시 -->
-                      <div class="radio-column">
-                            <div class="all"><input type="checkbox">전체 동의하기</div>
-                        </div>                     
+                    
+                                           
                   </li>
               </ul>
           </li>
+          <div class="check">
+            <div class="all-title"><input type="checkbox" v-model="checkAll">전체 동의하기</div>
+            <div class="all"><input type="checkbox" v-model="check.check1" >서베이지 이용약관</div>
+            <div class="all"><input type="checkbox" v-model="check.check2" >서베이지 개인정보 보호 방침</div>
+            <div class="all"><input type="checkbox" v-model="check.check3" >
+                회원가입 시 작성한 개인 정보가 모두 올바름을 확인합니다. <br>
+            <span id="nextline">가입 오류로 인한 불이익은 이용자의 책임임을 인지하고 있습니다.</span></div>
+
+            
+        </div>
           
 
      </form>
@@ -118,15 +126,44 @@ export default {
               phoneNumber:null,
               name:null,
               funnel:null,
-              birth:null
+              birth:null,
+              check1: false,
+                check2: false,
+                check3: false
                  
+            },
+            
+            check:{
+                check1: false,
+                check2: false,
+                check3: false
             },
 
             validReg : false,
             
         }
-    }
-    ,
+    },
+    computed: {
+        checkAll: {
+            get: function(){
+                return this.check1+','+this.check2+','+this.check3
+            },
+            set: function(e){
+                if(e==true){
+                    this.check.check1 =true;
+                    this.check.check2 =true;
+                    this.check.check3 =true;
+                }else{
+                    this.check.check1 =false;
+                    this.check.check2 =false;
+                    this.check.check3 =false;
+                }
+            }
+           
+        }
+        },
+        
+    
     mounted() {
     window.scrollTo(0,0)
   },
@@ -157,12 +194,15 @@ export default {
             if((dataSet.birth).length<8){
                 errCode.push(5)
             }
+            if(!(dataSet.check1 || dataSet.check2 || dataSet.check3)){
+                errCode.push(6)
+            }
             
             if (errCode.length == 0 ){
                 this.validReg = true
                 this.create()
                 this.addUserData(dataSet)
-                this.$router.push('/registerdone')
+                this.$router.push('/')
                 
             } else {
                 console.log(errCode)
@@ -173,7 +213,8 @@ export default {
                 "비밀번호 확인란을 올바르게 입력하세요.",
                 "비밀번호는 8자 이상이여야 합니다.",
                 "휴대폰 번호를 올바르게 입력하세요.",
-                "생년월일을 올바르게 입력하세요."
+                "생년월일을 올바르게 입력하세요.",
+                "약관에 동의해주세요."
                 
 
                 ]
@@ -235,7 +276,7 @@ export default {
 
 <style>
 #Register {
-    height: 1200px;
+    height: 1450px;
     font-family: 'Noto Sans KR', sans-serif;
     display: block;
     text-align: center;
@@ -327,5 +368,26 @@ li {
 .register-btn:hover{
     color: white;
     background-color:#0CAE02;
+}
+.check{
+    text-align: left;
+    margin-top: 50px;
+    font-size: 1rem;
+    margin-bottom: 80px;
+}
+.check input{
+    margin-right: 15px;
+
+}
+.check .all-title{
+    font-weight: 500;
+    
+}
+.check .all{
+    margin-left: 30px;
+    font-weight: 500;
+}
+.check #nextline{
+    margin-left: 50px;
 }
 </style>
