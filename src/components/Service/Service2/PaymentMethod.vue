@@ -94,7 +94,9 @@ export default {
           dueTimeTime: dataset.dueTimeTime,
           dueTimeTimeTime: dataset.dueTimeTimeTime,
 
-          orderNum: orderNum
+          orderNum: orderNum,
+
+          progress : 0
 
                 
         })

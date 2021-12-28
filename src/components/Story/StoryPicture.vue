@@ -33,6 +33,7 @@ export default {
    background: transparent url('~@/assets/brandstory/브랜드스토리2.png') no-repeat padding-box;
    background-size: cover;
    border-radius: 24px;
+  
 }
 #picture-container .logoimg{
   width: 250px;
