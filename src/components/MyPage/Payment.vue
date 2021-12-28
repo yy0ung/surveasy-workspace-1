@@ -39,12 +39,12 @@
             <p class="light">{{item.requiredHeadCount}}</p>
           </div>
           <div class="con3">
-            <p class="su-">결제 날짜</p>
+            <p class="su-">주문 날짜</p>
             <p class="su-">설문 기한</p>
           </div>
           <div class="con4">
-            <p class="light">{{new Date(item.uploadTime)}}</p>
-            <p class="light">{{item.dueTime}}</p>
+            <p class="light">{{item.uploadDate}}</p>
+            <p class="light">{{item.dueDate}}</p>
           </div>
       </div>
       </div>
