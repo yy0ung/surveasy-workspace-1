@@ -101,6 +101,7 @@ export default createStore({
 
       beforeCouponPrice:0,
       couponDiscount:0,
+      coupon_use: false,
       
     },
      
@@ -166,6 +167,11 @@ export default createStore({
       console.log('currentUser가 설정되었습니다.')
       
     },
+
+    setCouponDiscountEmpty(state){
+      state.localSurveyState.couponDiscount = 0
+    },
+
     logoutMutation(state){
       state.currentUser = null
       state.isLoggedIn = false

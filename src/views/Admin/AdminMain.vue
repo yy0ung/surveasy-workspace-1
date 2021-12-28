@@ -37,7 +37,7 @@
               <td>{{item.title}}</td>
               <td>{{item.price}}</td>
               <td>{{item.requiredHeadCount}}</td>
-              <td>{{item.dueTime}}</td>
+              <td>{{item.dueDate}}</td>
               <td>{{item.uploader}}</td>
               <td>{{item.uploaderIdentity}}</td>
               <td><button @click="updateApproved(item)">결제 확인</button></td>

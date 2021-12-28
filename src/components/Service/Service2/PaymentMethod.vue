@@ -54,6 +54,7 @@ export default {
 
       else {
         this.sendToAdmin(this.$store.state.localSurveyState)
+        this.$store.state.localSurveyState.coupon_use = false
         console.log('else')
       }
     },
@@ -65,6 +66,19 @@ export default {
       var currentUserEmail = await this.$store.state.currentUser.email
       var nowDate= new Date()
       var orderNum = nowDate.getFullYear().toString().substring(2,4) + (nowDate.getMonth()+1).toString() + nowDate.getDate().toString() + localLastID
+      
+      var d = nowDate.toLocaleDateString()
+      var dd = d.replace(/ /g, "")
+      var ddd = dd.split('.')
+
+      var year = ddd[0]
+      var month = ddd[1]
+      var day = ddd[2]
+
+      month = month.length == 2 ? month : '0' + month
+      day = day.length == 2 ? day : '0' + day
+
+      var D = year + '-' + month + '-' + day
       
       
         await setDoc(doc(db, "adminRequired", localLastID.toString()), {
@@ -88,6 +102,7 @@ export default {
           adminApproved : dataset.adminApproved,
           uploader : dataset.uploader,
           uploadTime : new Date(),
+          uploadDate : D,
           id : localLastID,
           dueDate: dataset.dueDate,
           dueTimeTime: dataset.dueTimeTime,
@@ -173,6 +188,10 @@ export default {
   padding: 15px;
   font-size: 14px;
   font-weight: lighter;
+}
+#Account-input:focus{
+  outline: none;
+  border: 1.5px solid #0AAB00;
 }
 .PaymentMethod-container input::placeholder {
   text-align: left;

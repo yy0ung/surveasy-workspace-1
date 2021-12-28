@@ -12,6 +12,7 @@
     <select v-model="couponInfo.rate">
       <option :value=5>5%</option>
       <option :value=10>10%</option>
+      <option :value=20>20%</option>
     </select>
     <br><br>
     <button @click="addCoupon(this.couponInfo)">쿠폰 발급하기</button>
@@ -92,10 +93,12 @@
     <br>
     <button @click="transferCP(transferCoupon)">쿠폰 전달하기</button>
   </div>
+
+  <button @click="func()">현재 날짜구하기</button>
+  <div>#{{this.uploadDate}}#</div>
+
+
 </div>
-
-
-
 </template>
 
 <script>
@@ -124,6 +127,8 @@ export default {
       transferCoupon: {
         code: '',
       },
+
+      uploadDate: '',
 
     }
   },
@@ -228,6 +233,10 @@ export default {
       if(this.selectedCoupon.rate == 10) {
         this.price = this.price * 0.9
       }
+
+      if(this.selectedCoupon.rate == 20) {
+        this.price = this.price * 0.8
+      }
       
     },
 
@@ -270,6 +279,27 @@ export default {
 
       this.$store.state.adminCoupon = []
       this.fetchAdminData_coupon()
+    },
+
+
+    func() {
+      var current = new Date()
+
+      var d = current.toLocaleDateString()
+
+      var dd = d.replace(/ /g, "")
+      var ddd = dd.split('.')
+
+      var year = ddd[0]
+      var month = ddd[1]
+      var day = ddd[2]
+
+      month = month.length == 2 ? month : '0' + month
+      day = day.length == 2 ? day : '0' + day
+
+      var D = year + '-' + month + '-' + day
+
+      this.uploadDate = D
     }
 
     

@@ -196,7 +196,8 @@ export default {
 
         this.$store.commit('setSurveyDueTime', {dueDate: this.aa, dueTime: this.bb})
 
-       
+        this.$store.commit('setCouponDiscountEmpty')
+
 
         if(this.$store.state.isLoggedIn==false) {
           alert('로그인이 필요한 서비스입니다.')
