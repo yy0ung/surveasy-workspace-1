@@ -274,8 +274,8 @@ export default {
         console.log(this.$store.state.localSurveyState.requiredHeadCount);
         console.log(this.$store.state.localSurveyState.ENTarget);
         console.log(this.$store.state.localSurveyState.dueTime);
-      }
-      if(this.$store.state.isLoggedIn==false) {
+
+        if(this.$store.state.isLoggedIn==false) {
           alert('로그인이 필요한 서비스입니다.')
           this.$store.state.notLoggedInService = false
           console.log('notLoggedInService')
@@ -286,6 +286,8 @@ export default {
           this.$router.push('/servicepay');
           console.log('isLoggedInService')
         }
+      }
+      
     },
     
     HeadCount(Person){
