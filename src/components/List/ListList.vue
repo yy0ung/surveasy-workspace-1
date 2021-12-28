@@ -5,23 +5,28 @@
     <h2 id='list-table-title'>업로드 된 설문</h2>
     <table id='list-table'>
       <tr>
-        <th>설문 ID</th>
+        <th>#</th>
         <th>설문 제목</th>
-        <th>설문 작성자</th>
-        <th>응답 수</th>
-        <th>업로드 날짜</th>
+        
+        <th>설문 대상</th>
+        <th>소요시간</th>
+        <th>진행률</th>
+        <th>의뢰자</th>
+        
         <th></th>
       </tr>
       <tr v-for="item in (this.$store.state.surveyData.slice(currentPage*5-5,currentPage*5))" :key="item.id">
-        <td>{{item[0].id}}</td>
-        <td>
-          <router-link :to="`/surveylist/${item[0].id}`">{{item[0].title}}</router-link>
+        <td class="list-de" :class="{active:item[0].progress==3}">{{item[0].id}}</td>
+        <td >
+          <router-link :to="`/surveylist/${item[0].id}`" class="list-title" :class="{active:item[0].progress==3}">{{item[0].title}}</router-link>
 
         </td>
-        <td>{{item[0].uploader}}</td>
-        <td>{{item[0].requiredHeadCount}}</td>
-        <td>time</td>
-        <td>
+        <td class="list-de" :class="{active:item[0].progress==3}">{{item[0].target}}</td>
+        <td class="list-de" :class="{active:item[0].progress==3}">{{item[0].spendTime}}</td>
+        <td class="list-de" :class="{active:item[0].progress==3}">{{item[0].requiredHeadCount}}</td>
+        <td class="list-de" :class="{active:item[0].progress==3}">{{item[0].uploader.substring(0,1)+"*"+item[0].uploader.substring(2)}}</td>
+        
+        <!-- <td>
           <div v-if="this.$store.state.currentUser">
             <div v-if="this.$store.state.currentUser.respondArray.includes(item[0].id)" class="responded">
             {{this.$store.state.surveyListStatus[0]}}
@@ -32,12 +37,12 @@
             로그인 필요
           </div>
           
-        </td>
+        </td> -->
       </tr>
     </table>
     <br>
     <div id='page-button'>
-      <button :disabled="currentPage==1" @click="dec">이전</button>
+      <button :disabled="currentPage==1" @click="dec">이전 </button>
       {{currentPage}}
       <button :disabled="currentPage==totalPage" @click="inc">다음</button>
       
@@ -113,7 +118,8 @@ export default {
         uploadTime:'time',
         uploader:'',
         id:0
-      }
+      },
+     
       
     }
   },
@@ -167,6 +173,9 @@ export default {
 </script>
 
 <style>
+#list-view-container{
+  font-family: 'Noto Sans KR', sans-serif;
+}
 #list-table{
   border: 0px solid black;
   width: 70%;
@@ -203,4 +212,16 @@ export default {
 .responded {
   color: #af2232
 }
+.list-de.active{
+  color: #7A7A7A;
+  font-weight: 300;
+}
+.list-title.active{
+  color: #7A7A7A;
+  font-weight: 300;
+}
+.list-title{
+  color: #0CAE02;
+}
+
 </style>

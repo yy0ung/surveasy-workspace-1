@@ -121,6 +121,8 @@ export default createStore({
     lastID : [],
     currentUserUploadInfo:[],
 
+    myPage: 1
+
     
   },
 

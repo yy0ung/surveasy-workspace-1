@@ -6,10 +6,25 @@
     <button id="client">패널</button>
     
   </div>
-  <div class="back-same" v-if="show==1">
+  <div class="back-same" v-if="this.$store.state.myPage==1">
+    <div class="from">
+
+   
+  <div class="img">
+    <span class="grade-img" v-if="grade<=2"><img src="@/assets/myPage/gradeOne.png" width="85"></span>
+    <span class="grade-img" v-if="grade>=3&&grade<=9"><img src="@/assets/myPage/gradeTwo.png" width="85"></span>
+    <span class="grade-img" v-if="grade>=10"><img src="@/assets/myPage/gradeThree.png" width="85"></span>
+  </div>
+  <div class="title">
+    안녕하세요, <span id="green">{{this.$store.state.currentUser['name']}}</span>님 
+  </div>
+  <div class="go-link">
+    <router-link to="/serviceidentity_mypage" class="go-link">대학(원)생 인증하러가기 ></router-link>
+  </div>
+   </div>
+      
+    
   
-  <span class="title">안녕하세요, <span id="green">{{this.$store.state.currentUser['name']}}</span>님 </span>
-  <router-link to="/serviceidentity_mypage" class="go-link">대학(원)생 인증하러가기 ></router-link>
   <div class="mypage-contents">
   <!-- <p>{{this.$store.state.currentUser}}</p> -->
   <div class="mypage-router-link-container">
@@ -32,8 +47,9 @@
 export default {
   data() {
     return {
-      show: 1,
+      
       color: 0,
+      grade : this.$store.state.currentUser['uploadIndex'].length
     }
   },
   methods: {
@@ -61,13 +77,25 @@ export default {
 .mypage-router-link.active{
   color: #0AAC00;
 }
+.from{
+  display: flex;
+  
+}
 .title{
   font-size: 2rem;
   margin-right: 20px;
-  margin-left: 150px;
-  padding-top: 50px;
+  padding-top: 20px;
+  margin-left: 20px;
   font-family: 'Noto Sans KR', sans-serif;
   
+}
+.img{
+  padding-left: 100px;
+  
+}
+.go-link{
+  padding-top: 40px;
+  margin-left: 10px;
 }
 #client{
   background-color: white;

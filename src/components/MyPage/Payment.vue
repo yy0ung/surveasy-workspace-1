@@ -35,7 +35,7 @@
             <p class="su-">답변 수</p>
           </div>
           <div class="con2">
-            <p class="light">진행단계</p>
+            <p class="light">진행단계 admin에서 가져오기</p>
             <p class="light">{{item.requiredHeadCount}}</p>
           </div>
           <div class="con3">
@@ -43,7 +43,7 @@
             <p class="su-">설문 기한</p>
           </div>
           <div class="con4">
-            <p class="light">{{new Date(item.uploadTime)}}</p>
+            <p class="light">{{item.uploadTime}}</p>
             <p class="light">{{item.dueTime}}</p>
           </div>
       </div>
@@ -61,6 +61,7 @@ export default {
       currentUserUploadIndexInfo:[],
       currentUserUploadIndexInfo2:[],
       show:0,
+      
       
     }
   },
