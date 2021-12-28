@@ -26,6 +26,8 @@
               <th>결제 확인</th>
               <th>확인 여부</th>
               <th>duetime</th>
+              <th>progress</th>
+              <th>설문 진행단계 변경</th>
               
             </tr>
 
@@ -40,9 +42,9 @@
               <td>{{item.uploaderIdentity}}</td>
               <td><button @click="updateApproved(item)">결제 확인</button></td>
               <td>{{item.adminApproved}}</td>
-
-              
               <td>{{item.dueTimeTimeTime}}</td>
+              <td>{{item.progress}}</td>
+              <td><button @click="changeProgress1(item.id)">1</button> <button @click="changeProgress2(item.id)">2</button> <button @click="changeProgress3(item.id)">3</button></td>
               
 
             </tr>
@@ -104,11 +106,10 @@
 
       <div>
         <h1>리스트 데이터 추가하기</h1>
-        <p>{{UploadInputData.surveyTitle}}</p>
 
         <div>
           <div>
-            <input type="text" placeholder="설문 제목" v-model="UploadInputData.surveyTitle">
+            <input type="text" placeholder="설문 제목" v-model="UploadInputData.title">
           </div>
           <div>
             <input type="text" placeholder="설문 업로더" v-model="UploadInputData.uploader">  
@@ -117,7 +118,7 @@
             <input type="text" placeholder="설문 주제" v-model="UploadInputData.theme">  
           </div>
           <div>
-            <input type="text" placeholder="요구 응답 수" v-model="UploadInputData.requireHeadCount">
+            <input type="text" placeholder="요구 응답 수" v-model="UploadInputData.requiredHeadCount">
           </div>
           <div>
             <input type="text" placeholder="예상 소요시간" v-model="UploadInputData.spendTime">  
@@ -129,13 +130,15 @@
             <input type="text" placeholder="설문 링크" v-model="UploadInputData.surveyLink">         
           </div>
         </div>
+
+        <button @click="addPastData(this.UploadInputData)">리스트에 추가하기</button>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import { getFirestore,collection, getDocs, updateDoc, doc, deleteDoc } from 'firebase/firestore'
+import { getFirestore,collection, getDocs, updateDoc, doc, deleteDoc, setDoc } from 'firebase/firestore'
 //어드민 페이지 접근을 어떻게 해야할지 고민중..
 //일단은 어드민 주소는 접근은 가능하되 비번을 맞게 쳐야 뒤에 부분들이 보이게 하려고함.
 export default {
@@ -146,9 +149,9 @@ data(){
     val:'',
 
     UploadInputData:{
-      surveyTitle:'',
+      title:'',
       theme:'',
-      requireHeadCount:'',
+      requiredHeadCount:'',
       spendTime:'',
       pastData: true,
       surveyInstitute:'',
@@ -221,6 +224,69 @@ methods:{
 
     await deleteDoc(doc(db, "identityVerifyRequired", payload.requestEmail.toString())).then(alert('ok')) 
   },
+
+  async addPastData(dataset){
+    var db = this.$store.state.db
+    var localLastID = this.$store.state.lastID[0].lastID
+
+    await setDoc(doc(db, "adminRequired", localLastID.toString()), {
+
+      id : localLastID,
+      title : dataset.title,
+      theme : dataset.theme,
+      requiredHeadCount: dataset.requiredHeadCount,
+      spendTime : dataset.spendTime,
+      pastData : dataset.pastData,
+      surveyInstitute : dataset.surveyInstitute,
+      surveyLink : dataset.surveyLink,
+      uploader : dataset.uploader,
+      progress : 3
+
+      // surveyTitle:'',
+      // theme:'',
+      // requireHeadCount:'',
+      // spendTime:'',
+      // pastData: true,
+      // surveyInstitute:'',
+      // surveyLink: '',
+      // uploader:''
+    })
+
+    var idDocref = doc(db, "lastID", "lastID")
+    
+    await updateDoc(idDocref, {
+      lastID : (localLastID + 1)
+    })
+
+    console.log('완료')
+  },
+
+  async changeProgress1(targetID){
+    var db = this.$store.state.db
+    var idDocref = doc(db, "adminRequired", targetID.toString())
+    await updateDoc( idDocref, {
+      progress : 1
+    })
+    window.alert('완료')
+  },
+
+  async changeProgress2(targetID){
+    var db = this.$store.state.db
+    var idDocref = doc(db, "adminRequired", targetID.toString())
+    await updateDoc( idDocref, {
+      progress : 2
+    })
+    window.alert('완료')
+  },
+
+  async changeProgress3(targetID){
+    var db = this.$store.state.db
+    var idDocref = doc(db, "adminRequired", targetID.toString())
+    await updateDoc( idDocref, {
+      progress : 3
+    })
+    window.alert('완료')
+  }
 
   
   

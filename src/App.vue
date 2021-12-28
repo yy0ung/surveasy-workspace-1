@@ -138,7 +138,7 @@ export default {
         // const dueTime = new Date(doc.data().dueTime.seconds*1000)
         // var docID = Number(doc.data().id)
         var dataSet = []
-        if (doc.data().adminApproved) {
+        if (doc.data().progress == 3 || doc.data().progress == 2) {
           dataSet.push(doc.data())
           surveyData.push(dataSet)
         }
