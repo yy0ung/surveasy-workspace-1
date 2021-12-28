@@ -12,6 +12,7 @@
     <select v-model="couponInfo.rate">
       <option :value=5>5%</option>
       <option :value=10>10%</option>
+      <option :value=20>20%</option>
     </select>
     <br><br>
     <button @click="addCoupon(this.couponInfo)">쿠폰 발급하기</button>
@@ -227,6 +228,10 @@ export default {
 
       if(this.selectedCoupon.rate == 10) {
         this.price = this.price * 0.9
+      }
+
+      if(this.selectedCoupon.rate == 20) {
+        this.price = this.price * 0.8
       }
       
     },

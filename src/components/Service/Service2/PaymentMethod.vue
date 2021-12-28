@@ -54,6 +54,7 @@ export default {
 
       else {
         this.sendToAdmin(this.$store.state.localSurveyState)
+        this.$store.state.localSurveyState.coupon_use = false
         console.log('else')
       }
     },
@@ -171,6 +172,10 @@ export default {
   padding: 15px;
   font-size: 14px;
   font-weight: lighter;
+}
+#Account-input:focus{
+  outline: none;
+  border: 1.5px solid #0AAB00;
 }
 .PaymentMethod-container input::placeholder {
   text-align: left;

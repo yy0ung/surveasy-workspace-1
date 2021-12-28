@@ -91,6 +91,10 @@ export default {
   margin: 25px 0 30px 0;
   
 }
+.survey-info input:focus{
+  outline: none;
+  border: 1.5px solid #0AAB00;
+}
 .survey-info .info-detail {
     display: flex;
     flex-direction: column;
