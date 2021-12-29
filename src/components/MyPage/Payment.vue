@@ -45,7 +45,10 @@
           <div class="con4">
 
             <p class="light">{{item.uploadDate}}</p>
-            <p class="light">{{item.dueDate}}</p>
+            <p class="light">{{item.dueDate}}
+            </p>
+           <router-link :to="`/review/${item.title}`">후기 작성하기</router-link>
+
 
           </div>
       </div>
