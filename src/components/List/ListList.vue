@@ -45,7 +45,7 @@
     <br>
     <br><br>
     
-    <p>{{this.$store.state.currentUser}}</p>
+    
     
     <!-- <hr>
     <h3>더미데이터 입력란</h3>
