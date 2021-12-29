@@ -191,9 +191,11 @@ export default {
             if((dataSet.birth).length<8){
                 errCode.push(5)
             }
+
             if(!(dataSet.check1 ==true && dataSet.check2 ==true && dataSet.check3 ==true)){
                  errCode.push(6)
              }
+
             
             if (errCode.length == 0 ){
                 this.validReg = true
