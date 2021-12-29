@@ -6,6 +6,7 @@
       <ul id="Coupon-detail">
         <ul class="Coupon-detail-text">쿠폰</ul>
           <select class="Coupon-selectbox" v-model="selectedCoupon">
+            <option class="select-placeholder" :value="defaultCoupon" disabled selected>사용 가능 쿠폰 {{ this.$store.state.myCoupon.length }}장</option>
             <option class="Coupon-option" v-for="item in (this.$store.state.myCoupon)" v-bind:value="{code: item.code, rate: item.rate}" :key="item">{{ item.name }}  : {{ item.duedate }} 까지</option>
           </select>
           <button class="Coupon-btn" @click="useCoupon()">쿠폰 적용</button>
@@ -26,6 +27,12 @@ export default {
         code: '',
         rate: 0
       }, 
+
+      defaultCoupon : {
+        code: '',
+        rate: 0
+      },
+
     }
   },
 
@@ -50,7 +57,8 @@ export default {
       const docref = doc(db, "couponData", this.selectedCoupon.code)
 
       await updateDoc(docref, { 
-          isUsed: true
+          isUsed: true,
+          targetSurvey: this.$store.state.localSurveyState.title
         })
 
       this.$store.state.adminCoupon = []
@@ -58,19 +66,32 @@ export default {
     },
 
     useCoupon() {
-      this.$store.state.localSurveyState.beforeCouponPrice = this.$store.state.localSurveyState.price
+      if(this.$store.state.localSurveyState.coupon_use==false) {
+        this.$store.state.localSurveyState.beforeCouponPrice = this.$store.state.localSurveyState.price
       
-      if(this.selectedCoupon.rate == 5) {
-        this.$store.state.localSurveyState.couponDiscount = this.$store.state.localSurveyState.price * 0.05
-        this.$store.state.localSurveyState.price = this.$store.state.localSurveyState.price * 0.95
+        if(this.selectedCoupon.rate == 5) {
+          this.$store.state.localSurveyState.couponDiscount = this.$store.state.localSurveyState.price * 0.05
+          this.$store.state.localSurveyState.price = this.$store.state.localSurveyState.price * 0.95
+        }
+
+        if(this.selectedCoupon.rate == 10) {
+          this.$store.state.localSurveyState.couponDiscount = this.$store.state.localSurveyState.price * 0.1
+          this.$store.state.localSurveyState.price = this.$store.state.localSurveyState.price* 0.9
+        }
+
+        if(this.selectedCoupon.rate == 20) {
+          this.$store.state.localSurveyState.couponDiscount = this.$store.state.localSurveyState.price * 0.2
+          this.$store.state.localSurveyState.price = this.$store.state.localSurveyState.price* 0.8
+        }
+
+        this.$store.state.localSurveyState.coupon_use = true
+        this.isUsed() 
       }
 
-      if(this.selectedCoupon.rate == 10) {
-        this.$store.state.localSurveyState.couponDiscount = this.$store.state.localSurveyState.price * 0.1
-        this.$store.state.localSurveyState.price = this.$store.state.localSurveyState.price* 0.9
+      else if(this.$store.state.localSurveyState.coupon_use==true) {
+        alert("쿠폰은 최대 1장까지 사용가능합니다.")
       }
       
-      this.isUsed()
     },
   }
 
@@ -122,15 +143,24 @@ export default {
   left: 190px;
   width: 707px;
   height: 55px;
-  border: 0.75px solid #BCBCBC;
+  border: 0.75px solid #afafaf;
   opacity: 1;
   background-color: #EEEEEE;
-  font-size: 17px;
+  font-size: 16px;
   padding: 12px;
+  text-align: left;
+  font-family: 'Noto Sans KR' lighter;
+  letter-spacing: 0px;
+  color: #a2a0a0;
+}
+.Coupon-selectbox:focus {
+  outline: none;
+  border: 1.5px solid #0AAB00;
 }
 .Coupon-option {
   padding: 10px;
-  font-size: 17px;
+  font-size: 16px;
+  color: #1c1c1c;
 }
 .Coupon-btn {
   background-color: #EEEEEE;

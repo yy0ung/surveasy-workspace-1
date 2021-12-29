@@ -94,9 +94,9 @@
           </li>
           <div class="check">
             <div class="all-title"><input type="checkbox" v-model="checkAll">전체 동의하기</div>
-            <div class="all"><input type="checkbox" v-model="check.check1" >서베이지 이용약관</div>
-            <div class="all"><input type="checkbox" v-model="check.check2" >서베이지 개인정보 보호 방침</div>
-            <div class="all"><input type="checkbox" v-model="check.check3" >
+            <div class="all"><input type="checkbox" v-model="dataSet.check1" >서베이지 이용약관</div>
+            <div class="all"><input type="checkbox" v-model="dataSet.check2" >서베이지 개인정보 보호 방침</div>
+            <div class="all"><input type="checkbox" v-model="dataSet.check3" >
                 회원가입 시 작성한 개인 정보가 모두 올바름을 확인합니다. <br>
             <span id="nextline">가입 오류로 인한 불이익은 이용자의 책임임을 인지하고 있습니다.</span></div>
 
@@ -133,11 +133,7 @@ export default {
                  
             },
             
-            check:{
-                check1: false,
-                check2: false,
-                check3: false
-            },
+           
 
             validReg : false,
             
@@ -150,14 +146,15 @@ export default {
             },
             set: function(e){
                 if(e==true){
-                    this.check.check1 =true;
-                    this.check.check2 =true;
-                    this.check.check3 =true;
+                    this.dataSet.check1 =true;
+                    this.dataSet.check2 =true;
+                    this.dataSet.check3 =true;
                 }else{
-                    this.check.check1 =false;
-                    this.check.check2 =false;
-                    this.check.check3 =false;
+                    this.dataSet.check1 =false;
+                    this.dataSet.check2 =false;
+                    this.dataSet.check3 =false;
                 }
+                
             }
            
         }
@@ -194,9 +191,11 @@ export default {
             if((dataSet.birth).length<8){
                 errCode.push(5)
             }
-            // if(!(dataSet.check1 || dataSet.check2 || dataSet.check3)){
-            //     errCode.push(6)
-            // }
+
+            if(!(dataSet.check1 ==true && dataSet.check2 ==true && dataSet.check3 ==true)){
+                 errCode.push(6)
+             }
+
             
             if (errCode.length == 0 ){
                 this.validReg = true
@@ -256,7 +255,7 @@ export default {
                 email: dataSet.email,
                 phoneNumber: dataSet.phoneNumber,
                 isPanel: false,
-                // birth: dataSet.birth,
+                birth: dataSet.birth,
                 uploadIndex: [],
                 identity: 'default',
                 funnel : dataSet.funnel,

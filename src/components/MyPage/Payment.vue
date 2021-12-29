@@ -35,16 +35,21 @@
             <p class="su-">답변 수</p>
           </div>
           <div class="con2">
-            <p class="light">진행단계</p>
+            <p class="light">진행단계 admin에서 가져오기</p>
             <p class="light">{{item.requiredHeadCount}}</p>
           </div>
           <div class="con3">
-            <p class="su-">결제 날짜</p>
+            <p class="su-">주문 날짜</p>
             <p class="su-">설문 기한</p>
           </div>
           <div class="con4">
-            <p class="light">{{new Date(item.uploadTime)}}</p>
-            <p class="light">{{item.dueTime}}</p>
+
+            <p class="light">{{item.uploadDate}}</p>
+            <p class="light">{{item.dueDate}}
+            </p>
+           <router-link :to="`/review/${item.title}`">후기 작성하기</router-link>
+
+
           </div>
       </div>
       </div>
@@ -61,6 +66,7 @@ export default {
       currentUserUploadIndexInfo:[],
       currentUserUploadIndexInfo2:[],
       show:0,
+      
       
     }
   },

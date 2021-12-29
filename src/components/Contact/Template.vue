@@ -101,5 +101,8 @@ export default {
 </script>
 
 <style>
-
+#FAQ-detail-container .title{
+  font-size: 1.1rem;
+  margin-top: 0;
+}
 </style>

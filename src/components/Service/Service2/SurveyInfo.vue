@@ -91,6 +91,10 @@ export default {
   margin: 25px 0 30px 0;
   
 }
+.survey-info input:focus{
+  outline: none;
+  border: 1.5px solid #0AAB00;
+}
 .survey-info .info-detail {
     display: flex;
     flex-direction: column;
@@ -127,7 +131,7 @@ export default {
   width: 600px;
   height: 25px;
   text-align: left;
-  font-family: 'Noto Sans KR' normal;
+  font-family: 'Noto Sans KR' lighter;
   font-size: 15px;
   letter-spacing: 0px;
   color: #BCBCBC;

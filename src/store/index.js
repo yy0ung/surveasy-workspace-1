@@ -17,6 +17,7 @@ export default createStore({
     },
     isLoggedIn:false,
     notLoggedInService: true,
+    notLoggedInTemplate: true,
     db: null,
     userData: [],
     surveyData: [],
@@ -101,7 +102,17 @@ export default createStore({
 
       beforeCouponPrice:0,
       couponDiscount:0,
+      coupon_use: false,
       
+    },
+
+    localTemplateState: {
+      type: '',
+      name: '',
+      email: '',
+      etc: '',
+      uploader: '',
+      uploadDate: ''
     },
      
 
@@ -120,6 +131,8 @@ export default createStore({
     AdminPassword: 1111,
     lastID : [],
     currentUserUploadInfo:[],
+
+    myPage: 1
 
     
   },
@@ -157,6 +170,21 @@ export default createStore({
       state.localSurveyState.uploaderIdentity = payload.uploaderIdentity
     },
 
+    setTemplateMutation(state, payload) {
+      state.localTemplateState.type = payload.type
+      state.localTemplateState.name = payload.name
+      state.localTemplateState.email = payload.email
+      state.localTemplateState.etc = payload.etc      
+      state.localTemplateState.uploader = payload.uploader
+      state.localTemplateState.uploadDate =  payload.uploadDate
+    },
+
+    setnotLoggedInTemplate(state) {
+      state.notLoggedInTemplate = true
+    },
+    setnotLoggedInService(state) {
+      state.notLoggedInService = true
+    },
 
     setCurrentUserMutation(state, payload){
       state.currentUser = payload
@@ -164,6 +192,11 @@ export default createStore({
       console.log('currentUser가 설정되었습니다.')
       
     },
+
+    setCouponDiscountEmpty(state){
+      state.localSurveyState.couponDiscount = 0
+    },
+
     logoutMutation(state){
       state.currentUser = null
       state.isLoggedIn = false
