@@ -6,13 +6,15 @@
   <div class="review-contents">
     <p class="con-title">[{{title.id}}] 설문 의뢰는 어땠나요?</p>
     <div class="star">
-      <img class="starimg" src="@/assets/Home/star.png" width="40">
-      <img class="starimg" src="@/assets/Home/star.png" width="40">
-      <img class="starimg" src="@/assets/Home/star.png" width="40">
-      <img class="starimg" src="@/assets/Home/star.png" width="40">
-      <img class="starimg" src="@/assets/Home/star.png" width="40">
+      <img class="starimg" src="@/assets/myPage/restar.png" width="40">
+      <img class="starimg" src="@/assets/myPage/refullstar.png" width="40">
+
+      <img class="starimg" src="@/assets/myPage/restar.png" width="40">
+      <img class="starimg" src="@/assets/myPage/restar.png" width="40">
+      <img class="starimg" src="@/assets/myPage/restar.png" width="40">
+      <img class="starimg" src="@/assets/myPage/restar.png" width="40">
     </div>
-    <textarea class="review-text" placeholder="설문 의뢰 후기를 작성해주세요. 여러분의 후기는 서베이지의 다른 고객에게 공개되어 &#13;&#10;서비스 이용에 도움이 됩니다."></textarea>
+    <textarea class="review-text" v-model="reviewData.reviewText" placeholder="설문 의뢰 후기를 작성해주세요. 여러분의 후기는 서베이지의 다른 고객에게 공개되어 &#13;&#10;서비스 이용에 도움이 됩니다."></textarea>
     <div class="btn-review">
       <button class="btn-r">작성 완료</button>
     </div>
@@ -25,6 +27,10 @@ export default {
   data() {
     return {
       title: this.$route.params,
+      reviewData: {
+        score: 0,
+        reviewText: '',
+      }
       
     }
   },
