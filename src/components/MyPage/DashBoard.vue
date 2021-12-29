@@ -14,8 +14,15 @@
   <div class="top-right">
     <div class="third-box">
       <p class="black-title">쿠폰 / 적립금</p>
-      <p class="green-box">쿠폰 {{ this.$store.state.myCoupon.length }}개</p>
-      <p class="green-box">적립금 300원</p>
+      <div class="green-box">
+      <img class="couponimg" src="@/assets/myPage/coupon.png" width="50" height="30">
+
+        <p class="coupon-title">쿠폰 {{ this.$store.state.myCoupon.length }}개</p></div>
+        <div class="green-box">
+          <img class="pointimg" src="@/assets/myPage/point.png" width="40" height="40">
+      <p class="coupon-title">적립금 300원</p>
+        </div>
+        
     </div>
   </div>
     
@@ -103,13 +110,15 @@ export default {
   background: #0AAC00 0% 0% no-repeat padding-box;
   box-shadow: 0px 0px 5px #02AF2F80;
   border-radius: 15px;
-  text-align: center;
+  
   opacity: 1;
   width: 280px;
-  padding-top: 42px;
-  padding-bottom: 42px;
-  margin-bottom: 20px;
+  padding-top: 27px;
+  padding-bottom: 27px;
+  margin-bottom: 15px;
   color: white;
+  display: flex;
+  justify-content: center;
 }
 .bottom{
   width: 700px;
@@ -164,5 +173,17 @@ export default {
   margin-left: 680px;  
   font-size: 0.9rem;
   
+}
+.couponimg{
+  padding-top: 13px;
+  
+  
+}
+.coupon-title{
+  margin-left: 40px;
+}
+.pointimg{
+  padding-top: 10px;
+  padding-left: 10px;
 }
 </style>

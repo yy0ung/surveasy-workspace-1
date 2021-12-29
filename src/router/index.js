@@ -142,8 +142,8 @@ const routes = [
     component: Withdraw
   },
   {
-    path: '/review',
-    name: 'Review',
+    path: '/review/:id',
+   
     component: Review
   },
   {

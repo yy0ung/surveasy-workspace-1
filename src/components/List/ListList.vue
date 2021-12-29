@@ -2,7 +2,7 @@
   <div id='list-view-container'>
     <p></p>
     <!--테이블 만들기 -->
-    <h2 id='list-table-title'>업로드 된 설문</h2>
+    
     <table id='list-table'>
       <tr>
         <th>#</th>
@@ -175,13 +175,15 @@ export default {
 <style>
 #list-view-container{
   font-family: 'Noto Sans KR', sans-serif;
+  margin-bottom: 50px;
 }
 #list-table{
   border: 0px solid black;
   width: 70%;
   margin: auto;
   border-spacing: 0;
-  
+  margin-top: 120px;
+  margin-bottom: 50px;
 }
 
 #list-table td{
@@ -207,6 +209,7 @@ export default {
 
 #page-button{
   display: inline;
+  
 }
 
 .responded {
