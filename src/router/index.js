@@ -30,6 +30,7 @@ import FinalModal from '../components/Contact/ContactFinalModal.vue'
 import AdminMain from '../views/Admin/AdminMain.vue'
 import CouponAdmin from '../views/Admin/CouponAdmin.vue'
 import Withdraw from '../views/MyPage/Withdraw.vue'
+import Review from '../views/MyPage/Review.vue'
 
 const routes = [
   {
@@ -139,6 +140,11 @@ const routes = [
     path: '/withdraw',
     name: 'Withdraw',
     component: Withdraw
+  },
+  {
+    path: '/review',
+    name: 'Review',
+    component: Review
   },
   {
     path: '/response',
