@@ -109,17 +109,25 @@ export default {
 
           if(this.$store.state.notLoggedInService==false) {
             console.log('옵션 살리면서 로그인 성공')
+            this.$store.commit('setnotLoggedInService')
             this.$router.push('/servicepay')
           }
 
-          if(this.$store.state.notLoggedInService==true) {
-            console.log('걍')
-            this.$router.push('/')
+          else if(this.$store.state.notLoggedInService==true) {
+            if(this.$store.state.notLoggedInTemplate==false) {
+              console.log('템플릿 도중 로그인')
+              this.$store.commit('setnotLoggedInTemplate')
+              console.log(this.$store.state.notLoggedInTemplate)
+              this.$router.push('/surveytemplate')
+            }
+
+            else {
+              console.log('걍')
+              this.$router.push('/')
+            }
           }
 
-          if(this.$store.state.notLoggedInTemplate==false) {
-            this.$router.push('/surveytemplate')
-          }
+          
 
         })
         .catch((error) => {
