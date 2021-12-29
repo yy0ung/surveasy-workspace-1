@@ -17,7 +17,7 @@ export default createStore({
     },
     isLoggedIn:false,
     notLoggedInService: true,
-    notLoggedInService2: true,
+    notLoggedInTemplate: true,
     db: null,
     userData: [],
     surveyData: [],
@@ -177,6 +177,13 @@ export default createStore({
       state.localTemplateState.etc = payload.etc      
       state.localTemplateState.uploader = payload.uploader
       state.localTemplateState.uploadDate =  payload.uploadDate
+    },
+
+    setnotLoggedInTemplate(state) {
+      state.notLoggedInTemplate = true
+    },
+    setnotLoggedInService(state) {
+      state.notLoggedInService = true
     },
 
     setCurrentUserMutation(state, payload){
