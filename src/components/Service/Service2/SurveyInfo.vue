@@ -131,7 +131,7 @@ export default {
   width: 600px;
   height: 25px;
   text-align: left;
-  font-family: 'Noto Sans KR' normal;
+  font-family: 'Noto Sans KR' lighter;
   font-size: 15px;
   letter-spacing: 0px;
   color: #BCBCBC;

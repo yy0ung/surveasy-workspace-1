@@ -17,6 +17,7 @@ export default createStore({
     },
     isLoggedIn:false,
     notLoggedInService: true,
+    notLoggedInService2: true,
     db: null,
     userData: [],
     surveyData: [],
@@ -104,6 +105,15 @@ export default createStore({
       coupon_use: false,
       
     },
+
+    localTemplateState: {
+      type: '',
+      name: '',
+      email: '',
+      etc: '',
+      uploader: '',
+      uploadDate: ''
+    },
      
 
 
@@ -158,6 +168,14 @@ export default createStore({
       state.localSurveyState.uploaderIdentity = payload.uploaderIdentity
     },
 
+    setTemplateMutation(state, payload) {
+      state.localTemplateState.type = payload.type
+      state.localTemplateState.name = payload.name
+      state.localTemplateState.email = payload.email
+      state.localTemplateState.etc = payload.etc      
+      state.localTemplateState.uploader = payload.uploader
+      state.localTemplateState.uploadDate =  payload.uploadDate
+    },
 
     setCurrentUserMutation(state, payload){
       state.currentUser = payload
