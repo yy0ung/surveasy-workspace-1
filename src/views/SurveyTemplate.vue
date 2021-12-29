@@ -1,12 +1,19 @@
 <template>
-<div id="template-container">
-  <h1>설문 템플릿</h1>
-  <router-link to="/couponadmin">쿠폰</router-link>
-</div>  
+  <div class="template-container">
+      <TemplateDetail />
+      <TemplateOption />
+  </div>
+  
 </template>
 
 <script>
+import TemplateDetail from '../components/Template/TemplateDetail.vue'
+import TemplateOption from '../components/Template/TemplateOption.vue'
 export default {
+  components:{
+    TemplateDetail,
+    TemplateOption
+  },
   mounted() {
     window.scrollTo(0,0)
   },
@@ -15,5 +22,10 @@ export default {
 </script>
 
 <style>
-
+.template-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  
+}
 </style>
