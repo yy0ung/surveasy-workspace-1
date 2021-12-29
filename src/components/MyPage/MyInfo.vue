@@ -37,15 +37,15 @@
         <p class="info-title">이름</p>
         <p class="info-title">휴대폰 번호</p>
         <p class="info-title">생년월일</p>
-        <p class="info-title">환불 계좌</p>
+       
       </div>
       <div class="info-contents2">
         <p class="info-detail">{{this.$store.state.currentUser['email']}}</p>
         <p class="info-detail">비밀번호</p>
         <p class="info-detail">{{this.$store.state.currentUser['name']}}</p>
         <p class="info-detail">{{this.$store.state.currentUser['phoneNumber']}}</p>
-        <p class="info-detail">생년월일</p>
-        <p class="info-detail">환불 계좌</p>
+        <p class="info-detail">{{this.$store.state.currentUser['birth']}}</p>
+        <!-- <p class="info-detail">환불 계좌</p> -->
         <!-- 환불계좌 언제 작성하게 하는지? -->
       </div>
       </div>

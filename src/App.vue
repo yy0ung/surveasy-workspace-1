@@ -174,7 +174,8 @@ export default {
       this.$store.state.FAQbutton=0
     },
     goMypage(){
-      this.$router.push('/mypage')
+     
+      this.$router.push('/mypage/dashboard')
     }
   }
 }
