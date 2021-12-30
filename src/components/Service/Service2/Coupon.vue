@@ -1,7 +1,7 @@
 <template>
   <div class="Coupon">
     <div class="Coupon-container">
-      <ul id="Coupon-title">쿠폰 적용</ul>
+      <ul id="Coupon-title">쿠폰/적립금</ul>
 
       <ul id="Coupon-detail">
         <ul class="Coupon-detail-text">쿠폰</ul>
@@ -12,8 +12,15 @@
           <button class="Coupon-btn" @click="useCoupon()">쿠폰 적용</button>
       </ul>
 
+      <ul id="Coupon-detail">
+        <ul class="Coupon-detail-text">적립금</ul>
+          <div class="Point-box">보유 적립금 {{ show_point }}원</div>
+          <button class="Coupon-btn" @click="usePoint()">적립금 적용</button>
+          <div class="Point-notice">10,000원 이상 결제시, 결제 금액의 최대 10%까지 적립금 사용 가능</div>
+      </ul>
+
     </div>
-    </div>  
+  </div>  
 </template>
 
 <script>
@@ -33,40 +40,17 @@ export default {
         rate: 0
       },
 
+      point_apply: false
+
     }
   },
 
   methods: {
-    async fetchAdminData_coupon() {
-     const db = this.$store.state.db
-     
-     const adminCoupon = this.$store.state.adminCoupon
-     
-     const querySnapshot = await getDocs(collection(db, "couponData"))
-     querySnapshot.forEach((doc) => {
-       adminCoupon.push(doc.data())
-     })
-
-     const myCoupon = adminCoupon.filter(item => item.user===this.$store.state.currentUser.email && item.isUsed===false)
-     this.$store.state.myCoupon = myCoupon
-     console.log(this.$store.state.myCoupon)
-   },
-
-    async isUsed() {
-      var db = this.$store.state.db
-      const docref = doc(db, "couponData", this.selectedCoupon.code)
-
-      await updateDoc(docref, { 
-          isUsed: true,
-          targetSurvey: this.$store.state.localSurveyState.title
-        })
-
-      this.$store.state.adminCoupon = []
-      this.fetchAdminData_coupon()
-    },
-
+    // Coupon methods
     useCoupon() {
       if(this.$store.state.localSurveyState.coupon_use==false) {
+        this.$store.state.localSurveyState.selectedCoupon = this.selectedCoupon
+
         this.$store.state.localSurveyState.beforeCouponPrice = this.$store.state.localSurveyState.price
       
         if(this.selectedCoupon.rate == 5) {
@@ -85,7 +69,6 @@ export default {
         }
 
         this.$store.state.localSurveyState.coupon_use = true
-        this.isUsed() 
       }
 
       else if(this.$store.state.localSurveyState.coupon_use==true) {
@@ -93,6 +76,49 @@ export default {
       }
       
     },
+    
+    // Point methods
+    usePoint() {
+      if(this.$store.state.localSurveyState.point_use==false) {
+        if(this.$store.state.localSurveyState.beforeCouponPrice < 10000) {
+          alert('적립금은 결제 금액이 10,000원 이상인 경우에만 사용 가능합니다.')
+        }
+        else {
+          this.point_apply = true
+          var maxpoint = this.$store.state.localSurveyState.beforeCouponPrice * 0.1
+
+          if(this.$store.state.currentUser.point_current < maxpoint) {
+            this.$store.state.localSurveyState.pointDiscount = this.$store.state.currentUser.point_current
+            this.$store.state.localSurveyState.price = this.$store.state.localSurveyState.price - this.$store.state.localSurveyState.pointDiscount
+          }
+
+          else if(this.$store.state.currentUser.point_current >= maxpoint) {
+            this.$store.state.localSurveyState.pointDiscount = maxpoint
+            this.$store.state.localSurveyState.price = this.$store.state.localSurveyState.price - this.$store.state.localSurveyState.pointDiscount
+          }
+
+          this.$store.state.localSurveyState.point_use = true
+        }
+      }
+
+      else if(this.$store.state.localSurveyState.point_use==true) {
+        alert("이미 적립금을 적용하셨습니다.")
+      }
+    },
+    
+  },
+
+  computed: {
+    show_point() {
+      var c = this.$store.state.currentUser.point_current
+
+      if(this.point_apply == false) {
+        return c
+      }
+      else {
+        return c - this.$store.state.localSurveyState.pointDiscount
+      }
+    }
   }
 
 }
@@ -173,5 +199,26 @@ export default {
   font-weight: 800;
   border-radius: 26px;
   cursor: pointer;  
+}
+.Point-box {
+  display: inline-block;
+  left: 190px;
+  width: 680px;
+  height: 26px;
+  border: 0.75px solid #afafaf;
+  opacity: 1;
+  background-color: #EEEEEE;
+  font-size: 16px;
+  padding: 13px;
+  text-align: left;
+  font-family: 'Noto Sans KR' lighter;
+  letter-spacing: 0px;
+  color: #a2a0a0;
+}
+.Point-notice {
+  font-size: 15px;
+  color: #a2a0a0;
+  margin-top: 15px;
+  margin-left: 3px;
 }
 </style>

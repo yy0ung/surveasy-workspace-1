@@ -55,7 +55,7 @@ export default {
   methods: {
     button(num){
       this.color=num
-    }
+    },
   },
  
   mounted() {

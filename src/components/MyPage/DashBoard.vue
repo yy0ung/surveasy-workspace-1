@@ -20,7 +20,7 @@
         <p class="coupon-title">쿠폰 {{ this.$store.state.myCoupon.length }}개</p></div>
         <div class="green-box">
           <img class="pointimg" src="@/assets/myPage/point.png" width="40" height="40">
-      <p class="coupon-title">적립금 300원</p>
+      <p class="coupon-title">적립금 {{ this.$store.state.currentUser.point_current }}원</p>
         </div>
         
     </div>

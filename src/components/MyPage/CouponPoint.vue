@@ -21,15 +21,15 @@
     <div class="mypoint-list">
       <ul>
         <div class="point-text">현재 적립금</div>
-        <div class="point-value">310원</div>
+        <div class="point-value">{{ this.$store.state.currentUser.point_current }}원</div>
       </ul>
       <ul>
         <div class="point-text">사용한 적립금</div>
-        <div class="point-value">500원</div>
+        <div class="point-value">{{ point_used }}원</div>
       </ul>
       <ul>
         <div class="point-text">누적 적립금</div>
-        <div class="point-value">810원</div>
+        <div class="point-value">{{ this.$store.state.currentUser.point_total }}원</div>
       </ul>
     </div>
     <div class="mypoint-notice">
@@ -39,6 +39,7 @@
     </div>
   </div>
 
+  <!-- 
   <div class="mypoint-table">
     <table>
       <tr>
@@ -64,6 +65,7 @@
       </tr>     
     </table>
   </div>
+  -->
 
 </div>
 </template>
@@ -94,6 +96,8 @@ export default {
       transferCoupon: {
         code: '',
       },
+
+      point_used : this.$store.state.currentUser.point_total - this.$store.state.currentUser.point_current
 
     }
   },
@@ -365,7 +369,7 @@ export default {
   font-size: 13px;
   font-weight: normal;
   padding: 15px;
-}
+} 
 .mypoint-table {
   border-collapse: collapse;
   text-align: center;

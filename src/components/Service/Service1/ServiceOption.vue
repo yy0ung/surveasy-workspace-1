@@ -197,6 +197,7 @@ export default {
         this.$store.commit('setSurveyDueTime', {dueDate: this.aa, dueTime: this.bb})
 
         this.$store.commit('setCouponDiscountEmpty')
+        this.$store.commit('setPointDiscountEmpty')
 
 
         if(this.$store.state.isLoggedIn==false) {
