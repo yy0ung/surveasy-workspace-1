@@ -126,6 +126,8 @@ export default {
   border: 0.75px solid #BCBCBC;
   opacity: 1;
   background-color: #EEEEEE;
+  font-size: 17px;
+  color: grey;
 }
 .survey-info input::placeholder {
   width: 600px;

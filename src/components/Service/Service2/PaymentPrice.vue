@@ -11,8 +11,8 @@
         <span id="showPrice-num">{{ this.$store.state.localSurveyState.couponDiscount }} 원</span>
       </ul>
       <ul class="showPrice-detail-coupon">
-        <span id="showPrice-text">적립금사용</span> 
-        <span id="showPrice-num">0 원</span>
+        <span id="showPrice-text">적립금 사용</span> 
+        <span id="showPrice-num">{{ this.$store.state.localSurveyState.pointDiscount }} 원</span>
       </ul>
     <hr align="left"> 
       <ul class="showPrice-final">
@@ -55,7 +55,7 @@ export default {
   font-weight: bold;
 }
 hr {
-  width: 300px;
+  width: 310px;
   margin-left: 45px;
   margin-bottom: 20px;
 }
@@ -85,13 +85,13 @@ hr {
   color: rgb(157, 157, 157);
   font-size: 16px;
   margin-left: 5px;
-  margin-right: 165px;
+  margin-right: 160px;
 }
 .showPrice-detail-coupon #showPrice-num{
   font-family: 'Noto Sans KR', sans-serif;
   color: rgb(157, 157, 157);
   font-size: 16px;
-  margin-right: 40px;
+  margin-right: 30px;
 }
 .showPrice-final {
   display: flex;
@@ -108,6 +108,6 @@ hr {
   color: #0CAE02;
   font-size: 19px;
   font-weight: bold;
-  margin-right: 40px;
+  margin-right: 30px;
 }
 </style>

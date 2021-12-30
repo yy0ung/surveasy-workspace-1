@@ -53,10 +53,104 @@ export default {
       }
 
       else {
+        this.couponIsUsed()
+        this.pointIsUsed()
+        this.pointADD()
         this.sendToAdmin(this.$store.state.localSurveyState)
         this.$store.state.localSurveyState.coupon_use = false
+        this.$store.state.localSurveyState.point_use = false
         console.log('else')
       }
+    },
+
+    async couponIsUsed() {
+      var db = this.$store.state.db
+      const docref = doc(db, "couponData", this.$store.state.localSurveyState.selectedCoupon.code)
+
+      await updateDoc(docref, { 
+          isUsed: true,
+          targetSurvey: this.$store.state.localSurveyState.title
+        })
+
+      this.$store.state.adminCoupon = []
+      this.fetchAdminData_coupon()
+    },
+
+    async fetchAdminData_coupon() {
+     const db = this.$store.state.db
+     
+     const adminCoupon = this.$store.state.adminCoupon
+     
+     const querySnapshot = await getDocs(collection(db, "couponData"))
+     querySnapshot.forEach((doc) => {
+       adminCoupon.push(doc.data())
+     })
+
+     const myCoupon = adminCoupon.filter(item => item.user===this.$store.state.currentUser.email && item.isUsed===false)
+     this.$store.state.myCoupon = myCoupon
+     console.log(this.$store.state.myCoupon)
+   },
+
+    async pointIsUsed() {
+      var db = this.$store.state.db
+      const docref = doc(db, "userData", this.$store.state.currentUser.email)
+
+      this.$store.state.currentUser.point_current = this.$store.state.currentUser.point_current - this.$store.state.localSurveyState.pointDiscount
+
+      //this.$store.state.localPointState.point_current = this.$store.state.currentUser.point_current
+     // this.$store.state.localPointState.point_total = this.$store.state.currentUser.point_total
+
+      await updateDoc(docref, { 
+          point_current: this.$store.state.currentUser.point_current,
+    
+        })
+
+      this.$store.state.userData = []
+      this.fetchUserData()
+    },
+    
+    async fetchUserData(){
+      const db = this.$store.state.db
+      const userData = this.$store.state.userData
+      const querySnapshot = await getDocs(collection(db,"userData"))
+      querySnapshot.forEach((doc) => {
+        userData.push(doc.data())
+      })
+      
+    },
+
+    async pointADD() {
+      var db = this.$store.state.db
+      var currentUserEmail = this.$store.state.currentUser.email
+      var point_addValue = 0
+      const docref = doc(db, "userData", currentUserEmail)
+
+      if(this.$store.state.currentUser['uploadIndex'].length<=2) {
+        point_addValue = this.$store.state.localSurveyState.beforeCouponPrice * 0.01
+      }
+
+      else if(this.$store.state.currentUser['uploadIndex'].length>=3 && this.$store.state.currentUser['uploadIndex'].length<=9) {
+        point_addValue = this.$store.state.localSurveyState.beforeCouponPrice * 0.02
+      }
+
+      else if(this.$store.state.currentUser['uploadIndex'].length>=10) {
+        point_addValue = this.$store.state.localSurveyState.beforeCouponPrice * 0.03
+      }
+
+      this.$store.state.currentUser.point_current = this.$store.state.currentUser.point_current + point_addValue
+      this.$store.state.currentUser.point_total = this.$store.state.currentUser.point_total + point_addValue
+
+      //this.$store.state.localPointState.point_current = this.$store.state.currentUser.point_current
+      //this.$store.state.localPointState.point_total = this.$store.state.currentUser.point_total
+
+
+      await updateDoc(docref, { 
+          point_current: this.$store.state.currentUser.point_current,
+          point_total: this.$store.state.currentUser.point_total
+        })
+
+      this.$store.state.userData = []
+      this.fetchUserData()
     },
 
 
@@ -115,6 +209,7 @@ export default {
                 
         })
 
+
         var idDocref = doc(db, "lastID", "lastID")
         var currentUserRef = doc(db, "userData", currentUserEmail)
         await updateDoc(idDocref, {
@@ -136,11 +231,14 @@ export default {
         }
         
         this.$store.state.localSurveyState.couponDiscount = 0
+        this.$store.state.localSurveyState.pointDiscount = 0
       }
 
 
 
   },
+  
+  
 
 }
 </script>
