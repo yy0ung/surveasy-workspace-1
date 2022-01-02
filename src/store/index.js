@@ -143,7 +143,8 @@ export default createStore({
     lastID : [],
     currentUserUploadInfo:[],
 
-    myPage: 1
+    myPage: 1,
+    indexColor: 0
 
     
   },

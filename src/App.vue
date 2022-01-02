@@ -4,7 +4,7 @@
     <router-link to="/"><img class="logoimg" src="@/assets/logo.png" width="190"></router-link> 
 
     <div class="nav-links">
-      <div class="my-dropdown">
+      <div class="my-dropdown" >
         <span class="nav-element" id="nav-service">서비스 이용
           <span class="nav-icon" >
             <i class="fas fa-chevron-down"></i>
@@ -176,8 +176,8 @@ export default {
     goMypage(){
      
       this.$router.push('/mypage/dashboard')
+    },
     }
-  }
 }
 </script>
 
@@ -403,9 +403,12 @@ body {
      font-size: 0.8rem;
      font-weight: 300;
    }
-   #nav .nav-links a.router-link-exact-active {
+   /* #nav .nav-links a.router-link-exact-active {
   color: #0f5219;
-}
+} */
+  .router-link-active.router-link-exact-active .nav-element{
+    
+  }
 /*.backactive{
   background: rgb(202, 202, 202);
   width: 100%;

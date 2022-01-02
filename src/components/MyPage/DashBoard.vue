@@ -27,25 +27,25 @@
   </div>
     
   </div>
-  <div class="bottom">
+  <div class="bottom" >
+    <p class="black-title">나의 설문</p>
     <div class="bottom-title">
-      <p class="black-title">나의 설문</p>
-      <p class="gray-title1">결제 금액</p>
-      <p class="gray-title2">주문 상세</p>
+      
+      <p class="gray-title1" v-if="show==1">결제 금액</p>
+      <p class="gray-title2" v-if="show==1">주문 상세</p>
     </div>
-    <div class="bottom-list">
+    <div class="dash-spinner" v-if="show==0">
+        <i class="fas fa-spinner"></i>
+          불러오는 중
+      </div>
+    <div class="bottom-list" v-for="item in (currentUserUploadInfo2)" :key="item.title">
       <p class="list-detail">
-        <span id="sur-date">날짜</span>
-        <span id="sur-title">설문 제목</span>
-        <span id="sur-pay">결제 금액</span>
+        <span id="sur-date">{{item.uploadDate}}</span>
+        <span id="sur-title">{{item.title}}</span>
+        <span id="sur-pay">{{item.price}}원</span>
         <span id="sur-detail">주문 상세</span>
       </p>
-      <p class="list-detail">
-        <span id="sur-date">날짜</span>
-        <span id="sur-title">설문 제목</span>
-        <span id="sur-pay">결제 금액</span>
-        <span id="sur-detail">주문 상세</span>
-      </p>
+      
     </div>
   </div>
   <p class="more">더보기 ></p>
@@ -53,8 +53,47 @@
 </template>
 
 <script>
+import { collection, getDocs, getDoc, doc } from '@firebase/firestore'
 export default {
+  data(){
+    return {
+      currentUserUploadInfo:[],
+      currentUserUploadInfo2:[],
+      show: 0
+      
+      
+    }
+  },
+  mounted(){
+    this.fetchMyPayment()
 
+  },
+
+  methods:{
+    async fetchMyPayment(){
+      const db = this.$store.state.db
+      const currentUserUploadIndex = this.$store.state.currentUser['uploadIndex']
+      
+
+      for (var index in currentUserUploadIndex){
+        
+        var docRef = doc(db, "adminRequired", currentUserUploadIndex[index].toString())
+        
+        var docSnap = await getDoc(docRef)
+        
+
+        if (docSnap.exists()) {
+          
+          this.currentUserUploadInfo.push(docSnap.data())
+          
+        }
+      }
+
+      this.currentUserUploadInfo2 = this.currentUserUploadInfo;
+      this.show=1
+     
+    }
+  }
 }
 </script>
 
@@ -147,25 +186,26 @@ export default {
   font-size: 0.9rem;
 }
 #sur-title{
-  margin-right: 100px;
+  /* margin-right: 100px; */
   color: #0AAC00;
+  width: 120px;
 }
 #sur-date{
   margin-right: -30px;
   margin-left: 30px;
 }
 #sur-pay{
-  margin-left: 40px;
+  /* margin-left: 40px; */
 }
 #sur-detail{
   text-decoration: underline;
   margin-right: 30px;
 }
 .gray-title1{
-  margin-left: 380px;
+  margin-left: 423px;
 }
 .gray-title2{
-  margin-left: 112px;
+  margin-left: 132px;
 }
 .more{
   color: #848484;
@@ -176,8 +216,6 @@ export default {
 }
 .couponimg{
   padding-top: 13px;
-  
-  
 }
 .coupon-title{
   margin-left: 40px;
@@ -185,5 +223,11 @@ export default {
 .pointimg{
   padding-top: 10px;
   padding-left: 10px;
+}
+.dash-spinner{
+  text-align: center;
+  font-family: 'Noto Sans KR', sans-serif;
+  color: #0AAC00;
+  margin-top: 50px;
 }
 </style>
