@@ -113,10 +113,10 @@ export default {
         async sendToAdmin(dataset) {
             var db = this.$store.state.db
             var localLastID = this.$store.state.lastID[0].lastID
-            var currentUserEmail = this.$store.state.currentUser.email
+            var currentUserEmail = this.$store.state.loginState.currentUser.email
             
             
-            this.$store.commit('setSurveyMutation2', {title: this.title, target: this.target, institute: this.institute, link: this.link, notice: this.notice, uploader: this.$store.state.currentUser.name});
+            this.$store.commit('setSurveyMutation2', {title: this.title, target: this.target, institute: this.institute, link: this.link, notice: this.notice, uploader: this.$store.state.loginState.currentUser.name});
             console.log(this.$store.state.localSurveyState)
             
             await setDoc(doc(db, "adminRequired", localLastID.toString()), {
