@@ -35,6 +35,7 @@
             <p class="su-">답변 수</p>
           </div>
           <div class="con2">
+            
             <p class="light" v-if="item.progress==3">패널 응답 완료</p>
             <p class="light" v-if="item.progress==2">결제 완료</p>
             <p class="light" v-if="item.progress==1">검수 중</p>
@@ -52,6 +53,7 @@
             <!-- css 다시 -->
            <router-link :to="`/review/${item.title}`" v-if="item.progress==3" class="goLink">후기 작성하기</router-link>
            <router-link to="/surveylist" v-if="item.progress==2" class="goLink">설문 보러가기</router-link>
+           
 
 
           </div>
