@@ -146,7 +146,8 @@ export default createStore({
     currentUserUploadInfo:[],
 
     myPage: 1,
-    indexColor: 0
+    indexColor: 0,
+    
 
     
   },
