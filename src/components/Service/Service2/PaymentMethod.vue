@@ -25,7 +25,7 @@
 </template>
 
 <script>
-import { arrayUnion, doc, setDoc, updateDoc, getDocs } from '@firebase/firestore';
+import { arrayUnion, doc, collection, setDoc, updateDoc, getDocs } from '@firebase/firestore';
 export default {
   data() {
     return {
@@ -91,6 +91,7 @@ export default {
      const myCoupon = adminCoupon.filter(item => item.user===this.$store.state.currentUser.email && item.isUsed===false)
      this.$store.state.myCoupon = myCoupon
      console.log(this.$store.state.myCoupon)
+     console.log('쿠폰 fetch')
    },
 
     async pointIsUsed() {
@@ -128,15 +129,15 @@ export default {
       const docref = doc(db, "userData", currentUserEmail)
 
 
-      if(this.$store.state.currentUser['uploadIndex'].length<=2) {
+      if(this.$store.state.loginState.currentUser['uploadIndex'].length<=2) {
         point_addValue = Math.floor(this.$store.state.localSurveyState.price * 0.01)
       }
 
-      else if(this.$store.state.currentUser['uploadIndex'].length>=3 && this.$store.state.currentUser['uploadIndex'].length<=9) {
+      else if(this.$store.state.loginState.currentUser['uploadIndex'].length>=3 && this.$store.state.loginState.currentUser['uploadIndex'].length<=9) {
         point_addValue = Math.floor(this.$store.state.localSurveyState.price * 0.02)
       }
 
-      else if(this.$store.state.currentUser['uploadIndex'].length>=10) {
+      else if(this.$store.state.loginState.currentUser['uploadIndex'].length>=10) {
         point_addValue = Math.floor(this.$store.state.localSurveyState.price * 0.03)
       }
 
