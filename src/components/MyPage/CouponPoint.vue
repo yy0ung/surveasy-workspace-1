@@ -1,4 +1,5 @@
 <template>
+<div>
 <div id="mycoupon-container">
   <div class="mycoupon-title">쿠폰</div>
   <div class="mycoupon-container">
@@ -21,7 +22,7 @@
     <div class="mypoint-list">
       <ul>
         <div class="point-text">현재 적립금</div>
-        <div class="point-value">{{ this.$store.state.currentUser.point_current }}원</div>
+        <div class="point-value">{{ this.$store.state.loginState.currentUser.point_current }}원</div>
       </ul>
       <ul>
         <div class="point-text">사용한 적립금</div>
@@ -29,7 +30,7 @@
       </ul>
       <ul>
         <div class="point-text">누적 적립금</div>
-        <div class="point-value">{{ this.$store.state.currentUser.point_total }}원</div>
+        <div class="point-value">{{ this.$store.state.loginState.currentUser.point_total }}원</div>
       </ul>
     </div>
     <div class="mypoint-notice">
@@ -68,6 +69,7 @@
   -->
 
 </div>
+</div>
 </template>
 
 <script>
@@ -97,7 +99,7 @@ export default {
         code: '',
       },
 
-      point_used : this.$store.state.currentUser.point_total - this.$store.state.currentUser.point_current
+      point_used : this.$store.state.loginState.currentUser.point_total - this.$store.state.loginState.currentUser.point_current
 
     }
   },
