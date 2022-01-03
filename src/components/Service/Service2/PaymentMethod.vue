@@ -38,8 +38,8 @@ export default {
 
   methods: {
     setOption3() {
-      this.uploader = this.$store.state.currentUser.name
-      this.uploaderIdentity = this.$store.state.currentUser.identity
+      this.uploader = this.$store.state.loginState.currentUser.name
+      this.uploaderIdentity = this.$store.state.loginState.currentUser.identity
       console.log('identity: ',this.uploaderIdentity)
 
       this.$store.commit('setSurveyMutation3', {account_userName: this.accont_userName, uploader: this.uploader, uploaderIdentity: this.uploaderIdentity})
@@ -61,6 +61,8 @@ export default {
         this.$store.state.localSurveyState.point_use = false
         console.log('else')
       }
+
+      
     },
 
     async couponIsUsed() {
@@ -157,7 +159,7 @@ export default {
     async sendToAdmin(dataset) {
       var db = this.$store.state.db
       var localLastID = this.$store.state.lastID[0].lastID
-      var currentUserEmail = await this.$store.state.currentUser.email
+      var currentUserEmail = await this.$store.state.loginState.currentUser.email
       var nowDate= new Date()
       var orderNum = nowDate.getFullYear().toString().substring(2,4) + (nowDate.getMonth()+1).toString() + nowDate.getDate().toString() + localLastID
       
@@ -231,7 +233,13 @@ export default {
         }
         
         this.$store.state.localSurveyState.couponDiscount = 0
+
+        this.$store.dispatch('setCurrentUser', {
+            payload: this.$store.state.loginState.currentUser.email
+          })
+
         this.$store.state.localSurveyState.pointDiscount = 0
+
       }
 
 

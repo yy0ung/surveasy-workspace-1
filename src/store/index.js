@@ -2,6 +2,7 @@
 import { createStore } from 'vuex'
 import { doc, getDoc } from 'firebase/firestore'
 import createPersistedState from 'vuex-persistedstate'
+import loginState from './loginState.js'
 
 
 export default createStore({
@@ -15,7 +16,7 @@ export default createStore({
       appId: "1:1077091709710:web:0fb6f216a86dfd3a87dd5f",
       measurementId: "G-9XLHWG8GKQ",
     },
-    isLoggedIn:false,
+    // isLoggedIn:false,
     notLoggedInService: true,
     notLoggedInTemplate: true,
     db: null,
@@ -132,7 +133,7 @@ export default createStore({
     goServiceInputForm: false,
     checklink: null,
 
-    currentUser:null,
+    // currentUser:null,
     surveyListStatus:["응답 완료","응답 인증","설문 마감"],
     showModal: false,
     showFinalModal: false,
@@ -199,12 +200,12 @@ export default createStore({
       state.notLoggedInService = true
     },
 
-    setCurrentUserMutation(state, payload){
-      state.currentUser = payload
-      console.log(state.currentUser)
-      console.log('currentUser가 설정되었습니다.')
+    // setCurrentUserMutation(state, payload){
+    //   state.currentUser = payload
+    //   console.log(state.currentUser)
+    //   console.log('currentUser가 설정되었습니다.')
       
-    },
+    // },
 
     setCouponDiscountEmpty(state){
       state.localSurveyState.couponDiscount = 0,
@@ -215,10 +216,7 @@ export default createStore({
       state.localSurveyState.point_use = false
     },
 
-    logoutMutation(state){
-      state.currentUser = null
-      state.isLoggedIn = false
-    },
+    
     setAdminState(state){
       state.isAdmin = true
     },
@@ -234,18 +232,18 @@ export default createStore({
 
   },
   actions: {
-    async setCurrentUser({state, commit}, payload){
+    // async setCurrentUser({state, commit}, payload){
       
-      const db = state.db
-      const docRef = doc(db, "userData", payload['payload'].toString())
-      const docSnap = await getDoc(docRef)
-        .then((data) => {
-          commit('setCurrentUserMutation',data.data())
-        })
+    //   const db = state.db
+    //   const docRef = doc(db, "userData", payload['payload'].toString())
+    //   const docSnap = await getDoc(docRef)
+    //     .then((data) => {
+    //       commit('setCurrentUserMutation',data.data())
+    //     })
 
 
-      // console.log(docSnap.data());
-    },
+    //   // console.log(docSnap.data());
+    // },
 
     // async setUploadInfo({state, commit}){
     //   console.log('setuploadinfo시작')
@@ -263,16 +261,14 @@ export default createStore({
     //   }
     // },
 
-    logout({commit}){
-      commit('logoutMutation')
-
-    }
+    
   },
   modules: {
-  }
-//   plugins: [
-//     createPersistedState({
-//       // paths : ['isLoggedIn', 'currentUser']
-//     })
-//   ]
+    loginState
+  },
+  plugins: [
+    createPersistedState({
+      paths : ['loginState']
+    })
+  ]
  })

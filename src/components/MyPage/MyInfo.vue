@@ -40,11 +40,11 @@
        
       </div>
       <div class="info-contents2">
-        <p class="info-detail">{{this.$store.state.currentUser['email']}}</p>
+        <p class="info-detail">{{this.$store.state.loginState.currentUser['email']}}</p>
         <p class="info-detail">비밀번호</p>
-        <p class="info-detail">{{this.$store.state.currentUser['name']}}</p>
-        <p class="info-detail">{{this.$store.state.currentUser['phoneNumber']}}</p>
-        <p class="info-detail">{{this.$store.state.currentUser['birth']}}</p>
+        <p class="info-detail">{{this.$store.state.loginState.currentUser['name']}}</p>
+        <p class="info-detail">{{this.$store.state.loginState.currentUser['phoneNumber']}}</p>
+        <p class="info-detail">{{this.$store.state.loginState.currentUser['birth']}}</p>
         <!-- <p class="info-detail">환불 계좌</p> -->
         <!-- 환불계좌 언제 작성하게 하는지? -->
       </div>
@@ -91,7 +91,7 @@ export default {
   methods :{
     async sendRequestVerifyIdentity(requestInfo){
       const db = this.$store.state.db
-      const currentUser = this.$store.state.currentUser
+      const currentUser = this.$store.state.loginState.currentUser
       await setDoc(doc(db, "identityVerifyRequired", currentUser.email.toString()), {
         requestIdentity: requestInfo.request,
         requestApproved: false,

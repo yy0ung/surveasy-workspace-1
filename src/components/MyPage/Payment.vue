@@ -84,7 +84,7 @@ export default {
   methods:{
     async fetchMyPayment(){
       const db = this.$store.state.db
-      const currentUserUploadIndex = this.$store.state.currentUser['uploadIndex']
+      const currentUserUploadIndex = this.$store.state.loginState.currentUser['uploadIndex']
       
 
       for (var index in currentUserUploadIndex){
