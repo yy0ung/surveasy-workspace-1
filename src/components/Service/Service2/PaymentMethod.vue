@@ -128,15 +128,15 @@ export default {
       const docref = doc(db, "userData", currentUserEmail)
 
       if(this.$store.state.currentUser['uploadIndex'].length<=2) {
-        point_addValue = this.$store.state.localSurveyState.price * 0.01
+        point_addValue = Math.floor(this.$store.state.localSurveyState.price * 0.01)
       }
 
       else if(this.$store.state.currentUser['uploadIndex'].length>=3 && this.$store.state.currentUser['uploadIndex'].length<=9) {
-        point_addValue = this.$store.state.localSurveyState.price * 0.02
+        point_addValue = Math.floor(this.$store.state.localSurveyState.price * 0.02)
       }
 
       else if(this.$store.state.currentUser['uploadIndex'].length>=10) {
-        point_addValue = this.$store.state.localSurveyState.price * 0.03
+        point_addValue = Math.floor(this.$store.state.localSurveyState.price * 0.03)
       }
 
       this.$store.state.currentUser.point_current = this.$store.state.currentUser.point_current + point_addValue
