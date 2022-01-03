@@ -4,11 +4,11 @@
   <div class="top-left">
     <div class="first-box">
       <p class="black-title">진행 중인 설문</p>
-      <p class="green-bold">1개</p>
+      <p class="green-bold">{{myCount1.length}}개</p>
     </div>
     <div class="first-box">
       <p class="black-title">완료된 설문</p>
-      <p class="green-bold">3개</p>
+      <p class="green-bold">{{myCount2.length}}개</p>
     </div>
   </div>
   <div class="top-right">
@@ -27,6 +27,7 @@
   </div>
     
   </div>
+ 
   <div class="bottom" >
     <p class="black-title">나의 설문</p>
     <div class="bottom-title">
@@ -38,7 +39,7 @@
         <i class="fas fa-spinner"></i>
           불러오는 중
       </div>
-    <div class="bottom-list" v-for="item in (currentUserUploadInfo2)" :key="item.title">
+    <div class="bottom-list" v-for="item in (currentUserUploadInfo4)" :key="item.title">
       <p class="list-detail">
         <span id="sur-date">{{item.uploadDate}}</span>
         <span id="sur-title">{{item.title}}</span>
@@ -48,6 +49,7 @@
       
     </div>
   </div>
+  
   <p class="more">더보기 ></p>
 </div>
 </template>
@@ -57,42 +59,73 @@ import { collection, getDocs, getDoc, doc } from '@firebase/firestore'
 export default {
   data(){
     return {
-      currentUserUploadInfo:[],
-      currentUserUploadInfo2:[],
-      show: 0
+      currentUserUploadInfo3:[],
+      currentUserUploadInfo4:[],
+      show: 0,
+      
+      myCount1: [],
+      myCount2: [],
+     
+      
       
       
     }
   },
+  
   mounted(){
-    this.fetchMyPayment()
+    
+    this.fetchCount(),
+    this.fetchMyPayment2()
+    
+    
 
   },
 
   methods:{
-    async fetchMyPayment(){
+    
+    async fetchCount(){
       const db = this.$store.state.db
-      const currentUserUploadIndex = this.$store.state.loginState.currentUser['uploadIndex']
+      const cIndex = this.$store.state.loginState.currentUser['uploadIndex']
       
 
-      for (var index in currentUserUploadIndex){
+      for (var index in cIndex){
         
-        var docRef = doc(db, "adminRequired", currentUserUploadIndex[index].toString())
+        var docRef = doc(db, "adminRequired", cIndex[index].toString())
         
         var docSnap = await getDoc(docRef)
         
 
         if (docSnap.exists()) {
           
-          this.currentUserUploadInfo.push(docSnap.data())
+          this.currentUserUploadInfo3.push(docSnap.data())
           
         }
       }
+      for(var i=0; i<this.currentUserUploadInfo3.length; i++){
+        if(this.currentUserUploadInfo3[i].progress==2){
+          this.myCount1.push(this.currentUserUploadInfo3[i].progress)
+          
+        }else if(this.currentUserUploadInfo3[i].progress==3){
+          this.myCount2.push(this.currentUserUploadInfo3[i].progress)
+        }
+        console.log(this.currentUserUploadInfo3[i].progress)
+      }
+      
+      
+    },
+    async fetchMyPayment2(){
+      const db = this.$store.state.db
+      const currentUserUploadIndex = this.$store.state.loginState.currentUser['uploadIndex']
+      
 
-      this.currentUserUploadInfo2 = this.currentUserUploadInfo;
+      
+
+      this.currentUserUploadInfo4 = this.currentUserUploadInfo3;
       this.show=1
      
-    }
+    },
+    
+    
   }
 }
 </script>
