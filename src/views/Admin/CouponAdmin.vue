@@ -148,6 +148,8 @@ export default {
       })
 
       this.$store.state.adminCoupon = []
+      this.$store.state.myCoupon = []
+
       this.fetchAdminData_coupon()
 
    },
@@ -210,7 +212,7 @@ export default {
 
       if(validCode == true) {
         await updateDoc(docref, { 
-          user: this.$store.state.currentUser.email
+          user: this.$store.state.loginState.currentUser.email
         })
       }
 
@@ -219,6 +221,8 @@ export default {
       }
 
       this.$store.state.adminCoupon = []
+      this.$store.state.myCoupon = []
+
       this.fetchAdminData_coupon()
     },
 
@@ -246,6 +250,8 @@ export default {
         })
 
       this.$store.state.adminCoupon = []
+      this.$store.state.myCoupon = []
+
       this.fetchAdminData_coupon()
     },
 
@@ -275,6 +281,8 @@ export default {
       this.receiver = ''
 
       this.$store.state.adminCoupon = []
+      this.$store.state.myCoupon = []
+      
       this.fetchAdminData_coupon()
     },
 
