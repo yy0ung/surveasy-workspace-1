@@ -20,7 +20,7 @@
         <p class="coupon-title">쿠폰 {{ this.$store.state.myCoupon.length }}개</p></div>
         <div class="green-box">
           <img class="pointimg" src="@/assets/myPage/point.png" width="40" height="40">
-      <p class="coupon-title">적립금 {{ this.$store.state.currentUser.point_current }}원</p>
+      <p class="coupon-title">적립금 {{ this.$store.state.loginState.currentUser.point_current }}원</p>
         </div>
         
     </div>
@@ -72,7 +72,7 @@ export default {
   methods:{
     async fetchMyPayment(){
       const db = this.$store.state.db
-      const currentUserUploadIndex = this.$store.state.currentUser['uploadIndex']
+      const currentUserUploadIndex = this.$store.state.loginState.currentUser['uploadIndex']
       
 
       for (var index in currentUserUploadIndex){
