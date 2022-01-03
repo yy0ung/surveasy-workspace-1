@@ -120,7 +120,8 @@ export default createStore({
       email: '',
       etc: '',
       uploader: '',
-      uploadDate: ''
+      uploadDate: '',
+      identifyTime: ''
     },
 
     localPointState: {
@@ -146,7 +147,8 @@ export default createStore({
     currentUserUploadInfo:[],
 
     myPage: 1,
-    indexColor: 0
+    indexColor: 0,
+    
 
     
   },
@@ -191,6 +193,7 @@ export default createStore({
       state.localTemplateState.etc = payload.etc      
       state.localTemplateState.uploader = payload.uploader
       state.localTemplateState.uploadDate =  payload.uploadDate
+      state.localTemplateState.identifyTime = payload.identifyTime
     },
 
     setnotLoggedInTemplate(state) {

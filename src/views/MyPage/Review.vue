@@ -66,6 +66,7 @@ export default {
         })
         if(confirm('리뷰 작성이 완료되었습니다')){
           this.$router.push('/')
+          this.$store.reviewDone=true
         }
         }
         
