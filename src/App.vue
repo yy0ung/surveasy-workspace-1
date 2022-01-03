@@ -5,32 +5,32 @@
 
     <div class="nav-links">
       <div class="my-dropdown" >
-        <span class="nav-element" id="nav-service">서비스 이용
+        <span class="nav-element" id="nav-service" :class="{active: this.$store.state.indexColor==1}">서비스 이용
           <span class="nav-icon" >
             <i class="fas fa-chevron-down"></i>
           </span>
         </span>        
         <div class="my-dropdown-content" id="service-dropdown">
-          <router-link to="/service">설문 응답 서비스</router-link>
+          <router-link to="/service"  @click="indexC(1)">설문 응답 서비스</router-link>
           <router-link to="/surveytemplate">설문 템플릿</router-link>
         </div>
        </div>
       <span class="nav-element-">|</span>
-      <router-link to="/surveylist"><span class="nav-element">설문 리스트</span></router-link> 
+      <router-link to="/surveylist"><span class="nav-element" @click="indexC(2)">설문 리스트</span></router-link> 
       <span class="nav-element-">|</span>
-      <router-link to="/knowhow"><span class="nav-element">설문 노하우</span></router-link> 
+      <router-link to="/knowhow"><span class="nav-element" @click="indexC(2)">설문 노하우</span></router-link> 
       <span class="nav-element-">|</span>
-      <router-link to="/story"><span class="nav-element">브랜드 스토리</span></router-link> 
+      <router-link to="/story"><span class="nav-element" @click="indexC(2)">브랜드 스토리</span></router-link> 
       <span class="nav-element-">|</span>
-      <router-link to="/contact"><span class="nav-element" @click="handleFAQ">문의</span></router-link> 
+      <router-link to="/contact"><span class="nav-element" @click="handleFAQ, indexC(2)">문의</span></router-link> 
     </div>
     <div class="nav-login" >
       <div v-if="this.$store.state.loginState.isLoggedIn == false">
-        <router-link to="/login"><span class="nav-element" >LOGIN</span></router-link> 
+        <router-link to="/login"><span class="nav-element" @click="indexC(3)" :class="{active: this.$store.state.indexColor==3}">LOGIN</span></router-link> 
       </div>
       <div v-else>
         <div class="my-dropdown">
-          <p class="my-dropdown-btn">안녕하세요 {{this.$store.state.loginState.currentUser.name}}님</p>
+          <p class="my-dropdown-btn" :class="{active: this.$store.state.indexColor==4}">안녕하세요 {{this.$store.state.loginState.currentUser.name}}님</p>
           <div class="my-dropdown-content" id="dropdown-margin">
             <p @click="goMypage">마이페이지</p>
             <p @click="logout" id="logout-dropdown">로그아웃</p>
@@ -176,7 +176,11 @@ export default {
     goMypage(){
      
       this.$router.push('/mypage/dashboard')
+      this.$store.state.indexColor=4
     },
+    indexC(num){
+      this.$store.state.indexColor = num
+    }
     }
 }
 </script>
@@ -198,6 +202,9 @@ export default {
 body {
  
   margin: 0;
+}
+#app .router-link-active{
+  color: #0CAE02 !important;
 }
 
 #nav .nav-links {
@@ -408,6 +415,7 @@ body {
 } */
   .router-link-active.router-link-exact-active .nav-element{
     
+    color: #0CAE02 !important;
   }
 /*.backactive{
   background: rgb(202, 202, 202);
@@ -415,6 +423,11 @@ body {
   height: 100%;
   
   }*/
-  
+  .nav-element.active{
+    color: #0CAE02 !important;
+  }
+  .my-dropdown-btn.active{
+    color: #0CAE02 !important;
+  }
 
 </style>
