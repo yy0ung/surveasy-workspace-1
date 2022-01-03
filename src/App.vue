@@ -26,11 +26,11 @@
     </div>
     <div class="nav-login" >
       <div v-if="this.$store.state.loginState.isLoggedIn == false">
-        <router-link to="/login"><span class="nav-element" @click="indexC(3)" :class="{active: this.$store.state.indexColor==3}">LOGIN</span></router-link> 
+        <router-link to="/login"><span class="nav-element" @click="indexC(3)">LOGIN</span></router-link> 
       </div>
       <div v-else>
         <div class="my-dropdown">
-          <p class="my-dropdown-btn" :class="{active: this.$store.state.indexColor==4}">안녕하세요 {{this.$store.state.loginState.currentUser.name}}님</p>
+          <p class="my-dropdown-btn" >안녕하세요 {{this.$store.state.loginState.currentUser.name}}님</p>
           <div class="my-dropdown-content" id="dropdown-margin">
             <p @click="goMypage">마이페이지</p>
             <p @click="logout" id="logout-dropdown">로그아웃</p>
