@@ -127,16 +127,17 @@ export default {
       var point_addValue = 0
       const docref = doc(db, "userData", currentUserEmail)
 
-      if(this.$store.state.loginState.currentUser['uploadIndex'].length<=2) {
-        point_addValue = this.$store.state.localSurveyState.price * 0.01
+
+      if(this.$store.state.currentUser['uploadIndex'].length<=2) {
+        point_addValue = Math.floor(this.$store.state.localSurveyState.price * 0.01)
       }
 
-      else if(this.$store.state.loginState.currentUser['uploadIndex'].length>=3 && this.$store.state.loginState.currentUser['uploadIndex'].length<=9) {
-        point_addValue = this.$store.state.localSurveyState.price * 0.02
+      else if(this.$store.state.currentUser['uploadIndex'].length>=3 && this.$store.state.currentUser['uploadIndex'].length<=9) {
+        point_addValue = Math.floor(this.$store.state.localSurveyState.price * 0.02)
       }
 
-      else if(this.$store.state.loginState.currentUser['uploadIndex'].length>=10) {
-        point_addValue = this.$store.state.localSurveyState.price * 0.03
+      else if(this.$store.state.currentUser['uploadIndex'].length>=10) {
+        point_addValue = Math.floor(this.$store.state.localSurveyState.price * 0.03)
       }
 
       this.$store.state.loginState.currentUser.point_current = this.$store.state.loginState.currentUser.point_current + point_addValue

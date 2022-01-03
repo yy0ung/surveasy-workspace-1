@@ -83,6 +83,7 @@ export default {
         }
 
         // 템플릿 신청 날짜 계산
+        var time = new Date().toISOString()
         var d = new Date().toLocaleDateString()
         var dd = d.replace(/ /g, "")
         var ddd = dd.split('.')
@@ -93,6 +94,7 @@ export default {
         day = day.length == 2 ? day : '0' + day
         var D = year + '-' + month + '-' + day
 
+
         if(this.$store.state.isLoggedIn==false) {
           alert('로그인이 필요한 서비스입니다.')
           this.$store.state.notLoggedInTemplate = false
@@ -100,7 +102,7 @@ export default {
         }
 
         else {
-          this.$store.commit('setTemplateMutation', {type: this.typeText, name: inputData.name, email: inputData.email, etc: inputData.etc, uploader: this.$store.state.currentUser.name, uploadDate: D})
+          this.$store.commit('setTemplateMutation', {type: this.typeText, name: inputData.name, email: inputData.email, etc: inputData.etc, uploader: this.$store.state.loginState.currentUser.name, uploadDate: D, identifyTime: time})
           this.addTemplateData(this.$store.state.localTemplateState)
         }
       }
@@ -109,14 +111,15 @@ export default {
     async addTemplateData(templateData) {
         var db = this.$store.state.db
 
-        await setDoc(doc(db, "TemplateData", templateData.email), {
+        await setDoc(doc(db, "TemplateData", templateData.identifyTime), {
           type: templateData.type,
           name: templateData.name,
           email: templateData.email,
           etc: templateData.etc,
           isresponded: false,
           uploader: templateData.uploader,
-          uploadDate: templateData.uploadDate
+          uploadDate: templateData.uploadDate,
+          identifyTime: templateData.identifyTime
         })
 
         this.closeTemplateModal()
