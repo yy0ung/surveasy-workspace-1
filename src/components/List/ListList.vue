@@ -16,9 +16,17 @@
       </tr>
       <tr v-for="item in (this.$store.state.surveyData.slice(currentPage*5-5,currentPage*5))" :key="item.id">
         <td class="list-de" :class="{active:item[0].progress==3}">{{item[0].id}}</td>
+
+          
+
+
+          <!-- <router-link :to="`/surveylist/${item[0].id}`" class="list-title" :class="{active:item[0].progress==3}">{{item[0].title}}</router-link> -->
+
+
         <td id="title-left">
-          <router-link :to="`/surveylist/${item[0].id}`" class="list-title" :class="{active:item[0].progress==3}">{{item[0].title}}</router-link>
+          <a :href="item[0].link" class="list-title" :class="{active:item[0].progress==3}">{{item[0].title}}</a>
           <span class="due" :class="{active:item[0].progress==3}">{{calTime(item[0].dueDate,item[0].dueTimeTime)}}</span>
+
         </td>
         
         <td class="list-de" :class="{active:item[0].progress==3}">{{item[0].target}}</td>
