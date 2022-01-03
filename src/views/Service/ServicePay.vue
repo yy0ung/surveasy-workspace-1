@@ -3,7 +3,7 @@
   <div class="ServicePay-col">
       <OptionInfo />
       <SurveyInfo />
-      <Coupon />
+      <CouponPoint />
       
       
     </div>  
@@ -19,13 +19,13 @@
 <script>
 import OptionInfo from '../../components/Service/Service2/OptionInfo.vue'
 import SurveyInfo from '../../components/Service/Service2/SurveyInfo.vue'
-import Coupon from '../../components/Service/Service2/Coupon.vue'
+import CouponPoint from '../../components/Service/Service2/Coupon.vue'
 import PaymentPrice from '../../components/Service/Service2/PaymentPrice.vue'
 import PaymentMethod from '../../components/Service/Service2/PaymentMethod.vue'
 
 export default {
 
-  components: { OptionInfo, SurveyInfo, Coupon, PaymentPrice, PaymentMethod },
+  components: { OptionInfo, SurveyInfo, CouponPoint, PaymentPrice, PaymentMethod },
   mounted() {
     window.scrollTo(0,0)
   },
@@ -37,7 +37,7 @@ export default {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  height: 1750px;
+  height: 1850px;
 }
 .ServicePay-col {
   display: flex;
@@ -55,7 +55,7 @@ export default {
 }
 .Coupon {
   width: 950px;
-  height: 260px;
+  height: 440px;
 }
 .PaymentPrice {
   width: 400px;

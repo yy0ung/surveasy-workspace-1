@@ -101,9 +101,15 @@ export default createStore({
       dueTimeTime: '',
       dueTimeTimeTime: '',
 
+      selectedCoupon: {
+        code: '',
+        rate: 0
+      },
       beforeCouponPrice:0,
       couponDiscount:0,
+      pointDiscount: 0,
       coupon_use: false,
+      point_use: false,
       
     },
 
@@ -114,6 +120,11 @@ export default createStore({
       etc: '',
       uploader: '',
       uploadDate: ''
+    },
+
+    localPointState: {
+      point_current: 0,
+      point_total: 0
     },
      
 
@@ -133,7 +144,8 @@ export default createStore({
     lastID : [],
     currentUserUploadInfo:[],
 
-    myPage: 1
+    myPage: 1,
+    indexColor: 0
 
     
   },
@@ -195,7 +207,12 @@ export default createStore({
     // },
 
     setCouponDiscountEmpty(state){
-      state.localSurveyState.couponDiscount = 0
+      state.localSurveyState.couponDiscount = 0,
+      state.localSurveyState.coupon_use = false
+    },
+    setPointDiscountEmpty(state){
+      state.localSurveyState.pointDiscount = 0
+      state.localSurveyState.point_use = false
     },
 
     

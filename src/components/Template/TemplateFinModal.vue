@@ -3,7 +3,7 @@
 <div id="t-modal-container">
   <img class="checkimg" src="@/assets/check.png" width="100">
   <p class="green">템플릿 공유 신청이 완료되었습니다.</p>
-  <p class="template-notice">입력해주신 이메일 주소로 1~2일안에 보내드리겠습니다.</p>
+  <p class="template-notice">입력해주신 이메일 주소로 공유될 예정이며, <br>최대 1일(24시간)의 시간이 소요될 수 있습니다.</p>
   <div><button class="template-modal-btn" @click="goHome()">홈 화면으로 가기</button></div>
 </div>  
 </div>
@@ -47,7 +47,7 @@ export default {
   transform: translate(-50%, -50%);
   background: white;
   width: 500px;
-  height: 330px;
+  height: 350px;
   border-radius: 15px;
   display: flex;
   flex-direction: column;

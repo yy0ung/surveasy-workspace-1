@@ -85,6 +85,15 @@ export default {
       }
    },
 
+  getPointInfo() {
+    var c = this.$store.state.currentUser.point_current
+    var t = this.$store.state.currentUser.point_total
+    this.$store.state.localPointState.point_current = c
+    this.$store.state.localPointState.point_total = t
+
+    console.log('current point: ' + this.$store.state.localPointState.point_current)
+   },
+
 
     signIn(){
       const auth = getAuth();
@@ -108,6 +117,7 @@ export default {
           this.$store.state.adminCoupon = []
           this.$store.state.myCoupon = []
           this.fetchAdminData_coupon()
+          this.getPointInfo()
 
           if(this.$store.state.notLoggedInService==false) {
             console.log('옵션 살리면서 로그인 성공')

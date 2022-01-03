@@ -26,8 +26,8 @@
           </tr>
         </table>
       </div> -->
-      
-      <div class="sur-box" v-for="item in (currentUserUploadIndexInfo2)" :key="item.title" >
+      <div class="repeat" v-for="item in (currentUserUploadIndexInfo2)" :key="item.title">
+      <div class="sur-box"  :class="{active:item.progress==3}">
         <p class="su-title">{{item.title}} <span class="gray">{{item.price}}원</span></p>
         <div class="su-contents">
           <div class="con1">
@@ -35,7 +35,9 @@
             <p class="su-">답변 수</p>
           </div>
           <div class="con2">
-            <p class="light">진행단계 admin에서 가져오기</p>
+            <p class="light" v-if="item.progress==3">패널 응답 완료</p>
+            <p class="light" v-if="item.progress==2">결제 완료</p>
+            <p class="light" v-if="item.progress==1">검수 중</p>
             <p class="light">{{item.requiredHeadCount}}</p>
           </div>
           <div class="con3">
@@ -47,13 +49,15 @@
             <p class="light">{{item.uploadDate}}</p>
             <p class="light">{{item.dueDate}}
             </p>
-           <router-link :to="`/review/${item.title}`">후기 작성하기</router-link>
+            <!-- css 다시 -->
+           <router-link :to="`/review/${item.title}`" v-if="item.progress==3" class="goLink">후기 작성하기</router-link>
+           <router-link to="/surveylist" v-if="item.progress==2" class="goLink">설문 보러가기</router-link>
 
 
           </div>
       </div>
       </div>
-      
+      </div>
     </div>
   </div>
 </template>
@@ -119,6 +123,9 @@ export default {
   margin-left: 50px;
   height: 180px;
 }
+.sur-box.active{
+  background: #bebdbd;
+}
 .sur-box .su-title{
   color: #0AAC00;
   padding-top: 30px;
@@ -144,6 +151,9 @@ export default {
 .light{
   font-weight: 300;
 }
-
+.goLink{
+  margin-left: 100px;
+  
+}
 
 </style>
