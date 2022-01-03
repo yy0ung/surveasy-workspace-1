@@ -5,12 +5,12 @@
     회원이 되신 것을 환영합니다!</p>
   
   <div class="button">
-    <router-link to="/service">
-      <button class="goButton">설문 의뢰하러가기</button>
+    <router-link to="/login">
+      <button class="goButton">로그인 하러가기</button>
     </router-link>
     
-    <router-link to="/service">
-      <button class="goButton">서베이지 패널 되기</button>
+    <router-link to="/story">
+      <button class="goButton">서베이지 둘러보기</button>
     </router-link>
     
   </div>
@@ -19,7 +19,9 @@
 
 <script>
 export default {
-
+  mounted() {
+    window.scrollTo(0,0)
+  },
 }
 </script>
 
