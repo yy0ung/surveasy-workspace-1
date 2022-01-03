@@ -62,7 +62,7 @@ export default {
 
   methods: {
     templateFin(inputData) {
-      if(this.$store.state.isLoggedIn==false) {
+      if(this.$store.state.loginState.isLoggedIn==false) {
         alert('로그인이 필요한 서비스입니다.')
           this.$store.state.notLoggedInTemplate = false
           this.$router.push('/login')

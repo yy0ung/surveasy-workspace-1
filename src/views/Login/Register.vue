@@ -260,6 +260,9 @@ export default {
                 identity: 'default',
                 funnel : dataSet.funnel,
                 respondArray: [],
+                clientGrade: 0,
+                point_total : 0,
+                point_current: 0
                 
                 
             })
