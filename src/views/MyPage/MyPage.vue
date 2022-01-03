@@ -16,7 +16,7 @@
     <span class="grade-img" v-if="grade>=10"><img src="@/assets/myPage/gradeThree.png" width="85"></span>
   </div>
   <div class="title">
-    안녕하세요, <span id="green">{{this.$store.state.currentUser['name']}}</span>님 
+    안녕하세요, <span id="green">{{this.$store.state.loginState.currentUser['name']}}</span>님 
   </div>
   <div class="go-link">
     <router-link to="/serviceidentity_mypage" class="go-link">대학(원)생 인증하러가기 ></router-link>
@@ -49,7 +49,7 @@ export default {
     return {
       
       color: 0,
-      grade : this.$store.state.currentUser['uploadIndex'].length
+      grade : this.$store.state.loginState.currentUser['uploadIndex'].length
     }
   },
   methods: {

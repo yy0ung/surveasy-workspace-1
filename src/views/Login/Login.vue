@@ -57,7 +57,7 @@ export default {
        adminCoupon.push(doc.data())
      })
     
-     const myCoupon = adminCoupon.filter(item => item.user===this.$store.state.currentUser.email && item.isUsed===false && item.outOfDate===false)
+     const myCoupon = adminCoupon.filter(item => item.user===this.$store.state.loginState.currentUser.email && item.isUsed===false && item.outOfDate===false)
      this.$store.state.myCoupon = myCoupon
      console.log(this.$store.state.myCoupon)
      this.check_outOfDate()
@@ -92,15 +92,17 @@ export default {
         .then((userCredential) => {
           
           const user = userCredential.user
-          this.$store.state.currentUser = user
+          this.$store.state.loginState.currentUser = user
           console.log('current User: ', user)
-          this.$store.state.isLoggedIn = true
+          this.$store.state.loginState.isLoggedIn = true
           console.log('여기부터 currentUser 메소드 실험 -----')
           console.log(auth.currentUser.email)
-          console.log(this.$store.state.currentUser.email)
+          console.log(this.$store.state.loginState.currentUser.email)
+          console.log('앞')
           this.$store.dispatch('setCurrentUser', {
             payload: auth.currentUser.email
           })
+          console.log('뒤')
           // .then(this.$store.dispatch('setUploadInfo', {
           // }))
           this.$store.state.adminCoupon = []

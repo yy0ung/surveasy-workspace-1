@@ -199,14 +199,14 @@ export default {
         this.$store.commit('setCouponDiscountEmpty')
 
 
-        if(this.$store.state.isLoggedIn==false) {
+        if(this.$store.state.loginState.isLoggedIn==false) {
           alert('로그인이 필요한 서비스입니다.')
           this.$store.state.notLoggedInService = false
           console.log('notLoggedInService')
           this.$router.push('/login')
           
         }
-        if(this.$store.state.isLoggedIn==true) {
+        if(this.$store.state.loginState.isLoggedIn==true) {
           this.$router.push('/servicepay');
           console.log('isLoggedInService')
         }
