@@ -67,7 +67,7 @@ export default {
     margin-right: auto;
     margin-left: auto;
     font-family: 'Noto Sans KR', sans-serif;
-    margin-top: 50px;
+    margin-top: 120px;
     text-align: center;
   }
   #knowhow-item-container .knowhow-title p{

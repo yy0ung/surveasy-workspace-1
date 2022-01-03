@@ -206,7 +206,9 @@ body {
 #app .router-link-active{
   color: #0CAE02 !important;
 }
-
+#nav {
+  z-index: 500;
+}
 #nav .nav-links {
   flex:1;
   margin-top: 57px;
