@@ -88,6 +88,7 @@
             <th>email</th>
             <th>name</th>
             <th>응답 여부</th>
+            <th>변경</th>
           </tr>
 
           <tr v-for="item in (this.$store.state.adminDataB2B)" :key="item.name">
@@ -95,6 +96,7 @@
             <td>{{item.email}}</td>
             <td>{{item.name}}</td>
             <td>{{item.isresponded}}</td>
+            <td><button @click="B2BRespond(item)">변경</button></td>
 
           </tr>
         </table>
@@ -133,6 +135,35 @@
 
         <button @click="addPastData(this.UploadInputData)">리스트에 추가하기</button>
       </div>
+
+      <hr>
+      <div>
+        <h2>템플릿 서비스 응답 구역</h2>
+
+        <table>
+          <tr>
+            <th>주문</th>
+            <th>name</th>
+            <th>uploader</th>
+            <th>type</th>
+            <th>응답여부</th>
+            <th>date</th>
+            <th>응답여부변경</th>
+          </tr>
+
+          <tr v-for="item in (this.$store.state.adminDataTemplate)" :key = "item.name">
+            <td>{{item.identifyTime}}</td>
+            <td>{{item.name}}</td>
+            <td>{{item.uploader}}</td>
+            <td>{{item.type}}</td>
+            <td>{{item.isresponded}}</td>
+            <td>{{item.uploadDate}}</td>
+            <th><button @click="templateRespond(item)">변경</button></th>
+
+          </tr>
+        </table>
+      </div>
+      
     </div>
   </div>
 </template>
@@ -181,6 +212,7 @@ methods:{
     const adminData = this.$store.state.adminData
     const adminDataIdentity = this.$store.state.adminDataIdentity
     const adminDataB2B = this.$store.state.adminDataB2B
+    const adminDataTemplate = this.$store.state.adminDataTemplate
     // 설문 확인 데이터 받기
     const querySnapshot = await getDocs(collection(db,"adminRequired"))
     querySnapshot.forEach((doc) => {
@@ -196,6 +228,11 @@ methods:{
     const querySnapshot3 = await getDocs(collection(db, "B2BData"))
     querySnapshot3.forEach((doc) => {
       adminDataB2B.push(doc.data())
+    })
+
+    const querySnapshot4 = await getDocs(collection(db, "TemplateData"))
+    querySnapshot4.forEach((doc) => {
+      adminDataTemplate.push(doc.data())
     })
       
     
@@ -284,6 +321,24 @@ methods:{
     var idDocref = doc(db, "adminRequired", targetID.toString())
     await updateDoc( idDocref, {
       progress : 3
+    })
+    window.alert('완료')
+  },
+
+  async templateRespond(item){
+    var db = this.$store.state.db
+    var templateDocref = doc(db, "TemplateData", item.identifyTime.toString())
+    await updateDoc(templateDocref, {
+      isresponded: true
+    })
+    window.alert('완료')
+  },
+
+  async B2BRespond(item){
+    var db = this.$store.state.db
+    var B2BDocref = doc(db, "B2BData", item.company.toString())
+    await updateDoc(B2BDocref, {
+      isresponded : true
     })
     window.alert('완료')
   }
