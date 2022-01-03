@@ -122,6 +122,8 @@ export default {
       })
 
       this.$store.state.adminCoupon = []
+      this.$store.state.myCoupon = []
+
       this.fetchAdminData_coupon()
 
    },
@@ -194,6 +196,8 @@ export default {
       }
 
       this.$store.state.adminCoupon = []
+      this.$store.state.myCoupon = []
+
       this.fetchAdminData_coupon()
     },
 
@@ -216,7 +220,9 @@ export default {
           isUsed: true
         })
 
+      this.$store.state.myCoupon = []
       this.$store.state.adminCoupon = []
+      
       this.fetchAdminData_coupon()
     },
 

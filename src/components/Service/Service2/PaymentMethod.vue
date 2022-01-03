@@ -75,6 +75,7 @@ export default {
         })
 
       this.$store.state.adminCoupon = []
+      this.$store.state.myCoupon = []
       this.fetchAdminData_coupon()
     },
 
@@ -88,7 +89,7 @@ export default {
        adminCoupon.push(doc.data())
      })
 
-     const myCoupon = adminCoupon.filter(item => item.user===this.$store.state.currentUser.email && item.isUsed===false)
+     const myCoupon = adminCoupon.filter(item => item.user===this.$store.state.loginState.currentUser.email && item.isUsed===false && item.outOfDate===false)
      this.$store.state.myCoupon = myCoupon
      console.log(this.$store.state.myCoupon)
      console.log('쿠폰 fetch')
