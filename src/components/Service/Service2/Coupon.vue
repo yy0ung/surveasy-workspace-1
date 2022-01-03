@@ -87,12 +87,12 @@ export default {
           this.point_apply = true
           var maxpoint = this.$store.state.localSurveyState.beforeCouponPrice * 0.1
 
-          if(this.$store.state.currentUser.point_current < maxpoint) {
-            this.$store.state.localSurveyState.pointDiscount = this.$store.state.currentUser.point_current
+          if(this.$store.state.loginState.currentUser.point_current < maxpoint) {
+            this.$store.state.localSurveyState.pointDiscount = this.$store.state.loginState.currentUser.point_current
             this.$store.state.localSurveyState.price = this.$store.state.localSurveyState.price - this.$store.state.localSurveyState.pointDiscount
           }
 
-          else if(this.$store.state.currentUser.point_current >= maxpoint) {
+          else if(this.$store.state.loginState.currentUser.point_current >= maxpoint) {
             this.$store.state.localSurveyState.pointDiscount = maxpoint
             this.$store.state.localSurveyState.price = this.$store.state.localSurveyState.price - this.$store.state.localSurveyState.pointDiscount
           }
@@ -110,7 +110,7 @@ export default {
 
   computed: {
     show_point() {
-      var c = this.$store.state.currentUser.point_current
+      var c = this.$store.state.loginState.currentUser.point_current
 
       if(this.point_apply == false) {
         return c

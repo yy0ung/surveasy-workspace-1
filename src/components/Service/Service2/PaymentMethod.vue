@@ -25,7 +25,7 @@
 </template>
 
 <script>
-import { arrayUnion, doc, setDoc, updateDoc } from '@firebase/firestore';
+import { arrayUnion, doc, setDoc, updateDoc, getDocs } from '@firebase/firestore';
 export default {
   data() {
     return {
@@ -95,15 +95,15 @@ export default {
 
     async pointIsUsed() {
       var db = this.$store.state.db
-      const docref = doc(db, "userData", this.$store.state.currentUser.email)
+      const docref = doc(db, "userData", this.$store.state.loginState.currentUser.email)
 
-      this.$store.state.currentUser.point_current = this.$store.state.currentUser.point_current - this.$store.state.localSurveyState.pointDiscount
+      this.$store.state.loginState.currentUser.point_current = this.$store.state.loginState.currentUser.point_current - this.$store.state.localSurveyState.pointDiscount
 
       //this.$store.state.localPointState.point_current = this.$store.state.currentUser.point_current
      // this.$store.state.localPointState.point_total = this.$store.state.currentUser.point_total
 
       await updateDoc(docref, { 
-          point_current: this.$store.state.currentUser.point_current,
+          point_current: this.$store.state.loginState.currentUser.point_current,
     
         })
 
@@ -123,32 +123,32 @@ export default {
 
     async pointADD() {
       var db = this.$store.state.db
-      var currentUserEmail = this.$store.state.currentUser.email
+      var currentUserEmail = this.$store.state.loginState.currentUser.email
       var point_addValue = 0
       const docref = doc(db, "userData", currentUserEmail)
 
-      if(this.$store.state.currentUser['uploadIndex'].length<=2) {
+      if(this.$store.state.loginState.currentUser['uploadIndex'].length<=2) {
         point_addValue = this.$store.state.localSurveyState.price * 0.01
       }
 
-      else if(this.$store.state.currentUser['uploadIndex'].length>=3 && this.$store.state.currentUser['uploadIndex'].length<=9) {
+      else if(this.$store.state.loginState.currentUser['uploadIndex'].length>=3 && this.$store.state.loginState.currentUser['uploadIndex'].length<=9) {
         point_addValue = this.$store.state.localSurveyState.price * 0.02
       }
 
-      else if(this.$store.state.currentUser['uploadIndex'].length>=10) {
+      else if(this.$store.state.loginState.currentUser['uploadIndex'].length>=10) {
         point_addValue = this.$store.state.localSurveyState.price * 0.03
       }
 
-      this.$store.state.currentUser.point_current = this.$store.state.currentUser.point_current + point_addValue
-      this.$store.state.currentUser.point_total = this.$store.state.currentUser.point_total + point_addValue
+      this.$store.state.loginState.currentUser.point_current = this.$store.state.loginState.currentUser.point_current + point_addValue
+      this.$store.state.loginState.currentUser.point_total = this.$store.state.loginState.currentUser.point_total + point_addValue
 
       //this.$store.state.localPointState.point_current = this.$store.state.currentUser.point_current
       //this.$store.state.localPointState.point_total = this.$store.state.currentUser.point_total
 
 
       await updateDoc(docref, { 
-          point_current: this.$store.state.currentUser.point_current,
-          point_total: this.$store.state.currentUser.point_total
+          point_current: this.$store.state.loginState.currentUser.point_current,
+          point_total: this.$store.state.loginState.currentUser.point_total
         })
 
       this.$store.state.userData = []

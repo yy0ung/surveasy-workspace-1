@@ -86,8 +86,8 @@ export default {
    },
 
   getPointInfo() {
-    var c = this.$store.state.currentUser.point_current
-    var t = this.$store.state.currentUser.point_total
+    var c = this.$store.state.loginState.currentUser.point_current
+    var t = this.$store.state.loginState.currentUser.point_total
     this.$store.state.localPointState.point_current = c
     this.$store.state.localPointState.point_total = t
 
