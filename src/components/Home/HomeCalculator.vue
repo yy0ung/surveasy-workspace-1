@@ -261,11 +261,13 @@ export default {
         this.identity = String(this.$store.state.priceTextTable[4][this.priceIdentity]);
       
       
-        this.$store.commit('setSurveyMutation1', {price: this.price, requiredHeadCount: this.requiredHeadCount, 
-        spendTime: this.spendTime, dueTime: this.dueTime, ENTarget: this.ENTarget, identity: this.identity});
+        this.$store.commit('setSurveyMutation1', {price: this.price, beforeCouponPrice: this.price, requiredHeadCount: this.requiredHeadCount, 
+        spendTime: this.spendTime, dueTime: this.dueTime, ENTarget: this.ENTarget, identity: this.identity, dueDate: this.aa, dueTimeTime: this.bb});
 
-       
-      
+        this.$store.commit('setSurveyDueTime', {dueDate: this.aa, dueTime: this.bb})
+
+        this.$store.commit('setCouponDiscountEmpty')
+        this.$store.commit('setPointDiscountEmpty')
 
 
         console.log(this.$store.state.localSurveyState.price);
