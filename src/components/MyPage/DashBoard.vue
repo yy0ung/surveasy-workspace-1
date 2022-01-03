@@ -65,11 +65,30 @@ export default {
     }
   },
   mounted(){
+    this.fetchAdminData_coupon()
     this.fetchMyPayment()
 
   },
 
   methods:{
+    async fetchAdminData_coupon() { 
+      const db = this.$store.state.db
+
+      this.$store.state.adminCoupon = []
+      this.$store.state.myCoupon = []
+
+      const adminCoupon = this.$store.state.adminCoupon
+
+      const querySnapshot = await getDocs(collection(db, "couponData"))
+      querySnapshot.forEach((doc) => {
+        adminCoupon.push(doc.data())
+      })
+
+      const myCoupon = adminCoupon.filter(item => item.user===this.$store.state.loginState.currentUser.email && item.isUsed===false && item.outOfDate===false)
+      this.$store.state.myCoupon = myCoupon
+      console.log(this.$store.state.myCoupon)
+   },
+
     async fetchMyPayment(){
       const db = this.$store.state.db
       const currentUserUploadIndex = this.$store.state.loginState.currentUser['uploadIndex']
