@@ -57,12 +57,12 @@
       
     </div>
 
-    <div class="middle-box">
+    <div class="middle-box"> 
       <p class="green-title">대학(원)생 인증 완료 요청 보내기 </p>
       <select name="" id="middle-select" v-model="identityRequest">
-          <option disabled >인증하려는 @@을 선택하세요</option>
+          <option :value="{request: ''}" selected disabled >인증하려는 할인 대상을 선택하세요</option>
           <option :value="{request: '대학생'}">대학생 (학부생)</option>
-          <option :value="{request: '대학월생'}">대학원생</option>
+          <option :value="{request: '대학원생'}">대학원생</option>
       </select>
       <button @click="sendRequestVerifyIdentity(this.identityRequest)">요청 보내기</button>
     </div>
@@ -91,7 +91,7 @@
 </template>
 
 <script>
-import {doc, setDoc} from 'firebase/firestore'
+import {doc, collection, getDocs, updateDoc, setDoc} from 'firebase/firestore'
 
 export default {
   data(){
@@ -100,20 +100,48 @@ export default {
     }
   },
 
-  methods :{
-    async sendRequestVerifyIdentity(requestInfo){
+  methods: {
+    async fetchUserData(){
+      const db = this.$store.state.db
+      const userData = this.$store.state.userData
+      const querySnapshot = await getDocs(collection(db,"userData"))
+      querySnapshot.forEach((doc) => {
+        userData.push(doc.data())
+      })
+      
+    },
+
+    async sendRequestVerifyIdentity(requestInfo) {
       const db = this.$store.state.db
       const currentUser = this.$store.state.loginState.currentUser
-      await setDoc(doc(db, "identityVerifyRequired", currentUser.email.toString()), {
-        requestIdentity: requestInfo.request,
-        requestApproved: false,
-        requestName: currentUser.name,
-        requestEmail : currentUser.email
+
+      if(this.$store.state.loginState.currentUser.identity == 'default' && this.$store.state.loginState.currentUser.identity_request == false) {
+        console.log(this.$store.state.loginState.currentUser.identity)
+
+
+        await setDoc(doc(db, "identityVerifyRequired", currentUser.email.toString()), {
+          requestIdentity: requestInfo.request,
+          requestApproved: false,
+          requestName: currentUser.name,
+          requestEmail : currentUser.email
         
-      }).then(
-        alert("요청이 전송되었습니다 !")
-      )
+        })
+        await updateDoc(doc(db, "userData", currentUser.email.toString()), {
+          identity_request: true
+        
+        }).then(
+          alert("요청이 전송되었습니다 !")
+        )
+        this.$store.state.userData = []
+        await this.fetchUserData()
+        console.log(this.$store.state.loginState.currentUser.identity_request)
+      }
+      else {
+        alert('이미 인증을 완료하셨습니다.')
+      }
     }
+
+    
   }
 
 }

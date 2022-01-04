@@ -259,10 +259,6 @@ export default {
         this.dueTime = String(this.$store.state.priceTextTable[2][this.timeOption]);
         this.ENTarget = String(this.$store.state.priceTextTable[3][this.addENTarget]);
         this.identity = String(this.$store.state.priceTextTable[4][this.priceIdentity]);
-      
-      
-
-
 
         this.$store.commit('setSurveyMutation1', {price: this.price, beforeCouponPrice: this.price, requiredHeadCount: this.requiredHeadCount, 
 
