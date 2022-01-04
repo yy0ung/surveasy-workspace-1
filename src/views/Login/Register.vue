@@ -263,7 +263,10 @@ export default {
                 respondArray: [],
                 clientGrade: 0,
                 point_total : 0,
-                point_current: 0
+                point_current: 0,
+                marketingSMS: false,
+                marketingEmail: false
+                
                 
                 
             })

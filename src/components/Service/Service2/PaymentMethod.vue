@@ -196,6 +196,7 @@ export default {
           
           account_userName : dataset.account_userName,
           uploaderIdentity: dataset.uploaderIdentity,
+          uploaderEmail:currentUserEmail,
           
           adminApproved : dataset.adminApproved,
           uploader : dataset.uploader,
