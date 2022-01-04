@@ -67,7 +67,7 @@
                                 <label>인터넷 검색(구글 / 네이버 / 기타)</label>
                             </div>
                             <div class="radio-option">
-                                <input type="radio" class="radio" name="from" id="etc" v-model="dataSet.funnel" value="instagram">
+                                <input type="radio" class="radio" name="from" id="etc" v-model="dataSet.funnel" value="etc">
                                 <label>기타 </label>
                             </div>
                         </div>
@@ -81,7 +81,7 @@
                                 <label>인스타그램</label>
                             </div>
                             <div class="radio-option">
-                                <input type="radio" class="radio" name="from" id="facebook" v-model="dataSet.funnel" value="instagram">
+                                <input type="radio" class="radio" name="from" id="facebook" v-model="dataSet.funnel" value="facebook">
                                 <label>페이스북</label>
                             </div>
                             
@@ -94,11 +94,11 @@
           </li>
           <div class="check">
             <div class="all-title"><input type="checkbox" v-model="checkAll">전체 동의하기</div>
-            <div class="all"><input type="checkbox" v-model="dataSet.check1" >서베이지 이용약관</div>
-            <div class="all"><input type="checkbox" v-model="dataSet.check2" >서베이지 개인정보 보호 방침</div>
+            <div class="all"><input type="checkbox" v-model="dataSet.check1" >서베이지 이용약관 (필수)</div>
+            <div class="all"><input type="checkbox" v-model="dataSet.check2" >서베이지 개인정보 보호 방침 (필수)</div>
             <div class="all"><input type="checkbox" v-model="dataSet.check3" >
                 회원가입 시 작성한 개인 정보가 모두 올바름을 확인합니다. <br>
-            <span id="nextline">가입 오류로 인한 불이익은 이용자의 책임임을 인지하고 있습니다.</span></div>
+            <span id="nextline">가입 오류로 인한 불이익은 이용자의 책임임을 인지하고 있습니다. (필수)</span></div>
 
             
         </div>
@@ -201,7 +201,7 @@ export default {
                 this.validReg = true
                 this.create()
                 this.addUserData(dataSet)
-                this.$router.push('/')
+                
                 
             } else {
                 console.log(errCode)
@@ -266,7 +266,7 @@ export default {
                 
                 
             })
-            this.$router.push('/')
+            this.$router.push('/registerdone')
         },
 
         

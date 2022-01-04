@@ -148,6 +148,8 @@ export default {
       })
 
       this.$store.state.adminCoupon = []
+      this.$store.state.myCoupon = []
+
       this.fetchAdminData_coupon()
 
    },
@@ -219,6 +221,8 @@ export default {
       }
 
       this.$store.state.adminCoupon = []
+      this.$store.state.myCoupon = []
+
       this.fetchAdminData_coupon()
     },
 
@@ -246,6 +250,8 @@ export default {
         })
 
       this.$store.state.adminCoupon = []
+      this.$store.state.myCoupon = []
+
       this.fetchAdminData_coupon()
     },
 
@@ -275,6 +281,8 @@ export default {
       this.receiver = ''
 
       this.$store.state.adminCoupon = []
+      this.$store.state.myCoupon = []
+      
       this.fetchAdminData_coupon()
     },
 
