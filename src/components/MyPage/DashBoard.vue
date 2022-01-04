@@ -104,7 +104,6 @@ export default {
       const db = this.$store.state.db
       const cIndex = this.$store.state.loginState.currentUser['uploadIndex']
       
-
       for (var index in cIndex){
         
         var docRef = doc(db, "adminRequired", cIndex[index].toString())
@@ -114,10 +113,12 @@ export default {
 
         if (docSnap.exists()) {
           
-          this.currentUserUploadInfo3.push(docSnap.data())
+          this.currentUserUploadInfo3.unshift(docSnap.data())
           
         }
       }
+
+      
       for(var i=0; i<this.currentUserUploadInfo3.length; i++){
         if(this.currentUserUploadInfo3[i].progress==2){
           this.myCount1.push(this.currentUserUploadInfo3[i].progress)
@@ -132,9 +133,8 @@ export default {
     },
     async fetchMyPayment2(){
       const db = this.$store.state.db
-      const currentUserUploadIndex = this.$store.state.loginState.currentUser['uploadIndex']
+      const cIndex = this.$store.state.loginState.currentUser['uploadIndex']
       
-
       
 
       this.currentUserUploadInfo4 = this.currentUserUploadInfo3;
