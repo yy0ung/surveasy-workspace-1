@@ -15,7 +15,7 @@
         <th></th>
       </tr>
       <tr v-for="item in (this.$store.state.surveyData.slice(currentPage*5-5,currentPage*5))" :key="item.id">
-        <td class="list-de" :class="{active:item[0].progress==3}">{{item[0].id}}</td>
+        <td class="list-de" :class="{active:dueTime(item[0].dueDate,item[0].dueTimeTime)<0}">{{item[0].id}}</td>
 
           
 
@@ -24,15 +24,15 @@
 
 
         <td id="title-left">
-          <a :href="item[0].link" target="_blank" class="list-title" :class="{active:item[0].progress==3}">{{item[0].title}}</a>
-          <span class="due" :class="{active:item[0].progress==3}">{{calTime(item[0].dueDate,item[0].dueTimeTime)}}</span>
+          <a :href="item[0].link" target="_blank" class="list-title" :class="{active:dueTime(item[0].dueDate,item[0].dueTimeTime)<0}">{{item[0].title}}</a>
+          <span class="due" :class="{active:dueTime(item[0].dueDate,item[0].dueTimeTime)<0}">{{calTime(item[0].dueDate,item[0].dueTimeTime)}}</span>
 
         </td>
         
-        <td class="list-de" :class="{active:item[0].progress==3}">{{item[0].target}}</td>
-        <td class="list-de" :class="{active:item[0].progress==3}">{{item[0].spendTime}}</td>
-        <td class="list-de" :class="{active:item[0].progress==3}">{{item[0].requiredHeadCount}}</td>
-        <td class="list-de" :class="{active:item[0].progress==3}">{{item[0].uploader.substring(0,1)+"*"+item[0].uploader.substring(2)}}</td>
+        <td class="list-de" :class="{active:dueTime(item[0].dueDate,item[0].dueTimeTime)<0}">{{item[0].target}}</td>
+        <td class="list-de" :class="{active:dueTime(item[0].dueDate,item[0].dueTimeTime)<0}">{{item[0].spendTime}}</td>
+        <td class="list-de" :class="{active:dueTime(item[0].dueDate,item[0].dueTimeTime)<0}">{{item[0].requiredHeadCount}}</td>
+        <td class="list-de" :class="{active:dueTime(item[0].dueDate,item[0].dueTimeTime)<0}">{{item[0].uploader.substring(0,1)+"*"+item[0].uploader.substring(2)}}</td>
          
         
         <!-- <td>
@@ -164,6 +164,13 @@ export default {
     },
     dec(){
       this.currentPage -= 1
+    },
+    dueTime(date,time){
+      // var dueDate = date
+      var due = new Date(date)
+      var timeHour = time.substring(0,2)
+      var dateDiff = due.getTime()/3600000 - Date.now()/3600000 + (timeHour-9)
+      return dateDiff
     },
     calTime(date,time){
       // var dueDate = date

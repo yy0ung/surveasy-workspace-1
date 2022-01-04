@@ -19,12 +19,12 @@
   <div class="password">
     <span class="black-bold">비밀번호</span> <br>
     <input type="password" v-model="withDrawPW">
-    <button @click="checkPassword(this.withDrawPW)">비밀번호 확인</button>
+    <button @click="checkPassword(this.withDrawPW)" class="btn-check">비밀번호 확인</button>
     <div v-if="this.$store.state.withDrawCheckTF == false">
-      <p>비밀번호를 확인해주세요</p>
+      <p class="check-ment">비밀번호를 확인해주세요</p>
     </div>
     <div v-else>
-      <p>비밀번호가 확인되었습니다.</p>
+      <p class="check-ment" id="checked">비밀번호가 확인되었습니다.</p>
     </div>
   </div>
 
@@ -120,7 +120,7 @@ export default {
   height: 900px;
   margin-left: auto;
   margin-right: auto;
-  padding-left: 650px;
+  padding-left: 570px;
   text-align: left;
   margin-top: 100px;
   font-family: 'Noto Sans KR', sans-serif;
@@ -142,13 +142,30 @@ export default {
 .password{
   margin-top: 50px;
 }
+.btn-check{
+  font-family: 'Noto Sans KR', sans-serif;
+  padding: 5px 15px;
+  border: 1px solid #0AAC00;
+  margin-left: 10px;
+  border-radius: 3px;
+  color: #0AAB00;
+  background-color: white;
+}
+.btn-check:hover{
+  color: white;
+  background-color: #0AAC00;
+}
 .password input{
   margin-top: 10px;
   margin-left: 5px;
-  width: 570px;
+  width: 500px;
   height: 23px;
-  margin-bottom: 70px;
   
+  
+  
+}
+#checked{
+  color: #0AAB00;
 }
 #margin{
   margin-left: 17px;
@@ -176,5 +193,11 @@ export default {
   color: white;
   background-color: #0AAC00;
   
+}
+.check-ment{
+  font-size: 0.9rem;
+  font-weight: 300;
+  margin-left: 10px;
+  margin-top: 5px;
 }
 </style>

@@ -119,10 +119,10 @@ export default {
 
       
       for(var i=0; i<this.currentUserUploadInfo3.length; i++){
-        if(this.currentUserUploadInfo3[i].progress==2){
+        if(this.currentUserUploadInfo3[i].progress<=2){
           this.myCount1.push(this.currentUserUploadInfo3[i].progress)
           
-        }else if(this.currentUserUploadInfo3[i].progress==3){
+        }else if(this.currentUserUploadInfo3[i].progress==3 || this.currentUserUploadInfo3[i].progress==4){
           this.myCount2.push(this.currentUserUploadInfo3[i].progress)
         }
         console.log(this.currentUserUploadInfo3[i].progress)
