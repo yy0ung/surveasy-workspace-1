@@ -120,6 +120,7 @@ export default {
   },
   methods:{
     async fetchUserData(){
+      // this.$store.state.loginState.isLoggedIn = false
       const db = this.$store.state.db
       const userData = this.$store.state.userData
       const querySnapshot = await getDocs(collection(db,"userData"))

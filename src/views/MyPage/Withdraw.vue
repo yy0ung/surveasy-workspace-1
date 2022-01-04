@@ -4,6 +4,8 @@
   <div class="wi-title">
     <p><span id="wi-green">서베이지</span> 회원 탈퇴</p>
   </div>
+
+  
   <div class="black-light">
       <span class="black-bold">고객님께서 회원탈퇴를 원하신다니 서베이지의 서비스가 부족하고 미흡했나 봅니다. 
       <br>불편하셨던 점이나 불만사항을 알려주시면, 적극 반영하겠습니다.</span>
@@ -16,7 +18,14 @@
   </div>
   <div class="password">
     <span class="black-bold">비밀번호</span> <br>
-    <input type="password">
+    <input type="password" v-model="withDrawPW">
+    <button @click="checkPassword(this.withDrawPW)">비밀번호 확인</button>
+    <div v-if="this.$store.state.withDrawCheckTF == false">
+      <p>비밀번호를 확인해주세요</p>
+    </div>
+    <div v-else>
+      <p>비밀번호가 확인되었습니다.</p>
+    </div>
   </div>
 
   <div class="check">
@@ -29,17 +38,79 @@
   </div>
 
   <div id="btn-center">
-    <button class="btn-withdraw">탈퇴하기</button>
+    <button class="btn-withdraw" @click="withDrawUser(this.$store.state.withDrawCheckTF)">탈퇴하기</button>
   </div>
 
 </div>
 </template>
 
 <script>
+import { getAuth, deleteUser, signInWithEmailAndPassword } from 'firebase/auth' 
+import { doc, deleteDoc } from "firebase/firestore";
 export default {
   mounted() {
     window.scrollTo(0,0)
   },
+  data(){
+    return{
+      withDrawPW:''
+    }
+  },
+
+  methods:{
+    withDrawTest(){
+      const auth = getAuth();
+      const user = auth.currentUser
+      console.log(user)
+
+    },
+    checkPassword(pw){
+      const email = this.$store.state.loginState.currentUser.email
+      const password = pw
+      const auth = getAuth()
+      signInWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+          this.$store.state.withDrawCheckTF = true
+          console.log('ok')
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+
+          console.log(errorCode)
+          console.log(errorMessage)
+      });
+    },
+    async withDrawUser(check){
+      if (check != true) {
+        window.alert("비밀번호를 확인 해 주세요")
+      }
+      else {
+        const auth = getAuth();
+        const user = auth.currentUser
+        const db = this.$store.state.db
+        const currentUserEmail = this.$store.state.loginState.currentUser.email
+        await deleteDoc(doc(db, "userData", currentUserEmail.toString())).then(() => {
+          deleteUser(user).then(() => {
+          this.$store.state.loginState.currentUser = null;
+          this.$store.state.loginState.isLoggedIn = false;
+          
+          window.alert('삭제 완료')
+          this.$router.replace('/')
+        }).catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+
+          console.log(errorCode)
+          console.log(errorMessage)
+        });
+        })
+      }
+
+      
+      
+    }
+  }
 }
 </script>
 

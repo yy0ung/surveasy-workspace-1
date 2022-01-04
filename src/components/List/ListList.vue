@@ -24,7 +24,7 @@
 
 
         <td id="title-left">
-          <a :href="item[0].link" class="list-title" :class="{active:item[0].progress==3}">{{item[0].title}}</a>
+          <a :href="item[0].link" target="_blank" class="list-title" :class="{active:item[0].progress==3}">{{item[0].title}}</a>
           <span class="due" :class="{active:item[0].progress==3}">{{calTime(item[0].dueDate,item[0].dueTimeTime)}}</span>
 
         </td>

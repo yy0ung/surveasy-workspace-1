@@ -206,6 +206,7 @@ export default {
           dueDate: dataset.dueDate,
           dueTimeTime: dataset.dueTimeTime,
           dueTimeTimeTime: dataset.dueTimeTimeTime,
+          priceIdentity: dataset.identity,
 
           orderNum: orderNum,
 

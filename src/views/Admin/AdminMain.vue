@@ -1,13 +1,9 @@
 <template>
   <div>
-    <h1>{{ passInput }}</h1>
     <input v-model="passInput" type="text" placeholder="AdminPassword">
     <br>
     Admin Password
     <button @click="adminCheck">확인하기</button>
-
-    <p>{{passInput}}</p>
-    <p>{{this.$store.state.isAdmin}}</p>
     <div v-if="this.$store.state.isAdmin">
       
       <div>
@@ -23,15 +19,13 @@
               <th>마감 기한</th>
               <th>업로더</th>
               <th>업로더 identity</th>
-              <th>결제 확인</th>
-              <th>확인 여부</th>
-              <th>duetime</th>
+              <th>선택한 identity 옵션</th>
               <th>progress</th>
               <th>설문 진행단계 변경</th>
               
             </tr>
 
-            <tr v-for="item in (this.$store.state.adminData)" :key="item.title">
+            <tr v-for="item in (this.$store.state.adminData)" :key="item.id">
               <td>{{item.id}}</td>
               <td>{{item.orderNum}}</td>
               <td>{{item.title}}</td>
@@ -40,11 +34,9 @@
               <td>{{item.dueDate}}</td>
               <td>{{item.uploader}}</td>
               <td>{{item.uploaderIdentity}}</td>
-              <td><button @click="updateApproved(item)">결제 확인</button></td>
-              <td>{{item.adminApproved}}</td>
-              <td>{{item.dueTimeTimeTime}}</td>
+              <td>{{item.priceIdentity}}</td>
               <td>{{item.progress}}</td>
-              <td><button @click="changeProgress1(item.id)">1</button> <button @click="changeProgress2(item.id)">2</button> <button @click="changeProgress3(item.id)">3</button></td>
+              <td><button class="progress-button"  @click="changeProgress1(item.id)">1</button> <button class="progress-button" @click="changeProgress2(item.id)">2</button> <button class="progress-button" @click="changeProgress3(item.id)">3</button></td>
               
 
             </tr>
@@ -200,8 +192,6 @@ methods:{
       alert('ok')
       this.$store.commit('setAdminState')
       this.fetchAdminData()
-      console.log(this.$store.state.adminData)
-
     } else {
       alert('check it again')
     }
@@ -350,7 +340,7 @@ methods:{
 
 computed:{
   dueDate(){
-    var date = this.$store.localSurveyState.dueDate
+    
     var time = this.$store.localSurveyState.dueTime
     var milli = new Date(date+" "+time);
 
@@ -376,5 +366,10 @@ computed:{
 </script>
 
 <style>
+.progress-button{
+  color: white;
+  background-color: cornflowerblue;
+  border: 0;
+}
 
 </style>
