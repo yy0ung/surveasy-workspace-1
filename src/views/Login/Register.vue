@@ -258,6 +258,7 @@ export default {
                 birth: dataSet.birth,
                 uploadIndex: [],
                 identity: 'default',
+                identity_request: false,
                 funnel : dataSet.funnel,
                 respondArray: [],
                 clientGrade: 0,

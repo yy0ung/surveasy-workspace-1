@@ -97,7 +97,7 @@ export default {
 
         if (docSnap.exists()) {
           
-          this.currentUserUploadIndexInfo.push(docSnap.data())
+          this.currentUserUploadIndexInfo.unshift(docSnap.data())
           
         }
       }

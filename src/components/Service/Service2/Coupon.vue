@@ -14,8 +14,11 @@
 
       <ul id="Coupon-detail">
         <ul class="Coupon-detail-text">적립금</ul>
-          <div class="Point-box">보유 적립금 {{ show_point }}원</div>
+        <div class="point-detail-container">
+          <div class="Point-box">보유 적립금 {{ show_point }}원<button class="pointDelete-btn" @click="deletePoint"><i class="fas fa-times"></i></button></div>
           <button class="Coupon-btn" @click="usePoint()">적립금 적용</button>
+        </div>
+          
           <div class="Point-notice">10,000원 이상 결제시, 결제 금액의 최대 10%까지 적립금 사용 가능</div>
       </ul>
 
@@ -24,7 +27,6 @@
 </template>
 
 <script>
-import { doc, setDoc, collection, getDocs, updateDoc } from '@firebase/firestore'
 export default {
   data() {
     return {
@@ -40,7 +42,8 @@ export default {
         rate: 0
       },
 
-      point_apply: false
+      point_apply: false,
+      point_delete: false
 
     }
   },
@@ -105,7 +108,7 @@ export default {
         alert("이미 적립금을 적용하셨습니다.")
       }
     },
-    
+
   },
 
   computed: {
@@ -118,6 +121,18 @@ export default {
       else {
         return c - this.$store.state.localSurveyState.pointDiscount
       }
+    },
+
+    deletePoint() {
+      if(this.point_apply == true) {
+        this.$store.state.localSurveyState.price = this.$store.state.localSurveyState.price + this.$store.state.localSurveyState.pointDiscount
+        this.$store.state.localSurveyState.pointDiscount = 0
+        this.$store.state.localSurveyState.point_use = false
+        this.point_apply = false
+
+        this.show_point()
+      }
+      
     }
   }
 
@@ -200,11 +215,17 @@ export default {
   border-radius: 26px;
   cursor: pointer;  
 }
+.point-detail-container {
+  display: flex;
+  flex-direction: row;
+}
 .Point-box {
-  display: inline-block;
+  display: flex;
+  justify-content: space-between;
   left: 190px;
   width: 680px;
   height: 26px;
+  margin: 0;
   border: 0.75px solid #afafaf;
   opacity: 1;
   background-color: #EEEEEE;
@@ -214,6 +235,12 @@ export default {
   font-family: 'Noto Sans KR' lighter;
   letter-spacing: 0px;
   color: #a2a0a0;
+}
+.pointDelete-btn {
+  display: inline-block;
+  border: none;
+  color: grey;
+  cursor: pointer;
 }
 .Point-notice {
   font-size: 15px;

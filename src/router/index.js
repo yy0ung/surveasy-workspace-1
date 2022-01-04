@@ -31,6 +31,9 @@ import AdminMain from '../views/Admin/AdminMain.vue'
 import CouponAdmin from '../views/Admin/CouponAdmin.vue'
 import Withdraw from '../views/MyPage/Withdraw.vue'
 import Review from '../views/MyPage/Review.vue'
+import ReviewDone from '../views/MyPage/ReviewDone.vue'
+import ReviewDetail from '../views/MyPage/ReviewDetail.vue'
+import ReviewDetailDone from '../views/MyPage/ReviewDetailDone.vue'
 
 const routes = [
   {
@@ -145,6 +148,21 @@ const routes = [
     path: '/review/:id',
    
     component: Review
+  },
+  {
+    path: '/reviewdone/:id',
+    // name: 'Review',
+    component: ReviewDone
+  },
+  {
+    path: '/reviewdetail/:id',
+    // name: 'Review',
+    component: ReviewDetail
+  },
+  {
+    path: '/reviewdetaildone/:id',
+    // name: 'Review',
+    component: ReviewDetailDone
   },
   {
     path: '/response',

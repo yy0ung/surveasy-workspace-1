@@ -19,7 +19,7 @@
               <th>제목</th>
               <th>가격</th>
               <th>요구 응답</th>
-              <th>마감 기한</th>
+              <th>주문 날짜</th>
               <th>업로더</th>
               <th>업로더 이메일</th>
               <th>업로더 identity</th>
@@ -35,11 +35,14 @@
               <td>{{item.title}}</td>
               <td>{{item.price}}</td>
               <td>{{item.requiredHeadCount}}</td>
-              <td>{{item.dueDate}}</td>
+              <td>{{item.uploadDate}}</td>
               <td>{{item.uploader}}</td>
               <td>{{item.uploaderEmail}}</td>
               <td>{{item.uploaderIdentity}}</td>
-              <td>{{item.priceIdentity}}</td>
+              <td><button @click="updateApproved(item)">결제 확인</button></td>
+              <td>{{item.adminApproved}}</td>
+              <td>{{item.dueDate}}</td>
+              <td>{{item.dueTimeTime}}</td>
               <td>{{item.progress}}</td>
               <td><button class="progress-button"  @click="changeProgress1(item.id)">1</button> <button class="progress-button" @click="changeProgress2(item.id)">2</button> <button class="progress-button" @click="changeProgress3(item.id)">3</button></td>
               

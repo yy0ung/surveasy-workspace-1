@@ -92,7 +92,6 @@ export default {
      const myCoupon = adminCoupon.filter(item => item.user===this.$store.state.loginState.currentUser.email && item.isUsed===false && item.outOfDate===false)
      this.$store.state.myCoupon = myCoupon
      console.log(this.$store.state.myCoupon)
-     console.log('쿠폰 fetch')
    },
 
     async pointIsUsed() {
