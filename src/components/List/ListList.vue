@@ -128,6 +128,7 @@ export default {
         uploader:'',
         id:0
       },
+      
      
       
     }
@@ -173,6 +174,7 @@ export default {
       
       console.log(due.getTime()/3600000)
       console.log(Date.now()/3600000)
+      
       if(dateDiff<0){
         Dday='마감'
       }
