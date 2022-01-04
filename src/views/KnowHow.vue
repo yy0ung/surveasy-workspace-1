@@ -2,6 +2,7 @@
 <div id="knohow-container">
   
   <KnowHowItem />
+  <KnowHowClosed />
   
 
 </div>
@@ -9,12 +10,14 @@
 
 <script>
 import KnowHowItem from '../components/KnowHow/KnowHowItem.vue'
+import KnowHowClosed from '../components/KnowHow/KnowHowClosed.vue'
 
 
 export default {
   components:{
     
     KnowHowItem,
+    KnowHowClosed
     
   },
   mounted() {
@@ -25,8 +28,9 @@ export default {
 
 <style>
   #knowhow-container{
-    min-width: 1190px;
+  min-width: 1190px;
   margin-left: auto;
   margin-right: auto;
   }
+  
 </style>
