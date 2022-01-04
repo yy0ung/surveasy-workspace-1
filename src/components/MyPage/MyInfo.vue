@@ -56,6 +56,18 @@
       <p class="edit-ment">회원정보 수정을 원하실 경우 서베이지 카카오톡 페이지로 문의 바랍니다.</p>
       
     </div>
+
+    <div class="middle-box">
+      <p class="green-title">대학(원)생 인증 완료 요청 보내기 </p>
+      <select name="" id="middle-select" v-model="identityRequest">
+          <option disabled >인증하려는 @@을 선택하세요</option>
+          <option :value="{request: '대학생'}">대학생 (학부생)</option>
+          <option :value="{request: '대학월생'}">대학원생</option>
+      </select>
+      <button @click="sendRequestVerifyIdentity(this.identityRequest)">요청 보내기</button>
+    </div>
+
+
     <div class="bottom-box">
       <p class="green-title">수신 설정</p>
       <div class="info-contents">
@@ -110,17 +122,20 @@ export default {
 <style>
 #myinfo-container{
   min-width: 1190px;
+  height: auto;
   margin-left: auto;
   margin-right: auto;
   font-family: 'Noto Sans KR', sans-serif;
   padding-bottom:50px;
 }
-.top-box, .bottom-box{
+.top-box, .middle-box, .bottom-box{
   background: #FFFFFF 0% 0% no-repeat padding-box;
   box-shadow: 0px 0px 5px #0000000D;
   border-radius: 15px;
   opacity: 1;
   width: 650px;
+  margin-top: 20px;
+  margin-bottom: 30px;
   margin-left: 50px;
   padding-left: 50px;
   padding-top: 25px;

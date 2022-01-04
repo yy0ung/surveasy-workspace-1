@@ -74,7 +74,6 @@ export default {
   
   mounted(){
     this.fetchAdminData_coupon()
-    this.fetchMyPayment()
     
     this.fetchCount(),
     this.fetchMyPayment2()
