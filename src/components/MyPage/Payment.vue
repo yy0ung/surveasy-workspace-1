@@ -38,7 +38,9 @@
             
             <p class="light" v-if="item.progress==3 || item.progress==4">패널 응답 완료</p>
             <p class="light" v-if="item.progress==2">결제 완료</p>
+
             <p class="light" v-if="item.progress==0 || item.progress==1">검수 중</p>
+
             <p class="light">{{item.requiredHeadCount}}</p>
           </div>
           <div class="con3">

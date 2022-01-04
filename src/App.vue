@@ -103,29 +103,13 @@ export default {
     this.fetchUserData()
     this.fetchSurveyData()
     this.fetchLastID()
-
-    // 로그인관리 방법 중 하나
-    //     const auth = getAuth();
-    //     onAuthStateChanged(auth, (user) => {  
-    //       if (user) {
-    //         console.log('authStateChanged!')
-    //         this.$store.dispatch('setCurrentUser', {
-    //           payload: user.email
-    //         })
-        
-    //   }
-    // })
-
-    
-    
-    
   },
   methods:{
     async fetchUserData(){
-      // this.$store.state.loginState.isLoggedIn = false
       const db = this.$store.state.db
       const userData = this.$store.state.userData
       const querySnapshot = await getDocs(collection(db,"userData"))
+      
       querySnapshot.forEach((doc) => {
         userData.push(doc.data())
       })
@@ -137,9 +121,6 @@ export default {
       const surveyData = this.$store.state.surveyData
       const querySnapshot = await getDocs(collection(db, "adminRequired"))
       querySnapshot.forEach((doc)=> {
-        // const upTime = new Date(doc.data().uploadTime.seconds*1000)
-        // const dueTime = new Date(doc.data().dueTime.seconds*1000)
-        // var docID = Number(doc.data().id)
         var dataSet = []
         if (doc.data().progress == 3 || doc.data().progress == 2) {
           dataSet.push(doc.data())
@@ -154,7 +135,7 @@ export default {
       // var test = sorted.sort(function(a,b){return b[0].id - a[0].id })
       // console.log(test)
       this.$store.state.surveyData = sorted
-      console.log((this.$store.state.surveyData).length)
+      // console.log((this.$store.state.surveyData).length)
       
       
     },

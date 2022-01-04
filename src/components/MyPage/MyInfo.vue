@@ -77,13 +77,14 @@
         <p class="info-title">이벤트 혜택 (마케팅 정보 수신)
         <span class="info-detail-gray">구매 정보, 회원정보 수정, 공지, CS 알림은 수신설정에 상관없이 발송됩니다.</span></p>
         <div class="input-">
-          <input type="checkbox" name="message"> SMS / 카카오톡
-          <input type="checkbox" name="mail"> 이메일
+          <input type="checkbox" name="message" v-model="marketingTF.marketingSMS"> SMS / 카카오톡
+          <input type="checkbox" name="mail" v-model="marketingTF.marketingEmail"> 이메일
+          
         </div>
         
       </div>
       <div class="btn">
-      <button class="btn-info">저장</button>
+      <button @click="marketingAgree(this.marketingTF)" class="btn-info">저장</button>
       </div>
     </div>
     <div class="more">
@@ -94,12 +95,19 @@
 </template>
 
 <script>
+
 import {doc, collection, getDocs, updateDoc, setDoc} from 'firebase/firestore'
+
 
 export default {
   data(){
     return {
-      identityRequest: ''
+      identityRequest: '',
+      marketingTF:{
+        marketingSMS: false,
+        marketingEmail: false
+      },
+      
     }
   },
 
@@ -132,16 +140,29 @@ export default {
         await updateDoc(doc(db, "userData", currentUser.email.toString()), {
           identity_request: true
         
-        }).then(
-          alert("요청이 전송되었습니다 !")
-        )
-        this.$store.state.userData = []
+
+      }).then(
+        alert("요청이 전송되었습니다 !")
+      )
+      this.$store.state.userData = []
         await this.fetchUserData()
         console.log(this.$store.state.loginState.currentUser.identity_request)
       }
       else {
         alert('이미 인증을 완료하셨습니다.')
       }
+    },
+
+    async marketingAgree(TF) {
+      const db = this.$store.state.db
+      const currentUser = this.$store.state.loginState.currentUser
+      await updateDoc(doc(db, "userData", currentUser.email.toString()), {
+        marketingSMS : TF.marketingSMS,
+        marketingEmail : TF.marketingEmail
+      }).then(
+        alert('저장되었습니다.')
+      )
+
     }
 
     
