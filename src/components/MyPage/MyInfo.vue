@@ -264,6 +264,7 @@ export default {
   margin-bottom: 20px;
   padding: 3px 5px;
   font-family: 'Noto Sans KR', sans-serif;
+  border: 0.1px solid black;
 }
 .middle-box .green-title{
   margin-top: 10px;
