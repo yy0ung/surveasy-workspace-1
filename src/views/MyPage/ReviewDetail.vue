@@ -68,7 +68,7 @@
 </template>
 
 <script>
-import { setDoc, doc } from 'firebase/firestore';
+import { getDocs, setDoc, updateDoc, doc, collection } from 'firebase/firestore';
 export default {
   mounted() {
     window.scrollTo(0,0)
@@ -77,11 +77,11 @@ export default {
     return {
       reviewDetailData: {
         title: this.$route.params.id,
-    Q1: [],
-    Q1etc:'',
-    Q2: '',
-    Q3: '',
-    Q4: ''
+        Q1: [],
+        Q1etc:'',
+        Q2: '',
+        Q3: '',
+        Q4: ''
   }
     }
   },
@@ -92,8 +92,8 @@ export default {
       if(reviewDetailData.Q1.length==0 || reviewDetailData.Q3.length==0){
         alert('필수 항목을 모두 채워주세요.')
       }else{
-        await setDoc(doc(db, "reviewDetailData", reviewDetailData.title),{
-          title: reviewDetailData.title,
+        await setDoc(doc(db, "reviewDetailData", reviewDetailData.id),{
+          surveyID: reviewDetailData.id,
           Q1: reviewDetailData.Q1,
           Q1etc: reviewDetailData.Q1etc,
           Q2: reviewDetailData.Q2,
@@ -101,8 +101,57 @@ export default {
           Q4: reviewDetailData.Q4
         }),
         this.$router.push(`/reviewdetaildone/${this.$route.params.id}`)
+        this.pointADD()
       }
-    }
+    },
+
+    async fetchUserData(){
+      const db = this.$store.state.db
+      const userData = this.$store.state.userData
+      const querySnapshot = await getDocs(collection(db,"userData"))
+      querySnapshot.forEach((doc) => {
+        userData.push(doc.data())
+      })
+      
+    },
+
+    async getPointInfo() {
+      this.$store.state.userData = []
+      await this.fetchUserData()
+
+      var c = this.$store.state.loginState.currentUser.point_current
+      var t = this.$store.state.loginState.currentUser.point_total
+      this.$store.state.localPointState.point_current = c
+      this.$store.state.localPointState.point_total = t
+
+      console.log('current point: ' + this.$store.state.localPointState.point_current)
+   },
+
+     async pointADD() {
+      var db = this.$store.state.db
+      var currentUserEmail = this.$store.state.loginState.currentUser.email
+      const docref = doc(db, "userData", currentUserEmail)
+      const docref2 = doc(db, "adminRequired", this.$route.params.id)
+
+      this.$store.state.loginState.currentUser.point_current = this.$store.state.loginState.currentUser.point_current + 500
+      this.$store.state.loginState.currentUser.point_total = this.$store.state.loginState.currentUser.point_total + 500
+
+      await updateDoc(docref, { 
+          point_current: this.$store.state.loginState.currentUser.point_current,
+          point_total: this.$store.state.loginState.currentUser.point_total
+      })
+      
+      await this.getPointInfo()
+
+      await updateDoc(docref2, {
+        progress : 4
+      })
+      
+
+      console.log("500")
+
+      
+    },
   },
   
 }
