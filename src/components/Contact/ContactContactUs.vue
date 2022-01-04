@@ -3,7 +3,7 @@
   <p class="title">도움이 필요하신가요?</p>
   <div class="contactus-contents" >
     <div>
-      <a href="http://pf.kakao.com/_xfialK/chat"><button class="ContactContactUs-btn">채팅하기</button></a>
+      <a href="http://pf.kakao.com/_xfialK/chat" target="_blank"><button class="ContactContactUs-btn">채팅하기</button></a>
       <p class="bold">@Surveasy 카카오톡 플러스 친구</p>
       <p class="light">추가 후 1:1 실시간 채팅으로 문의</p>
     </div>

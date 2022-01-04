@@ -69,6 +69,7 @@ export default {
 <style>
 #mypage-container{
   width: 1190px;
+  height: auto;
   margin-left: auto;
   margin-right: auto;
   margin-top: 80px;
@@ -122,12 +123,13 @@ export default {
   padding-top: 70px;
   width: 1190px;
   margin: auto;
-  height: 900px;
+  height: auto;
   background: #EEEEEE 0% 0% no-repeat padding-box;
   box-shadow: 0px 0px 9px #0000001F;
   text-align: left;
   font-family: 'Noto Sans KR', sans-serif;
   padding-bottom: 50px;
+
 }
 
 .mypage-contents {
