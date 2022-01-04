@@ -261,7 +261,7 @@ export default {
         this.identity = String(this.$store.state.priceTextTable[4][this.priceIdentity]);
       
       
-        this.$store.commit('setSurveyMutation1', {price: this.price, requiredHeadCount: this.requiredHeadCount, 
+        this.$store.commit('setSurveyMutation1', {beforeCouponPrice: this.price, requiredHeadCount: this.requiredHeadCount, 
         spendTime: this.spendTime, dueTime: this.dueTime, ENTarget: this.ENTarget, identity: this.identity});
 
        
