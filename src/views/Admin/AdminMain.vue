@@ -1,9 +1,12 @@
 <template>
   <div>
-    <input v-model="passInput" type="text" placeholder="AdminPassword">
-    <br>
-    Admin Password
-    <button @click="adminCheck">확인하기</button>
+    <div v-if="this.$store.state.isAdmin == false">
+      <input v-model="passInput" type="text" placeholder="AdminPassword">
+      <br>
+      Admin Password
+      <button @click="adminCheck">확인하기</button>
+    </div>
+    
     <div v-if="this.$store.state.isAdmin">
       
       <div>
@@ -18,6 +21,7 @@
               <th>요구 응답</th>
               <th>마감 기한</th>
               <th>업로더</th>
+              <th>업로더 이메일</th>
               <th>업로더 identity</th>
               <th>선택한 identity 옵션</th>
               <th>progress</th>
@@ -33,6 +37,7 @@
               <td>{{item.requiredHeadCount}}</td>
               <td>{{item.dueDate}}</td>
               <td>{{item.uploader}}</td>
+              <td>{{item.uploaderEmail}}</td>
               <td>{{item.uploaderIdentity}}</td>
               <td>{{item.priceIdentity}}</td>
               <td>{{item.progress}}</td>
@@ -123,6 +128,9 @@
           <div>
             <input type="text" placeholder="설문 링크" v-model="UploadInputData.surveyLink">         
           </div>
+          <div>
+            <input type="text" placeholder="설문 대상" v-model="UploadInputData.target">         
+          </div>
         </div>
 
         <button @click="addPastData(this.UploadInputData)">리스트에 추가하기</button>
@@ -179,7 +187,8 @@ data(){
       pastData: true,
       surveyInstitute:'',
       surveyLink: '',
-      uploader:''
+      uploader:'',
+      target:'',
 
       
     },
@@ -192,6 +201,7 @@ methods:{
       alert('ok')
       this.$store.commit('setAdminState')
       this.fetchAdminData()
+      console.log(this.$store.state.userData)
     } else {
       alert('check it again')
     }
@@ -209,6 +219,9 @@ methods:{
       adminData.push(doc.data())
     })
 
+    const sorted = adminData.sort(function(a,b){return b.id - a.id })
+    this.$store.state.adminData = sorted
+
     // 신분 전환 요청 데이터 받기
     const querySnapshot2 = await getDocs(collection(db, "identityVerifyRequired"))
     querySnapshot2.forEach((doc) => {
@@ -224,7 +237,7 @@ methods:{
     querySnapshot4.forEach((doc) => {
       adminDataTemplate.push(doc.data())
     })
-      
+    
     
   },
 
@@ -267,7 +280,11 @@ methods:{
       surveyInstitute : dataset.surveyInstitute,
       surveyLink : dataset.surveyLink,
       uploader : dataset.uploader,
-      progress : 3
+      progress : 3,
+      target: dataset.target,
+      dueDate:"2021-12-31",
+      dueTimeTime:"00:00"
+      
 
       // surveyTitle:'',
       // theme:'',

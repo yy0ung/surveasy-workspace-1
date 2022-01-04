@@ -134,30 +134,7 @@ export default {
   },
   
   methods:{
-    // async addData(dataSet){
-    //   var db = this.$store.state.db
-    //   var uploadTime = new Date()
-    //   var dueTime = new Date()
-      
-    //   dueTime.setDate(dueTime.getDate() + 7)
-    //   await setDoc(doc(db, "surveyData", dataSet.id.toString()),{
-    //     id: dataSet.id,
-    //     isDone: dataSet.isDone,
-    //     uploader: dataSet.uploader,
-    //     surveyTitle: dataSet.surveyTitle,
-    //     surveyLink: dataSet.surveyLink,
-    //     surveyInstitute: dataSet.surveyInstitute,
-    //     headCount: dataSet.headCount,
-    //     paidPrice: dataSet.paidPrice,
-    //     spendTime: dataSet.spendTime,
-    //     keyword: dataSet.keyword,
-    //     requireHeadCount: dataSet.requireHeadCount,
-    //     uploadTime: uploadTime,
-    //     dueTime: dueTime
-        
-    //   })
-    //   this.$router.go('/')
-    // },
+    
     inc(){
       this.currentPage += 1
     },
