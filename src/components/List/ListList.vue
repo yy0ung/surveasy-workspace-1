@@ -9,7 +9,7 @@
         <th id="title-left">설문 제목</th>
         <th>설문 대상</th>
         <th>소요시간</th>
-        <th>진행률</th>
+        <th>요구 응답수</th>
         <th>의뢰자</th>
         
         <th></th>

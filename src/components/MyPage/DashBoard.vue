@@ -74,7 +74,8 @@ export default {
   
   mounted(){
     this.fetchAdminData_coupon()
-    
+    this.getPointInfo()
+
     this.fetchCount(),
     this.fetchMyPayment2()
 
@@ -97,6 +98,28 @@ export default {
       const myCoupon = adminCoupon.filter(item => item.user===this.$store.state.loginState.currentUser.email && item.isUsed===false && item.outOfDate===false)
       this.$store.state.myCoupon = myCoupon
       console.log(this.$store.state.myCoupon)
+   },
+
+   async fetchUserData(){
+      const db = this.$store.state.db
+      const userData = this.$store.state.userData
+      const querySnapshot = await getDocs(collection(db,"userData"))
+      querySnapshot.forEach((doc) => {
+        userData.push(doc.data())
+      })
+      
+    },
+
+    async getPointInfo() {
+      this.$store.state.userData = []
+      await this.fetchUserData()
+
+      var c = this.$store.state.loginState.currentUser.point_current
+      var t = this.$store.state.loginState.currentUser.point_total
+      this.$store.state.localPointState.point_current = c
+      this.$store.state.localPointState.point_total = t
+
+      console.log('current point: ' + this.$store.state.localPointState.point_current)
    },
     
     async fetchCount(){
