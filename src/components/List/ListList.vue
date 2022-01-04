@@ -15,7 +15,7 @@
         <th></th>
       </tr>
       <tr v-for="item in (this.$store.state.surveyData.slice(currentPage*5-5,currentPage*5))" :key="item.id">
-        <td class="list-de" :class="{active:item[0].progress==3}">{{item[0].id}}</td>
+        <td class="list-de" :class="{active:dueTime(item[0].dueDate,item[0].dueTimeTime)<0}">{{item[0].id}}</td>
 
           
 
@@ -24,15 +24,15 @@
 
 
         <td id="title-left">
-          <a :href="item[0].link" target="_blank" class="list-title" :class="{active:item[0].progress==3}">{{item[0].title}}</a>
-          <span class="due" :class="{active:item[0].progress==3}">{{calTime(item[0].dueDate,item[0].dueTimeTime)}}</span>
+          <a :href="item[0].link" target="_blank" class="list-title" :class="{active:dueTime(item[0].dueDate,item[0].dueTimeTime)<0}">{{item[0].title}}</a>
+          <span class="due" :class="{active:dueTime(item[0].dueDate,item[0].dueTimeTime)<0}">{{calTime(item[0].dueDate,item[0].dueTimeTime)}}</span>
 
         </td>
         
-        <td class="list-de" :class="{active:item[0].progress==3}">{{item[0].target}}</td>
-        <td class="list-de" :class="{active:item[0].progress==3}">{{item[0].spendTime}}</td>
-        <td class="list-de" :class="{active:item[0].progress==3}">{{item[0].requiredHeadCount}}</td>
-        <td class="list-de" :class="{active:item[0].progress==3}">{{item[0].uploader.substring(0,1)+"*"+item[0].uploader.substring(2)}}</td>
+        <td class="list-de" :class="{active:dueTime(item[0].dueDate,item[0].dueTimeTime)<0}">{{item[0].target}}</td>
+        <td class="list-de" :class="{active:dueTime(item[0].dueDate,item[0].dueTimeTime)<0}">{{item[0].spendTime}}</td>
+        <td class="list-de" :class="{active:dueTime(item[0].dueDate,item[0].dueTimeTime)<0}">{{item[0].requiredHeadCount}}</td>
+        <td class="list-de" :class="{active:dueTime(item[0].dueDate,item[0].dueTimeTime)<0}">{{item[0].uploader.substring(0,1)+"*"+item[0].uploader.substring(2)}}</td>
          
         
         <!-- <td>
@@ -128,41 +128,26 @@ export default {
         uploader:'',
         id:0
       },
+      
      
       
     }
   },
   
   methods:{
-    // async addData(dataSet){
-    //   var db = this.$store.state.db
-    //   var uploadTime = new Date()
-    //   var dueTime = new Date()
-      
-    //   dueTime.setDate(dueTime.getDate() + 7)
-    //   await setDoc(doc(db, "surveyData", dataSet.id.toString()),{
-    //     id: dataSet.id,
-    //     isDone: dataSet.isDone,
-    //     uploader: dataSet.uploader,
-    //     surveyTitle: dataSet.surveyTitle,
-    //     surveyLink: dataSet.surveyLink,
-    //     surveyInstitute: dataSet.surveyInstitute,
-    //     headCount: dataSet.headCount,
-    //     paidPrice: dataSet.paidPrice,
-    //     spendTime: dataSet.spendTime,
-    //     keyword: dataSet.keyword,
-    //     requireHeadCount: dataSet.requireHeadCount,
-    //     uploadTime: uploadTime,
-    //     dueTime: dueTime
-        
-    //   })
-    //   this.$router.go('/')
-    // },
+    
     inc(){
       this.currentPage += 1
     },
     dec(){
       this.currentPage -= 1
+    },
+    dueTime(date,time){
+      // var dueDate = date
+      var due = new Date(date)
+      var timeHour = time.substring(0,2)
+      var dateDiff = due.getTime()/3600000 - Date.now()/3600000 + (timeHour-9)
+      return dateDiff
     },
     calTime(date,time){
       // var dueDate = date
@@ -173,6 +158,7 @@ export default {
       
       console.log(due.getTime()/3600000)
       console.log(Date.now()/3600000)
+      
       if(dateDiff<0){
         Dday='마감'
       }
@@ -218,6 +204,8 @@ export default {
 #list-view-container{
   font-family: 'Noto Sans KR', sans-serif;
   margin-bottom: 50px;
+  padding-top: 50px;
+  height: 700px;
 }
 #list-table{
   border: 0px solid black;

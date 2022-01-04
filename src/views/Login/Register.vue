@@ -94,8 +94,9 @@
           </li>
           <div class="check">
             <div class="all-title"><input type="checkbox" v-model="checkAll">전체 동의하기</div>
-            <div class="all"><input type="checkbox" v-model="dataSet.check1" >서베이지 이용약관 (필수)</div>
-            <div class="all"><input type="checkbox" v-model="dataSet.check2" >서베이지 개인정보 보호 방침 (필수)</div>
+            <div class="all"><input type="checkbox" v-model="dataSet.check1" >
+            <router-link class="terms" :to="{name: 'Term1'}" target="_blank"> 서베이지 이용약관 (필수)</router-link></div>
+            <div class="all"><input type="checkbox" v-model="dataSet.check2" ><router-link class="terms" :to="{name: 'Term2'}" target="_blank">서베이지 개인정보 보호 방침 (필수)</router-link></div>
             <div class="all"><input type="checkbox" v-model="dataSet.check3" >
                 회원가입 시 작성한 개인 정보가 모두 올바름을 확인합니다. <br>
             <span id="nextline">가입 오류로 인한 불이익은 이용자의 책임임을 인지하고 있습니다. (필수)</span></div>
@@ -263,7 +264,10 @@ export default {
                 respondArray: [],
                 clientGrade: 0,
                 point_total : 0,
-                point_current: 0
+                point_current: 0,
+                marketingSMS: false,
+                marketingEmail: false
+                
                 
                 
             })
@@ -392,5 +396,8 @@ li {
 }
 .check #nextline{
     margin-left: 50px;
+}
+.terms{
+    text-decoration: underline;
 }
 </style>

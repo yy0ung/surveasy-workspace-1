@@ -24,7 +24,7 @@
     <div class="paydone-notice">설문조사의 진행 상황은 마이 페이지에서 확인하실 수 있습니다.</div>
     <div class="paydone-notice">문의 사항은 카카오채널 @surveasy로 보내주세요.</div>
     <br>
-    <router-link to="/mypage"><button class="goMyPage-btn">마이 페이지 가기</button></router-link>
+    <router-link to="/mypage/dashboard"><button class="goMyPage-btn">마이 페이지 가기</button></router-link>
   </div>
 
    
