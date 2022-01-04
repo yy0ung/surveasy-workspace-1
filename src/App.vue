@@ -73,6 +73,8 @@
       <p>서베이지 Surveasy</p>
       <p>상호 : 서베이지</p>
       <p>이메일 : surveasy2019@yonsei.ac.kr</p>
+      <p><router-link :to="{name: 'Term1'}" target="_blank">이용약관</router-link> | 
+    <router-link :to="{name: 'Term1'}" target="_blank">개인정보처리방침</router-link></p>
   </div>
   <div class="footer-icons" >
     <span class="footer-icon"><img class="footerimg" src="@/assets/Footer/IHEI.jpg" width="130"></span>

@@ -34,6 +34,8 @@ import Review from '../views/MyPage/Review.vue'
 import ReviewDone from '../views/MyPage/ReviewDone.vue'
 import ReviewDetail from '../views/MyPage/ReviewDetail.vue'
 import ReviewDetailDone from '../views/MyPage/ReviewDetailDone.vue'
+import Term1 from '../views/Term1.vue'
+import Term2 from '../views/Term2.vue'
 
 const routes = [
   {
@@ -168,6 +170,16 @@ const routes = [
     path: '/response',
     name: 'SurveyResponse',
     component: SurveyResponse
+  },
+  {
+    path: '/terms1',
+    name: 'Term1',
+    component: Term1
+  },
+  {
+    path: '/terms2',
+    name: 'Term2',
+    component: Term2
   },
   {
     path: '/adminmain',

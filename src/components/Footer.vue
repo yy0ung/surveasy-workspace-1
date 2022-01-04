@@ -5,6 +5,7 @@
     <p>상호 : 서베이지</p>
     <p>사업자등록번호 : 000-00-00000</p>
     <p>이메일 : surveasy2019@yonsei.ac.kr</p>
+    
   </div>
   <div class="footer-icons" style="font-size: 1.5rem;">
     <span class="footer-icon"><i class="fab fa-facebook-square"></i></span>
