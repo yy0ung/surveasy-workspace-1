@@ -46,8 +46,8 @@ export default {
       console.log(this.$store.state.localSurveyState)
     },
 
-    payDone() {
-      if(this.$store.state.localSurveyState.title=='' || this.$store.state.localSurveyState.target=='' || this.$store.state.localSurveyState.institute=='' || this.$store.state.localSurveyState.link=='') {
+    async payDone() {
+      if(this.$store.state.localSurveyState.title=='' || this.$store.state.localSurveyState.target=='' || this.$store.state.localSurveyState.institute=='' || this.$store.state.localSurveyState.link=='' || this.accont_userName=='') {
         alert('필수 설문 정보를 모두 입력해주세요.')
         console.log('if')
       }
@@ -67,16 +67,19 @@ export default {
 
     async couponIsUsed() {
       var db = this.$store.state.db
-      const docref = doc(db, "couponData", this.$store.state.localSurveyState.selectedCoupon.code)
+      if(this.$store.state.localSurveyState.selectedCoupon.code != '') {
+        const docref = doc(db, "couponData", this.$store.state.localSurveyState.selectedCoupon.code)
 
-      await updateDoc(docref, { 
+        await updateDoc(docref, { 
           isUsed: true,
           targetSurvey: this.$store.state.localSurveyState.title
         })
+      }
 
-      this.$store.state.adminCoupon = []
-      this.$store.state.myCoupon = []
-      this.fetchAdminData_coupon()
+        this.$store.state.adminCoupon = []
+        this.$store.state.myCoupon = []
+        this.fetchAdminData_coupon()
+      
     },
 
     async fetchAdminData_coupon() {
@@ -109,17 +112,32 @@ export default {
         })
 
       this.$store.state.userData = []
-      this.fetchUserData()
+      this.fetchUserData_point()
     },
     
-    async fetchUserData(){
+    async fetchUserData_point(){
       const db = this.$store.state.db
+      this.$store.state.userData = []
+      this.$store.state.PointUserData = []
       const userData = this.$store.state.userData
       const querySnapshot = await getDocs(collection(db,"userData"))
       querySnapshot.forEach((doc) => {
         userData.push(doc.data())
       })
-      
+      const PointUserData = userData.filter(item => item.email===this.$store.state.loginState.currentUser.email)
+      this.$store.state.PointUserData = PointUserData
+      console.log('***pointUser: ')
+      console.log(PointUserData[0])
+      this.getPointInfo()
+    },
+
+    getPointInfo() {
+      var c = this.$store.state.PointUserData[0].point_current
+      var t = this.$store.state.PointUserData[0].point_total
+      this.$store.state.localPointState.point_current = c
+      this.$store.state.localPointState.point_total = t
+
+      console.log('current point: ' + this.$store.state.localPointState.point_current)
     },
 
     async pointADD() {
@@ -154,7 +172,7 @@ export default {
         })
 
       this.$store.state.userData = []
-      this.fetchUserData()
+      this.fetchUserData_point()
     },
 
 
@@ -307,6 +325,7 @@ export default {
   justify-content: center;
   width: 282px;
   height: 10px;
+  border-radius: 9px;
   margin-top: 20px;
   border: 1px solid rgb(187, 187, 187);
   padding: 15px;
@@ -335,14 +354,17 @@ export default {
 .Payment-btn {
   background-color: #EEEEEE;
   border: 1px solid #0CAE02;
-  width: 110px;
-  height: 40px;
+  padding: 10px 20px;
   margin-top: 20px;
   color: #0CAE02;
   font-family: 'Noto Sans KR';
-  font-size: 16px;
+  font-size: 1.1rem;
   font-weight: medium;
   border-radius: 26px;
   cursor: pointer; 
+}
+.Payment-btn:hover{
+  color: white;
+  background-color: #0AAB00;
 }
 </style>

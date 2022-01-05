@@ -20,7 +20,7 @@
         <p class="coupon-title">쿠폰 {{ this.$store.state.myCoupon.length }}개</p></div>
         <div class="green-box">
           <img class="pointimg" src="@/assets/myPage/point.png" width="40" height="40">
-      <p class="coupon-title">적립금 {{ priceToString(this.$store.state.loginState.currentUser.point_current) }}원</p>
+      <p class="coupon-title">적립금 {{ priceToString(this.$store.state.PointUserData[0].point_current) }}원</p>
         </div>
         
     </div>
@@ -40,14 +40,14 @@
           불러오는 중
       </div> -->
       
-    <div class="bottom-list" v-for="item in (currentUserUploadInfo4)" :key="item">
+    <div class="bottom-list" v-for="item in (currentUserUploadInfo4)" :key="item.title">
       <p class="list-detail">
         <span id="sur-date">{{item.uploadDate}}</span>
         <span id="sur-title">{{item.title}}</span>
         <span id="sur-pay">{{priceToString(item.price)}}원</span>
         <router-link to="/surveylist" id="sur-detail" v-if="item.progress==2">설문 보러가기</router-link>
-        <span id="sur-detail" v-if="item.progress==0 || item.progress==1 || item.progress==4"></span>
-        <router-link :to="`/review/${item.id}/${item.title}`" id="sur-detail" v-if="item.progress==3">후기 작성하기</router-link>
+        <span id="sur-detail" v-if="item.progress==0 || item.progress==1"></span>
+        <router-link :to="`/review/${item.title}`" id="sur-detail" v-if="item.progress==3 || item.progress==4">후기 작성하기</router-link>
       </p>
       
     </div>
@@ -78,7 +78,7 @@ export default {
   
   mounted(){
     this.fetchAdminData_coupon()
-    this.getPointInfo()
+    this.fetchUserData_point()
 
     this.fetchCount(),
     this.fetchMyPayment2()
@@ -87,6 +87,31 @@ export default {
 
 
   methods:{
+    async fetchUserData_point(){
+      const db = this.$store.state.db
+      this.$store.state.userData = []
+      this.$store.state.PointUserData = []
+      const userData = this.$store.state.userData
+      const querySnapshot = await getDocs(collection(db,"userData"))
+      querySnapshot.forEach((doc) => {
+        userData.push(doc.data())
+      })
+      const PointUserData = userData.filter(item => item.email===this.$store.state.loginState.currentUser.email)
+      this.$store.state.PointUserData = PointUserData
+      console.log('***pointUser: ')
+      console.log(PointUserData[0])
+      this.getPointInfo()
+    },
+
+    getPointInfo() {
+      var c = this.$store.state.PointUserData[0].point_current
+      var t = this.$store.state.PointUserData[0].point_total
+      this.$store.state.localPointState.point_current = c
+      this.$store.state.localPointState.point_total = t
+
+      console.log('current point: ' + this.$store.state.localPointState.point_current)
+    },
+
     
     async fetchAdminData_coupon() { 
       const db = this.$store.state.db
@@ -142,9 +167,7 @@ export default {
         if (docSnap.exists()) {
           
           this.currentUserUploadInfo3.unshift(docSnap.data())
-          this.show=1
-        }else{
-          this.show=2
+          
         }
       }
 
