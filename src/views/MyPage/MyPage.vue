@@ -21,8 +21,16 @@
         <div class="client-grade-notice">
           <button class="client-grade-closeBTN" @click="showClientModal()">x</button>
           
-          <div class="client-grade-green">서베이지 고객 등급 안내</div>
-          <img src="@/assets/myPage/client_grade.png" width="120"> 
+          <p class="client-grade-green">서베이지 고객 등급 안내</p>
+          <p class="grade-detail">고객 등급의 기준과 등급에 따른 혜택을 확인하세요!</p>
+          <div class="grades">
+            <img src="@/assets/myPage/gradeOne.png" width="120">
+            <img src="@/assets/myPage/gradeTwo.png" width="120">
+            <img src="@/assets/myPage/gradeThree.png" width="120">
+          </div>
+          <div class="grade-">
+          <img  src="@/assets/myPage/client_grade.png" width="620"> 
+          </div>
         </div>
       </div>
     </div>
@@ -239,5 +247,36 @@ export default {
 }
 .router-link-active.router-link-exact-active.mypage-router-link{
   color: #0AAC00;
+}
+.grades{
+  display: flex;
+  justify-content: space-around;
+  margin-left: 130px;
+  margin-right: 44px;
+  margin-bottom: 10px;
+}
+.grade-{
+  display: flex;
+  justify-content: center;
+}
+.client-grade-green{
+  font-family: 'Noto Sans KR', sans-serif;
+  margin-top: 5px;
+  font-weight: 700;
+  padding-left: 40px;
+
+}
+.grade-detail{
+  color: #848484;
+  padding-left: 40px;
+  margin-top: 0;
+  font-weight: 300;
+}
+.client-grade-closeBTN{
+  padding-left: 660px;
+  font-size: 1.5rem;
+  margin-bottom: 0;
+  padding-top: 20px;
+  background: transparent;
 }
 </style>

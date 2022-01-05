@@ -27,8 +27,9 @@ export default {
 
 <style>
 #RegisterDone{
-  height: 400px;
-  margin-top: 100px;
+  padding-top: 60px;
+  margin: 100px;
+  height: 500px;
   
 }
 #RegisterDone p{
