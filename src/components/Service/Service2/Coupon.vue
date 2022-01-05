@@ -209,7 +209,7 @@ export default {
 .Coupon-btn {
   background-color: #EEEEEE;
   border: 1px solid #0CAE02;
-  
+  font-weight: 400;
   margin-left: 20px;
   color: #0CAE02;
   font-size: 1rem;
@@ -223,7 +223,7 @@ export default {
 .pPoint-btn{
   background-color: #EEEEEE;
   border: 1px solid #0CAE02;
-  
+  font-weight: 400;
   margin-left: 20px;
   color: #0CAE02;
   font-size: 1rem;

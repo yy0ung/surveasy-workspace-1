@@ -4,11 +4,21 @@
   <div class="top-left">
     <div class="first-box">
       <p class="black-title">진행 중인 설문</p>
-      <p class="green-bold">{{myCount1.length}}개</p>
+      <p class="spinner" v-if="show==0">
+        <i class="fas fa-spinner"></i>
+          불러오는 중
+      </p>
+      <p class="green-bold" v-if="show==1">
+        
+        {{myCount1.length}}개</p>
     </div>
     <div class="first-box">
       <p class="black-title">완료된 설문</p>
-      <p class="green-bold">{{myCount2.length}}개</p>
+      <p class="spinner" v-if="show==0">
+        <i class="fas fa-spinner"></i>
+          불러오는 중
+      </p>
+      <p class="green-bold" v-if="show==1">{{myCount2.length}}개</p>
     </div>
   </div>
   <div class="top-right">
@@ -32,16 +42,16 @@
     <p class="black-title">나의 설문</p>
     <div class="bottom-title">
       
-      <p class="gray-title1" >결제 금액</p>
-      <p class="gray-title2" >주문 상세</p>
+      <p class="gray-title1" v-if="show==1">결제 금액</p>
+      <p class="gray-title2" v-if="show==1">주문 상세</p>
     </div>
-    <!-- <div class="dash-spinner" v-if="show==0">
+    <div class="dash-spinner" v-if="show==0">
         <i class="fas fa-spinner"></i>
           불러오는 중
-      </div> -->
+      </div>
       
     <div class="bottom-list" v-for="item in (currentUserUploadInfo4)" :key="item.title">
-      <p class="list-detail">
+      <p class="list-detail" v-if="show==1">
         <span id="sur-date">{{item.uploadDate}}</span>
         <span id="sur-title">{{item.title}}</span>
         <span id="sur-pay">{{priceToString(item.price)}}원</span>
@@ -65,7 +75,7 @@ export default {
     return {
       currentUserUploadInfo3:[],
       currentUserUploadInfo4:[],
-      
+      show:0,
       
       myCount1: [],
       myCount2: [],
@@ -80,8 +90,8 @@ export default {
     this.fetchAdminData_coupon()
     this.fetchUserData_point()
 
-    this.fetchCount(),
-    this.fetchMyPayment2()
+    this.fetchCount()
+   
 
   },
 
@@ -170,8 +180,8 @@ export default {
           
         }
       }
-
-      
+      this.currentUserUploadInfo4 = this.currentUserUploadInfo3;
+      this.show=1
       for(var i=0; i<this.currentUserUploadInfo3.length; i++){
         if(this.currentUserUploadInfo3[i].progress<=2){
           this.myCount1.push(this.currentUserUploadInfo3[i].progress)
@@ -183,17 +193,30 @@ export default {
       }
       
       
+      
     },
-    async fetchMyPayment2(){
-      const db = this.$store.state.db
-      const cIndex = this.$store.state.loginState.currentUser['uploadIndex']
+    // async fetchMyPayment2(){
+    //   const db = this.$store.state.db
+    //   const cIndex = this.$store.state.loginState.currentUser['uploadIndex']
       
-      
+    //   for (var index in cIndex){
+        
+    //     var docRef = doc(db, "adminRequired", cIndex[index].toString())
+        
+    //     var docSnap = await getDoc(docRef)
+        
 
-      this.currentUserUploadInfo4 = this.currentUserUploadInfo3;
+    //     if (docSnap.exists()) {
+          
+    //       this.currentUserUploadInfo3.unshift(docSnap.data())
+          
+    //     }
+    //   }
+
+    //   this.currentUserUploadInfo4 = this.currentUserUploadInfo3;
       
      
-    },
+    // },
     priceToString(price) {
       return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
     }

@@ -150,6 +150,7 @@ export default {
   font-weight: 800;
   border-radius: 26px;
   cursor: pointer;   
+  font-weight: 400;
 }
 .link-check-btn:hover{
   color: white;
