@@ -12,7 +12,7 @@
       <button class="goButton" id="goHomebtn">괜찮아요</button>
     </router-link>
     
-    <router-link :to="`/reviewdetail/${this.$route.params.id}`">
+    <router-link :to="`/reviewdetail/${this.$route.params.id}`" >
       <button class="goButton">적립금 500원 받기</button>
     </router-link>
     
@@ -25,6 +25,12 @@ export default {
   mounted() {
     window.scrollTo(0,0)
   },
+  
+  methods: {
+    reviewDetailTest(){
+      console.log(this.$store.state.reviewTempData)
+    }
+  }
 }
 </script>
 

@@ -22,7 +22,7 @@
           <button class="client-grade-closeBTN" @click="showClientModal()">x</button>
           
           <div class="client-grade-green">서베이지 고객 등급 안내</div>
-          <img src="@/assets/mypage/client_grade.png" width="120">
+          <img src="@/assets/myPage/client_grade.png" width="120">
         </div>
       </div>
     </div>

@@ -92,8 +92,8 @@ export default {
       if(reviewDetailData.Q1.length==0 || reviewDetailData.Q3.length==0){
         alert('필수 항목을 모두 채워주세요.')
       }else{
-        await setDoc(doc(db, "reviewDetailData", reviewDetailData.id),{
-          surveyID: reviewDetailData.id,
+        await setDoc(doc(db, "reviewDetailData", reviewDetailData.title),{
+          surveyID: reviewDetailData.title,
           Q1: reviewDetailData.Q1,
           Q1etc: reviewDetailData.Q1etc,
           Q2: reviewDetailData.Q2,
@@ -131,7 +131,7 @@ export default {
       var db = this.$store.state.db
       var currentUserEmail = this.$store.state.loginState.currentUser.email
       const docref = doc(db, "userData", currentUserEmail)
-      const docref2 = doc(db, "adminRequired", this.$route.params.id)
+      const docref2 = doc(db, "adminRequired", this.$route.params.id.toString())
 
       this.$store.state.loginState.currentUser.point_current = this.$store.state.loginState.currentUser.point_current + 500
       this.$store.state.loginState.currentUser.point_total = this.$store.state.loginState.currentUser.point_total + 500

@@ -53,7 +53,7 @@
             <p class="light">{{item.dueDate}}
             </p>
             <!-- css 다시 -->
-           <router-link :to="`/review/${item.title}`" v-if="item.progress==3" class="goLink">후기 작성하기</router-link>
+           <router-link :to="`/review/${item.title}`" v-if="item.progress==3" class="goLink" @click="reviewTemp(item)">후기 작성하기</router-link>
            <router-link to="/surveylist" v-if="item.progress==2" class="goLink">설문 보러가기</router-link>
            
 
@@ -106,6 +106,11 @@ export default {
 
       this.currentUserUploadIndexInfo2 = this.currentUserUploadIndexInfo,
       this.show=1
+    },
+
+    reviewTemp(survey){
+      console.log(survey)
+      this.$store.state.reviewTempData = survey
     }
   }
 
