@@ -4,17 +4,17 @@
   <div class="top-left">
     <div class="first-box">
       <p class="black-title">진행 중인 설문</p>
-      <p class="spinner" v-if="show==0">
+      <div>
+        <p class="spinner-" v-if="show==0">
         <i class="fas fa-spinner"></i>
           불러오는 중
       </p>
-      <p class="green-bold" v-if="show==1">
-        
-        {{myCount1.length}}개</p>
+        <p class="green-bold" v-if="show==1">{{myCount1.length}}개</p>
+        </div>
     </div>
     <div class="first-box">
       <p class="black-title">완료된 설문</p>
-      <p class="spinner" v-if="show==0">
+      <p class="spinner-" v-if="show==0">
         <i class="fas fa-spinner"></i>
           불러오는 중
       </p>
@@ -363,5 +363,10 @@ export default {
   font-family: 'Noto Sans KR', sans-serif;
   color: #0AAC00;
   margin-top: 50px;
+}
+.spinner-{
+  color: #0AAC00;
+  margin-top: 35px;
+  margin-left: 90px;
 }
 </style>
