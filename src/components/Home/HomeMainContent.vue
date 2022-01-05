@@ -4,7 +4,7 @@
     <div class="maincontent-title">
     <p><span id="title-none">설문조사,</span> <span id="title-underline">아직도 카톡방에 뿌리고 지인에게 부탁하시나요?</span> 
     <br>
-    <span id="title-green">서베이지 설문 응답 서비스 </span><span id="title-bold">로 한번에 30+개의 응답을 받아가세요.</span></p>
+    <span id="title-green">서베이지 설문 응답 서비스 </span><span id="title-bold">로 한번에 30개 이상의 응답을 받아가세요.</span></p>
     </div>
     <div class="maincontent-list">
       <p><img class="checkimg" src="@/assets/check.png" width="25"> 타사 대비 <span id="list-green">저렴한 가격으로</span></p>
@@ -65,6 +65,7 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  
 }
 
 
@@ -99,6 +100,8 @@ export default {
 #main-content-container #title-bold{
   font-family: 'Noto Sans KR', sans-serif;
   font-weight: 900;
+  letter-spacing: -0.5px;
+  
 }
 
 #main-content-container .maincontent-list p{
