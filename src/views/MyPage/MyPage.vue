@@ -20,10 +20,6 @@
       <div class="client-grade-container">
         <div class="client-grade-notice">
           <button class="client-grade-closeBTN" @click="showClientModal()">x</button>
-          
-
-          <div class="client-grade-green">서베이지 고객 등급 안내</div>
-          <img src="@/assets/myPage/client_grade.png" width="120">
 
           <p class="client-grade-green">서베이지 고객 등급 안내</p>
           <p class="grade-detail">고객 등급의 기준과 등급에 따른 혜택을 확인하세요!</p>
