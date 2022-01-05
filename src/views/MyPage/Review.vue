@@ -33,7 +33,8 @@ export default {
     return {
       
       reviewData: {
-        title: this.$route.params.id,
+        title: this.$route.params.title,
+        id: this.$route.params.id,
         score: 0,
         reviewText: '',
       }
@@ -58,14 +59,15 @@ export default {
         else{
           
     
-        await setDoc(doc(db, "reviewData", reviewData.title),{
+        await setDoc(doc(db, "reviewData", reviewData.id),{
           title: reviewData.title,
+          id: reviewData.id,
           reviewGrade: reviewData.score,
           reviewDetail: reviewData.reviewText,
           check: false
         }),
         
-        this.$router.push(`/reviewdone/${this.$route.params.id}`)
+        this.$router.push(`/reviewdone/${this.$route.params.id}/${this.$route.params.title}`)
         }
         
       
