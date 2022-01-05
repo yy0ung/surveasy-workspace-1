@@ -159,11 +159,12 @@ export default {
 
 
     async sendToAdmin(dataset) {
+      var lastID = await this.fetchLastID()
       var db = this.$store.state.db
-      var localLastID = this.$store.state.lastID[0].lastID
+      // var localLastID = this.$store.state.lastID[0].lastID
       var currentUserEmail = await this.$store.state.loginState.currentUser.email
       var nowDate= new Date()
-      var orderNum = nowDate.getFullYear().toString().substring(2,4) + (nowDate.getMonth()+1).toString() + nowDate.getDate().toString() + localLastID
+      var orderNum = nowDate.getFullYear().toString().substring(2,4) + (nowDate.getMonth()+1).toString() + nowDate.getDate().toString() + lastID
       
       var d = nowDate.toLocaleDateString()
       var dd = d.replace(/ /g, "")
@@ -179,7 +180,7 @@ export default {
       var D = year + '-' + month + '-' + day
       
       
-        await setDoc(doc(db, "adminRequired", localLastID.toString()), {
+        await setDoc(doc(db, "adminRequired", lastID.toString()), {
           price : dataset.price,
           beforeCouponPrice : dataset.beforeCouponPrice,
           couponDiscount : dataset.couponDiscount,
@@ -202,7 +203,7 @@ export default {
           uploader : dataset.uploader,
           uploadTime : new Date(),
           uploadDate : D,
-          id : localLastID,
+          id : lastID,
           dueDate: dataset.dueDate,
           dueTimeTime: dataset.dueTimeTime,
           dueTimeTimeTime: dataset.dueTimeTimeTime,
@@ -219,11 +220,12 @@ export default {
         var idDocref = doc(db, "lastID", "lastID")
         var currentUserRef = doc(db, "userData", currentUserEmail)
         await updateDoc(idDocref, {
-          lastID : (localLastID + 1)
-        })
+          lastID : (lastID + 1)
+        }).then(
+          console.log('LastID 올리기 완료'))
 
         await updateDoc(currentUserRef, {
-          uploadIndex: arrayUnion(localLastID)
+          uploadIndex: arrayUnion(lastID)
         })
 
         console.log(dataset)
@@ -244,7 +246,19 @@ export default {
 
         this.$store.state.localSurveyState.pointDiscount = 0
 
-      }
+      },
+
+      async fetchLastID(){
+        const db = this.$store.state.db
+        const lastID = []
+        const querySnapshot = await getDocs(collection(db, "lastID"))
+        querySnapshot.forEach((doc) => {
+          lastID.push(doc.data())
+        })
+        console.log('fetch LastID')
+        console.log(lastID[0].lastID)
+        return lastID[0].lastID
+      },
 
 
 
