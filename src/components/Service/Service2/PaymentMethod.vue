@@ -46,8 +46,8 @@ export default {
       console.log(this.$store.state.localSurveyState)
     },
 
-    payDone() {
-      if(this.$store.state.localSurveyState.title=='' || this.$store.state.localSurveyState.target=='' || this.$store.state.localSurveyState.institute=='' || this.$store.state.localSurveyState.link=='') {
+    async payDone() {
+      if(this.$store.state.localSurveyState.title=='' || this.$store.state.localSurveyState.target=='' || this.$store.state.localSurveyState.institute=='' || this.$store.state.localSurveyState.link=='' || this.accont_userName=='') {
         alert('필수 설문 정보를 모두 입력해주세요.')
         console.log('if')
       }
@@ -67,16 +67,19 @@ export default {
 
     async couponIsUsed() {
       var db = this.$store.state.db
-      const docref = doc(db, "couponData", this.$store.state.localSurveyState.selectedCoupon.code)
+      if(this.$store.state.localSurveyState.selectedCoupon.code != '') {
+        const docref = doc(db, "couponData", this.$store.state.localSurveyState.selectedCoupon.code)
 
-      await updateDoc(docref, { 
+        await updateDoc(docref, { 
           isUsed: true,
           targetSurvey: this.$store.state.localSurveyState.title
         })
+      }
 
-      this.$store.state.adminCoupon = []
-      this.$store.state.myCoupon = []
-      this.fetchAdminData_coupon()
+        this.$store.state.adminCoupon = []
+        this.$store.state.myCoupon = []
+        this.fetchAdminData_coupon()
+      
     },
 
     async fetchAdminData_coupon() {
@@ -109,17 +112,32 @@ export default {
         })
 
       this.$store.state.userData = []
-      this.fetchUserData()
+      this.fetchUserData_point()
     },
     
-    async fetchUserData(){
+    async fetchUserData_point(){
       const db = this.$store.state.db
+      this.$store.state.userData = []
+      this.$store.state.PointUserData = []
       const userData = this.$store.state.userData
       const querySnapshot = await getDocs(collection(db,"userData"))
       querySnapshot.forEach((doc) => {
         userData.push(doc.data())
       })
-      
+      const PointUserData = userData.filter(item => item.email===this.$store.state.loginState.currentUser.email)
+      this.$store.state.PointUserData = PointUserData
+      console.log('***pointUser: ')
+      console.log(PointUserData[0])
+      this.getPointInfo()
+    },
+
+    getPointInfo() {
+      var c = this.$store.state.PointUserData[0].point_current
+      var t = this.$store.state.PointUserData[0].point_total
+      this.$store.state.localPointState.point_current = c
+      this.$store.state.localPointState.point_total = t
+
+      console.log('current point: ' + this.$store.state.localPointState.point_current)
     },
 
     async pointADD() {
@@ -154,7 +172,7 @@ export default {
         })
 
       this.$store.state.userData = []
-      this.fetchUserData()
+      this.fetchUserData_point()
     },
 
 

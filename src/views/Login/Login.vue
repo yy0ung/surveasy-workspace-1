@@ -85,14 +85,30 @@ export default {
       }
    },
 
+  async fetchUserData_point(){
+      const db = this.$store.state.db
+      this.$store.state.userData = []
+      this.$store.state.PointUserData = []
+      const userData = this.$store.state.userData
+      const querySnapshot = await getDocs(collection(db,"userData"))
+      querySnapshot.forEach((doc) => {
+        userData.push(doc.data())
+      })
+      const PointUserData = userData.filter(item => item.email===this.$store.state.loginState.currentUser.email)
+      this.$store.state.PointUserData = PointUserData
+      console.log('***pointUser: ')
+      console.log(PointUserData[0])
+      this.getPointInfo()
+    },
+
   getPointInfo() {
-    var c = this.$store.state.loginState.currentUser.point_current
-    var t = this.$store.state.loginState.currentUser.point_total
+    var c = this.$store.state.PointUserData[0].point_current
+    var t = this.$store.state.PointUserData[0].point_total
     this.$store.state.localPointState.point_current = c
     this.$store.state.localPointState.point_total = t
 
     console.log('current point: ' + this.$store.state.localPointState.point_current)
-   },
+  },
 
 
     signIn(){
@@ -116,8 +132,9 @@ export default {
           // }))
           this.$store.state.adminCoupon = []
           this.$store.state.myCoupon = []
+          this.$store.state.userData = []
           this.fetchAdminData_coupon()
-          this.getPointInfo()
+          this.fetchUserData_point()
 
           if(this.$store.state.notLoggedInService==false) {
             console.log('옵션 살리면서 로그인 성공')

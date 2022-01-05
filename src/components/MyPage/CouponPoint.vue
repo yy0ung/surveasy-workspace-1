@@ -22,7 +22,7 @@
     <div class="mypoint-list">
       <ul>
         <div class="point-text">현재 적립금</div>
-        <div class="point-value">{{ priceToString(this.$store.state.loginState.currentUser.point_current) }}원</div>
+        <div class="point-value">{{ priceToString(this.$store.state.PointUserData[0].point_current) }}원</div>
       </ul>
       <ul>
         <div class="point-text">사용한 적립금</div>
@@ -30,7 +30,7 @@
       </ul>
       <ul>
         <div class="point-text">누적 적립금</div>
-        <div class="point-value">{{ priceToString(this.$store.state.loginState.currentUser.point_total) }}원</div>
+        <div class="point-value">{{ priceToString(this.$store.state.PointUserData[0].point_total) }}원</div>
       </ul>
     </div>
     <div class="mypoint-notice">
@@ -99,12 +99,41 @@ export default {
         code: '',
       },
 
-      point_used : this.$store.state.loginState.currentUser.point_total - this.$store.state.loginState.currentUser.point_current
+      point_used : this.$store.state.PointUserData[0].point_total - this.$store.state.PointUserData[0].point_current
 
     }
   },
+  
+  mounted() {
+    this.fetchUserData_point()
+  },
 
   methods: {
+    async fetchUserData_point(){
+      const db = this.$store.state.db
+      this.$store.state.userData = []
+      this.$store.state.PointUserData = []
+      const userData = this.$store.state.userData
+      const querySnapshot = await getDocs(collection(db,"userData"))
+      querySnapshot.forEach((doc) => {
+        userData.push(doc.data())
+      })
+      const PointUserData = userData.filter(item => item.email===this.$store.state.loginState.currentUser.email)
+      this.$store.state.PointUserData = PointUserData
+      console.log('***pointUser: ')
+      console.log(PointUserData[0])
+      this.getPointInfo()
+    },
+
+    getPointInfo() {
+      var c = this.$store.state.PointUserData[0].point_current
+      var t = this.$store.state.PointUserData[0].point_total
+      this.$store.state.localPointState.point_current = c
+      this.$store.state.localPointState.point_total = t
+
+      console.log('current point: ' + this.$store.state.localPointState.point_current)
+    },
+
    async addCoupon(couponInfo) {
     var db = this.$store.state.db 
     var due = new Date(couponInfo.duedate)

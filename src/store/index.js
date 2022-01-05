@@ -21,6 +21,7 @@ export default createStore({
     notLoggedInTemplate: true,
     db: null,
     userData: [],
+    PointUserData: [{point_total:0, point_current: 0}],
     surveyData: [],
     adminData: [],
     adminDataIdentity:[],
