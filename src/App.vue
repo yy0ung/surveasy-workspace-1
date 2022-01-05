@@ -105,7 +105,7 @@ export default {
     this.$store.commit('setDB', db)
     this.fetchUserData()
     this.fetchSurveyData()
-    this.fetchLastID()
+    // this.fetchLastID()
     // const mount = () => {
     //   event('login', { method: 'Google' })
     // }
@@ -147,15 +147,7 @@ export default {
       
     },
 
-    async fetchLastID(){
-      const db = this.$store.state.db
-      const lastID = this.$store.state.lastID
-      const querySnapshot = await getDocs(collection(db, "lastID"))
-      querySnapshot.forEach((doc) => {
-        lastID.push(doc.data())
-      })
-      console.log(this.$store.state.lastID[0].lastID)
-    },
+    
 
     logout(){
       this.$router.push('/')
