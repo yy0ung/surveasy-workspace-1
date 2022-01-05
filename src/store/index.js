@@ -144,7 +144,7 @@ export default createStore({
 
     isAdmin: false,
     AdminPassword: 1111,
-    lastID : [],
+    
     currentUserUploadInfo:[],
 
     myPage: 1,
