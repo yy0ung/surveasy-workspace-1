@@ -147,22 +147,22 @@ const routes = [
     component: Withdraw
   },
   {
-    path: '/review/:id',
+    path: '/review/:id/:title',
    
     component: Review
   },
   {
-    path: '/reviewdone/:id',
+    path: '/reviewdone/:id/:title',
     // name: 'Review',
     component: ReviewDone
   },
   {
-    path: '/reviewdetail/:id',
+    path: '/reviewdetail/:id/:title',
     // name: 'Review',
     component: ReviewDetail
   },
   {
-    path: '/reviewdetaildone/:id',
+    path: '/reviewdetaildone/:id/:title',
     // name: 'Review',
     component: ReviewDetailDone
   },

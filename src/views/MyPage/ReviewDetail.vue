@@ -76,7 +76,8 @@ export default {
   data() {
     return {
       reviewDetailData: {
-        title: this.$route.params.id,
+        title: this.$route.params.title,
+        id: this.$route.params.id,
         Q1: [],
         Q1etc:'',
         Q2: '',
@@ -92,15 +93,15 @@ export default {
       if(reviewDetailData.Q1.length==0 || reviewDetailData.Q3.length==0){
         alert('필수 항목을 모두 채워주세요.')
       }else{
-        await setDoc(doc(db, "reviewDetailData", reviewDetailData.title),{
-          surveyID: reviewDetailData.title,
+        await setDoc(doc(db, "reviewDetailData", reviewDetailData.id),{
+          surveyID: reviewDetailData.id,
           Q1: reviewDetailData.Q1,
           Q1etc: reviewDetailData.Q1etc,
           Q2: reviewDetailData.Q2,
           Q3: reviewDetailData.Q3,
           Q4: reviewDetailData.Q4
         }),
-        this.$router.push(`/reviewdetaildone/${this.$route.params.id}`)
+        this.$router.push(`/reviewdetaildone/${this.$route.params.id}/${this.$route.params.title}`)
         this.pointADD()
       }
     },
