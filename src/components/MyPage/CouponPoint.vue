@@ -22,15 +22,15 @@
     <div class="mypoint-list">
       <ul>
         <div class="point-text">현재 적립금</div>
-        <div class="point-value">{{ this.$store.state.loginState.currentUser.point_current }}원</div>
+        <div class="point-value">{{ priceToString(this.$store.state.loginState.currentUser.point_current) }}원</div>
       </ul>
       <ul>
         <div class="point-text">사용한 적립금</div>
-        <div class="point-value">{{ point_used }}원</div>
+        <div class="point-value">{{ priceToString(point_used) }}원</div>
       </ul>
       <ul>
         <div class="point-text">누적 적립금</div>
-        <div class="point-value">{{ this.$store.state.loginState.currentUser.point_total }}원</div>
+        <div class="point-value">{{ priceToString(this.$store.state.loginState.currentUser.point_total) }}원</div>
       </ul>
     </div>
     <div class="mypoint-notice">
@@ -254,6 +254,9 @@ export default {
 
       this.$store.state.adminCoupon = []
       this.fetchAdminData_coupon()
+    },
+    priceToString(price) {
+      return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
     }
 
     

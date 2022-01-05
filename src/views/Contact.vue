@@ -67,7 +67,7 @@ export default {
   margin-right: auto;
   margin-left: auto;
   margin-bottom: 100px;
-
+  height: 950px;
 }
 
 #contact .f-modal{

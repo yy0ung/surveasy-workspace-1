@@ -4,20 +4,20 @@
       <ul id="PaymentPrice-title">결제금액</ul>
       <ul class="showPrice-detail-total">
         <span id="showPrice-text">주문금액</span> 
-        <span id="showPrice-num">{{ this.$store.state.localSurveyState.beforeCouponPrice }} 원</span>
+        <span id="showPrice-num">{{ priceToString(this.$store.state.localSurveyState.beforeCouponPrice) }} 원</span>
       </ul>
       <ul class="showPrice-detail-coupon">
         <span id="showPrice-text">쿠폰할인</span> 
-        <span id="showPrice-num">{{ this.$store.state.localSurveyState.couponDiscount }} 원</span>
+        <span id="showPrice-num">{{ priceToString(this.$store.state.localSurveyState.couponDiscount) }} 원</span>
       </ul>
       <ul class="showPrice-detail-coupon">
         <span id="showPrice-text">적립금 사용</span> 
-        <span id="showPrice-num">{{ this.$store.state.localSurveyState.pointDiscount }} 원</span>
+        <span id="showPrice-num">{{ priceToString(this.$store.state.localSurveyState.pointDiscount) }} 원</span>
       </ul>
     <hr align="left"> 
       <ul class="showPrice-final">
         <span id="showPrice-text">총 결제금액</span> 
-        <span id="showPrice-num">{{ this.$store.state.localSurveyState.price }} 원</span>
+        <span id="showPrice-num">{{ priceToString(this.$store.state.localSurveyState.price) }} 원</span>
       </ul>
     </div>
     </div>  
@@ -25,7 +25,11 @@
 
 <script>
 export default {
-
+  methods: {
+    priceToString(price) {
+      return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+    }
+  },
 }
 </script>
 
