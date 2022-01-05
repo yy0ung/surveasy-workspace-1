@@ -10,7 +10,7 @@
       <ul id="paydone-subtitle">결제 정보</ul>
       <ul class="paydone-detail">
         <div id="paydone-detail-text">총 결제 금액</div> 
-        <div id="paydone-detail-value-green">{{ this.$store.state.localSurveyState.price }} 원</div>
+        <div id="paydone-detail-value-green">{{ priceToString(this.$store.state.localSurveyState.price) }} 원</div>
       </ul>
       <ul class="paydone-detail">
         <div id="paydone-detail-text">입금자</div> 
@@ -33,6 +33,11 @@
 export default {
   mounted() {
     window.scrollTo(0,0)
+  },
+  methods: {
+    priceToString(price) {
+      return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+    }
   },
 }
 </script>

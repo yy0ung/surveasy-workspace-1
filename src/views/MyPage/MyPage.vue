@@ -22,7 +22,7 @@
           <button class="client-grade-closeBTN" @click="showClientModal()">x</button>
           
           <div class="client-grade-green">서베이지 고객 등급 안내</div>
-          <img src="@/assets/mypage/client_grade.png" width="120">
+          <img src="@/assets/myPage/client_grade.png" width="120"> 
         </div>
       </div>
     </div>
@@ -40,10 +40,10 @@
   <div class="mypage-contents">
   <!-- <p>{{this.$store.state.currentUser}}</p> -->
   <div class="mypage-router-link-container">
-    <router-link to="/mypage/dashboard" class="mypage-router-link" @click="button(0)" :class="{active:color==0}">대시보드</router-link>
-    <router-link to="/mypage/payment" class="mypage-router-link" @click="button(1)" :class="{active:color==1}">주문 내역</router-link>
-    <router-link to="/mypage/couponpoint" class="mypage-router-link" @click="button(2)" :class="{active:color==2}">쿠폰/적립금</router-link>
-    <router-link to="/mypage/myinfo" class="mypage-router-link" @click="button(3)" :class="{active:color==3}">나의 정보</router-link>
+    <router-link to="/mypage/dashboard" class="mypage-router-link">대시보드</router-link>
+    <router-link to="/mypage/payment" class="mypage-router-link">주문 내역</router-link>
+    <router-link to="/mypage/couponpoint" class="mypage-router-link">쿠폰/적립금</router-link>
+    <router-link to="/mypage/myinfo" class="mypage-router-link">나의 정보</router-link>
   
   </div>
   <div class="mypage-router-view-container">
@@ -60,16 +60,14 @@ export default {
   data() {
     return {
       
-      color: 0,
+     
       grade : this.$store.state.loginState.currentUser['uploadIndex'].length,
 
       showclientmodal: false
     }
   },
   methods: {
-    button(num){
-      this.color=num
-    },
+    
 
     showClientModal() {
       this.showclientmodal = !this.showclientmodal
@@ -181,9 +179,9 @@ export default {
   text-decoration-line: none;
 }
 
-.mypage-router-link.active{
+/* .mypage-router-link.active{
   text-decoration-color: cadetblue;
-}
+} */
 
 
 .mypage-router-view-container{
@@ -238,5 +236,8 @@ export default {
 }
 .client-grade-black {
   font-size: 16px;
+}
+.router-link-active.router-link-exact-active.mypage-router-link{
+  color: #0AAC00;
 }
 </style>

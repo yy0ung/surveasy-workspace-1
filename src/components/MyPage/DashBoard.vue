@@ -20,7 +20,7 @@
         <p class="coupon-title">쿠폰 {{ this.$store.state.myCoupon.length }}개</p></div>
         <div class="green-box">
           <img class="pointimg" src="@/assets/myPage/point.png" width="40" height="40">
-      <p class="coupon-title">적립금 {{ this.$store.state.loginState.currentUser.point_current }}원</p>
+      <p class="coupon-title">적립금 {{ priceToString(this.$store.state.loginState.currentUser.point_current) }}원</p>
         </div>
         
     </div>
@@ -32,25 +32,29 @@
     <p class="black-title">나의 설문</p>
     <div class="bottom-title">
       
-      <p class="gray-title1" v-if="show==1">결제 금액</p>
-      <p class="gray-title2" v-if="show==1">주문 상세</p>
+      <p class="gray-title1" >결제 금액</p>
+      <p class="gray-title2" >주문 상세</p>
     </div>
-    <div class="dash-spinner" v-if="show==0">
+    <!-- <div class="dash-spinner" v-if="show==0">
         <i class="fas fa-spinner"></i>
           불러오는 중
-      </div>
+      </div> -->
+      
     <div class="bottom-list" v-for="item in (currentUserUploadInfo4)" :key="item.title">
       <p class="list-detail">
         <span id="sur-date">{{item.uploadDate}}</span>
         <span id="sur-title">{{item.title}}</span>
-        <span id="sur-pay">{{item.price}}원</span>
-        <span id="sur-detail">주문 상세</span>
+        <span id="sur-pay">{{priceToString(item.price)}}원</span>
+        <router-link to="/surveylist" id="sur-detail" v-if="item.progress==2">설문 보러가기</router-link>
+        <span id="sur-detail" v-if="item.progress==0 || item.progress==1"></span>
+        <router-link :to="`/review/${item.title}`" id="sur-detail" v-if="item.progress==3 || item.progress==4">후기 작성하기</router-link>
       </p>
       
     </div>
+    
   </div>
   
-  <p class="more">더보기 ></p>
+  <!-- <p class="more">더보기 ></p> -->
 </div>
 </template>
 
@@ -61,7 +65,7 @@ export default {
     return {
       currentUserUploadInfo3:[],
       currentUserUploadInfo4:[],
-      show: 0,
+      
       
       myCount1: [],
       myCount2: [],
@@ -81,7 +85,9 @@ export default {
 
   },
 
+
   methods:{
+    
     async fetchAdminData_coupon() { 
       const db = this.$store.state.db
 
@@ -136,7 +142,9 @@ export default {
         if (docSnap.exists()) {
           
           this.currentUserUploadInfo3.unshift(docSnap.data())
-          
+          this.show=1
+        }else{
+          this.show=2
         }
       }
 
@@ -160,9 +168,12 @@ export default {
       
 
       this.currentUserUploadInfo4 = this.currentUserUploadInfo3;
-      this.show=1
+      
      
     },
+    priceToString(price) {
+      return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+    }
     
     
   }
@@ -258,26 +269,31 @@ export default {
   font-size: 0.9rem;
 }
 #sur-title{
-  /* margin-right: 100px; */
+  margin-right: 10px;
   color: #0AAC00;
   width: 120px;
 }
 #sur-date{
-  margin-right: -30px;
+  margin-right: -40px;
   margin-left: 30px;
+  width: 80px;
 }
 #sur-pay{
   /* margin-left: 40px; */
+
+  width: 65px;
+  text-align: right;
 }
 #sur-detail{
   text-decoration: underline;
   margin-right: 30px;
+  width: 90px;
 }
 .gray-title1{
-  margin-left: 423px;
+  margin-left: 420px;
 }
 .gray-title2{
-  margin-left: 132px;
+  margin-left: 113px;
 }
 .more{
   color: #848484;

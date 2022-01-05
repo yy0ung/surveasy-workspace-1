@@ -33,7 +33,7 @@
       <div class="info-content">
       <div class="info-contents1">
         <p class="info-title">이메일</p>
-        <p class="info-title">비밀번호</p>
+        <!-- <p class="info-title">비밀번호</p> -->
         <p class="info-title">이름</p>
         <p class="info-title">휴대폰 번호</p>
         <p class="info-title">생년월일</p>
@@ -41,7 +41,7 @@
       </div>
       <div class="info-contents2">
         <p class="info-detail">{{this.$store.state.loginState.currentUser['email']}}</p>
-        <p class="info-detail">비밀번호</p>
+        <!-- <p class="info-detail">비밀번호</p> -->
         <p class="info-detail">{{this.$store.state.loginState.currentUser['name']}}</p>
         <p class="info-detail">{{this.$store.state.loginState.currentUser['phoneNumber']}}</p>
         <p class="info-detail">{{this.$store.state.loginState.currentUser['birth']}}</p>
@@ -66,7 +66,7 @@
       </select>
       <button class="mi-btn" @click="sendRequestVerifyIdentity(this.identityRequest)">요청 보내기</button>
       <p class="mi-detail">상단의 <span id="info-green">'대학(원)생 인증하러 가기'</span>를 통해 카카오톡으로 대학(원)생임을 확인할 수 있는 자료를 보내주세요.
-        <br>자료 전송 후 인증 완료 요청까지 보내주셔야 원활한 인증이 가능합니다.
+        <br>자료 전송 후 인증 완료 <span id="info-green">'요청 보내기'</span>까지 눌러주셔야 원활한 인증이 가능합니다.
       </p>
     </div>
 

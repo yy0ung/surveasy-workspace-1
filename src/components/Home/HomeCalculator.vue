@@ -113,9 +113,9 @@
           <div class="price-content">
             <div class="calc-option-title" id="total">총 금액</div>
             <span class="service-option-totalprice-price">
-              {{ Number(this.$store.state.priceTable[priceIdentity][priceSpendTime][priceRequireHeadCount])
+              {{ priceToString(Number(this.$store.state.priceTable[priceIdentity][priceSpendTime][priceRequireHeadCount])
                 +Number(this.$store.state.EngOptionArray[EngOptionCal])
-                +Number(this.$store.state.TimeOptionArray[timeOptionCal]) }}원</span>
+                +Number(this.$store.state.TimeOptionArray[timeOptionCal])) }}원</span>
           </div>
         
           
@@ -308,6 +308,9 @@ export default {
       this.aa = ''
       this.bb = ''
       this.addENTarget =0
+    },
+    priceToString(price) {
+      return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
     }
   },
   
@@ -350,10 +353,10 @@ export default {
   float: right;
   color: grey;
   font-size: 20px;
-  background-color: #fff;
+  background-color: transparent;
   border: none;
   cursor: pointer;
-  padding-right: 30px;
+  padding-right: 40px;
   margin-right: 30px;
 }
 .respond-content {
