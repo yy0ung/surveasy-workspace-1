@@ -21,6 +21,7 @@ export default createStore({
     notLoggedInTemplate: true,
     db: null,
     userData: [],
+    PointUserData: [{point_total:0, point_current: 0}],
     surveyData: [],
     adminData: [],
     adminDataIdentity:[],
@@ -143,13 +144,15 @@ export default createStore({
 
     isAdmin: false,
     AdminPassword: 1111,
-    lastID : [],
+    
     currentUserUploadInfo:[],
 
     myPage: 1,
     indexColor: 0,
 
-    withDrawCheckTF: false
+    withDrawCheckTF: false,
+
+    reviewTempData:'',
     
 
     

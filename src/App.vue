@@ -91,7 +91,9 @@
 <script>
 import { initializeApp } from 'firebase/app'
 import { getFirestore,collection, getDocs } from 'firebase/firestore'
-import { orderBy,sortBy } from 'lodash'
+import { getAnalytics } from 'firebase/analytics'
+// import { event } from 'vue-gtag'
+// import { orderBy,sortBy } from 'lodash'
 import { getAuth, onAuthStateChanged } from 'firebase/auth'
 import _ from 'lodash'
 
@@ -99,10 +101,15 @@ export default {
   mounted(){
     const firebaseApp = initializeApp(this.$store.state.firebaseConfig)
     const db = getFirestore();
+    const analytics = getAnalytics()
     this.$store.commit('setDB', db)
     this.fetchUserData()
     this.fetchSurveyData()
-    this.fetchLastID()
+    // this.fetchLastID()
+    // const mount = () => {
+    //   event('login', { method: 'Google' })
+    // }
+    // mount()
   },
   methods:{
     async fetchUserData(){
@@ -140,15 +147,7 @@ export default {
       
     },
 
-    async fetchLastID(){
-      const db = this.$store.state.db
-      const lastID = this.$store.state.lastID
-      const querySnapshot = await getDocs(collection(db, "lastID"))
-      querySnapshot.forEach((doc) => {
-        lastID.push(doc.data())
-      })
-      console.log(this.$store.state.lastID[0].lastID)
-    },
+    
 
     logout(){
       this.$router.push('/')

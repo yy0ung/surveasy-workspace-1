@@ -7,12 +7,12 @@
       <br>
       <span id="number-none">현재 대기 중인 패널</span>
     </p>
-    <p><span id="number-bold">72개</span>
+    <p><span id="number-bold">191개</span>
       <br>
       <br>
       <span id="number-none">지금까지 설문 응답 서비스를 </span>
       <br>
-      <span id="number-none">이용한 의뢰자</span>
+      <span id="number-none">이용한 의뢰 개수</span>
     </p>
     <p><span id="number-bold">1시간 12분</span>
       <br>

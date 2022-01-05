@@ -30,15 +30,15 @@
 
   <div class="check">
     <span class="black-bold">무엇이 불편하셨나요?</span> <br>
-    <input type="checkbox"> 서비스 가격 및 옵션 불만<br>
-    <input type="checkbox"> 고객 서비스 (상담, 환불 등) 불만<br>
-    <input type="checkbox"> 방문 빈도가 낮음<br>
-    <input type="checkbox"> 사이트 신뢰도 불만<br>
-    <input type="checkbox"> 개인 정보 유출 우려
+    <input type="checkbox" v-model="withDrawReason.reason1" > 서비스 가격 및 옵션 불만<br>
+    <input type="checkbox" v-model="withDrawReason.reason2"> 고객 서비스 (상담, 환불 등) 불만<br>
+    <input type="checkbox" v-model="withDrawReason.reason3"> 방문 빈도가 낮음<br>
+    <input type="checkbox" v-model="withDrawReason.reason4"> 사이트 신뢰도 불만<br>
+    <input type="checkbox" v-model="withDrawReason.reason5"> 개인 정보 유출 우려
   </div>
 
   <div id="btn-center">
-    <button class="btn-withdraw" @click="withDrawUser(this.$store.state.withDrawCheckTF)">탈퇴하기</button>
+    <button class="btn-withdraw" @click="withDrawUser(this.withDrawReason)">탈퇴하기</button>
   </div>
 
 </div>
@@ -50,42 +50,52 @@ import { doc, deleteDoc } from "firebase/firestore";
 export default {
   mounted() {
     window.scrollTo(0,0)
+    
   },
   data(){
     return{
-      withDrawPW:''
+      withDrawPW:'',
+      
+      withDrawReason: {
+        reason1:false,
+        reason2:false,
+        reason3:false,
+        reason4:false,
+        reason5:false
+      }
     }
   },
 
   methods:{
-    withDrawTest(){
-      const auth = getAuth();
-      const user = auth.currentUser
-      console.log(user)
-
-    },
+    
     checkPassword(pw){
-      const email = this.$store.state.loginState.currentUser.email
-      const password = pw
-      const auth = getAuth()
-      signInWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
-          this.$store.state.withDrawCheckTF = true
-          console.log('ok')
-        })
-        .catch((error) => {
-          const errorCode = error.code;
-          const errorMessage = error.message;
 
-          console.log(errorCode)
-          console.log(errorMessage)
-      });
-    },
-    async withDrawUser(check){
-      if (check != true) {
-        window.alert("비밀번호를 확인 해 주세요")
-      }
+      
+        const email = this.$store.state.loginState.currentUser.email
+        const password = pw
+        const auth = getAuth()
+        signInWithEmailAndPassword(auth, email, password)
+          .then((userCredential) => {
+            this.$store.state.withDrawCheckTF = true
+            alert('비밀번호가 확인 되었습니다.')
+            console.log('ok')
+          })
+          .catch((error) => {
+            alert('비밀번호가 맞지 않습니다.')
+            const errorCode = error.code;
+            const errorMessage = error.message;
+
+            console.log(errorCode)
+            console.log(errorMessage)
+        });
+      },
+    async withDrawUser(dataSet){
+
+      if ((this.$store.state.withDrawCheckTF == false) || ((dataSet.reason1 == false) && (dataSet.reason2 == false) && (dataSet.reason3 == false) && (dataSet.reason4 == false) && (dataSet.reason5 == false))){
+        alert('비밀번호 확인과 탈퇴 사유 선택을 모두 진행해주세요.')
+      } 
       else {
+        // firebase withDrawData 넣는 부분 추가하기
         const auth = getAuth();
         const user = auth.currentUser
         const db = this.$store.state.db
@@ -106,10 +116,10 @@ export default {
         });
         })
       }
-
-      
-      
     }
+      
+      
+    
   }
 }
 </script>

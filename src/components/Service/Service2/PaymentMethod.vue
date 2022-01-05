@@ -46,8 +46,8 @@ export default {
       console.log(this.$store.state.localSurveyState)
     },
 
-    payDone() {
-      if(this.$store.state.localSurveyState.title=='' || this.$store.state.localSurveyState.target=='' || this.$store.state.localSurveyState.institute=='' || this.$store.state.localSurveyState.link=='') {
+    async payDone() {
+      if(this.$store.state.localSurveyState.title=='' || this.$store.state.localSurveyState.target=='' || this.$store.state.localSurveyState.institute=='' || this.$store.state.localSurveyState.link=='' || this.accont_userName=='') {
         alert('필수 설문 정보를 모두 입력해주세요.')
         console.log('if')
       }
@@ -67,16 +67,19 @@ export default {
 
     async couponIsUsed() {
       var db = this.$store.state.db
-      const docref = doc(db, "couponData", this.$store.state.localSurveyState.selectedCoupon.code)
+      if(this.$store.state.localSurveyState.selectedCoupon.code != '') {
+        const docref = doc(db, "couponData", this.$store.state.localSurveyState.selectedCoupon.code)
 
-      await updateDoc(docref, { 
+        await updateDoc(docref, { 
           isUsed: true,
           targetSurvey: this.$store.state.localSurveyState.title
         })
+      }
 
-      this.$store.state.adminCoupon = []
-      this.$store.state.myCoupon = []
-      this.fetchAdminData_coupon()
+        this.$store.state.adminCoupon = []
+        this.$store.state.myCoupon = []
+        this.fetchAdminData_coupon()
+      
     },
 
     async fetchAdminData_coupon() {
@@ -109,17 +112,32 @@ export default {
         })
 
       this.$store.state.userData = []
-      this.fetchUserData()
+      this.fetchUserData_point()
     },
     
-    async fetchUserData(){
+    async fetchUserData_point(){
       const db = this.$store.state.db
+      this.$store.state.userData = []
+      this.$store.state.PointUserData = []
       const userData = this.$store.state.userData
       const querySnapshot = await getDocs(collection(db,"userData"))
       querySnapshot.forEach((doc) => {
         userData.push(doc.data())
       })
-      
+      const PointUserData = userData.filter(item => item.email===this.$store.state.loginState.currentUser.email)
+      this.$store.state.PointUserData = PointUserData
+      console.log('***pointUser: ')
+      console.log(PointUserData[0])
+      this.getPointInfo()
+    },
+
+    getPointInfo() {
+      var c = this.$store.state.PointUserData[0].point_current
+      var t = this.$store.state.PointUserData[0].point_total
+      this.$store.state.localPointState.point_current = c
+      this.$store.state.localPointState.point_total = t
+
+      console.log('current point: ' + this.$store.state.localPointState.point_current)
     },
 
     async pointADD() {
@@ -154,16 +172,17 @@ export default {
         })
 
       this.$store.state.userData = []
-      this.fetchUserData()
+      this.fetchUserData_point()
     },
 
 
     async sendToAdmin(dataset) {
+      var lastID = await this.fetchLastID()
       var db = this.$store.state.db
-      var localLastID = this.$store.state.lastID[0].lastID
+      // var localLastID = this.$store.state.lastID[0].lastID
       var currentUserEmail = await this.$store.state.loginState.currentUser.email
       var nowDate= new Date()
-      var orderNum = nowDate.getFullYear().toString().substring(2,4) + (nowDate.getMonth()+1).toString() + nowDate.getDate().toString() + localLastID
+      var orderNum = nowDate.getFullYear().toString().substring(2,4) + (nowDate.getMonth()+1).toString() + nowDate.getDate().toString() + lastID
       
       var d = nowDate.toLocaleDateString()
       var dd = d.replace(/ /g, "")
@@ -179,7 +198,7 @@ export default {
       var D = year + '-' + month + '-' + day
       
       
-        await setDoc(doc(db, "adminRequired", localLastID.toString()), {
+        await setDoc(doc(db, "adminRequired", lastID.toString()), {
           price : dataset.price,
           beforeCouponPrice : dataset.beforeCouponPrice,
           couponDiscount : dataset.couponDiscount,
@@ -202,7 +221,7 @@ export default {
           uploader : dataset.uploader,
           uploadTime : new Date(),
           uploadDate : D,
-          id : localLastID,
+          id : lastID,
           dueDate: dataset.dueDate,
           dueTimeTime: dataset.dueTimeTime,
           dueTimeTimeTime: dataset.dueTimeTimeTime,
@@ -219,11 +238,12 @@ export default {
         var idDocref = doc(db, "lastID", "lastID")
         var currentUserRef = doc(db, "userData", currentUserEmail)
         await updateDoc(idDocref, {
-          lastID : (localLastID + 1)
-        })
+          lastID : (lastID + 1)
+        }).then(
+          console.log('LastID 올리기 완료'))
 
         await updateDoc(currentUserRef, {
-          uploadIndex: arrayUnion(localLastID)
+          uploadIndex: arrayUnion(lastID)
         })
 
         console.log(dataset)
@@ -244,7 +264,19 @@ export default {
 
         this.$store.state.localSurveyState.pointDiscount = 0
 
-      }
+      },
+
+      async fetchLastID(){
+        const db = this.$store.state.db
+        const lastID = []
+        const querySnapshot = await getDocs(collection(db, "lastID"))
+        querySnapshot.forEach((doc) => {
+          lastID.push(doc.data())
+        })
+        console.log('fetch LastID')
+        console.log(lastID[0].lastID)
+        return lastID[0].lastID
+      },
 
 
 
