@@ -40,6 +40,7 @@ export default {
   font-family: 'Noto Sans KR', sans-serif;
 }
 .identity-title {
+  
   font-size: 2rem;
   font-weight: bold;
   color: #0AAB00;

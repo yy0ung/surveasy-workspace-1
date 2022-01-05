@@ -16,10 +16,10 @@
         <ul class="Coupon-detail-text">적립금</ul>
         <div class="point-detail-container">
           <div class="Point-box">보유 적립금 {{ show_point }}원<button class="pointDelete-btn" @click="deletePoint"><i class="fas fa-times"></i></button></div>
-          <button class="Coupon-btn" @click="usePoint()">적립금 적용</button>
+          <button class="pPoint-btn" @click="usePoint()">적립금 적용</button>
         </div>
           
-          <div class="Point-notice">10,000원 이상 결제시, 결제 금액의 최대 10%까지 적립금 사용 가능</div>
+          <div class="Point-notice">10,000원 이상 결제시, 결제 금액의 10%가 자동으로 적용됩니다.</div>
       </ul>
 
     </div>
@@ -192,6 +192,10 @@ export default {
   font-family: 'Noto Sans KR' lighter;
   letter-spacing: 0px;
   color: #a2a0a0;
+  padding-top: 14px;
+  padding-bottom: 13px;
+  border-radius: 9px;
+  
 }
 .Coupon-selectbox:focus {
   outline: none;
@@ -205,14 +209,33 @@ export default {
 .Coupon-btn {
   background-color: #EEEEEE;
   border: 1px solid #0CAE02;
-  width: 112px;
-  height: 46px;
-  margin-left: 28px;
+  
+  margin-left: 20px;
   color: #0CAE02;
-  font-size: 15px;
+  font-size: 1rem;
   font-weight: 800;
   border-radius: 26px;
   cursor: pointer;  
+  padding: 13px 29px;
+  font-family: 'Noto Sans KR' lighter;
+  
+}
+.pPoint-btn{
+  background-color: #EEEEEE;
+  border: 1px solid #0CAE02;
+  
+  margin-left: 20px;
+  color: #0CAE02;
+  font-size: 1rem;
+  font-weight: 800;
+  border-radius: 26px;
+  cursor: pointer;  
+  padding: 5px 20px;
+  font-family: 'Noto Sans KR' lighter;
+}
+.Coupon-btn:hover, .pPoint-btn:hover{
+  color: white;
+  background-color: #0AAB00;
 }
 .point-detail-container {
   display: flex;
@@ -234,6 +257,9 @@ export default {
   font-family: 'Noto Sans KR' lighter;
   letter-spacing: 0px;
   color: #a2a0a0;
+  padding-top: 14px;
+  padding-bottom: 13px;
+  border-radius: 9px;
 }
 .pointDelete-btn {
   display: inline-block;

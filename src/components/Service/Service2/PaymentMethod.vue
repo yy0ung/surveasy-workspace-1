@@ -311,6 +311,7 @@ export default {
   justify-content: center;
   width: 282px;
   height: 10px;
+  border-radius: 9px;
   margin-top: 20px;
   border: 1px solid rgb(187, 187, 187);
   padding: 15px;
@@ -339,14 +340,17 @@ export default {
 .Payment-btn {
   background-color: #EEEEEE;
   border: 1px solid #0CAE02;
-  width: 110px;
-  height: 40px;
+  padding: 10px 20px;
   margin-top: 20px;
   color: #0CAE02;
   font-family: 'Noto Sans KR';
-  font-size: 16px;
+  font-size: 1.1rem;
   font-weight: medium;
   border-radius: 26px;
   cursor: pointer; 
+}
+.Payment-btn:hover{
+  color: white;
+  background-color: #0AAB00;
 }
 </style>
