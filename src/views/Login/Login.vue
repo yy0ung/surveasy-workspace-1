@@ -174,13 +174,14 @@ export default {
 
 <style>
 .login {
+  padding-top: 60px;
   margin: 100px;
-  height: 350px;
+  height: 500px;
 
 
 }
 .login-checkimg {
-  margin-bottom: 15px;
+  margin-bottom: 30px;
 }
 .loginform li {
   list-style-type: none;

@@ -26,7 +26,7 @@ export default {
     flex-direction: column;
     justify-content: center;
     border-radius: 24px;
-    margin-bottom: 50px;
+    margin-bottom: 150px;
   }
   #brand-story-container .story-bold{
     font-family: 'Noto Sans KR', sans-serif;

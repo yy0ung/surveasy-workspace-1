@@ -19,11 +19,11 @@
           <span v-if="showDetail2==true"><i class="fas fa-chevron-up"></i></span>
         </span>
       </p>
-      <p class="detail" v-if="showDetail2==true">현재는 할인된 가격으로, 한 템플릿당 500원에 판매되고 있습니다.</p>
+      <p class="detail" v-if="showDetail2==true">더 많은 초보 설문 제작자들이 편하게 설문을 제작하기를 바라는 마음을 담아, 모두 무료로 배포하고 있습니다.</p>
     </div>
     <div>
       <p class="title">
-        <span :style="{color : fontcolor3}">결제 후, 설문 템플릿을 바로 공유받을 수 있나요?</span>
+        <span :style="{color : fontcolor3}">이메일 주소를 작성한 후, 설문 템플릿을 바로 공유받을 수 있나요?</span>
         <span @click="toggle3">
           <span v-if="showDetail3==false"><i class="fas fa-chevron-down"></i></span>
           <span v-if="showDetail3==true"><i class="fas fa-chevron-up"></i></span>
@@ -34,13 +34,13 @@
     </div>
     <div>
       <p class="title">
-        <span :style="{color : fontcolor4}">구매한 설문 템플릿의 설문 문항을 바꾸거나 추가할 수 있나요?</span>
+        <span :style="{color : fontcolor4}">설문 템플릿의 설문 문항을 바꾸거나 추가할 수 있나요?</span>
         <span @click="toggle4">
           <span v-if="showDetail4==false"><i class="fas fa-chevron-down"></i></span>
           <span v-if="showDetail4==true"><i class="fas fa-chevron-up"></i></span>
         </span>
       </p>
-      <p class="detail" v-if="showDetail4==true">공유받으신 설문은 추후 이용자가 자유롭게 수정, 추가, 삭제가 모두 가능합니다. 또한 구글폼의 권한 소유자를 본인으로 바꾸어 드립니다. 
+      <p class="detail" v-if="showDetail4==true">공유받으신 설문은 추후 이용자가 자유롭게 수정, 추가, 삭제가 모두 가능합니다. 또한 구글폼의 권한을 '편집자'로 바꾸어 드립니다. 
         <br>단, 설문 템플릿은 서베이지 소유 저작물로, 제3자 타인과의 공유는 절대 불가합니다.</p>
     </div>
     </div>

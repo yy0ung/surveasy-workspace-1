@@ -49,6 +49,7 @@ export default {
   max-width: 1190px;
   margin-right: auto;
   margin-left: auto;
+  
 }
 .home-contents-child{
   margin-top:0;
