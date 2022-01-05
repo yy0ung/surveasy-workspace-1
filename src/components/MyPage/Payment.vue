@@ -54,8 +54,6 @@
             </p>
             </div>
             <!-- css 다시 -->
-           
-
 
           
       </div>
@@ -110,8 +108,11 @@ export default {
       this.currentUserUploadIndexInfo2 = this.currentUserUploadIndexInfo,
       this.show=1
     },
+
+
     priceToString(price) {
       return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+
     }
   }
   

@@ -149,7 +149,9 @@ export default createStore({
     myPage: 1,
     indexColor: 0,
 
-    withDrawCheckTF: false
+    withDrawCheckTF: false,
+
+    reviewTempData:'',
     
 
     
