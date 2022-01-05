@@ -60,29 +60,29 @@
                             </div>
                             <div class="radio-option">
                                 <input type="radio" class="radio" name="from" id="kakaotalk" v-model="dataSet.funnel" value="kakaotalk">
-                                <label>카카오톡 단톡방</label>
+                                <label class="radio-text">카카오톡 단톡방</label>
                             </div>
                             <div class="radio-option">
                                 <input type="radio" class="radio" name="from" id="search" v-model="dataSet.funnel" value="search">
-                                <label>인터넷 검색(구글 / 네이버 / 기타)</label>
+                                <label class="radio-text">인터넷 검색(구글 / 네이버 / 기타)</label>
                             </div>
                             <div class="radio-option">
                                 <input type="radio" class="radio" name="from" id="etc" v-model="dataSet.funnel" value="etc">
-                                <label>기타 </label>
+                                <label class="radio-text">기타 </label>
                             </div>
                         </div>
                         <div class="radio-column">
                             <div class="radio-option">
                                 <input type="radio" class="radio" name="from" id="blog" v-model="dataSet.funnel" value="blog">
-                                <label>네이버 블로그</label>
+                                <label class="radio-text">네이버 블로그</label>
                             </div>
                             <div class="radio-option">
                                 <input type="radio" class="radio" name="from" id="instagram" v-model="dataSet.funnel" value="instagram">
-                                <label>인스타그램</label>
+                                <label class="radio-text">인스타그램</label>
                             </div>
                             <div class="radio-option">
                                 <input type="radio" class="radio" name="from" id="facebook" v-model="dataSet.funnel" value="facebook">
-                                <label>페이스북</label>
+                                <label class="radio-text">페이스북</label>
                             </div>
                             
                         </div> 
@@ -95,7 +95,7 @@
           <div class="check">
             <div class="all-title"><input type="checkbox" v-model="checkAll">전체 동의하기</div>
             <div class="all"><input type="checkbox" v-model="dataSet.check1" >
-            <router-link class="terms" :to="{name: 'Term1'}" target="_blank"> 서베이지 이용약관 (필수)</router-link></div>
+            <router-link class="terms" :to="{name: 'Term1'}" target="_blank">서베이지 이용약관 (필수)</router-link></div>
             <div class="all"><input type="checkbox" v-model="dataSet.check2" ><router-link class="terms" :to="{name: 'Term2'}" target="_blank">서베이지 개인정보 보호 방침 (필수)</router-link></div>
             <div class="all"><input type="checkbox" v-model="dataSet.check3" >
                 회원가입 시 작성한 개인 정보가 모두 올바름을 확인합니다. <br>
@@ -295,6 +295,9 @@ export default {
     text-align: left;
     margin-left: 40px;
     
+}
+.radio-text{
+    margin-top: 5px;
 }
 .register-title #green{
     color: #0AAB00;
