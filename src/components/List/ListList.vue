@@ -214,6 +214,7 @@ export default {
   border-spacing: 0;
   margin-top: 120px;
   margin-bottom: 50px;
+  
 }
 .due{
   margin-left: 20px;
@@ -257,6 +258,33 @@ export default {
 #page-button{
   display: inline;
   
+  
+}
+#page-button button{
+  border: 1px solid #0AAB00;
+  color: #0AAB00;
+  background: white;
+  padding: 5px 8px;
+  font-family: 'Noto Sans KR', sans-serif;
+  margin: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  
+}
+#page-button button:hover{
+  color: white;
+  background: #0AAB00;
+  cursor: pointer;
+}
+#page-button button:disabled{
+  cursor: pointer;
+  color: #848484;
+  border: #848484 1px solid;
+}
+#page-button button:disabled:hover{
+  color: #848484;
+  background: white;
+  cursor: pointer;
 }
 
 .responded {

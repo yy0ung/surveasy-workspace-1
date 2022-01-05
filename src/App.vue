@@ -1,7 +1,7 @@
 <template>
 <div id="app" :class="{backactive: this.$store.state.showModal}">
   <div id="nav">
-    <router-link to="/"><img class="logoimg" src="@/assets/logo.png" width="190"></router-link> 
+    <router-link to="/" @click="indexC(0)"><img class="logoimg" src="@/assets/logo.png" width="190"></router-link> 
 
     <div class="nav-links">
       <div class="my-dropdown" >
@@ -380,6 +380,7 @@ body {
     border:none;
     text-align: left;
     height: 300px;
+    
     
   }
   #site-map-container .map-contents{

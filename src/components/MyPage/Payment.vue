@@ -26,9 +26,9 @@
           </tr>
         </table>
       </div> -->
-      <div class="repeat" v-for="item in (currentUserUploadIndexInfo2)" :key="item.title">
-      <div class="sur-box"  :class="{active:item.progress==3}">
-        <p class="su-title">{{item.title}} <span class="gray">{{item.price}}원</span></p>
+      <div class="repeat" v-for="item in (currentUserUploadIndexInfo2)" :key="item">
+      <div class="sur-box"  :class="{active:item.progress==3||item.progress==4}">
+        <p class="su-title">{{item.title}} <span class="gray">{{priceToString(item.price)}}원</span></p>
         <div class="su-contents">
           <div class="con1">
             <p class="su-">진행단계</p>
@@ -52,15 +52,16 @@
             <p class="light">{{item.uploadDate}}</p>
             <p class="light">{{item.dueDate}}
             </p>
+            </div>
             <!-- css 다시 -->
-           <router-link :to="`/review/${item.title}`" v-if="item.progress==3" class="goLink" @click="reviewTemp(item)">후기 작성하기</router-link>
-           <router-link to="/surveylist" v-if="item.progress==2" class="goLink">설문 보러가기</router-link>
+
+          
+      </div>
+        <router-link :to="`/review/${item.id}/${item.title}`" v-if="item.progress==3" class="goLink" id="go-green">후기 작성하기 ></router-link>
+        <router-link to="/surveylist" v-if="item.progress==2" class="goLink" id="go-gray">설문 보러가기 ></router-link>
            
-
-
-          </div>
       </div>
-      </div>
+      
       </div>
     </div>
   </div>
@@ -108,11 +109,13 @@ export default {
       this.show=1
     },
 
-    reviewTemp(survey){
-      console.log(survey)
-      this.$store.state.reviewTempData = survey
+
+    priceToString(price) {
+      return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+
     }
   }
+  
 
 }
 </script>
@@ -153,7 +156,7 @@ export default {
   
 }
 .con2{
-  margin-right: 150px;
+  margin-right: 120px;
 }
 .con1, .con3{
   margin-right: 20px;
@@ -162,8 +165,17 @@ export default {
   font-weight: 300;
 }
 .goLink{
-  margin-left: 100px;
-  
+  position: relative;
+  left: 530px;
+  bottom: 40px;
+  font-size: 0.9rem;  
+  font-weight: 300;
+}
+#go-green{
+  color: #0AAC00;
+}
+#go-gray{
+  color: #848484;
 }
 
 </style>

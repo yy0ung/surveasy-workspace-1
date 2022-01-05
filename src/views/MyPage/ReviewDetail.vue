@@ -76,7 +76,8 @@ export default {
   data() {
     return {
       reviewDetailData: {
-        title: this.$route.params.id,
+        title: this.$route.params.title,
+        id: this.$route.params.id,
         Q1: [],
         Q1etc:'',
         Q2: '',
@@ -100,7 +101,7 @@ export default {
           Q3: reviewDetailData.Q3,
           Q4: reviewDetailData.Q4
         }),
-        this.$router.push(`/reviewdetaildone/${this.$route.params.id}`)
+        this.$router.push(`/reviewdetaildone/${this.$route.params.id}/${this.$route.params.title}`)
         this.pointADD()
       }
     },

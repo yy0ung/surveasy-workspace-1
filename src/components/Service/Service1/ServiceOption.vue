@@ -55,9 +55,9 @@
           <div class="show-price-container">
             <span class="service-option-totalprice-word">총 금액</span>
             <span class="service-option-totalprice-price">
-              {{ Number(this.$store.state.priceTable[priceIdentity][priceSpendTime][priceRequireHeadCount])
+              {{ priceToString(Number(this.$store.state.priceTable[priceIdentity][priceSpendTime][priceRequireHeadCount])
                 +Number(this.$store.state.EngOptionArray[EngOptionCal])
-                +Number(this.$store.state.TimeOptionArray[timeOptionCal]) }}원</span>
+                +Number(this.$store.state.TimeOptionArray[timeOptionCal])) }}원</span>
           </div>
         
           <div>
@@ -216,7 +216,10 @@ export default {
 
         }
         
-      }
+      },
+      priceToString(price) {
+      return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+    }
     
  
     }     

@@ -7,7 +7,7 @@
     <p>
       <span class="template-none">제로 베이스에서 설문조사를 만드는 것에 어려움을 겪고 계신가요?</span>
       <br>
-      <span class="template-bold">단돈 500원에 <span class="template-green">설문 템플릿</span>을 구매하여 사용해보세요!</span>
+      <span class="template-bold"><span class="template-green">설문 템플릿</span>을 무료로 제공받아 사용해보세요!</span>
     </p>
     <router-link to="/surveytemplate"><button class="HomeSurveyTemplate-btn" id="template-btn">설문 템플릿 보기</button></router-link>
   </div>

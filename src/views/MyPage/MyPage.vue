@@ -21,8 +21,21 @@
         <div class="client-grade-notice">
           <button class="client-grade-closeBTN" @click="showClientModal()">x</button>
           
+
           <div class="client-grade-green">서베이지 고객 등급 안내</div>
           <img src="@/assets/myPage/client_grade.png" width="120">
+
+          <p class="client-grade-green">서베이지 고객 등급 안내</p>
+          <p class="grade-detail">고객 등급의 기준과 등급에 따른 혜택을 확인하세요!</p>
+          <div class="grades">
+            <img src="@/assets/myPage/gradeOne.png" width="120">
+            <img src="@/assets/myPage/gradeTwo.png" width="120">
+            <img src="@/assets/myPage/gradeThree.png" width="120">
+          </div>
+          <div class="grade-">
+          <img  src="@/assets/myPage/client_grade.png" width="620"> 
+          </div>
+
         </div>
       </div>
     </div>
@@ -40,10 +53,10 @@
   <div class="mypage-contents">
   <!-- <p>{{this.$store.state.currentUser}}</p> -->
   <div class="mypage-router-link-container">
-    <router-link to="/mypage/dashboard" class="mypage-router-link" @click="button(0)" :class="{active:color==0}">대시보드</router-link>
-    <router-link to="/mypage/payment" class="mypage-router-link" @click="button(1)" :class="{active:color==1}">주문 내역</router-link>
-    <router-link to="/mypage/couponpoint" class="mypage-router-link" @click="button(2)" :class="{active:color==2}">쿠폰/적립금</router-link>
-    <router-link to="/mypage/myinfo" class="mypage-router-link" @click="button(3)" :class="{active:color==3}">나의 정보</router-link>
+    <router-link to="/mypage/dashboard" class="mypage-router-link">대시보드</router-link>
+    <router-link to="/mypage/payment" class="mypage-router-link">주문 내역</router-link>
+    <router-link to="/mypage/couponpoint" class="mypage-router-link">쿠폰/적립금</router-link>
+    <router-link to="/mypage/myinfo" class="mypage-router-link">나의 정보</router-link>
   
   </div>
   <div class="mypage-router-view-container">
@@ -60,16 +73,14 @@ export default {
   data() {
     return {
       
-      color: 0,
+     
       grade : this.$store.state.loginState.currentUser['uploadIndex'].length,
 
       showclientmodal: false
     }
   },
   methods: {
-    button(num){
-      this.color=num
-    },
+    
 
     showClientModal() {
       this.showclientmodal = !this.showclientmodal
@@ -181,9 +192,9 @@ export default {
   text-decoration-line: none;
 }
 
-.mypage-router-link.active{
+/* .mypage-router-link.active{
   text-decoration-color: cadetblue;
-}
+} */
 
 
 .mypage-router-view-container{
@@ -238,5 +249,39 @@ export default {
 }
 .client-grade-black {
   font-size: 16px;
+}
+.router-link-active.router-link-exact-active.mypage-router-link{
+  color: #0AAC00;
+}
+.grades{
+  display: flex;
+  justify-content: space-around;
+  margin-left: 130px;
+  margin-right: 44px;
+  margin-bottom: 10px;
+}
+.grade-{
+  display: flex;
+  justify-content: center;
+}
+.client-grade-green{
+  font-family: 'Noto Sans KR', sans-serif;
+  margin-top: 5px;
+  font-weight: 700;
+  padding-left: 40px;
+
+}
+.grade-detail{
+  color: #848484;
+  padding-left: 40px;
+  margin-top: 0;
+  font-weight: 300;
+}
+.client-grade-closeBTN{
+  padding-left: 660px;
+  font-size: 1.5rem;
+  margin-bottom: 0;
+  padding-top: 20px;
+  background: transparent;
 }
 </style>

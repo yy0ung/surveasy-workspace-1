@@ -351,8 +351,8 @@ methods:{
       isresponded : true
     })
     window.alert('완료')
-  }
-
+  },
+  
   
   
   
