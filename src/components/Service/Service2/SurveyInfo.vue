@@ -104,11 +104,11 @@ export default {
   display: inline-block;
 }
 .survey-info .info-detail-text {
-  left: 187px;
+  padding-left: 10px;
   width: 200px;
   height: 25px;
   margin-top: 15px;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
   text-align: left;
   font-family: 'Noto Sans KR';
   font-size: 17px;
@@ -118,11 +118,11 @@ export default {
   opacity: 1;
 }
 .survey-info input {
-  left: 190px;
+  border-radius: 9px;
   width: 680px;
-  height: 35px;
-  margin-left: 0;
-  padding-left: 25px;
+  height: 40px;
+  margin-left: 10px;
+  padding-left: 15px;
   border: 0.75px solid #BCBCBC;
   opacity: 1;
   background-color: #EEEEEE;
@@ -142,13 +142,17 @@ export default {
 .link-check-btn {
   background-color: #EEEEEE;
   border: 1px solid #0CAE02;
-  width: 112px;
-  height: 46px;
+  padding: 7px 15px;
+  font-family: 'Noto Sans KR' lighter;
   margin-left: 20px;
   color: #0CAE02;
   font-size: 15px;
   font-weight: 800;
   border-radius: 26px;
   cursor: pointer;   
+}
+.link-check-btn:hover{
+  color: white;
+  background: #0AAB00;
 }
 </style>

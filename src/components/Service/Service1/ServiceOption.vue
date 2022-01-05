@@ -29,6 +29,7 @@
             <span class="option-title">마감기한 지정</span>
             <input type="Date" class="date" :min="min" :max="getDateStr" v-model="aa" required> 
             <input type="time" class="time" v-model="bb" required>
+            <p class="warn-msg">마감날짜와 마감시간 중 공란이 존재할 경우 <br>설문 게시가 어려울 수 있습니다.</p>
           </li>
           
           <li class="hasTitleOption">
@@ -98,7 +99,7 @@ export default {
       today: new Date().toISOString().substring(0,10),
       min: new Date().toISOString().substring(0,10),
 
-      aa:'',
+      aa:'12:00:00',
       bb:'',
       cc: this.aa+' '+this.bb,
       dd: new Date(),
@@ -168,7 +169,7 @@ export default {
   methods: {    
     setOption1() {
       
-      if((this.priceIdentity==0) || (this.priceSpendTime==0) || (this.priceRequireHeadCount==0) || (this.timeOptionCal==0)) {
+      if((this.priceIdentity==0) || (this.priceSpendTime==0) || (this.priceRequireHeadCount==0) || (this.timeOptionCal==0) ) {
         alert("모든 옵션을 입력해주세요.")
       }
 
@@ -198,7 +199,7 @@ export default {
 
         this.$store.commit('setCouponDiscountEmpty')
         this.$store.commit('setPointDiscountEmpty')
-
+        
 
         if(this.$store.state.loginState.isLoggedIn==false) {
           alert('로그인이 필요한 서비스입니다.')
@@ -208,6 +209,7 @@ export default {
           
         }
         if(this.$store.state.loginState.isLoggedIn==true) {
+          
           this.$router.push('/servicepay');
           console.log('isLoggedInService')
         }
@@ -242,7 +244,7 @@ export default {
   position: sticky;
   top: 108px;
   z-index: 1;
-  height: 496px;
+  height: 536px;
   border-radius: 10px;
   margin: 80px 80px 135px 10px;
   background-color: #EEEEEE;
@@ -313,9 +315,10 @@ export default {
 
 #service-option-notice {
   text-align: left;
-  color: #0CAE02;
+  color: red;
   font-size: 11.5px;
   margin: 1px 0 0 42px;
+  font-weight: 300;
 }
 .show-price-container {
   margin-top: 10px;
@@ -338,17 +341,20 @@ export default {
   font-weight: bold;
 }
 .goServicePay-btn {
-  width: 270px;
-  height: 25px;
+  padding: 5px 70px;
   margin-top: 60px;
   color:#0CAE02;
   background-color: #EEEEEE;
   border: 1.5px solid #0CAE02;
   border-radius: 30px;
-  font-size: 12px;
+  font-size: 0.9rem;
   cursor: pointer;
+  font-family: 'Noto Sans KR', sans-serif;
 }
-
+.goServicePay-btn:hover{
+  color: white;
+  background: #0AAB00;
+}
 
 
 /* Eng switch */
@@ -397,6 +403,14 @@ input:checked + .slider:before {
   -webkit-transform: translateX(26px);
   -ms-transform: translateX(26px);
   transform: translateX(16px);
+}
+.warn-msg{
+  color: red;
+  font-weight: 300;
+  font-size: 0.7rem;
+  text-align: left;
+  margin-left: 130px;
+  margin-top: 0;
 }
 
 </style>
