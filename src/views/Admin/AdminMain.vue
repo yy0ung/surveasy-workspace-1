@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="admin-container">
     <div v-if="this.$store.state.isAdmin == false">
       <input v-model="passInput" type="text" placeholder="AdminPassword">
       <br>
@@ -12,7 +12,7 @@
       <div>
         <!-- <p>{{computedAdmin}}</p> -->
         <h2>CONFIRM ME !</h2>
-          <table>
+          <table class="table-admin">
             <tr>
               <th>ID</th>
               <th>주문번호</th>
@@ -23,13 +23,15 @@
               <th>업로더</th>
               <th>업로더 이메일</th>
               <th>업로더 identity</th>
-              <th>선택한 identity 옵션</th>
-              <th>progress</th>
-              <th>설문 진행단계 변경</th>
+              <th>마감 날짜</th>
+              <th>마감 시간</th>
+              <th class="progress-admin">progress</th>
+              <th class="btn-progress-admin">설문 진행단계 변경</th>
               
             </tr>
 
-            <tr v-for="item in (this.$store.state.adminData)" :key="item.id">
+            <tr v-for="item in (this.$store.state.adminData)" :key="item.id" class="tds" :class="{red:item.progress==0 || item.progress==1, green: item.progress==2, gray: item.progress==3 || item.progress==4}">
+            
               <td>{{item.id}}</td>
               <td>{{item.orderNum}}</td>
               <td>{{item.title}}</td>
@@ -39,13 +41,13 @@
               <td>{{item.uploader}}</td>
               <td>{{item.uploaderEmail}}</td>
               <td>{{item.uploaderIdentity}}</td>
-              <td><button @click="updateApproved(item)">결제 확인</button></td>
-              <td>{{item.adminApproved}}</td>
+              <!-- <td><button @click="updateApproved(item)">결제 확인</button></td> -->
+              <!-- <td>{{item.adminApproved}}</td> -->
               <td>{{item.dueDate}}</td>
               <td>{{item.dueTimeTime}}</td>
-              <td>{{item.progress}}</td>
-              <td><button class="progress-button"  @click="changeProgress1(item.id)">1</button> <button class="progress-button" @click="changeProgress2(item.id)">2</button> <button class="progress-button" @click="changeProgress3(item.id)">3</button></td>
-              
+              <td class="progress-admin">{{item.progress}}</td>
+              <td class="btn-progress-admin"><button class="progress-button1"  @click="changeProgress1(item.id)">1</button> <button  class="progress-button2" @click="changeProgress2(item.id)">2</button> <button class="progress-button3" @click="changeProgress3(item.id)">3</button></td>
+            
 
             </tr>
           </table>
@@ -68,7 +70,7 @@
             <th>수락하기</th>
           </tr>
 
-          <tr v-for="item in (this.$store.state.adminDataIdentity)" :key="item.requestName">
+          <tr v-for="item in (this.$store.state.adminDataIdentity)" :key="item.requestName" class="tds" :class="{red:item.requestApproved==false}">
             <td>{{item.requestName}}</td>
             <td>{{item.requestEmail}}</td>
             <td>{{item.requestIdentity}}</td>
@@ -91,7 +93,7 @@
             <th>변경</th>
           </tr>
 
-          <tr v-for="item in (this.$store.state.adminDataB2B)" :key="item.name">
+          <tr v-for="item in (this.$store.state.adminDataB2B)" :key="item.name" class="tds" :class="{red:item.isresponded==false}">
             <td>{{item.company}}</td>
             <td>{{item.email}}</td>
             <td>{{item.name}}</td>
@@ -154,7 +156,7 @@
             <th>응답여부변경</th>
           </tr>
 
-          <tr v-for="item in (this.$store.state.adminDataTemplate)" :key = "item.name">
+          <tr v-for="item in (this.$store.state.adminDataTemplate)" :key = "item.name" class="tds" :class="{red:item.isresponded==false}">
             <td>{{item.identifyTime}}</td>
             <td>{{item.name}}</td>
             <td>{{item.uploader}}</td>
@@ -386,10 +388,59 @@ computed:{
 </script>
 
 <style>
-.progress-button{
+.progress-button1{
   color: white;
-  background-color: cornflowerblue;
+  background-color: rgb(243, 147, 147);
   border: 0;
+  cursor: pointer;
 }
+.progress-button2{
+  color: white;
+  background-color: rgb(115, 192, 44);
+  border: 0;
+  cursor: pointer;
+}
+.progress-button3{
+  color: white;
+  background-color:#555454;
+  border: 0;
+  cursor: pointer;
+}
+.progress-button1:hover{
+  color: white;
+  background-color: rgb(211, 52, 52);
+}
+.progress-button2:hover{
+  color: white;
+  background-color: rgb(31, 65, 0);
+}
+.progress-button3:hover{
+  color: white;
+  background-color: #0c0c0c;
+}
+
+#admin-container table{
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+
+}
+
+.tds.red{
+  color: rgb(243, 147, 147);
+}
+.tds.green{
+  color: rgb(115, 192, 44);
+}
+.tds.gray{
+  color: #555454;
+}
+.progress-admin{
+  margin-left: 50px;
+}
+.progress-admin{
+  font-weight: bold;
+}
+
 
 </style>
