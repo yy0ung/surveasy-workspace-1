@@ -78,7 +78,7 @@ export default {
           .then((userCredential) => {
             this.$store.state.withDrawCheckTF = true
             alert('비밀번호가 확인 되었습니다.')
-            console.log('ok')
+            // console.log('ok')
           })
           .catch((error) => {
             alert('비밀번호가 맞지 않습니다.')

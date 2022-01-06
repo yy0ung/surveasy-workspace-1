@@ -205,8 +205,8 @@ export default {
                 
                 
             } else {
-                console.log(errCode)
-                console.log(dataSet)
+                // console.log(errCode)
+                // console.log(dataSet)
                 var registerErrorMessage =[
                 "",
                 "입력하지 않은 항목이 있습니다.",
@@ -226,7 +226,7 @@ export default {
                     errArr.push(registerErrorMessage[errCode[i]])
                     
                 }
-                console.log(errArr)
+                // console.log(errArr)
                 var msg = ''
                 for(var err in errArr){
                     msg+=errArr[err]+"\n"
@@ -242,7 +242,7 @@ export default {
             createUserWithEmailAndPassword(auth, this.dataSet.email, this.dataSet.password)
                 .then((userCredential) => {
                     const user = userCredential.user;
-                    console.log(user)
+                    // console.log(user)
                 })
             
             

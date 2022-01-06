@@ -166,7 +166,7 @@ export default {
 
      const myCoupon = adminCoupon.filter(item => item.user===this.$store.state.loginState.currentUser.email && item.isUsed===false && item.outOfDate===false)
      this.$store.state.myCoupon = myCoupon
-     console.log(this.$store.state.myCoupon)
+    //  console.log(this.$store.state.myCoupon)
      this.check_outOfDate()
    },
 
@@ -180,10 +180,10 @@ export default {
         var diff = due.getTime()/3600000 - Date.now()/3600000
         var diffdate = Math.floor(diff/24)
   
-        console.log(due.getTime()/3600000)
-        console.log(Date.now()/3600000)
-        console.log(diff)
-        console.log(diffdate)
+        // console.log(due.getTime()/3600000)
+        // console.log(Date.now()/3600000)
+        // console.log(diff)
+        // console.log(diffdate)
         await updateDoc(docref, { 
             duediff: diffdate
           })
@@ -271,7 +271,7 @@ export default {
         await updateDoc(docref, { 
           user: this.receiver
         })
-        console.log(this.receiver)
+        // console.log(this.receiver)
       }
 
       else {

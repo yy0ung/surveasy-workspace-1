@@ -59,7 +59,7 @@ export default {
       this.$store.commit('setSurveyMutation2', {title: this.title, institute: this.institute, 
         target: this.target, link: this.link, notice: this.notice });
 
-        console.log(this.$store.state.localSurveyState)
+        // console.log(this.$store.state.localSurveyState)
     }
   },
 

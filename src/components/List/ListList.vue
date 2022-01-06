@@ -156,8 +156,8 @@ export default {
       var dateDiff = due.getTime()/3600000 - Date.now()/3600000 + (timeHour-9)
       var Dday = ''
       
-      console.log(due.getTime()/3600000)
-      console.log(Date.now()/3600000)
+      // console.log(due.getTime()/3600000)
+      // console.log(Date.now()/3600000)
       
       if(dateDiff<0){
         Dday='마감'
