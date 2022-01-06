@@ -49,7 +49,7 @@ export default {
       this.reviewData.score = num
     },
     async addData(reviewData){
-        console.log(reviewData)
+        // console.log(reviewData)
         var db = this.$store.state.db
         if(reviewData.score==0){
           alert('점수는 1점 이상부터 작성 가능합니다.')

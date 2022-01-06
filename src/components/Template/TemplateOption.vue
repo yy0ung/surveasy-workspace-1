@@ -74,7 +74,7 @@ export default {
 
       else {
 
-        console.log('input fin')
+        // console.log('input fin')
         if(inputData.type == 0) {
           this.typeText = '1. 사용경험 설문조사'
         }

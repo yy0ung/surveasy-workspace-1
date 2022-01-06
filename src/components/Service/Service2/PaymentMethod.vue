@@ -40,16 +40,16 @@ export default {
     setOption3() {
       this.uploader = this.$store.state.loginState.currentUser.name
       this.uploaderIdentity = this.$store.state.loginState.currentUser.identity
-      console.log('identity: ',this.uploaderIdentity)
+      // console.log('identity: ',this.uploaderIdentity)
 
       this.$store.commit('setSurveyMutation3', {account_userName: this.accont_userName, uploader: this.uploader, uploaderIdentity: this.uploaderIdentity})
-      console.log(this.$store.state.localSurveyState)
+      // console.log(this.$store.state.localSurveyState)
     },
 
     async payDone() {
       if(this.$store.state.localSurveyState.title=='' || this.$store.state.localSurveyState.target=='' || this.$store.state.localSurveyState.institute=='' || this.$store.state.localSurveyState.link=='' || this.accont_userName=='') {
         alert('필수 설문 정보를 모두 입력해주세요.')
-        console.log('if')
+        // console.log('if')
       }
 
       else {
@@ -59,7 +59,7 @@ export default {
         this.sendToAdmin(this.$store.state.localSurveyState)
         this.$store.state.localSurveyState.coupon_use = false
         this.$store.state.localSurveyState.point_use = false
-        console.log('else')
+        // console.log('else')
       }
 
       
@@ -94,7 +94,7 @@ export default {
 
      const myCoupon = adminCoupon.filter(item => item.user===this.$store.state.loginState.currentUser.email && item.isUsed===false && item.outOfDate===false)
      this.$store.state.myCoupon = myCoupon
-     console.log(this.$store.state.myCoupon)
+    //  console.log(this.$store.state.myCoupon)
    },
 
     async pointIsUsed() {
@@ -126,8 +126,8 @@ export default {
       })
       const PointUserData = userData.filter(item => item.email===this.$store.state.loginState.currentUser.email)
       this.$store.state.PointUserData = PointUserData
-      console.log('***pointUser: ')
-      console.log(PointUserData[0])
+      // console.log('***pointUser: ')
+      // console.log(PointUserData[0])
       this.getPointInfo()
     },
 
@@ -137,7 +137,7 @@ export default {
       this.$store.state.localPointState.point_current = c
       this.$store.state.localPointState.point_total = t
 
-      console.log('current point: ' + this.$store.state.localPointState.point_current)
+      // console.log('current point: ' + this.$store.state.localPointState.point_current)
     },
 
     async pointADD() {
@@ -198,7 +198,7 @@ export default {
       var D = year + '-' + month + '-' + day
       
       
-        await setDoc(doc(db, "adminRequired", lastID.toString()), {
+        await setDoc(doc(db, "surveyData", lastID.toString()), {
           price : dataset.price,
           beforeCouponPrice : dataset.beforeCouponPrice,
           couponDiscount : dataset.couponDiscount,
@@ -240,13 +240,14 @@ export default {
         await updateDoc(idDocref, {
           lastID : (lastID + 1)
         }).then(
-          console.log('LastID 올리기 완료'))
+          // console.log('LastID 올리기 완료')
+          )
 
         await updateDoc(currentUserRef, {
           uploadIndex: arrayUnion(lastID)
         })
 
-        console.log(dataset)
+        // console.log(dataset)
 
         if(this.$store.state.localSurveyState.identity=='할인 대상이 아닙니다.' ) {
           this.$router.push('/servicepaydone')
@@ -273,8 +274,8 @@ export default {
         querySnapshot.forEach((doc) => {
           lastID.push(doc.data())
         })
-        console.log('fetch LastID')
-        console.log(lastID[0].lastID)
+        // console.log('fetch LastID')
+        // console.log(lastID[0].lastID)
         return lastID[0].lastID
       },
 

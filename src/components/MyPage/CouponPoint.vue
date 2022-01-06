@@ -120,8 +120,8 @@ export default {
       })
       const PointUserData = userData.filter(item => item.email===this.$store.state.loginState.currentUser.email)
       this.$store.state.PointUserData = PointUserData
-      console.log('***pointUser: ')
-      console.log(PointUserData[0])
+      // console.log('***pointUser: ')
+      // console.log(PointUserData[0])
       this.getPointInfo()
     },
 
@@ -131,7 +131,7 @@ export default {
       this.$store.state.localPointState.point_current = c
       this.$store.state.localPointState.point_total = t
 
-      console.log('current point: ' + this.$store.state.localPointState.point_current)
+      // console.log('current point: ' + this.$store.state.localPointState.point_current)
     },
 
    async addCoupon(couponInfo) {
@@ -170,7 +170,7 @@ export default {
 
      const myCoupon = adminCoupon.filter(item => item.user===this.$store.state.loginState.currentUser.email && item.isUsed===false && item.outOfDate===false)
      this.$store.state.myCoupon = myCoupon
-     console.log(this.$store.state.myCoupon)
+    //  console.log(this.$store.state.myCoupon)
      this.check_outOfDate()
    },
 
@@ -184,10 +184,10 @@ export default {
         var diff = due.getTime()/3600000 - Date.now()/3600000
         var diffdate = Math.floor(diff/24)
   
-        console.log(due.getTime()/3600000)
-        console.log(Date.now()/3600000)
-        console.log(diff)
-        console.log(diffdate)
+        // console.log(due.getTime()/3600000)
+        // console.log(Date.now()/3600000)
+        // console.log(diff)
+        // console.log(diffdate)
         await updateDoc(docref, { 
             duediff: diffdate
           })
@@ -272,7 +272,7 @@ export default {
         await updateDoc(docref, { 
           user: this.receiver
         })
-        console.log(this.receiver)
+        // console.log(this.receiver)
       }
 
       else {

@@ -29,7 +29,7 @@ export default {
   
   methods: {
     reviewDetailTest(){
-      console.log(this.$store.state.reviewTempData)
+      // console.log(this.$store.state.reviewTempData)
     }
   }
 }

@@ -59,7 +59,7 @@ export default {
     
      const myCoupon = adminCoupon.filter(item => item.user===this.$store.state.loginState.currentUser.email && item.isUsed===false && item.outOfDate===false)
      this.$store.state.myCoupon = myCoupon
-     console.log(this.$store.state.myCoupon)
+    //  console.log(this.$store.state.myCoupon)
      this.check_outOfDate()
    },
 
@@ -96,8 +96,8 @@ export default {
       })
       const PointUserData = userData.filter(item => item.email===this.$store.state.loginState.currentUser.email)
       this.$store.state.PointUserData = PointUserData
-      console.log('***pointUser: ')
-      console.log(PointUserData[0])
+      // console.log('***pointUser: ')
+      // console.log(PointUserData[0])
       this.getPointInfo()
     },
 
@@ -107,7 +107,7 @@ export default {
     this.$store.state.localPointState.point_current = c
     this.$store.state.localPointState.point_total = t
 
-    console.log('current point: ' + this.$store.state.localPointState.point_current)
+    // console.log('current point: ' + this.$store.state.localPointState.point_current)
   },
 
 
@@ -118,16 +118,16 @@ export default {
           
           const user = userCredential.user
           this.$store.state.loginState.currentUser = user
-          console.log('current User: ', user)
+          // console.log('current User: ', user)
           this.$store.state.loginState.isLoggedIn = true
-          console.log('여기부터 currentUser 메소드 실험 -----')
-          console.log(auth.currentUser.email)
-          console.log(this.$store.state.loginState.currentUser.email)
-          console.log('앞')
+          // console.log('여기부터 currentUser 메소드 실험 -----')
+          // console.log(auth.currentUser.email)
+          // console.log(this.$store.state.loginState.currentUser.email)
+          // console.log('앞')
           this.$store.dispatch('setCurrentUser', {
             payload: auth.currentUser.email
           })
-          console.log('뒤')
+          // console.log('뒤')
           // .then(this.$store.dispatch('setUploadInfo', {
           // }))
           this.$store.state.adminCoupon = []
@@ -137,21 +137,21 @@ export default {
           this.fetchUserData_point()
 
           if(this.$store.state.notLoggedInService==false) {
-            console.log('옵션 살리면서 로그인 성공')
+            // console.log('옵션 살리면서 로그인 성공')
             this.$store.commit('setnotLoggedInService')
             this.$router.push('/servicepay')
           }
 
           else if(this.$store.state.notLoggedInService==true) {
             if(this.$store.state.notLoggedInTemplate==false) {
-              console.log('템플릿 도중 로그인')
+              // console.log('템플릿 도중 로그인')
               this.$store.commit('setnotLoggedInTemplate')
-              console.log(this.$store.state.notLoggedInTemplate)
+              // console.log(this.$store.state.notLoggedInTemplate)
               this.$router.push('/surveytemplate')
             }
 
             else {
-              console.log('걍')
+              // console.log('걍')
               this.$router.push('/')
             }
           }
@@ -164,7 +164,7 @@ export default {
           const errorCode = error.code;
           const errorMsg = error.message;
 
-          console.log(errorCode)
+          // console.log(errorCode)
 
           if(error.code=="auth/invalid-email") {
             this.error = "유효하지 않은 이메일 형식입니다."

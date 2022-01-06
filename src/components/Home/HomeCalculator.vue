@@ -188,7 +188,7 @@ export default {
       var kr_diff = 9*60*60*1000
       var krr = new Date(utc+(kr_diff))
       var now = krr.toString().substring(16,21)
-      console.log(now);
+      // console.log(now);
       return now
     },
     
@@ -212,7 +212,7 @@ export default {
         hourOptionIndex = 6
       }
 
-      console.log('time', hourOptionIndex)
+      // console.log('time', hourOptionIndex)
       return hourOptionIndex
     }, 
     EngOptionCal() {
@@ -231,7 +231,7 @@ export default {
         EngIndex = 2
         this.EngText = "영어 설문입니다."
       }
-      console.log(EngIndex)
+      // console.log(EngIndex)
       return EngIndex
     }
   },
@@ -270,23 +270,23 @@ export default {
         this.$store.commit('setPointDiscountEmpty')
 
 
-        console.log(this.$store.state.localSurveyState.price);
-        console.log(this.$store.state.localSurveyState.identity);
-        console.log(this.$store.state.localSurveyState.spendTime);
-        console.log(this.$store.state.localSurveyState.requiredHeadCount);
-        console.log(this.$store.state.localSurveyState.ENTarget);
-        console.log(this.$store.state.localSurveyState.dueTime);
+        // console.log(this.$store.state.localSurveyState.price);
+        // console.log(this.$store.state.localSurveyState.identity);
+        // console.log(this.$store.state.localSurveyState.spendTime);
+        // console.log(this.$store.state.localSurveyState.requiredHeadCount);
+        // console.log(this.$store.state.localSurveyState.ENTarget);
+        // console.log(this.$store.state.localSurveyState.dueTime);
 
         if(this.$store.state.loginState.isLoggedIn==false) {
           alert('로그인이 필요한 서비스입니다.')
           this.$store.state.notLoggedInService = false
-          console.log('notLoggedInService')
+          // console.log('notLoggedInService')
           this.$router.push('/login')
           
         }
         if(this.$store.state.loginState.isLoggedIn==true) {
           this.$router.push('/servicepay');
-          console.log('isLoggedInService')
+          // console.log('isLoggedInService')
         }
       }
       

@@ -127,7 +127,7 @@ export default {
       const currentUser = this.$store.state.loginState.currentUser
 
       if(this.$store.state.loginState.currentUser.identity == 'default' && this.$store.state.loginState.currentUser.identity_request == false) {
-        console.log(this.$store.state.loginState.currentUser.identity)
+        // console.log(this.$store.state.loginState.currentUser.identity)
 
 
         await setDoc(doc(db, "identityVerifyRequired", currentUser.email.toString()), {
@@ -146,7 +146,7 @@ export default {
       )
       this.$store.state.userData = []
         await this.fetchUserData()
-        console.log(this.$store.state.loginState.currentUser.identity_request)
+        // console.log(this.$store.state.loginState.currentUser.identity_request)
       }
       else {
         alert('이미 인증을 완료하셨습니다.')

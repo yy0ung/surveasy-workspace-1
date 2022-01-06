@@ -206,7 +206,7 @@ methods:{
       alert('ok')
       this.$store.commit('setAdminState')
       this.fetchAdminData()
-      console.log(this.$store.state.userData)
+      // console.log(this.$store.state.userData)
     } else {
       alert('check it again')
     }
@@ -219,7 +219,7 @@ methods:{
     const adminDataB2B = this.$store.state.adminDataB2B
     const adminDataTemplate = this.$store.state.adminDataTemplate
     // 설문 확인 데이터 받기
-    const querySnapshot = await getDocs(collection(db,"adminRequired"))
+    const querySnapshot = await getDocs(collection(db,"surveyData"))
     querySnapshot.forEach((doc) => {
       adminData.push(doc.data())
     })
@@ -248,7 +248,7 @@ methods:{
 
   async updateApproved(payload) {
     var db = this.$store.state.db
-    const docref = doc(db, "adminRequired", payload.id.toString())
+    const docref = doc(db, "surveyData", payload.id.toString())
 
     await updateDoc(docref ,{
       adminApproved : true
@@ -270,13 +270,25 @@ methods:{
     await deleteDoc(doc(db, "identityVerifyRequired", payload.requestEmail.toString())).then(alert('ok')) 
   },
 
+  async fetchLastID(){
+        const db = this.$store.state.db
+        const lastID = []
+        const querySnapshot = await getDocs(collection(db, "lastID"))
+        querySnapshot.forEach((doc) => {
+          lastID.push(doc.data())
+        })
+        // console.log('fetch LastID')
+        // console.log(lastID[0].lastID)
+        return lastID[0].lastID
+      },
+
   async addPastData(dataset){
     var db = this.$store.state.db
-    var localLastID = this.$store.state.lastID[0].lastID
+    var lastID = await this.fetchLastID()
 
-    await setDoc(doc(db, "adminRequired", localLastID.toString()), {
+    await setDoc(doc(db, "surveyData", lastID.toString()), {
 
-      id : localLastID,
+      id : lastID,
       title : dataset.title,
       theme : dataset.theme,
       requiredHeadCount: dataset.requiredHeadCount,
@@ -299,12 +311,12 @@ methods:{
       // surveyInstitute:'',
       // surveyLink: '',
       // uploader:''
-    })
+    }).then(alert('완료'))
 
     var idDocref = doc(db, "lastID", "lastID")
     
     await updateDoc(idDocref, {
-      lastID : (localLastID + 1)
+      lastID : (lastID + 1)
     })
 
     console.log('완료')
@@ -312,7 +324,7 @@ methods:{
 
   async changeProgress1(targetID){
     var db = this.$store.state.db
-    var idDocref = doc(db, "adminRequired", targetID.toString())
+    var idDocref = doc(db, "surveyData", targetID.toString())
     await updateDoc( idDocref, {
       progress : 1
     })
@@ -321,7 +333,7 @@ methods:{
 
   async changeProgress2(targetID){
     var db = this.$store.state.db
-    var idDocref = doc(db, "adminRequired", targetID.toString())
+    var idDocref = doc(db, "surveyData", targetID.toString())
     await updateDoc( idDocref, {
       progress : 2
     })
@@ -330,7 +342,7 @@ methods:{
 
   async changeProgress3(targetID){
     var db = this.$store.state.db
-    var idDocref = doc(db, "adminRequired", targetID.toString())
+    var idDocref = doc(db, "surveyData", targetID.toString())
     await updateDoc( idDocref, {
       progress : 3
     })
@@ -377,7 +389,7 @@ computed:{
       }else{
         val =  "진행중"
       }
-      console.log(val)
+      // console.log(val)
       return val
   }
     

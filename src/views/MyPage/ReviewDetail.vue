@@ -88,7 +88,7 @@ export default {
   },
   methods: {
     async addData(reviewDetailData){
-      console.log(reviewDetailData)
+      // console.log(reviewDetailData)
       var db = this.$store.state.db
       if(reviewDetailData.Q1.length==0 || reviewDetailData.Q3.length==0){
         alert('필수 항목을 모두 채워주세요.')
@@ -125,14 +125,14 @@ export default {
       this.$store.state.localPointState.point_current = c
       this.$store.state.localPointState.point_total = t
 
-      console.log('current point: ' + this.$store.state.localPointState.point_current)
+      // console.log('current point: ' + this.$store.state.localPointState.point_current)
    },
 
      async pointADD() {
       var db = this.$store.state.db
       var currentUserEmail = this.$store.state.loginState.currentUser.email
       const docref = doc(db, "userData", currentUserEmail)
-      const docref2 = doc(db, "adminRequired", this.$route.params.id.toString())
+      const docref2 = doc(db, "surveyData", this.$route.params.id.toString())
 
       this.$store.state.loginState.currentUser.point_current = this.$store.state.loginState.currentUser.point_current + 500
       this.$store.state.loginState.currentUser.point_total = this.$store.state.loginState.currentUser.point_total + 500
@@ -149,7 +149,7 @@ export default {
       })
       
 
-      console.log("500")
+      // console.log("500")
 
       
     },
