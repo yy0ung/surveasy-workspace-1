@@ -264,7 +264,8 @@ methods:{
     
 
     await updateDoc(docref, {
-      identity: payload.requestIdentity
+      identity: payload.requestIdentity,
+      identity_responded: true
     })
 
     await deleteDoc(doc(db, "identityVerifyRequired", payload.requestEmail.toString())).then(alert('ok')) 

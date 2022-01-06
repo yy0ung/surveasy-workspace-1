@@ -9,13 +9,13 @@
           <option :value="{request: '대학생'}">대학생 (학부생)</option>
           <option :value="{request: '대학원생'}">대학원생</option>
       </select>
-      <p class="mi-detail">
-        해당하는 <span id="info-green">할인 대상</span>을 선택하고, 
-        하단의 <span id="info-green">'인증하러 가기'</span>를 통해 <br>카카오톡으로 대학(원)생임을 확인할 수 있는 자료를 보내주세요. </p>
+      <p class="mi-detail">하단의 <span id="info-green">'인증하러 가기'</span>를 통해 카카오톡으로 대학(원)생임을 확인할 수 있는 자료를 보내주세요. </p>
       
-    </div>   
-    <a  href="http://pf.kakao.com/_xfialK/chat" target="_blank"><button class="identity-btn" @click="yesFunc()">인증하러 가기</button></a>
-
+    </div>
+    <a  href="http://pf.kakao.com/_xfialK/chat" target="_blank"><button class="identity-btn" @click="sendRequestVerifyIdentity(this.identityRequest)">인증하러 가기</button></a>
+      
+        
+     
     <p class="identity-done" @click="noFunc()">이미 인증 요청을 완료했습니다.</p>
 
   </div>
@@ -33,7 +33,6 @@ export default {
   mounted() {
     window.scrollTo(0,0)
   },
-
   methods: {
     async fetchUserData(){
       const db = this.$store.state.db
@@ -44,9 +43,30 @@ export default {
       })
       
     },
+    async fetchUserData_point(){
+      const db = this.$store.state.db
+      this.$store.state.userData = []
+      this.$store.state.PointUserData = []
+      const userData = this.$store.state.userData
+      const querySnapshot = await getDocs(collection(db,"userData"))
+      querySnapshot.forEach((doc) => {
+        userData.push(doc.data())
+      })
+      const PointUserData = userData.filter(item => item.email===this.$store.state.loginState.currentUser.email)
+      this.$store.state.PointUserData = PointUserData
+      console.log(this.$store.state.PointUserData[0].identity_request)
+      // console.log(PointUserData[0])
+      this.getPointInfo()
+    },
+    getPointInfo() {
+      var c = this.$store.state.PointUserData[0].point_current
+      var t = this.$store.state.PointUserData[0].point_total
+      this.$store.state.localPointState.point_current = c
+      this.$store.state.localPointState.point_total = t
+      // console.log('current point: ' + this.$store.state.localPointState.point_current)
+    },
     yesFunc() {
       this.$router.push('/servicepaydone')
-
     },
     noFunc() {
       this.$router.push('/servicepaydone')
@@ -54,52 +74,44 @@ export default {
     async sendRequestVerifyIdentity(requestInfo) {
       const db = this.$store.state.db
       const currentUser = this.$store.state.loginState.currentUser
-
-      if(this.$store.state.loginState.currentUser.identity == 'default' && this.$store.state.loginState.currentUser.identity_request == false) {
-        // console.log(this.$store.state.loginState.currentUser.identity)
-
-
+      if(this.$store.state.PointUserData[0].identity_request == true) {
+        alert('이미 인증 요청을 보내셨습니다.')
+      }
+      else {
         await setDoc(doc(db, "identityVerifyRequired", currentUser.email.toString()), {
           requestIdentity: requestInfo.request,
           requestApproved: false,
           requestName: currentUser.name,
           requestEmail : currentUser.email
-        
         })
         await updateDoc(doc(db, "userData", currentUser.email.toString()), {
-          identity_request: true
+          identity_request: true,
+          identity: '인증 요청을 확인중입니다.'
+        })
+        .then( 
+          alert("요청이 전송되었습니다 !"),
+          this.$store.state.userData = [],
+          this.$store.state.PointUserData = [],
+          this.fetchUserData_point()
+        )
+      }
         
-
-      }).then(
-        alert("요청이 전송되었습니다 !")
-      )
-      this.$store.state.userData = []
-        await this.fetchUserData()
-        // console.log(this.$store.state.loginState.currentUser.identity_request)
-      }
-      else {
-        alert('이미 인증을 완료하셨습니다.')
-      }
     },
   }
-
 }
 </script>
 
 <style>
-
 .ServiceIdentity{
-  height: 400px;
-  margin-top: 150px;
+  height: 500px;
+  margin-top: 250px;
   font-family: 'Noto Sans KR', sans-serif;
 }
 .identity-title {
-  
   font-size: 2rem;
   font-weight: bold;
   color: #0AAB00;
   margin-bottom: 35px;
-
 }
 .identity-detail{
   font-size: 1.2rem;
@@ -124,7 +136,6 @@ export default {
 .identity-done{
   color: #b4afaf;
   text-decoration: underline;
-
   cursor: pointer;
 }
 #middle-select{

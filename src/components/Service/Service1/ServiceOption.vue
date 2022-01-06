@@ -315,7 +315,7 @@ export default {
 
 #service-option-notice {
   text-align: left;
-  color: rgb(118, 16, 196);
+  color: rgb(189, 36, 22);
   font-size: 11.5px;
   margin: 1px 0 0 42px;
   font-weight: 300;
@@ -405,7 +405,7 @@ input:checked + .slider:before {
   transform: translateX(16px);
 }
 .warn-msg{
-  color: rgb(127, 11, 189);
+  color: rgb(189, 36, 22);
   font-weight: 300;
   font-size: 0.7rem;
   text-align: left;
