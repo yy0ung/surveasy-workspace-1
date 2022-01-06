@@ -16,7 +16,7 @@
       <p class="black-title">완료된 설문</p>
       <p class="spinner-" v-if="show==0">
         <i class="fas fa-spinner"></i>
-          불러오는 중
+          불러오는 중 
       </p>
       <p class="green-bold" v-if="show==1">{{myCount2.length}}개</p>
     </div>
@@ -49,7 +49,9 @@
         <i class="fas fa-spinner"></i>
           불러오는 중
       </div>
-      
+    <div class="empty-ment">
+      {{ment}}
+      </div>
     <div class="bottom-list" v-for="item in (currentUserUploadInfo4)" :key="item.title">
       <p class="list-detail" v-if="show==1">
         <span id="sur-date">{{item.uploadDate}}</span>
@@ -76,7 +78,7 @@ export default {
       currentUserUploadInfo3:[],
       currentUserUploadInfo4:[],
       show:0,
-      
+      ment:'',
       myCount1: [],
       myCount2: [],
      
@@ -181,6 +183,9 @@ export default {
         }
       }
       this.currentUserUploadInfo4 = this.currentUserUploadInfo3;
+      if (this.currentUserUploadInfo4.length==0){
+        this.ment = '아직 업로드한 설문이 없습니다.'
+      }
       this.show=1
       for(var i=0; i<this.currentUserUploadInfo3.length; i++){
         if(this.currentUserUploadInfo3[i].progress<=2){
@@ -317,10 +322,10 @@ export default {
 #sur-title{
   margin-right: 10px;
   color: #0AAC00;
-  width: 120px;
+  width: 220px;
 }
 #sur-date{
-  margin-right: -40px;
+  margin-right: -10px;
   margin-left: 30px;
   width: 80px;
 }
@@ -336,10 +341,10 @@ export default {
   width: 90px;
 }
 .gray-title1{
-  margin-left: 420px;
+  margin-left: 465px;
 }
 .gray-title2{
-  margin-left: 113px;
+  margin-left: 70px;
 }
 .more{
   color: #848484;
@@ -369,4 +374,10 @@ export default {
   margin-top: 35px;
   margin-left: 90px;
 }
+.empty-ment{
+  text-align: center;
+  margin-top: 30px;
+  color: #848484;
+}
+
 </style>

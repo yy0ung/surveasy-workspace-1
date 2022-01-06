@@ -57,7 +57,7 @@
       
     </div>
 
-    <div class="middle-box"> 
+    <!-- <div class="middle-box"> 
       <p class="green-title">대학(원)생 인증 완료 요청 보내기 </p>
       <select name="" id="middle-select" v-model="identityRequest">
           <option :value="{request: ''}" selected disabled >인증하려는 할인 대상을 선택하세요</option>
@@ -68,7 +68,7 @@
       <p class="mi-detail">상단의 <span id="info-green">'대학(원)생 인증하러 가기'</span>를 통해 카카오톡으로 대학(원)생임을 확인할 수 있는 자료를 보내주세요.
         <br>자료 전송 후 인증 완료 <span id="info-green">'요청 보내기'</span>까지 눌러주셔야 원활한 인증이 가능합니다.
       </p>
-    </div>
+    </div> -->
 
 
     <div class="bottom-box">
@@ -102,7 +102,7 @@ import {doc, collection, getDocs, updateDoc, setDoc} from 'firebase/firestore'
 export default {
   data(){
     return {
-      identityRequest: '',
+      // identityRequest: '',
       marketingTF:{
         marketingSMS: false,
         marketingEmail: false
@@ -122,36 +122,36 @@ export default {
       
     },
 
-    async sendRequestVerifyIdentity(requestInfo) {
-      const db = this.$store.state.db
-      const currentUser = this.$store.state.loginState.currentUser
+    // async sendRequestVerifyIdentity(requestInfo) {
+    //   const db = this.$store.state.db
+    //   const currentUser = this.$store.state.loginState.currentUser
 
-      if(this.$store.state.loginState.currentUser.identity == 'default' && this.$store.state.loginState.currentUser.identity_request == false) {
-        // console.log(this.$store.state.loginState.currentUser.identity)
+    //   if(this.$store.state.loginState.currentUser.identity == 'default' && this.$store.state.loginState.currentUser.identity_request == false) {
+    //     // console.log(this.$store.state.loginState.currentUser.identity)
 
 
-        await setDoc(doc(db, "identityVerifyRequired", currentUser.email.toString()), {
-          requestIdentity: requestInfo.request,
-          requestApproved: false,
-          requestName: currentUser.name,
-          requestEmail : currentUser.email
+    //     await setDoc(doc(db, "identityVerifyRequired", currentUser.email.toString()), {
+    //       requestIdentity: requestInfo.request,
+    //       requestApproved: false,
+    //       requestName: currentUser.name,
+    //       requestEmail : currentUser.email
         
-        })
-        await updateDoc(doc(db, "userData", currentUser.email.toString()), {
-          identity_request: true
+    //     })
+    //     await updateDoc(doc(db, "userData", currentUser.email.toString()), {
+    //       identity_request: true
         
 
-      }).then(
-        alert("요청이 전송되었습니다 !")
-      )
-      this.$store.state.userData = []
-        await this.fetchUserData()
-        // console.log(this.$store.state.loginState.currentUser.identity_request)
-      }
-      else {
-        alert('이미 인증을 완료하셨습니다.')
-      }
-    },
+    //   }).then(
+    //     alert("요청이 전송되었습니다 !")
+    //   )
+    //   this.$store.state.userData = []
+    //     await this.fetchUserData()
+    //     // console.log(this.$store.state.loginState.currentUser.identity_request)
+    //   }
+    //   else {
+    //     alert('이미 인증을 완료하셨습니다.')
+    //   }
+    // },
 
     async marketingAgree(TF) {
       const db = this.$store.state.db
@@ -180,7 +180,7 @@ export default {
   font-family: 'Noto Sans KR', sans-serif;
   padding-bottom:50px;
 }
-.top-box, .middle-box, .bottom-box{
+.top-box, .bottom-box{
   background: #FFFFFF 0% 0% no-repeat padding-box;
   box-shadow: 0px 0px 5px #0000000D;
   border-radius: 15px;
@@ -257,7 +257,7 @@ export default {
   text-align: center;
   color: #848484;
 }
-#middle-select{
+/* #middle-select{
   border-radius: 10px;
   width: 250px;
   height: 28px;
@@ -269,11 +269,11 @@ export default {
 .middle-box .green-title{
   margin-top: 10px;
   
-}
+} */
 .mi-detail{
   font-size: 0.8rem;
 }
-.mi-btn{
+/* .mi-btn{
   font-family: 'Noto Sans KR', sans-serif;
   border: 1px solid #0AAC00;
   border-radius: 10px;
@@ -287,7 +287,7 @@ export default {
 .mi-btn:hover{
   color: white;
   background-color: #0AAC00;
-}
+} */
 #info-green{
   color: #0AAC00;
 }

@@ -7,7 +7,9 @@
         <i class="fas fa-spinner"></i>
           불러오는 중
       </div>
-
+      <div class="empty-ment2">{{ment}} 
+       <p> <router-link to="/service" class="btn-empty">{{go}}</router-link></p>
+      </div>
       <!-- <div>
         <table>
           <tr v-if="show==1">
@@ -75,7 +77,8 @@ export default {
       currentUserUploadIndexInfo:[],
       currentUserUploadIndexInfo2:[],
       show:0,
-      
+      ment:'',
+      go:''
       
     }
   },
@@ -105,7 +108,11 @@ export default {
         }
       }
 
-      this.currentUserUploadIndexInfo2 = this.currentUserUploadIndexInfo,
+      this.currentUserUploadIndexInfo2 = this.currentUserUploadIndexInfo;
+      if (this.currentUserUploadIndexInfo2.length==0){
+        this.ment = '아직 업로드한 설문이 없습니다.'
+        this.go = '설문 업로드하러 가기 >'
+      }
       this.show=1
     },
 
@@ -126,7 +133,7 @@ export default {
   font-size: 1.4rem;
   font-family: 'Noto Sans KR', sans-serif;
   color: #0AAC00;
-  margin-top: 300px;
+  margin-top: 150px;
 }
 .sur-box{
   background: #FFFFFF 0% 0% no-repeat padding-box;
@@ -176,6 +183,18 @@ export default {
 }
 #go-gray{
   color: #848484;
+}
+.empty-ment2{
+  text-align: center;
+  
+  font-size: 1.2rem;
+  margin-right: 70px;
+}
+.btn-empty{
+  text-align: center;
+  margin-top: 70px;
+  font-size: 1rem;
+  color: #0AAC00;
 }
 
 </style>
