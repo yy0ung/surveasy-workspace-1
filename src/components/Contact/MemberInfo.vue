@@ -3,7 +3,7 @@
     <div class="memberinfo-contents">
       <div>
       <p class="title">
-        <span @click="toggle1" :style="{color : fontcolor1}">아이디 비밀번호는 어디서 수정할 수 있나요?</span>
+        <span @click="toggle1" :style="{color : fontcolor1}" class="FAQ-title">아이디 비밀번호는 어디서 수정할 수 있나요?</span>
         <span @click="toggle1">
           <span v-if="showDetail1==false"><i class="fas fa-chevron-down"></i></span>
           <span v-if="showDetail1==true"><i class="fas fa-chevron-up"></i></span>
@@ -14,7 +14,7 @@
     </div>
     <div>
       <p class="title">
-        <span @click="toggle2" :style="{color : fontcolor2}">결제했던 내역은 어디서 볼 수 있나요?</span>
+        <span @click="toggle2" :style="{color : fontcolor2}" class="FAQ-title">결제했던 내역은 어디서 볼 수 있나요?</span>
         <span @click="toggle2">
           <span v-if="showDetail2==false"><i class="fas fa-chevron-down"></i></span>
           <span v-if="showDetail2==true"><i class="fas fa-chevron-up"></i></span>
@@ -64,5 +64,7 @@ export default {
 </script>
 
 <style>
-
+.FAQ-title {
+  cursor: pointer;
+}
 </style>

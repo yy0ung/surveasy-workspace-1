@@ -3,7 +3,7 @@
     <div class="service-contents">
       <div>
       <p class="title">
-        <span @click="toggle1" :style="{color : fontcolor1}">대학생만 설문을 올릴 수 있나요?</span>
+        <span @click="toggle1" :style="{color : fontcolor1}" class="FAQ-title">대학생만 설문을 올릴 수 있나요?</span>
         <span @click="toggle1">
           <span v-if="showDetail1==false"><i class="fas fa-chevron-down"></i></span>
           <span v-if="showDetail1==true"><i class="fas fa-chevron-up"></i></span>
@@ -13,7 +13,7 @@
     </div>
     <div>
       <p class="title">
-        <span @click="toggle2" :style="{color : fontcolor2}">원했던 응답 수만큼 응답이 모이지 않는 경우도 있나요?</span>
+        <span @click="toggle2" :style="{color : fontcolor2}" class="FAQ-title">원했던 응답 수만큼 응답이 모이지 않는 경우도 있나요?</span>
         <span @click="toggle2">
           <span v-if="showDetail2==false"><i class="fas fa-chevron-down"></i></span>
           <span v-if="showDetail2==true"><i class="fas fa-chevron-up"></i></span>
@@ -24,7 +24,7 @@
     </div>
     <div>
       <p class="title">
-        <span @click="toggle3" :style="{color : fontcolor3}">설문을 업로드하면 누가 응답해주나요?</span>
+        <span @click="toggle3" :style="{color : fontcolor3}" class="FAQ-title">설문을 업로드하면 누가 응답해주나요?</span>
         <span @click="toggle3">
           <span v-if="showDetail3==false"><i class="fas fa-chevron-down"></i></span>
           <span v-if="showDetail3==true"><i class="fas fa-chevron-up"></i></span>
@@ -34,7 +34,7 @@
     </div>
     <div>
       <p class="title">
-        <span @click="toggle4" :style="{color : fontcolor4}">설문 응답 서비스의 가격은 어떻게 되나요?</span>
+        <span @click="toggle4" :style="{color : fontcolor4}" class="FAQ-title">설문 응답 서비스의 가격은 어떻게 되나요?</span>
         <span @click="toggle4">
           <span v-if="showDetail4==false"><i class="fas fa-chevron-down"></i></span>
           <span v-if="showDetail4==true"><i class="fas fa-chevron-up"></i></span>
