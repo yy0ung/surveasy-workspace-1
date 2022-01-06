@@ -46,7 +46,7 @@
         <p class="info-detail">{{this.$store.state.loginState.currentUser['name']}}</p>
         <p class="info-detail">{{this.$store.state.loginState.currentUser['phoneNumber']}}</p>
         <p class="info-detail">{{this.$store.state.loginState.currentUser['birth']}}</p>
-        <p class="info-detail">{{identity_show}}</p>
+        <p class="info-detail">{{this.$store.state.PointUserData[0].identity}}</p>
         <!-- <p class="info-detail">환불 계좌</p> -->
         <!-- 환불계좌 언제 작성하게 하는지? -->
       </div>
@@ -109,14 +109,16 @@ export default {
         marketingSMS: false,
         marketingEmail: false
       },
+
+      identity: ''
       
     }
   },
 
   mounted() {
     this.fetchUserData_point()
-    this.identity_show()
   },
+
 
   methods: {
     async fetchUserData(){
@@ -128,6 +130,32 @@ export default {
       })
       
     },
+
+    async fetchUserData_point(){
+      const db = this.$store.state.db
+      this.$store.state.userData = []
+      this.$store.state.PointUserData = []
+      const userData = this.$store.state.userData
+      const querySnapshot = await getDocs(collection(db,"userData"))
+      querySnapshot.forEach((doc) => {
+        userData.push(doc.data())
+      })
+      const PointUserData = userData.filter(item => item.email===this.$store.state.loginState.currentUser.email)
+      this.$store.state.PointUserData = PointUserData
+      // console.log('***pointUser: ')
+      // console.log(PointUserData[0])
+      this.getPointInfo()
+    },
+
+    getPointInfo() {
+      var c = this.$store.state.PointUserData[0].point_current
+      var t = this.$store.state.PointUserData[0].point_total
+      this.$store.state.localPointState.point_current = c
+      this.$store.state.localPointState.point_total = t
+
+      // console.log('current point: ' + this.$store.state.localPointState.point_current)
+    },
+
 
     // async sendRequestVerifyIdentity(requestInfo) {
     //   const db = this.$store.state.db
@@ -170,7 +198,7 @@ export default {
         alert('저장되었습니다.')
       )
 
-    }
+    },
 
     
   },
