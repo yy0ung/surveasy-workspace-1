@@ -33,7 +33,6 @@ export default {
   mounted() {
     window.scrollTo(0,0)
   },
-
   methods: {
     async fetchUserData(){
       const db = this.$store.state.db
@@ -44,7 +43,6 @@ export default {
       })
       
     },
-
     async fetchUserData_point(){
       const db = this.$store.state.db
       this.$store.state.userData = []
@@ -60,33 +58,25 @@ export default {
       // console.log(PointUserData[0])
       this.getPointInfo()
     },
-
     getPointInfo() {
       var c = this.$store.state.PointUserData[0].point_current
       var t = this.$store.state.PointUserData[0].point_total
       this.$store.state.localPointState.point_current = c
       this.$store.state.localPointState.point_total = t
-
       // console.log('current point: ' + this.$store.state.localPointState.point_current)
     },
-
     yesFunc() {
       this.$router.push('/servicepaydone')
-
     },
-
     noFunc() {
       this.$router.push('/servicepaydone')
     },
-
     async sendRequestVerifyIdentity(requestInfo) {
       const db = this.$store.state.db
       const currentUser = this.$store.state.loginState.currentUser
-
       if(this.$store.state.PointUserData[0].identity_request == true) {
         alert('이미 인증 요청을 보내셨습니다.')
       }
-
       else {
         await setDoc(doc(db, "identityVerifyRequired", currentUser.email.toString()), {
           requestIdentity: requestInfo.request,
@@ -94,7 +84,6 @@ export default {
           requestName: currentUser.name,
           requestEmail : currentUser.email
         })
-
         await updateDoc(doc(db, "userData", currentUser.email.toString()), {
           identity_request: true,
           identity: '인증 요청을 확인중입니다.'
@@ -109,12 +98,10 @@ export default {
         
     },
   }
-
 }
 </script>
 
 <style>
-
 .ServiceIdentity{
   height: 500px;
   margin-top: 250px;
@@ -125,7 +112,6 @@ export default {
   font-weight: bold;
   color: #0AAB00;
   margin-bottom: 35px;
-
 }
 .identity-detail{
   font-size: 1.2rem;
@@ -150,7 +136,6 @@ export default {
 .identity-done{
   color: #b4afaf;
   text-decoration: underline;
-
   cursor: pointer;
 }
 #middle-select{
