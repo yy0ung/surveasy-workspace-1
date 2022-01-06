@@ -12,7 +12,7 @@
       <p class="mi-detail">하단의 <span id="info-green">'인증하러 가기'</span>를 통해 카카오톡으로 대학(원)생임을 확인할 수 있는 자료를 보내주세요. </p>
       
     </div>
-    <a  href="http://pf.kakao.com/_xfialK/chat" target="_blank"><button class="identity-btn" @click="sendRequestVerifyIdentity(this.identityRequest)">인증하러 가기</button></a>
+    <a  href="http://pf.kakao.com/_xfialK/chat" target="_blank"><button class="identity-btn" @click="sendRequestVerifyIdentity(this.identityRequest); yesFunc();">인증하러 가기</button></a>
       
         
      
@@ -103,7 +103,7 @@ export default {
           alert("요청이 전송되었습니다 !"),
           this.$store.state.userData = [],
           this.$store.state.PointUserData = [],
-          this.fetchUserData_point()
+          this.fetchUserData_point(),
         )
       }
         
