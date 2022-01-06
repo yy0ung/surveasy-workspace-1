@@ -260,7 +260,7 @@ export default createStore({
     //   console.log(uploadIndex)
 
     //   for (var index in uploadIndex){
-    //     var docRef = doc(db, "adminRequired", uploadIndex[index].toString())
+    //     var docRef = doc(db, "surveyData", uploadIndex[index].toString())
     //     var docSnap = await getDoc(docRef)
     //       .then((data) => {
     //         commit('setCurrentUserUploadInfo', data.data())

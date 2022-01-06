@@ -88,13 +88,14 @@ export default {
   },
   methods: {
     async addData(reviewDetailData){
-      console.log(reviewDetailData)
+      // console.log(reviewDetailData)
       var db = this.$store.state.db
       if(reviewDetailData.Q1.length==0 || reviewDetailData.Q3.length==0){
         alert('필수 항목을 모두 채워주세요.')
       }else{
-        await setDoc(doc(db, "reviewDetailData", reviewDetailData.title),{
-          surveyID: reviewDetailData.title,
+        await setDoc(doc(db, "reviewDetailData", reviewDetailData.id),{
+          surveyID: reviewDetailData.id,
+          surveyTITLE: reviewDetailData.title,
           Q1: reviewDetailData.Q1,
           Q1etc: reviewDetailData.Q1etc,
           Q2: reviewDetailData.Q2,
@@ -106,50 +107,55 @@ export default {
       }
     },
 
-    async fetchUserData(){
+    async fetchUserData_point(){
       const db = this.$store.state.db
+      this.$store.state.userData = []
+      this.$store.state.PointUserData = []
       const userData = this.$store.state.userData
       const querySnapshot = await getDocs(collection(db,"userData"))
       querySnapshot.forEach((doc) => {
         userData.push(doc.data())
       })
-      
+      const PointUserData = userData.filter(item => item.email===this.$store.state.loginState.currentUser.email)
+      this.$store.state.PointUserData = PointUserData
+      console.log('***pointUser: ')
+      console.log(PointUserData[0])
+      this.getPointInfo()
     },
 
-    async getPointInfo() {
-      this.$store.state.userData = []
-      await this.fetchUserData()
-
-      var c = this.$store.state.loginState.currentUser.point_current
-      var t = this.$store.state.loginState.currentUser.point_total
+    getPointInfo() {
+      var c = this.$store.state.PointUserData[0].point_current
+      var t = this.$store.state.PointUserData[0].point_total
       this.$store.state.localPointState.point_current = c
       this.$store.state.localPointState.point_total = t
 
-      console.log('current point: ' + this.$store.state.localPointState.point_current)
-   },
+
+      // console.log('current point: ' + this.$store.state.PointUserData[0].point_current)
+    },
+
 
      async pointADD() {
       var db = this.$store.state.db
       var currentUserEmail = this.$store.state.loginState.currentUser.email
       const docref = doc(db, "userData", currentUserEmail)
-      const docref2 = doc(db, "adminRequired", this.$route.params.id.toString())
+      const docref2 = doc(db, "surveyData", this.$route.params.id.toString())
 
-      this.$store.state.loginState.currentUser.point_current = this.$store.state.loginState.currentUser.point_current + 500
-      this.$store.state.loginState.currentUser.point_total = this.$store.state.loginState.currentUser.point_total + 500
+      this.$store.state.PointUserData[0].point_current = this.$store.state.PointUserData[0].point_current + 500
+      this.$store.state.PointUserData[0].point_total = this.$store.state.PointUserData[0].point_total + 500
 
       await updateDoc(docref, { 
-          point_current: this.$store.state.loginState.currentUser.point_current,
-          point_total: this.$store.state.loginState.currentUser.point_total
+          point_current: this.$store.state.PointUserData[0].point_current,
+          point_total: this.$store.state.PointUserData[0].point_total
       })
       
-      await this.getPointInfo()
+      this.fetchUserData_point()
 
       await updateDoc(docref2, {
         progress : 4
       })
       
 
-      console.log("500")
+      // console.log("500")
 
       
     },
