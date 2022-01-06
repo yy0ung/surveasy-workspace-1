@@ -107,27 +107,30 @@ export default {
       }
     },
 
-    async fetchUserData(){
+    async fetchUserData_point(){
       const db = this.$store.state.db
+      this.$store.state.userData = []
+      this.$store.state.PointUserData = []
       const userData = this.$store.state.userData
       const querySnapshot = await getDocs(collection(db,"userData"))
       querySnapshot.forEach((doc) => {
         userData.push(doc.data())
       })
-      
+      const PointUserData = userData.filter(item => item.email===this.$store.state.loginState.currentUser.email)
+      this.$store.state.PointUserData = PointUserData
+      console.log('***pointUser: ')
+      console.log(PointUserData[0])
+      this.getPointInfo()
     },
 
-    async getPointInfo() {
-      this.$store.state.userData = []
-      await this.fetchUserData()
-
-      var c = this.$store.state.loginState.currentUser.point_current
-      var t = this.$store.state.loginState.currentUser.point_total
+    getPointInfo() {
+      var c = this.$store.state.PointUserData[0].point_current
+      var t = this.$store.state.PointUserData[0].point_total
       this.$store.state.localPointState.point_current = c
       this.$store.state.localPointState.point_total = t
 
-      console.log('current point: ' + this.$store.state.localPointState.point_current)
-   },
+      console.log('current point: ' + this.$store.state.PointUserData[0].point_current)
+    },
 
      async pointADD() {
       var db = this.$store.state.db
@@ -135,15 +138,15 @@ export default {
       const docref = doc(db, "userData", currentUserEmail)
       const docref2 = doc(db, "adminRequired", this.$route.params.id.toString())
 
-      this.$store.state.loginState.currentUser.point_current = this.$store.state.loginState.currentUser.point_current + 500
-      this.$store.state.loginState.currentUser.point_total = this.$store.state.loginState.currentUser.point_total + 500
+      this.$store.state.PointUserData[0].point_current = this.$store.state.PointUserData[0].point_current + 500
+      this.$store.state.PointUserData[0].point_total = this.$store.state.PointUserData[0].point_total + 500
 
       await updateDoc(docref, { 
-          point_current: this.$store.state.loginState.currentUser.point_current,
-          point_total: this.$store.state.loginState.currentUser.point_total
+          point_current: this.$store.state.PointUserData[0].point_current,
+          point_total: this.$store.state.PointUserData[0].point_total
       })
       
-      await this.getPointInfo()
+      this.fetchUserData_point()
 
       await updateDoc(docref2, {
         progress : 4
