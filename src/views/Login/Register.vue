@@ -260,6 +260,7 @@ export default {
                 uploadIndex: [],
                 identity: 'default',
                 identity_request: false,
+                identity_responded: false,
                 funnel : dataSet.funnel,
                 respondArray: [],
                 clientGrade: 0,

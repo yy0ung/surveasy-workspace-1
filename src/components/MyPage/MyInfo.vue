@@ -37,6 +37,7 @@
         <p class="info-title">이름</p>
         <p class="info-title">휴대폰 번호</p>
         <p class="info-title">생년월일</p>
+        <p class="info-title">할인대상</p>
        
       </div>
       <div class="info-contents2">
@@ -45,6 +46,7 @@
         <p class="info-detail">{{this.$store.state.loginState.currentUser['name']}}</p>
         <p class="info-detail">{{this.$store.state.loginState.currentUser['phoneNumber']}}</p>
         <p class="info-detail">{{this.$store.state.loginState.currentUser['birth']}}</p>
+        <p class="info-detail">{{identity_show}}</p>
         <!-- <p class="info-detail">환불 계좌</p> -->
         <!-- 환불계좌 언제 작성하게 하는지? -->
       </div>
@@ -111,6 +113,11 @@ export default {
     }
   },
 
+  mounted() {
+    this.fetchUserData_point()
+    this.identity_show()
+  },
+
   methods: {
     async fetchUserData(){
       const db = this.$store.state.db
@@ -122,11 +129,36 @@ export default {
       
     },
 
+    async fetchUserData_point(){
+      const db = this.$store.state.db
+      this.$store.state.userData = []
+      this.$store.state.PointUserData = []
+      const userData = this.$store.state.userData
+      const querySnapshot = await getDocs(collection(db,"userData"))
+      querySnapshot.forEach((doc) => {
+        userData.push(doc.data())
+      })
+      const PointUserData = userData.filter(item => item.email===this.$store.state.loginState.currentUser.email)
+      this.$store.state.PointUserData = PointUserData
+      console.log('identity ')
+      // console.log(PointUserData[0])
+      this.getPointInfo()
+    },
+
+    getPointInfo() {
+      var c = this.$store.state.PointUserData[0].point_current
+      var t = this.$store.state.PointUserData[0].point_total
+      this.$store.state.localPointState.point_current = c
+      this.$store.state.localPointState.point_total = t
+
+      // console.log('current point: ' + this.$store.state.localPointState.point_current)
+    },
+
     async sendRequestVerifyIdentity(requestInfo) {
       const db = this.$store.state.db
       const currentUser = this.$store.state.loginState.currentUser
 
-      if(this.$store.state.loginState.currentUser.identity == 'default' && this.$store.state.loginState.currentUser.identity_request == false) {
+      if(this.$store.state.loginState.currentUser.identity_request == false) {
         // console.log(this.$store.state.loginState.currentUser.identity)
 
 
@@ -138,18 +170,21 @@ export default {
         
         })
         await updateDoc(doc(db, "userData", currentUser.email.toString()), {
-          identity_request: true
+          identity_request: true,
         
 
       }).then(
         alert("요청이 전송되었습니다 !")
       )
       this.$store.state.userData = []
-        await this.fetchUserData()
+        await this.fetchUserData_point()
         // console.log(this.$store.state.loginState.currentUser.identity_request)
       }
-      else {
-        alert('이미 인증을 완료하셨습니다.')
+      else if(this.$store.state.loginState.currentUser.identity_request == true && this.$store.state.loginState.currentUser.identity_responded == false){
+        alert('이미 인증 요청을 완료하셨습니다.')
+      }
+      else if(this.$store.state.loginState.currentUser.identity_request == true && this.$store.state.loginState.currentUser.identity_responded == true){
+        alert('이미 인증이 완료되었습니다.')
       }
     },
 
@@ -166,6 +201,21 @@ export default {
     }
 
     
+  },
+
+  computed:{
+    identity_show() {
+      const currentUser = this.$store.state.loginState.currentUser
+      if(currentUser.identity_request==false) {
+        return '할인 대상이 아닙니다.'
+      }
+      else if(currentUser.identity_request==true && currentUser.identity_responded==false) {
+        return '인증 요청 확인중입니다.'
+      }
+      else if(currentUser.identity_request==true && currentUser.identity_responded==true) {
+        return currentUser.identity
+      }
+    }
   }
 
 }
