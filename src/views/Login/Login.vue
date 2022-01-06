@@ -6,13 +6,13 @@
       <input type="email" placeholder="아이디 (이메일)" v-model="email">
     </li>
     <li>
-      <input type="password" placeholder="비밀번호" v-model="password">
+      <input type="password" placeholder="비밀번호" v-model="password" @keyup.enter="signIn">
     </li>
     <li>
       <div class="error">{{ error }}</div>
     </li>
     <li>
-      <button class="loginbtn" @click="signIn">로그인하기</button>
+      <button type="submit" class="loginbtn" @click="signIn">로그인하기</button>
     </li>
     
   </div>
@@ -183,7 +183,12 @@ export default {
 
       
       
-    }
+    },
+    // enterkey(e){
+      
+    //     document.getElementsByClassName('loginbtn').click()
+      
+    // }
 
   }
 }

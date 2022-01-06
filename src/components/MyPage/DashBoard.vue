@@ -327,7 +327,7 @@ export default {
 #sur-pay{
   /* margin-left: 40px; */
 
-  width: 65px;
+  width: 85px;
   text-align: right;
 }
 #sur-detail{
