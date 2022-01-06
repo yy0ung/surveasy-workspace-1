@@ -57,7 +57,7 @@
         <span id="sur-pay">{{priceToString(item.price)}}원</span>
         <router-link to="/surveylist" id="sur-detail" v-if="item.progress==2">설문 보러가기</router-link>
         <span id="sur-detail" v-if="item.progress==0 || item.progress==1 || item.progress==4"></span>
-        <router-link :to="`/review/${item.title}`" id="sur-detail" v-if="item.progress==3">후기 작성하기</router-link>
+        <router-link :to="`/review/${item.id}/${item.title}`" id="sur-detail" v-if="item.progress==3">후기 작성하기</router-link>
       </p>
       
     </div>
