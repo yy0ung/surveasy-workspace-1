@@ -93,7 +93,7 @@ export default {
 
       for (var index in currentUserUploadIndex){
         
-        var docRef = doc(db, "adminRequired", currentUserUploadIndex[index].toString())
+        var docRef = doc(db, "surveyData", currentUserUploadIndex[index].toString())
         
         var docSnap = await getDoc(docRef)
         

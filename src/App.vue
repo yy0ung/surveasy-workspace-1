@@ -126,7 +126,7 @@ export default {
     async fetchSurveyData(){
       const db = this.$store.state.db
       const surveyData = this.$store.state.surveyData
-      const querySnapshot = await getDocs(collection(db, "adminRequired"))
+      const querySnapshot = await getDocs(collection(db, "surveyData"))
       querySnapshot.forEach((doc)=> {
         var dataSet = []
         if (doc.data().progress == 3 || doc.data().progress == 2) {

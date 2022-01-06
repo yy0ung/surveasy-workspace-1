@@ -108,8 +108,8 @@ export default {
       })
       const PointUserData = userData.filter(item => item.email===this.$store.state.loginState.currentUser.email)
       this.$store.state.PointUserData = PointUserData
-      console.log('***pointUser: ')
-      console.log(PointUserData[0])
+      // console.log('***pointUser: ')
+      // console.log(PointUserData[0])
       this.getPointInfo()
     },
 
@@ -119,7 +119,7 @@ export default {
       this.$store.state.localPointState.point_current = c
       this.$store.state.localPointState.point_total = t
 
-      console.log('current point: ' + this.$store.state.localPointState.point_current)
+      // console.log('current point: ' + this.$store.state.localPointState.point_current)
     },
 
     
@@ -138,7 +138,7 @@ export default {
 
       const myCoupon = adminCoupon.filter(item => item.user===this.$store.state.loginState.currentUser.email && item.isUsed===false && item.outOfDate===false)
       this.$store.state.myCoupon = myCoupon
-      console.log(this.$store.state.myCoupon)
+      // console.log(this.$store.state.myCoupon)
    },
 
    async fetchUserData(){
@@ -160,7 +160,7 @@ export default {
       this.$store.state.localPointState.point_current = c
       this.$store.state.localPointState.point_total = t
 
-      console.log('current point: ' + this.$store.state.localPointState.point_current)
+      // console.log('current point: ' + this.$store.state.localPointState.point_current)
    },
     
     async fetchCount(){
@@ -169,7 +169,7 @@ export default {
       
       for (var index in cIndex){
         
-        var docRef = doc(db, "adminRequired", cIndex[index].toString())
+        var docRef = doc(db, "surveyData", cIndex[index].toString())
         
         var docSnap = await getDoc(docRef)
         
@@ -189,7 +189,7 @@ export default {
         }else if(this.currentUserUploadInfo3[i].progress==3 || this.currentUserUploadInfo3[i].progress==4){
           this.myCount2.push(this.currentUserUploadInfo3[i].progress)
         }
-        console.log(this.currentUserUploadInfo3[i].progress)
+        // console.log(this.currentUserUploadInfo3[i].progress)
       }
       
       
@@ -201,7 +201,7 @@ export default {
       
     //   for (var index in cIndex){
         
-    //     var docRef = doc(db, "adminRequired", cIndex[index].toString())
+    //     var docRef = doc(db, "surveyData", cIndex[index].toString())
         
     //     var docSnap = await getDoc(docRef)
         
