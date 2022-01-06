@@ -14,12 +14,12 @@
     <span class="grade-img" v-if="grade<=2"><img src="@/assets/myPage/gradeOne.png" width="85"></span>
     <span class="grade-img" v-if="grade>=3&&grade<=9"><img src="@/assets/myPage/gradeTwo.png" width="85"></span>
     <span class="grade-img" v-if="grade>=10"><img src="@/assets/myPage/gradeThree.png" width="85"></span>
-    <div class="client-grade-text" @click="showClientModal()">고객 등급 알아보기</div>
+    <div class="client-grade-text" @click="showClientModal()"><i class="fas fa-question-circle"></i> 고객 등급 알아보기</div>
 
     <div class="client-grade-modal" v-if="showclientmodal==true">
       <div class="client-grade-container">
         <div class="client-grade-notice">
-          <button class="client-grade-closeBTN" @click="showClientModal()">x</button>
+          <button class="client-grade-closeBTN" @click="showClientModal()"><i class="fas fa-times"></i></button>
 
           <p class="client-grade-green">서베이지 고객 등급 안내</p>
           <p class="grade-detail">고객 등급의 기준과 등급에 따른 혜택을 확인하세요!</p>

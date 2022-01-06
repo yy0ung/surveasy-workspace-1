@@ -29,7 +29,7 @@
             <span class="option-title">마감기한 지정</span>
             <input type="Date" class="date" :min="min" :max="getDateStr" v-model="aa" required> 
             <input type="time" class="time" v-model="bb" required>
-            <p class="warn-msg">마감날짜와 마감시간 중 공란이 존재할 경우 <br>설문 게시가 어려울 수 있습니다.</p>
+            <p class="warn-msg">마감날짜와 마감시간 중 공란이 존재할 경우 <br> 설문 게시가 어려울 수 있습니다.</p>
           </li>
           
           <li class="hasTitleOption">
@@ -315,7 +315,7 @@ export default {
 
 #service-option-notice {
   text-align: left;
-  color: red;
+  color: rgb(118, 16, 196);
   font-size: 11.5px;
   margin: 1px 0 0 42px;
   font-weight: 300;
@@ -405,7 +405,7 @@ input:checked + .slider:before {
   transform: translateX(16px);
 }
 .warn-msg{
-  color: red;
+  color: rgb(127, 11, 189);
   font-weight: 300;
   font-size: 0.7rem;
   text-align: left;
