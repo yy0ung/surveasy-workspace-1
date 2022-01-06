@@ -3,7 +3,7 @@
     <div class="template-contents">
       <div>
       <p class="title"  >
-        <span @click="toggle1" :style="{color : fontcolor1}">결제 방법은 어떻게 되나요?</span>
+        <span @click="toggle1" :style="{color : fontcolor1}" class="FAQ-title">결제 방법은 어떻게 되나요?</span>
         <span @click="toggle1">
           <span v-if="showDetail1==false"><i class="fas fa-chevron-down"></i></span>
           <span v-if="showDetail1==true"><i class="fas fa-chevron-up"></i></span>
@@ -14,7 +14,7 @@
     </div>
     <div>
       <p class="title">
-        <span @click="toggle2" :style="{color : fontcolor2}">결제 후 전액환불이 가능한가요?</span>
+        <span @click="toggle2" :style="{color : fontcolor2}" class="FAQ-title">결제 후 전액환불이 가능한가요?</span>
         <span @click="toggle2">
           <span v-if="showDetail2==false"><i class="fas fa-chevron-down"></i></span>
           <span v-if="showDetail2==true"><i class="fas fa-chevron-up"></i></span>
@@ -25,7 +25,7 @@
     </div>
     <div>
       <p class="title">
-        <span @click="toggle3" :style="{color : fontcolor3}">‘설문 응답 서비스’의 응답 수 미충족 시, 환불 절차는 어떻게 되나요?</span>
+        <span @click="toggle3" :style="{color : fontcolor3}" class="FAQ-title">‘설문 응답 서비스’의 응답 수 미충족 시, 환불 절차는 어떻게 되나요?</span>
         <span @click="toggle3">
           <span v-if="showDetail3==false"><i class="fas fa-chevron-down"></i></span>
           <span v-if="showDetail3==true"><i class="fas fa-chevron-up"></i></span>
