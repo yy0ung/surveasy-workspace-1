@@ -97,6 +97,7 @@
 import { initializeApp } from 'firebase/app'
 import { getFirestore,collection, getDocs } from 'firebase/firestore'
 import { getAnalytics } from 'firebase/analytics'
+// import browserDetect from 'vue-browser-detect-plugin'
 // import { event } from 'vue-gtag'
 // import { orderBy,sortBy } from 'lodash'
 import { getAuth, onAuthStateChanged } from 'firebase/auth'
@@ -110,7 +111,8 @@ export default {
     this.$store.commit('setDB', db)
     this.fetchUserData()
     this.fetchSurveyData()
-    alert(this.$browserDetect.meta.name)
+    // this.bd()
+    // alert(this.$browserDetect.meta.name)
     // this.fetchLastID()
     // const mount = () => {
     //   event('login', { method: 'Google' })
@@ -152,6 +154,7 @@ export default {
       
       
     },
+    
 
     
 
