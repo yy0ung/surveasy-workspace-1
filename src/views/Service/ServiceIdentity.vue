@@ -76,6 +76,7 @@ export default {
       const currentUser = this.$store.state.loginState.currentUser
       if(this.$store.state.PointUserData[0].identity_request == true) {
         alert('이미 인증 요청을 보내셨습니다.')
+        this.yesFunc()
       }
       else {
         await setDoc(doc(db, "identityVerifyRequired", currentUser.email.toString()), {
@@ -92,9 +93,11 @@ export default {
           alert("요청이 전송되었습니다 !"),
           this.$store.state.userData = [],
           this.$store.state.PointUserData = [],
-          this.fetchUserData_point()
+          this.fetchUserData_point(),
+          this.yesFunc()
         )
       }
+      
         
     },
   }

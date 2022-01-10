@@ -85,6 +85,7 @@ export default {
 
       if(this.$store.state.PointUserData[0].identity_request == true) {
         alert('이미 인증 요청을 보내셨습니다.')
+        this.yesFunc()
       }
 
       else {
@@ -104,6 +105,7 @@ export default {
           this.$store.state.userData = [],
           this.$store.state.PointUserData = [],
           this.fetchUserData_point(),
+          this.yesFunc()
         )
       }
         

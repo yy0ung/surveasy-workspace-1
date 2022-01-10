@@ -5,13 +5,41 @@
       <div class="knowhow-green">설문 노하우 페이지 준비중입니다.</div>
       <div class="knowhow-black">서베이지의 다양한 설문 노하우를 기대해주세요!</div>
       <div class="knowhow-email-text">설문 노하우 서비스 출시 후 소식을 받아보고 싶으신가요? <br> 하단에 이메일 주소를 남겨주세요.</div>
-      <div><input class="knowhow-email-input" placeholder="이메일 주소를 입력해주세요"><button class=" knowhow-email-btn">소식 받기 신청</button></div>
+      <div><input class="knowhow-email-input" placeholder="이메일 주소를 입력해주세요" v-model="knowhow_email"><button class=" knowhow-email-btn" @click="EmailADD()">소식 받기 신청</button></div>
     </div>
   </div>
 </template>
 
 <script>
+import { getDocs, setDoc, updateDoc, doc, collection } from 'firebase/firestore';
 export default {
+  data() {
+    return {
+      knowhow_email: ''
+    }
+    
+  },
+
+  methods: {
+    async EmailADD() {
+      const db = this.$store.state.db
+
+      if(this.knowhow_email != '') {
+        await setDoc(doc(db, "KnowhowEmailData", this.knowhow_email), {
+          email: this.knowhow_email,
+        })
+
+        alert('설문 노하우 서비스가 출시되면 기재하신 이메일로 안내드리겠습니다.')
+
+      }
+
+      else {
+        alert('이메일을 입력해주세요.')
+      }
+      
+      
+    }
+  }
 
 }
 </script>
