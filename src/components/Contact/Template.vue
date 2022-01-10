@@ -4,7 +4,7 @@
       <div>
       <p class="title">
         <span @click="toggle1" :style="{color : fontcolor1}" class="FAQ-title">템플릿의 종류는 어떻게 되나요?</span>
-        <span @click="toggle1">
+        <span @click="toggle1" :style="{color : black }">
           <span v-if="showDetail1==false"><i class="fas fa-chevron-down"></i></span>
           <span v-if="showDetail1==true"><i class="fas fa-chevron-up"></i></span>
         </span>
@@ -14,7 +14,7 @@
     <div>
       <p class="title">
         <span @click="toggle2" :style="{color : fontcolor2}" class="FAQ-title">설문 템플릿의 가격은 어떻게 되나요?</span>
-        <span @click="toggle2">
+        <span @click="toggle2" :style="{color : black }">
           <span v-if="showDetail2==false"><i class="fas fa-chevron-down"></i></span>
           <span v-if="showDetail2==true"><i class="fas fa-chevron-up"></i></span>
         </span>
@@ -24,7 +24,7 @@
     <div>
       <p class="title">
         <span @click="toggle3" :style="{color : fontcolor3}" class="FAQ-title">이메일 주소를 작성한 후, 설문 템플릿을 바로 공유받을 수 있나요?</span>
-        <span @click="toggle3">
+        <span @click="toggle3" :style="{color : black }">
           <span v-if="showDetail3==false"><i class="fas fa-chevron-down"></i></span>
           <span v-if="showDetail3==true"><i class="fas fa-chevron-up"></i></span>
         </span>
@@ -35,7 +35,7 @@
     <div>
       <p class="title">
         <span @click="toggle4" :style="{color : fontcolor4}" class="FAQ-title">설문 템플릿의 설문 문항을 바꾸거나 추가할 수 있나요?</span>
-        <span @click="toggle4">
+        <span @click="toggle4" :style="{color : black }">
           <span v-if="showDetail4==false"><i class="fas fa-chevron-down"></i></span>
           <span v-if="showDetail4==true"><i class="fas fa-chevron-up"></i></span>
         </span>

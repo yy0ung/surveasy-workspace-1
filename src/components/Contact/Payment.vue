@@ -87,5 +87,7 @@ export default {
 </script>
 
 <style>
-
+.detail {
+  color: black;
+}
 </style>

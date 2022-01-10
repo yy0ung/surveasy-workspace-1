@@ -27,7 +27,7 @@
 </template>
 
 <script>
-import { setDoc, doc } from 'firebase/firestore';
+import { getDocs, setDoc, updateDoc, doc, collection } from 'firebase/firestore';
 export default {
   data() {
     return {
@@ -51,6 +51,9 @@ export default {
     async addData(reviewData){
         // console.log(reviewData)
         var db = this.$store.state.db
+        const docref2 = doc(db, "surveyData", this.$route.params.id.toString())
+
+
         if(reviewData.score==0){
           alert('점수는 1점 이상부터 작성 가능합니다.')
         }else if(reviewData.reviewText.length==0){
@@ -66,6 +69,10 @@ export default {
           reviewDetail: reviewData.reviewText,
           check: false
         }),
+
+        await updateDoc(docref2, {
+          progress: 4
+        })
         
         this.$router.push(`/reviewdone/${this.$route.params.id}/${this.$route.params.title}`)
         }
