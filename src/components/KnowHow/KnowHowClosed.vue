@@ -4,9 +4,8 @@
       <div><img class="knowhow-checkimg" src="@/assets/check.png" width="130"></div>
       <div class="knowhow-green">설문 노하우 페이지 준비중입니다.</div>
       <div class="knowhow-black">서베이지의 다양한 설문 노하우를 기대해주세요!</div>
-      <div class="knowhow-email-text">설문 노하우 서비스 출시 후 소식을 받아보고 싶으신 분께서는<br> 이메일 주소를 남겨주세요.</div>
-      <div><input class="knowhow-email-input" placeholder="이메일 주소를 입력해주세요"> </div>
-      <div><button class=" knowhow-email-btn">소식 받기 신청</button></div>
+      <div class="knowhow-email-text">설문 노하우 서비스 출시 후 소식을 받아보고 싶으신가요? <br> 하단에 이메일 주소를 남겨주세요.</div>
+      <div><input class="knowhow-email-input" placeholder="이메일 주소를 입력해주세요"><button class=" knowhow-email-btn">소식 받기 신청</button></div>
     </div>
   </div>
 </template>
@@ -60,14 +59,25 @@ export default {
 .knowhow-email-text {
   color: #bbbbbb;
   font-size: 15px;
+  margin-top: 20px;
+  font-weight: lighter;
 }
 .knowhow-email-input {
   margin: 10px;
   width: 200px;
   height: 30px;
-  font-size: 15px;
+  font-size: 13px;
+  padding-left: 8px;
+  border: 1px solid #0AAB00;
+
 }
 .knowhow-email-btn {
-  width: 200px;
+  width: 120px;
+  height: 30px;
+  color: #0AAB00;
+  background-color: white;
+  border: 1px solid #0AAB00;
+  border-radius: 15px;
+  cursor: pointer;
 }
 </style>
