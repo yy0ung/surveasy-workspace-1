@@ -4,6 +4,9 @@
       <div><img class="knowhow-checkimg" src="@/assets/check.png" width="130"></div>
       <div class="knowhow-green">설문 노하우 페이지 준비중입니다.</div>
       <div class="knowhow-black">서베이지의 다양한 설문 노하우를 기대해주세요!</div>
+      <div class="knowhow-email-text">설문 노하우 서비스 출시 후 소식을 받아보고 싶으신 분께서는<br> 이메일 주소를 남겨주세요.</div>
+      <div><input class="knowhow-email-input" placeholder="이메일 주소를 입력해주세요"> </div>
+      <div><button class=" knowhow-email-btn">소식 받기 신청</button></div>
     </div>
   </div>
 </template>
@@ -34,7 +37,7 @@ export default {
   transform: translate(-50%, -50%);
   background: white;
   width: 630px;
-  height: 380px;
+  height: 450px;
   border-radius: 15px;
   display: flex;
   flex-direction: column;
@@ -43,7 +46,7 @@ export default {
   font-family: 'Noto Sans KR', sans-serif;
 }
 .knowhow-checkimg {
-  margin-top: 75px;
+  margin-top: 50px;
   margin-bottom: 20px;
 }
 .knowhow-green {
@@ -53,5 +56,18 @@ export default {
 }
 .knowhow-black {
   font-size: 16px;
+}
+.knowhow-email-text {
+  color: #bbbbbb;
+  font-size: 15px;
+}
+.knowhow-email-input {
+  margin: 10px;
+  width: 200px;
+  height: 30px;
+  font-size: 15px;
+}
+.knowhow-email-btn {
+  width: 200px;
 }
 </style>
