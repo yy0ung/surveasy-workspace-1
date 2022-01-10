@@ -323,17 +323,19 @@ export default {
 
 <style>
 .home-calculator {
-  position: fixed;
+  position: absolute;
   z-index: 2;
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: 3140px;
   background-color: rgba(255, 255, 255, 0.524);
   display: table;
   transition: opacity .3s ease;
+  overflow: hidden;
 }
 .home-calculator-contentsbox {
+  
   font-family: 'Noto Sans KR', sans-serif;
   width: 900px;
   height: 580px;
