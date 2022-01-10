@@ -36,7 +36,8 @@ export default {
       showDetail1: false,
       showDetail2: false,
       fontcolor1: 'black',
-      fontcolor2: 'black'
+      fontcolor2: 'black', 
+      black: 'black'
       
     }
   },

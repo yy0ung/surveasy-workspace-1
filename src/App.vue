@@ -205,7 +205,7 @@ body {
   font-size: 1rem;
   padding-bottom: 30px;
   white-space:nowrap;
-  margin-left: 150px;
+  margin-left: 95px;
 
 }
 

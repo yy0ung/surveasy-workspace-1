@@ -29,7 +29,7 @@
         </table>
       </div> -->
       <div class="repeat" v-for="item in (currentUserUploadIndexInfo2)" :key="item">
-      <div class="sur-box"  :class="{active:item.progress==3||item.progress==4}">
+      <div class="sur-box"  :class="{active:item.progress==3||item.progress==4||item.progress==5}">
         <p class="su-title">{{item.title}} <span class="gray">{{priceToString(item.price)}}원</span></p>
         <div class="su-contents">
           <div class="con1">
@@ -60,6 +60,7 @@
           
       </div>
         <router-link :to="`/review/${item.id}/${item.title}`" v-if="item.progress==3" class="goLink" id="go-green">후기 작성하기 ></router-link>
+        <router-link :to="`/reviewdetail/${item.id}/${item.title}`" v-if="item.progress==4" class="goLink" id="go-green">후기 작성하기 ></router-link>
         <router-link to="/surveylist" v-if="item.progress==2" class="goLink" id="go-gray">설문 보러가기 ></router-link>
            
       </div>
