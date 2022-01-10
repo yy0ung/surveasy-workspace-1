@@ -12,7 +12,7 @@
     <input type="text" placeholder="회사" class="box" v-model="infoData.company">
  
     <label><input type="checkbox" v-model="checked"><span class="green">개인정보수집</span> 및 <span class="green">이용약관</span>에 동의합니다.</label>
-    <div><button @click="addData(this.infoData); goNext()" class="ContactModal-btn">소개서 받기</button></div>
+    <div><button @click="validateB2B(this.infoData); " class="ContactModal-btn">소개서 받기</button></div>
    </div>
    </div>
 </div>  
@@ -30,7 +30,7 @@ export default {
         email:null,
         company:null
       },
-      checked:[]
+      checked:false
       
     }
   },
@@ -40,33 +40,33 @@ export default {
       this.$store.state.showModal=false
       this.$store.state.showFinalModal=false
     },
+
+    validateB2B(infoData){
+      if(infoData.name==null || infoData.email==null || infoData.company==null || this.checked == false){
+          alert('필수항목입니다')
+      } else {
+        this.addData(infoData)
+      }
+    },
+
+
     async addData(infoData){
-        // console.log(infoData)
+        
         var db = this.$store.state.db
-        if(infoData.name==null || infoData.email==null || infoData.company==null || this.checked.length==0){
-          alert('필수항목을 모두 입력해주세요')
-        }
-        else{
-          this.$store.state.showModal=false
-          this.$store.state.showFinalModal=true
-    
+
         await setDoc(doc(db, "B2BData", infoData.company),{
           name: infoData.name,
           email: infoData.email,
           company: infoData.company,
           isresponded: false
-        })
-        }
-        
-      
-      
-      
-     
-    },
-    goNext(){
-      
-      
-    }
+        }).then(
+          this.$store.state.showModal=false,
+          this.$store.state.showFinalModal=true,
+          alert('완료되었습니다.')
+        )
+      }
+    
+    
   }
 }
 </script>

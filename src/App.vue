@@ -1,8 +1,9 @@
 <template>
 <div id="app" :class="{backactive: this.$store.state.showModal}">
   <div id="nav">
+    <div class="one">
     <router-link to="/" @click="indexC(0)"><img class="logoimg" src="@/assets/logo.png" width="190"></router-link> 
-
+  </div>
     <div class="nav-links">
 
       <div class="my-dropdown" >
@@ -24,11 +25,11 @@
       <router-link to="/story"><span class="nav-element" @click="indexC(2)">브랜드 스토리</span></router-link> 
       <span class="nav-element-">|</span>
       <router-link to="/contact"><span class="nav-element" @click="handleFAQ, indexC(2)">문의</span></router-link> 
-    
+    </div>
     <!-- <div class="nav-login" > -->
-     <span id="right-login">
-      <span v-if="this.$store.state.loginState.isLoggedIn == false" class="nav-login">
-        <router-link to="/login"><span class="nav-element" @click="indexC(3)">LOGIN</span></router-link> 
+     <div class="right-login">
+      <span v-if="this.$store.state.loginState.isLoggedIn == false" >
+        <router-link to="/login" ><span class="nav-element" id="nav-login" @click="indexC(3)">LOGIN</span></router-link> 
       </span>
       <span v-else>
         <div class="my-dropdown" id="right-drop">
@@ -42,8 +43,8 @@
       <!-- </div> -->
       
     </span>
-   </span>
-    </div>
+   </div>
+    
   
     
     
@@ -109,6 +110,7 @@ export default {
     this.$store.commit('setDB', db)
     this.fetchUserData()
     this.fetchSurveyData()
+    alert(this.$browserDetect.meta.name)
     // this.fetchLastID()
     // const mount = () => {
     //   event('login', { method: 'Google' })
@@ -195,6 +197,8 @@ body {
 }
 #nav {
   z-index: 500;
+  display: flex;
+  justify-content: space-around;
 }
 #nav .nav-links {
   flex:1;
@@ -291,20 +295,25 @@ body {
   height: 44px;
 }
 
-.nav-login{
+#nav-login{
   text-align: right;
   letter-spacing: 1.5px;
   font-family: 'Noto Sans KR', sans-serif;
   font-weight: 400;
   font-size: 1.1rem;
-  margin-left: 30px;
-  /* margin-top: 57px; */
+  /* margin-left: 30px; */
+  margin-top: 100px !important
   /* padding-bottom: 30px; */
 
 }
-#right-login{
-  margin-left: 170px;
+.right-login{
   
+  padding-top: 25px;
+  
+  
+}
+#right-drop{
+  padding-top: 17px;
 }
 #footer-container{
     display: flex;

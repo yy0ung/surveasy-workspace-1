@@ -172,7 +172,7 @@ export default {
     methods:{
         
         
-        validateRegister(dataSet){
+        validateRegister(dataSet){  
             var errCode = [];
             
             // 입력하지 않은 항목이 있는지 체크
