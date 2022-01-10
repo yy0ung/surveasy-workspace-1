@@ -19,6 +19,7 @@
           <ul id="info-detail">
             <ul class="info-detail-text">설문 링크</ul>
             <div class="info-detail-input"><input type="text" v-model="link" @change="setOption2()" placeholder="링크 입력 시 'https://'를 포함한 주소를 입력해주세요." required><button class="link-check-btn" @click="showLinkModal()">링크 확인</button></div>
+            <ul class="Point-notice">단축 url을 이용할 경우 링크 확인이 어려울 수 있습니다.</ul>
           </ul>
           <span></span>
             <LinkCheckModal :showLinkIframe="showLinkIframe" @closeIframe="showLinkModal" />
