@@ -97,6 +97,7 @@
 import { initializeApp } from 'firebase/app'
 import { getFirestore,collection, getDocs } from 'firebase/firestore'
 import { getAnalytics } from 'firebase/analytics'
+// import browserDetect from 'vue-browser-detect-plugin'
 // import { event } from 'vue-gtag'
 // import { orderBy,sortBy } from 'lodash'
 import { getAuth, onAuthStateChanged } from 'firebase/auth'
@@ -110,7 +111,8 @@ export default {
     this.$store.commit('setDB', db)
     this.fetchUserData()
     this.fetchSurveyData()
-    alert(this.$browserDetect.meta.name)
+    // this.bd()
+    // alert(this.$browserDetect.meta.name)
     // this.fetchLastID()
     // const mount = () => {
     //   event('login', { method: 'Google' })
@@ -152,6 +154,7 @@ export default {
       
       
     },
+    
 
     
 
@@ -208,7 +211,7 @@ body {
   font-size: 1rem;
   padding-bottom: 30px;
   white-space:nowrap;
-  margin-left: 95px;
+  /* margin-left: 15px; */
 
 }
 
@@ -309,11 +312,12 @@ body {
 .right-login{
   
   padding-top: 25px;
-  
+  padding-right: 25px;
   
 }
 #right-drop{
   padding-top: 17px;
+  padding-right: 30px;
 }
 #footer-container{
     display: flex;
