@@ -66,10 +66,13 @@
                                 <input type="radio" class="radio" name="from" id="search" v-model="dataSet.funnel" value="search">
                                 <label class="radio-text">인터넷 검색(구글 / 네이버 / 기타)</label>
                             </div>
-                            <div class="radio-option">
+                            <div class="radio-option" id="radio-etc">
                                 <input type="radio" class="radio" name="from" id="etc" v-model="dataSet.funnel" value="etc">
-                                <label class="radio-text">기타 </label>
+                                <label class="radio-text" >기타 </label>
+                                <p class="etc-text"><input type="text" id="etc-t" v-model="dataSet.funnel_etc"></p>
                             </div>
+                             
+                            
                         </div>
                         <div class="radio-column">
                             <div class="radio-option">
@@ -84,7 +87,7 @@
                                 <input type="radio" class="radio" name="from" id="facebook" v-model="dataSet.funnel" value="facebook">
                                 <label class="radio-text">페이스북</label>
                             </div>
-                            
+                           
                         </div> 
                       </div>
                     
@@ -127,6 +130,7 @@ export default {
               phoneNumber:null,
               name:null,
               funnel:null,
+              funnel_etc:'',
               birth:null,
               check1: false,
                 check2: false,
@@ -262,6 +266,7 @@ export default {
                 identity_request: false,
                 identity_responded: false,
                 funnel : dataSet.funnel,
+                funnel_etc : dataSet.funnel_etc,
                 respondArray: [],
                 clientGrade: 0,
                 point_total : 0,
@@ -308,6 +313,19 @@ export default {
     
     
 }
+.etc-text{
+    margin-top: 3px;
+}
+#etc-t{
+    margin-left: 20px;
+    
+    width: 180px;
+    height: 18px;
+    
+}
+#radio-etc{
+    margin-top: 10px;
+}
 li {
     list-style-type: none;
 }
@@ -337,10 +355,11 @@ li {
   padding-left: 15px;
 }
 .password-notice {
-    font-size: 5px;
-    color: grey;
+    font-size: 0.8rem;
+    color: rgb(97, 96, 96);
     text-align: left;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
+    margin-top: 0;
 }
 .cols li.col2 input.radio {
     width: 15px;

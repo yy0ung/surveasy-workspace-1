@@ -4,11 +4,11 @@
   <div class="members-contents">
     <div class="mem-first">
       <span class="mem-green">기획운영 Team</span><br>
-      <div class="mem-name"><span>송다예</span><span>장서준</span><span>김민지</span><span>함이수</span></div>
+      <div class="mem-name"><span>송다예</span><span>장서준</span><span>김민지</span></div>
       <img class="mem-img" src="@/assets/brandstory/다예.png" width="180">
       <img class="mem-img" src="@/assets/brandstory/서준.png" width="180">
       <img class="mem-img" src="@/assets/brandstory/민지.png" width="180">
-      <img class="mem-img" src="@/assets/brandstory/이수.png" width="180">
+     
     </div>
     <div class="mem-second">
       <div class="mem-green"><span class="a">마케팅 Team</span><span class="mem-de">개발 Team</span></div>
