@@ -4,6 +4,7 @@
   <div class="rev-title">
     <p><span id="rev-green">자세한 후기</span> 작성하기</p>
   </div>
+  <p class="notice-re">자세한 후기(비공개)를 작성해주시면 <span id="no-green">적립금 500원</span>을 추가 지급해드립니다. </p>
   <div class="rev-black-light">
       <span class="rev-black-bold">[{{this.reviewDetailData.title}}] 설문 의뢰 서비스에 대해 조금 더 자세한 후기를 알려주세요. 
         <br>답변하시는 모든 내용은 비공개 처리됩니다. 작성시, 감사한 마음을 담아 적립금을 드립니다.</span>
@@ -170,12 +171,13 @@ export default {
   margin-left: auto;
   margin-right: auto;
   text-align: left;
-  padding-left: 550px;
+  padding-left: 450px;
+  
 }
 .rev-title{
   padding-top: 80px;
   text-align: left;
-  margin-bottom: 40px;
+  margin-bottom: 10px;
   font-size: 1.7rem;
   font-weight: 600;
 }
@@ -227,5 +229,11 @@ export default {
 .btn-rev:hover{
   color: white;
   background-color: #0AAC00;
+}
+.notice-re{
+  margin-bottom: 20px;
+}
+#no-green{
+  color: #0AAC00;
 }
 </style>

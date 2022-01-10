@@ -9,16 +9,20 @@
             <option class="select-placeholder" :value="defaultCoupon" disabled selected>사용 가능 쿠폰 {{ this.$store.state.myCoupon.length }}장</option>
             <option class="Coupon-option" v-for="item in (this.$store.state.myCoupon)" v-bind:value="{code: item.code, rate: item.rate}" :key="item">{{ item.name }}  : {{ item.duedate }} 까지</option>
           </select>
-          <button class="Coupon-btn" @click="useCoupon()">쿠폰 적용</button>
+          <button class="Coupon-btn-" @click="useCoupon()">쿠폰 적용</button>
       </ul>
 
       <ul id="Coupon-detail">
         <ul class="Coupon-detail-text">적립금</ul>
+        <div class="flex">
         <div class="point-detail-container">
           <div class="Point-box">보유 적립금 {{ show_point }}원<button class="pointDelete-btn" @click="deletePoint"><i class="fas fa-times"></i></button></div>
-          <button class="pPoint-btn" @click="usePoint()">적립금 적용</button>
-        </div>
           
+        </div>
+        <div>
+          <button class="Coupon-btn-" id="point-btn-" @click="usePoint()">적립금 적용</button>
+          </div>
+          </div>
           <div class="Point-notice">10,000원 이상 결제시, 결제 금액의 10%가 자동으로 적용됩니다.</div>
       </ul>
 
@@ -206,7 +210,7 @@ export default {
   font-size: 16px;
   color: #1c1c1c;
 }
-.Coupon-btn {
+/* .Coupon-btn {
   background-color: #EEEEEE;
   border: 1px solid #0CAE02;
   font-weight: 400;
@@ -234,6 +238,22 @@ export default {
   font-family: 'Noto Sans KR' lighter;
 }
 .Coupon-btn:hover, .pPoint-btn:hover{
+  color: white;
+  background-color: #0AAB00;
+} */
+.Coupon-btn-{
+  height: 40px;
+  width: 100px;
+  color: #0AAB00;
+  border: 1px solid #0AAB00;
+  border-radius: 18px;
+  font-family: 'Noto Sans KR';
+  margin-left: 10px;
+}
+#point-btn-{
+  margin-top: 8px;
+}
+.Coupon-btn-:hover{
   color: white;
   background-color: #0AAB00;
 }
@@ -268,9 +288,13 @@ export default {
   cursor: pointer;
 }
 .Point-notice {
-  font-size: 15px;
-  color: #a2a0a0;
-  margin-top: 15px;
-  margin-left: 3px;
+  font-family: 'Noto Sans KR', sans-serif;
+  color: #848484;
+  font-size: 0.9rem;
+  padding-top: 5px;
+  padding-left: 15px;
+}
+.flex{
+  display: flex;
 }
 </style>

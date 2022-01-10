@@ -19,7 +19,7 @@
           <ul id="info-detail">
             <ul class="info-detail-text">설문 링크</ul>
             <div class="info-detail-input"><input type="text" v-model="link" @change="setOption2()" placeholder="링크 입력 시 'https://'를 포함한 주소를 입력해주세요." required><button class="link-check-btn" @click="showLinkModal()">링크 확인</button></div>
-            <ul class="Point-notice">단축 url을 이용할 경우 링크 확인이 어려울 수 있습니다.</ul>
+            <ul class="point-notice">단축 url을 이용할 경우 링크 확인이 어려울 수 있습니다.</ul>
           </ul>
           <span></span>
             <LinkCheckModal :showLinkIframe="showLinkIframe" @closeIframe="showLinkModal" />
@@ -140,11 +140,18 @@ export default {
   color: #BCBCBC;
   opacity: 1;
 }
+.point-notice{
+  font-family: 'Noto Sans KR', sans-serif;
+  color: #848484;
+  font-size: 0.9rem;
+  padding-top: 5px;
+  padding-left: 15px;
+}
 .link-check-btn {
   background-color: #EEEEEE;
   border: 1px solid #0CAE02;
   padding: 7px 15px;
-  font-family: 'Noto Sans KR' lighter;
+  font-family: 'Noto Sans KR', sans-serif;
   margin-left: 20px;
   color: #0CAE02;
   font-size: 15px;

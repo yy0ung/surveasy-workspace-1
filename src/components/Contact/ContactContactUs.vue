@@ -73,9 +73,10 @@ export default {
   padding: 7px 15px;
   border-radius: 24px;
   opacity: 1;
-  font-weight: 700;
+  font-weight: 500;
   font-size: 1rem;
   margin-bottom: 25px;
+  font-family: 'Noto Sans KR', sans-serif;
 }
 .contactus-container .contactus-contents .light{
   font-weight: 300;

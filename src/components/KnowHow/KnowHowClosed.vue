@@ -4,9 +4,10 @@
       <div><img class="knowhow-checkimg" src="@/assets/check.png" width="130"></div>
       <div class="knowhow-green">설문 노하우 페이지 준비중입니다.</div>
       <div class="knowhow-black">서베이지의 다양한 설문 노하우를 기대해주세요!</div>
-      <div class="knowhow-email-text">설문 노하우 서비스 출시 후 소식을 받아보고 싶으신가요? <br> 하단에 이메일 주소를 남겨주세요.</div>
+      
       <div><input class="knowhow-email-input" placeholder="이메일 주소를 입력해주세요" v-model="knowhow_email"><button class=" knowhow-email-btn" @click="EmailADD()">소식 받기 신청</button></div>
-    </div>
+      <div class="knowhow-email-text">설문 노하우 서비스 출시 후 소식을 받아보고 싶으신가요? <br> 상단에 이메일 주소를 남겨주세요.</div>  
+  </div>
   </div>
 </template>
 
@@ -30,6 +31,9 @@ export default {
         })
 
         alert('설문 노하우 서비스가 출시되면 기재하신 이메일로 안내드리겠습니다.')
+        if(confirm){
+          this.$router.push('/')
+        }
 
       }
 
@@ -85,27 +89,36 @@ export default {
   font-size: 16px;
 }
 .knowhow-email-text {
-  color: #bbbbbb;
-  font-size: 15px;
-  margin-top: 20px;
-  font-weight: lighter;
+  color: #a09f9f;
+  font-size: 0.8rem;
+  
+  font-weight: 300;
+  font-family: 'Noto Sans KR', sans-serif;
 }
 .knowhow-email-input {
   margin: 10px;
-  width: 200px;
+  width: 220px;
   height: 30px;
   font-size: 13px;
-  padding-left: 8px;
-  border: 1px solid #0AAB00;
-
+  padding-left: 10px;
+  border-radius: 12px;
+  margin-top: 30px;
+  margin-bottom: 15px;
+  font-family: 'Noto Sans KR', sans-serif;
+  border-style: solid;
+  border: 1px solid #807e7e;
 }
 .knowhow-email-btn {
-  width: 120px;
-  height: 30px;
+  padding: 7px 15px;
   color: #0AAB00;
   background-color: white;
   border: 1px solid #0AAB00;
-  border-radius: 15px;
+  border-radius: 12px;
   cursor: pointer;
+  font-family: 'Noto Sans KR', sans-serif;
+}
+.knowhow-email-btn:hover{
+  color: white;
+  background-color: #0AAB00;
 }
 </style>
