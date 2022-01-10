@@ -105,7 +105,7 @@ export default {
           this.$store.state.loginState.currentUser = null;
           this.$store.state.loginState.isLoggedIn = false;
           
-          window.alert('삭제 완료')
+          window.alert('탈퇴가 완료되었습니다.')
           this.$router.replace('/')
         }).catch((error) => {
           const errorCode = error.code;

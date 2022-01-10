@@ -116,7 +116,7 @@ export default {
 }
 .starimg{
   color: green;
-
+  margin-right: 7px;
 }
 .btn-r{
   margin-top: 40px;
