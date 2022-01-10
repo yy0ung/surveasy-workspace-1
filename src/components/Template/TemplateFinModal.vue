@@ -94,6 +94,7 @@ export default {
   margin-top: 0;
 }
 .template-modal-btn {
+  font-family: 'Noto Sans KR', sans-serif;
   width: 160px;
   height: 30px;
   margin-top: 20px;
@@ -103,6 +104,11 @@ export default {
   font-size: 14px;
   color: #0AAC00;
   cursor: pointer;
+}
+
+.template-modal-btn:hover{
+  color: white;
+  background-color: #0AAC00;
 }
 
 
