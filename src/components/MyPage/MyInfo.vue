@@ -55,7 +55,7 @@
         <button class="btn-info">회원정보수정</button>
         router로 해야하는지..? 
       </div> -->
-      <p class="edit-ment">회원정보 수정을 원하실 경우 서베이지 카카오톡 페이지로 문의 바랍니다.</p>
+      <p class="edit-ment">회원정보 수정을 원하실 경우 <a id="k-link" href="http://pf.kakao.com/_xfialK/chat" target="_blank">서베이지 카카오톡 채널</a>로 문의 바랍니다.</p>
       
     </div>
 
@@ -329,5 +329,9 @@ export default {
 }
 .mi-detail{
   color: #848484;
+}
+#k-link{
+  color: black;
+  text-decoration: underline;
 }
 </style>

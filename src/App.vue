@@ -211,7 +211,7 @@ body {
   font-size: 1rem;
   padding-bottom: 30px;
   white-space:nowrap;
-  margin-left: 95px;
+  /* margin-left: 15px; */
 
 }
 
@@ -312,11 +312,12 @@ body {
 .right-login{
   
   padding-top: 25px;
-  
+  padding-right: 25px;
   
 }
 #right-drop{
   padding-top: 17px;
+  padding-right: 30px;
 }
 #footer-container{
     display: flex;
