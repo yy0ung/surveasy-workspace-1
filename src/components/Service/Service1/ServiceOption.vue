@@ -287,9 +287,9 @@ export default {
   margin: 10px 0 0 41px;
 }
 .hasTitleOption .date {
-  width: 123px;
+  width: 135px;
   height: 22px;
-  margin-left: 9px;
+  margin-left: 6px;
   margin-right: 3px;
   margin-bottom: 6px;
   border: none;

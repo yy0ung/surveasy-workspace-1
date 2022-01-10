@@ -9,8 +9,8 @@
           <span v-if="showDetail1==true"><i class="fas fa-chevron-up"></i></span>
         </span>
       </p>
-      <p class="detail" v-if="showDetail1==true">로그인 후, 우측 상단에 뜨는 본인의 아이디를 클릭해주세요. 
-        <br>클릭 시 ‘마이페이지’로 이동되며, ‘나의 정보’ 카테고리에서 아이디와 비밀번호를 수정하실 수 있습니다.</p>
+      <p class="detail" v-if="showDetail1==true">아이디 변경을 원하시는 경우, 서베이지 카카오톡 채널 @surveasy 로 연락주세요. 
+        <br>비밀번호 변경이 필요하신 경우, LOGIN 페이지에서 ‘비밀번호 찾기’ 버튼을 눌러 해당 절차에 따라 비밀번호를 변경해주세요.</p>
     </div>
     <div>
       <p class="title">
