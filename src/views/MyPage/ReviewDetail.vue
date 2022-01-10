@@ -146,14 +146,14 @@ export default {
       await updateDoc(docref, { 
           point_current: this.$store.state.PointUserData[0].point_current,
           point_total: this.$store.state.PointUserData[0].point_total
-      })
-      
-      this.fetchUserData_point()
+      }),
 
       await updateDoc(docref2, {
-        progress : 4
+        progress : 5
       })
-      
+
+
+      this.fetchUserData_point()
 
       // console.log("500")
 
