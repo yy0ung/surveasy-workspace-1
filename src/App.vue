@@ -4,6 +4,7 @@
     <router-link to="/" @click="indexC(0)"><img class="logoimg" src="@/assets/logo.png" width="190"></router-link> 
 
     <div class="nav-links">
+
       <div class="my-dropdown" >
         <span class="nav-element" id="nav-service" :class="{active: this.$store.state.indexColor==1}">서비스 이용
           <span class="nav-icon" >
@@ -23,13 +24,14 @@
       <router-link to="/story"><span class="nav-element" @click="indexC(2)">브랜드 스토리</span></router-link> 
       <span class="nav-element-">|</span>
       <router-link to="/contact"><span class="nav-element" @click="handleFAQ, indexC(2)">문의</span></router-link> 
-    </div>
-    <div class="nav-login" >
-      <div v-if="this.$store.state.loginState.isLoggedIn == false">
+    
+    <!-- <div class="nav-login" > -->
+     <span id="right-login">
+      <span v-if="this.$store.state.loginState.isLoggedIn == false" class="nav-login">
         <router-link to="/login"><span class="nav-element" @click="indexC(3)">LOGIN</span></router-link> 
-      </div>
-      <div v-else>
-        <div class="my-dropdown">
+      </span>
+      <span v-else>
+        <div class="my-dropdown" id="right-drop">
           <p class="my-dropdown-btn" >안녕하세요 {{this.$store.state.loginState.currentUser.name}}님</p>
           <div class="my-dropdown-content" id="dropdown-margin">
             <p @click="goMypage">마이페이지</p>
@@ -37,8 +39,10 @@
             
           </div>
         </div>
-      </div>
+      <!-- </div> -->
       
+    </span>
+   </span>
     </div>
   
     
@@ -200,6 +204,7 @@ body {
   font-size: 1rem;
   padding-bottom: 30px;
   white-space:nowrap;
+  margin-left: 150px;
 
 }
 
@@ -247,12 +252,16 @@ body {
   
 }
 #nav .nav-element{
-  font-weight: bold;
+  
   color: #2c3e50;
   padding: 10px;
   text-decoration: none;
   margin-right: 30px;
   margin-left: 30px;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-weight: 400;
+  font-size: 1.1rem;
+  
 }
 #nav .nav-icon{
   margin-left: 15px;
@@ -281,12 +290,21 @@ body {
   margin-left: 60px;
   height: 44px;
 }
+
 .nav-login{
   text-align: right;
   letter-spacing: 1.5px;
-  margin-top: 57px;
-  padding-bottom: 30px;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-weight: 400;
+  font-size: 1.1rem;
+  margin-left: 30px;
+  /* margin-top: 57px; */
+  /* padding-bottom: 30px; */
 
+}
+#right-login{
+  margin-left: 170px;
+  
 }
 #footer-container{
     display: flex;
@@ -324,13 +342,21 @@ body {
     position: relative;
     display: inline-block;
     
+    
   }
+  
   .my-dropdown .my-dropdown-btn{
     white-space:nowrap;
+    font-family: 'Noto Sans KR', sans-serif;
+    margin-top: 0;
+    position: relative;
+    font-family: 'Noto Sans KR', sans-serif;
+  font-weight: 400;
+  font-size: 1.1rem;
   }
   .my-dropdown:hover .my-dropdown-content{
     display: block;
-    
+    font-family: 'Noto Sans KR', sans-serif;
     box-shadow: 0 2px 4px rgba(0, 0, 0, .33);
   }
 

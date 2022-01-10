@@ -44,7 +44,7 @@ export default {
         // console.log(infoData)
         var db = this.$store.state.db
         if(infoData.name==null || infoData.email==null || infoData.company==null || this.checked.length==0){
-          alert('필수항목입니다')
+          alert('필수항목을 모두 입력해주세요')
         }
         else{
           this.$store.state.showModal=false

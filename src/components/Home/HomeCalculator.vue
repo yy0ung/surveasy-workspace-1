@@ -74,8 +74,11 @@
             <div class="date-select">
               <input type="Date"  :min="min" :max="getDateStr" v-model="aa" required>
               <input type="time"  v-model="bb" required>
+              <p class="warn-m"> *마감날짜와 마감시간 중 공란이 존재할 경우 가격 계산이 정확히지 않을 수 있습니다.</p>
             </div>
+            
           </div>
+          
         
           <div class="eng-content">
             <div class="calc-option-title">영어설문</div>
@@ -321,7 +324,7 @@ export default {
 <style>
 .home-calculator {
   position: fixed;
-  z-index: 1;
+  z-index: 2;
   top: 0;
   left: 0;
   width: 100%;
@@ -341,7 +344,7 @@ export default {
   border-radius: 20px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, .33);
   transition: all .3s ease;
-  z-index: 1;
+  z-index: 2;
 }
 .calc-title {
   color: #0AAB00;
@@ -503,6 +506,7 @@ export default {
 }
 .date-select{
   margin-left: 10px;
+  text-align: left;
 }
 #margin-bottom{
   margin-bottom: 30px;
@@ -551,6 +555,12 @@ export default {
 #go-btn:hover{
   color: #fff;
   background: #0AAC00;
+}
+.warn-m{
+  margin-top: 5px;
+  font-size: 0.75rem;
+  color: rgb(179, 7, 7);
+  font-weight: 300;
 }
 
 
