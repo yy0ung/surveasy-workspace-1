@@ -109,6 +109,7 @@ export default {
     this.$store.commit('setDB', db)
     this.fetchUserData()
     this.fetchSurveyData()
+    alert(this.$browserDetect.meta.name)
     // this.fetchLastID()
     // const mount = () => {
     //   event('login', { method: 'Google' })
