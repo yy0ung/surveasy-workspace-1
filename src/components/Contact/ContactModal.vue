@@ -53,7 +53,7 @@ export default {
     async addData(infoData){
         
         var db = this.$store.state.db
-      
+
         await setDoc(doc(db, "B2BData", infoData.company),{
           name: infoData.name,
           email: infoData.email,

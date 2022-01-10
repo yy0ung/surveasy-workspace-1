@@ -31,7 +31,7 @@ export default {
     },
     copyEmail(){
       const mail = document.getElementById("email")
-      mail.value = "surveasy@yonsei.ac.kr"
+      mail.value = "surveasy2019@yonsei.ac.kr"
       mail.select()
       document.execCommand("copy")
       alert("이메일 주소가 복사되었습니다.")
