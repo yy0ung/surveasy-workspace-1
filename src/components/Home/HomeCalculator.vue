@@ -2,7 +2,7 @@
   <div class="home-calculator" v-if="showCalculator">
     <div class="home-calculator-contentsbox">
       <p class="calc-title">내 설문은 얼마일까?
-        <button class="modal-close-button" id="cal-button" @click="$emit('close'), clear()">X</button>
+        <button class="modal-close-button" id="cal-button" @click="$emit('close'), clear()"><i class="fas fa-times" id="calc-close"></i></button>
       </p> 
       <div class="calc-option-container">
           <div class="respond-content">
@@ -563,6 +563,10 @@ export default {
   font-size: 0.75rem;
   color: rgb(179, 7, 7);
   font-weight: 300;
+}
+
+#calc-close {
+  padding-right: 10px
 }
 
 

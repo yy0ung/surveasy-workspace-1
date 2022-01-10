@@ -213,6 +213,7 @@ export default {
   border: 1.5px solid #0AAB00;
 }
 .Template-btn {
+  font-family: 'Noto Sans KR', sans-serif;
   width: 120px;
   height: 40px;
   margin-top: 20px;
@@ -222,6 +223,10 @@ export default {
   border-radius: 30px;
   font-size: 15px;
   cursor: pointer;
+}
+.Template-btn:hover{
+  color: white;
+  background-color: #0AAC00;
 }
 
 </style>
