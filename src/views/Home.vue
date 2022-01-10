@@ -63,6 +63,8 @@ export default {
   padding: 9px 20px;
   border-radius: 24px;
   font-size: 1.0rem;
+  
+
 }
 
 .HomeMainContent-btn:hover{

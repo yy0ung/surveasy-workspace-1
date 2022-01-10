@@ -16,13 +16,6 @@
       </tr>
       <tr v-for="item in (this.$store.state.surveyData.slice(currentPage*5-5,currentPage*5))" :key="item.id">
         <td class="list-de" :class="{active:dueTime(item[0].dueDate,item[0].dueTimeTime)<0}">{{item[0].id}}</td>
-
-          
-
-
-          <!-- <router-link :to="`/surveylist/${item[0].id}`" class="list-title" :class="{active:item[0].progress==3}">{{item[0].title}}</router-link> -->
-
-
         <td id="title-left">
           <a :href="item[0].link" target="_blank" class="list-title" :class="{active:dueTime(item[0].dueDate,item[0].dueTimeTime)<0}">{{item[0].title}}</a>
           <span class="due" :class="{active:dueTime(item[0].dueDate,item[0].dueTimeTime)<0}">{{calTime(item[0].dueDate,item[0].dueTimeTime)}}</span>
@@ -32,21 +25,9 @@
         <td class="list-de" :class="{active:dueTime(item[0].dueDate,item[0].dueTimeTime)<0}">{{item[0].target}}</td>
         <td class="list-de" :class="{active:dueTime(item[0].dueDate,item[0].dueTimeTime)<0}">{{item[0].spendTime}}</td>
         <td class="list-de" :class="{active:dueTime(item[0].dueDate,item[0].dueTimeTime)<0}">{{item[0].requiredHeadCount}}</td>
-        <td class="list-de" :class="{active:dueTime(item[0].dueDate,item[0].dueTimeTime)<0}">{{item[0].uploader.substring(0,1)+"*"+item[0].uploader.substring(2)}}</td>
+        <td class="list-de" :class="{active:dueTime(item[0].dueDate,item[0].dueTimeTime)<0}">{{item[0].uploader.substring(0,1)+"*"+item[0].uploader.substring(2)}}</td> 
+        <!-- 두 글자 이름 고려 -->
          
-        
-        <!-- <td>
-          <div v-if="this.$store.state.currentUser">
-            <div v-if="this.$store.state.currentUser.respondArray.includes(item[0].id)" class="responded">
-            {{this.$store.state.surveyListStatus[0]}}
-            </div>
-            <div v-else>{{this.$store.state.surveyListStatus[1]}}</div>
-          </div>
-          <div v-else>
-            로그인 필요
-          </div>
-          
-        </td> -->
       </tr>
     </table>
     <br>
@@ -58,41 +39,6 @@
     </div>
     <br>
     <br><br>
-    
-    
-    
-    <!-- <hr>
-    <h3>더미데이터 입력란</h3>
-    <br>
-    ID <input type="number" v-model="dataSet.id">
-    <br>
-    isDone <input type="checkbox" v-model="dataSet.isDone" value="isDone">
-    <br>
-    keyword <input type="text" v-model="dataSet.keyword">
-    <br>
-    paidPrice <input type="number" v-model="dataSet.paidPrice">
-    <br>
-    spendTime <input type="number" v-model="dataSet.spendTime" placeholder="spendTime">
-    <br>
-    requireHeadCount <input type="number" v-model="dataSet.requireHeadCount">
-    <br>
-    surveyInstitute <input type="text" v-model="dataSet.surveyInstitute">
-    <br>
-    uploader <input type="text" v-model="dataSet.uploader">
-    <br>
-    surveyTitle <input type="text" v-model="dataSet.surveyTitle">
-    <br>
-    surveyLink <input type="text" v-model="dataSet.surveyLink">
-    <br>
-
-    uploadTime과 dueTime은 현재시간과 현재시간 + 7일
-
-    <br>
-    <button @click="addData(this.dataSet)">submit</button>
-    
-    <hr>  -->
-
-    
     
   </div>
 </template>

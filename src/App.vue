@@ -4,6 +4,7 @@
     <router-link to="/" @click="indexC(0)"><img class="logoimg" src="@/assets/logo.png" width="190"></router-link> 
 
     <div class="nav-links">
+      
       <div class="my-dropdown" >
         <span class="nav-element" id="nav-service" :class="{active: this.$store.state.indexColor==1}">서비스 이용
           <span class="nav-icon" >

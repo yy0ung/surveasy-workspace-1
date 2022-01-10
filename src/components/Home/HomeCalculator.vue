@@ -321,7 +321,7 @@ export default {
 <style>
 .home-calculator {
   position: fixed;
-  z-index: 1;
+  z-index: 2;
   top: 0;
   left: 0;
   width: 100%;
@@ -341,7 +341,7 @@ export default {
   border-radius: 20px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, .33);
   transition: all .3s ease;
-  z-index: 1;
+  z-index: 2;
 }
 .calc-title {
   color: #0AAB00;
