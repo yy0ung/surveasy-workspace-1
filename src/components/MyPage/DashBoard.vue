@@ -55,7 +55,8 @@
     <div class="bottom-list" v-for="item in (currentUserUploadInfo4)" :key="item.title">
       <p class="list-detail" v-if="show==1">
         <span id="sur-date">{{item.uploadDate}}</span>
-        <span id="sur-title">{{item.title}}</span>
+        <span id="sur-title" v-if="item.title.length<21">{{item.title}}</span>
+        <span id="sur-title" v-else @mouseover.stop="over(item.title)" >{{(item.title).substring(0,22)}}...</span>
         <span id="sur-pay">{{priceToString(item.price)}}원</span>
         <router-link to="/surveylist" id="sur-detail" v-if="item.progress==2">설문 보러가기</router-link>
         <span id="sur-detail" v-if="item.progress==0 || item.progress==1 || item.progress==5"></span>
@@ -83,7 +84,10 @@ export default {
       ment:'',
       myCount1: [],
       myCount2: [],
-     
+      
+     hoverStyle:{
+       color:'white',
+     }
       
       
       
@@ -226,6 +230,9 @@ export default {
     // },
     priceToString(price) {
       return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+    },
+    over(text){
+      this.hoverStyle.color = black
     }
     
     

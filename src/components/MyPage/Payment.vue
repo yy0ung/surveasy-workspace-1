@@ -30,7 +30,10 @@
       </div> -->
       <div class="repeat" v-for="item in (currentUserUploadIndexInfo2)" :key="item">
       <div class="sur-box"  :class="{active:item.progress==3||item.progress==4||item.progress==5}">
-        <p class="su-title">{{item.title}} <span class="gray">{{priceToString(item.price)}}원</span></p>
+        <p class="su-title"><span v-if="item.title.length<44">{{item.title}}</span>
+        <span v-else>{{item.title.substring(0,45)}}...</span> 
+          
+          <span class="gray">{{priceToString(item.price)}}원</span></p>
         <div class="su-contents">
           <div class="con1">
             <p class="su-">진행단계</p>
@@ -156,7 +159,7 @@ export default {
 .sur-box .gray{
   color: black;
   font-weight: 300;
-  margin-left: 50px;
+  margin-left: 30px;
 }
 .su-contents{
   padding-left: 40px;

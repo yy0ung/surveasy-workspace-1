@@ -339,14 +339,14 @@ export default {
 }
 .PaymentMethod-container input::placeholder {
   text-align: left;
-  font-family: 'Noto Sans KR' normal;
+  font-family: 'Noto Sans KR';
   font-size: 15px;
   letter-spacing: 0px;
   color: #BCBCBC;
   opacity: 1;
 }
 .PaymentMethod-text {
-  font-family: 'Noto Sans KR' lighter;
+  font-family: 'Noto Sans KR';
   font-size: 11px;
   font-weight: normal;
   margin-top: 35px;

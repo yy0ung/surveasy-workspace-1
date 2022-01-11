@@ -27,12 +27,15 @@
 
         <td id="title-left">
           <div v-if="item[0].progress >= 3">
-            <span class="list-title" :class="{active:dueTime(item[0].dueDate,item[0].dueTimeTime)<0|| item[0].progress>=3}" >{{item[0].title}}</span>
+            <span class="list-title" :class="{active:dueTime(item[0].dueDate,item[0].dueTimeTime)<0|| item[0].progress>=3}" ><span v-if="(item[0].title).length<43">{{item[0].title}}</span>
+            <span v-else>{{(item[0].title).substring(0,44)}}...</span></span>
             <span class="due" v-if="dueTime(item[0].dueDate,item[0].dueTimeTime)>=0 && item[0].progress>=3" :class="{active:dueTime(item[0].dueDate,item[0].dueTimeTime)>=0 && item[0].progress>=3}">마감</span>
             <span class="due" v-else :class="{active:dueTime(item[0].dueDate,item[0].dueTimeTime)<0 || item[0].progress>=3}">{{calTime(item[0].dueDate,item[0].dueTimeTime)}}</span>
           </div>
           <div v-else>
-            <a :href="item[0].link" target="_blank" class="list-title" :class="{active:dueTime(item[0].dueDate,item[0].dueTimeTime)<0|| item[0].progress>=3}" >{{item[0].title}}</a>
+            <a :href="item[0].link" target="_blank" class="list-title" :class="{active:dueTime(item[0].dueDate,item[0].dueTimeTime)<0|| item[0].progress>=3}" ><span v-if="(item[0].title).length<43">{{item[0].title}}</span>
+            <span v-else>{{(item[0].title).substring(0,44)}}...</span></a>
+            
             <span class="due" v-if="dueTime(item[0].dueDate,item[0].dueTimeTime)>=0 && item[0].progress>=3" :class="{active:dueTime(item[0].dueDate,item[0].dueTimeTime)>=0 && item[0].progress>=3}">마감</span>
             <span class="due" v-else :class="{active:dueTime(item[0].dueDate,item[0].dueTimeTime)<0 || item[0].progress>=3}">{{calTime(item[0].dueDate,item[0].dueTimeTime)}}</span>
           </div>
@@ -94,6 +97,7 @@ export default {
         uploader:'',
         id:0
       },
+      
       
      
       
@@ -158,6 +162,9 @@ export default {
 
       return pageCount
     },
+    // disp(text){
+    //   return text.length<30 ? 'none' : 'flex'
+    // }
     
     
   }
@@ -197,7 +204,8 @@ export default {
 }
 #title-left{
   text-align: left;
-  padding-left: 150px;
+  padding-left: 100px;
+  min-width: 600px;
 }
 
 #list-table td{
@@ -256,6 +264,9 @@ export default {
 .responded {
   color: #af2232
 }
+.list-de{
+  min-width: 80px;
+}
 .list-de.active{
   color: #7A7A7A;
   font-weight: 300;
@@ -266,7 +277,8 @@ export default {
 }
 .list-title{
   color: #0CAE02;
-  
+
 }
+
 
 </style>
