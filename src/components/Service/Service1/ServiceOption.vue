@@ -238,6 +238,7 @@ export default {
   max-width: 500px;
   min-width: 500px;
   height: 5468px;
+  font-family: 'Noto Sans KR', sans-serif;
   
 }
 .serviceOption-container {
@@ -256,6 +257,7 @@ export default {
   font-size: 20px;
   font-weight: bold;
   margin: 30px 0 30px 30px;
+  font-family: 'Noto Sans KR', sans-serif;
 }
 .selectbox {
   font-family: 'Noto Sans KR', sans-serif;
@@ -275,6 +277,7 @@ export default {
 }
 .selectbox option {
   background-color: #fafafa;
+  
 }
 .hasTitleOption {
   text-align: left;
@@ -288,6 +291,7 @@ export default {
   font-size: 14px;
   font-weight: bolder;
   margin: 10px 0 0 41px;
+  
 }
 .hasTitleOption .date {
   font-family: 'Noto Sans KR', sans-serif;

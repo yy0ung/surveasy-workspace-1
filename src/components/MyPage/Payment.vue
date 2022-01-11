@@ -148,7 +148,7 @@ export default {
   height: 180px;
 }
 .sur-box.active{
-  background: #bebdbd;
+  background: #cccccc;
 }
 .sur-box .su-title{
   color: #0AAC00;
@@ -183,10 +183,12 @@ export default {
   font-weight: 300;
 }
 #go-green{
-  color: #0AAC00;
+  color: #3f693d;
+  font-weight: 700;
 }
 #go-gray{
   color: #848484;
+  font-weight: 700;
 }
 .empty-ment2{
   text-align: center;
