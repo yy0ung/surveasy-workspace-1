@@ -5,9 +5,9 @@
     <div class="middle-box"> 
       
       <select name="" id="middle-select" v-model="identityRequest">
-          <option :value="{request: ''}" selected disabled >인증하려는 할인 대상을 선택하세요</option>
-          <option :value="{request: '대학생'}">대학생 (학부생)</option>
-          <option :value="{request: '대학원생'}">대학원생</option>
+          <option value='' selected disabled >인증하려는 할인 대상을 선택하세요</option>
+          <option value='대학생'>대학생 (학부생)</option>
+          <option value='대학원생'>대학원생</option>
       </select>
       <p class="mi-detail">하단의 <span id="info-green">'인증하러 가기'</span>를 통해 카카오톡으로 대학(원)생임을 확인할 수 있는 자료를 보내주세요. </p>
       
@@ -90,7 +90,7 @@ export default {
 
       else {
         await setDoc(doc(db, "identityVerifyRequired", currentUser.email.toString()), {
-          requestIdentity: requestInfo.request,
+          requestIdentity: requestInfo,
           requestApproved: false,
           requestName: currentUser.name,
           requestEmail : currentUser.email

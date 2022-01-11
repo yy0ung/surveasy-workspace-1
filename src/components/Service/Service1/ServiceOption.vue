@@ -106,6 +106,11 @@ export default {
 
     }
   },
+
+  mounted() {
+    this.fetchUserData_point()
+  },
+
   computed :{
     getDateStr(){
       var today = new Date()
@@ -219,6 +224,33 @@ export default {
         }
         
       },
+
+      async fetchUserData_point(){
+        const db = this.$store.state.db
+        this.$store.state.userData = []
+        this.$store.state.PointUserData = []
+        const userData = this.$store.state.userData
+        const querySnapshot = await getDocs(collection(db,"userData"))
+        querySnapshot.forEach((doc) => {
+          userData.push(doc.data())
+        })
+        const PointUserData = userData.filter(item => item.email===this.$store.state.loginState.currentUser.email)
+        this.$store.state.PointUserData = PointUserData
+        // console.log('***pointUser: ')
+        // console.log(PointUserData[0])
+        this.getPointInfo()
+      },
+
+      getPointInfo() {
+        var c = this.$store.state.PointUserData[0].point_current
+        var t = this.$store.state.PointUserData[0].point_total
+
+        this.$store.state.localPointState.point_current = c
+        this.$store.state.localPointState.point_total = t
+
+        // console.log('current point: ' + this.$store.state.localPointState.point_current)
+      },
+
       priceToString(price) {
       return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
     }
