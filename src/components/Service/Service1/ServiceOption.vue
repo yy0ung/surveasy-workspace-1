@@ -44,7 +44,7 @@
     
         
           <select class="selectbox" v-model="priceIdentity">
-            <option :value=0 selected disabled hidden>대학생 / 대학원생 할인</option>
+            <option :value=0 selected disabled hidden>대학생 / 대학원생 할인 여부</option>
             <option :value=1>대학생입니다.</option>
             <option :value=2>대학원생입니다.</option>
             <option :value=3>할인대상이 아닙니다.</option>
