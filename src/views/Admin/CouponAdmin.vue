@@ -57,7 +57,7 @@
     </table>
   </div>
 
-  <div class="coupon-mypage">
+  <!-- <div class="coupon-mypage">
     <h2>쿠폰 등록하기</h2>
     <input type="text" placeholder="쿠폰 코드를 입력하시오." v-model="localCode">
     <button @click="addCoupon_user(localCode)">쿠폰 등록하기</button>
@@ -101,7 +101,7 @@
     <input type="text" v-model="receiver" placeholder="쿠폰을 받을 사용자의 이메일을 입력하시오."> 
     <br>
     <button @click="transferCP(transferCoupon)">쿠폰 전달하기</button>
-  </div>
+  </div> -->
 
   </div>
 

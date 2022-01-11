@@ -195,8 +195,8 @@ export default {
 #list-view-container{
   font-family: 'Noto Sans KR', sans-serif;
   margin-bottom: 50px;
-  padding-top: 50px;
-  height: 700px;
+  padding-top: 10px;
+  height: 1100px;
 }
 #list-table{
   border: 0px solid black;
