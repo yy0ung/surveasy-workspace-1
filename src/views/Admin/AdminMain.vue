@@ -4,7 +4,7 @@
       <input v-model="passInput" type="text" placeholder="AdminPassword">
       <br>
       Admin Password
-      <button @click="adminCheck">확인하기</button>
+      <button @click="adminCheck(this.passInput)">확인하기</button>
     </div>
     
     <div v-if="this.$store.state.isAdmin">
@@ -174,7 +174,7 @@
 </template>
 
 <script>
-import { getFirestore,collection, getDocs, updateDoc, doc, deleteDoc, setDoc } from 'firebase/firestore'
+import { getFirestore,collection, getDocs, updateDoc, doc, deleteDoc, setDoc, getDoc } from 'firebase/firestore'
 //어드민 페이지 접근을 어떻게 해야할지 고민중..
 //일단은 어드민 주소는 접근은 가능하되 비번을 맞게 쳐야 뒤에 부분들이 보이게 하려고함.
 export default {
@@ -201,15 +201,33 @@ data(){
 },
 
 methods:{
-  adminCheck(){
-    if (this.passInput == this.$store.state.AdminPassword) {
-      alert('ok')
-      this.$store.commit('setAdminState')
-      this.fetchAdminData()
-      // console.log(this.$store.state.userData)
-    } else {
-      alert('check it again')
-    }
+  async adminCheck(passInput){
+    const db = this.$store.state.db
+    const pwRef = doc(db, "adminPassword", "adminmainPW")
+    
+    const docSnap = await getDoc(pwRef)
+    
+    if (docSnap.exists()) {
+      console.log(docSnap.data())
+      if (passInput == docSnap.data().password){
+        
+        this.$store.commit('setAdminState')
+        this.fetchAdminData()
+      } else {
+        alert('wrong input')
+      }
+
+    } else {alert('error')}
+
+
+    // if (this.passInput == this.$store.state.AdminPassword) {
+    //   alert('ok')
+    //   this.$store.commit('setAdminState')
+    //   this.fetchAdminData()
+    //   // console.log(this.$store.state.userData)
+    // } else {
+    //   alert('check it again')
+    // }
   },
 
   async fetchAdminData(){

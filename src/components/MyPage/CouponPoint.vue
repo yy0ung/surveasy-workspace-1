@@ -218,17 +218,18 @@ export default {
       if(validCode == true) {
         await updateDoc(docref, { 
           user: this.$store.state.loginState.currentUser.email
-        })
+        }).then(
+          this.$store.state.adminCoupon = [],
+          this.$store.state.myCoupon = [],
+          this.fetchAdminData_coupon()
+        )
       }
 
       else {
         alert('유효하지 않은 쿠폰입니다.')
       }
 
-      this.$store.state.adminCoupon = []
-      this.$store.state.myCoupon = []
-
-      this.fetchAdminData_coupon()
+      
     },
 
     useCoupon() {
@@ -271,18 +272,18 @@ export default {
       if(validCoupon == true) {
         await updateDoc(docref, { 
           user: this.receiver
-        })
-        // console.log(this.receiver)
-      }
-
-      else {
+        }).then(
+          this.$store.state.adminCoupon = [],
+          this.fetchAdminData_coupon()
+        )
+        
+      } else {
         alert('유효하지 않은 쿠폰입니다.')
       }
 
       this.receiver = ''
 
-      this.$store.state.adminCoupon = []
-      this.fetchAdminData_coupon()
+      
     },
     priceToString(price) {
       return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
