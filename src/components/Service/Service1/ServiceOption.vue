@@ -254,9 +254,10 @@ export default {
 #service-option-title {
   text-align: left;
   color: #0CAE02;
-  font-size: 20px;
-  font-weight: bold;
-  margin: 30px 0 30px 30px;
+  font-size: 1.5rem;
+  font-weight: 600;
+  
+  margin: 30px 0 30px 40px;
   font-family: 'Noto Sans KR', sans-serif;
 }
 .selectbox {
@@ -355,7 +356,7 @@ export default {
 }
 .goServicePay-btn {
   padding: 5px 70px;
-  margin-top: 60px;
+  margin-top: 40px;
   color:#0CAE02;
   background-color: #EEEEEE;
   border: 1.5px solid #0CAE02;
