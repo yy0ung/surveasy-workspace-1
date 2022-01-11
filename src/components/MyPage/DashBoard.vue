@@ -55,7 +55,8 @@
     <div class="bottom-list" v-for="item in (currentUserUploadInfo4)" :key="item.title">
       <p class="list-detail" v-if="show==1">
         <span id="sur-date">{{item.uploadDate}}</span>
-        <span id="sur-title">{{item.title}}</span>
+        <span id="sur-title" v-if="item.title.length<17">{{item.title}}</span>
+        <span id="sur-title" v-else>{{(item.title).substring(0,18)}}...</span>
         <span id="sur-pay">{{priceToString(item.price)}}원</span>
         <router-link to="/surveylist" id="sur-detail" v-if="item.progress==2">설문 보러가기</router-link>
         <span id="sur-detail" v-if="item.progress==0 || item.progress==1 || item.progress==5"></span>
@@ -83,6 +84,7 @@ export default {
       ment:'',
       myCount1: [],
       myCount2: [],
+      
      
       
       
@@ -98,7 +100,11 @@ export default {
    
 
   },
-
+  computed: {
+    style(text){
+      return text
+    }
+  },
 
   methods:{
     async fetchUserData_point(){
@@ -226,6 +232,9 @@ export default {
     // },
     priceToString(price) {
       return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+    },
+    over(text){
+      this.hoverStyle.color = black
     }
     
     
@@ -381,5 +390,6 @@ export default {
   margin-top: 30px;
   color: #848484;
 }
+
 
 </style>
