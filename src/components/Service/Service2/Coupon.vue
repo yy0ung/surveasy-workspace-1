@@ -16,14 +16,21 @@
         <ul class="Coupon-detail-text">적립금</ul>
         <div class="flex">
         <div class="point-detail-container">
-          <div class="Point-box">보유 적립금 {{ show_point }}원<button class="pointDelete-btn" @click="deletePoint"><i class="fas fa-times"></i></button></div>
+          <div class="Point-box">
+            <input class="Point-input" type="text" v-model="point_to_use" placeholder="사용하려는 적립금 액수를 입력하세요.">
+            <div>
+              보유 적립금 {{ show_point }}원    
+              <button class="pointDelete-btn" @click="deletePoint"><i class="fas fa-times"></i></button>
+            </div>
+          </div>
+          
           
         </div>
         <div>
           <button class="Coupon-btn-" id="point-btn-" @click="usePoint()">적립금 적용</button>
           </div>
           </div>
-          <div class="Point-notice">10,000원 이상 결제시, 결제 금액의 10%가 자동으로 적용됩니다.</div>
+          <div class="Point-notice">적립금은 주문 금액의 최대 10%까지 사용 가능합니다.</div>
       </ul>
 
     </div>
@@ -45,11 +52,14 @@ export default {
         rate: 0
       },
 
+      point_to_use: '',
+
       point_apply: false,
       point_delete: false
 
     }
   },
+  
 
   methods: {
     // Coupon methods
@@ -85,38 +95,58 @@ export default {
     
     // Point methods
     usePoint() {
+      var point_to_use_num = Number(this.point_to_use)
       if(this.$store.state.localSurveyState.point_use==false) {
-        if(this.$store.state.localSurveyState.beforeCouponPrice < 10000) {
-          alert('적립금은 결제 금액이 10,000원 이상인 경우에만 사용 가능합니다.')
+
+        if(point_to_use_num <= this.$store.state.loginState.currentUser.point_current) {
+
+          if(this.$store.state.localSurveyState.beforeCouponPrice < 10000) {
+            alert('적립금은 결제 금액이 10,000원 이상인 경우에만 사용 가능합니다.')
+            this.point_to_use = ''
+          }
+      
+          else {            
+            var maxpoint = this.$store.state.localSurveyState.beforeCouponPrice * 0.1
+
+            if(maxpoint < point_to_use_num) {
+              alert('적립금은 결제 금액의 최대 10%까지 사용 가능합니다.')
+              this.point_to_use = ''
+            }
+
+            else {
+              this.point_apply = true
+
+              this.$store.state.localSurveyState.pointDiscount = point_to_use_num
+              this.$store.state.localSurveyState.price = this.$store.state.localSurveyState.price - point_to_use_num
+
+              this.$store.state.localSurveyState.point_use = true
+
+            }
+
+            
+          }
+        
         }
+
         else {
-          this.point_apply = true
-          var maxpoint = this.$store.state.localSurveyState.beforeCouponPrice * 0.1
-
-          if(this.$store.state.loginState.currentUser.point_current < maxpoint) {
-            this.$store.state.localSurveyState.pointDiscount = this.$store.state.loginState.currentUser.point_current
-            this.$store.state.localSurveyState.price = this.$store.state.localSurveyState.price - this.$store.state.localSurveyState.pointDiscount
-          }
-
-          else if(this.$store.state.loginState.currentUser.point_current >= maxpoint) {
-            this.$store.state.localSurveyState.pointDiscount = maxpoint
-            this.$store.state.localSurveyState.price = this.$store.state.localSurveyState.price - this.$store.state.localSurveyState.pointDiscount
-          }
-
-          this.$store.state.localSurveyState.point_use = true
+          alert('사용가능한 적립금 액수를 초과하였습니다.')
+          this.point_to_use = ''
         }
       }
 
       else if(this.$store.state.localSurveyState.point_use==true) {
         alert("이미 적립금을 적용하셨습니다.")
+        this.point_to_use = ''
       }
     },
+
+    
 
   },
 
   computed: {
     show_point() {
-      var c = this.$store.state.loginState.currentUser.point_current
+      var c = this.$store.state.localPointState.point_current
 
       if(this.point_apply == false) {
         return c
@@ -280,6 +310,24 @@ export default {
   padding-top: 14px;
   padding-bottom: 13px;
   border-radius: 9px;
+}
+.Point-input {
+  width: 400px;
+  background-color: #EEEEEE; 
+  border: none;
+  font-size: 16px;
+  font-family: 'Noto Sans KR' lighter;
+  color: #a2a0a0;
+  padding-left: 5px;
+}
+.Point-input::placeholder {
+  font-size: 16px;
+  font-family: 'Noto Sans KR' lighter;
+  color: #a2a0a0;
+}
+.Point-input:focus {
+  border:none;
+  outline: none;
 }
 .pointDelete-btn {
   display: inline-block;

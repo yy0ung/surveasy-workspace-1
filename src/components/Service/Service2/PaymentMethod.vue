@@ -213,6 +213,7 @@ export default {
       var db = this.$store.state.db
       // var localLastID = this.$store.state.lastID[0].lastID
       var currentUserEmail = await this.$store.state.loginState.currentUser.email
+      var surveySelectedIdentity = await this.$store.state.localSurveyState.identity
       var nowDate= new Date()
       var orderNum = nowDate.getFullYear().toString().substring(2,4) + (nowDate.getMonth()+1).toString() + nowDate.getDate().toString() + lastID
       
@@ -281,7 +282,7 @@ export default {
 
         // console.log(dataset)
 
-        if(this.$store.state.localSurveyState.identity=='할인 대상이 아닙니다.' ) {
+        if(surveySelectedIdentity=='할인 대상이 아닙니다.') {
           this.$router.push('/servicepaydone')
         }
 
