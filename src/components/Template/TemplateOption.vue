@@ -183,7 +183,7 @@ export default {
   padding: 5px;
   width: 190px;
   height: 45px;
-  padding: 13px;
+  padding: 10px;
   background-color: #EEEEEE;
   font-size: 14px;
   cursor: pointer;
