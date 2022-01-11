@@ -30,8 +30,8 @@
       </div> -->
       <div class="repeat" v-for="item in (currentUserUploadIndexInfo2)" :key="item">
       <div class="sur-box"  :class="{active:item.progress==3||item.progress==4||item.progress==5}">
-        <p class="su-title"><span v-if="item.title.length<44">{{item.title}}</span>
-        <span v-else>{{item.title.substring(0,45)}}...</span> 
+        <p class="su-title"><span v-if="item.title.length<39">{{item.title}}</span>
+        <span v-else>{{item.title.substring(0,40)}}...</span> 
           
           <span class="gray">{{priceToString(item.price)}}원</span></p>
         <div class="su-contents">
