@@ -327,6 +327,7 @@ export default {
   margin-top: 20px;
   margin-left: 20px;
   border-radius: 15px;
+  font-family: 'Noto Sans KR', sans-serif;
 }
 .PaymentMethod-container {
   width: 380px;
@@ -354,7 +355,7 @@ export default {
   margin-right: 33px;
 }
 #Account-input {
-  font-family: 'Noto Sans KR';
+  font-family: 'Noto Sans KR', sans-serif;
   background-color: #EEEEEE;
   justify-content: center;
   width: 282px;
@@ -364,7 +365,7 @@ export default {
   border: 1px solid rgb(187, 187, 187);
   padding: 15px;
   font-size: 14px;
-  font-weight: lighter;
+ 
 }
 #Account-input:focus{
   outline: none;

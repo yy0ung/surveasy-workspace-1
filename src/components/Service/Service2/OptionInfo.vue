@@ -38,6 +38,7 @@ export default {
   margin-top: 70px;
   border-radius: 15px;
   opacity: 1;
+  font-family: 'Noto Sans KR', sans-serif;
 }
 .OptionInfo-container {
   width: 1123px;

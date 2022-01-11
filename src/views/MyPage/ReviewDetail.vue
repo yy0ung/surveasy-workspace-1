@@ -6,7 +6,8 @@
   </div>
   <p class="notice-re">자세한 후기(비공개)를 작성해주시면 <span id="no-green">적립금 500원</span>을 추가 지급해드립니다. </p>
   <div class="rev-black-light">
-      <span class="rev-black-bold">[{{this.reviewDetailData.title}}] 설문 의뢰 서비스에 대해 조금 더 자세한 후기를 알려주세요. 
+      <span class="rev-black-bold"><span v-if="reviewDetailData.title.length>34">[{{reviewDetailData.title.substring(0,35)}}...]</span> 
+    <span v-else>[{{reviewDetailData.title}}]</span>설문 의뢰 서비스에 대해 조금 더 자세한 후기를 알려주세요. 
         <br>답변하시는 모든 내용은 비공개 처리됩니다. 작성시, 감사한 마음을 담아 적립금을 드립니다.</span>
       
   </div>

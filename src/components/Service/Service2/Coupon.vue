@@ -178,6 +178,7 @@ export default {
   margin-top: 20px;
   border-radius: 15px;
   opacity: 1;
+  font-family: 'Noto Sans KR', sans-serif;
 }
 .Coupon-container {
   width: 1123px;
@@ -223,7 +224,7 @@ export default {
   font-size: 16px;
   padding: 12px;
   text-align: left;
-  font-family: 'Noto Sans KR' lighter;
+  font-family: 'Noto Sans KR';
   letter-spacing: 0px;
   color: #a2a0a0;
   padding-top: 14px;
@@ -344,5 +345,8 @@ export default {
 }
 .flex{
   display: flex;
+}
+.select-placeholder{
+  font-family: 'Noto Sans KR', sans-serif;
 }
 </style>

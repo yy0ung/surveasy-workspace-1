@@ -142,6 +142,7 @@ export default {
   max-width: 500px;
   min-width: 500px;
   height: 5468px;
+  font-family: 'Noto Sans KR', sans-serif;
 }
 .TemplateOption-container {
   font-family: 'Noto Sans KR';
@@ -158,8 +159,8 @@ export default {
 #TemplateOption-title {
   text-align: left;
   color: #0CAE02;
-  font-size: 23px;
-  font-weight: normal;
+  font-size: 1.5rem;
+  font-weight: 600;
   margin: 30px 0 27px 35px;
 }
 .TemplateOption-container li {
@@ -228,5 +229,6 @@ export default {
   color: white;
   background-color: #0AAC00;
 }
+
 
 </style>

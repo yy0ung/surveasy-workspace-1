@@ -39,6 +39,7 @@ export default {
   margin-top: 70px;
   margin-left: 20px;
   border-radius: 15px;
+  font-family: 'Noto Sans KR', sans-serif;
 }
 .PaymentPrice-container {
   width: 380px;

@@ -166,6 +166,8 @@ export default {
   border: 0.1px solid black;
   margin-top: 50px;
   font-size: 1rem;
+  /* appearance: none; */
+  
 }
 .middle-box .green-title{
   margin-top: 10px;

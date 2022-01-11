@@ -14,7 +14,7 @@
         
         <th></th>
       </tr>
-      <tr v-for="item in (this.$store.state.surveyData.slice(currentPage*5-5,currentPage*5))" :key="item.id">
+      <tr v-for="item in (this.$store.state.surveyData.slice(currentPage*10-10,currentPage*10))" :key="item.id">
 
         <td class="list-de" :class="{active: (dueTime(item[0].dueDate,item[0].dueTimeTime)<0 || item[0].progress>=3)}">{{item[0].id}}</td>
 
@@ -35,13 +35,16 @@
           <div v-else>
             <span @mouseover="item[0].notice = true" @mouseleave="item[0].notice = false">
               <span v-if="item[0].notice == true">
-                <a :href="item[0].link" target="_blank" class="list-title" :class="{active:dueTime(item[0].dueDate,item[0].dueTimeTime)<0|| item[0].progress>=3}" ><span>{{item[0].title}}</span></a>
+                <a :href="item[0].link" target="_blank" class="list-title" :class="{active:dueTime(item[0].dueDate,item[0].dueTimeTime)<0|| item[0].progress>=3}" >
+                  <span v-if="item[0].title.length > 44">{{(item[0].title).substring(0,35)}}<br>{{(item[0].title).substring(35,item[0].title.length)}}</span>
+                  <span v-else>{{item[0].title}}</span>
+                </a>
                 
               </span>
               <span v-else>
                 <a :href="item[0].link" target="_blank" class="list-title" :class="{active:dueTime(item[0].dueDate,item[0].dueTimeTime)<0|| item[0].progress>=3}" >
                   <span v-if="item[0].title.length > 44">{{(item[0].title).substring(0,44)}}...</span>
-                  <span v-else>{{(item[0].title).substring(0,44)}}</span>
+                  <span v-else>{{item[0].title}}</span>
                 </a>
               </span>
               
@@ -172,7 +175,7 @@ export default {
   computed:{
     totalPage(){
       let surveyDataLength = this.$store.state.surveyData.length
-      let pageCount = Math.floor((surveyDataLength / 5 ) +1)
+      let pageCount = Math.floor((surveyDataLength / 10 ) +1)
       
 
       return pageCount
@@ -192,8 +195,8 @@ export default {
 #list-view-container{
   font-family: 'Noto Sans KR', sans-serif;
   margin-bottom: 50px;
-  padding-top: 50px;
-  height: 700px;
+  padding-top: 10px;
+  height: 1100px;
 }
 #list-table{
   border: 0px solid black;
