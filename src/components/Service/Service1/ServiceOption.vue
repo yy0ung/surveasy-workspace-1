@@ -74,7 +74,7 @@
 
 
 <script>
-
+import { arrayUnion, doc, collection, setDoc, updateDoc, getDocs } from '@firebase/firestore';
 export default {
   data() {
     return {
@@ -218,6 +218,8 @@ export default {
           this.$router.push('/servicepay');
           // console.log('isLoggedInService')
         }
+
+        this.fetchUserData_point()
         
       
 
