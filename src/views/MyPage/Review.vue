@@ -4,7 +4,8 @@
     <p><span id="re-green">공개후기</span> 작성하기</p>
   </div>
   <div class="review-contents">
-    <p class="con-title">[{{reviewData.title}}] 설문 의뢰는 어땠나요?</p>
+    <p class="con-title"><span v-if="reviewData.title.length>34">[{{reviewData.title.substring(0,35)}}...]</span> 
+    <span v-else>[{{reviewData.title}}]</span> 설문 의뢰는 어땠나요?</p>
     <div class="star">
       <img v-if="reviewData.score<1" class="starimg" src="@/assets/myPage/restar.png" width="40" @click="plusScore(1)">
       <img v-if="reviewData.score>=1" class="starimg" src="@/assets/myPage/refullstar.png" width="40" @click="change(0)">

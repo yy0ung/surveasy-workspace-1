@@ -238,6 +238,7 @@ export default {
   max-width: 500px;
   min-width: 500px;
   height: 5468px;
+  font-family: 'Noto Sans KR', sans-serif;
   
 }
 .serviceOption-container {
@@ -253,9 +254,11 @@ export default {
 #service-option-title {
   text-align: left;
   color: #0CAE02;
-  font-size: 20px;
-  font-weight: bold;
-  margin: 30px 0 30px 30px;
+  font-size: 1.5rem;
+  font-weight: 600;
+  
+  margin: 30px 0 30px 40px;
+  font-family: 'Noto Sans KR', sans-serif;
 }
 .selectbox {
   font-family: 'Noto Sans KR', sans-serif;
@@ -275,6 +278,7 @@ export default {
 }
 .selectbox option {
   background-color: #fafafa;
+  
 }
 .hasTitleOption {
   text-align: left;
@@ -288,6 +292,7 @@ export default {
   font-size: 14px;
   font-weight: bolder;
   margin: 10px 0 0 41px;
+  
 }
 .hasTitleOption .date {
   font-family: 'Noto Sans KR', sans-serif;
@@ -351,7 +356,7 @@ export default {
 }
 .goServicePay-btn {
   padding: 5px 70px;
-  margin-top: 60px;
+  margin-top: 40px;
   color:#0CAE02;
   background-color: #EEEEEE;
   border: 1.5px solid #0CAE02;

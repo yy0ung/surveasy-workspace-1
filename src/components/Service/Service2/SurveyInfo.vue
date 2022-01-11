@@ -6,7 +6,7 @@
 
           <ul id="info-detail">
             <ul class="info-detail-text">설문 제목</ul>
-            <div class="info-detail-input"><input type="text" v-model="title" @change="setOption2()"  placeholder="예) 쓰레기 분리수거에 대한 대학생 인식조사 (최대 20자)" required></div>
+            <div class="info-detail-input"><input type="text" v-model="title" @change="setOption2()"  placeholder="예) 쓰레기 분리수거에 대한 대학생 인식조사 (40자 이내 권장)" required></div>
           </ul>
           <ul id="info-detail">
             <ul class="info-detail-text">설문 대상</ul>
@@ -19,7 +19,7 @@
           <ul id="info-detail">
             <ul class="info-detail-text">설문 링크</ul>
             <div class="info-detail-input"><input type="text" v-model="link" @change="setOption2()" placeholder="링크 입력 시 'https://'를 포함한 주소를 입력해주세요." required><a class="link-check-btn" :href="link" target="_blank">링크 확인</a></div>
-            <ul class="point-notice">단축 url을 이용할 경우 링크 확인이 어려울 수 있습니다.</ul>
+            
           </ul>
           <span></span>
             <LinkCheckModal :showLinkIframe="showLinkIframe" @closeIframe="showLinkModal" />
@@ -75,11 +75,14 @@ export default {
   margin-top: 20px;
   border-radius: 15px;
   opacity: 1;
+  font-family: 'Noto Sans KR', sans-serif;
 }
 .SurveyInfo-container {
   width: 1123px;
-  padding: 20px;
+  padding: 30px;
+  padding-top: 40px;
   z-index: 1;
+  font-family: 'Noto Sans KR', sans-serif;
 }
 .survey-info {
   text-align: left;
@@ -134,7 +137,7 @@ export default {
   width: 600px;
   height: 25px;
   text-align: left;
-  font-family: 'Noto Sans KR' lighter;
+  font-family: 'Noto Sans KR';
   font-size: 15px;
   letter-spacing: 0px;
   color: #BCBCBC;
