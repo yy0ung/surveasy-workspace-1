@@ -33,8 +33,21 @@
             <span class="due" v-else :class="{active:dueTime(item[0].dueDate,item[0].dueTimeTime)<0 || item[0].progress>=3}">{{calTime(item[0].dueDate,item[0].dueTimeTime)}}</span>
           </div>
           <div v-else>
-            <a :href="item[0].link" target="_blank" class="list-title" :class="{active:dueTime(item[0].dueDate,item[0].dueTimeTime)<0|| item[0].progress>=3}" ><span v-if="(item[0].title).length<43">{{item[0].title}}</span>
-            <span v-else>{{(item[0].title).substring(0,44)}}...</span></a>
+            <span @mouseover="item[0].notice = true" @mouseleave="item[0].notice = false">
+              <span v-if="item[0].notice == true">
+                <a :href="item[0].link" target="_blank" class="list-title" :class="{active:dueTime(item[0].dueDate,item[0].dueTimeTime)<0|| item[0].progress>=3}" ><span>{{item[0].title}}</span></a>
+                
+              </span>
+              <span v-else>
+                <a :href="item[0].link" target="_blank" class="list-title" :class="{active:dueTime(item[0].dueDate,item[0].dueTimeTime)<0|| item[0].progress>=3}" >
+                  <span v-if="item[0].title.length > 44">{{(item[0].title).substring(0,44)}}...</span>
+                  <span v-else>{{(item[0].title).substring(0,44)}}</span>
+                </a>
+              </span>
+              
+            
+            </span>
+            
             
             <span class="due" v-if="dueTime(item[0].dueDate,item[0].dueTimeTime)>=0 && item[0].progress>=3" :class="{active:dueTime(item[0].dueDate,item[0].dueTimeTime)>=0 && item[0].progress>=3}">마감</span>
             <span class="due" v-else :class="{active:dueTime(item[0].dueDate,item[0].dueTimeTime)<0 || item[0].progress>=3}">{{calTime(item[0].dueDate,item[0].dueTimeTime)}}</span>
