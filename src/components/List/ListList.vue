@@ -45,7 +45,9 @@
         <td class="list-de" :class="{active:dueTime(item[0].dueDate,item[0].dueTimeTime)<0 || item[0].progress>=3}">{{item[0].target}}</td>
         <td class="list-de" :class="{active:dueTime(item[0].dueDate,item[0].dueTimeTime)<0 || item[0].progress>=3}">{{item[0].spendTime}}</td>
         <td class="list-de" :class="{active:dueTime(item[0].dueDate,item[0].dueTimeTime)<0 || item[0].progress>=3}">{{item[0].requiredHeadCount}}</td>
-        <td class="list-de" :class="{active:dueTime(item[0].dueDate,item[0].dueTimeTime)<0 || item[0].progress>=3}">{{item[0].uploader.substring(0,1)+"*"+item[0].uploader.substring(item[0].uploader.length-1)}}</td>
+        <td class="list-de" :class="{active:dueTime(item[0].dueDate,item[0].dueTimeTime)<0 || item[0].progress>=3}">
+          {{item[0].uploader.substring(0,item[0].uploader.length-1)+"*"}} 
+        </td>
 
          
       </tr>

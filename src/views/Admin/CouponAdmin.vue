@@ -1,5 +1,14 @@
 <template>
-<div class="coupon">
+<div>
+  <div v-if="this.$store.state.isAdmin == false">
+    <p>쿠폰 어드민 비밀번호 입력</p>
+    <input v-model="passInput" type="text" placeholder="AdminPassword">
+    <br>
+    Admin Password
+    <button @click="adminCheck(this.passInput)">확인하기</button>
+  </div>
+  <div v-else>
+    <div class="coupon">
   <div class="coupon-register">
     <h2>쿠폰 발급</h2>
     <input v-model="couponInfo.code" type="text" placeholder="쿠폰코드 입력란">
@@ -94,12 +103,17 @@
     <button @click="transferCP(transferCoupon)">쿠폰 전달하기</button>
   </div>
 
+  </div>
 
+
+
+
+</div>
 </div>
 </template>
 
 <script>
-import { doc, setDoc, collection, getDocs, updateDoc } from '@firebase/firestore'
+import { doc, setDoc, collection, getDocs, updateDoc,getDoc } from '@firebase/firestore'
 export default {
   data() {
     return {
@@ -131,6 +145,22 @@ export default {
   },
 
   methods: {
+    async adminCheck(passInput){
+      const db = this.$store.state.db
+      const pwRef = doc(db, "adminPassword", "couponadminPW")
+      const docSnap = await getDoc(pwRef)
+
+      if (docSnap.exists()) {
+        if (passInput == docSnap.data().password){
+          this.$store.commit('setAdminState')
+          this.fetchAdminData_coupon()
+        } else { alert('wrong input') }
+
+      } else { alert('error') }
+
+    },
+
+
    async addCoupon(couponInfo) {
     var db = this.$store.state.db 
     var due = new Date(couponInfo.duedate)
