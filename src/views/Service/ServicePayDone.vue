@@ -1,11 +1,9 @@
 <template>
   <div class="ServicePayDone">
-    <img id="check-img" src='@/assets/check.png' width="182">
+    <img id="paydone-check-img" src='@/assets/check.png' width="50">
     <div class="paydone-title">주문 완료되었습니다!</div>
-
-    <div class="paydone-green">
-      설문은 입금 확인과 빠른 검수 후 패널들에게 전달됩니다.
-    </div>
+    <div class="paydone-green">안내된 계좌로 입금을 완료하셔야 서비스 이용이 가능합니다.</div>
+    <div class="paydone-green">설문은 입금 확인과 빠른 검수 후 패널들에게 전달됩니다.</div>
     <div class="paydone-contentsbox">
       <ul id="paydone-subtitle">결제 정보</ul>
       <ul class="paydone-detail">
@@ -21,8 +19,8 @@
         <div id="paydone-detail-value">카카오뱅크 3333-17-5341775 (장서준)</div>
       </ul>
     </div>
-    <div class="paydone-notice">설문조사의 진행 상황은 마이 페이지에서 확인하실 수 있습니다.</div>
-    <div class="paydone-notice">문의 사항은 카카오채널 @surveasy로 보내주세요.</div>
+    <div class="paydone-notice">설문조사의 진행 상황은 마이 페이지에서 확인하실 수 있습니다.
+    <br>문의 사항은 카카오채널 @surveasy로 보내주세요.</div>
     <br>
     <router-link to="/mypage/dashboard"><button class="goMyPage-btn">마이 페이지 가기</button></router-link>
   </div>
@@ -44,15 +42,14 @@ export default {
 <style>
 .ServicePayDone {
   font-family: 'Noto Sans KR';
-  height: 900px;
-  padding: 110px;
-  
+  height: 650px;
+  padding: 80px;
 }
 .paydone-title {
   font-family: 'Noto Sans KR';
   font-size: 25px;
   font-weight: bold;
-  margin: 30px 0 15px 0;
+  margin: 15px 0 15px 0;
   color: #000000;
 }
 .paydone-green {
@@ -61,20 +58,20 @@ export default {
   font-weight: lighter;
   line-height: 28px;
   color: #0CAE02;
-  margin-bottom: 18px;
+  margin-bottom: 0px;
 }
 .paydone-contentsbox {
   display: inline-block;
   width: 506px;
-  height: 296px;
+  height: 250px;
   margin: 30px;
   background: #EEEEEE 0% 0% no-repeat padding-box;
   border-radius: 15px;
 }
 #paydone-subtitle {
   font-size: 20px;
-  margin-top: 53px;
-  margin-bottom: 30px;
+  margin-top: 28px;
+  margin-bottom: 35px;
 }
 .paydone-detail {
   display: flex;
@@ -87,7 +84,7 @@ export default {
   text-align: left;
   color: black;
   font-size: 17px;
-  margin-bottom: 30px;
+  margin-bottom: 25px;
   padding-left: 45px;
 }
 #paydone-detail-value {
@@ -108,9 +105,9 @@ export default {
 }
 .paydone-notice {
   font-family: 'Noto Sans KR';
-  font-size: 17px;
+  font-size: 15px;
   color: #000000;
-  margin-top: 10px;
+  margin-top: 5px;
 }
 .detail{
   font-weight: 400;
@@ -119,7 +116,7 @@ export default {
 }
 .goMyPage-btn {
   padding: 10px 30px;
-  margin: 50px;
+  margin: 5px;
   border: 1px solid #0AAB00;
   border-radius: 24px;
   opacity: 1;

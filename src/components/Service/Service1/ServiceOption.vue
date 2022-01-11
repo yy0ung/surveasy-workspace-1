@@ -44,7 +44,7 @@
     
         
           <select class="selectbox" v-model="priceIdentity">
-            <option :value=0 selected disabled hidden>대학생 / 대학원생 할인</option>
+            <option :value=0 selected disabled hidden>대학생 / 대학원생 할인 여부</option>
             <option :value=1>대학생입니다.</option>
             <option :value=2>대학원생입니다.</option>
             <option :value=3>할인대상이 아닙니다.</option>
@@ -258,20 +258,23 @@ export default {
   margin: 30px 0 30px 30px;
 }
 .selectbox {
+  font-family: 'Noto Sans KR', sans-serif;
+  font-weight: lighter;
   margin: 8px;
-  padding: 5px;
+  padding-left: 5px;
   width: 330px;
   height: 30px;
-  background-color: #EEEEEE;
+  background-color: #fafafa;
   font-size: 15px;
   cursor: pointer;
+  border: none;
 }
 .selectbox:focus{
   outline: none;
   border: 1.5px solid #0AAB00;
 }
 .selectbox option {
-  background-color: #EEEEEE;
+  background-color: #fafafa;
 }
 .hasTitleOption {
   text-align: left;
@@ -287,6 +290,9 @@ export default {
   margin: 10px 0 0 41px;
 }
 .hasTitleOption .date {
+  font-family: 'Noto Sans KR', sans-serif;
+  font-weight: lighter;
+  background-color: #fafafa;
   width: 135px;
   height: 22px;
   margin-left: 6px;
@@ -299,6 +305,9 @@ export default {
   border: 1.5px solid #0AAB00;
 }
 .hasTitleOption .time {
+  font-family: 'Noto Sans KR', sans-serif;
+  font-weight: lighter;
+  background-color: #fafafa;
   width: 105px;
   height: 22px;
   border: none;
