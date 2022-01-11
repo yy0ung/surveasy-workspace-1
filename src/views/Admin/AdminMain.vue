@@ -22,6 +22,7 @@
               <th>주문 날짜</th>
               <th>업로더</th>
               <th>업로더 이메일</th>
+              <th>선택 할인 옵션</th>
               <th>업로더 identity</th>
               <th>마감 날짜</th>
               <th>마감 시간</th>
@@ -40,6 +41,7 @@
               <td>{{item.uploadDate}}</td>
               <td>{{item.uploader}}</td>
               <td>{{item.uploaderEmail}}</td>
+              <td>{{item.priceIdentity}}</td>
               <td>{{item.uploaderIdentity}}</td>
               <!-- <td><button @click="updateApproved(item)">결제 확인</button></td> -->
               <!-- <td>{{item.adminApproved}}</td> -->
@@ -286,7 +288,7 @@ methods:{
       identity_responded: true
     })
 
-    await deleteDoc(doc(db, "identityVerifyRequired", payload.requestEmail.toString())).then(alert('ok')) 
+    // await deleteDoc(doc(db, "identityVerifyRequired", payload.requestEmail.toString())).then(alert('ok')) 
   },
 
   async fetchLastID(){
