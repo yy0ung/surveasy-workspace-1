@@ -170,6 +170,9 @@ export default {
       this.$store.state.localPointState.point_current = c
       this.$store.state.localPointState.point_total = t
 
+      this.$store.state.loginState.currentUser.point_current = c
+      this.$store.state.loginState.currentUser.point_total = t
+
       // console.log('current point: ' + this.$store.state.localPointState.point_current)
    },
     
