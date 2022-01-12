@@ -177,7 +177,7 @@ export default {
             
             // 입력하지 않은 항목이 있는지 체크
             for (var key in dataSet) {
-                if (key == null) {
+                if (key==null) {
                     errCode.push(1)
                 }
             }
@@ -188,12 +188,12 @@ export default {
                 errCode.push(3)
             }
             //휴대폰번호 숫자만있는지 확인 (#Todo)
-            if((dataSet.phoneNumber).length!=11 || isNaN(dataSet.phoneNumber)==true || (dataSet.phoneNumber).includes('.')==true){
+            if((dataSet.phoneNumber).length<11 || isNaN(dataSet.phoneNumber)==true || (dataSet.phoneNumber).includes('.')==true){
                 errCode.push(4)
                
             }
             
-            if((dataSet.birth).length<8){
+            if((dataSet.birth).length<8 || dataSet.birth>=20220000){
                 errCode.push(5)
             }
 

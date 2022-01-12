@@ -107,7 +107,7 @@ export default {
 <style>
 .ServiceIdentity{
   height: 500px;
-  margin-top: 250px;
+  margin-top: 150px;
   font-family: 'Noto Sans KR', sans-serif;
 }
 .identity-title {
