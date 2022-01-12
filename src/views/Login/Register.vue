@@ -257,6 +257,11 @@ export default {
                         alert(this.error)
                     }
 
+                    if(error.code=="auth/invalid-email") {
+                        this.error = "이메일 형식이 맞는지 확인해주세요."
+                        alert(this.error)
+                    }
+
                 })
             
             
