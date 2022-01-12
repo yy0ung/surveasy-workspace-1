@@ -323,7 +323,7 @@ export default {
 }
 .Point-input::placeholder {
   font-size: 16px;
-  font-family: 'Noto Sans KR' lighter;
+  font-family: 'Noto Sans KR';
   color: #a2a0a0;
 }
 .Point-input:focus {
