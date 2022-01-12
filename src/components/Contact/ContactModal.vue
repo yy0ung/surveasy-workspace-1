@@ -21,20 +21,34 @@
 </template>
 
 <script>
-import { setDoc, doc } from 'firebase/firestore';
+import { setDoc, doc, updateDoc, getDoc } from 'firebase/firestore';
 export default {
   data() {
     return {
       infoData:{
         name:null,
         email:null,
-        company:null
+        company:null,
+        
       },
       checked:false
       
     }
   },
   methods:{
+    async fetchB2BID(){
+      const lastID = []
+      const db = this.$store.state.db
+      const docRef = doc(db,"lastID", "numberB2B")
+      const querySnapshot = await getDoc(docRef)
+        if (querySnapshot.exists()){
+          lastID.push(querySnapshot.data())
+          
+        }
+        // console.log('fetch LastID')
+        // console.log(lastID[0].lastID)
+        return lastID[0].B2BID
+  },
     closeModal(){
       this.$router.go('/contact')
       this.$store.state.showModal=false
@@ -42,6 +56,7 @@ export default {
     },
 
     validateB2B(infoData){
+      
       if(infoData.name==null || infoData.email==null || infoData.company==null || this.checked == false){
           alert('필수항목입니다')
       } else {
@@ -51,19 +66,28 @@ export default {
 
 
     async addData(infoData){
-        
-        var db = this.$store.state.db
+      var db = this.$store.state.db
+      var idDocref = doc(db, "lastID", "numberB2B")
+      var lastID = await this.fetchB2BID() 
+      
 
-        await setDoc(doc(db, "B2BData", infoData.company),{
-          name: infoData.name,
-          email: infoData.email,
-          company: infoData.company,
-          isresponded: false
-        }).then(
-          this.$store.state.showModal=false,
-          this.$store.state.showFinalModal=true,
-          alert('완료되었습니다.')
-        )
+      await setDoc(doc(db, "B2BData", infoData.company),{
+        name: infoData.name,
+        email: infoData.email,
+        company: infoData.company,
+        isresponded: false,
+        uploadTime: new Date(),
+        B2BID : lastID
+      }).then(
+
+        this.$store.state.showModal=false,
+        this.$store.state.showFinalModal=true,
+        alert('완료되었습니다.')
+      )
+
+      await updateDoc(idDocref, {
+        B2BID : lastID + 1
+      })
       }
     
     
