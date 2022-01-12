@@ -204,8 +204,7 @@ export default {
             
             if (errCode.length == 0 ){
                 this.validReg = true
-                this.create()
-                this.addUserData(dataSet)
+                this.create(dataSet)
                 
                 
             } else {
@@ -241,12 +240,28 @@ export default {
             
         }
         ,
-        create(){
+        create(dataSet){
             const auth = getAuth();
             createUserWithEmailAndPassword(auth, this.dataSet.email, this.dataSet.password)
                 .then((userCredential) => {
                     const user = userCredential.user;
-                    // console.log(user)
+                    this.addUserData(dataSet)
+                })
+                .catch((error) => {
+                    const errorCode = error.code;
+
+                    //console.log(errorCode)
+
+                    if(error.code=="auth/email-already-in-use") {
+                        this.error = "이미 가입된 계정입니다."
+                        alert(this.error)
+                    }
+
+                    if(error.code=="auth/invalid-email") {
+                        this.error = "이메일 형식이 맞는지 확인해주세요."
+                        alert(this.error)
+                    }
+
                 })
             
             
@@ -277,6 +292,7 @@ export default {
                 
                 
             })
+            //console.log("됐다")
             this.$router.push('/registerdone')
         },
 
