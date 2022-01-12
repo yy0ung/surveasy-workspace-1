@@ -88,6 +88,8 @@
        
         <table>
           <tr>
+            <th>ID</th>
+            <th>uploadTime</th>
             <th>company</th>
             <th>email</th>
             <th>name</th>
@@ -95,7 +97,9 @@
             <th>변경</th>
           </tr>
 
-          <tr v-for="item in (this.$store.state.adminDataB2B)" :key="item.name" class="tds" :class="{red:item.isresponded==false}">
+          <tr v-for="item in (this.$store.state.adminDataB2B)" :key="item.B2BID" class="tds" :class="{red:item.isresponded==false}">
+            <td>{{item.B2BID}}</td>
+            <td>{{item.uploadTime}}</td>
             <td>{{item.company}}</td>
             <td>{{item.email}}</td>
             <td>{{item.name}}</td>
@@ -103,7 +107,9 @@
             <td><button @click="B2BRespond(item)">변경</button></td>
 
           </tr>
+
         </table>
+        <button @click="fetchB2BID()">asdfasdf</button>
       </div>
 
       <div>
@@ -281,12 +287,18 @@ methods:{
   async requestIdentityApprove(payload){
     var db = this.$store.state.db
     const docref = doc(db, "userData", payload.requestEmail.toString())
+    const docref2 = doc(db, "identityVerifyRequired", payload.requestEmail)
     
 
     await updateDoc(docref, {
       identity: payload.requestIdentity,
       identity_responded: true
     })
+
+    await updateDoc(docref2, {
+      requestApproved: true
+      
+    }).then(alert('ok'))
 
     // await deleteDoc(doc(db, "identityVerifyRequired", payload.requestEmail.toString())).then(alert('ok')) 
   },
@@ -302,6 +314,8 @@ methods:{
         // console.log(lastID[0].lastID)
         return lastID[0].lastID
       },
+
+  
 
   async addPastData(dataset){
     var db = this.$store.state.db

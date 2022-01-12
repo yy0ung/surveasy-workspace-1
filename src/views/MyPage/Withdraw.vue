@@ -50,6 +50,8 @@ import { doc, deleteDoc } from "firebase/firestore";
 export default {
   mounted() {
     window.scrollTo(0,0)
+    this.resetTF()
+
     
   },
   data(){
@@ -116,6 +118,11 @@ export default {
         });
         })
       }
+    },
+
+    resetTF(){
+      this.$store.state.withDrawCheckTF = false
+
     }
       
       
