@@ -118,8 +118,8 @@ export default {
 <style>
 
 .ServiceIdentity{
-  height: 500px;
-  margin-top: 250px;
+  height: 600px;
+  margin-top: 200px;
   font-family: 'Noto Sans KR', sans-serif;
 }
 .identity-title {

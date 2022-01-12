@@ -54,9 +54,9 @@ export default {
 }
 .paydone-green {
   font-family: 'Noto Sans KR';
-  font-size: 17px;
-  font-weight: lighter;
-  line-height: 28px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 25px;
   color: #0CAE02;
   margin-bottom: 0px;
 }
