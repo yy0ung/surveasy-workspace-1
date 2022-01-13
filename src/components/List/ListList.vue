@@ -36,14 +36,14 @@
             <span @mouseover="item[0].notice = true" @mouseleave="item[0].notice = false">
               <span v-if="item[0].notice == true">
                 <a :href="item[0].link" target="_blank" class="list-title" :class="{active:dueTime(item[0].dueDate,item[0].dueTimeTime)<0|| item[0].progress>=3}" >
-                  <span v-if="item[0].title.length > 44">{{(item[0].title).substring(0,35)}}<br>{{(item[0].title).substring(35,item[0].title.length)}}</span>
+                  <span v-if="item[0].title.length > 35">{{(item[0].title).substring(0,38)}}<br>{{(item[0].title).substring(38,item[0].title.length)}}</span>
                   <span v-else>{{item[0].title}}</span>
                 </a>
                 
               </span>
               <span v-else>
                 <a :href="item[0].link" target="_blank" class="list-title" :class="{active:dueTime(item[0].dueDate,item[0].dueTimeTime)<0|| item[0].progress>=3}" >
-                  <span v-if="item[0].title.length > 44">{{(item[0].title).substring(0,44)}}...</span>
+                  <span v-if="item[0].title.length > 44">{{(item[0].title).substring(0,35)}}...</span>
                   <span v-else>{{item[0].title}}</span>
                 </a>
               </span>
@@ -134,14 +134,14 @@ export default {
       // var dueDate = date
       var due = new Date(date)
       var timeHour = time.substring(0,2)
-      var dateDiff = due.getTime()/3600000 - Date.now()/3600000 + (timeHour-9)
+      var dateDiff = due.getTime()/3600000 - Date.now()/3600000 + (timeHour-8)
       return dateDiff
     },
     calTime(date,time){
       // var dueDate = date
       var due = new Date(date)
       var timeHour = time.substring(0,2)
-      var dateDiff = due.getTime()/3600000 - Date.now()/3600000 + (timeHour-9)
+      var dateDiff = due.getTime()/3600000 - Date.now()/3600000 + (timeHour-8)
       var Dday = ''
       
       // console.log(due.getTime()/3600000)
@@ -149,8 +149,10 @@ export default {
       
       if(dateDiff<0){
         Dday='마감'
+      }else if(dateDiff>=0 && dateDiff<1){
+        Dday = '1시간 이내 마감'
       }
-      else if(dateDiff<24 && dateDiff>0){
+      else if(dateDiff<24 && dateDiff>1){
         Dday = Math.floor(dateDiff)+'시간 후 마감'
       }else if(dateDiff<48){
         Dday = 'D-1'

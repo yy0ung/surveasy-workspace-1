@@ -43,7 +43,7 @@
         <th>사용 여부</th>
       </tr>
 
-      <tr v-for="item in (this.$store.state.adminCoupon)" :key="item.code">
+      <tr v-for="item in (this.$store.state.adminCoupon)" :key="item.code" class="cou-tds" :class="{red: (item.outOfDate==false && item.isUsed==false)}">
         <td>{{ item.code }}</td>
         <td>{{ item.name }}</td>
         <td>{{ item.rate }}</td>
@@ -346,5 +346,9 @@ export default {
 }
 .coupon-use input {
   width: 260px;
+}
+.cou-tds.red{
+  color: rgb(115, 192, 44);
+  font-weight: bold;
 }
 </style>
