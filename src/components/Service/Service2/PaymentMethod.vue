@@ -220,7 +220,7 @@ export default {
       var d = nowDate.toLocaleDateString()
       var dd = d.replace(/ /g, "")
       var ddd = dd.split('.')
-
+      
       var year = ddd[0]
       var month = ddd[1]
       var day = ddd[2]

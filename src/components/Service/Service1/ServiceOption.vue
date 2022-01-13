@@ -27,7 +27,7 @@
           <br>
           <li class="hasTitleOption">
             <span class="option-title">마감기한 지정</span>
-            <input type="Date" class="date" :min="min" :max="getDateStr" v-model="aa" required> 
+            <input type="Date" class="date" :min="getDateStr_min" :max="getDateStr_max" v-model="aa" required> 
             <input type="time" class="time" v-model="bb" required>
             <p class="warn-msg">마감날짜와 마감시간 중 공란이 존재할 경우 <br> 설문 게시가 어려울 수 있습니다.</p>
           </li>
@@ -97,7 +97,7 @@ export default {
       ex: 0,
 
       today: new Date().toISOString().substring(0,10),
-      min: new Date().toISOString().substring(0,10),
+      min: new Date().toLocaleDateString().substring(0,10),
 
       aa:'12:00:00',
       bb:'',
@@ -112,13 +112,52 @@ export default {
   },
 
   computed :{
-    getDateStr(){
+    getDateStr_min(){
+      var today = new Date()
+      var min = today.toLocaleDateString()
+
+      var dd = min.replace(/ /g, "")
+      var ddd = dd.split('.')
+      
+      var year = ddd[0]
+      var month = ddd[1]
+      var day = ddd[2]
+
+      month = month.length == 2 ? month : '0' + month
+      day = day.length == 2 ? day : '0' + day
+
+      var D = year + '-' + month + '-' + day
+      // console.log(D)
+      return D
+    },
+
+    getDateStr_max(){
+      // var today = new Date()
+      // var a = today.setDate(today.getDate()+7)
+      // var m = new Date(a)
+      // var max = m.toISOString().substring(0,10) 
+      // return max
+
       var today = new Date()
       var a = today.setDate(today.getDate()+7)
       var m = new Date(a)
-      var max = m.toISOString().substring(0,10) 
-      return max
+      var max = m.toLocaleDateString()
+
+      var dd = max.replace(/ /g, "")
+      var ddd = dd.split('.')
+      
+      var year = ddd[0]
+      var month = ddd[1]
+      var day = ddd[2]
+
+      month = month.length == 2 ? month : '0' + month
+      day = day.length == 2 ? day : '0' + day
+
+      var D = year + '-' + month + '-' + day
+      // console.log(D)
+      return D
     },
+
     getTimeStr(){
       var time = new Date()
       var utc = time.getTime() + (time.getTimezoneOffset() *60 *1000)
