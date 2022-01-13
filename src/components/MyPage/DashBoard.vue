@@ -59,7 +59,8 @@
         <span id="sur-title" v-else>{{(item.title).substring(0,18)}}...</span>
         <span id="sur-pay">{{priceToString(item.price)}}원</span>
         <router-link to="/surveylist" id="sur-detail" v-if="item.progress==2">설문 보러가기</router-link>
-        <span id="sur-detail" v-if="item.progress==0 || item.progress==1 || item.progress==5"></span>
+        <span id="sur-detail-" v-if="item.progress==0 || item.progress==1 ">설문 검수 중</span>
+        <span id="sur-detail" v-if="item.progress==5"></span>
         <router-link :to="`/review/${item.id}/${item.title}`" id="sur-detail" v-if="item.progress==3">후기 작성하기</router-link>
         <router-link :to="`/reviewdetail/${item.id}/${item.title}`" v-if="item.progress==4" id="sur-detail">후기 작성하기</router-link>
         
@@ -202,7 +203,7 @@ export default {
         if(this.currentUserUploadInfo3[i].progress<=2){
           this.myCount1.push(this.currentUserUploadInfo3[i].progress)
           
-        }else if(this.currentUserUploadInfo3[i].progress==3 || this.currentUserUploadInfo3[i].progress==4){
+        }else if(this.currentUserUploadInfo3[i].progress>=3){
           this.myCount2.push(this.currentUserUploadInfo3[i].progress)
         }
         // console.log(this.currentUserUploadInfo3[i].progress)
@@ -351,6 +352,11 @@ export default {
 }
 #sur-detail{
   text-decoration: underline;
+  margin-right: 30px;
+  width: 90px;
+}
+#sur-detail-{
+  color: #848484;
   margin-right: 30px;
   width: 90px;
 }

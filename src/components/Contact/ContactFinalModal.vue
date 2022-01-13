@@ -4,7 +4,7 @@
   <div id="close-icon" @click="closeModal"><i class="fas fa-times"></i></div>
   <img class="checkimg" src="@/assets/check.png" width="100">
   <p class="green">서베이지 B2B 소개서 신청이 완료되었습니다!</p>
-  <p>입력해주신 이메일 주소로 1~2일안에 보내드리겠습니다.</p>
+  <p>입력해주신 이메일 주소로 1~2일 안에 보내드리겠습니다.</p>
 </div>  
 </div>
 </template>

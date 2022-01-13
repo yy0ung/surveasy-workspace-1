@@ -53,7 +53,7 @@
     <input type="text" class="text-box" v-model="reviewDetailData.Q2">
   </div>
   <div class="rev-column">
-    <p class="rev-black-bold">3. 서베이지만으로 원하는 응답 수를 채우실 수 있었나요? 추가적으로 응답을 얻어야했던 경우, <br><span class="margin-re">어떠한 경로로 얻어내셨나요? *</span></p>
+    <p class="rev-black-bold">3. 서베이지만으로 원하는 응답 수를 채우실 수 있었나요? 추가적으로 응답을 얻어야했던 경우, <br><span class="margin-re">어떠한 경로로 얻어내셨나요? (최소 10자 이상) *</span></p>
     <input type="text" class="text-box" v-model="reviewDetailData.Q3">
   </div>
   <div class="rev-column">
@@ -92,8 +92,8 @@ export default {
     async addData(reviewDetailData){
       // console.log(reviewDetailData)
       var db = this.$store.state.db
-      if(reviewDetailData.Q1.length==0 || reviewDetailData.Q3.length==0){
-        alert('필수 항목을 모두 채워주세요.')
+      if(reviewDetailData.Q1.length==0 || reviewDetailData.Q3.length<10){
+        alert('필수 항목을 올바르게 채워주세요.')
       }else{
         await setDoc(doc(db, "reviewDetailData", reviewDetailData.id),{
           surveyID: reviewDetailData.id,
