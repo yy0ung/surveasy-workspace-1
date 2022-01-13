@@ -7,6 +7,7 @@
     Admin Password
     <button @click="adminCheck(this.passInput)">확인하기</button>
   </div>
+
   <div v-else>
     <div class="coupon">
   <div class="coupon-register">
@@ -30,7 +31,7 @@
 
   <div class="coupon-list">
     <h2>쿠폰 리스트</h2>
-    <button @click="fetchAdminData_coupon()">쿠폰 리스트 보기</button>
+    <!-- <button @click="fetchAdminData_coupon()">쿠폰 리스트 보기</button> -->
     <table>
       <tr>
         <th>쿠폰 코드</th>
@@ -332,7 +333,30 @@ export default {
   margin: 50px;
 }
 .coupon-register {
+  margin: 80px;
+}
+.coupon-register input {
+  width: 300px;
+  height: 30px;
+  margin-bottom: 20px;
+  font-size: 15px;
+}
+.coupon-register select {
+  width: 80px;
+  height: 30px;
+  margin-left: 20px;
+  font-size: 15px;
+}
+.coupon-register button {
   margin: 20px;
+  width: 180px;
+  height: 40px;
+  background-color: rgb(250, 250, 107);
+  border: 1px solid grey;
+  border-radius: 15px;
+  font-size: 17px;
+  font-weight: bold;
+  cursor: pointer;
 }
 .coupon-list {
   margin: 20px;
