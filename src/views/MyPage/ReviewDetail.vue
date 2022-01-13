@@ -95,7 +95,7 @@ export default {
       if(reviewDetailData.Q1.length==0 || reviewDetailData.Q3.length==0){
         alert('필수 항목을 모두 채워주세요.')
       }else{
-        await setDoc(doc(db, "reviewDetailData", reviewDetailData.id),{
+        await setDoc(doc(db, "reviewDetailData", reviewDetailData.id.toString()),{
           surveyID: reviewDetailData.id,
           surveyTITLE: reviewDetailData.title,
           Q1: reviewDetailData.Q1,

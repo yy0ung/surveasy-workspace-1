@@ -111,7 +111,7 @@ export default {
     async addTemplateData(templateData) {
         var db = this.$store.state.db
 
-        await setDoc(doc(db, "TemplateData", templateData.identifyTime), {
+        await setDoc(doc(db, "TemplateData", templateData.identifyTime.toString()), {
           type: templateData.type,
           name: templateData.name,
           email: templateData.email,
