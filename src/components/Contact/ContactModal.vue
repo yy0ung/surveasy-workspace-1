@@ -71,7 +71,7 @@ export default {
       var lastID = await this.fetchB2BID() 
       
 
-      await setDoc(doc(db, "B2BData", infoData.company),{
+      await setDoc(doc(db, "B2BData", lastID.toString()),{
         name: infoData.name,
         email: infoData.email,
         company: infoData.company,

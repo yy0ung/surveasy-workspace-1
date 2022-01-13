@@ -270,7 +270,7 @@ export default {
         async addUserData(dataSet){
             
             var db = this.$store.state.db
-            await setDoc(doc(db, "userData", dataSet.email),{
+            await setDoc(doc(db, "userData", dataSet.email.toString()),{
                 name: dataSet.name,
                 email: dataSet.email,
                 phoneNumber: dataSet.phoneNumber,

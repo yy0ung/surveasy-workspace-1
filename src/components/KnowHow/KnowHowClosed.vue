@@ -26,7 +26,7 @@ export default {
       const db = this.$store.state.db
 
       if(this.knowhow_email != '') {
-        await setDoc(doc(db, "KnowhowEmailData", this.knowhow_email), {
+        await setDoc(doc(db, "KnowhowEmailData", this.knowhow_email.toString()), {
           email: this.knowhow_email,
         })
 

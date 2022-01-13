@@ -167,7 +167,7 @@ export default {
     var due = new Date(couponInfo.duedate)
     var diff = Math.floor((due.getTime() - Date.now()) / (24*60*60*1000))
     
-      await setDoc(doc(db, "couponData", couponInfo.code), {
+      await setDoc(doc(db, "couponData", couponInfo.code.toString()), {
         code: couponInfo.code,
         name: couponInfo.name,
         rate: couponInfo.rate,

@@ -89,7 +89,7 @@
         <table>
           <tr>
             <th>ID</th>
-            <th>uploadTime</th>
+            <!-- <th>uploadTime</th> -->
             <th>company</th>
             <th>email</th>
             <th>name</th>
@@ -99,7 +99,7 @@
 
           <tr v-for="item in (this.$store.state.adminDataB2B)" :key="item.B2BID" class="tds" :class="{red:item.isresponded==false}">
             <td>{{item.B2BID}}</td>
-            <td>{{item.uploadTime}}</td>
+            <!-- <td>{{item.uploadTime}}</td> -->
             <td>{{item.company}}</td>
             <td>{{item.email}}</td>
             <td>{{item.name}}</td>
@@ -216,7 +216,7 @@ methods:{
     const docSnap = await getDoc(pwRef)
     
     if (docSnap.exists()) {
-      console.log(docSnap.data())
+      
       if (passInput == docSnap.data().password){
         
         this.$store.commit('setAdminState')
@@ -263,6 +263,9 @@ methods:{
     querySnapshot3.forEach((doc) => {
       adminDataB2B.push(doc.data())
     })
+
+    const sortedB2B = adminDataB2B.sort(function(a,b){return b.B2BID - a.B2BID })
+    this.$store.state.adminDataB2B = sortedB2B
 
     const querySnapshot4 = await getDocs(collection(db, "TemplateData"))
     querySnapshot4.forEach((doc) => {
@@ -395,7 +398,7 @@ methods:{
 
   async B2BRespond(item){
     var db = this.$store.state.db
-    var B2BDocref = doc(db, "B2BData", item.company.toString())
+    var B2BDocref = doc(db, "B2BData", item.B2BID.toString())
     await updateDoc(B2BDocref, {
       isresponded : true
     })

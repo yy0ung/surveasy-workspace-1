@@ -63,7 +63,7 @@ export default {
         else{
           
     
-        await setDoc(doc(db, "reviewData", reviewData.id),{
+        await setDoc(doc(db, "reviewData", reviewData.id.toString()),{
           title: reviewData.title,
           id: reviewData.id,
           reviewGrade: reviewData.score,
