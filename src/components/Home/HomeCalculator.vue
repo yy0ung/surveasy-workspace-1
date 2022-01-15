@@ -7,7 +7,6 @@
       <div class="calc-option-container">
           <div class="respond-content">
             <span class="calc-option-title">요구 응답 수</span>
-          
           <div class="pro-one" :class="{active: priceRequireHeadCount>=2}">
             <div class="step-counter" :class="{active: priceRequireHeadCount>=1}" @click="HeadCount(1)"></div>
             <div class="step-name" :class="{active: priceRequireHeadCount>=1}">30명</div>
@@ -16,11 +15,11 @@
             <div class="step-counter" :class="{active: priceRequireHeadCount>=2}" @click="HeadCount(2)"></div>
             <div class="step-name" :class="{active: priceRequireHeadCount>=2}">40명</div>
           </div>
-          <div class="pro-one" :class="{active: priceRequireHeadCount>=4}">
+          <div class="pro-one" id="one-last" :class="{active: priceRequireHeadCount>=4}">
             <div class="step-counter" :class="{active: priceRequireHeadCount>=3}" @click="HeadCount(3)"></div>
             <div class="step-name" :class="{active: priceRequireHeadCount>=3}">50명</div>
           </div>
-          <div class="pro-one" :class="{active: priceRequireHeadCount>=5}">
+          <!-- <div class="pro-one" :class="{active: priceRequireHeadCount>=5}">
             <div class="step-counter" :class="{active: priceRequireHeadCount>=4}" @click="HeadCount(4)"></div>
             <div class="step-name" :class="{active: priceRequireHeadCount>=4}">60명</div>
           </div>
@@ -39,7 +38,7 @@
           <div class="pro-one" id="one-last" :class="{active: priceRequireHeadCount==9}">
             <div class="step-counter" :class="{active: priceRequireHeadCount>=8}" @click="HeadCount(8)"></div>
             <div class="step-name" :class="{active: priceRequireHeadCount>=8}">100명</div>
-          </div>
+          </div> -->
         </div>
 
         <div class="respond-content">
@@ -193,7 +192,7 @@ export default {
       day = day.length == 2 ? day : '0' + day
 
       var D = year + '-' + month + '-' + day
-      console.log(D)
+      // console.log(D)
       return D
     },
 
@@ -220,10 +219,10 @@ export default {
       day = day.length == 2 ? day : '0' + day
 
       var D = year + '-' + month + '-' + day
-      console.log(D)
+      // console.log(D)
       return D
     },
-    
+
     getTimeStr(){
       var time = new Date()
       var utc = time.getTime() + (time.getTimezoneOffset() *60 *1000)
