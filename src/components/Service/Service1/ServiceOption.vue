@@ -114,14 +114,24 @@ export default {
   computed :{
     getDateStr_min(){
       var today = new Date()
-      var min = today.toLocaleDateString()
-
-      var dd = min.replace(/ /g, "")
-      var ddd = dd.split('.')
       
-      var year = ddd[0]
-      var month = ddd[1]
-      var day = ddd[2]
+      var todayPlus9 = today.setHours(today.getHours()+9)
+      var todayPlus9Date = new Date(todayPlus9)
+      
+      var min = todayPlus9Date.toISOString()
+      
+      
+
+      var dddd= min.split('T')
+      var ddddd = dddd[0]
+      console.log(ddddd)
+      var dddddd= ddddd.split('-')
+
+      
+      
+      var year = dddddd[0]
+      var month = dddddd[1]
+      var day = dddddd[2]
 
       month = month.length == 2 ? month : '0' + month
       day = day.length == 2 ? day : '0' + day
@@ -132,23 +142,26 @@ export default {
     },
 
     getDateStr_max(){
-      // var today = new Date()
-      // var a = today.setDate(today.getDate()+7)
-      // var m = new Date(a)
-      // var max = m.toISOString().substring(0,10) 
-      // return max
+      
 
       var today = new Date()
       var a = today.setDate(today.getDate()+7)
-      var m = new Date(a)
-      var max = m.toLocaleDateString()
-
-      var dd = max.replace(/ /g, "")
-      var ddd = dd.split('.')
+      var ad = new Date(a)
+      var aa = ad.setHours(ad.getHours()+9)
+      var m = new Date(aa)
       
-      var year = ddd[0]
-      var month = ddd[1]
-      var day = ddd[2]
+      var max = m.toISOString()
+      
+
+      var dddd= max.split('T')
+      var ddddd = dddd[0]
+      
+      var dddddd= ddddd.split('-')
+
+      
+      var year = dddddd[0]
+      var month = dddddd[1]
+      var day = dddddd[2]
 
       month = month.length == 2 ? month : '0' + month
       day = day.length == 2 ? day : '0' + day
