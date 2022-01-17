@@ -6,7 +6,7 @@
       </p> 
       <div class="calc-option-container">
           <div class="respond-content">
-            <span class="calc-option-title">요구 응답 수</span>
+            <span class="calc-option-title" id="first-t">요구 응답 수</span>
           <div class="pro-one" :class="{active: priceRequireHeadCount>=2}">
             <div class="step-counter" :class="{active: priceRequireHeadCount>=1}" @click="HeadCount(1)"></div>
             <div class="step-name" :class="{active: priceRequireHeadCount>=1}">30명</div>
@@ -419,8 +419,11 @@ export default {
 .respond-content {
   display: flex;
   flex-direction: row;
-   
-  width: 85%;
+  
+  width: 90%;
+}
+#first-t{
+  margin-right: 17px;
 }
 .pro-one {
   position: relative;
@@ -436,7 +439,7 @@ export default {
   width: 100%;
   top: 5px;
   left: 50%;
-   
+ 
   z-index: 2;
 }
 .pro-one:after {
