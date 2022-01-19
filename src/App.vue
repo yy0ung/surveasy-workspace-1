@@ -1,8 +1,8 @@
 <template>
 <div id="app" :class="{backactive: this.$store.state.showModal}">
   <div class="cookies-modal" v-if="show==true">
-    <p class="cookies-title">사파리</p>
-    <p class="cookies-none" @click="setCookie">10일동안 안보기</p>
+    <p class="cookies-title">Surveasy 홈페이지는 Safari 브라우저를 지원하지 않습니다.</p>
+    <p class="cookies-none" @click="setCookie">7일동안 숨기기</p>
   </div>
   <div id="nav">
     <div class="one">
@@ -122,6 +122,7 @@ export default {
     this.fetchUserData()
     this.fetchSurveyData()
     this.getCookie()
+    window.scrollTo(0,0)
     // this.bd()
     // alert(this.$browserDetect.meta.name)
     // this.fetchLastID()
@@ -133,7 +134,7 @@ export default {
   },
   methods:{
     setCookie(){
-      VueCookies.set("none","n",10)
+      VueCookies.set("none","n","1d")
       console.log(VueCookies.get("none"))
       this.show=false
       
@@ -275,11 +276,19 @@ body {
 }
 .cookies-modal{
   display: flex;
-  justify-content: space-around;
-  background-color: #d9eccf;
+  justify-content: space-evenly;
+  background-color: #c7e2b9;
+  position: sticky;
 }
+
 .cookies-modal p{
   font-size: 0.9rem;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+}
+.cookies-none{
+  cursor: pointer;
+  text-decoration: underline;
 }
 
 
