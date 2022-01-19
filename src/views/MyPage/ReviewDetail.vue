@@ -120,8 +120,8 @@ export default {
       })
       const PointUserData = userData.filter(item => item.email===this.$store.state.loginState.currentUser.email)
       this.$store.state.PointUserData = PointUserData
-      console.log('***pointUser: ')
-      console.log(PointUserData[0])
+      //console.log('***pointUser: ')
+      //console.log(PointUserData[0])
       this.getPointInfo()
     },
 
