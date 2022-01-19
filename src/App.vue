@@ -1,5 +1,9 @@
 <template>
 <div id="app" :class="{backactive: this.$store.state.showModal}">
+  <div class="cookies-modal" v-if="show==true">
+    <p class="cookies-title">사파리</p>
+    <p class="cookies-none" @click="setCookie">10일동안 안보기</p>
+  </div>
   <div id="nav">
     <div class="one">
     <router-link to="/" @click="indexC(0)"><img class="logoimg" src="@/assets/logo.png" width="190"></router-link> 
@@ -102,8 +106,14 @@ import { getAnalytics } from 'firebase/analytics'
 // import { orderBy,sortBy } from 'lodash'
 import { getAuth, onAuthStateChanged } from 'firebase/auth'
 import _ from 'lodash'
+import VueCookies from 'vue-cookies'
 
 export default {
+  data() {
+    return {
+      show: true
+    }
+  },
   mounted(){
     const firebaseApp = initializeApp(this.$store.state.firebaseConfig)
     const db = getFirestore();
@@ -111,6 +121,7 @@ export default {
     this.$store.commit('setDB', db)
     this.fetchUserData()
     this.fetchSurveyData()
+    this.getCookie()
     // this.bd()
     // alert(this.$browserDetect.meta.name)
     // this.fetchLastID()
@@ -118,8 +129,24 @@ export default {
     //   event('login', { method: 'Google' })
     // }
     // mount()
+    
   },
   methods:{
+    setCookie(){
+      VueCookies.set("none","n",10)
+      console.log(VueCookies.get("none"))
+      this.show=false
+      
+    },
+    getCookie(){
+      if(VueCookies.isKey("none")){
+        this.show=false
+      }else{
+        this.show=true
+      }
+      console.log(VueCookies.get("none"))
+     //VueCookies.remove("none")
+    },
     async fetchUserData(){
       const db = this.$store.state.db
       const userData = this.$store.state.userData
@@ -245,6 +272,14 @@ body {
   z-index: 2;
   top:0;
   
+}
+.cookies-modal{
+  display: flex;
+  justify-content: space-around;
+  background-color: #d9eccf;
+}
+.cookies-modal p{
+  font-size: 0.9rem;
 }
 
 
