@@ -214,16 +214,27 @@ export default {
       // var localLastID = this.$store.state.lastID[0].lastID
       var currentUserEmail = await this.$store.state.loginState.currentUser.email
       var surveySelectedIdentity = await this.$store.state.localSurveyState.identity
-      var nowDate= new Date()
+      var nowDate = new Date()
       var orderNum = nowDate.getFullYear().toString().substring(2,4) + (nowDate.getMonth()+1).toString() + nowDate.getDate().toString() + lastID
       
-      var d = nowDate.toLocaleDateString()
-      var dd = d.replace(/ /g, "")
-      var ddd = dd.split('.')
       
-      var year = ddd[0]
-      var month = ddd[1]
-      var day = ddd[2]
+      
+      var today = new Date()
+      var todayPlus9 = today.setHours(today.getHours()+9)
+      var todayPlus9Date = new Date(todayPlus9)
+      console.log(todayPlus9Date)
+      var min = todayPlus9Date.toISOString()
+      
+
+      var dddd= min.split('T')
+      var ddddd = dddd[0]
+      console.log(ddddd)
+      var dddddd= ddddd.split('-')
+
+      
+      var year = dddddd[0]
+      var month = dddddd[1]
+      var day = dddddd[2]
 
       month = month.length == 2 ? month : '0' + month
       day = day.length == 2 ? day : '0' + day
