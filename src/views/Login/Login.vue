@@ -46,6 +46,7 @@ export default {
       password:'', 
       error: '',
       notice: '',
+
     }
   },
   mounted() {
@@ -177,8 +178,10 @@ export default {
           }
 
           if(error.code=="auth/user-not-found") {
+
             this.error = "가입되지 않은 이메일 주소입니다." 
             this.notice = "웹사이트 리뉴얼로 인해, 기존 회원분들도 새로운 회원가입이 필요합니다."
+
           }
 
           if(error.code=="auth/wrong-password") {
@@ -236,12 +239,14 @@ export default {
   
 }
 .lgn-notice {
-  font-size: 10px;
+  font-size: 0.65rem;
   color: rgb(225, 5, 5);
+  font-family: 'Noto Sans KR', sans-serif;
 }
 .error {
   color: rgb(225, 5, 5);
-  font-size: 10px;
+  font-size: 0.65rem;
+  font-family: 'Noto Sans KR', sans-serif;
 }
 .loginbtn {
   padding: 5px 30px;
