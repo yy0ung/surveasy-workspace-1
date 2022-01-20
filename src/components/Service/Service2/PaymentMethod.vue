@@ -33,6 +33,8 @@ export default {
       uploader: '',
       uploaderIdentity: '',
 
+      point_add: 0,
+
     }
   },
 
@@ -191,6 +193,8 @@ export default {
         point_addValue = Math.floor(this.$store.state.localSurveyState.price * 0.03)
       }
 
+      this.point_add = point_addValue
+
       this.$store.state.loginState.currentUser.point_current = this.$store.state.loginState.currentUser.point_current + point_addValue
       this.$store.state.loginState.currentUser.point_total = this.$store.state.loginState.currentUser.point_total + point_addValue
 
@@ -222,13 +226,13 @@ export default {
       var today = new Date()
       var todayPlus9 = today.setHours(today.getHours()+9)
       var todayPlus9Date = new Date(todayPlus9)
-      console.log(todayPlus9Date)
+      //console.log(todayPlus9Date)
       var min = todayPlus9Date.toISOString()
       
 
       var dddd= min.split('T')
       var ddddd = dddd[0]
-      console.log(ddddd)
+      //console.log(ddddd)
       var dddddd= ddddd.split('-')
 
       
@@ -273,7 +277,9 @@ export default {
 
           orderNum: orderNum,
 
-          progress : 0
+          progress : 0,
+
+          point_add: this.point_add
 
                 
         })

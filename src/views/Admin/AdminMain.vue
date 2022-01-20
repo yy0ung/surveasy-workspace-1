@@ -19,6 +19,8 @@
               <th>제목</th>
               <th>가격</th>
               <th>요구 응답</th>
+              <th>소요시간</th>
+              <th>링크</th>
               <th>주문 날짜</th>
               <th>업로더</th>
               <th>업로더 이메일</th>
@@ -38,6 +40,8 @@
               <td>{{item.title}}</td>
               <td>{{item.price}}</td>
               <td>{{item.requiredHeadCount}}</td>
+              <td>{{item.spendTime}}</td>
+              <td><a :href="item.link" target="_blank">Link</a></td>
               <td>{{item.uploadDate}}</td>
               <td>{{item.uploader}}</td>
               <td>{{item.uploaderEmail}}</td>
