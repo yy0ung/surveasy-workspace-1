@@ -39,7 +39,8 @@ export default {
     return{
       email:'',
       password:'', 
-      error: ''
+      error: '',
+      msg: "가입되지 않은 \n이메일 주소입니다."
     }
   },
   mounted() {
@@ -171,7 +172,9 @@ export default {
           }
 
           if(error.code=="auth/user-not-found") {
-            this.error = "가입되지 않은 이메일 주소입니다."
+            this.error = this.msg
+            
+            
           }
 
           if(error.code=="auth/wrong-password") {
