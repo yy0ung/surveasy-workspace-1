@@ -134,7 +134,7 @@ export default {
   },
   methods:{
     setCookie(){
-      VueCookies.set("none","n","1d")
+      VueCookies.set("none","n","7d")
       console.log(VueCookies.get("none"))
       this.show=false
       
