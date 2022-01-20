@@ -8,12 +8,17 @@
     <li>
       <input type="password" placeholder="비밀번호" v-model="password" @keyup.enter="signIn">
     </li>
+    
     <li>
       <div class="error">{{ error }}</div>
     </li>
     <li>
+      <div class="lgn-notice">{{ notice }}</div>
+    </li>
+    <li>
       <button type="submit" class="loginbtn" @click="signIn">로그인하기</button>
     </li>
+    
     
   </div>
   <div class="sublogin">
@@ -40,7 +45,7 @@ export default {
       email:'',
       password:'', 
       error: '',
-      msg: "가입되지 않은 \n이메일 주소입니다."
+      notice: '',
     }
   },
   mounted() {
@@ -172,9 +177,8 @@ export default {
           }
 
           if(error.code=="auth/user-not-found") {
-            this.error = this.msg
-            
-            
+            this.error = "가입되지 않은 이메일 주소입니다." 
+            this.notice = "웹사이트 리뉴얼로 인해, 기존 회원분들도 새로운 회원가입이 필요합니다."
           }
 
           if(error.code=="auth/wrong-password") {
@@ -230,6 +234,10 @@ export default {
   outline: none;
   border: 1.5px solid #0AAB00;
   
+}
+.lgn-notice {
+  font-size: 10px;
+  color: rgb(225, 5, 5);
 }
 .error {
   color: rgb(225, 5, 5);
