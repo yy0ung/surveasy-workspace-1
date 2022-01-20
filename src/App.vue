@@ -165,7 +165,7 @@ export default {
       const querySnapshot = await getDocs(collection(db, "surveyData"))
       querySnapshot.forEach((doc)=> {
         var dataSet = []
-        if (doc.data().progress == 3 || doc.data().progress == 2) {
+        if (doc.data().progress >= 3 || doc.data().progress == 2) {
           dataSet.push(doc.data())
           surveyData.push(dataSet)
         }
