@@ -60,9 +60,9 @@
         <span id="sur-pay">{{priceToString(item.price)}}원</span>
         <router-link to="/surveylist" id="sur-detail" v-if="item.progress==2">설문 보러가기</router-link>
         <span id="sur-detail-" v-if="item.progress==0 || item.progress==1 ">설문 검수 중</span>
-        <span id="sur-detail" v-if="item.progress==5"></span>
+        <span id="sur-detail-fin" v-if="item.progress==5 || dueFin(item.uploadDate)>=10">설문 완료</span>
         <router-link :to="`/review/${item.id}/${item.title}`" id="sur-detail" v-if="item.progress==3">후기 작성하기</router-link>
-        <router-link :to="`/reviewdetail/${item.id}/${item.title}`" v-if="item.progress==4" id="sur-detail">후기 작성하기</router-link>
+        <router-link :to="`/reviewdetail/${item.id}/${item.title}`" v-if="item.progress==4 && dueFin(item.uploadDate)<10" id="sur-detail">후기 작성하기</router-link>
         
       </p>
       
@@ -239,6 +239,11 @@ export default {
     },
     over(text){
       this.hoverStyle.color = black
+    },
+    dueFin(date){
+      var due = new Date().getDate()
+      var start = date.substring(8)
+      return due-start
     }
     
     
@@ -359,6 +364,12 @@ export default {
   color: #848484;
   margin-right: 30px;
   width: 90px;
+}
+#sur-detail-fin{
+  margin-left: 15px;
+  margin-right: 15px;
+  width: 90px;
+  color: #848484;
 }
 .gray-title1{
   margin-left: 465px;
