@@ -36,7 +36,7 @@
             <span @mouseover="item[0].notice = true" @mouseleave="item[0].notice = false">
               <span v-if="item[0].notice == true">
                 <a :href="item[0].link" target="_blank" class="list-title" :class="{active:dueTime(item[0].dueDate,item[0].dueTimeTime)<0|| item[0].progress>=3}" >
-                  <span v-if="item[0].title.length > 35">{{(item[0].title).substring(0,38)}}<br>{{(item[0].title).substring(38,item[0].title.length)}}</span>
+                  <span v-if="item[0].title.length > 44">{{(item[0].title).substring(0,38)}}<br>{{(item[0].title).substring(38,item[0].title.length)}}</span>
                   <span v-else>{{item[0].title}}</span>
                 </a>
                 
