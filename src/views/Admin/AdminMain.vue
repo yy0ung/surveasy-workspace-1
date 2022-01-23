@@ -159,22 +159,24 @@
 
         <table>
           <tr>
-            <th>주문</th>
-            <th>name</th>
+            <th>주문 날짜</th>
             <th>uploader</th>
+            <th>이름</th>
             <th>type</th>
+            <th>email</th>
+            <th>etc type</th>
             <th>응답여부</th>
-            <th>date</th>
             <th>응답여부변경</th>
           </tr>
 
           <tr v-for="item in (this.$store.state.adminDataTemplate)" :key = "item.name" class="tds" :class="{red:item.isresponded==false}">
-            <td>{{item.identifyTime}}</td>
-            <td>{{item.name}}</td>
-            <td>{{item.uploader}}</td>
-            <td>{{item.type}}</td>
-            <td>{{item.isresponded}}</td>
             <td>{{item.uploadDate}}</td>
+            <td>{{item.uploader}}</td>            
+            <td>{{item.name}}</td>
+            <td>{{item.type}}</td>
+            <td>{{item.email}}</td>
+            <td>{{item.etc}}</td>
+            <td>{{item.isresponded}}</td>
             <th><button @click="templateRespond(item)">변경</button></th>
 
           </tr>
