@@ -13,9 +13,6 @@
         <div class="PaymentMethod-text">
           입금 시, 메세지/입금자명에 "서베이지 아이디" 또는
           <br>"설문 주제"를 꼭 써주세요.
-          <br><br>
-          대학(원)생 인증을 완료하셔야 대학(원)생 할인이 적용됩니다.
-          <br>아직 인증을 완료하지 않으셨다면, 카카오채널에서 완료해주세요.
           <p>{{ this.$props.title }}</p>
         </div>
       </ul>
@@ -400,7 +397,7 @@ export default {
   font-family: 'Noto Sans KR';
   font-size: 11px;
   font-weight: normal;
-  margin-top: 35px;
+  margin-top: 25px;
   line-height: 19px;
 }
 .Payment-btn {
