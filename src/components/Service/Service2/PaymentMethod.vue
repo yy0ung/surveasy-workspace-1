@@ -9,13 +9,6 @@
       
       <ul><div><input v-model="accont_userName" @change="setOption3()" id="Account-input" placeholder="입금자명"></div></ul>
       
-      <ul>
-        <div class="PaymentMethod-text">
-          입금 시, 메세지/입금자명에 "서베이지 아이디" 또는
-          <br>"설문 주제"를 꼭 써주세요.
-          <p>{{ this.$props.title }}</p>
-        </div>
-      </ul>
       <button class="Payment-btn" @click="payDone()">결제하기</button>
     </div>
   </div>  
@@ -375,7 +368,7 @@ export default {
   width: 282px;
   height: 10px;
   border-radius: 9px;
-  margin-top: 20px;
+  margin-top: 25px;
   border: 1px solid rgb(187, 187, 187);
   padding: 15px;
   font-size: 14px;
@@ -404,7 +397,7 @@ export default {
   background-color: #EEEEEE;
   border: 1px solid #0CAE02;
   padding: 10px 20px;
-  margin-top: 20px;
+  margin-top: 35px;
   color: #0CAE02;
   font-family: 'Noto Sans KR';
   font-size: 1.1rem;
