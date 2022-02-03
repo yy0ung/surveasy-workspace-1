@@ -63,6 +63,6 @@ export default {
 }
 .PaymentMethod {
   width: 400px;
-  height: 420px;
+  height: 370px;
 }
 </style>
