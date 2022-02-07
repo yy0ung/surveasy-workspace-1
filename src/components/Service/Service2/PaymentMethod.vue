@@ -223,8 +223,11 @@ export default {
       var dddd= min.split('T')
       var ddddd = dddd[0]
       //console.log(ddddd)
+      
       var dddddd= ddddd.split('-')
-
+      
+      var t = dddd[1]
+      var tt = t.substring(0, 5)
       
       var year = dddddd[0]
       var month = dddddd[1]
@@ -233,7 +236,8 @@ export default {
       month = month.length == 2 ? month : '0' + month
       day = day.length == 2 ? day : '0' + day
 
-      var D = year + '-' + month + '-' + day
+      var D = year + '-' + month + '-' + day + ' ' + tt
+      console.log(D)
       
       
         await setDoc(doc(db, "surveyData", lastID.toString()), {
@@ -257,7 +261,6 @@ export default {
           
           adminApproved : dataset.adminApproved,
           uploader : dataset.uploader,
-          uploadTime : new Date(),
           uploadDate : D,
           id : lastID,
           dueDate: dataset.dueDate,
