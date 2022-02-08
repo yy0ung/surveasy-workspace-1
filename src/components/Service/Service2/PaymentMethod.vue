@@ -236,8 +236,8 @@ export default {
       month = month.length == 2 ? month : '0' + month
       day = day.length == 2 ? day : '0' + day
 
-      var D = year + '-' + month + '-' + day + ' ' + tt
-      console.log(D)
+      var D = year + '-' + month + '-' + day 
+      //console.log(D)
       
       
         await setDoc(doc(db, "surveyData", lastID.toString()), {
@@ -262,6 +262,7 @@ export default {
           adminApproved : dataset.adminApproved,
           uploader : dataset.uploader,
           uploadDate : D,
+          uploadTimeTime: tt,
           id : lastID,
           dueDate: dataset.dueDate,
           dueTimeTime: dataset.dueTimeTime,
