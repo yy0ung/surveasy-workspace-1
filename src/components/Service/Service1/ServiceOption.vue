@@ -49,7 +49,9 @@
             <option :value=2>대학원생입니다.</option>
             <option :value=3>할인대상이 아닙니다.</option>
           </select>
-          <p id="service-option-notice">결제 페이지에서 대학생 및 대학원생임을 인증해야만 할인 받으실 수 있습니다.</p>
+
+          <p id="service-option-notice">결제 페이지에서 대학생 및 대학원생임을 인증해야만</p>
+          <p id="service-option-notice">할인 받으실 수 있습니다.</p>
         
           <br>
         
@@ -428,21 +430,21 @@ export default {
 }
 .show-price-container  .service-option-totalprice-word {
   position: absolute;
-  top: 380px;
+  top: 400px;
   left: 160px;
   font-size: 18px;
 }
 .show-price-container  .service-option-totalprice-price {
   position: absolute;
-  top: 375px;
+  top: 395px;
   left: 263px;
-  margin: 0 25px 0 0;
+  margin: 0 45px 0 0;
   font-size: 25px;
   font-weight: bold;
 }
 .goServicePay-btn {
   padding: 5px 70px;
-  margin-top: 40px;
+  margin-top: 20px;
   color:#0CAE02;
   background-color: #EEEEEE;
   border: 1.5px solid #0CAE02;
