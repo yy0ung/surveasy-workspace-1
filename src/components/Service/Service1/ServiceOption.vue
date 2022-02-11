@@ -49,7 +49,7 @@
             <option :value=2>대학원생입니다.</option>
             <option :value=3>할인대상이 아닙니다.</option>
           </select>
-          <p id="service-option-notice">*대학생 및 대학원생임을 인증해야만 할인을 받으실 수 있습니다.</p>
+          <p id="service-option-notice">결제 페이지에서 대학생 및 대학원생임을 인증해야만 할인 받으실 수 있습니다.</p>
         
           <br>
         
