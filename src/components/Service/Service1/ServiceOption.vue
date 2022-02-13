@@ -51,7 +51,7 @@
           </select>
 
           <p id="service-option-notice">결제 페이지에서 대학생 및 대학원생임을 인증해야만</p>
-          <p id="service-option-notice">할인 받으실 수 있습니다.</p>
+          <p id="service-option-notice">할인을 받으실 수 있습니다.</p>
         
           <br>
         
@@ -430,14 +430,14 @@ export default {
 }
 .show-price-container  .service-option-totalprice-word {
   position: absolute;
-  top: 400px;
+  top: 403px;
   left: 160px;
   font-size: 18px;
 }
 .show-price-container  .service-option-totalprice-price {
   position: absolute;
   top: 395px;
-  left: 263px;
+  right: 1px;
   margin: 0 45px 0 0;
   font-size: 25px;
   font-weight: bold;
