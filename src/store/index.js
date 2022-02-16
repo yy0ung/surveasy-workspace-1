@@ -3,6 +3,7 @@ import { createStore } from 'vuex'
 import { doc, getDoc } from 'firebase/firestore'
 import createPersistedState from 'vuex-persistedstate'
 import loginState from './loginState.js'
+import { getStorage } from 'firebase/storage'
 
 
 export default createStore({
@@ -30,6 +31,12 @@ export default createStore({
 
     adminCoupon: [],
     myCoupon: [],
+
+    //app admin
+    adminAppUserData :[],
+    adminAppUserSentData : [],
+    adminAppNotice : [],
+    
     
     
     
