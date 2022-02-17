@@ -40,8 +40,9 @@ import AdminApp from '../views/Admin/AdminApp.vue'
 import PanelSent from '../components/adminApp/PanelSent.vue'
 import PanelInfo from '../components/adminApp/PanelInfo.vue'
 import AdminNotice from '../components/adminApp/AdminNotice.vue'
-import PanelProof from '../components/adminApp/PanelProof.vue'
+import PanelProofHome from '../components/adminApp/PanelProofHome.vue'
 import AdminDetail from '../views/Admin/AdminDetail.vue'
+import PanelProof from '../components/adminApp/PanelProof.vue'
 
 
 const routes = [
@@ -206,8 +207,13 @@ const routes = [
       { path: "panelsent", component: PanelSent },
       { path: "panelinfo", component: PanelInfo },
       { path: "notice", component: AdminNotice },
-      { path: "panelproof", component: PanelProof }
+      { path: "panelproofhome", component: PanelProofHome }
     ]
+  },
+  {
+    path: '/panelproof/:id',
+    // name: 'PanelProof',
+    component: PanelProof
   },
   {
     path: '/couponadmin',

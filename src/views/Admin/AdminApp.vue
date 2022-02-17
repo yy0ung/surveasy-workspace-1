@@ -4,7 +4,7 @@
     <router-link to="/adminapp/panelsent">정산</router-link>
     <router-link to="/adminapp/panelinfo">패널 정보</router-link>
     <router-link to="/adminapp/notice">공지사항</router-link>
-    <router-link to="/adminapp/panelproof">패널 설문 인증</router-link>
+    <router-link to="/adminapp/panelproofhome">패널 설문 인증</router-link>
   </div>
 
   <div class="admin-view-container">
