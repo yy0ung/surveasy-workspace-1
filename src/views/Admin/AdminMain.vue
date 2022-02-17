@@ -52,7 +52,9 @@
               <!-- <td>{{item.adminApproved}}</td> -->
               <td>{{item.dueDate}} {{item.dueTimeTime}}</td>
               <td class="progress-admin">{{item.progress}}</td>
-              <td class="btn-progress-admin"><button class="progress-button1"  @click="changeProgress1(item.id)">1</button> <button  class="progress-button2" @click="changeProgress2(item.id)">2</button> <button class="progress-button3" @click="changeProgress3(item.id)">3</button></td>
+              <td class="btn-progress-admin"><button class="progress-button1"  @click="changeProgress1(item.id)">1</button> 
+               <router-link :to="`/admindetail/${item.id}`"><button @click="changeProgress2(item.id)" class="progress-button2" >2</button></router-link>
+               <button class="progress-button3" @click="changeProgress3(item.id)">3</button></td>
             
 
             </tr>
@@ -197,6 +199,7 @@ data(){
     passInput:'',
     nowDate: Date.now(),
     val:'',
+    showTwo : false,
 
     UploadInputData:{
       title:'',
@@ -382,6 +385,8 @@ methods:{
       progress : 2
     })
     window.alert('완료')
+    
+    
   },
 
   async changeProgress3(targetID){
@@ -496,6 +501,11 @@ computed:{
 }
 .progress-admin{
   font-weight: bold;
+}
+.progress-two-container{
+  position: absolute;
+  height: 300px;
+  width: 500px;
 }
 
 
