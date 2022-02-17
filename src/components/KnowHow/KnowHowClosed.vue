@@ -16,7 +16,8 @@ import { getDocs, setDoc, updateDoc, doc, collection } from 'firebase/firestore'
 export default {
   data() {
     return {
-      knowhow_email: ''
+      knowhow_email: '',
+      date: ''
     }
     
   },
@@ -25,10 +26,31 @@ export default {
     async EmailADD() {
       const db = this.$store.state.db
 
+      // 노하우 알림 신청 날짜 계산
+        var time = new Date().toISOString()
+        
+        var dddd= time.split('T')
+        var ddddd = dddd[0]
+        
+        var dddddd= ddddd.split('-')
+        
+        var year = dddddd[0]
+        var month = dddddd[1]
+        var day = dddddd[2]
+        month = month.length == 2 ? month : '0' + month
+        day = day.length == 2 ? day : '0' + day
+        var D = year + '-' + month + '-' + day
+
+        this.date = D
+
+
       if(this.knowhow_email != '') {
-        await setDoc(doc(db, "KnowhowEmailData", this.knowhow_email.toString()), {
+        await setDoc(doc(db, "KnowhowEmailData", this.date+" "+this.knowhow_email.toString()), {
           email: this.knowhow_email,
+          date: this.date
         })
+
+        console.log(D)
 
         alert('설문 노하우 서비스가 출시되면 기재하신 이메일로 안내드리겠습니다.')
         if(confirm){

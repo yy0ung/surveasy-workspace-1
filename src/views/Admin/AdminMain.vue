@@ -18,18 +18,18 @@
               <th>주문번호</th>
               <th>제목</th>
               <th>가격</th>
-              <th>요구 응답</th>
+              <th>응답수</th>
               <th>소요시간</th>
+              <th>대상</th>
               <th>링크</th>
               <th>주문 날짜</th>
               <th>업로더</th>
               <th>업로더 이메일</th>
-              <th>선택 할인 옵션</th>
-              <th>업로더 identity</th>
-              <th>마감 날짜</th>
-              <th>마감 시간</th>
+              <th>선택한 iden</th>
+              <th>현재 iden</th>
+              <th>마감날짜</th>
               <th class="progress-admin">progress</th>
-              <th class="btn-progress-admin">설문 진행단계 변경</th>
+              <th class="btn-progress-admin">설문 진행 변경</th>
               
             </tr>
 
@@ -41,16 +41,16 @@
               <td>{{item.price}}</td>
               <td>{{item.requiredHeadCount}}</td>
               <td>{{item.spendTime}}</td>
+              <td>{{item.target}}</td>
               <td><a :href="item.link" target="_blank">Link</a></td>
-              <td>{{item.uploadDate}}</td>
+              <td>{{item.uploadDate}} {{item.uploadTimeTime}}</td>
               <td>{{item.uploader}}</td>
               <td>{{item.uploaderEmail}}</td>
-              <td>{{item.priceIdentity}}</td>
-              <td>{{item.uploaderIdentity}}</td>
+              <td>{{((item.priceIdentity)+"").substring(0,4)}}</td>
+              <td>{{((item.uploaderIdentity)+"").substring(0,5)}}</td>
               <!-- <td><button @click="updateApproved(item)">결제 확인</button></td> -->
               <!-- <td>{{item.adminApproved}}</td> -->
-              <td>{{item.dueDate}}</td>
-              <td>{{item.dueTimeTime}}</td>
+              <td>{{item.dueDate}} {{item.dueTimeTime}}</td>
               <td class="progress-admin">{{item.progress}}</td>
               <td class="btn-progress-admin"><button class="progress-button1"  @click="changeProgress1(item.id)">1</button> 
                <router-link :to="`/admindetail/${item.id}`"><button @click="changeProgress2(item.id)" class="progress-button2" >2</button></router-link>
@@ -161,22 +161,24 @@
 
         <table>
           <tr>
-            <th>주문</th>
-            <th>name</th>
+            <th>주문 날짜</th>
             <th>uploader</th>
+            <th>이름</th>
             <th>type</th>
+            <th>email</th>
+            <th>etc type</th>
             <th>응답여부</th>
-            <th>date</th>
             <th>응답여부변경</th>
           </tr>
 
           <tr v-for="item in (this.$store.state.adminDataTemplate)" :key = "item.name" class="tds" :class="{red:item.isresponded==false}">
-            <td>{{item.identifyTime}}</td>
-            <td>{{item.name}}</td>
-            <td>{{item.uploader}}</td>
-            <td>{{item.type}}</td>
-            <td>{{item.isresponded}}</td>
             <td>{{item.uploadDate}}</td>
+            <td>{{item.uploader}}</td>            
+            <td>{{item.name}}</td>
+            <td>{{item.type}}</td>
+            <td>{{item.email}}</td>
+            <td>{{item.etc}}</td>
+            <td>{{item.isresponded}}</td>
             <th><button @click="templateRespond(item)">변경</button></th>
 
           </tr>
@@ -438,7 +440,7 @@ computed:{
       }
       // console.log(val)
       return val
-  }
+  },
     
   }
 

@@ -9,16 +9,6 @@
       
       <ul><div><input v-model="accont_userName" @change="setOption3()" id="Account-input" placeholder="입금자명"></div></ul>
       
-      <ul>
-        <div class="PaymentMethod-text">
-          입금 시, 메세지/입금자명에 "서베이지 아이디" 또는
-          <br>"설문 주제"를 꼭 써주세요.
-          <br><br>
-          대학(원)생 인증을 완료하셔야 대학(원)생 할인이 적용됩니다.
-          <br>아직 인증을 완료하지 않으셨다면, 카카오채널에서 완료해주세요.
-          <p>{{ this.$props.title }}</p>
-        </div>
-      </ul>
       <button class="Payment-btn" @click="payDone()">결제하기</button>
     </div>
   </div>  
@@ -233,8 +223,11 @@ export default {
       var dddd= min.split('T')
       var ddddd = dddd[0]
       //console.log(ddddd)
+      
       var dddddd= ddddd.split('-')
-
+      
+      var t = dddd[1]
+      var tt = t.substring(0, 5)
       
       var year = dddddd[0]
       var month = dddddd[1]
@@ -243,7 +236,8 @@ export default {
       month = month.length == 2 ? month : '0' + month
       day = day.length == 2 ? day : '0' + day
 
-      var D = year + '-' + month + '-' + day
+      var D = year + '-' + month + '-' + day 
+      //console.log(D)
       
       
         await setDoc(doc(db, "surveyData", lastID.toString()), {
@@ -267,8 +261,8 @@ export default {
           
           adminApproved : dataset.adminApproved,
           uploader : dataset.uploader,
-          uploadTime : new Date(),
           uploadDate : D,
+          uploadTimeTime: tt,
           id : lastID,
           dueDate: dataset.dueDate,
           dueTimeTime: dataset.dueTimeTime,
@@ -378,7 +372,7 @@ export default {
   width: 282px;
   height: 10px;
   border-radius: 9px;
-  margin-top: 20px;
+  margin-top: 25px;
   border: 1px solid rgb(187, 187, 187);
   padding: 15px;
   font-size: 14px;
@@ -400,14 +394,14 @@ export default {
   font-family: 'Noto Sans KR';
   font-size: 11px;
   font-weight: normal;
-  margin-top: 35px;
+  margin-top: 25px;
   line-height: 19px;
 }
 .Payment-btn {
   background-color: #EEEEEE;
   border: 1px solid #0CAE02;
   padding: 10px 20px;
-  margin-top: 20px;
+  margin-top: 35px;
   color: #0CAE02;
   font-family: 'Noto Sans KR';
   font-size: 1.1rem;
