@@ -53,7 +53,12 @@
               <td>{{item.dueDate}} {{item.dueTimeTime}}</td>
               <td class="progress-admin">{{item.progress}}</td>
               <td class="btn-progress-admin"><button class="progress-button1"  @click="changeProgress1(item.id)">1</button> 
+<<<<<<< HEAD
                <button @click="changeProgress2(item.id)" class="progress-button2" >2</button>
+=======
+               <router-link :to="`/admindetail/${item.id}`"><button class="progress-button2" >2</button></router-link>
+
+>>>>>>> f524b5124d022caf93bc73b621892cef35e84a9b
                <button class="progress-button3" @click="changeProgress3(item.id)">3</button></td>
             
 

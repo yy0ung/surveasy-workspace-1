@@ -1,10 +1,11 @@
 <template>
 <div id="admin-panelProof">
 <h4>설문 인증 {{id}}</h4>
+<h4>{{nowHeadCount}} / {{headCount}}</h4>
 
 <div class="wrong-notification" v-for="token in wrongTokens" :key="token">
   <ol>
-    <li>{{token}}</li>
+    <li id="token"><input type="checkbox">{{token}}</li>
   </ol>
 </div>
 <div>
@@ -14,30 +15,17 @@
 
 <span v-for="item in urlList" :key="(item)">
   <img :src="item[0]" class="proof-image">
-  <!-- 버튼 눌렀을 때 기능 구현 -->
-  <input type="checkbox" @click="cancelProof(item[1],item[0])">{{item[1].substring(38)}}
+  <input type="checkbox" @click="cancelProof(item[1])">
+  <span class="fileName" :class="{active: changeColor.indexOf(item[1].substring(38))!=-1}">{{item[1].substring(38)}}</span>
+  
   
 </span>
-<!-- <div class="proof-dialog" v-if="showDialog">
-    <h4>인증 사진 지우기</h4>
-    <div class="wrong-img">
-      <img :src="imgCheck">
-      <p>이용자 uid__업로드 날짜시간 : {{wrongProofInfo}}</p>
-    </div>
-    <button @click="showDialog=false">창 닫기</button>
-    <button @click="cancelProof(wrongProofInfo)">취소하기</button>
-</div> -->
-<!-- <span v-for="item in imageInfo" :key="item">
-  <span id="info-text">{{item}}</span>
-</span> -->
-
 </div> 
 </template>
 
 <script>
 import { getStorage, ref, getDownloadURL, listAll, list, deleteObject } from "firebase/storage"
-import { getDocs, getDoc, setDoc, updateDoc, doc, collection, arrayUnion } from 'firebase/firestore';
-import { getMessaging, onMessage } from "firebase/messaging";
+import { getDocs, getDoc, setDoc, updateDoc, doc, collection, arrayUnion, deleteDoc, arrayRemove } from 'firebase/firestore';
 export default {
   data() {
     return {
@@ -46,10 +34,13 @@ export default {
       imgCheck : "",
       wrongProofInfo : "",
       userUid : "",
+      wrongProofUserUid : [],
       userInfo : [],
       wrongTokens : [],
-      wrongUrl : [],
-      selected : false
+      fbSaveWrongInfo : [],
+      changeColor : [],
+      headCount : 0,
+      nowHeadCount : 0
       
       //imageInfo : []
     }
@@ -58,27 +49,15 @@ export default {
     this.downLoad()
   },
   methods: {
-    async cancelProof(info,url){
+    async cancelProof(info){
       this.wrongProofInfo = info
       var start = this.wrongProofInfo.indexOf("/")
       var end = this.wrongProofInfo.indexOf("_")
       this.userUid = this.wrongProofInfo.substring(start+1,end)
+      this.wrongProofUserUid.push(this.userUid)
       const db = this.$store.state.db
-      this.wrongUrl.push(url)
-      
-      // const imgRef = ref(storage,path)
-      // deleteObject(imgRef).then(() => {
-      //   if(confirm("삭제 성공")){
-      //     this.showDialog=false
-      //     this.$router.go()
-      //   }
+      this.fbSaveWrongInfo.push(info.substring(38))
 
-      // }).catch((error) => {
-      //   window.alert("삭제 실패")
-      // })
-
-      
-    
       const docSnap = await getDocs(collection(db,"AndroidUser"))
       docSnap.forEach((doc) => {
         if(doc.id == this.userUid){
@@ -97,16 +76,20 @@ export default {
       const db = this.$store.state.db
       const docRef = doc(db, "WrongProof", this.id.toString())
       const docSnap = await getDoc(docRef)
-      var wrong = []
+      const docRef2 = doc(db, "AndroidSurvey", this.id.toString())
+      const docSnap2 = await getDoc(docRef2)
+      this.headCount = docSnap2.data().requiredHeadCount
+      this.nowHeadCount = docSnap2.data().respondedPanel.length-1
+      var wrongFileName = []
       if(docSnap.exists()){
-        wrong.push(docSnap.data())
-        console.log(wrong)
+        wrongFileName.push(docSnap.data().fileName)
+        console.log("doc",wrongFileName[0])
       }
       
       const listRef = ref(storage, this.id+"/")
       await listAll(listRef)
       .then((res) => {
-        window.alert("불러오는 중")
+        //window.alert("불러오는 중")
       res.prefixes.forEach((folderRef) => {
        //console.log(folderRef)
      });
@@ -116,36 +99,71 @@ export default {
         getDownloadURL(path).then((url) => {
         var list = [url,itemRef._location.path_]
         this.urlList.push(list)
-  
+        //console.log(list)
+        var i =0
+        //왜 안되는지 모르겠는데 숫자가 크면 됨.
+        while(i<=wrongFileName.length+1000){
+          if(wrongFileName[0][i] == list[1].substring(38)){
+            //console.log(wrongFileName[0][i], list[1].substring(38))
+            //console.log("done")
+            this.changeColor.push(wrongFileName[0][i])
+            i++
+          }else{
+            //console.log(wrongFileName[0][i], list[1].substring(38))
+            //console.log("not done")
+            i++
+          }
+        } 
         })
-        
       })
-      
     }).catch((error) => {
-      
     });
       },
     
   async doneCheck(){
     const db = this.$store.state.db
     const docRef = doc(db, "WrongProof", this.id.toString())
+    const docRef2 = doc(db, "AndroidSurvey", this.id.toString())
+    const docSnap2 = await getDoc(docRef2)
+    
+    console.log(docSnap2.data().respondedPanel)
+  
     const docSnap = await getDoc(docRef)
     var i =0
     if(docSnap.exists()){
       console.log("yes")
       var i =0
-      while(i<this.wrongUrl.length){
+      while(i<this.fbSaveWrongInfo.length){
       await updateDoc(docRef,{
-        url : arrayUnion(this.wrongUrl[i])
+        fileName : arrayUnion(this.fbSaveWrongInfo[i])
       })
       i++
     }
     }else{
       await setDoc(docRef,{
-        url : this.wrongUrl
+        fileName : this.fbSaveWrongInfo
       })
     }
 
+    
+    var i =0
+    while(i<this.wrongProofUserUid.length){
+      await deleteDoc(doc(db, "AndroidUser", this.wrongProofUserUid[i].toString(),"UserSurveyList",this.id.toString()))
+      const dRef = await getDoc(doc(db,"AndroidUser", this.wrongProofUserUid[i].toString()))
+      var nowCurrentReward = dRef.data().reward_current
+      var nowTotalReward = dRef.data().reward_total
+      await updateDoc(doc(db,"AndroidUser", this.wrongProofUserUid[i].toString()),{
+          reward_current : nowCurrentReward - docSnap2.data().reward,
+          reward_total : nowTotalReward - docSnap2.data().reward
+      })
+
+      await updateDoc(doc(db,"AndroidSurvey", this.id.toString()),{
+          respondedPanel : arrayRemove(this.wrongProofUserUid[i].toString())
+      })
+      i++
+    
+    }
+    window.alert("처리 완료")
     this.$router.go()
     
       
@@ -176,9 +194,11 @@ export default {
   top: 50px;
   background: #c5c4c4;
 }
-.proof-image.active{
-  border: red solid 1px;
+.fileName.active{
+  color: red;
 }
-
+#token{
+  font-size: 13px;
+}
 
 </style>
