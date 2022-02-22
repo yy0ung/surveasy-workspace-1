@@ -10,10 +10,17 @@
     <th>phoneNumber</th>
   </tr>
 
+<<<<<<< HEAD
   <tr v-for="item in (this.$store.state.adminAppUserData)" :key="item.info[0].name">
     <td>{{item.info[0].name}}</td>
     <td>{{item.info[0].email}}</td>
     <td>{{item.info[0].phoneNumber}}</td>
+=======
+  <tr v-for="item in (this.$store.state.adminAppUserData)" :key="item.name">
+    <td>{{item.name}}</td>
+    <td>{{item.email}}</td>
+    <td>{{item.phoneNumber}}</td>
+>>>>>>> 8ec3aa93fe6ffbc5778297b2f339519b303051d1
   </tr>
 </div>
 </template>
@@ -32,6 +39,7 @@ export default {
       
       const querySnapshot = await getDocs(collection(db,"AndroidUser"))
       querySnapshot.forEach((doc) => {
+<<<<<<< HEAD
         var info = []
         info.push(doc.data())
 
@@ -59,6 +67,11 @@ export default {
     }
 
 
+=======
+        adminAppUserData.push(doc.data())
+      })
+    }
+>>>>>>> 8ec3aa93fe6ffbc5778297b2f339519b303051d1
   },
 }
 </script>
