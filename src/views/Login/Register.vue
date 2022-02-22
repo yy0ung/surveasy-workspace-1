@@ -63,14 +63,26 @@
                                 <label class="radio-text">카카오톡 단톡방</label>
                             </div>
                             <div class="radio-option">
-                                <input type="radio" class="radio" name="from" id="search" v-model="dataSet.funnel" value="search">
-                                <label class="radio-text">인터넷 검색(구글 / 네이버 / 기타)</label>
+                                <input type="radio" class="radio" name="from" id="google" v-model="dataSet.funnel" value="google">
+                                <label class="radio-text">구글 검색</label>
                             </div>
-                            <div class="radio-option" id="radio-etc">
+                            <div class="radio-option">
+                                <input type="radio" class="radio" name="from" id="naver" v-model="dataSet.funnel" value="naver">
+                                <label class="radio-text">네이버 검색</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" class="radio" name="from" id="instagram" v-model="dataSet.funnel" value="instagram">
+                                <label class="radio-text">인스타그램</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" class="radio" name="from" id="etc" v-model="dataSet.funnel" value="etc">
+                                <label class="radio-text">기타</label>
+                            </div>
+                            <!-- <div class="radio-option" id="radio-etc">
                                 <input type="radio" class="radio" name="from" id="etc" v-model="dataSet.funnel" value="etc">
                                 <label class="radio-text" >기타 </label>
                                 <p class="etc-text"><input type="text" id="etc-t" v-model="dataSet.funnel_etc"></p>
-                            </div>
+                            </div> -->
                              
                             
                         </div>
@@ -80,21 +92,42 @@
                                 <label class="radio-text">네이버 블로그</label>
                             </div>
                             <div class="radio-option">
-                                <input type="radio" class="radio" name="from" id="instagram" v-model="dataSet.funnel" value="instagram">
-                                <label class="radio-text">인스타그램</label>
+                                <input type="radio" class="radio" name="from" id="지식in" v-model="dataSet.funnel" value="지식in">
+                                <label class="radio-text">네이버 지식인</label>
                             </div>
                             <div class="radio-option">
-                                <input type="radio" class="radio" name="from" id="facebook" v-model="dataSet.funnel" value="facebook">
-                                <label class="radio-text">페이스북</label>
+                                <input type="radio" class="radio" name="from" id="cafe" v-model="dataSet.funnel" value="cafe">
+                                <label class="radio-text">네이버 카페</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" class="radio" name="from" id="email" v-model="dataSet.funnel" value="email">
+                                <label class="radio-text">이메일 홍보</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" class="radio" name="from" id="offline" v-model="dataSet.funnel" value="offline">
+                                <label class="radio-text">오프라인 홍보</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" class="radio" name="from" id="acquaintance" v-model="dataSet.funnel" value="acquaintance">
+                                <label class="radio-text">지인 추천</label>
                             </div>
                            
                         </div> 
-                      </div>
-                    
-                                           
-                  </li>
+
+                    </div>
+                               
+                </li>
               </ul>
           </li>
+          <li>
+              <ul class="cols">
+                  <li class="col1">해당 유입경로에 대한 상세 내용을 작성해주세요*</li>
+                  <li class="col2"><input type="text" id="funnelDetail" v-model="dataSet.funnel_detail" 
+                  required placeholder="검색 유입인 경우 검색어를 적어주세요. 에브리타임, 카카오톡, 네이버 카페인 경우 소속을 알려주세요."></li>
+                 
+              </ul>
+          </li>
+          
           <div class="check">
             <div class="all-title"><input type="checkbox" v-model="checkAll">전체 동의하기</div>
             <div class="all"><input type="checkbox" v-model="dataSet.check1" >
@@ -130,7 +163,7 @@ export default {
               phoneNumber:null,
               name:null,
               funnel:null,
-              funnel_etc:'',
+              funnel_detail:null,
               birth:null,
               check1: false,
                 check2: false,
@@ -170,37 +203,53 @@ export default {
     window.scrollTo(0,0)
   },
     methods:{
+
+        hasNullOption(dataSet) {
+            if(dataSet.email == null || dataSet.password == null || dataSet.passCheck == null || dataSet.phoneNumber == null 
+                || dataSet.name == null || dataSet.funnel == null || dataSet.funnel_detail == null || dataSet.funnel_detail == "") {
+                    return true
+            }
+            return false
+        },
         
         
         validateRegister(dataSet){  
             var errCode = [];
             
             // 입력하지 않은 항목이 있는지 체크
-            for (var key in dataSet) {
-                if (key==null) {
-                    errCode.push(1)
+            // for (var key in dataSet) {
+            //     if (key==null) {
+            //         errCode.push(1)
+            //     }
+            // }
+
+            if(this.hasNullOption(dataSet)) {
+                errCode.push(1)
+            }
+            else {
+                if (dataSet.password !== dataSet.passCheck){
+                    errCode.push(2)
                 }
-            }
-            if (dataSet.password !== dataSet.passCheck){
-                errCode.push(2)
-            }
-            if ((dataSet.password).length < 8) {
-                errCode.push(3)
-            }
-            //휴대폰번호 숫자만있는지 확인 (#Todo)
-            if((dataSet.phoneNumber).length<11 || isNaN(dataSet.phoneNumber)==true || (dataSet.phoneNumber).includes('.')==true){
-                errCode.push(4)
-               
-            }
-            
-            if((dataSet.birth).length<8 || dataSet.birth>=20220000){
-                errCode.push(5)
-            }
 
-            if(!(dataSet.check1 ==true && dataSet.check2 ==true && dataSet.check3 ==true)){
-                 errCode.push(6)
-             }
+                if ((dataSet.password).length < 8) {
+                    errCode.push(3)
+                }
 
+                //휴대폰번호 숫자만있는지 확인 (#Todo)
+                if((dataSet.phoneNumber).length<11 || isNaN(dataSet.phoneNumber)==true || (dataSet.phoneNumber).includes('.')==true){
+                    errCode.push(4)
+                }
+                
+                if((dataSet.birth).length<8 || dataSet.birth>=20220000){
+                    errCode.push(5)
+                }
+                
+                if(!(dataSet.check1 ==true && dataSet.check2 ==true && dataSet.check3 ==true)){
+                    errCode.push(6)
+                }
+
+            }
+        
             
             if (errCode.length == 0 ){
                 this.validReg = true
@@ -208,8 +257,8 @@ export default {
                 
                 
             } else {
-                // console.log(errCode)
-                // console.log(dataSet)
+                 //console.log(errCode)
+                 //console.log(dataSet)
                 var registerErrorMessage =[
                 "",
                 "입력하지 않은 항목이 있습니다.",
@@ -281,7 +330,7 @@ export default {
                 identity_request: false,
                 identity_responded: false,
                 funnel : dataSet.funnel,
-                funnel_etc : dataSet.funnel_etc,
+                funnel_detail : dataSet.funnel_detail,
                 respondArray: [],
                 clientGrade: 0,
                 point_total : 0,
@@ -305,7 +354,7 @@ export default {
 
 <style>
 #Register {
-    height: 1450px;
+    height: 1580px;
     font-family: 'Noto Sans KR', sans-serif;
     display: block;
     text-align: center;
@@ -347,7 +396,7 @@ li {
 }
 
 .cols li.col1 {
-    width: 95px;
+    width: 320px;
     text-align: left;
     margin-bottom: 10px;
     font-size: 15px;
@@ -372,10 +421,10 @@ li {
 }
 .password-notice {
     font-size: 0.8rem;
-    color: rgb(97, 96, 96);
+    color: rgb(171, 171, 171);
     text-align: left;
-    margin-bottom: 15px;
-    margin-top: 0;
+    margin-bottom: 25px;
+    margin-top: -10px;
 }
 .cols li.col2 input.radio {
     width: 15px;
@@ -387,6 +436,8 @@ li {
     width: 500px;
     
     font-size: 13px;
+    
+    margin-bottom: 30px;
 }
 .radio-column {
     display: flex;
