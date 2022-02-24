@@ -7,15 +7,14 @@
     <th>name</th>
     <th>email</th>
     <th>phoneNumber</th>
-<<<<<<< HEAD
+
     <th>responded survey ID</th>
-=======
->>>>>>> 8ec3aa93fe6ffbc5778297b2f339519b303051d1
+
     <th>sent</th>
     <th>sentDone</th>
   </tr>
 
-<<<<<<< HEAD
+
     <tr v-for="item in (this.$store.state.adminAppUserData)" :key="item.info[0].uid" class="list" :class="{active:item.info[0].reward_current == 0}">
     <td>{{item.info[0].name}}</td>
     <td>{{item.info[0].email}}</td>
@@ -24,15 +23,7 @@
     <td>{{item.info[0].reward_current}}</td>
     <td><input type="checkbox" id="done"></td>
     <td><button @click="sentFin(item.info[0].uid, item.respondedSurvey)">정산 완료</button></td>
-=======
-    <tr v-for="item in (this.$store.state.adminAppUserData)" :key="item.uid" class="list" :class="{active:item.reward_current == 0}">
-    <td>{{item.name}}</td>
-    <td>{{item.email}}</td>
-    <td>{{item.phoneNumber}}</td>
-    <td>{{item.reward_current}}</td>
-    <td><input type="checkbox" id="done"></td>
-    <td><button @click="clearCurrent(item.uid)">정산 완료</button></td>
->>>>>>> 8ec3aa93fe6ffbc5778297b2f339519b303051d1
+
   </tr>
  
 </div>
@@ -47,7 +38,7 @@ export default {
     }
   },
   created() {
-<<<<<<< HEAD
+
     this.$store.state.adminAppUserData = []
     this.fetchPanelInfo()
   },
@@ -71,22 +62,6 @@ export default {
       }
     },
 
-=======
-    this.$store.state.adminAppUserSentData = []
-    this.fetchPanelSentInfo()
-  },
-  methods: {
-    async fetchPanelSentInfo(){
-      const db = this.$store.state.db
-      const adminAppUserSentData = this.$store.state.adminAppUserSentData
-      
-      const querySnapshot = await getDocs(collection(db,"AndroidUser"))
-      querySnapshot.forEach((doc) => {
-        adminAppUserSentData.push(doc.data())
-      })
-      
-    },
->>>>>>> 8ec3aa93fe6ffbc5778297b2f339519b303051d1
     async clearCurrent(Id){
       const db = this.$store.state.db
       const rewardRef = doc(db, "AndroidUser", Id.toString())
@@ -95,7 +70,7 @@ export default {
       })
       
       window.alert('정산 완료')
-<<<<<<< HEAD
+
     },
 
     async fetchPanelInfo(){
@@ -130,9 +105,6 @@ export default {
       adminAppUserData.push(panel)
     }
 
-=======
-    }
->>>>>>> 8ec3aa93fe6ffbc5778297b2f339519b303051d1
     
   },
 }
