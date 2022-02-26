@@ -16,7 +16,7 @@
       </tr>
       <tr v-for="item in (this.$store.state.surveyData.slice(currentPage*10-10,currentPage*10))" :key="item.id">
 
-        <td class="list-de" :class="{active: (dueTime(item[0].dueDate,item[0].dueTimeTime)<0 || item[0].progress>=3)}">{{item[0].id}}</td>
+        <td class="list-de" :class="{active: (dueTime(item[0].dueDate,item[0].dueTimeTime)<0 || item[0].progress>=3)}">{{item[0].lastIDChecked}}</td>
 
           
 

@@ -268,6 +268,8 @@ export default {
           dueTimeTime: dataset.dueTimeTime,
           dueTimeTimeTime: dataset.dueTimeTimeTime,
           priceIdentity: dataset.identity,
+          lastIDChecked: 0,
+          panelReward: 0,
 
           orderNum: orderNum,
 
