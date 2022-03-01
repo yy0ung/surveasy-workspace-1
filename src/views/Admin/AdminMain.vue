@@ -57,19 +57,7 @@
               <td><input type="text" placeholder="참여보상설정" v-model="panelReward"><button @click="changeReward(item.id, this.panelReward)">확인</button></td>
               <td class="progress-admin">{{item.progress}}</td>
               <td class="btn-progress-admin"><button class="progress-button1"  @click="changeProgress1(item.id)">1</button> 
-<<<<<<< HEAD
-<<<<<<< HEAD
-               <button @click="changeProgress2(item.id)" class="progress-button2" >2</button>
-=======
-               <router-link :to="`/admindetail/${item.id}`"><button class="progress-button2" >2</button></router-link>
-
->>>>>>> f524b5124d022caf93bc73b621892cef35e84a9b
-=======
-               <router-link :to="`/admindetail/${item.id}`"><button class="progress-button2" >2</button></router-link>
-=======
-               <button @click="changeProgress2(item.id)" class="progress-button2" >2</button>
->>>>>>> fa826c26ae9ad9557bd8ccd91032064dc2d65d4e
->>>>>>> 8ec3aa93fe6ffbc5778297b2f339519b303051d1
+               <router-link :to="`/admindetail/${item.id}`"><button @click="changeProgress2(item.id)" class="progress-button2" >2</button></router-link>
                <button class="progress-button3" @click="changeProgress3(item.id)">3</button></td>
             
 
@@ -216,7 +204,6 @@ data(){
     nowDate: Date.now(),
     val:'',
     showTwo : false,
-
     UploadInputData:{
       title:'',
       theme:'',
@@ -227,12 +214,10 @@ data(){
       surveyLink: '',
       uploader:'',
       target:'',
-
       
     },
   }
 },
-
 methods:{
   async adminCheck(passInput){
     const db = this.$store.state.db
@@ -249,10 +234,7 @@ methods:{
       } else {
         alert('wrong input')
       }
-
     } else {alert('error')}
-
-
     // if (this.passInput == this.$store.state.AdminPassword) {
     //   alert('ok')
     //   this.$store.commit('setAdminState')
@@ -262,7 +244,6 @@ methods:{
     //   alert('check it again')
     // }
   },
-
   async fetchAdminData(){
     const db = this.$store.state.db
     const adminData = this.$store.state.adminData
@@ -274,24 +255,19 @@ methods:{
     querySnapshot.forEach((doc) => {
       adminData.push(doc.data())
     })
-
     const sorted = adminData.sort(function(a,b){return b.id - a.id })
     this.$store.state.adminData = sorted
-
     // 신분 전환 요청 데이터 받기
     const querySnapshot2 = await getDocs(collection(db, "identityVerifyRequired"))
     querySnapshot2.forEach((doc) => {
       adminDataIdentity.push(doc.data())
     })
-
     const querySnapshot3 = await getDocs(collection(db, "B2BData"))
     querySnapshot3.forEach((doc) => {
       adminDataB2B.push(doc.data())
     })
-
     const sortedB2B = adminDataB2B.sort(function(a,b){return b.B2BID - a.B2BID })
     this.$store.state.adminDataB2B = sortedB2B
-
     const querySnapshot4 = await getDocs(collection(db, "TemplateData"))
     querySnapshot4.forEach((doc) => {
       adminDataTemplate.push(doc.data())
@@ -299,38 +275,30 @@ methods:{
     
     
   },
-
   async updateApproved(payload) {
     var db = this.$store.state.db
     const docref = doc(db, "surveyData", payload.id.toString())
-
     await updateDoc(docref ,{
       adminApproved : true
     })
     this.$store.state.adminData = [];
     this.fetchAdminData()
-
   },
-
   async requestIdentityApprove(payload){
     var db = this.$store.state.db
     const docref = doc(db, "userData", payload.requestEmail.toString())
     const docref2 = doc(db, "identityVerifyRequired", payload.requestEmail)
     
-
     await updateDoc(docref, {
       identity: payload.requestIdentity,
       identity_responded: true
     })
-
     await updateDoc(docref2, {
       requestApproved: true
       
     }).then(alert('ok'))
-
     // await deleteDoc(doc(db, "identityVerifyRequired", payload.requestEmail.toString())).then(alert('ok')) 
   },
-
   async fetchLastID(){
         const db = this.$store.state.db
         const lastID = []
@@ -352,15 +320,11 @@ methods:{
       return lastIDChecked[0].lastIDChecked
     }
   },
-
   
-
   async addPastData(dataset){
     var db = this.$store.state.db
     var lastID = await this.fetchLastID()
-
     await setDoc(doc(db, "surveyData", lastID.toString()), {
-
       id : lastID,
       title : dataset.title,
       theme : dataset.theme,
@@ -375,7 +339,6 @@ methods:{
       dueDate:"2021-12-31",
       dueTimeTime:"00:00"
       
-
       // surveyTitle:'',
       // theme:'',
       // requireHeadCount:'',
@@ -385,16 +348,13 @@ methods:{
       // surveyLink: '',
       // uploader:''
     }).then(alert('완료'))
-
     var idDocref = doc(db, "lastID", "lastID")
     
     await updateDoc(idDocref, {
       lastID : (lastID + 1)
     })
-
     console.log('완료')
   },
-
   async changeProgress1(targetID){
     var db = this.$store.state.db
     var idDocref = doc(db, "surveyData", targetID.toString())
@@ -403,18 +363,15 @@ methods:{
     })
     window.alert('완료')
   },
-
   async changeProgress2(targetID){
     var db = this.$store.state.db
     var lastIDChecked = await this.fetchLastIDChecked()
     var lastIDRef = doc(db,"lastID","lastIDChecked")
-
     var idDocref = doc(db, "surveyData", targetID.toString())
     await updateDoc( idDocref, {
       progress : 2,
       lastIDChecked : lastIDChecked
     })
-
     await updateDoc (lastIDRef, {
       lastIDChecked : (lastIDChecked + 1)
     })
@@ -422,7 +379,6 @@ methods:{
     
     
   },
-
   async changeProgress3(targetID){
     var db = this.$store.state.db
     var idDocref = doc(db, "surveyData", targetID.toString())
@@ -431,7 +387,6 @@ methods:{
     })
     window.alert('완료')
   },
-
   async changeReward(targetID, panelReward){
     var db = this.$store.state.db
     var idDocref = doc(db, "surveyData", targetID.toString())
@@ -440,7 +395,6 @@ methods:{
     })
     window.alert('완료')
   },
-
   async templateRespond(item){
     var db = this.$store.state.db
     var templateDocref = doc(db, "TemplateData", item.identifyTime.toString())
@@ -449,7 +403,6 @@ methods:{
     })
     window.alert('완료')
   },
-
   async B2BRespond(item){
     var db = this.$store.state.db
     var B2BDocref = doc(db, "B2BData", item.B2BID.toString())
@@ -463,13 +416,11 @@ methods:{
   
   
 },
-
 computed:{
   dueDate(){
     
     var time = this.$store.localSurveyState.dueTime
     var milli = new Date(date+" "+time);
-
     var diff = milli.getTime() - Date.now()
     var due = diff/3600000
       
@@ -486,8 +437,6 @@ computed:{
   },
     
   }
-
-
 }
 </script>
 
@@ -522,14 +471,11 @@ computed:{
   color: white;
   background-color: #0c0c0c;
 }
-
 #admin-container table{
   text-align: center;
   margin-left: auto;
   margin-right: auto;
-
 }
-
 .tds.red{
   color: rgb(243, 147, 147);
 }
@@ -550,6 +496,4 @@ computed:{
   height: 300px;
   width: 500px;
 }
-
-
 </style>
