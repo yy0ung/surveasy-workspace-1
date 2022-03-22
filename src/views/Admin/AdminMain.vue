@@ -15,6 +15,7 @@
           <table class="table-admin">
             <tr>
               <th>ID</th>
+              <th>lastIDChecked</th>
               <th>주문번호</th>
               <th>제목</th>
               <th>가격</th>
@@ -28,6 +29,7 @@
               <th>선택한 iden</th>
               <th>현재 iden</th>
               <th>마감날짜</th>
+              <th>참여보상금액</th>
               <th class="progress-admin">progress</th>
               <th class="btn-progress-admin">설문 진행 변경</th>
               
@@ -36,6 +38,7 @@
             <tr v-for="item in (this.$store.state.adminData)" :key="item.id" class="tds" :class="{red:item.progress==0 || item.progress==1, green: item.progress==2, gray: item.progress==3 || item.progress==4}">
             
               <td>{{item.id}}</td>
+              <td>{{item.lastIDChecked}}</td>
               <td>{{item.orderNum}}</td>
               <td>{{item.title}}</td>
               <td>{{item.price}}</td>
@@ -51,6 +54,7 @@
               <!-- <td><button @click="updateApproved(item)">결제 확인</button></td> -->
               <!-- <td>{{item.adminApproved}}</td> -->
               <td>{{item.dueDate}} {{item.dueTimeTime}}</td>
+              <td><input type="text" placeholder="참여보상설정" v-model="panelReward"><button @click="changeReward(item.id, this.panelReward)">확인</button></td>
               <td class="progress-admin">{{item.progress}}</td>
               <td class="btn-progress-admin"><button class="progress-button1"  @click="changeProgress1(item.id)">1</button> 
                <button @click="changeProgress2(item.id)" class="progress-button2" >2</button>
@@ -326,6 +330,16 @@ methods:{
         // console.log(lastID[0].lastID)
         return lastID[0].lastID
       },
+  async fetchLastIDChecked() {
+    const db = this.$store.state.db
+    const lastIDChecked= []
+    const docRef = doc(db,"lastID", "lastIDChecked") 
+    const docSnap = await getDoc(docRef)
+    if (docSnap.exists()) {
+      lastIDChecked.push(docSnap.data())
+      return lastIDChecked[0].lastIDChecked
+    }
+  },
 
   
 
@@ -380,9 +394,17 @@ methods:{
 
   async changeProgress2(targetID){
     var db = this.$store.state.db
+    var lastIDChecked = await this.fetchLastIDChecked()
+    var lastIDRef = doc(db,"lastID","lastIDChecked")
+
     var idDocref = doc(db, "surveyData", targetID.toString())
     await updateDoc( idDocref, {
-      progress : 2
+      progress : 2,
+      lastIDChecked : lastIDChecked
+    })
+
+    await updateDoc (lastIDRef, {
+      lastIDChecked : (lastIDChecked + 1)
     })
     window.alert('완료')
     
@@ -394,6 +416,15 @@ methods:{
     var idDocref = doc(db, "surveyData", targetID.toString())
     await updateDoc( idDocref, {
       progress : 3
+    })
+    window.alert('완료')
+  },
+
+  async changeReward(targetID, panelReward){
+    var db = this.$store.state.db
+    var idDocref = doc(db, "surveyData", targetID.toString())
+    await updateDoc(idDocref, {
+      panelReward: Number(panelReward)
     })
     window.alert('완료')
   },
