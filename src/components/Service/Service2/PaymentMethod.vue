@@ -69,7 +69,7 @@ export default {
         }
 
 
-        console.log(emptyTarget)
+        //console.log(emptyTarget)
 
         alert(emptyTarget + '의 입력이 필요합니다.')
       }
@@ -268,6 +268,8 @@ export default {
           dueTimeTime: dataset.dueTimeTime,
           dueTimeTimeTime: dataset.dueTimeTimeTime,
           priceIdentity: dataset.identity,
+          lastIDChecked: 0,
+          panelReward: 0,
 
           orderNum: orderNum,
 
@@ -320,9 +322,9 @@ export default {
         querySnapshot.forEach((doc) => {
           lastID.push(doc.data())
         })
-        console.log(lastID)
-        console.log(lastID[1])
-        console.log(lastID[1].lastID)
+        // console.log(lastID)
+        // console.log(lastID[1])
+        // console.log(lastID[1].lastID)
         return lastID[1].lastID
       },
 
