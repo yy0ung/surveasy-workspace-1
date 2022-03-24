@@ -7,13 +7,11 @@
     <th>name</th>
     <th>email</th>
     <th>phoneNumber</th>
-
     <th>responded survey ID</th>
 
     <th>sent</th>
     <th>sentDone</th>
   </tr>
-
 
     <tr v-for="item in (this.$store.state.adminAppUserData)" :key="item.info[0].uid" class="list" :class="{active:item.info[0].reward_current == 0}">
     <td>{{item.info[0].name}}</td>
@@ -38,7 +36,6 @@ export default {
     }
   },
   created() {
-
     this.$store.state.adminAppUserData = []
     this.fetchPanelInfo()
   },
@@ -62,6 +59,7 @@ export default {
       }
     },
 
+
     async clearCurrent(Id){
       const db = this.$store.state.db
       const rewardRef = doc(db, "AndroidUser", Id.toString())
@@ -70,7 +68,6 @@ export default {
       })
       
       window.alert('정산 완료')
-
     },
 
     async fetchPanelInfo(){
@@ -98,7 +95,8 @@ export default {
       const querySnapshot = await getDocs(collection(db, "AndroidUser", uid, "UserSurveyList"))
       querySnapshot.forEach((doc) => {
           if(doc.data().isSent == false) {
-            respondedSurvey.push(doc.data().id)
+            console.log("survey list : " + doc.data().lastIDChecked)
+            respondedSurvey.push(doc.data().lastIDChecked.toString())
           }
       })
       var panel = { uid: uid, info: info, respondedSurvey : respondedSurvey }
