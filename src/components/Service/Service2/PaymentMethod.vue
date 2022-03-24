@@ -69,7 +69,7 @@ export default {
         }
 
 
-        console.log(emptyTarget)
+        //console.log(emptyTarget)
 
         alert(emptyTarget + '의 입력이 필요합니다.')
       }
@@ -238,7 +238,7 @@ export default {
 
       var D = year + '-' + month + '-' + day 
       //console.log(D)
-      
+
       
         await setDoc(doc(db, "surveyData", lastID.toString()), {
           price : dataset.price,
@@ -280,6 +280,8 @@ export default {
                 
         })
 
+        
+
 
         var idDocref = doc(db, "lastID", "lastID")
         var currentUserRef = doc(db, "userData", currentUserEmail)
@@ -320,9 +322,10 @@ export default {
         querySnapshot.forEach((doc) => {
           lastID.push(doc.data())
         })
-        // console.log('fetch LastID')
-        // console.log(lastID[0].lastID)
-        return lastID[0].lastID
+        // console.log(lastID)
+        // console.log(lastID[1])
+        // console.log(lastID[1].lastID)
+        return lastID[1].lastID
       },
 
 
