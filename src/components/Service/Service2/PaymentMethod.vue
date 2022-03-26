@@ -23,6 +23,9 @@ export default {
       uploader: '',
       uploaderIdentity: '',
 
+      userList: [],
+      new_userList: [],
+
       point_add: 0,
 
     }
@@ -89,15 +92,49 @@ export default {
       
     },
 
+
     async couponIsUsed() {
       var db = this.$store.state.db
-      if(this.$store.state.localSurveyState.selectedCoupon.code != '') {
-        const docref = doc(db, "couponData", this.$store.state.localSurveyState.selectedCoupon.code)
 
-        await updateDoc(docref, { 
-          isUsed: true,
-          targetSurvey: this.$store.state.localSurveyState.title
-        })
+      if(this.$store.state.localSurveyState.selectedCoupon.code != '') {
+        console.log(this.$store.state.localSurveyState.selectedCoupon.forGroup)
+        if(this.$store.state.localSurveyState.selectedCoupon.forGroup == false) {
+          
+          const docref = doc(db, "couponData", this.$store.state.localSurveyState.selectedCoupon.code)
+
+          await updateDoc(docref, { 
+            isUsed: true,
+          })
+        }
+
+        else {
+          for(var i=0 ; i<this.$store.state.myCoupon.length ; i++) {
+            
+            if(this.$store.state.localSurveyState.selectedCoupon.code == this.$store.state.myCoupon[i].code) {
+              //console.log(this.$store.state.myCoupon[i].user)
+              
+              this.userList = this.$store.state.myCoupon[i].user
+              console.log(this.userList)
+              for(var j=0 ; j<this.userList.length ; j++) {
+                if(this.userList[j].user == this.$store.state.loginState.currentUser.email) {
+                  this.userList.splice(j, 1)
+                  this.userList.push({user: this.$store.state.loginState.currentUser.email, used: true})
+
+                  const docref = doc(db, "couponData", this.$store.state.localSurveyState.selectedCoupon.code)
+
+                  await updateDoc(docref, { 
+                    user: this.userList
+                  })
+                }
+                
+              }
+              
+            }
+          }
+          
+          
+        }
+        
       }
 
         this.$store.state.adminCoupon = []
@@ -108,6 +145,9 @@ export default {
 
     async fetchAdminData_coupon() {
      const db = this.$store.state.db
+
+      this.$store.state.adminCoupon = []
+      this.$store.state.myCoupon = []
      
      const adminCoupon = this.$store.state.adminCoupon
      
@@ -116,8 +156,24 @@ export default {
        adminCoupon.push(doc.data())
      })
 
-     const myCoupon = adminCoupon.filter(item => item.user===this.$store.state.loginState.currentUser.email && item.isUsed===false && item.outOfDate===false)
-     this.$store.state.myCoupon = myCoupon
+     const myCoupon_group_X = adminCoupon.filter(item => item.forGroup===false &&(item.user===this.$store.state.loginState.currentUser.email) && item.isUsed===false && item.outOfDate===false)
+     const myCoupon_group_O = []
+
+     const Coupon_group_O_yet = adminCoupon.filter(item => item.forGroup===true && item.isUsed===false && item.outOfDate===false)
+     
+     for(var i=0 ; i<Coupon_group_O_yet.length ; i++) {
+        for(var j=0 ; j<Coupon_group_O_yet[i].user.length ; j++) {
+
+          if(Coupon_group_O_yet[i].user[j].user == this.$store.state.loginState.currentUser.email && Coupon_group_O_yet[i].user[j].used == false) {
+            myCoupon_group_O.push(Coupon_group_O_yet[i])
+          }
+
+        }
+       
+      }
+
+      const myCoupon = myCoupon_group_X.concat(myCoupon_group_O)
+      this.$store.state.myCoupon = myCoupon
     //  console.log(this.$store.state.myCoupon)
    },
 

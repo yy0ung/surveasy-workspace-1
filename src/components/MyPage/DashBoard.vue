@@ -27,7 +27,7 @@
       <div class="green-box">
       <img class="couponimg" src="@/assets/myPage/coupon.png" width="50" height="30">
 
-        <p class="coupon-title">쿠폰 {{ this.$store.state.myCoupon.length }}개</p></div>
+        <p class="coupon-title">쿠폰 {{ couponNum }}개</p></div>
         <div class="green-box">
           <img class="pointimg" src="@/assets/myPage/point.png" width="40" height="40">
       <p class="coupon-title">적립금 {{ priceToString(this.$store.state.PointUserData[0].point_current) }}원</p>
@@ -81,6 +81,7 @@ export default {
     return {
       currentUserUploadInfo3:[],
       currentUserUploadInfo4:[],
+      couponNum : 0,
       show:0,
       ment:'',
       myCount1: [],
@@ -94,6 +95,8 @@ export default {
   },
   
   mounted(){
+    this.$store.state.adminCoupon = []
+    this.$store.state.myCoupon = []
     this.fetchAdminData_coupon()
     this.fetchUserData_point()
 
@@ -139,17 +142,36 @@ export default {
 
       this.$store.state.adminCoupon = []
       this.$store.state.myCoupon = []
+     
+     const adminCoupon = this.$store.state.adminCoupon
+     
+     const querySnapshot = await getDocs(collection(db, "couponData"))
+     querySnapshot.forEach((doc) => {
+       adminCoupon.push(doc.data())
+     })
 
-      const adminCoupon = this.$store.state.adminCoupon
+     const myCoupon_group_X = await adminCoupon.filter(item => item.forGroup===false &&(item.user===this.$store.state.loginState.currentUser.email) && item.isUsed===false && item.outOfDate===false)
+     const myCoupon_group_O = []
 
-      const querySnapshot = await getDocs(collection(db, "couponData"))
-      querySnapshot.forEach((doc) => {
-        adminCoupon.push(doc.data())
-      })
+     const Coupon_group_O_yet = await adminCoupon.filter(item => item.forGroup===true && item.isUsed===false && item.outOfDate===false)
+     
+     for(var i=0 ; i<Coupon_group_O_yet.length ; i++) {
+        for(var j=0 ; j<Coupon_group_O_yet[i].user.length ; j++) {
 
-      const myCoupon = adminCoupon.filter(item => item.user===this.$store.state.loginState.currentUser.email && item.isUsed===false && item.outOfDate===false)
-      this.$store.state.myCoupon = myCoupon
+          if(Coupon_group_O_yet[i].user[j].user == this.$store.state.loginState.currentUser.email && Coupon_group_O_yet[i].user[j].used == false) {
+            //console.log(Coupon_group_O_yet[i])
+            myCoupon_group_O.push(Coupon_group_O_yet[i])
+          }
+
+        }
+       
+      }
+
+      const myCoupon = await myCoupon_group_X.concat(myCoupon_group_O)
+      this.$store.state.myCoupon = await myCoupon
+      this.couponNum = await this.$store.state.myCoupon.length
       // console.log(this.$store.state.myCoupon)
+      
    },
 
    async fetchUserData(){
