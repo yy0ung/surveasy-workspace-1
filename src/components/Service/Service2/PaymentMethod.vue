@@ -209,7 +209,11 @@ export default {
       var currentUserEmail = await this.$store.state.loginState.currentUser.email
       var surveySelectedIdentity = await this.$store.state.localSurveyState.identity
       var nowDate = new Date()
-      var orderNum = nowDate.getFullYear().toString().substring(2,4) + (nowDate.getMonth()+1).toString() + nowDate.getDate().toString() + lastID
+      var fullYear = (""+nowDate.getFullYear()).substring(2,4)
+      var month = ""+nowDate.getMonth()+1
+      var date = ""+nowDate.getDate()
+      var orderNum = fullYear + month + date + (""+lastID)  
+      
       
       
       
@@ -238,9 +242,10 @@ export default {
 
       var D = year + '-' + month + '-' + day 
       //console.log(D)
+
       
       
-        await setDoc(doc(db, "surveyData", lastID.toString()), {
+        await setDoc(doc(db, "surveyData", lastID), {
           price : dataset.price,
           beforeCouponPrice : dataset.beforeCouponPrice,
           couponDiscount : dataset.couponDiscount,
@@ -320,7 +325,7 @@ export default {
         })
         // console.log('fetch LastID')
         // console.log(lastID[0].lastID)
-        return lastID[0].lastID
+        return ""+lastID[0].lastID
       },
 
 

@@ -35,10 +35,8 @@ export default createStore({
     //app admin
     adminAppUserData :[],
     adminAppUserSentData : [],
-<<<<<<< HEAD
     adminAppUserSurveyData: [],
-=======
->>>>>>> 8ec3aa93fe6ffbc5778297b2f339519b303051d1
+
     adminAppNotice : [],
    
     

@@ -5,6 +5,7 @@
 <h4>공지사항 게시</h4>
 <div class="notice-content">
   <input type="text" v-model="noticeTitle" placeholder="제목" class="notice-title"><br>
+  
   <input type="text" v-model="noticeContents" placeholder="내용" class="notice-contents">
 </div>
 <button @click="uploadNotice">업로드하기</button>
