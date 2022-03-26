@@ -69,7 +69,7 @@ export default {
         }
 
 
-        console.log(emptyTarget)
+        //console.log(emptyTarget)
 
         alert(emptyTarget + '의 입력이 필요합니다.')
       }
@@ -244,7 +244,6 @@ export default {
       //console.log(D)
 
       
-      
         await setDoc(doc(db, "surveyData", lastID), {
           price : dataset.price,
           beforeCouponPrice : dataset.beforeCouponPrice,
@@ -273,6 +272,8 @@ export default {
           dueTimeTime: dataset.dueTimeTime,
           dueTimeTimeTime: dataset.dueTimeTimeTime,
           priceIdentity: dataset.identity,
+          lastIDChecked: 0,
+          panelReward: 0,
 
           orderNum: orderNum,
 
@@ -282,6 +283,8 @@ export default {
 
                 
         })
+
+        
 
 
         var idDocref = doc(db, "lastID", "lastID")
@@ -323,9 +326,11 @@ export default {
         querySnapshot.forEach((doc) => {
           lastID.push(doc.data())
         })
-        // console.log('fetch LastID')
-        // console.log(lastID[0].lastID)
-        return ""+lastID[0].lastID
+        // console.log(lastID)
+        // console.log(lastID[1])
+        // console.log(lastID[1].lastID)
+        return lastID[1].lastID
+
       },
 
 

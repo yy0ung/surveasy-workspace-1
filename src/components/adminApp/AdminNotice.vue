@@ -5,9 +5,13 @@
 <h4>공지사항 게시</h4>
 <div class="notice-content">
   <input type="text" v-model="noticeTitle" placeholder="제목" class="notice-title"><br>
-  
-  <input type="text" v-model="noticeContents" placeholder="내용" class="notice-contents">
+  <textarea v-model="noticeContents" placeholder="내용" class="notice-contents"></textarea>
 </div>
+<div class="notice-content-fixed">
+  <input type="checkbox" value=true v-model="noticeFixed" id="checked">
+  <label for="checked">fixed 여부</label>
+</div>
+<button @click="fetchLastNoticeID">last id</button>
 <button @click="uploadNotice">업로드하기</button>
 
 <h4>공지사항 알림 커스터마이징</h4>
@@ -23,23 +27,76 @@ import { getFirestore,collection, getDocs, updateDoc, doc, deleteDoc, setDoc, ge
 export default {
   data() {
     return {
+      lastNoticeID : 0,
+
+
       noticeTitle : '',
       noticeContents: '',
+      fixed: [],
+      noticeFixed: false,
       notificationTitle : '',
       notificationContent : ''
     }
   },
   methods: {
-    async uploadNotice(){
+    async fetchLastNoticeID() {
       const db = this.$store.state.db
-      var docN = doc(db, "AppNotice",this.noticeTitle.toString())
+      const lastID = []
+      const docRef = doc(db, "lastID", "lastNoticeID")
+      const docSnap = await getDoc(docRef) 
+
+      if(docSnap.exists()) {
+        lastID.push(docSnap.data())
+        this.lastNoticeID = lastID[0].lastNoticeID
+
+        console.log(this.lastNoticeID)
+        console.log("fixed : " + this.noticeFixed)
+      }
+      
+    },
+
+    async uploadNotice(){
+      this.fetchLastNoticeID()
+
+      const db = this.$store.state.db
+
+      var today = new Date()
+      var todayPlus9 = today.setHours(today.getHours()+9)
+      var todayPlus9Date = new Date(todayPlus9)
+      var min = todayPlus9Date.toISOString()
+      
+      var d= min.split('T')
+      var dd = d[0]
+      var ddd= dd.split('-')
+      
+      var year = ddd[0]
+      var month = ddd[1]
+      var day = ddd[2]
+
+      month = month.length == 2 ? month : '0' + month
+      day = day.length == 2 ? day : '0' + day
+      var D = year + '. ' + month + '. ' + day 
+
+      console.log(this.noticeFixed)
+
+
+      var docN = doc(db, "AppNotice", this.lastNoticeID + ") " + this.noticeTitle.toString())
+      var lastDocRef = doc(db, "lastID", "lastNoticeID")
+
       await setDoc(docN, {
         title : this.noticeTitle,
-        date : new Date(),
-        content : this.noticeContents
+        date : D,
+        content : this.noticeContents,
+        fixed : this.noticeFixed
       })
+
+      await updateDoc(lastDocRef, {
+        lastNoticeID : this.lastNoticeID + 1
+      })
+
       window.alert("업로드 완료")
     },
+
     async notificationNotice(){
       const db = this.$store.state.db
       var docNt = doc(db, "NotificationData",this.notificationContent.toString())
@@ -60,5 +117,10 @@ export default {
 }
 .notice-contents{
   height: 200px;
+}
+.notice-content-fixed {
+  margin: 10px;
+  size: 10px;
+  font-weight: bold;
 }
 </style>

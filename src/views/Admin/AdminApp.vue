@@ -5,6 +5,7 @@
     <router-link to="/adminapp/panelinfo">패널 정보</router-link>
     <router-link to="/adminapp/notice">공지사항</router-link>
     <router-link to="/adminapp/panelproofhome">패널 설문 인증</router-link>
+    <router-link to="/adminapp/adminhome">홈 컨텐츠</router-link>
   </div>
 
   <div class="admin-view-container">
