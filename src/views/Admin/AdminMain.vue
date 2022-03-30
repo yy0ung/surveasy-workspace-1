@@ -59,6 +59,7 @@
               <td class="btn-progress-admin"><button class="progress-button1"  @click="changeProgress1(item.id)">1</button> 
 
                <button @click="changeProgress2(item.id)" class="progress-button2" >2</button>
+               <router-link :to="`/admindetail/${item.id}`"><button class="progress-button" >*</button></router-link>
 
                <!-- <router-link :to="`/admindetail/${item.id}`"><button @click="changeProgress2(item.id)" class="progress-button2" >2</button></router-link> -->
 
