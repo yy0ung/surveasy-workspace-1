@@ -7,7 +7,7 @@
         <ul class="Coupon-detail-text">쿠폰</ul>
           <select class="Coupon-selectbox" v-model="selectedCoupon">
             <option class="select-placeholder" :value="defaultCoupon" disabled selected>사용 가능 쿠폰 {{ this.$store.state.myCoupon.length }}장</option>
-            <option class="Coupon-option" v-for="item in (this.$store.state.myCoupon)" v-bind:value="{code: item.code, rate: item.rate}" :key="item">{{ item.name }}  : {{ item.duedate }} 까지</option>
+            <option class="Coupon-option" v-for="item in (this.$store.state.myCoupon)" v-bind:value="{code: item.code, rate: item.rate, forGroup: item.forGroup}" :key="item">{{ item.name }}  : {{ item.duedate }} 까지</option>
           </select>
           <button class="Coupon-btn-" @click="useCoupon()">쿠폰 적용</button>
       </ul>
@@ -44,12 +44,14 @@ export default {
 
       selectedCoupon: {
         code: '',
-        rate: 0
+        rate: 0,
+        forGroup: false
       }, 
 
       defaultCoupon : {
         code: '',
-        rate: 0
+        rate: 0,
+        forGroup: false
       },
 
       point_to_use: '',

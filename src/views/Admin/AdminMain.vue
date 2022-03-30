@@ -57,7 +57,13 @@
               <td><input type="text" placeholder="참여보상설정" v-model="panelReward"><button @click="changeReward(item.id, this.panelReward)">확인</button></td>
               <td class="progress-admin">{{item.progress}}</td>
               <td class="btn-progress-admin"><button class="progress-button1"  @click="changeProgress1(item.id)">1</button> 
-               <router-link :to="`/admindetail/${item.id}`"><button @click="changeProgress2(item.id)" class="progress-button2" >2</button></router-link>
+
+               <button @click="changeProgress2(item.id)" class="progress-button2" >2</button>
+               <router-link :to="`/admindetail/${item.id}`"><button class="progress-button" >*</button></router-link>
+
+               <!-- <router-link :to="`/admindetail/${item.id}`"><button @click="changeProgress2(item.id)" class="progress-button2" >2</button></router-link> -->
+
+
                <button class="progress-button3" @click="changeProgress3(item.id)">3</button></td>
             
 

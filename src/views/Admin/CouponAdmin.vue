@@ -10,53 +10,88 @@
 
   <div v-else>
     <div class="coupon">
-  <div class="coupon-register">
-    <h2>쿠폰 발급</h2>
-    <input v-model="couponInfo.code" type="text" placeholder="쿠폰코드 입력란">
-    <br>
-    <input v-model="couponInfo.name" type="text" placeholder="쿠폰이름 입력란">
-    <br>
-    <input v-model="couponInfo.duedate" type="date">
-    <br>
-    <span>할인율</span>
-    <select v-model="couponInfo.rate">
-      <option :value=5>5%</option>
-      <option :value=10>10%</option>
-      <option :value=20>20%</option>
-    </select>
-    <br><br>
-    <button @click="addCoupon(this.couponInfo)">쿠폰 발급하기</button>
-  </div>
-
-
-  <div class="coupon-list">
-    <h2>쿠폰 리스트</h2>
-    <!-- <button @click="fetchAdminData_coupon()">쿠폰 리스트 보기</button> -->
-    <table>
-      <tr>
-        <th>쿠폰 코드</th>
-        <th>쿠폰 이름</th>
-        <th>할인율</th>
-        <th>등록 사용자</th>
-        <th>유효 기간</th>
-        <th>남은 기한(일)</th>
-        <th>기한 만료</th>
-        <th>사용 여부</th>
-      </tr>
-
-      <tr v-for="item in (this.$store.state.adminCoupon)" :key="item.code" class="cou-tds" :class="{red: (item.outOfDate==false && item.isUsed==false)}">
-        <td>{{ item.code }}</td>
-        <td>{{ item.name }}</td>
-        <td>{{ item.rate }}</td>
-        <td>{{ item.user }}</td>
-        <td>{{ item.duedate }}</td>
-        <td>{{ item.duediff }}</td>
-        <td>{{ item.outOfDate }}</td>
-        <td>{{ item.isUsed }}</td>
+      <div class="coupon-register">
+        <h2>쿠폰 발급</h2>
+        <div class="coupon-type">
+          <button @click="show(false)" :class="{active_green : (couponInfo.forGroup==false)}">개인 쿠폰</button>
+          <button @click="show(true)" :class="{active_green : (couponInfo.forGroup==true)}">공유 쿠폰</button>
+          <hr class="coupon-line">
+        </div>
         
-      </tr>
-    </table>
-  </div>
+        <div v-if="couponInfo.forGroup==false">
+          <span>개수 : </span>
+          <input v-model="couponNum" type="number" placeholder="(숫자만)" id="couponInput_num">
+          <br><br>
+          <input v-model="couponInfo.code" type="text" placeholder="쿠폰코드 입력란 (맨끝 숫자 세자리 제외 앞부분만)" id="couponInput">
+          <br>
+          <input v-model="couponInfo.name" type="text" placeholder="쿠폰이름 입력란" id="couponInput">
+          <br>
+          <input v-model="couponInfo.duedate" type="date" id="couponInput">
+          <br>
+          <span>할인율</span>
+          <select v-model="couponInfo.rate">
+            <option :value=5>5%</option>
+            <option :value=10>10%</option>
+            <option :value=20>20%</option>
+          </select>
+          <br><br>
+          <button @click="addCoupon_Individual(this.couponInfo)" class="finBtn">개인 쿠폰 발급하기</button>
+
+        </div>
+
+        <div v-if="couponInfo.forGroup==true">
+          <br>
+          <input v-model="couponInfo.code" type="text" placeholder="쿠폰코드 입력란" id="couponInput">
+          <br>
+          <input v-model="couponInfo.name" type="text" placeholder="쿠폰이름 입력란" id="couponInput">
+          <br>
+          <input v-model="couponInfo.duedate" type="date" id="couponInput">
+          <br>
+          <span>할인율</span>
+          <select v-model="couponInfo.rate">
+            <option :value=5>5%</option>
+            <option :value=10>10%</option>
+            <option :value=20>20%</option>
+          </select>
+          <br><br>
+          <button @click="addCoupon_Group(this.couponInfo)" class="finBtn">공유 쿠폰 발급하기</button>
+
+        </div>
+        
+        
+      </div>
+
+
+      <div class="coupon-list">
+        <h2>쿠폰 리스트</h2>
+        <!-- <button @click="fetchAdminData_coupon()">쿠폰 리스트 보기</button> -->
+        <table>
+          <tr>
+            <th>공유 쿠폰 여부</th>
+            <th>쿠폰 코드</th>
+            <th>쿠폰 이름</th>
+            <th>할인율</th>
+            <th>등록 사용자</th>
+            <th>유효 기간</th>
+            <th>남은 기한(일)</th>
+            <th>기한 만료</th>
+            <th>사용 여부</th>
+          </tr>
+
+          <tr v-for="item in (this.$store.state.adminCoupon)" :key="item.dueDate" class="cou-tds" :class="{valid: (item.outOfDate==false && item.isUsed==false), group: (item.forGroup==true) }">
+            <td>{{ item.forGroup }}</td>
+            <td>{{ item.code }}</td>
+            <td>{{ item.name }}</td>
+            <td>{{ item.rate }}</td>
+            <td>{{ item.user }}</td>
+            <td>{{ item.duedate }}</td>
+            <td>{{ item.duediff }}</td>
+            <td>{{ item.outOfDate }}</td>
+            <td>{{ item.isUsed }}</td>
+            
+          </tr>
+        </table>
+      </div>
 
   <!-- <div class="coupon-mypage">
     <h2>쿠폰 등록하기</h2>
@@ -119,12 +154,15 @@ export default {
   data() {
     return {
       couponInfo: {
+        forGroup: false,
         code: '',
         name: '',
         duedate: '',
         rate: 0,
         user: ''
       },
+
+      couponNum : 1,
 
       localCode: '',
       couponUser: '',
@@ -146,6 +184,10 @@ export default {
   },
 
   methods: {
+    show(bool) {
+      this.couponInfo.forGroup = bool
+    },
+
     async adminCheck(passInput){
       const db = this.$store.state.db
       const pwRef = doc(db, "adminPassword", "couponadminPW")
@@ -161,8 +203,41 @@ export default {
 
     },
 
+   async addCoupon_Individual(couponInfo) {
+    var db = this.$store.state.db 
+    var due = new Date(couponInfo.duedate)
+    var diff = Math.floor((due.getTime() - Date.now()) / (24*60*60*1000))
 
-   async addCoupon(couponInfo) {
+    for(var i=1 ; i<=this.couponNum ; i++) {
+      var i_Str = i.toString()
+      if(i_Str.length == 1)  i_Str = "00" + i_Str
+      if(i_Str.length == 2)  i_Str = "0" + i_Str
+
+      var code = couponInfo.code + i_Str
+
+      await setDoc(doc(db, "couponData", code), {
+        code: code,
+        name: couponInfo.name,
+        rate: couponInfo.rate,
+        duedate: couponInfo.duedate,
+        duediff: diff,
+        user: '',
+        isUsed: false,
+        outOfDate: false,
+        forGroup: false
+      })
+
+    }
+      this.$store.state.adminCoupon = []
+      this.$store.state.adminCouponValid = []
+
+      this.fetchAdminData_coupon()
+
+      alert("개인 쿠폰 발급 완료")
+
+   },
+
+   async addCoupon_Group(couponInfo) {
     var db = this.$store.state.db 
     var due = new Date(couponInfo.duedate)
     var diff = Math.floor((due.getTime() - Date.now()) / (24*60*60*1000))
@@ -173,19 +248,25 @@ export default {
         rate: couponInfo.rate,
         duedate: couponInfo.duedate,
         duediff: diff,
-        user: '',
+        user: [],
         isUsed: false,
-        outOfDate: false
+        outOfDate: false,
+        forGroup: true
       })
 
       this.$store.state.adminCoupon = []
-      this.$store.state.myCoupon = []
+      this.$store.state.adminCouponValid = []
 
       this.fetchAdminData_coupon()
+
+      alert("공유 쿠폰 발급 완료")
 
    },
 
    async fetchAdminData_coupon() {
+     this.$store.state.adminCoupon = []
+     this.$store.state.adminCouponValid = []
+
      const db = this.$store.state.db
      
      const adminCoupon = this.$store.state.adminCoupon
@@ -195,18 +276,17 @@ export default {
        adminCoupon.push(doc.data())
      })
 
-     const myCoupon = adminCoupon.filter(item => item.user===this.$store.state.loginState.currentUser.email && item.isUsed===false && item.outOfDate===false)
-     this.$store.state.myCoupon = myCoupon
-    //  console.log(this.$store.state.myCoupon)
+     const validCoupon = adminCoupon.filter(item => item.isUsed===false && item.outOfDate===false)
+     this.$store.state.adminCouponValid = validCoupon
      this.check_outOfDate()
    },
 
    async check_outOfDate() {
       var db = this.$store.state.db
     
-      for(var i=0 ; i<this.$store.state.myCoupon.length ; i++) {
-        const docref = doc(db, "couponData", this.$store.state.myCoupon[i].code) 
-        var duedate = this.$store.state.myCoupon[i].duedate
+      for(var i=0 ; i<this.$store.state.adminCoupon.length ; i++) {
+        const docref = doc(db, "couponData", this.$store.state.adminCoupon[i].code) 
+        var duedate = this.$store.state.adminCoupon[i].duedate
         var due = new Date(duedate + ' 24:00:00')
         var diff = due.getTime()/3600000 - Date.now()/3600000
         var diffdate = Math.floor(diff/24)
@@ -227,65 +307,7 @@ export default {
       }
    },
 
-   async addCoupon_user(localCode) {
-      var db = this.$store.state.db
-      var validCode = false
-      const docref = doc(db, "couponData", localCode)
-    
-      for(var i=0 ; i<this.$store.state.adminCoupon.length ; i++) {
-        if(this.$store.state.adminCoupon[i].code == localCode 
-        && this.$store.state.adminCoupon[i].user=='' 
-        && this.$store.state.adminCoupon[i].isUsed==false
-        && this.$store.state.adminCoupon[i].outOfDate==false) {
-          validCode = true
-        }
-      }
-
-      if(validCode == true) {
-        await updateDoc(docref, { 
-          user: this.$store.state.loginState.currentUser.email
-        })
-      }
-
-      else {
-        alert('유효하지 않은 쿠폰입니다.')
-      }
-
-      this.$store.state.adminCoupon = []
-      this.$store.state.myCoupon = []
-
-      this.fetchAdminData_coupon()
-    },
-
-    useCoupon() {
-      if(this.selectedCoupon.rate == 5) {
-        this.price = this.price * 0.95
-      }
-
-      if(this.selectedCoupon.rate == 10) {
-        this.price = this.price * 0.9
-      }
-
-      if(this.selectedCoupon.rate == 20) {
-        this.price = this.price * 0.8
-      }
-      
-    },
-
-    async isUsed() {
-      var db = this.$store.state.db
-      const docref = doc(db, "couponData", this.selectedCoupon.code)
-
-      await updateDoc(docref, { 
-          isUsed: true
-        })
-
-      this.$store.state.adminCoupon = []
-      this.$store.state.myCoupon = []
-
-      this.fetchAdminData_coupon()
-    },
-
+   // 쿠폰 넘겨주기
     async transferCP(transferCoupon) {
       var db = this.$store.state.db
       var validCoupon = false
@@ -335,11 +357,45 @@ export default {
 .coupon-register {
   margin: 80px;
 }
-.coupon-register input {
+.coupon-type button {
+  width: 100px;
+  margin-top: 15px;
+  margin-left: 30px;
+  margin-right: 30px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+.coupon-type .active_green {
+  width: 100px;
+  margin-left: 30px;
+  margin-right: 30px;
+  background: none;
+  border: none;
+  font-weight: bolder;
+  font-size: 17px;
+  color: rgb(126, 209, 66);
+  cursor: pointer;
+}
+.coupon-line {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  border-style: inset;
+  border-width: 2px;
+  background: rgb(26, 226, 26);
+}
+#couponInput_num {
+  width: 100px;
+  height: 30px;
+  margin-top: 5px;
+  font-size: 15px;
+}
+#couponInput {
   width: 300px;
   height: 30px;
   margin-bottom: 20px;
-  font-size: 15px;
+  font-size: 13px;
 }
 .coupon-register select {
   width: 80px;
@@ -347,20 +403,24 @@ export default {
   margin-left: 20px;
   font-size: 15px;
 }
-.coupon-register button {
+.finBtn {
   margin: 20px;
-  width: 180px;
+  width: 200px;
   height: 40px;
-  background-color: rgb(250, 250, 107);
+  background-color: rgb(191, 243, 172);
   border: 1px solid grey;
   border-radius: 15px;
-  font-size: 17px;
+  font-size: 16px;
   font-weight: bold;
   cursor: pointer;
 }
 .coupon-list {
   margin: 20px;
   font-size: 13px;
+}
+.coupon-list th {
+  font-size: 17px;
+  font-weight: bold;
 }
 .coupon-mypage {
   margin: 20px;
@@ -371,8 +431,13 @@ export default {
 .coupon-use input {
   width: 260px;
 }
-.cou-tds.red{
-  color: rgb(115, 192, 44);
-  font-weight: bold;
+.cou-tds {
+  color: rgb(191, 190, 190);
+}
+.cou-tds.valid{
+  color: rgb(0, 0, 0);
+}
+.cou-tds.group{
+  color: rgb(69, 149, 235);
 }
 </style>

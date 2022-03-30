@@ -56,7 +56,7 @@ export default {
       })
       const PointUserData = userData.filter(item => item.email===this.$store.state.loginState.currentUser.email)
       this.$store.state.PointUserData = PointUserData
-      console.log(this.$store.state.PointUserData[0].identity_request)
+      //console.log(this.$store.state.PointUserData[0].identity_request)
       // console.log(PointUserData[0])
       this.getPointInfo()
     },
