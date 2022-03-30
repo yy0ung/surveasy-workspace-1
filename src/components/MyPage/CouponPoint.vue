@@ -87,6 +87,8 @@ export default {
 
       localCode: '',
       couponUser: '',
+      userList: [],
+      couponList_used: [],
 
       selectedCoupon: {
         code: '',
@@ -112,24 +114,6 @@ export default {
   },
 
   methods: {
-    async fetchAdminData_coupon() { 
-      const db = this.$store.state.db
-
-      this.$store.state.adminCoupon = []
-      this.$store.state.myCoupon = []
-
-      const adminCoupon = this.$store.state.adminCoupon
-
-      const querySnapshot = await getDocs(collection(db, "couponData"))
-      querySnapshot.forEach((doc) => {
-        adminCoupon.push(doc.data())
-      })
-
-      const myCoupon = adminCoupon.filter(item => item.user===this.$store.state.loginState.currentUser.email && item.isUsed===false && item.outOfDate===false)
-      this.$store.state.myCoupon = myCoupon
-      // console.log(this.$store.state.myCoupon)
-   },
-
     async fetchUserData_point(){
       const db = this.$store.state.db
       this.$store.state.userData = []
@@ -155,32 +139,12 @@ export default {
       // console.log('current point: ' + this.$store.state.localPointState.point_current)
     },
 
-   async addCoupon(couponInfo) {
-    var db = this.$store.state.db 
-    var due = new Date(couponInfo.duedate)
-    var diff = Math.floor((due.getTime() - Date.now()) / (24*60*60*1000))
-    
-      await setDoc(doc(db, "couponData", couponInfo.code.toString()), {
-        code: couponInfo.code,
-        name: couponInfo.name,
-        rate: couponInfo.rate,
-        duedate: couponInfo.duedate,
-        duediff: diff,
-        user: '',
-        isUsed: false,
-        outOfDate: false
-      })
-
-      this.$store.state.adminCoupon = []
-      this.$store.state.myCoupon = []
-
-      this.fetchAdminData_coupon()
-      
-
-   },
 
    async fetchAdminData_coupon() {
      const db = this.$store.state.db
+      this.couponList_used = []
+      this.$store.state.adminCoupon = []
+      this.$store.state.myCoupon = []
      
      const adminCoupon = this.$store.state.adminCoupon
      
@@ -189,9 +153,35 @@ export default {
        adminCoupon.push(doc.data())
      })
 
-     const myCoupon = adminCoupon.filter(item => item.user===this.$store.state.loginState.currentUser.email && item.isUsed===false && item.outOfDate===false)
-     this.$store.state.myCoupon = myCoupon
-    //  console.log(this.$store.state.myCoupon)
+     const myCoupon_group_X = adminCoupon.filter(item => item.forGroup===false && (item.user===this.$store.state.loginState.currentUser.email) && item.isUsed===false && item.outOfDate===false)
+     //console.log(await myCoupon_group_X)
+     const myCoupon_group_O = []
+
+     const Coupon_group_O_yet = await adminCoupon.filter(item => item.forGroup===true && item.isUsed===false && item.outOfDate===false)
+     
+     for(var i=0 ; i<Coupon_group_O_yet.length ; i++) {
+        for(var j=0 ; j<Coupon_group_O_yet[i].user.length ; j++) {
+
+          if(Coupon_group_O_yet[i].user[j].user == this.$store.state.loginState.currentUser.email && Coupon_group_O_yet[i].user[j].used == false) {
+            //console.log(Coupon_group_O_yet[i])
+            myCoupon_group_O.push(Coupon_group_O_yet[i])
+          }
+
+          if(Coupon_group_O_yet[i].user[j].user == this.$store.state.loginState.currentUser.email && Coupon_group_O_yet[i].user[j].used == true) {
+            this.couponList_used.push(Coupon_group_O_yet[i])
+            
+          }
+          
+        }
+       
+      }
+      //console.log(this.couponList_used)
+      const myCoupon = await myCoupon_group_X.concat(myCoupon_group_O)
+      this.$store.state.myCoupon = await myCoupon
+
+    //  const myCoupon = adminCoupon.filter(item => (item.user===this.$store.state.loginState.currentUser.email) && item.isUsed===false && item.outOfDate===false)
+     
+    //console.log(this.$store.state.myCoupon)
      this.check_outOfDate()
    },
 
@@ -225,25 +215,92 @@ export default {
    async addCoupon_user(localCode) {
       var db = this.$store.state.db
       var validCode = false
+      var groupCode = false
       const docref = doc(db, "couponData", localCode)
     
       for(var i=0 ; i<this.$store.state.adminCoupon.length ; i++) {
-        if(this.$store.state.adminCoupon[i].code == localCode 
-        && this.$store.state.adminCoupon[i].user=='' 
-        && this.$store.state.adminCoupon[i].isUsed==false
-        && this.$store.state.adminCoupon[i].outOfDate==false) {
-          validCode = true
+        if(this.$store.state.adminCoupon[i].code == localCode) {
+
+          // 공유 쿠폰 O
+          if(this.$store.state.adminCoupon[i].forGroup==true) {
+            var existed = false
+            var j=0
+            var k=0
+
+            while(existed == false && j<this.$store.state.myCoupon.length) {
+              // 이미 등록된 공유 쿠폰 O
+              if(this.$store.state.myCoupon[j].code == localCode) {
+                existed = true
+                //console.log("이미 등록된 코드")
+              }
+              else {
+                j++
+              }
+            }
+
+            while(existed == false && k<this.couponList_used.length) {
+              // 이미 등록된 공유 쿠폰 O
+              if(this.couponList_used[k].code == localCode) {
+                existed = true
+                //console.log("이미 등록된 코드 used")
+              }
+              else {
+                k++
+              }
+            }
+
+            // 이미 등록된 공유 쿠폰 X
+            if(existed == false) {
+              if(this.$store.state.adminCoupon[i].isUsed==false && this.$store.state.adminCoupon[i].outOfDate==false) {
+                  this.userList = this.$store.state.adminCoupon[i].user
+                  this.userList.push({user: this.$store.state.loginState.currentUser.email, used: false})
+                  //console.log(this.userList)
+                  validCode = true
+                  groupCode = true
+                  existed = false
+              }
+            }
+            
+          }
+
+          // 공유 쿠폰 X
+          else {
+            if(this.$store.state.adminCoupon[i].user=='' 
+              && this.$store.state.adminCoupon[i].isUsed==false && this.$store.state.adminCoupon[i].outOfDate==false) {
+                validCode = true
+            }
+          }
+
         }
+
       }
 
-      if(validCode == true) {
+      if(validCode == true && groupCode == false) {
         await updateDoc(docref, { 
           user: this.$store.state.loginState.currentUser.email
         }).then(
-          this.$store.state.adminCoupon = [],
-          this.$store.state.myCoupon = [],
-          this.fetchAdminData_coupon()
+          
         )
+        this.$store.state.adminCoupon = [],
+        this.$store.state.myCoupon = [],
+        validCode = false,
+        groupCode = false
+        await this.fetchAdminData_coupon()
+      }
+
+      else if(validCode == true && groupCode == true) {
+        await updateDoc(docref, { 
+          user: this.userList
+        }).then(
+        
+        )
+        this.$store.state.adminCoupon = [],
+        this.$store.state.myCoupon = [],
+        await this.fetchAdminData_coupon(),
+        //console.log("*******************"),
+        validCode = false,
+        groupCode = false,
+        this.userList = []
       }
 
       else {
@@ -278,34 +335,35 @@ export default {
       this.fetchAdminData_coupon()
     },
 
-    async transferCP(transferCoupon) {
-      var db = this.$store.state.db
-      var validCoupon = false
-      const docref = doc(db, "couponData", this.transferCoupon.code)
+    // async transferCP(transferCoupon) {
+    //   var db = this.$store.state.db
+    //   var validCoupon = false
+    //   const docref = doc(db, "couponData", this.transferCoupon.code)
     
-      for(var i=0 ; i<this.$store.state.adminCoupon.length ; i++) {
-        if(this.$store.state.adminCoupon[i].code == transferCoupon.code 
-        && this.$store.state.adminCoupon[i].isUsed==false && this.$store.state.adminCoupon[i].outOfDate==false) {
-          validCoupon = true
-        }
-      }
+    //   for(var i=0 ; i<this.$store.state.adminCoupon.length ; i++) {
+    //     if(this.$store.state.adminCoupon[i].code == transferCoupon.code 
+    //     && this.$store.state.adminCoupon[i].isUsed==false && this.$store.state.adminCoupon[i].outOfDate==false) {
+    //       validCoupon = true
+    //     }
+    //   }
 
-      if(validCoupon == true) {
-        await updateDoc(docref, { 
-          user: this.receiver
-        }).then(
-          this.$store.state.adminCoupon = [],
-          this.fetchAdminData_coupon()
-        )
+    //   if(validCoupon == true) {
+    //     await updateDoc(docref, { 
+    //       user: this.receiver
+    //     }).then(
+    //       this.$store.state.adminCoupon = [],
+    //       this.fetchAdminData_coupon()
+    //     )
         
-      } else {
-        alert('유효하지 않은 쿠폰입니다.')
-      }
+    //   } else {
+    //     alert('유효하지 않은 쿠폰입니다.')
+    //   }
 
-      this.receiver = ''
+    //   this.receiver = ''
 
       
-    },
+    // },
+
     priceToString(price) {
       return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
     }

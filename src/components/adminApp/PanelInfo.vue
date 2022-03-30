@@ -1,13 +1,16 @@
 <template>
-<div id="admin-panelInfo">
-패널 정보
-</div>  
-
+<div id="admin-container">
+  
 <div class="admin-info-content">
-  <tr>
-    <th>name</th>
-    <th>email</th>
-    <th>phoneNumber</th>
+  <tr id="th">
+    <th>이름</th>
+    <th>메일</th>
+    <th>전화번호</th>
+    <th>성별</th>
+    <th>출생년도</th>
+    <th>정산 총액</th>
+    <th>유입경로</th>
+    <th>마케팅 수신동의</th>
   </tr>
 
 
@@ -15,9 +18,16 @@
     <td>{{item.info[0].name}}</td>
     <td>{{item.info[0].email}}</td>
     <td>{{item.info[0].phoneNumber}}</td>
+    <td>{{item.info[0].gender}}</td>
+    <td>{{item.info[0].birthDate.substring(0,4)}}</td>
+    <td>{{item.info[0].reward_total}}</td>
+    <td>{{item.info[0].inflowPath}}</td>
+    <td>{{item.info[0].marketingAgree}}</td>
 
   </tr>
 </div>
+</div>
+
 </template>
 
 <script>
@@ -67,5 +77,9 @@ export default {
 </script>
 
 <style>
+.admin-info-content th,.admin-info-content td{
+  padding-left: 10px;
+  padding-right: 10px;
+}
 
 </style>
