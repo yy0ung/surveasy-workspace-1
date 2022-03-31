@@ -54,6 +54,7 @@ export default {
       this.clearCurrent(Id)
       this.updateIsSent(Id, respondedSurvey)
     },
+
     //array에 넣기, 체크 박스 false 되면 리스트에서 빼기
     async addArray(Id){
       if(this.sentCheckArray.includes(Id)){
@@ -76,11 +77,15 @@ export default {
             console.log("survey list : " + doc.data().lastIDChecked)
             respondedSurvey.push(doc.data().lastIDChecked.toString())
           }
-      })
+        })
 
-        this.clearCurrent(this.sentCheckArray[i])
-        this.updateIsSent(this.sentCheckArray[i], respondedSurvey)
+        await this.clearCurrent(this.sentCheckArray[i])
+        await this.updateIsSent(this.sentCheckArray[i], respondedSurvey)
 
+      }
+      
+      if (confirm("정산완료")){
+        this.$router.go()
       }
     },
     
@@ -88,9 +93,9 @@ export default {
       const db = this.$store.state.db
       const rs = respondedSurvey
 
-      for(const item of rs) {
-        console.log(item)
-        var itemRef = doc(db, "AndroidUser", Id, "UserSurveyList", item.toString())
+      for(var i=0 ; i < rs.length ; i++) {
+        console.log(rs[i])
+        var itemRef = doc(db, "AndroidUser", Id, "UserSurveyList", rs[i].toString())
         await updateDoc(itemRef, {
           isSent : true
         })
@@ -104,9 +109,9 @@ export default {
       await updateDoc(rewardRef, {
         reward_current : 0
       })
-      if(confirm("정산완료")){
-        this.$router.go()
-      }
+      // if(confirm("정산완료")){
+      //   this.$router.go()
+      // }
      // window.alert('정산 완료')
     },
 
