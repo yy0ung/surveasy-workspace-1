@@ -60,7 +60,7 @@
 
                <button @click="changeProgress2(item.id)" class="progress-button2" >2</button>
                <router-link :to="`/admindetail/${item.id}`"><button class="progress-button" >*</button></router-link>
-
+             
                <!-- <router-link :to="`/admindetail/${item.id}`"><button @click="changeProgress2(item.id)" class="progress-button2" >2</button></router-link> -->
 
 
