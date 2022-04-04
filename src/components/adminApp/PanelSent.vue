@@ -3,6 +3,7 @@
 <div id="container-top">
   선택된 개수 {{sentCheckArray.length}}
   <button id="sent-all-btn" @click="sentAllFin">정산 완료</button>
+  
 </div>
  
 <div class="admin-info-content">
@@ -27,7 +28,7 @@
     <td>{{item.info[0].accountType}}</td>
     <td>{{item.info[0].accountNumber}}</td>
     <td>{{item.info[0].reward_current}}</td>
-    <td><input type="checkbox" id="done" @click="addArray(item.info[0].uid)"></td>
+    <td><input class="checkbox-one" type="checkbox" id="done" @click="addArray(item.info[0].uid)" ></td>
     <td id="sentBtn"><button @click="sentFin(item.info[0].uid, item.respondedSurvey)">정산 완료</button></td>
 
   </tr>
