@@ -1,8 +1,11 @@
 <template>
 
 <div id="container-top">
-  선택된 개수 {{sentCheckArray.length}}
-  <button id="sent-all-btn" @click="sentAllFin">정산 완료</button>
+  <p>선택된 개수 {{sentCheckArray.length}} <button id="sent-all-btn" @click="sentAllFin(sentCheckArray)">{{sentCheckArray.length}}개 정산하기</button></p>
+  <!-- 내가 다 없애버리면 너가 테스트 못할 거 같아서 아직 나는 테스트 안했어! -->
+  <p><input type="checkbox" id="done" @click="appendAllList" >{{allList.length}}개 모두 선택됨 <button id="sent-all-btn" @click="sentAllFin(allList)">{{allList.length}}개 정산하기</button></p>
+  
+  
   
 </div>
  
@@ -41,7 +44,9 @@ import { getFirestore,collection, getDocs, query, doc, where, setDoc, getDoc, up
 export default {
   data() {
     return {
-      sentCheckArray :[]
+      sentCheckArray :[],
+      allList : [],
+      check : false
       
     }
   },
@@ -67,12 +72,12 @@ export default {
       }
     },
 
-    async sentAllFin(){
+    async sentAllFin(arr){
       const db = this.$store.state.db
-      for(var i=0; i<this.sentCheckArray.length; i++){
+      for(var i=0; i<arr.length; i++){
         var respondedSurvey = []
       
-        const querySnapshot = await getDocs(collection(db, "AndroidUser", this.sentCheckArray[i], "UserSurveyList"))
+        const querySnapshot = await getDocs(collection(db, "AndroidUser", arr[i], "UserSurveyList"))
         querySnapshot.forEach((doc) => {
           if(doc.data().isSent == false) {
             console.log("survey list : " + doc.data().lastIDChecked)
@@ -80,8 +85,8 @@ export default {
           }
         })
 
-        await this.clearCurrent(this.sentCheckArray[i])
-        await this.updateIsSent(this.sentCheckArray[i], respondedSurvey)
+        await this.clearCurrent(arr[i])
+        await this.updateIsSent(arr[i], respondedSurvey)
 
       }
       
@@ -147,10 +152,31 @@ export default {
       })
       var panel = { uid: uid, info: info, respondedSurvey : respondedSurvey }
       adminAppUserData.push(panel)
+    },
+    
+    async appendAllList(){
+      this.check = !this.check
+      var lst = this.$store.state.adminAppUserData
+      if(this.check){
+        for(var i =0; i<lst.length; i++){
+        if(lst[i].info[0].reward_current>0){
+          this.allList.push(lst[i].uid)
+        }
+      
+      }
+      }else{
+        this.allList.length = 0
+      }
+      
+      console.log(this.allList)
+      
+      
     }
 
     
   },
+
+  
 }
 </script>
 
