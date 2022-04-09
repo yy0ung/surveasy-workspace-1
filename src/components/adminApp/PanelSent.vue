@@ -6,7 +6,6 @@
   <p><input type="checkbox" id="done" @click="appendAllList" >{{allList.length}}개 모두 선택됨 <button id="sent-all-btn" @click="sentAllFin(allList)">{{allList.length}}개 정산하기</button></p>
   
   
-  
 </div>
  
 <div class="admin-info-content">
@@ -31,8 +30,8 @@
     <td>{{item.info[0].accountType}}</td>
     <td>{{item.info[0].accountNumber}}</td>
     <td>{{item.info[0].reward_current}}</td>
-    <td><input class="checkbox-one" type="checkbox" id="done" @click="addArray(item.info[0].uid)" ></td>
-    <td id="sentBtn"><button @click="sentFin(item.info[0].uid, item.respondedSurvey)">정산 완료</button></td>
+    <td><input class="checkbox-one" type="checkbox" id="done" @click="addArray(item.info[0].uid, item.info[0].reward_current, item.respondedSurvey)" ></td>
+    <td id="sentBtn"><button @click="sentFin(item.info[0].uid, item.info[0].reward_current, item.respondedSurvey)">정산 완료</button></td>
 
   </tr>
  
@@ -55,39 +54,41 @@ export default {
     this.fetchPanelInfo()
   },
   methods: {
-
-    sentFin(Id, respondedSurvey) {
-      this.clearCurrent(Id)
+    sentFin(Id, reward_current, respondedSurvey) {
+      this.clearCurrent(Id, reward_current)
       this.updateIsSent(Id, respondedSurvey)
     },
 
     //array에 넣기, 체크 박스 false 되면 리스트에서 빼기
-    async addArray(Id){
-      if(this.sentCheckArray.includes(Id)){
-        this.sentCheckArray = this.sentCheckArray.filter((e) => e !== Id)
-        console.log(this.sentCheckArray)
+    async addArray(Id, reward_current, respondedSurvey){
+      const item = {Id: Id, reward_current: reward_current, respondedSurvey: respondedSurvey}
+      
+      
+
+      if(this.sentCheckArray.some(e => e.Id == Id)){
+        this.sentCheckArray = this.sentCheckArray.filter(e => e.Id != Id)
+        //console.log('***' + this.sentCheckArray)
       }else{
-        this.sentCheckArray.push(Id)
-        console.log(this.sentCheckArray)
+        this.sentCheckArray.push({Id: Id, reward_current: reward_current, respondedSurvey: respondedSurvey})
+        //console.log('$$$' + this.sentCheckArray)
       }
     },
-
+    
     async sentAllFin(arr){
       const db = this.$store.state.db
       for(var i=0; i<arr.length; i++){
-        var respondedSurvey = []
+        // var respondedSurvey = []
       
-        const querySnapshot = await getDocs(collection(db, "AndroidUser", arr[i], "UserSurveyList"))
-        querySnapshot.forEach((doc) => {
-          if(doc.data().isSent == false) {
-            console.log("survey list : " + doc.data().lastIDChecked)
-            respondedSurvey.push(doc.data().lastIDChecked.toString())
-          }
-        })
-
-        await this.clearCurrent(arr[i])
-        await this.updateIsSent(arr[i], respondedSurvey)
-
+        // const querySnapshot = await getDocs(collection(db, "AndroidUser", arr[i].Id, "UserSurveyList"))
+        // querySnapshot.forEach((doc) => {
+        //   if(doc.data().isSent == false) {
+        //     console.log("survey list : " + doc.data().lastIDChecked)
+        //     respondedSurvey.push(doc.data().lastIDChecked.toString())
+        //   }
+        // })
+        console.log("~~~~~~~~" + arr[i].reward_current + '~~~~~~~' + arr[i].respondedSurvey)
+        await this.clearCurrent(arr[i].Id, arr[i].reward_current)
+        await this.updateIsSent(arr[i].Id, arr[i].respondedSurvey)
       }
       
       if (confirm("정산완료")){
@@ -98,7 +99,6 @@ export default {
     async updateIsSent(Id, respondedSurvey) {
       const db = this.$store.state.db
       const rs = respondedSurvey
-
       for(var i=0 ; i < rs.length ; i++) {
         console.log(rs[i])
         var itemRef = doc(db, "AndroidUser", Id, "UserSurveyList", rs[i].toString())
@@ -109,11 +109,20 @@ export default {
     },
 
 
-    async clearCurrent(Id){
+    async clearCurrent(Id, reward_current){
       const db = this.$store.state.db
-      const rewardRef = doc(db, "AndroidUser", Id.toString())
+      const rewardRef = doc(db, "AndroidUser", Id)
+      var new_reward_current = 0
+
+      const querySnapshot = await getDoc(rewardRef)
+      if(querySnapshot.exists){
+        new_reward_current = querySnapshot.data().reward_current
+        //console.log("+++++++++++" + new_reward_current)
+
+      }
+
       await updateDoc(rewardRef, {
-        reward_current : 0
+        reward_current : Number(new_reward_current - reward_current)
       })
       // if(confirm("정산완료")){
       //   this.$router.go()
@@ -129,18 +138,14 @@ export default {
       querySnapshot.forEach((doc) => {
         var info = []
         info.push(doc.data())
-
         this.fetchPanelMyList(doc.data().uid, info)
-
       })
-
       console.log(adminAppUserData)
     },
 
     async fetchPanelMyList(uid, info) {
       const db = this.$store.state.db
       const adminAppUserData = this.$store.state.adminAppUserData
-
       var respondedSurvey = []
       
       const querySnapshot = await getDocs(collection(db, "AndroidUser", uid, "UserSurveyList"))
@@ -160,7 +165,8 @@ export default {
       if(this.check){
         for(var i =0; i<lst.length; i++){
         if(lst[i].info[0].reward_current>0){
-          this.allList.push(lst[i].uid)
+          var item = {Id : lst[i].uid, reward_current : lst[i].info[0].reward_current, respondedSurvey: lst[i].respondedSurvey}
+          this.allList.push(item)
         }
       
       }
@@ -168,14 +174,12 @@ export default {
         this.allList.length = 0
       }
       
-      console.log(this.allList)
+      console.log('#######' + this.allList)
       
       
     }
-
     
   },
-
   
 }
 </script>
@@ -187,5 +191,4 @@ export default {
 #sentBtn{
   padding-top: 10px;
 }
-
 </style>
