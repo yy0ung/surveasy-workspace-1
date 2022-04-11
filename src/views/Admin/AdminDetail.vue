@@ -7,12 +7,7 @@
     *참여보상 설정<br>
     <input type="number" placeholder="reward" v-model="reward" required>
   </div>
-  <div class="notification">
-    *알림 제목 설정<br>
-    <textarea type="text" placeholder="알림 제목" v-model="notiTitle" required class="fcm-contents"></textarea><br>
-    *알림 내용 설정<br>
-    <textarea type="text" placeholder="알림 내용" v-model="notiContent" required class="fcm-contents"></textarea>
-  </div>
+  
   <div class="notice">
     패널 유의사항<br>
     <textarea type="text" placeholder="패널 유의사항" v-model="noticeToPanel" class="notice-text"></textarea>
@@ -31,8 +26,7 @@ export default {
     return {
       id : this.$route.params.id,
       reward : 0,
-      notiTitle : "",
-      notiContent : "",
+      
       noticeToPanel : ""
     }
   },
@@ -55,12 +49,6 @@ export default {
       await updateDoc(surveyRef, {
         panelReward: parseInt(this.reward),
         noticeToPanel : this.noticeToPanel
-      })
-
-      var docN = doc(db, "NotificationData",this.id.toString())
-      await setDoc(docN, {
-        title : this.notiTitle,
-        body : this.notiContent
       })
 
       var lastIDChecked = await this.fetchLastIDChecked()

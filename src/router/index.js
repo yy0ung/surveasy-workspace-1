@@ -44,6 +44,7 @@ import AdminHome from '../components/adminApp/AdminHome.vue'
 import PanelProofHome from '../components/adminApp/PanelProofHome.vue'
 import AdminDetail from '../views/Admin/AdminDetail.vue'
 import PanelProof from '../components/adminApp/PanelProof.vue'
+import AdminAlert from '../views/Admin/AdminAlert.vue'
 
 
 const routes = [
@@ -194,6 +195,11 @@ const routes = [
     path: '/adminmain',
     name: 'AdminMain',
     component: AdminMain
+  },
+  {
+    path: '/adminalert',
+    name: 'AdminAlert',
+    component: AdminAlert
   },
   {
     path: '/admindetail/:id',
