@@ -11,10 +11,9 @@
   <input type="checkbox" value=true v-model="noticeFixed" id="checked">
   <label for="checked">fixed 여부</label>
 </div>
-<button @click="fetchLastNoticeID">last id</button>
 <button @click="uploadNotice">업로드하기</button>
 
-<h4>공지사항 알림 커스터마이징</h4>
+<h4>PUSH 알림 커스터마이징</h4>
 <div class="alert-notice-container">
   <input type="text" v-model="notificationTitle" placeholder="알림제목" class="notice-title"><br>
   <input type="text" v-model="notificationContent" placeholder="알림내용" class="notice-contents">
@@ -29,6 +28,7 @@ export default {
     return {
       lastNoticeID : 0,
 
+      type : "survey",
 
       noticeTitle : '',
       noticeContents: '',
@@ -37,6 +37,9 @@ export default {
       notificationTitle : '',
       notificationContent : ''
     }
+  },
+  created() {
+    this.fetchLastNoticeID
   },
   methods: {
     async fetchLastNoticeID() {
@@ -95,16 +98,19 @@ export default {
       })
 
       window.alert("업로드 완료")
+      this.fetchLastNoticeID()
     },
 
     async notificationNotice(){
       const db = this.$store.state.db
-      var docNt = doc(db, "NotificationData",this.notificationContent.toString())
+      var docNt = doc(db, "NotificationData",this.notificationTitle.toString())
       await setDoc(docNt, {
         title : this.notificationTitle,
-        body : this.notificationContent
+        body : this.notificationContent,
+        type : this.type
       })
       window.alert("전송 완료")
+      this.fetchLastNoticeID()
     }
   },
 
