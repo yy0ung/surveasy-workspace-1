@@ -10,6 +10,7 @@
  
 <div class="admin-info-content">
   <tr>
+    <th>uid (확인용)</th>
     <th>이름</th>
     <th>계좌주</th>
     <th>메일</th>
@@ -22,6 +23,7 @@
   </tr>
 
     <tr v-for="item in (this.$store.state.adminAppUserData)" :key="item.info[0].uid" class="list" :class="{active:item.info[0].reward_current == 0}">
+    <td>{{item.info[0].uid}}</td>
     <td>{{item.info[0].name}}</td>
     <td>{{item.info[0].accountOwner}}</td>
     <td>{{item.info[0].email}}</td>
@@ -86,6 +88,8 @@ export default {
         //     respondedSurvey.push(doc.data().lastIDChecked.toString())
         //   }
         // })
+
+        
         console.log("~~~~~~~~" + arr[i].reward_current + '~~~~~~~' + arr[i].respondedSurvey)
         await this.clearCurrent(arr[i].Id, arr[i].reward_current)
         await this.updateIsSent(arr[i].Id, arr[i].respondedSurvey)
