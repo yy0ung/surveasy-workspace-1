@@ -12,6 +12,7 @@
       <div>
         <!-- <p>{{computedAdmin}}</p> -->
         <h2>CONFIRM ME !</h2>
+        <router-link to="/adminalert"><button>알림 보내기</button></router-link>
           <table class="table-admin">
             <tr>
               <th>ID</th>
