@@ -181,13 +181,13 @@ export default {
       var today = new Date()
       var todayPlus9 = today.setHours(today.getHours()+9)
       var todayPlus9Date = new Date(todayPlus9)
-      console.log(todayPlus9Date)
+      //console.log(todayPlus9Date)
       var min = todayPlus9Date.toISOString()
       
 
       var dddd= min.split('T')
       var ddddd = dddd[0]
-      console.log(ddddd)
+      //console.log(ddddd)
       var dddddd= ddddd.split('-')
       
       var year = dddddd[0]
