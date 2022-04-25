@@ -165,7 +165,7 @@ export default {
       couponNum : 1,
 
       localCode: '',
-      couponUser: '',
+      couponUser: {user: '', used: false},
 
       selectedCoupon: {
         code: '',
@@ -248,11 +248,13 @@ export default {
         rate: couponInfo.rate,
         duedate: couponInfo.duedate,
         duediff: diff,
-        user: [],
+        user: '',
         isUsed: false,
         outOfDate: false,
         forGroup: true
       })
+
+      
 
       this.$store.state.adminCoupon = []
       this.$store.state.adminCouponValid = []
@@ -334,7 +336,7 @@ export default {
       this.receiver = ''
 
       this.$store.state.adminCoupon = []
-      this.$store.state.myCoupon = []
+      this.$store.state.adminCouponValid = []
       
       this.fetchAdminData_coupon()
     },
