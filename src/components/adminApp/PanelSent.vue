@@ -95,9 +95,9 @@ export default {
         await this.updateIsSent(arr[i].Id, arr[i].respondedSurvey)
       }
       
-      if (confirm("정산완료")){
-        this.$router.go()
-      }
+      // if (confirm("정산완료")){
+      //   this.$router.go()
+      // }
     },
     
     async updateIsSent(Id, respondedSurvey) {

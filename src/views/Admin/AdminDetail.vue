@@ -12,6 +12,10 @@
     패널 유의사항<br>
     <textarea type="text" placeholder="패널 유의사항" v-model="noticeToPanel" class="notice-text"></textarea>
   </div>
+  <div class="notice">
+    설문 링크 수정<br>
+    <input type="text" placeholder="설문 링크" v-model="link" class="notice-text">
+  </div>
 
   <button @click="uploadInfo">업로드하기</button>
 
@@ -27,7 +31,8 @@ export default {
       id : this.$route.params.id,
       reward : 0,
       
-      noticeToPanel : ""
+      noticeToPanel : "",
+      link : ""
     }
   },
   methods: {
@@ -54,6 +59,7 @@ export default {
       var lastIDChecked = await this.fetchLastIDChecked()
       var lastIDRef = doc(db,"lastID","lastIDChecked")
       var idDocref = doc(db, "surveyData", this.id.toString())
+      var linkDocref = doc(db,"link",this.id.toString())
       await updateDoc( idDocref, {
         progress : 2,
         lastIDChecked : lastIDChecked
@@ -61,11 +67,10 @@ export default {
       await updateDoc (lastIDRef, {
         lastIDChecked : (lastIDChecked + 1)
       })
-      
-
-      if(confirm("업로드 성공")){
-        this.$router.push("/adminmain")
-      }
+      await updateDoc (linkDocref, {
+        linkDocref : this.link.toString()
+      })
+      window.alert('업로드 완료')
     },
     
   }
