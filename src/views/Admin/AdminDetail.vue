@@ -70,10 +70,7 @@ export default {
       await updateDoc (linkDocref, {
         linkDocref : this.link.toString()
       })
-
-      if(confirm("업로드 성공")){
-        this.$router.push("/adminmain")
-      }
+      window.alert('업로드 완료')
     },
     
   }
