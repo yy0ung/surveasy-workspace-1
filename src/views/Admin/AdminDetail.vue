@@ -59,18 +59,20 @@ export default {
       var lastIDChecked = await this.fetchLastIDChecked()
       var lastIDRef = doc(db,"lastID","lastIDChecked")
       var idDocref = doc(db, "surveyData", this.id.toString())
-      var linkDocref = doc(db,"link",this.id.toString())
+      // var linkDocref = doc(db,"surveyData",this.id.toString())
+      if(this.link.length>5){
+        await updateDoc (idDocref, {
+          link : this.link.toString()
+        })
+      }
       await updateDoc( idDocref, {
         progress : 2,
-        lastIDChecked : lastIDChecked
+        lastIDChecked : lastIDChecked,
       })
       await updateDoc (lastIDRef, {
         lastIDChecked : (lastIDChecked + 1)
-      })
-      await updateDoc (linkDocref, {
-        linkDocref : this.link.toString()
-      })
-      window.alert('업로드 완료')
+      }).then(alert('업로드 완료'))
+      
     },
     
   }
