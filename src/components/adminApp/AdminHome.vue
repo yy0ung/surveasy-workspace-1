@@ -80,7 +80,7 @@ export default {
     },
 
     async uploadOpinion(){
-      this.fetchLastOpinionID()
+      await this.fetchLastOpinionID()
 
       const db = this.$store.state.db
 
@@ -125,7 +125,7 @@ export default {
     },
 
     async uploadContribution(){
-      this.fetchLastContributionID()
+      await this.fetchLastContributionID()
 
       const db = this.$store.state.db
 

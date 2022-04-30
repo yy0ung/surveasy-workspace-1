@@ -265,11 +265,13 @@ export default {
       var currentUserEmail = await this.$store.state.loginState.currentUser.email
       var surveySelectedIdentity = await this.$store.state.localSurveyState.identity
       var nowDate = new Date()
-      var fullYear = (""+nowDate.getFullYear()).substring(2,4)
-      var month = ""+nowDate.getMonth()+1
-      var date = ""+nowDate.getDate()
-      var orderNum = fullYear + month + date + (""+lastID)  
+      // var fullYear = (""+nowDate.getFullYear()).substring(2,4)
+      // var month = ""+(nowDate.getMonth()+1)
+      // var date = ""+nowDate.getDate()
+      // var orderNum = fullYear + month + date + (""+lastID)  
       
+      var orderNum = (nowDate.getFullYear()).toString().substring(2,4) + (nowDate.getMonth()+1).toString() + (nowDate.getDate()).toString() + lastID.toString()
+      console.log(orderNum)
       
       
       
@@ -300,7 +302,7 @@ export default {
       //console.log(D)
 
       
-        await setDoc(doc(db, "surveyData", lastID), {
+        await setDoc(doc(db, "surveyData", lastID.toString()), {
           price : dataset.price,
           beforeCouponPrice : dataset.beforeCouponPrice,
           couponDiscount : dataset.couponDiscount,
@@ -314,6 +316,7 @@ export default {
           institute : dataset.institute,
           link : dataset.link,
           notice : dataset.notice,
+          noticeToPanel : '',
           
           account_userName : dataset.account_userName,
           uploaderIdentity: dataset.uploaderIdentity,
@@ -335,7 +338,9 @@ export default {
 
           progress : 0,
 
-          point_add: this.point_add
+          point_add: this.point_add,
+
+          respondedPanel: []
 
                 
         })
@@ -386,7 +391,6 @@ export default {
         // console.log(lastID[1])
         // console.log(lastID[1].lastID)
         return lastID[1].lastID
-
       },
 
 

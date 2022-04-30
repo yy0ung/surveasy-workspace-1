@@ -59,7 +59,7 @@ export default {
     },
 
     async uploadNotice(){
-      this.fetchLastNoticeID()
+      await this.fetchLastNoticeID()
 
       const db = this.$store.state.db
 

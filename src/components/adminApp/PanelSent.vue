@@ -81,7 +81,7 @@ export default {
       for(var i=0; i<arr.length; i++){
         // var respondedSurvey = []
       
-        // const querySnapshot = await getDocs(collection(db, "AndroidUser", arr[i].Id, "UserSurveyList"))
+        // const querySnapshot = await getDocs(collection(db, "panelData", arr[i].Id, "UserSurveyList"))
         // querySnapshot.forEach((doc) => {
         //   if(doc.data().isSent == false) {
         //     console.log("survey list : " + doc.data().lastIDChecked)
@@ -105,7 +105,7 @@ export default {
       const rs = respondedSurvey
       for(var i=0 ; i < rs.length ; i++) {
         console.log(rs[i])
-        var itemRef = doc(db, "AndroidUser", Id, "UserSurveyList", rs[i].toString())
+        var itemRef = doc(db, "panelData", Id, "UserSurveyList", rs[i].toString())
         await updateDoc(itemRef, {
           isSent : true
         })
@@ -115,7 +115,7 @@ export default {
 
     async clearCurrent(Id, reward_current){
       const db = this.$store.state.db
-      const rewardRef = doc(db, "AndroidUser", Id)
+      const rewardRef = doc(db, "panelData", Id)
       var new_reward_current = 0
 
       const querySnapshot = await getDoc(rewardRef)
@@ -138,7 +138,7 @@ export default {
       const db = this.$store.state.db
       const adminAppUserData = this.$store.state.adminAppUserData
       
-      const querySnapshot = await getDocs(collection(db,"AndroidUser"))
+      const querySnapshot = await getDocs(collection(db,"panelData"))
       querySnapshot.forEach((doc) => {
         var info = []
         info.push(doc.data())
@@ -152,7 +152,7 @@ export default {
       const adminAppUserData = this.$store.state.adminAppUserData
       var respondedSurvey = []
       
-      const querySnapshot = await getDocs(collection(db, "AndroidUser", uid, "UserSurveyList"))
+      const querySnapshot = await getDocs(collection(db, "panelData", uid, "UserSurveyList"))
       querySnapshot.forEach((doc) => {
           if(doc.data().isSent == false) {
             console.log("survey list : " + doc.data().lastIDChecked)
