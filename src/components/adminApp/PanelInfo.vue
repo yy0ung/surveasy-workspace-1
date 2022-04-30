@@ -77,6 +77,10 @@ export default {
 </script>
 
 <style>
+#admin-container {
+  padding-top: 20px;
+  align-content: center;
+}
 .admin-info-content th,.admin-info-content td{
   padding-left: 10px;
   padding-right: 10px;

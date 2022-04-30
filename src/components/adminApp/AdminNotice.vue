@@ -1,24 +1,32 @@
 <template>
 <div id="admin-adminNotice">
-공지사항
-</div>  
-<h4>공지사항 게시</h4>
-<div class="notice-content">
-  <input type="text" v-model="noticeTitle" placeholder="제목" class="notice-title"><br>
-  <textarea v-model="noticeContents" placeholder="내용" class="notice-contents"></textarea>
-</div>
-<div class="notice-content-fixed">
-  <input type="checkbox" value=true v-model="noticeFixed" id="checked">
-  <label for="checked">fixed 여부</label>
-</div>
-<button @click="uploadNotice">업로드하기</button>
+  <div class="admin-adminNotice-container">
+    <h3>공지사항 게시</h3>
+    <div class="notice-content">
+      <input type="text" v-model="noticeTitle" placeholder="제목" class="notice-title"><br>
+      <textarea v-model="noticeContents" placeholder="내용" class="notice-contents"></textarea>
+    </div>
+    <div class="notice-content-fixed">
+      <input type="checkbox" value=true v-model="noticeFixed" id="checked">
+      <label for="checked">fixed 여부</label>
+    </div>
+    <button @click="uploadNotice">업로드하기</button></div>
+    <div>
+  </div>
 
-<h4>PUSH 알림 커스터마이징</h4>
-<div class="alert-notice-container">
-  <input type="text" v-model="notificationTitle" placeholder="알림제목" class="notice-title"><br>
-  <input type="text" v-model="notificationContent" placeholder="알림내용" class="notice-contents">
-</div>
-<button @click="notificationNotice">알림 보내기</button>
+  <div class="admin-adminNotice-container">
+    <h3>PUSH 알림 </h3>
+    <div class="alert-notice-container">
+      <input type="text" v-model="notificationTitle" placeholder="알림제목" class="notice-title"><br>
+      <input type="text" v-model="notificationContent" placeholder="알림내용" class="notice-contents">
+    </div>
+    <br>
+    <button @click="notificationNotice">알림 보내기</button>
+  </div>
+</div>  
+
+
+
 </template>
 
 <script>
@@ -118,6 +126,16 @@ export default {
 </script>
 
 <style>
+#admin-adminNotice {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 55px;
+}
+.admin-adminNotice-container {
+  margin-left: 20px;
+  margin-right: 20px;
+}
 .notice-contents, .notice-title{
   width: 300px;
 }
