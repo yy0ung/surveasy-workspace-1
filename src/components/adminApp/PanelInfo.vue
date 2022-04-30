@@ -79,7 +79,8 @@ export default {
 <style>
 #admin-container {
   padding-top: 20px;
-  align-content: center;
+  display: inline-block;
+  justify-content: center;
 }
 .admin-info-content th,.admin-info-content td{
   padding-left: 10px;

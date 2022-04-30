@@ -16,7 +16,7 @@
     
   </div>
  
-  <div>
+  <div id="sent-list">
     <div class="admin-info-content">
       <tr>
         <th>uid (확인용)</th>
@@ -220,13 +220,17 @@ export default {
   width: 130px;
   height: 30px;
   margin-left: 30px;
-  color:#0CAE02;
+  color:#247524;
   background-color: #FFFFFF;
-  border: 1.5px solid #0CAE02;
+  border: 1.5px solid #247524;
   border-radius: 10px;
   font-size: 15px;
   font-weight: 600;
   cursor: pointer;
+}
+#sent-list {
+  display: inline-block;
+  justify-content: center;
 }
 .admin-info-content {
   margin-top: 25px;
