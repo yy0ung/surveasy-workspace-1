@@ -97,7 +97,7 @@ export default {
       var db = this.$store.state.db
 
       if(this.$store.state.localSurveyState.selectedCoupon.code != '') {
-        console.log(this.$store.state.localSurveyState.selectedCoupon.forGroup)
+        //console.log(this.$store.state.localSurveyState.selectedCoupon.forGroup)
         if(this.$store.state.localSurveyState.selectedCoupon.forGroup == false) {
           
           const docref = doc(db, "couponData", this.$store.state.localSurveyState.selectedCoupon.code)
@@ -114,7 +114,7 @@ export default {
               //console.log(this.$store.state.myCoupon[i].user)
               
               this.userList = this.$store.state.myCoupon[i].user
-              console.log(this.userList)
+              //console.log(this.userList)
               for(var j=0 ; j<this.userList.length ; j++) {
                 if(this.userList[j].user == this.$store.state.loginState.currentUser.email) {
                   this.userList.splice(j, 1)

@@ -30,6 +30,7 @@ export default createStore({
     adminDataTemplate:[],
 
     adminCoupon: [],
+    adminCouponValid: [],
     myCoupon: [],
 
     //app admin
@@ -112,7 +113,8 @@ export default createStore({
 
       selectedCoupon: {
         code: '',
-        rate: 0
+        rate: 0,
+        forGroup: false
       },
       beforeCouponPrice:0,
       couponDiscount:0,

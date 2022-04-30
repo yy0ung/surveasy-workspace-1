@@ -50,7 +50,7 @@ export default {
           date: this.date
         })
 
-        console.log(D)
+        //console.log(D)
 
         alert('설문 노하우 서비스가 출시되면 기재하신 이메일로 안내드리겠습니다.')
         if(confirm){
