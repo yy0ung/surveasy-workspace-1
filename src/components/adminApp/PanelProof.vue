@@ -77,10 +77,10 @@ export default {
       const db = this.$store.state.db
       const docRef = doc(db, "WrongProof", this.id.toString())
       const docSnap = await getDoc(docRef)
-      const docRef2 = doc(db, "AndroidSurvey", this.id.toString())
+      const docRef2 = doc(db, "surveyData", this.id.toString())
       const docSnap2 = await getDoc(docRef2)
       this.headCount = docSnap2.data().requiredHeadCount
-      this.nowHeadCount = docSnap2.data().respondedPanel.length-1
+      this.nowHeadCount = docSnap2.data().respondedPanel.length
       var wrongFileName = []
       if(docSnap.exists()){
         wrongFileName.push(docSnap.data().fileName)
@@ -126,7 +126,7 @@ export default {
     const db = this.$store.state.db
     const docRef = doc(db, "WrongProof", this.id.toString())
 
-    const docRef2 = doc(db, "AndroidSurvey", this.id.toString())
+    const docRef2 = doc(db, "surveyData", this.id.toString())
     const docSnap2 = await getDoc(docRef2)
     
     console.log(docSnap2.data().respondedPanel)
