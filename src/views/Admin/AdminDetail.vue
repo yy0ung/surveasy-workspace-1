@@ -15,6 +15,7 @@
   <div class="notice">
     설문 링크 수정<br>
     <input type="text" placeholder="설문 링크" v-model="link" class="notice-text">
+    <a :href="link" target="_blank">링크 확인</a>
   </div>
 
   <button @click="uploadInfo">업로드하기</button>

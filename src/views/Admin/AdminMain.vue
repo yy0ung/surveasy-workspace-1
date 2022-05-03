@@ -31,7 +31,7 @@
               <th>선택한 iden</th>
               <th>현재 iden</th>
               <th>마감날짜</th>
-              <th>참여보상금액</th>
+              <!-- <th>참여 인원</th> -->
               <th class="progress-admin">progress</th>
               <th class="btn-progress-admin">설문 진행 변경</th>
               
@@ -56,7 +56,8 @@
               <!-- <td><button @click="updateApproved(item)">결제 확인</button></td> -->
               <!-- <td>{{item.adminApproved}}</td> -->
               <td>{{item.dueDate}} {{item.dueTimeTime}}</td>
-              <td><input type="text" placeholder="참여보상설정" v-model="panelReward"><button @click="changeReward(item.id, this.panelReward)">확인</button></td>
+              <!-- <td><input type="text" placeholder="참여보상설정" v-model="panelReward"><button @click="changeReward(item.id, this.panelReward)">확인</button></td> -->
+              
               <td class="progress-admin">{{item.progress}}</td>
               <td class="btn-progress-admin"><button class="progress-button1"  @click="changeProgress1(item.id)">1</button> 
 
@@ -222,6 +223,7 @@ data(){
       surveyLink: '',
       uploader:'',
       target:'',
+      headCount: ''
       
     },
   }
@@ -419,8 +421,7 @@ methods:{
     })
     window.alert('완료')
   },
-  
-  
+
   
   
 },
