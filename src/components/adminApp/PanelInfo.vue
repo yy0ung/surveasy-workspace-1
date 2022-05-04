@@ -42,7 +42,7 @@ export default {
       const db = this.$store.state.db
       const adminAppUserData = this.$store.state.adminAppUserData
       
-      const querySnapshot = await getDocs(collection(db,"AndroidUser"))
+      const querySnapshot = await getDocs(collection(db,"panelData"))
       querySnapshot.forEach((doc) => {
 
         var info = []
@@ -61,7 +61,7 @@ export default {
 
       var respondedSurvey = []
       
-      const querySnapshot = await getDocs(collection(db, "AndroidUser", uid, "UserSurveyList"))
+      const querySnapshot = await getDocs(collection(db, "panelData", uid, "UserSurveyList"))
       querySnapshot.forEach((doc) => {
           if(doc.data().isSent == false) {
             respondedSurvey.push(doc.data().id)
@@ -77,6 +77,11 @@ export default {
 </script>
 
 <style>
+#admin-container {
+  padding-top: 20px;
+  display: inline-block;
+  justify-content: center;
+}
 .admin-info-content th,.admin-info-content td{
   padding-left: 10px;
   padding-right: 10px;

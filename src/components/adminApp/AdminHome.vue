@@ -1,18 +1,18 @@
 <template>
 <div class="home_contents">
   <div>
-    <h4>당신의 의견은?</h4>
+    <h3>당신의 의견은?</h3>
     <div class="opinion-container">
       <input type="text" v-model="opinionQuestion" placeholder="새내기때 꼭 해봐야 하는 것은?" class="opinion-question"><br>
       <textarea v-model="opinionContent1" placeholder="도무지 뭘하면 좋을지 모르겠는 새내기들을 위해 1학년때 해보면 좋을 것들을 추천해주세요!" class="opinion-content"></textarea><br>
       <textarea v-model="opinionContent2" placeholder="작성해주신 답변은 새내기를 위한 컨텐츠로 제작되어 발행됩니다." class="opinion-content"></textarea>
     </div>
     <button @click="uploadOpinion">업로드 하기</button>
-    <button @click="fetchLastOpinionID">last id</button>
+    <!-- <button @click="fetchLastOpinionID">last id</button> -->
   </div>
 
   <div>
-    <h4>우리가 함께 기여한 연구</h4>
+    <h3>우리가 함께 기여한 연구</h3>
     <div class="contribution-container">
       <input type="text" v-model="contributionTitle" placeholder="연구 제목" class="contribution-title"><br>
       <input type="text" v-model="contributionJournal" placeholder="연구 등재 학술지" class="contribution-title"><br>
@@ -23,7 +23,7 @@
       <textarea v-model="contributionContent" placeholder="내용" class="contribution-content"></textarea>
     </div>
     <button @click="uploadContribution">업로드 하기</button>
-    <button @click="fetchLastContributionID">last id</button>
+    <!-- <button @click="fetchLastContributionID">last id</button> -->
   </div>
 
 </div>
@@ -80,7 +80,7 @@ export default {
     },
 
     async uploadOpinion(){
-      this.fetchLastOpinionID()
+      await this.fetchLastOpinionID()
 
       const db = this.$store.state.db
 
@@ -125,7 +125,7 @@ export default {
     },
 
     async uploadContribution(){
-      this.fetchLastContributionID()
+      await this.fetchLastContributionID()
 
       const db = this.$store.state.db
 
@@ -161,6 +161,7 @@ export default {
   flex-direction: row;
   justify-content: center;
   margin: 50px;
+  padding-top: 15px;
 }
 .opinion-container, .contribution-container {
   margin: 20px;

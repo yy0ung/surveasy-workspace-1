@@ -76,7 +76,7 @@ export default {
         for(var j=0 ; j<Coupon_group_O_yet[i].user.length ; j++) {
 
           if(Coupon_group_O_yet[i].user[j].user == this.$store.state.loginState.currentUser.email && Coupon_group_O_yet[i].user[j].used == false) {
-            console.log(Coupon_group_O_yet[i])
+            //console.log(Coupon_group_O_yet[i])
             myCoupon_group_O.push(Coupon_group_O_yet[i])
           }
 
