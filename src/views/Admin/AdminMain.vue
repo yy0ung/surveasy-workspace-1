@@ -8,6 +8,11 @@
     </div>
     
     <div v-if="this.$store.state.isAdmin">
+
+      <div v-if="show==true">
+        <h4>{{this.thisId}}</h4>
+        <p>{{this.headCount}}</p>
+      </div>
       
       <div>
         <!-- <p>{{computedAdmin}}</p> -->
@@ -21,6 +26,7 @@
               <th>주문번호</th>
               <th>제목</th>
               <th>가격</th>
+              <th>참여 인원</th> 
               <th>응답수</th>
               <th>소요시간</th>
               <th>대상</th>
@@ -31,7 +37,6 @@
               <th>선택한 iden</th>
               <th>현재 iden</th>
               <th>마감날짜</th>
-              <!-- <th>참여 인원</th> -->
               <th class="progress-admin">progress</th>
               <th class="btn-progress-admin">설문 진행 변경</th>
               
@@ -44,6 +49,8 @@
               <td>{{item.orderNum}}</td>
               <td>{{item.title}}</td>
               <td>{{item.price}}</td>
+              <td><button @click="showHeadcount(item.id)">보기</button></td>
+              
               <td>{{item.requiredHeadCount}}</td>
               <td>{{item.spendTime}}</td>
               <td>{{item.target}}</td>
@@ -57,7 +64,6 @@
               <!-- <td>{{item.adminApproved}}</td> -->
               <td>{{item.dueDate}} {{item.dueTimeTime}}</td>
               <!-- <td><input type="text" placeholder="참여보상설정" v-model="panelReward"><button @click="changeReward(item.id, this.panelReward)">확인</button></td> -->
-              
               <td class="progress-admin">{{item.progress}}</td>
               <td class="btn-progress-admin"><button class="progress-button1"  @click="changeProgress1(item.id)">1</button> 
 
@@ -203,7 +209,7 @@
 </template>
 
 <script>
-import { getFirestore,collection, getDocs, updateDoc, doc, deleteDoc, setDoc, getDoc } from 'firebase/firestore'
+import { getFirestore,collection, getDocs, updateDoc, doc, deleteDoc, setDoc, getDoc,query, where } from 'firebase/firestore'
 //어드민 페이지 접근을 어떻게 해야할지 고민중..
 //일단은 어드민 주소는 접근은 가능하되 비번을 맞게 쳐야 뒤에 부분들이 보이게 하려고함.
 export default {
@@ -223,12 +229,31 @@ data(){
       surveyLink: '',
       uploader:'',
       target:'',
-      headCount: ''
+      
       
     },
+    headCount: '',
+    show: false,
+    thisId:''
   }
 },
+
 methods:{
+  async showHeadcount(id){
+    var db = this.$store.state.db
+    const q = query(collection(db, "surveyData"), where("id", "==", id));
+    const querySnapshot = await getDocs(q)
+    querySnapshot.forEach((doc) =>{
+      
+      this.headCount = doc.data().respondedPanel.length
+      console.log(this.headCount)
+      
+
+    })
+    this.show = true
+    this.thisId = id
+    
+  },
   async adminCheck(passInput){
     const db = this.$store.state.db
     const pwRef = doc(db, "adminPassword", "adminmainPW")

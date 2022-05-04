@@ -106,7 +106,7 @@ export default {
         //왜 안되는지 모르겠는데 숫자가 크면 됨.
         while(i<=wrongFileName.length+1000){
           if(wrongFileName[0][i] == list[1].substring(38)){
-            //console.log(wrongFileName[0][i], list[1].substring(38))
+            console.log(wrongFileName[0][i], list[1].substring(38))
             //console.log("done")
             this.changeColor.push(wrongFileName[0][i])
             i++
