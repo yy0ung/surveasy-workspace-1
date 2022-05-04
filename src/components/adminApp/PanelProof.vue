@@ -59,7 +59,7 @@ export default {
       this.wrongProofUserUid.push(this.userUid)
       const db = this.$store.state.db
       this.fbSaveWrongInfo.push(info.substring(38))
-      const docSnap = await getDocs(collection(db,"AndroidUser"))
+      const docSnap = await getDocs(collection(db,"panelData"))
       docSnap.forEach((doc) => {
         if(doc.id == this.userUid){
           this.userInfo.length = 0
@@ -106,7 +106,7 @@ export default {
         //왜 안되는지 모르겠는데 숫자가 크면 됨.
         while(i<=wrongFileName.length+1000){
           if(wrongFileName[0][i] == list[1].substring(38)){
-            //console.log(wrongFileName[0][i], list[1].substring(38))
+            console.log(wrongFileName[0][i], list[1].substring(38))
             //console.log("done")
             this.changeColor.push(wrongFileName[0][i])
             i++
@@ -153,16 +153,16 @@ export default {
     
     var i =0
     while(i<this.wrongProofUserUid.length){
-      await deleteDoc(doc(db, "AndroidUser", this.wrongProofUserUid[i].toString(),"UserSurveyList",this.id.toString()))
-      const dRef = await getDoc(doc(db,"AndroidUser", this.wrongProofUserUid[i].toString()))
+      await deleteDoc(doc(db, "panelData", this.wrongProofUserUid[i].toString(),"UserSurveyList",this.id.toString()))
+      const dRef = await getDoc(doc(db,"panelData", this.wrongProofUserUid[i].toString()))
       var nowCurrentReward = dRef.data().reward_current
       var nowTotalReward = dRef.data().reward_total
-      await updateDoc(doc(db,"AndroidUser", this.wrongProofUserUid[i].toString()),{
+      await updateDoc(doc(db,"panelData", this.wrongProofUserUid[i].toString()),{
           reward_current : nowCurrentReward - docSnap2.data().reward,
           reward_total : nowTotalReward - docSnap2.data().reward
       })
 
-      await updateDoc(doc(db,"AndroidSurvey", this.id.toString()),{
+      await updateDoc(doc(db,"surveyData", this.id.toString()),{
           respondedPanel : arrayRemove(this.wrongProofUserUid[i].toString())
       })
       i++
