@@ -49,7 +49,7 @@
               <td>{{item.orderNum}}</td>
               <td>{{item.title}}</td>
               <td>{{item.price}}</td>
-              <td><button @click="showHeadcount(item.id)">보기</button></td>
+              <td>{{item.respondedPanel.length}}명</td>
               
               <td>{{item.requiredHeadCount}}</td>
               <td>{{item.spendTime}}</td>
@@ -250,8 +250,7 @@ methods:{
       
 
     })
-    this.show = true
-    this.thisId = id
+    return this.headCount
     
   },
   async adminCheck(passInput){
@@ -288,7 +287,10 @@ methods:{
     // 설문 확인 데이터 받기
     const querySnapshot = await getDocs(collection(db,"surveyData"))
     querySnapshot.forEach((doc) => {
-      adminData.push(doc.data())
+      if(doc.id>213){
+        adminData.push(doc.data())
+      }
+      
     })
     const sorted = adminData.sort(function(a,b){return b.id - a.id })
     this.$store.state.adminData = sorted
