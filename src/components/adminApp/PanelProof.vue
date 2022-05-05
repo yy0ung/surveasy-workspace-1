@@ -1,6 +1,6 @@
 <template>
 <div id="admin-panelProof">
-<h4>설문 인증 {{id}}</h4>
+<h4>설문 인증  id : {{id}}, lastIDChecked : {{this.lastIDChecked}}</h4>
 <h4>{{nowHeadCount}} / {{headCount}}</h4>
 
 <div class="wrong-notification" v-for="token in wrongTokens" :key="token">
@@ -33,6 +33,7 @@ export default {
     return {
       urlList : [],
       id : this.$route.params.id,
+      lastIDChecked : -1,
       imgCheck : "",
       wrongProofInfo : "",
       userUid : "",
@@ -79,6 +80,7 @@ export default {
       const docSnap = await getDoc(docRef)
       const docRef2 = doc(db, "surveyData", this.id.toString())
       const docSnap2 = await getDoc(docRef2)
+      this.lastIDChecked = docSnap2.data().lastIDChecked
       this.headCount = docSnap2.data().requiredHeadCount
       this.nowHeadCount = docSnap2.data().respondedPanel.length
       var wrongFileName = []
@@ -95,7 +97,7 @@ export default {
        //console.log(folderRef)
      });
       res.items.forEach((itemRef) => {
-        //console.log(itemRef._location)
+        console.log(itemRef._location)
         const path = ref(storage, itemRef._location.path_)
         getDownloadURL(path).then((url) => {
         var list = [url,itemRef._location.path_]
@@ -153,13 +155,14 @@ export default {
     
     var i =0
     while(i<this.wrongProofUserUid.length){
-      await deleteDoc(doc(db, "panelData", this.wrongProofUserUid[i].toString(),"UserSurveyList",this.id.toString()))
+      await deleteDoc(doc(db, "panelData", this.wrongProofUserUid[i].toString(),"UserSurveyList",this.lastIDChecked.toString()))
       const dRef = await getDoc(doc(db,"panelData", this.wrongProofUserUid[i].toString()))
       var nowCurrentReward = dRef.data().reward_current
       var nowTotalReward = dRef.data().reward_total
+      console.log(Number(nowCurrentReward - docSnap2.data().panelReward))
       await updateDoc(doc(db,"panelData", this.wrongProofUserUid[i].toString()),{
-          reward_current : nowCurrentReward - docSnap2.data().reward,
-          reward_total : nowTotalReward - docSnap2.data().reward
+          reward_current : Number(nowCurrentReward - docSnap2.data().panelReward),
+          reward_total : Number(nowTotalReward - docSnap2.data().panelReward)
       })
 
       await updateDoc(doc(db,"surveyData", this.id.toString()),{
