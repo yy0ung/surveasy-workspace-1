@@ -189,7 +189,7 @@ export default {
 }
 .proof-image{
   width: 100px;
-  height: 100px;
+  height: 200px;
   margin-right: 10px;
 }
 #info-text{
