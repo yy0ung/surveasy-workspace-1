@@ -3,6 +3,7 @@
   
 <div class="admin-info-content">
   <tr id="th">
+    <th>uid</th>
     <th>이름</th>
     <th>메일</th>
     <th>전화번호</th>
@@ -15,6 +16,7 @@
 
 
   <tr v-for="item in (this.$store.state.adminAppUserData)" :key="item.info[0].name">
+    <td>{{item.info[0].uid}}</td>
     <td>{{item.info[0].name}}</td>
     <td>{{item.info[0].email}}</td>
     <td>{{item.info[0].phoneNumber}}</td>
@@ -52,7 +54,7 @@ export default {
 
       })
 
-      console.log(adminAppUserData)
+      //console.log(adminAppUserData)
     },
 
     async fetchPanelMyList(uid, info) {

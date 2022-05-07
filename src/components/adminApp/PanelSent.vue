@@ -19,7 +19,7 @@
   <div id="sent-list">
     <div class="admin-info-content">
       <tr>
-        <th>uid (확인용)</th>
+        <th>uid</th>
         <th>이름</th>
         <th>계좌주</th>
         <th>메일</th>

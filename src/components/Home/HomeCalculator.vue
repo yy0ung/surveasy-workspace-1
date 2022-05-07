@@ -15,15 +15,15 @@
             <div class="step-counter" :class="{active: priceRequireHeadCount>=2}" @click="HeadCount(2)"></div>
             <div class="step-name" :class="{active: priceRequireHeadCount>=2}">40명</div>
           </div>
-          <div class="pro-one" id="one-last" :class="{active: priceRequireHeadCount>=4}">
+          <div class="pro-one"  :class="{active: priceRequireHeadCount>=4}">
             <div class="step-counter" :class="{active: priceRequireHeadCount>=3}" @click="HeadCount(3)"></div>
             <div class="step-name" :class="{active: priceRequireHeadCount>=3}">50명</div>
           </div>
-          <!-- <div class="pro-one" :class="{active: priceRequireHeadCount>=5}">
+         <div class="pro-one" id="one-last" :class="{active: priceRequireHeadCount>=5}">
             <div class="step-counter" :class="{active: priceRequireHeadCount>=4}" @click="HeadCount(4)"></div>
             <div class="step-name" :class="{active: priceRequireHeadCount>=4}">60명</div>
           </div>
-          <div class="pro-one" :class="{active: priceRequireHeadCount>=6}">
+          <!-- <div class="pro-one" :class="{active: priceRequireHeadCount>=6}">
             <div class="step-counter" :class="{active: priceRequireHeadCount>=5}" @click="HeadCount(5)"></div>
             <div class="step-name" :class="{active: priceRequireHeadCount>=5}">70명</div>
           </div>
