@@ -1,14 +1,21 @@
 <template>
 <div id="adminDetail-container">
+  <div>
+    <h4>{{id}}</h4>
+  </div>
   <div class="reward-input">
+    *참여보상 설정<br>
     <input type="number" placeholder="reward" v-model="reward" required>
   </div>
-  <div class="notification">
-    <input type="text" placeholder="알림 제목" v-model="notiTitle" required><br>
-    <input type="text" placeholder="알림 내용" v-model="notiContent" required >
+  
+  <div class="notice">
+    패널 유의사항<br>
+    <textarea type="text" placeholder="패널 유의사항" v-model="noticeToPanel" class="notice-text"></textarea>
   </div>
   <div class="notice">
-    <input type="text" placeholder="notice to panel" v-model="noticeToPanel">
+    설문 링크 수정<br>
+    <input type="text" placeholder="설문 링크" v-model="link" class="notice-text">
+    <a :href="link" target="_blank">링크 확인</a>
   </div>
 
   <button @click="uploadInfo">업로드하기</button>
@@ -24,28 +31,49 @@ export default {
     return {
       id : this.$route.params.id,
       reward : 0,
-      notiTitle : "",
-      notiContent : "",
-      noticeToPanel : ""
+      
+      noticeToPanel : "",
+      link : ""
     }
   },
   methods: {
+
+    async fetchLastIDChecked() {
+    const db = this.$store.state.db
+    const lastIDChecked= []
+    const docRef = doc(db,"lastID", "lastIDChecked") 
+    const docSnap = await getDoc(docRef)
+    if (docSnap.exists()) {
+      lastIDChecked.push(docSnap.data())
+      return lastIDChecked[0].lastIDChecked
+    }
+  },
+
     async uploadInfo(){
       const db = this.$store.state.db
-      const surveyRef = doc(db,"AndroidSurvey",this.id.toString())
+      const surveyRef = doc(db,"surveyData",this.id.toString())
       await updateDoc(surveyRef, {
-        reward: parseInt(this.reward),
+        panelReward: parseInt(this.reward),
         noticeToPanel : this.noticeToPanel
       })
 
-      var docN = doc(db, "NotificationData",this.id.toString())
-      await setDoc(docN, {
-        title : this.notiTitle,
-        body : this.notiContent
-      })
-      if(confirm("업로드 성공")){
-        this.$router.push("/adminmain")
+      var lastIDChecked = await this.fetchLastIDChecked()
+      var lastIDRef = doc(db,"lastID","lastIDChecked")
+      var idDocref = doc(db, "surveyData", this.id.toString())
+      // var linkDocref = doc(db,"surveyData",this.id.toString())
+      if(this.link.length>5){
+        await updateDoc (idDocref, {
+          link : this.link.toString()
+        })
       }
+      await updateDoc( idDocref, {
+        progress : 2,
+        lastIDChecked : lastIDChecked,
+      })
+      await updateDoc (lastIDRef, {
+        lastIDChecked : (lastIDChecked + 1)
+      }).then(alert('업로드 완료'))
+      
     },
     
   }
@@ -56,5 +84,11 @@ export default {
 <style>
 #adminDetail-container{
   height: 500px;
+}
+.fcm-contents, .notice-text{
+  width: 300px;
+}
+.reward-input,  .notice, .fcm-contents{
+  margin-bottom: 30px;
 }
 </style>
