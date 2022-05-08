@@ -69,6 +69,7 @@ export default {
       var db = this.$store.state.db
       var idDocref = doc(db, "lastID", "numberB2B")
       var lastID = await this.fetchB2BID() 
+      console.log(lastID)
       
 
       await setDoc(doc(db, "B2BData", lastID.toString()),{
@@ -88,6 +89,7 @@ export default {
       await updateDoc(idDocref, {
         B2BID : lastID + 1
       })
+
       }
     
     
