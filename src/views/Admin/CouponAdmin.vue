@@ -248,7 +248,7 @@ export default {
         rate: couponInfo.rate,
         duedate: couponInfo.duedate,
         duediff: diff,
-        user: '',
+        user: [],
         isUsed: false,
         outOfDate: false,
         forGroup: true

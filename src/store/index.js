@@ -29,7 +29,7 @@ export default createStore({
     adminDataB2B:[],
     adminDataTemplate:[],
 
-    adminCoupon: [],
+    adminCoupon: [{user : '', used : false}],
     adminCouponValid: [],
     myCoupon: [],
 
