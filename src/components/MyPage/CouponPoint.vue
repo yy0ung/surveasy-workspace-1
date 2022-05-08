@@ -229,7 +229,7 @@ export default {
 
             while(existed == false && j<this.$store.state.myCoupon.length) {
               // 이미 등록된 공유 쿠폰 O
-              if(this.$store.state.myCoupon[j].code == localCode) {
+              if(this.$store.state.myCoupon[j].code != '' && this.$store.state.myCoupon[j].code == localCode) {
                 existed = true
                 //console.log("이미 등록된 코드")
               }
@@ -253,7 +253,7 @@ export default {
             if(existed == false) {
               if(this.$store.state.adminCoupon[i].isUsed==false && this.$store.state.adminCoupon[i].outOfDate==false) {
                   this.userList = this.$store.state.adminCoupon[i].user
-                  this.userList.push({user: this.$store.state.loginState.currentUser.email, used: false})
+                  this.userList.push({user: this.$store.state.loginState.currentUser.email.toString(), used: false})
                   //console.log(this.userList)
                   validCode = true
                   groupCode = true
@@ -445,7 +445,7 @@ export default {
   box-shadow: 0px 0px 5px #0000000D;
 }
 .mycoupon-list-name {
-  font-size: 16px;
+  font-size: 14px;
   color: #0AAC00;
 }
 .mycoupon-list-duedate {
