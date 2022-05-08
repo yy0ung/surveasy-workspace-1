@@ -218,7 +218,7 @@ export default {
       var groupCode = false
       const docref = doc(db, "couponData", localCode)
     
-      for(var i=1 ; i<this.$store.state.adminCoupon.length + 1 ; i++) {
+      for(var i=0 ; i<this.$store.state.adminCoupon.length ; i++) {
         if(this.$store.state.adminCoupon[i].code == localCode) {
 
           // 공유 쿠폰 O
@@ -229,7 +229,7 @@ export default {
 
             while(existed == false && j<this.$store.state.myCoupon.length) {
               // 이미 등록된 공유 쿠폰 O
-              if(this.$store.state.myCoupon[j].code == localCode) {
+              if(this.$store.state.myCoupon[j].code != '' && this.$store.state.myCoupon[j].code == localCode) {
                 existed = true
                 //console.log("이미 등록된 코드")
               }
@@ -253,11 +253,7 @@ export default {
             if(existed == false) {
               if(this.$store.state.adminCoupon[i].isUsed==false && this.$store.state.adminCoupon[i].outOfDate==false) {
                   this.userList = this.$store.state.adminCoupon[i].user
-                  const item = {
-                    user : this.$store.state.loginState.currentUser.email,
-                    used : false
-                  }
-                  this.userList.push(item)
+                  this.userList.push({user: this.$store.state.loginState.currentUser.email.toString(), used: false})
                   //console.log(this.userList)
                   validCode = true
                   groupCode = true
