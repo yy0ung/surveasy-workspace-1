@@ -445,7 +445,7 @@ export default {
   box-shadow: 0px 0px 5px #0000000D;
 }
 .mycoupon-list-name {
-  font-size: 16px;
+  font-size: 14px;
   color: #0AAC00;
 }
 .mycoupon-list-duedate {
