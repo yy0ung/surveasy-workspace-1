@@ -190,6 +190,8 @@ export default {
       var hourGap = parseInt((asdf - this.dd.getTime())/3600000) 
       var hourOptionIndex = 0
 
+      
+
       if (hourGap >= 18 && hourGap < 24){
         hourOptionIndex = 1
       } else if (hourGap >= 24 && hourGap < 36){
@@ -204,7 +206,7 @@ export default {
         hourOptionIndex = 6
       }
 
-      // console.log('time', hourOptionIndex)
+      console.log('time', hourOptionIndex)
       return hourOptionIndex
     }, 
     EngOptionCal() {

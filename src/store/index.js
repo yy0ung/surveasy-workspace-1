@@ -29,7 +29,7 @@ export default createStore({
     adminDataB2B:[],
     adminDataTemplate:[],
 
-    adminCoupon: [{user : '', used : false}],
+    adminCoupon: [],
     adminCouponValid: [],
     myCoupon: [],
 
@@ -75,7 +75,7 @@ export default createStore({
       
     EngOptionArray: [ '0','30000','60000' ],
 
-    TimeOptionArray: [ '0','15000','12000','8000','5000','0','0' ],
+    TimeOptionArray: [ '0','15000','12000','8000','3000','0','0' ],
 
 
     priceTextTable: [
