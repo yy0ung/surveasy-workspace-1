@@ -4,7 +4,9 @@
   <div class="admin-index">
     <router-link to="/adminapp/panelsent" class="adminApp-btn">정산</router-link>
     <router-link to="/adminapp/panelinfo" class="adminApp-btn">패널 정보</router-link>
-    <router-link to="/adminapp/panelproofhome" class="adminApp-btn">패널 설문 인증</router-link>
+    <router-link to="/adminapp/ios_panelsent" class="adminApp-btn">ios 정산</router-link>
+    <router-link to="/adminapp/ios_panelinfo" class="adminApp-btn">ios 패널 정보</router-link>
+    <!-- <router-link to="/adminapp/panelproofhome" class="adminApp-btn">패널 설문 인증</router-link> -->
     <router-link to="/adminapp/notice" class="adminApp-btn">공지사항</router-link>
     <router-link to="/adminapp/adminhome" class="adminApp-btn">홈 컨텐츠</router-link>
   </div>

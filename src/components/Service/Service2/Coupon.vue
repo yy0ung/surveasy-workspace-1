@@ -97,6 +97,7 @@ export default {
     
     // Point methods
     usePoint() {
+      console.log(this.point_apply)
       var point_to_use_num = Number(this.point_to_use)
       if(this.$store.state.localSurveyState.point_use==false) {
 
@@ -122,7 +123,7 @@ export default {
               this.$store.state.localSurveyState.price = this.$store.state.localSurveyState.price - point_to_use_num
 
               this.$store.state.localSurveyState.point_use = true
-
+              //console.log(this.point_apply)
             }
 
             
