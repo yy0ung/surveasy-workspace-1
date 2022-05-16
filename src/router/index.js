@@ -38,7 +38,9 @@ import Term1 from '../views/Term1.vue'
 import Term2 from '../views/Term2.vue'
 import AdminApp from '../views/Admin/AdminApp.vue'
 import PanelSent from '../components/adminApp/PanelSent.vue'
+import IOS_PanelSent from '../components/adminApp/IOS_PanelSent.vue'
 import PanelInfo from '../components/adminApp/PanelInfo.vue'
+import IOS_PanelInfo from '../components/adminApp/IOS_PanelInfo.vue'
 import AdminNotice from '../components/adminApp/AdminNotice.vue'
 import AdminHome from '../components/adminApp/AdminHome.vue'
 import PanelProofHome from '../components/adminApp/PanelProofHome.vue'
@@ -212,7 +214,9 @@ const routes = [
     component: AdminApp,
     children: [
       { path: "panelsent", component: PanelSent },
+      { path: "ios_panelsent", component: IOS_PanelSent },
       { path: "panelinfo", component: PanelInfo },
+      { path: "ios_panelinfo", component: IOS_PanelInfo },
       { path: "notice", component: AdminNotice },
       { path: "adminhome", component: AdminHome },
       { path: "panelproofhome", component: PanelProofHome }

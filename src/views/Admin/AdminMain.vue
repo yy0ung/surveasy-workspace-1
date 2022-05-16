@@ -49,7 +49,7 @@
               <td>{{item.orderNum}}</td>
               <td>{{item.title}}</td>
               <td>{{item.price}}</td>
-              <td>{{item.respondedPanel.length}}명</td>
+              <td><router-link :to="`/panelproof/${item.id}`">{{item.respondedPanel.length}}명</router-link></td>
               
               <td>{{item.requiredHeadCount}}</td>
               <td>{{item.spendTime}}</td>
