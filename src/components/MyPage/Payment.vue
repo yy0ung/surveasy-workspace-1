@@ -7,6 +7,7 @@
         <i class="fas fa-spinner"></i>
           불러오는 중
       </div>
+      <div class="my-accountNum" >{{accountNum}}</div>
       <div class="empty-ment2">{{ment}} 
        <p> <router-link to="/service" class="btn-empty">{{go}}</router-link></p>
       </div>
@@ -28,6 +29,7 @@
           </tr>
         </table>
       </div> -->
+      
       <div class="repeat" v-for="item in (currentUserUploadIndexInfo2)" :key="item">
       <div class="sur-box"  :class="{active:item.progress==3||item.progress==4||item.progress==5}">
         <p class="su-title"><span v-if="item.title.length<39">{{item.title}}</span>
@@ -82,7 +84,8 @@ export default {
       currentUserUploadIndexInfo2:[],
       show:0,
       ment:'',
-      go:''
+      go:'',
+      accountNum:'',
       
     }
   },
@@ -116,6 +119,10 @@ export default {
       if (this.currentUserUploadIndexInfo2.length==0){
         this.ment = '아직 업로드한 설문이 없습니다.'
         this.go = '설문 업로드하러 가기 >'
+        this.accountNum = ''
+      }
+      else {
+        this.accountNum = '입금 계좌: 카카오뱅크 3333-17-5341775 (장서준)'
       }
       this.show=1
     },
@@ -132,6 +139,10 @@ export default {
 </script>
 
 <style>
+.my-accountNum {
+  margin-left: 50px;
+  font-size: 0.9rem;
+}
 .spinner{
   text-align: center;
   font-size: 1.4rem;

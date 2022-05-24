@@ -11,6 +11,7 @@
           <ul id="info-detail">
             <ul class="info-detail-text">설문 대상</ul>
             <div class="info-detail-input"><input type="text" v-model="target" @change="setOption2()" placeholder="예) 20대 여성, 1인 가구" required></div>
+            <div class="info-detail-notice">*현재 서베이지의 패널은 20대이며, 성별/나이/학년 수준의 타깃팅만 가능합니다.</div>
           </ul>
           <ul id="info-detail">
             <ul class="info-detail-text">설문 기관</ul>
@@ -143,7 +144,14 @@ export default {
   color: #BCBCBC;
   opacity: 1;
 }
-.point-notice{
+.info-detail-notice {
+  font-family: 'Noto Sans KR', sans-serif;
+  color: #848484;
+  font-size: 0.85rem;
+  padding-top: 5px;
+  padding-left: 15px;
+}
+.point-notice {
   font-family: 'Noto Sans KR', sans-serif;
   color: #848484;
   font-size: 0.9rem;

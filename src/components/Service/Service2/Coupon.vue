@@ -9,7 +9,7 @@
             <option class="select-placeholder" :value="defaultCoupon" disabled selected>사용 가능 쿠폰 {{ this.$store.state.myCoupon.length }}장</option>
             <option class="Coupon-option" v-for="item in (this.$store.state.myCoupon)" v-bind:value="{code: item.code, rate: item.rate, forGroup: item.forGroup}" :key="item">{{ item.name }}  : {{ item.duedate }} 까지</option>
           </select>
-          <button class="Coupon-btn-" @click="useCoupon()">쿠폰 적용</button>
+          <button class="Coupon-btn-" @click="useCoupon()">쿠폰 적용하기</button>
       </ul>
 
       <ul id="Coupon-detail">
@@ -27,7 +27,7 @@
           
         </div>
         <div>
-          <button class="Coupon-btn-" id="point-btn-" @click="usePoint()">적립금 적용</button>
+          <button class="Coupon-btn-" id="point-btn-" @click="usePoint()">적립금 적용하기</button>
           </div>
           </div>
           <div class="Point-notice">적립금은 주문 금액의 최대 10%까지 사용 가능합니다.</div>
@@ -276,16 +276,16 @@ export default {
   background-color: #0AAB00;
 } */
 .Coupon-btn-{
-  height: 40px;
-  width: 100px;
+  height: 48px;
+  width: 120px;
   color: #0AAB00;
   border: 1px solid #0AAB00;
   border-radius: 18px;
   font-family: 'Noto Sans KR';
-  margin-left: 10px;
+  margin-left: 15px;
 }
 #point-btn-{
-  margin-top: 8px;
+  margin-top: 3px;
 }
 .Coupon-btn-:hover{
   color: white;

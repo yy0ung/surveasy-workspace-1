@@ -49,7 +49,7 @@
               <td>{{item.orderNum}}</td>
               <td>{{item.title}}</td>
               <td>{{item.price}}</td>
-              <td><router-link :to="`/panelproof/${item.id}`">{{item.respondedPanel.length}}명</router-link></td>
+              <td><router-link :to="`/panelproof/${item.id}`" target="_blank">{{item.respondedPanel.length}}명</router-link></td>
               
               <td>{{item.requiredHeadCount}}</td>
               <td>{{item.spendTime}}</td>
@@ -68,7 +68,7 @@
               <td class="btn-progress-admin"><button class="progress-button1"  @click="changeProgress1(item.id)">1</button> 
 
                <!-- <button @click="changeProgress2(item.id)" class="progress-button2" >2</button> -->
-              <router-link :to="`/admindetail/${item.id}`"><button class="progress-button2">2</button></router-link>
+              <router-link :to="`/admindetail/${item.id}`" target="_blank"><button class="progress-button2">2</button></router-link>
              
                <!-- <router-link :to="`/admindetail/${item.id}`"><button @click="changeProgress2(item.id)" class="progress-button2" >2</button></router-link> -->
 
