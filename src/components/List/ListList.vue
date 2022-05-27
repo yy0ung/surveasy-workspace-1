@@ -63,6 +63,7 @@
 
         <td class="list-de" :class="{active:dueTime(item[0].dueDate,item[0].dueTimeTime)<0 || item[0].progress>=3}">{{item[0].target}}</td>
         <td class="list-de" :class="{active:dueTime(item[0].dueDate,item[0].dueTimeTime)<0 || item[0].progress>=3}">{{item[0].spendTime}}</td>
+        <!-- <td class="list-de" :class="{active:dueTime(item[0].dueDate,item[0].dueTimeTime)<0 || item[0].progress>=3}">{{countPpl(item)}}</td> -->
         <td class="list-de" :class="{active:dueTime(item[0].dueDate,item[0].dueTimeTime)<0 || item[0].progress>=3}">{{item[0].requiredHeadCount}}</td>
         <td class="list-de" :class="{active:dueTime(item[0].dueDate,item[0].dueTimeTime)<0 || item[0].progress>=3}">
           {{item[0].uploader.substring(0,item[0].uploader.length-1)+"*"}} 
@@ -123,6 +124,13 @@ export default {
   },
   
   methods:{
+    countPpl(item){
+      if(item[0].progress>=3){
+        return "-"
+      }else{
+        return item[0].respondedPanel.length +" / "+ item[0].requiredHeadCount
+      }
+    },
     
     inc(){
       this.currentPage += 1
