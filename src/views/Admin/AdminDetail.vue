@@ -78,11 +78,16 @@ export default {
           link : this.link.toString()
         })
       }
+      if(this.duetimetime.length<3 && this.newDuetimetime.length>3){
+        await updateDoc( idDocref, {
+        dueTimeTime : this.newDuetimetime.toString()
+      })
+      }
 
       await updateDoc( idDocref, {
         progress : 2,
         lastIDChecked : lastIDChecked,
-        dueTimeTime : this.newDuetimetime.toString()
+        
       })
       await updateDoc (lastIDRef, {
         lastIDChecked : (lastIDChecked + 1)
