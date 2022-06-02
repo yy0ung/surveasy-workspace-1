@@ -1,7 +1,7 @@
 <template>
   <div id="admin-container">
     <div v-if="this.$store.state.isAdmin == false">
-      <input v-model="passInput" type="text" placeholder="AdminPassword">
+      <input v-model="passInput" type="text" placeholder="AdminPassword" @keyup.enter="adminCheck(this.passInput)">
       <br>
       Admin Password
       <button @click="adminCheck(this.passInput)">확인하기</button>
