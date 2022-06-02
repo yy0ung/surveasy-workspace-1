@@ -7,7 +7,7 @@
       <br>
       <span id="number-none">현재 대기 중인 패널</span>
     </p>
-    <p><span id="number-bold">191개</span>
+    <p><span id="number-bold" >{{survey}}</span>
       <br>
       <br>
       <span id="number-none">지금까지 설문 응답 서비스를 </span>
@@ -28,9 +28,30 @@
 </template>
 
 <script>
+import { collection, doc, getDoc, getDocs, getFirestore, setDoc } from "firebase/firestore"
 
 export default {
-  
+  data() {
+    return {
+      survey : "• • •",
+      
+    }
+  },
+  mounted() {
+    this.surveyCount()
+  },
+  methods: {
+    async surveyCount(){
+      const db = this.$store.state.db
+      const docRef = doc(db, "lastID", "lastIDChecked")
+      const docSnap = await getDoc(docRef)
+      if(docSnap.exists()){
+        
+        this.survey = docSnap.data().lastIDChecked + 57 + "개"
+      }
+      
+    }
+  },
 
 }
 </script>

@@ -10,12 +10,18 @@
   
   <div class="notice">
     패널 유의사항<br>
+    고객 입력 : {{currentNotice}} <br><br>
     <textarea type="text" placeholder="패널 유의사항" v-model="noticeToPanel" class="notice-text"></textarea>
   </div>
   <div class="notice">
     설문 링크 수정<br>
     <input type="text" placeholder="설문 링크" v-model="link" class="notice-text">
     <a :href="link" target="_blank">링크 확인</a>
+  </div>
+
+  <div class="notice">
+    현재 duetimetime : {{this.duetimetime}} <br>
+    <input type="text" placeholder="duetimetime" v-model="newDuetimetime" class="notice-text">
   </div>
 
   <button @click="uploadInfo">업로드하기</button>
@@ -31,10 +37,16 @@ export default {
     return {
       id : this.$route.params.id,
       reward : 0,
-      
+      currentNotice:"",
       noticeToPanel : "",
-      link : ""
+      link : "",
+      duetimetime: "",
+      newDuetimetime : ""
     }
+  },
+  mounted() {
+    this.getNotice()
+    this.getDue()
   },
   methods: {
 
@@ -66,15 +78,40 @@ export default {
           link : this.link.toString()
         })
       }
+      if(this.duetimetime.length<3 && this.newDuetimetime.length>3){
+        await updateDoc( idDocref, {
+        dueTimeTime : this.newDuetimetime.toString()
+      })
+      }
+
       await updateDoc( idDocref, {
         progress : 2,
         lastIDChecked : lastIDChecked,
+        
       })
       await updateDoc (lastIDRef, {
         lastIDChecked : (lastIDChecked + 1)
       }).then(alert('업로드 완료'))
       
     },
+    async getNotice(){
+      const db = this.$store.state.db
+      const noticeRef = doc(db,"surveyData",this.id.toString())
+      const docSnap = await getDoc(noticeRef)
+      if(docSnap.exists()){
+        
+        this.currentNotice = docSnap.data().notice
+      }
+    },
+    async getDue(){
+      const db = this.$store.state.db
+      const timeRef = doc(db,"surveyData",this.id.toString())
+      const docSnap = await getDoc(timeRef)
+      if(docSnap.exists()){
+        
+        this.duetimetime = docSnap.data().dueTimeTime
+      }
+    }
     
   }
 
