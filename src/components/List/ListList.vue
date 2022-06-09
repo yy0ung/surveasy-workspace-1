@@ -8,8 +8,8 @@
         <th>#</th>
         <th id="title-left">설문 제목</th>
         <th>설문 대상</th>
-        <th>소요시간</th>
-        <th>요구 응답수</th>
+        <!-- <th>소요시간</th> -->
+        <th>응답수</th>
         <th>의뢰자</th>
         
         <th></th>
@@ -62,9 +62,9 @@
         
 
         <td class="list-de" :class="{active:dueTime(item[0].dueDate,item[0].dueTimeTime)<0 || item[0].progress>=3}">{{item[0].target}}</td>
-        <td class="list-de" :class="{active:dueTime(item[0].dueDate,item[0].dueTimeTime)<0 || item[0].progress>=3}">{{item[0].spendTime}}</td>
-        <!-- <td class="list-de" :class="{active:dueTime(item[0].dueDate,item[0].dueTimeTime)<0 || item[0].progress>=3}">{{countPpl(item)}}</td> -->
-        <td class="list-de" :class="{active:dueTime(item[0].dueDate,item[0].dueTimeTime)<0 || item[0].progress>=3}">{{item[0].requiredHeadCount}}</td>
+        <!-- <td class="list-de" :class="{active:dueTime(item[0].dueDate,item[0].dueTimeTime)<0 || item[0].progress>=3}">{{item[0].spendTime}}</td> -->
+        <td class="list-de" :class="{active:dueTime(item[0].dueDate,item[0].dueTimeTime)<0 || item[0].progress>=3}">{{countPpl(item)}}</td>
+        <!-- <td class="list-de" :class="{active:dueTime(item[0].dueDate,item[0].dueTimeTime)<0 || item[0].progress>=3}">{{item[0].requiredHeadCount}}</td> -->
         <td class="list-de" :class="{active:dueTime(item[0].dueDate,item[0].dueTimeTime)<0 || item[0].progress>=3}">
           {{item[0].uploader.substring(0,item[0].uploader.length-1)+"*"}} 
         </td>
@@ -126,7 +126,7 @@ export default {
   methods:{
     countPpl(item){
       if(item[0].progress>=3){
-        return "-"
+        return item[0].requiredHeadCount
       }else{
         return item[0].respondedPanel.length +" / "+ item[0].requiredHeadCount
       }

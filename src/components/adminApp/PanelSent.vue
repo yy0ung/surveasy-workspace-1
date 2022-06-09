@@ -103,6 +103,8 @@ export default {
         await this.clearCurrent(arr[i].Id, arr[i].reward_current)
         await this.updateIsSent(arr[i].Id, arr[i].respondedSurvey)
       }
+
+      console.log("*************  정산 끝 ( ^_^ ) **************")
       
       // if (confirm("정산완료")){
       //   this.$router.go()
