@@ -28,6 +28,7 @@ import MemberInfo from '../components/Contact/MemberInfo.vue'
 import PaymentInfo from '../components/Contact/Payment.vue'
 import FinalModal from '../components/Contact/ContactFinalModal.vue'
 import AdminMain from '../views/Admin/AdminMain.vue'
+import AdminMain2 from '../views/Admin/AdminMain2.vue'
 import CouponAdmin from '../views/Admin/CouponAdmin.vue'
 import Withdraw from '../views/MyPage/Withdraw.vue'
 import Review from '../views/MyPage/Review.vue'
@@ -37,17 +38,21 @@ import ReviewDetailDone from '../views/MyPage/ReviewDetailDone.vue'
 import Term1 from '../views/Term1.vue'
 import Term2 from '../views/Term2.vue'
 import AdminApp from '../views/Admin/AdminApp.vue'
-import PanelSent from '../components/adminApp/PanelSent.vue'
-import IOS_PanelSent from '../components/adminApp/IOS_PanelSent.vue'
-import PanelInfo from '../components/adminApp/PanelInfo.vue'
-import IOS_PanelInfo from '../components/adminApp/IOS_PanelInfo.vue'
-import AdminNotice from '../components/adminApp/AdminNotice.vue'
-import AdminHome from '../components/adminApp/AdminHome.vue'
+
 import PanelProofHome from '../components/adminApp/PanelProofHome.vue'
 import AdminDetail from '../views/Admin/AdminDetail.vue'
 import PanelProof from '../components/adminApp/PanelProof.vue'
 import AdminAlert from '../views/Admin/AdminAlert.vue'
 
+import AdminWebOrder from '../components/adminWeb/AdminWebOrder.vue'
+import AdminWebOrderDetail from '../components/adminWeb/AdminWebOrderDetail.vue'
+import AdminWebCoupon from '../components/adminWeb/AdminWebCoupon.vue'
+import AdminWebEtc from '../components/adminWeb/AdminWebEtc.vue'
+
+import AdminAppPanelSent from '../components/adminApp/AdminAppPanelSent.vue'
+import AdminAppPanelInfo from '../components/adminApp/AdminAppPanelInfo.vue'
+import AdminAppNotice from '../components/adminApp/AdminAppNotice.vue'
+import AdminAppHome from '../components/adminApp/AdminAppHome.vue'
 
 const routes = [
   {
@@ -196,7 +201,24 @@ const routes = [
   {
     path: '/adminmain',
     name: 'AdminMain',
-    component: AdminMain
+    component: AdminMain,
+    children: [
+      { path: "", component: AdminWebOrder },
+      { path: "adminweborder", component: AdminWebOrder },
+      { path: "adminweborderdetail", component: AdminWebOrderDetail },
+      { path: "adminwebcoupon", component: AdminWebCoupon },
+      { path: "adminwebetc", component: AdminWebEtc },
+      { path: "adminapppanelsent", component: AdminAppPanelSent },
+      { path: "adminapppanelinfo", component: AdminAppPanelInfo },
+      { path: "adminappnotice", component: AdminAppNotice },
+      { path: "adminappadminhome", component: AdminAppHome },
+      { path: "panelproof", component: PanelProof }
+    ]
+  },
+  {
+    path: '/adminmain2',
+    name: 'AdminMain2',
+    component: AdminMain2
   },
   {
     path: '/adminalert',
@@ -208,20 +230,18 @@ const routes = [
     name: 'AdminDetail',
     component: AdminDetail
   },
-  {
-    path: '/adminapp',
-    name: 'AdminApp',
-    component: AdminApp,
-    children: [
-      { path: "panelsent", component: PanelSent },
-      { path: "ios_panelsent", component: IOS_PanelSent },
-      { path: "panelinfo", component: PanelInfo },
-      { path: "ios_panelinfo", component: IOS_PanelInfo },
-      { path: "notice", component: AdminNotice },
-      { path: "adminhome", component: AdminHome },
-      { path: "panelproofhome", component: PanelProofHome }
-    ]
-  },
+  // {
+  //   path: '/adminapp',
+  //   name: 'AdminApp',
+  //   component: AdminApp,
+  //   children: [
+  //     { path: "panelsent", component: PanelSent },
+  //     { path: "panelinfo", component: PanelInfo },
+  //     { path: "notice", component: AdminNotice },
+  //     { path: "adminhome", component: AdminHome },
+  //     { path: "panelproofhome", component: PanelProofHome }
+  //   ]
+  // },
   {
     path: '/panelproof/:id',
     // name: 'PanelProof',

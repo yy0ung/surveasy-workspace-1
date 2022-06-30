@@ -206,7 +206,7 @@ export default {
   justify-content: center;
 }
 .sent-container {
-  background: rgb(236, 249, 236);
+  background: rgb(242, 242, 242);
   border-radius: 20px;
   width: 400px;
   padding: 15px;
@@ -216,7 +216,7 @@ export default {
 .sent-title {
   font-size: 22px;
   font-weight: bold;
-  color: #247524;
+  color: #505050;
 }
 #sent-all-btn {
   width: 130px;
