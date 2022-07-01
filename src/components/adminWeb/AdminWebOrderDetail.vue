@@ -1,46 +1,129 @@
 <template>
   <div v-if="progress2Modal==true" class="p2-modal">
     <div class="p2-contentsbox">
-      <p class="p2-title">설문 상세정보 입력하기
-        <button @click="$emit('close'), clear()"><i class="fas fa-times" id="calc-close"></i></button>
-      </p> 
+      <div id="p2-top">
+        <div @click="$emit('close')" class="p2-close"><i class="fas fa-times"></i></div>
+        <p class="p2-title">설문 상세정보</p>
+      </div>
+      
+      <div id="p2-container">
+        <div id="p2-id"><div>ID :  {{id}}</div></div>
 
-      <div><h4>{{id}}</h4></div>
-      <div class="detail-col">
-        *참여보상 설정<br>
-        <input type="number" placeholder="reward" v-model="reward" required>
-      </div>
-  
-      <div class="detail-col">
-        패널 유의사항 (고객 입력 : {{currentNotice}} )<br>
-        <textarea type="text" placeholder="패널 유의사항" v-model="noticeToPanel" class="notice-text"></textarea>
-      </div>
-      <div class="detail-col">
-        설문 링크 수정<br>
-        <input type="text" placeholder="설문 링크" v-model="link" class="notice-text">
-        <a :href="link" target="_blank">링크 확인</a>
-      </div>
+        <div class="detail-col">
+          <div id="detail-title">* Reward 설정</div>
+          <div><input id="detail-input" type="text" placeholder="reward (숫자만)" v-model="reward" required></div>
+        </div>
+    
+        <div class="detail-col">
+          <div id="detail-title">(선택) 패널 유의사항</div> 
+          <div>            
+            <input id="detail-input" type="text" placeholder="패널 유의사항" v-model="noticeToPanel">
+            <div id="detail-col2">고객 입력 : {{notice}}</div>
+          </div>
+          
+        </div>
 
-      <div class="detail-col">
-        현재 duetimetime : {{this.duetimetime}} <br>
-        <input type="text" placeholder="duetimetime" v-model="newDuetimetime" class="notice-text">
-      </div>
+        <div class="detail-col">
+          <div id="detail-title">(선택) 설문 링크 수정</div>
+          <div>
+            <input id="detail-input" type="text" placeholder="미단축 링크" v-model="link">
+            <div id="link-btn"><button><a :href="link" target="_blank">링크 확인</a></button></div>
+          </div>
+          
+        </div>
 
-      <button @click="uploadInfo">업로드하기</button>
+        <div class="detail-col">
+          <div id="detail-title">(선택) dueTimeTime 추가</div>
+          <div>
+            <input id="detail-input" type="text" placeholder="duetimetime" v-model="newDuetimetime">
+            <div id="detail-col2">현재 duetimetime : {{due}}</div>
+          </div>
+          
+        </div>
+        
+      </div>
+      <button id="p2-fin-btn" @click="uploadInfo">업로드 완료하기</button>
+      
     </div>
+      
   </div>
 </template>
 
 <script>
 import AdminWebOrderVue from './AdminWebOrder.vue'
+import { getFirestore,collection, getDocs, updateDoc, doc, deleteDoc, setDoc, getDoc } from 'firebase/firestore'
+
 export default {
   name: AdminWebOrderVue,
   props: {
-    progress2Modal: {
+    progress2Modal : {
       typeof: Boolean,
       require: true,
       default: false
+    },
+
+    id: { typeof: Number },
+    notice: { typeof: String },
+    due: { typeof: String },
+  },
+
+  data() {
+    return {
+      reward : "",
+      noticeToPanel : "",
+      link : "",
+      newDuetimetime : ""
     }
+  },
+
+  methods: {
+    async fetchLastIDChecked() {
+      const db = this.$store.state.db
+      const lastIDChecked= []
+      const docRef = doc(db,"lastID", "lastIDChecked") 
+      const docSnap = await getDoc(docRef)
+      if (docSnap.exists()) {
+        lastIDChecked.push(docSnap.data())
+        console.log(lastIDChecked[0].lastIDChecked)
+        return lastIDChecked[0].lastIDChecked
+      }
+    },
+
+    async uploadInfo(){
+      const db = this.$store.state.db
+      const surveyRef = doc(db,"surveyData",id.toString())
+      await updateDoc(surveyRef, {
+        panelReward: parseInt(this.reward),
+        noticeToPanel : this.noticeToPanel
+      })
+
+      var lastIDChecked = await this.fetchLastIDChecked()
+      var lastIDRef = doc(db,"lastID","lastIDChecked")
+      var idDocref = doc(db, "surveyData", id.toString())
+
+      if(this.link.length>5){
+        await updateDoc (idDocref, {
+          link : this.link.toString()
+        })
+      }
+
+      if(due.length<3 && this.newDuetimetime.length>3){
+        await updateDoc( idDocref, {
+          dueTimeTime : this.newDuetimetime.toString()
+        })
+      }
+
+      await updateDoc( idDocref, {
+        progress : 2,
+        lastIDChecked : lastIDChecked,
+        
+      })
+
+      await updateDoc (lastIDRef, {
+        lastIDChecked : (lastIDChecked + 1)
+      }).then(alert('업로드 완료'))
+      
+    },
     
   }
 }
@@ -54,7 +137,7 @@ export default {
   left: 0;
   width: 100%;
   height: 3140px;
-  background-color: rgba(255, 255, 255, 0);
+  background-color: rgba(255, 255, 255, 0.02);
   display: table;
   transition: opacity .3s ease;
 }
@@ -64,19 +147,75 @@ export default {
   padding: 20px;
   font-family: 'Noto Sans KR', sans-serif;
   width: 650px;
-  height: 500px;
+  height: 510px;
   margin: 150px auto;
-  padding-top: 20px;
+  padding-top: 15px;
   padding-bottom: 30px;
-  background-color: rgb(241, 241, 241);
+  background-color: rgb(255, 255, 255);
   border-radius: 20px;
-  box-shadow: 0 2px 2px rgba(56, 56, 56, 0.076);
+  box-shadow: 0 2px 3px rgba(56, 56, 56, 0.042);
   transition: all .3s ease;
   z-index: 2;
+}
+#p2-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.p2-title {
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 25px;
+  font-weight: bold;
+  margin: 5px;
+}
+#p2-id {
+  font-family: 'Noto Sans KR', sans-serif;
+  color:#0CAE02;
+  font-size: 18px;
+}
+.p2-close {
+  display: flex;
+  flex-direction: row;
+  justify-content: right;
 }
 .detail-col {
   display: flex;
   flex-direction: row;
-  margin-bottom: 35px;
+  justify-content: space-between;
+  margin-top: 40px;
+}
+#detail-col2 {
+  display: flex;
+  justify-content: left;
+  font-size: 15px;
+  color: #a9a9a9;
+  font-weight: lighter;
+}
+#detail-title {
+  font-size: px;
+  color: #000000;
+}
+#detail-input {
+  width: 400px;
+  height: 25px;
+}
+#link-btn {
+  display: flex;
+  justify-content: right;
+}
+#p2-fin-btn {
+  padding: 5px 70px;
+  margin: 37px 180px 0px 180px;
+  color:#0CAE02;
+  background-color: #FFFFFF;
+  border: 1.5px solid #0CAE02;
+  border-radius: 30px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  font-family: 'Noto Sans KR', sans-serif;
+}
+#p2-fin-btn:hover{
+  color: white;
+  background: #0AAB00;
 }
 </style>

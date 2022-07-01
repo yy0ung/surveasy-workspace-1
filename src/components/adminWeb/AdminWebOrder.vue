@@ -18,12 +18,13 @@
         <th>대상</th>
         <th>선택 신분</th>
 
-        <tr v-for="item in (this.$store.state.adminDataSurvey)" :key="item.id" class="tds"
+        <tr v-for="item in (this.$store.state.adminDataSurvey)" :key="item.id" class="tds" :id="item.id"
           :class="{red:item.progress==0 || item.progress==1, green: item.progress==2, gray: item.progress==3 || item.progress==4}">
           <td>{{item.progress}}</td>
           <td class="btn-progress-admin">
             <button class="progress-button1" @click="changeProgress1(item.id)">1</button> 
-            <button class="progress-button2" @click="show_Modal()">2</button><AdminWebOrderDetail :progress2Modal="progress2Modal" @close="show_Modal()"></AdminWebOrderDetail>
+            <button class="progress-button2" @click="show_Modal(item.id, item.notice, item.dueTimeTime)">2</button>
+            <AdminWebOrderDetail :progress2Modal="progress2Modal" :id="id" :notice="notice" :due="due" @close="close_Modal()"></AdminWebOrderDetail>
             <button class="progress-button3" @click="changeProgress3(item.id)">3</button>
           </td>
           <td>{{item.lastIDChecked}}</td>
@@ -59,7 +60,13 @@ import AdminWebOrderDetail from './AdminWebOrderDetail.vue'
 export default {
   data() {
     return {
-      progress2Modal: false
+      progress2Modal: false,
+      id: 0,
+      notice: '',
+      due: ''
+
+
+
     }
   },
 
@@ -70,6 +77,7 @@ export default {
   },
 
 
+
   methods: {
     async fetchSurveyData() {
       this.$store.state.adminDataSurvey = []
@@ -78,7 +86,7 @@ export default {
       const docRef = collection(db, "surveyData")
       const adminDataSurvey = this.$store.state.adminDataSurvey
       
-      const q = query(docRef, orderBy("id", "desc"), limit(25))
+      const q = query(docRef, orderBy("id", "desc"), limit(20))
       const querySnapshot = await getDocs(q)
       querySnapshot.forEach((doc) => {
         if(doc.data().id > 340) adminDataSurvey.push(doc.data())
@@ -122,9 +130,18 @@ export default {
 
 
 
-    show_Modal() {
-      this.progress2Modal = !this.progress2Modal
+    show_Modal(itemId, itemNotice, itemDue) {
+      this.id = itemId
+      this.notice = itemNotice
+      this.due = itemDue
+      this.progress2Modal = true
+      
+    },
+
+    close_Modal() {
+      this.progress2Modal = false
     }
+
 
 
   }
