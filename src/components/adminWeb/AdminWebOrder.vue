@@ -7,8 +7,8 @@
     </div>
 
 
-      <table id="WebOrder-table-order" v-if="this.listType==0">
-        <th>P</th>
+      <table id="WebOrder-table-order" class="admin-table" v-if="this.listType==0">
+        <th>Pro</th>
         <th>P 관리</th>
         <th>lastID</th>
         <th>ID</th>
@@ -21,7 +21,7 @@
         <th>소요시간</th>
         <th>제목</th>
         <th>대상</th>
-        <th>선택 신분</th>
+        <th>선택신분</th>
 
         <tr v-for="item in (this.$store.state.adminDataSurvey)" :key="item.id" class="tds" :id="item.id"
           :class="{red:item.progress==0 || item.progress==1, green: item.progress==2, gray: item.progress==3 || item.progress==4}">
@@ -56,7 +56,7 @@
 
 
 
-      <table id="WebOrder-table-detail" v-if="this.listType==1">
+      <table id="WebOrder-table-detail" class="admin-table" v-if="this.listType==1">
         <th>lastID</th>
         <th>제목</th>
         <th>업로드일</th>
@@ -68,7 +68,7 @@
         <th>가격</th>
         <th>Reward</th>
         <th>고객명</th>
-        <th>신분</th>
+        <th>현재신분</th>
         <th>유입경로</th>
         <th>유입상세</th>
         <th>설문개수</th>
@@ -91,7 +91,7 @@
           <td>{{item.info.price}}</td>
           <td>{{item.info.panelReward}}</td>
           <td>{{item.info.uploader}}</td>
-          <td>{{item.identity}}</td>
+          <td>{{item.identity.substring(0, 5)}}</td>
           <td>{{item.funnel}}</td>
           <td>{{item.funnel_detail}}</td>
           <td>{{item.surveyNum}}</td>
@@ -141,7 +141,7 @@ export default {
     setListType(type) {
       this.listType = type;
 
-      // 상세목록의 [유입경로, 유입상세, 설문개수] 따로 fetch
+      // 상세목록의 [현재신분, 유입경로, 유입상세, 설문개수] 따로 fetch FROM userData
       if(type==1) this.fetchUserData(this.surveyList)
     },
 
@@ -278,6 +278,13 @@ export default {
 }
 #WebOrder-table-order #WebOrder-table-detail {
   margin-top: 15px;
+}
+.admin-th{
+  background: #a3a1a1;
+}
+.btn-progress-admin {
+  width: 80px;
+  margin: 1px;
 }
 .progress-buttonX{
   color: white;

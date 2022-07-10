@@ -1,5 +1,5 @@
 <template>
-<div class="AdminMain-container" v-if="this.$store.state.loginState.currentUser.email=='admin@admin.com'">
+<div class="AdminMain-container" v-if="this.$store.state.loginState.currentUser.email=='surveasy2019@yonsei.ac.kr'">
 
   <div class="AdminMain-menu">
     <div class="AdminMain-menu-web">
@@ -97,5 +97,19 @@ export default {
 
 .AdminMain-Component {
   padding-top: 25px;
+}
+
+.admin-table {
+  width: 100%;
+  border: 0.5px solid #5e5e5e;
+  border-collapse: collapse;
+  font-size: 15px;
+}
+.admin-table th{
+  border: 0.5px solid #c3c3c3;
+  background: #dfe4dd95;
+}
+.admin-table td{
+  border: 0.5px solid #797979;
 }
 </style>

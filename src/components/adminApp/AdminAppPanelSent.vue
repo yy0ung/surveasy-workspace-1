@@ -17,32 +17,36 @@
  
   <div id="sent-list">
     <div class="admin-info-content">
-      <tr>
-        <th>uid</th>
-        <th>이름</th>
-        <th>계좌주</th>
-        <th>메일</th>
-        <th>전화번호</th>
-        <th>참여 설문</th>
-        <th>은행</th>
-        <th>계좌번호</th>    
-        <th>정산금액</th>
-        <th>check box</th>
-      </tr>
+      <table class="admin-table" >
+        <tr>
+          <th>uid</th>
+          <th>이름</th>
+          <th>계좌주</th>
+          <th>메일</th>
+          <th>전화번호</th>
+          <th>참여 설문</th>
+          <th>은행</th>
+          <th>계좌번호</th>    
+          <th>정산금액</th>
+          <th>check box</th>
+          <th>정산</th>
+        </tr>
 
-      <tr v-for="item in (this.$store.state.adminAppUserData)" :key="item.info[0].uid" class="list" :class="{active:item.info[0].reward_current == 0}">
-        <td>{{item.info[0].uid}}</td>
-        <td>{{item.info[0].name}}</td>
-        <td>{{item.info[0].accountOwner}}</td>
-        <td>{{item.info[0].email}}</td>
-        <td>{{item.info[0].phoneNumber}}</td>
-        <td>{{item.respondedSurvey}}</td>
-        <td>{{item.info[0].accountType}}</td>
-        <td>{{item.info[0].accountNumber}}</td>
-        <td>{{item.info[0].reward_current}}</td>
-        <td><input class="checkbox-one" type="checkbox" id="done" @click="addArray(item.info[0].uid, item.info[0].reward_current, item.respondedSurvey)" ></td>
-        <td id="sentBtn"><button @click="sentFin(item.info[0].uid, item.info[0].reward_current, item.respondedSurvey)">정산 완료</button></td>
-      </tr>
+        <tr v-for="item in (this.$store.state.adminAppUserData)" :key="item.info[0].uid" class="list" :class="{active:item.info[0].reward_current == 0}">
+          <td>{{item.info[0].uid}}</td>
+          <td>{{item.info[0].name}}</td>
+          <td>{{item.info[0].accountOwner}}</td>
+          <td>{{item.info[0].email}}</td>
+          <td>{{item.info[0].phoneNumber}}</td>
+          <td>{{item.respondedSurvey}}</td>
+          <td>{{item.info[0].accountType}}</td>
+          <td>{{item.info[0].accountNumber}}</td>
+          <td>{{item.info[0].reward_current}}</td>
+          <td><input class="checkbox-one" type="checkbox" id="done" @click="addArray(item.info[0].uid, item.info[0].reward_current, item.respondedSurvey)" ></td>
+          <td id="sentBtn"><button @click="sentFin(item.info[0].uid, item.info[0].reward_current, item.respondedSurvey)">정산 완료</button></td>
+        </tr>
+      </table>
+      
     </div>
   </div>
 
@@ -232,6 +236,7 @@ export default {
 #sent-list {
   display: inline-block;
   justify-content: center;
+  width: 90%;
 }
 .admin-info-content {
   margin-top: 25px;

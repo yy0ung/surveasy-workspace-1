@@ -2,31 +2,34 @@
 <h1 class="admin-title">패널 정보</h1>
 <div id="panelInfo-container">
 <div class="admin-info-container">
-  <tr id="th">
-    <th>uid</th>
-    <th>이름</th>
-    <th>메일</th>
-    <th>전화번호</th>
-    <th>성별</th>
-    <th>출생년도</th>
-    <th>정산 총액</th>
-    <th>유입경로</th>
-    <th>마케팅 수신</th>
-  </tr>
+  <table class="admin-table" id="admin-info-table">
+    <tr id="th">
+      <th>uid</th>
+      <th>이름</th>
+      <th>메일</th>
+      <th>전화번호</th>
+      <th>성별</th>
+      <th>출생년도</th>
+      <th>정산 총액</th>
+      <th>유입경로</th>
+      <th>마케팅 수신</th>
+    </tr>
 
 
-  <tr v-for="item in (this.$store.state.adminAppUserData)" :key="item.info[0].name">
-    <td>{{item.info[0].uid}}</td>
-    <td>{{item.info[0].name}}</td>
-    <td>{{item.info[0].email}}</td>
-    <td>{{item.info[0].phoneNumber}}</td>
-    <td>{{item.info[0].gender}}</td>
-    <td>{{item.info[0].birthDate.substring(0,4)}}</td>
-    <td>{{item.info[0].reward_total}}</td>
-    <td>{{item.info[0].inflowPath}}</td>
-    <td>{{item.info[0].marketingAgree}}</td>
+    <tr v-for="item in (this.$store.state.adminAppUserData)" :key="item.info[0].name">
+      <td>{{item.info[0].uid}}</td>
+      <td>{{item.info[0].name}}</td>
+      <td>{{item.info[0].email}}</td>
+      <td>{{item.info[0].phoneNumber}}</td>
+      <td>{{item.info[0].gender}}</td>
+      <td>{{item.info[0].birthDate.substring(0,4)}}</td>
+      <td>{{item.info[0].reward_total}}</td>
+      <td>{{item.info[0].inflowPath}}</td>
+      <td>{{item.info[0].marketingAgree}}</td>
 
-  </tr>
+    </tr>
+  </table>
+  
 </div>
 </div>
 
@@ -83,14 +86,15 @@ export default {
   padding-top: 20px;
   display: inline-block;
   justify-content: center;
+  width: 80%;
 }
 .admin-title {
   margin: 30px 0 40px 0;
   color: #000000;
 }
-.panelInfo-container th,.panelInfo-container td{
-  padding-left: 10px;
-  padding-right: 10px;
+#admin-info-table {
+  width: 100%;
 }
+
 
 </style>
