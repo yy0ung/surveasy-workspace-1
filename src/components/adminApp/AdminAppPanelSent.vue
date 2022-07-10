@@ -1,9 +1,8 @@
 <template>
-
   <div id="container-top">
     <div class="sent-container">
       <div class="sent-title">개별 정산</div>
-      <p>선택된 개수 : {{sentCheckArray.length}} <button id="sent-all-btn" @click="sentAllFin(sentCheckArray)">{{sentCheckArray.length}}개 정산하기</button></p>
+      <p>선택된 개수 : {{sentCheckArray.length}}개 <button id="sent-all-btn" @click="sentAllFin(sentCheckArray)">{{sentCheckArray.length}}개 정산하기</button></p>
     </div>
     
     <!-- 내가 다 없애버리면 너가 테스트 못할 거 같아서 아직 나는 테스트 안했어! -->
@@ -18,32 +17,36 @@
  
   <div id="sent-list">
     <div class="admin-info-content">
-      <tr>
-        <th>uid</th>
-        <th>이름</th>
-        <th>계좌주</th>
-        <th>메일</th>
-        <th>전화번호</th>
-        <th>참여 설문</th>
-        <th>은행</th>
-        <th>계좌번호</th>    
-        <th>정산금액</th>
-        <th>check box</th>
-      </tr>
+      <table class="admin-table" >
+        <tr>
+          <th>uid</th>
+          <th>이름</th>
+          <th>계좌주</th>
+          <th>메일</th>
+          <th>전화번호</th>
+          <th>참여 설문</th>
+          <th>은행</th>
+          <th>계좌번호</th>    
+          <th>정산금액</th>
+          <th>check box</th>
+          <th>정산</th>
+        </tr>
 
-      <tr v-for="item in (this.$store.state.adminAppUserData)" :key="item.info[0].uid" class="list" :class="{active:item.info[0].reward_current == 0}">
-        <td>{{item.info[0].uid}}</td>
-        <td>{{item.info[0].name}}</td>
-        <td>{{item.info[0].accountOwner}}</td>
-        <td>{{item.info[0].email}}</td>
-        <td>{{item.info[0].phoneNumber}}</td>
-        <td>{{item.respondedSurvey}}</td>
-        <td>{{item.info[0].accountType}}</td>
-        <td>{{item.info[0].accountNumber}}</td>
-        <td>{{item.info[0].reward_current}}</td>
-        <td><input class="checkbox-one" type="checkbox" id="done" @click="addArray(item.info[0].uid, item.info[0].reward_current, item.respondedSurvey)" ></td>
-        <td id="sentBtn"><button @click="sentFin(item.info[0].uid, item.info[0].reward_current, item.respondedSurvey)">정산 완료</button></td>
-      </tr>
+        <tr v-for="item in (this.$store.state.adminAppUserData)" :key="item.info[0].uid" class="list" :class="{active:item.info[0].reward_current == 0}">
+          <td>{{item.info[0].uid}}</td>
+          <td>{{item.info[0].name}}</td>
+          <td>{{item.info[0].accountOwner}}</td>
+          <td>{{item.info[0].email}}</td>
+          <td>{{item.info[0].phoneNumber}}</td>
+          <td>{{item.respondedSurvey}}</td>
+          <td>{{item.info[0].accountType}}</td>
+          <td>{{item.info[0].accountNumber}}</td>
+          <td>{{item.info[0].reward_current}}</td>
+          <td><input class="checkbox-one" type="checkbox" id="done" @click="addArray(item.info[0].uid, item.info[0].reward_current, item.respondedSurvey)" ></td>
+          <td id="sentBtn"><button @click="sentFin(item.info[0].uid, item.info[0].reward_current, item.respondedSurvey)">정산 완료</button></td>
+        </tr>
+      </table>
+      
     </div>
   </div>
 
@@ -204,24 +207,24 @@ export default {
   display: flex;
   flex-direction: row;
   justify-content: center;
+  margin-top: 20px;
 }
 .sent-container {
-  background: rgb(236, 249, 236);
+  background: rgb(242, 242, 242);
   border-radius: 20px;
   width: 400px;
   padding: 15px;
-  margin-left: 20px;
-  margin-right: 20px;
+  margin: 0 20px 20px 20px;
 }
 .sent-title {
-  font-size: 22px;
+  font-size: 24px;
   font-weight: bold;
-  color: #247524;
+  color: #343434;
 }
 #sent-all-btn {
   width: 130px;
   height: 30px;
-  margin-left: 30px;
+  margin-left: 50px;
   color:#247524;
   background-color: #FFFFFF;
   border: 1.5px solid #247524;
@@ -233,6 +236,7 @@ export default {
 #sent-list {
   display: inline-block;
   justify-content: center;
+  width: 90%;
 }
 .admin-info-content {
   margin-top: 25px;

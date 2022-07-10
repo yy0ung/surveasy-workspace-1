@@ -375,16 +375,15 @@ export default {
 
 <style>
 .home-calculator {
-  position: absolute;
-  z-index: 2;
+  position: fixed;
+  z-index: 9998;
   top: 0;
   left: 0;
   width: 100%;
-  height: 3140px;
-  background-color: rgba(255, 255, 255, 0.524);
+  height: 100%;
+  background-color: rgba(0, 0, 0, .5);
   display: table;
   transition: opacity .3s ease;
-  overflow: hidden;
 }
 .home-calculator-contentsbox {
   
