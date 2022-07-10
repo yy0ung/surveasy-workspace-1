@@ -24,10 +24,14 @@ export default createStore({
     userData: [],
     PointUserData: [{point_total:0, point_current: 0}],
     surveyData: [],
-    adminData: [],
-    adminDataIdentity:[],
+
+    adminDataSurvey: [],
+    adminDataSurvey_detail: [],
+    adminDataIdentity_yet:[],
+    adminDataIdentity_history:[],
     adminDataB2B:[],
-    adminDataTemplate:[],
+    adminDataTemplate_yet:[],
+    adminDataTemplate_history:[],
 
     adminCoupon: [],
     adminCouponValid: [],

@@ -1,8 +1,13 @@
 <template>
   <div class="WebOrder-container">
-    <div id="WebOrder-title">주문 목록</div>
-    
-      <table id="WebOrder-table">
+    <div id="WebOrder-title-container">
+      <div class="WebOrder-title" @click="setListType(0)" :class="{black:this.listType==0, grey:this.listType==1}">주문 목록</div>
+      <div class="WebOrder-title">|</div>
+      <div class="WebOrder-title" @click="this.setListType(1)" :class="{black:this.listType==1, grey:this.listType==0}">상세 목록</div>
+    </div>
+
+
+      <table id="WebOrder-table-order" v-if="this.listType==0">
         <th>P</th>
         <th>P 관리</th>
         <th>lastID</th>
@@ -20,8 +25,10 @@
 
         <tr v-for="item in (this.$store.state.adminDataSurvey)" :key="item.id" class="tds" :id="item.id"
           :class="{red:item.progress==0 || item.progress==1, green: item.progress==2, gray: item.progress==3 || item.progress==4}">
-          <td>{{item.progress}}</td>
+          <td style="font-weight:bold;">{{item.progress}}</td>
           <td class="btn-progress-admin">
+            <button class="progress-buttonX" @click="show_deleteModal(item.id, item.progress)">X</button>
+            <AdminWebOrderDelete :deleteModal="deleteModal" :id_delete="id_delete" :progress_delete="progress_delete" @closeD="close_deleteModal()"></AdminWebOrderDelete>
             <button class="progress-button1" @click="changeProgress1(item.id)">1</button> 
             <button class="progress-button2" @click="show_Modal(item.id, item.notice, item.dueTimeTime)">2</button>
             <AdminWebOrderDetail :progress2Modal="progress2Modal" :id="id" :notice="notice" :due="due" @close="close_Modal()"></AdminWebOrderDetail>
@@ -29,7 +36,11 @@
           </td>
           <td>{{item.lastIDChecked}}</td>
           <td>{{item.id}}</td>
-          <td><router-link :to="`/panelproof/${item.id}`" target="_blank">{{item.respondedPanel.length}}명</router-link></td>
+          <td>
+            <router-link :to="`/adminmain/adminwebpanelproof/${item.id}`" target="_blank" class="tds" :class="{red:item.progress==0 || item.progress==1, green: item.progress==2, gray: item.progress==3 || item.progress==4}">
+              {{item.respondedPanel.length}}명
+            </router-link>
+          </td>
           <td>{{item.requiredHeadCount}}</td>
           <td>{{this.calTime(item.dueDate, item.dueTimeTime)}}</td>
           <td>{{item.dueDate}} {{item.dueTimeTime}}</td>
@@ -39,38 +50,86 @@
           <td><a :href="item.link" target="_blank" class="tds"
           :class="{red:item.progress==0 || item.progress==1, green: item.progress==2, gray: item.progress==3 || item.progress==4}">{{item.title}}</a></td>
           <td>{{item.target}}</td>
-          <td>{{item.priceIdentity.substring(0, 4)}}</td>
-
-
-
-
+          <td :title=item.uploaderIdentity>{{item.priceIdentity.substring(0, 4)}}</td>
         </tr>
       </table>
-    <div id="WebOrder-list">
+
+
+
+      <table id="WebOrder-table-detail" v-if="this.listType==1">
+        <th>lastID</th>
+        <th>제목</th>
+        <th>업로드일</th>
+        <th>마감일</th>
+        <th>참여인원</th>
+        <th>응답수</th>
+        <th>소요시간</th>
+        <th>기관</th>
+        <th>가격</th>
+        <th>Reward</th>
+        <th>고객명</th>
+        <th>신분</th>
+        <th>유입경로</th>
+        <th>유입상세</th>
+        <th>설문개수</th>
+        
+        
+        <tr v-for="item in (this.$store.state.adminDataSurvey_detail)" :key="item.info.id" class="tds"
+          :class="{red:item.progress==0 || item.progress==1, green: item.progress==2, gray: item.progress==3 || item.progress==4}">
+          <td>{{item.info.lastIDChecked}}</td>
+          <td>{{item.info.title}}</td>
+          <td>{{item.info.uploadDate}} {{item.info.uploadTimeTime}}</td>
+          <td>{{item.info.dueDate}} {{item.info.dueTimeTime}}</td>
+          <td>
+            <router-link :to="`/adminmain/adminwebpanelproof/${item.id}`" target="_blank" class="tds" :class="{red:item.progress==0 || item.progress==1, green: item.progress==2, gray: item.progress==3 || item.progress==4}">
+              {{item.info.respondedPanel.length}}명
+            </router-link>
+          </td>
+          <td>{{item.info.requiredHeadCount}}</td>
+          <td>{{item.info.spendTime}}</td>
+          <td>{{item.info.institute}}</td>
+          <td>{{item.info.price}}</td>
+          <td>{{item.info.panelReward}}</td>
+          <td>{{item.info.uploader}}</td>
+          <td>{{item.identity}}</td>
+          <td>{{item.funnel}}</td>
+          <td>{{item.funnel_detail}}</td>
+          <td>{{item.surveyNum}}</td>
+          
+          
+        </tr>
+      </table>
+
 
     </div>
-  </div>
+    
 </template>
 
 <script>
-import { collection, query, getDocs, orderBy, limit, startAfter } from "firebase/firestore"
+import { doc, collection, query, getDoc, getDocs, orderBy, limit, startAfter } from "firebase/firestore"
 import AdminWebOrderDetail from './AdminWebOrderDetail.vue'
+import AdminWebOrderDelete from './AdminWebOrderDelete.vue'
 
 
 export default {
   data() {
     return {
+      listType: 0,
+      surveyList: [],
+      detailList: [],
+
+      deleteModal: false,
+      id_delete: 0,
+      progress_delete: 0,
+
       progress2Modal: false,
       id: 0,
       notice: '',
       due: ''
-
-
-
     }
   },
 
-  components: { AdminWebOrderDetail },
+  components: { AdminWebOrderDetail, AdminWebOrderDelete },
 
   mounted() {
     this.fetchSurveyData()
@@ -79,23 +138,47 @@ export default {
 
 
   methods: {
+    setListType(type) {
+      this.listType = type;
+
+      // 상세목록의 [유입경로, 유입상세, 설문개수] 따로 fetch
+      if(type==1) this.fetchUserData(this.surveyList)
+    },
+
+
     async fetchSurveyData() {
       this.$store.state.adminDataSurvey = []
 
       const db = this.$store.state.db
       const docRef = collection(db, "surveyData")
-      const adminDataSurvey = this.$store.state.adminDataSurvey
       
       const q = query(docRef, orderBy("id", "desc"), limit(20))
       const querySnapshot = await getDocs(q)
       querySnapshot.forEach((doc) => {
-        if(doc.data().id > 340) adminDataSurvey.push(doc.data())
+        if(doc.data().id > 340) this.surveyList.push(doc.data())
         
       })
 
-      this.$store.state.adminDataSurvey = adminDataSurvey
-      console.log(adminDataSurvey)
+      this.$store.state.adminDataSurvey = this.surveyList
+    },
 
+
+    async fetchUserData(surveylist) {
+      const surveyList = surveylist
+      const db = this.$store.state.db
+      
+      for(var i=0 ; i<surveyList.length ; i++) {
+        const email = surveyList[i].uploaderEmail
+        const docRef = doc(db, "userData", email.toString())
+        const querySnapshot = await getDoc(docRef)
+        if(querySnapshot.exists()) {
+          const item = { info: surveyList[i], identity : querySnapshot.data().identity, funnel : querySnapshot.data().funnel, funnel_detail : querySnapshot.data().funnel_detail, surveyNum : querySnapshot.data().uploadIndex.length}
+          this.detailList.push(item)
+          //console.log(item)
+        }
+
+        this.$store.state.adminDataSurvey_detail = this.detailList
+      }
     },
 
     calTime(date,time){
@@ -104,12 +187,11 @@ export default {
       var dateDiff = due.getTime()/3600000 - Date.now()/3600000 + (timeHour-8)
       var Dday = ''
       
-      
       if(dateDiff<0){
         Dday='마감'
       }
       else if(dateDiff<24 && dateDiff>1){
-        Dday = Math.floor(dateDiff)+'시간 후 마감'
+        Dday = Math.floor(dateDiff)+'시간'
       }else if(dateDiff<48){
         Dday = 'D-1'
       }else if(dateDiff<72){
@@ -140,6 +222,16 @@ export default {
 
     close_Modal() {
       this.progress2Modal = false
+    },
+
+    show_deleteModal(itemId, itemProgress) {
+      this.id_delete = itemId
+      this.progress_delete = itemProgress
+      this.deleteModal = true
+    },
+
+    close_deleteModal() {
+      this.deleteModal = false
     }
 
 
@@ -154,15 +246,44 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  margin-top: 25px;
+  margin-bottom: 30px;
 }
-#WebOrder-title {
+#WebOrder-title-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
   font-size: 27px;
   font-weight: bolder;
   color: black;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
 }
-#WebOrder-table {
+.WebOrder-title {
+  margin-left: 20px;
+  margin-bottom: 25px;
+  cursor: pointer;
+  color: #9b9b9b;
+  font-size: 30px;
+  font-weight: lighter;
+}
+.WebOrder-title.black {
+  font-size: 30px;
+  color: #000000;
+  font-weight: bold;
+}
+.WebOrder-title.grey {
+  font-size: 30px;
+  color: #9b9b9b;
+  font-weight: lighter;
+}
+#WebOrder-table-order #WebOrder-table-detail {
   margin-top: 15px;
+}
+.progress-buttonX{
+  color: white;
+  background-color: rgb(181, 181, 181);
+  border: 0;
+  cursor: pointer;
 }
 .progress-button1{
   color: white;
@@ -181,6 +302,10 @@ export default {
   background-color:#555454;
   border: 0;
   cursor: pointer;
+}
+.progress-buttonX:hover{
+  color: white;
+  background-color: rgb(141, 141, 141);
 }
 .progress-button1:hover{
   color: white;

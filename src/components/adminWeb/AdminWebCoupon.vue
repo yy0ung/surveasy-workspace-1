@@ -1,8 +1,9 @@
 <template>
   <div>
+    <h1>쿠폰 관리</h1>
     <div class="coupon">
       <div class="coupon-register">
-        <h2>쿠폰 발급</h2>
+        <h2 style="color:#000000;">쿠폰 발급</h2>
         <div class="coupon-type">
           <button @click="show(false)" :class="{active_green : (couponInfo.forGroup==false)}">개인 쿠폰</button>
           <button @click="show(true)" :class="{active_green : (couponInfo.forGroup==true)}">공유 쿠폰</button>
@@ -54,13 +55,13 @@
 
 
       <div class="coupon-list">
-        <h2>쿠폰 리스트</h2>
+        <h1 style="color:#000000;">쿠폰 리스트</h1>
         <!-- <button @click="fetchAdminData_coupon()">쿠폰 리스트 보기</button> -->
         <table>
           <tr>
-            <th>공유 여부</th>
-            <th>쿠폰 코드</th>
-            <th>쿠폰 이름</th>
+            <th>공유</th>
+            <th>CODE</th>
+            <th>쿠폰명</th>
             <th>할인율</th>
             <th>등록 사용자</th>
             <th>유효 기간</th>
@@ -346,28 +347,36 @@ export default {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  margin: 10px;
+  margin: 5px;
+  padding: 40px;
 }
 .coupon-register {
-  margin-top: 10px;
+  background: #ececec9a;
+  border-radius: 10px;
+  margin: 20px;
+  padding: 40px;
+  height: 500px;
 }
 .coupon-type button {
   width: 100px;
   margin-top: 15px;
-  margin-left: 30px;
-  margin-right: 30px;
+  margin-left: 35px;
+  margin-right: 35px;
   background: none;
   border: none;
   cursor: pointer;
+  color: #000000;
+  font-size: 15px;
 }
 .coupon-type .active_green {
   margin-left: 20px;
   margin-right: 20px;
-  background: none;
-  border: none;
+  background: #ffffff;
+  border: 1px solid rgb(104, 190, 42);
+  border-radius: 10px;
   font-weight: bolder;
   font-size: 17px;
-  color: rgb(126, 209, 66);
+  color: rgb(104, 190, 42);
   cursor: pointer;
 }
 .coupon-line {
@@ -375,7 +384,7 @@ export default {
   margin-left: auto;
   margin-right: auto;
   border-style: inset;
-  border-width: 2px;
+  border-width: 1px;
   background: rgb(26, 226, 26);
 }
 #couponInput_num {
@@ -408,7 +417,7 @@ export default {
   cursor: pointer;
 }
 .coupon-list {
-  margin: 20px;
+  margin: 10px;
   font-size: 13px;
 }
 .coupon-list th {

@@ -41,11 +41,13 @@ import AdminApp from '../views/Admin/AdminApp.vue'
 
 import PanelProofHome from '../components/adminApp/PanelProofHome.vue'
 import AdminDetail from '../views/Admin/AdminDetail.vue'
-import PanelProof from '../components/adminApp/PanelProof.vue'
+
 import AdminAlert from '../views/Admin/AdminAlert.vue'
 
 import AdminWebOrder from '../components/adminWeb/AdminWebOrder.vue'
 import AdminWebOrderDetail from '../components/adminWeb/AdminWebOrderDetail.vue'
+import AdminWebOrderDelete from '../components/adminWeb/AdminWebOrderDelete.vue'
+import AdminWebPanelProof from '../components/adminWeb/AdminWebPanelProof.vue'
 import AdminWebCoupon from '../components/adminWeb/AdminWebCoupon.vue'
 import AdminWebEtc from '../components/adminWeb/AdminWebEtc.vue'
 
@@ -206,13 +208,15 @@ const routes = [
       { path: "", component: AdminWebOrder },
       { path: "adminweborder", component: AdminWebOrder },
       { path: "adminweborderdetail", component: AdminWebOrderDetail },
+      { path: "adminweborderdelete", component: AdminWebOrderDelete },
+      { path: "adminwebpanelproof/:id", component: AdminWebPanelProof },
       { path: "adminwebcoupon", component: AdminWebCoupon },
       { path: "adminwebetc", component: AdminWebEtc },
       { path: "adminapppanelsent", component: AdminAppPanelSent },
       { path: "adminapppanelinfo", component: AdminAppPanelInfo },
       { path: "adminappnotice", component: AdminAppNotice },
-      { path: "adminappadminhome", component: AdminAppHome },
-      { path: "panelproof", component: PanelProof }
+      { path: "adminapphome", component: AdminAppHome },
+      { path: "adminapppanelproof", component: AdminWebPanelProof }
     ]
   },
   {
@@ -242,11 +246,11 @@ const routes = [
   //     { path: "panelproofhome", component: PanelProofHome }
   //   ]
   // },
-  {
-    path: '/panelproof/:id',
-    // name: 'PanelProof',
-    component: PanelProof
-  },
+  // {
+  //   path: '/panelproof/:id',
+  //   // name: 'PanelProof',
+  //   component: PanelProof
+  // },
   {
     path: '/couponadmin',
     name: 'CouponAdmin',

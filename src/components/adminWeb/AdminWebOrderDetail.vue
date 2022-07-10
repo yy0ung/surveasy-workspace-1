@@ -146,8 +146,8 @@ export default {
   flex-direction: column;
   padding: 20px;
   font-family: 'Noto Sans KR', sans-serif;
-  width: 650px;
-  height: 510px;
+  width: 680px;
+  height: 530px;
   margin: 150px auto;
   padding-top: 15px;
   padding-bottom: 30px;
@@ -161,6 +161,7 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  padding: 10px;
 }
 .p2-title {
   font-family: 'Noto Sans KR', sans-serif;
@@ -177,6 +178,7 @@ export default {
   display: flex;
   flex-direction: row;
   justify-content: right;
+  cursor: pointer;
 }
 .detail-col {
   display: flex;

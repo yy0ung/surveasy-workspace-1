@@ -1,9 +1,8 @@
 <template>
-
   <div id="container-top">
     <div class="sent-container">
       <div class="sent-title">개별 정산</div>
-      <p>선택된 개수 : {{sentCheckArray.length}} <button id="sent-all-btn" @click="sentAllFin(sentCheckArray)">{{sentCheckArray.length}}개 정산하기</button></p>
+      <p>선택된 개수 : {{sentCheckArray.length}}개 <button id="sent-all-btn" @click="sentAllFin(sentCheckArray)">{{sentCheckArray.length}}개 정산하기</button></p>
     </div>
     
     <!-- 내가 다 없애버리면 너가 테스트 못할 거 같아서 아직 나는 테스트 안했어! -->
@@ -204,24 +203,24 @@ export default {
   display: flex;
   flex-direction: row;
   justify-content: center;
+  margin-top: 20px;
 }
 .sent-container {
   background: rgb(242, 242, 242);
   border-radius: 20px;
   width: 400px;
   padding: 15px;
-  margin-left: 20px;
-  margin-right: 20px;
+  margin: 0 20px 20px 20px;
 }
 .sent-title {
-  font-size: 22px;
+  font-size: 24px;
   font-weight: bold;
-  color: #505050;
+  color: #343434;
 }
 #sent-all-btn {
   width: 130px;
   height: 30px;
-  margin-left: 30px;
+  margin-left: 50px;
   color:#247524;
   background-color: #FFFFFF;
   border: 1.5px solid #247524;

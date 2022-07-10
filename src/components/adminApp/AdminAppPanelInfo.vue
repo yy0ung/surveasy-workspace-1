@@ -1,7 +1,7 @@
 <template>
-<div id="admin-container">
-  
-<div class="admin-info-content">
+<h1 class="admin-title">패널 정보</h1>
+<div id="panelInfo-container">
+<div class="admin-info-container">
   <tr id="th">
     <th>uid</th>
     <th>이름</th>
@@ -11,7 +11,7 @@
     <th>출생년도</th>
     <th>정산 총액</th>
     <th>유입경로</th>
-    <th>마케팅 수신동의</th>
+    <th>마케팅 수신</th>
   </tr>
 
 
@@ -79,12 +79,16 @@ export default {
 </script>
 
 <style>
-#admin-container {
+#panelInfo-container {
   padding-top: 20px;
   display: inline-block;
   justify-content: center;
 }
-.admin-info-content th,.admin-info-content td{
+.admin-title {
+  margin: 30px 0 40px 0;
+  color: #000000;
+}
+.panelInfo-container th,.panelInfo-container td{
   padding-left: 10px;
   padding-right: 10px;
 }

@@ -1,5 +1,7 @@
 <template>
+<h1 class="admin-title">공지사항 & PUSH</h1>
 <div id="admin-adminNotice">
+  
   <div class="admin-adminNotice-container">
     <h3>공지사항 게시</h3>
     <div class="notice-content">
@@ -131,6 +133,7 @@ export default {
   flex-direction: row;
   justify-content: center;
   margin-top: 55px;
+  padding-bottom: 30px;
 }
 .admin-adminNotice-container {
   margin-left: 20px;
