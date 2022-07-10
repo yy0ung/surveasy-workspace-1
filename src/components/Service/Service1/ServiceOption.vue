@@ -9,9 +9,9 @@
             <option :value=2>40명</option>
             <option :value=3>50명</option>
             <option :value=4>60명</option>
-            <option :value=5>70명 (최대 응답수)</option>
-            <!-- <option :value=6>80명</option>
-            <option :value=7>90명</option>
+            <option :value=5>70명</option>
+            <option :value=6>80명 (최대 응답수)</option>
+            <!-- <option :value=7>90명</option>
             <option :value=8>100명</option> -->
           </select>
 
