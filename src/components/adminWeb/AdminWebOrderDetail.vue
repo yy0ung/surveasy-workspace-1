@@ -65,6 +65,7 @@ export default {
     id: { typeof: Number },
     notice: { typeof: String },
     due: { typeof: String },
+
   },
 
   data() {
@@ -91,7 +92,7 @@ export default {
 
     async uploadInfo(){
       const db = this.$store.state.db
-      const surveyRef = doc(db,"surveyData",id.toString())
+      const surveyRef = doc(db,"surveyData", this.id.toString())
       await updateDoc(surveyRef, {
         panelReward: parseInt(this.reward),
         noticeToPanel : this.noticeToPanel
@@ -99,15 +100,15 @@ export default {
 
       var lastIDChecked = await this.fetchLastIDChecked()
       var lastIDRef = doc(db,"lastID","lastIDChecked")
-      var idDocref = doc(db, "surveyData", id.toString())
+      var idDocref = doc(db, "surveyData", this.id.toString())
 
-      if(this.link.length>5){
+      if(this.link.length>5) {
         await updateDoc (idDocref, {
           link : this.link.toString()
         })
       }
 
-      if(due.length<3 && this.newDuetimetime.length>3){
+      if(this.due.length<3 && this.newDuetimetime.length>3) {
         await updateDoc( idDocref, {
           dueTimeTime : this.newDuetimetime.toString()
         })
