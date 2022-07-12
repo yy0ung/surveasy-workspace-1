@@ -1,9 +1,10 @@
 <template>
 <div id="knohow-container">
   
+
+  
   <KnowHowItem />
   <KnowHowClosed />
-  
 
 </div>
 </template>
