@@ -117,14 +117,9 @@ export default {
   computed :{
     getDateStr_min(){
       var today = new Date()
-      
       var todayPlus9 = today.setHours(today.getHours()+9)
       var todayPlus9Date = new Date(todayPlus9)
-      
       var min = todayPlus9Date.toISOString()
-      
-      
-
       var dddd= min.split('T')
       var ddddd = dddd[0]
       //console.log(ddddd)
