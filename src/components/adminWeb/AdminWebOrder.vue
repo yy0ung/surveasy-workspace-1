@@ -106,7 +106,7 @@
 </template>
 
 <script>
-import { doc, collection, query, getDoc, getDocs, orderBy, limit, startAfter } from "firebase/firestore"
+import { doc, collection, query, getDoc, getDocs, updateDoc, orderBy, limit, startAfter } from "firebase/firestore"
 import AdminWebOrderDetail from './AdminWebOrderDetail.vue'
 import AdminWebOrderDelete from './AdminWebOrderDelete.vue'
 
@@ -210,6 +210,27 @@ export default {
       return Dday
     },
 
+    async changeProgress1(id) {
+      const db = this.$store.state.db
+      const docRef = doc(db, "surveyData", id.toString())
+
+      await updateDoc(docRef, {
+        progress : 1
+      })
+
+      window.alert('완료')
+    },
+
+    async changeProgress3(id) {
+      const db = this.$store.state.db
+      const docRef = doc(db, "surveyData", id.toString())
+
+      await updateDoc(docRef, {
+        progress : 3
+      })
+
+      window.alert('완료')
+    },
 
 
     show_Modal(itemId, itemNotice, itemDue) {
