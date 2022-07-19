@@ -37,7 +37,7 @@ import ReviewDetailDone from '../views/MyPage/ReviewDetailDone.vue'
 import Term1 from '../views/Term1.vue'
 import Term2 from '../views/Term2.vue'
 import AdminApp from '../views/Admin/AdminApp.vue'
-
+import KnowHowImage from '../components/KnowHow/KnowHowImage.vue'
 import PanelProofHome from '../components/adminApp/PanelProofHome.vue'
 import AdminDetail from '../views/Admin/AdminDetail.vue'
 
@@ -106,6 +106,12 @@ const routes = [
     name: 'KnowHow',
     component: KnowHow
   },   
+  {
+    path: '/knowhowimage/:id',
+    // name: 'KnowHowImage',
+    component: KnowHowImage
+  },   
+
   {
     path: '/story',
     name: 'Story',
