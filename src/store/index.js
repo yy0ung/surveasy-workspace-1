@@ -89,6 +89,11 @@ export default createStore({
       [ '선택 안함', '영어 설문 (50명 이하)', '영어 설문 (50명 초과)' ],
       [ '', '대학생 할인', '대학원생 할인', '할인 대상이 아닙니다.' ],
     ],
+
+    targetingTable: [
+      ['','전 연령','20대 (1994~2003년생)', '20세 이상 24세 이하','25세 이상 29세 이하'],
+      ['','성별 무관','남성', '여성']
+    ],
       
 
     localSurveyState: {
@@ -98,6 +103,8 @@ export default createStore({
       dueTime: '',
       ENTarget: '',
       identity: '',
+      targetingAge: 0,
+      targetingGender: 0,
       
       title: '',
       target: '',
@@ -263,9 +270,11 @@ export default createStore({
       state.localSurveyState.spendTime = payload.spendTime,
       state.localSurveyState.requiredHeadCount = payload.requiredHeadCount,
       state.localSurveyState.dueTime = payload.dueTime,
-      state.localSurveyState.ENTarget = payload.ENTarget
-      state.localSurveyState.dueDate = payload.dueDate
-      state.localSurveyState.dueTimeTime = payload.dueTimeTime
+      state.localSurveyState.ENTarget = payload.ENTarget,
+      state.localSurveyState.dueDate = payload.dueDate,
+      state.localSurveyState.dueTimeTime = payload.dueTimeTime,
+      state.localSurveyState.targetingAge = payload.targetingAge,
+      state.localSurveyState.targetingGender = payload.targetingGender
      
     },
     

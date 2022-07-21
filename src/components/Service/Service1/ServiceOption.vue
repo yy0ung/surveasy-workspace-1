@@ -31,7 +31,37 @@
             <input type="time" class="time" v-model="bb" required>
             <p class="warn-msg">마감날짜와 마감시간 중 공란이 존재할 경우 <br> 설문 게시가 어려울 수 있습니다.</p>
           </li>
+          <!-- 설문 대상 타겟팅 관련 -->
+
+          <br>
+          <li class="hasTitleOption">
+            <div class="option-target">
+            <span class="option-title">설문 대상</span>
+            
+              <select class="selectbox-option" v-model="targetAgeOption">
+              <option :value=0 selected disabled hidden>대상 연령 선택</option>
+              <option :value=1>전 연령</option>
+              <option :value=2>20대 (1994~2003년생)</option>
+              <option :value=3>20세 이상 24세 이하</option>
+              <option :value=4>25세 이상 29세 이하</option>
+            </select>
+            <select class="selectbox-option" v-model="targetGenderOption">
+              <option :value=0 selected disabled hidden>대상 성별 선택</option>
+              <option :value=1>성별 무관</option>
+              <option :value=2>남성</option>
+              <option :value=3>여성</option>
+            </select>
+            </div>
+            <p class="warn-msg">다음 주문 페이지에서 설문 대상 상세정보를<br> 기입할 수 있습니다.</p>
+            
+          </li>
+
+  
           
+            
+          
+
+
           <li class="hasTitleOption">
             <span class="option-title">영어설문</span> 
             <label class="switch">
@@ -86,6 +116,9 @@ export default {
       priceRequireHeadCount:0,
       addENTarget:0,
       timeOption:0,
+      targetAgeOption:0,
+      targetGenderOption:0,
+
 
       price: 0,
       identity: '',
@@ -250,8 +283,19 @@ export default {
         this.identity = String(this.$store.state.priceTextTable[4][this.priceIdentity]);
       
       
-        this.$store.commit('setSurveyMutation1', {price: this.price, beforeCouponPrice: this.price, requiredHeadCount: this.requiredHeadCount, 
-        spendTime: this.spendTime, dueTime: this.dueTime, ENTarget: this.ENTarget, identity: this.identity, dueDate: this.aa, dueTimeTime: this.bb});
+        this.$store.commit('setSurveyMutation1', {
+          price: this.price, 
+          beforeCouponPrice: this.price, 
+          equiredHeadCount: this.requiredHeadCount, 
+          spendTime: this.spendTime, 
+          dueTime: this.dueTime, 
+          ENTarget: this.ENTarget, 
+          identity: this.identity, 
+          dueDate: this.aa, 
+          dueTimeTime: this.bb,
+          targetingAge : this.targetAgeOption,
+          targetingGender: this.targetGenderOption
+        });
 
         this.$store.commit('setSurveyDueTime', {dueDate: this.aa, dueTime: this.bb})
 
@@ -418,11 +462,24 @@ export default {
   cursor: pointer;
   border: none;
 }
+
+.selectbox target{
+  font-family: 'Noto Sans KR', sans-serif;
+  font-weight: lighter;
+  margin: 8px;
+  padding-left: 5px;
+  /* width: 330px; */
+  height: 30px;
+  background-color: #fafafa;
+  font-size: 15px;
+  cursor: pointer;
+  border: none;
+}
 .selectbox:focus{
   outline: none;
   border: 1.5px solid #0AAB00;
 }
-.selectbox option {
+.selectbox-option {
   background-color: #fafafa;
   
 }
@@ -514,6 +571,10 @@ export default {
 .goServicePay-btn:hover{
   color: white;
   background: #0AAB00;
+}
+.option-target {
+  display: flex;
+  flex-direction: row;
 }
 
 

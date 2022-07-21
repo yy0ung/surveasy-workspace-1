@@ -1,19 +1,12 @@
 <template>
   <div id="home">
-
-    
-
     <div class="home-contents">
       <HomeMainContent class="home-contents-child"/>
       <HomeNumberMarketing class="home-contents-child"/>
       <HomeReview class="home-contents-child"/>
       <HomeSurveyTemplate class="home-contents-child"/>
       <HomeBrandStory class="home-contents-child"/>
-      
-      
     </div>
-    
-    
   </div>
 </template>
 
@@ -49,7 +42,6 @@ export default {
   max-width: 1190px;
   margin-right: auto;
   margin-left: auto;
-  
 }
 .home-contents-child{
   margin-top:0;
@@ -63,8 +55,6 @@ export default {
   padding: 9px 20px;
   border-radius: 24px;
   font-size: 1.0rem;
-  
-
 }
 
 .HomeMainContent-btn:hover{

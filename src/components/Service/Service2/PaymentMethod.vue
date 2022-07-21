@@ -331,6 +331,10 @@ export default {
           dueTimeTime: dataset.dueTimeTime,
           dueTimeTimeTime: dataset.dueTimeTimeTime,
           priceIdentity: dataset.identity,
+          targetingAge : dataset.targetingAge,
+          targetingGender : dataset.targetingGender,
+
+
           lastIDChecked: 0,
           panelReward: 0,
 
