@@ -36,7 +36,7 @@
           <div id="detail-title">(선택) dueTimeTime 추가</div>
           <div>
             <input id="detail-input" type="text" placeholder="duetimetime" v-model="newDuetimetime">
-            <div id="detail-col2">현재 duetimetime : {{due}}</div>
+            <div id="detail-col2">현재 duetimetime : {{due}} </div>
           </div>
           
         </div>
@@ -65,6 +65,7 @@ export default {
     id: { typeof: Number },
     notice: { typeof: String },
     due: { typeof: String },
+    uploaderEmail: { typeof: String }
 
   },
 
@@ -101,6 +102,7 @@ export default {
       var lastIDChecked = await this.fetchLastIDChecked()
       var lastIDRef = doc(db,"lastID","lastIDChecked")
       var idDocref = doc(db, "surveyData", this.id.toString())
+      var userDocRef = doc(db, "userData", this.uploaderEmail.toString())
 
       if(this.link.length>5) {
         await updateDoc (idDocref, {
@@ -114,6 +116,12 @@ export default {
         })
       }
 
+
+      // await updateDoc(userDocRef, {
+      //   respondArray: arrayUnion(lastIDChecked)
+      // })
+
+
       await updateDoc( idDocref, {
         progress : 2,
         lastIDChecked : lastIDChecked,
@@ -124,6 +132,8 @@ export default {
         lastIDChecked : (lastIDChecked + 1)
       }).then(alert('업로드 완료'))
       
+      
+
     },
     
   }

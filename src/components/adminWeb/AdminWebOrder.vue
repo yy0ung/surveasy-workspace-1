@@ -30,8 +30,8 @@
             <button class="progress-buttonX" @click="show_deleteModal(item.id, item.progress)">X</button>
             <AdminWebOrderDelete :deleteModal="deleteModal" :id_delete="id_delete" :progress_delete="progress_delete" @closeD="close_deleteModal()"></AdminWebOrderDelete>
             <button class="progress-button1" @click="changeProgress1(item.id)">1</button> 
-            <button class="progress-button2" @click="show_Modal(item.id, item.notice, item.dueTimeTime)">2</button>
-            <AdminWebOrderDetail :progress2Modal="progress2Modal" :id="id" :notice="notice" :due="due" @close="close_Modal()"></AdminWebOrderDetail>
+            <button class="progress-button2" @click="show_Modal(item.id, item.notice, item.dueTimeTime, item.uploaderEmail)">2</button>
+            <AdminWebOrderDetail :progress2Modal="progress2Modal" :id="id" :notice="notice" :due="due" :uploaderEmail="uploaderEmail" @close="close_Modal()"></AdminWebOrderDetail>
             <button class="progress-button3" @click="changeProgress3(item.id)">3</button>
           </td>
           <td>{{item.lastIDChecked}}</td>
@@ -94,7 +94,7 @@
           <td>{{item.identity.substring(0, 5)}}</td>
           <td>{{item.funnel}}</td>
           <td>{{item.funnel_detail}}</td>
-          <td>{{item.surveyNum}}</td>
+          <td>{{item.validIndexNum}}</td>
           
           
         </tr>
@@ -125,7 +125,8 @@ export default {
       progress2Modal: false,
       id: 0,
       notice: '',
-      due: ''
+      due: '',
+      uploaderEmail: '',
     }
   },
 
@@ -138,6 +139,7 @@ export default {
 
 
   methods: {
+
     setListType(type) {
       this.listType = type;
 
@@ -164,21 +166,47 @@ export default {
 
 
     async fetchUserData(surveylist) {
-      const surveyList = surveylist
-      const db = this.$store.state.db
+      if(this.detailList.length == 0) {
+        const surveyList = surveylist
+        const db = this.$store.state.db
+        
+        for(var i=0 ; i<surveyList.length ; i++) {
+          const email = surveyList[i].uploaderEmail
+          const docRef = doc(db, "userData", email.toString())
+          const querySnapshot = await getDoc(docRef)
+          if(querySnapshot.exists()) {     
+            const uploadIdx = querySnapshot.data().uploadIndex 
+            const validIndexNum = await this.fetchValidIndex(uploadIdx)  
+            const item = { info: surveyList[i], identity : querySnapshot.data().identity, funnel : querySnapshot.data().funnel, funnel_detail : querySnapshot.data().funnel_detail, uploadIndex : querySnapshot.data().uploadIndex, validIndexNum : validIndexNum }
+            this.detailList.push(item)
+            //console.log(item)
+          }
+
+          this.$store.state.adminDataSurvey_detail = this.detailList
+        }
+      }
+
       
-      for(var i=0 ; i<surveyList.length ; i++) {
-        const email = surveyList[i].uploaderEmail
-        const docRef = doc(db, "userData", email.toString())
+    },
+
+    async fetchValidIndex(uploadIdx) {
+      const db = this.$store.state.db
+      const uploadIndex = uploadIdx
+      var validIndexNum = 0
+      
+      for(var i=0 ; i<uploadIndex.length ; i++) {
+        const id = uploadIndex[i]
+        const docRef = doc(db, "surveyData", id.toString())
         const querySnapshot = await getDoc(docRef)
         if(querySnapshot.exists()) {
-          const item = { info: surveyList[i], identity : querySnapshot.data().identity, funnel : querySnapshot.data().funnel, funnel_detail : querySnapshot.data().funnel_detail, surveyNum : querySnapshot.data().uploadIndex.length}
-          this.detailList.push(item)
-          //console.log(item)
+          if(querySnapshot.data().lastIDChecked != 0) {
+            validIndexNum++
+          }
         }
-
-        this.$store.state.adminDataSurvey_detail = this.detailList
       }
+
+      console.log(validIndexNum)
+      return validIndexNum
     },
 
     calTime(date,time){
@@ -233,10 +261,11 @@ export default {
     },
 
 
-    show_Modal(itemId, itemNotice, itemDue) {
+    show_Modal(itemId, itemNotice, itemDue, itemUploaderEmail) {
       this.id = itemId
       this.notice = itemNotice
       this.due = itemDue
+      this.uploaderEmail = itemUploaderEmail
       this.progress2Modal = true
       
     },
