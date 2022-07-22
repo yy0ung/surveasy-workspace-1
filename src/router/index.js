@@ -21,7 +21,6 @@ import MyInfo from '../components/MyPage/MyInfo.vue'
 import DashBoard from '../components/MyPage/DashBoard.vue'
 import CouponPoint from '../components/MyPage/CouponPoint.vue'
 import Payment from '../components/MyPage/Payment.vue'
-import ListDetail from '../components/List/ListDetail.vue'
 import RespondService from '../components/Contact/RespondService.vue'
 import Template from '../components/Contact/Template.vue'
 import MemberInfo from '../components/Contact/MemberInfo.vue'
@@ -96,10 +95,6 @@ const routes = [
     path: '/surveylist',
     name: 'SurveyList',
     component: SurveyList
-  },
-  {
-    path: '/surveylist/:id',
-    component: ListDetail
   },
   {
     path: '/surveytemplate',
