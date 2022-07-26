@@ -1,6 +1,7 @@
 <template>
-<h1 class="admin-title">홈 컨텐츠</h1>
+<h1 class="admin-title">홈 컨텐츠!!</h1>
 <div class="home_contents">
+
   <div>
     <h3>당신의 의견은?</h3>
     <div class="opinion-container">
