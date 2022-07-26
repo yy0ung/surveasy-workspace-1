@@ -44,6 +44,8 @@ export default {
       noticeContents: '',
       fixed: [],
       noticeFixed: false,
+
+      timestamp : '',
       notificationTitle : '',
       notificationContent : ''
     }
@@ -111,9 +113,12 @@ export default {
       this.fetchLastNoticeID()
     },
 
-    async notificationNotice(){
+
+    async notificationNotice() {
       const db = this.$store.state.db
-      var docNt = doc(db, "NotificationData",this.notificationTitle.toString())
+      this.timestamp = new Date().toISOString().toString()
+      
+      var docNt = doc(db, "NotificationData",this.timestamp + this.notificationTitle.toString())
       await setDoc(docNt, {
         title : this.notificationTitle,
         body : this.notificationContent,
@@ -121,7 +126,9 @@ export default {
       })
       window.alert("전송 완료")
       this.fetchLastNoticeID()
-    }
+    },
+
+    
   },
 
 }
