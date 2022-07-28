@@ -269,7 +269,7 @@ body {
   display: flex;
   align-items: center;
   position: sticky;
-  z-index: 2;
+  z-index: 5;
   top:0;
   
 }
@@ -304,7 +304,6 @@ body {
   
 }
 #nav .nav-element{
-  
   color: #2c3e50;
   padding: 10px;
   text-decoration: none;

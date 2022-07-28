@@ -55,6 +55,8 @@ import AdminAppPanelInfo from '../components/adminApp/AdminAppPanelInfo.vue'
 import AdminAppNotice from '../components/adminApp/AdminAppNotice.vue'
 import AdminAppHome from '../components/adminApp/AdminAppHome.vue'
 
+import KnowHowContents from '../views/KnowHowContents.vue'
+
 const routes = [
   {
     path: '/',
@@ -105,6 +107,11 @@ const routes = [
     path: '/knowhow',
     name: 'KnowHow',
     component: KnowHow
+  },  
+  {
+    path: '/knowhowcontents',
+    name: 'KnowHowContents',
+    component: KnowHowContents
   },   
   {
     path: '/knowhowimage/:id',

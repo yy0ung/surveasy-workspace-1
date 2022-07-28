@@ -1,62 +1,26 @@
 <template>
   <div id="knowhow-main-container">
   
-    <p class="knowhow-subtitle">서베이지의 EASY한 꿀팁</p>
-    <vueper-slides class="slide-container"
-    :visible-slides="4" 
-    :slide-ratio="1/4"
-    :dragging-distance="200"
-    :arrows="true" 
-    :infinite="false"
-    :bullets="false"
-    :arrows-outside="true"
-    :breakpoints="{ 800: { visibleSlides: 2, slideMultiple: 2 } }"
-    :slideMultiple="true">
-      <vueper-slide v-for="(slide, i) in slides" 
-      class="slide-content"
-      @click="cl(i)"
-      :key="i" 
-      
-      :image="slide.image" />
-    </vueper-slides>
+    <p class="knowhow-subtitle">서베이지의 EASY한 꿀팁 
+      <router-link :to="`/knowhowimage/${1}`"><span id="knowhow-more-btn">더보기</span></router-link></p>
+      <div class="knowhow-main-contents">
+        <div class="main-grid" v-for="slide in this.$store.state.knowhowOne" :key="slide">
+        <router-link :to="slide.link"><img class="know-main-image" :src="slide.image"></router-link>
 
-    <p class="knowhow-subtitle">다른 리서치도 EASY하게</p>
-    <vueper-slides class="slide-container"
-    :visible-slides="4" 
-    :slide-ratio="1/4"
-    :dragging-distance="200"
-    :arrows="true" 
-    :infinite="false"
-    :bullets="true"
-    :arrows-outside="true"
-    :breakpoints="{ 800: { visibleSlides: 2, slideMultiple: 2 } }"
-    :slideMultiple="true">
-      <vueper-slide v-for="(slide, i) in slides" 
-      class="slide-content"
-      @click="cl(i)"
-      :key="i" 
+    </div>
+      </div>
       
-      :image="slide.image" />
-    </vueper-slides>
+      
+    
 
-    <p class="knowhow-subtitle">서베이지의 매거진 : CHECK</p>
-    <vueper-slides class="slide-container"
-    :visible-slides="4" 
-    :slide-ratio="1/4"
-    :dragging-distance="200"
-    :arrows="true" 
-    :infinite="false"
-    :bullets="true"
-    :arrows-outside="true"
-    :breakpoints="{ 800: { visibleSlides: 2, slideMultiple: 2 } }"
-    :slideMultiple="true">
-      <vueper-slide v-for="(slide, i) in slides" 
-      class="slide-content"
-      @click="cl(i)"
-      :key="i" 
-      
-      :image="slide.image" />
-    </vueper-slides>
+    <p class="knowhow-subtitle">다른 리서치도 EASY하게
+      <router-link :to="`/knowhowimage/${2}`"><span id="knowhow-more-btn">더보기</span></router-link></p>
+    
+
+
+    <p class="knowhow-subtitle">서베이지의 매거진 : check
+      <router-link :to="`/knowhowimage/${3}`"><span id="knowhow-more-btn">더보기</span></router-link></p>
+    
   </div>
 </template>
 
@@ -67,45 +31,10 @@ export default {
   components: { VueperSlides, VueperSlide },
   data() {
     return {
-      slides: [
-      {
-        title: '#1',
-        
-        image: require('@/assets/knowhow/02.png'),
-        link: "https://codesandbox.io/s/62i2s?file=/src/App.vue"
-      },
-      {
-        title: '#1',
-        
-        image: require('@/assets/knowhow/02.png'),
-        link: "https://codesandbox.io/s/62i2s?file=/src/App.vue"
-      },
-      {
-        title: '#1',
-        
-        image: require('@/assets/knowhow/02.png'),
-        link: "https://antoniandre.github.io/vueper-slides/"
-      },
-      {
-        title: '#1',
-        
-        image: require('@/assets/knowhow/02.png'),
-        link: "https://antoniandre.github.io/vueper-slides/"
-      },
-      {
-        title: '#1',
-        
-        image: require('@/assets/knowhow/02.png'),
-        link: "https://antoniandre.github.io/vueper-slides/"
-      },
-  
-    ]
     }
   },
   methods: {
-    cl(i){
-      this.$router.push('/mypage/dashboard')
-    },
+    
     
   },
 }
@@ -120,23 +49,46 @@ export default {
   height: 1300px;
   
 }
-.slide-container{
-  width: 800px;
-  height: 200px;
-  margin-bottom: 100px;
-  
-}
-.slide-content{
-  margin-right: 30px;
-  align-items: center;
-  cursor: pointer;
-}
+
 .knowhow-subtitle{
   font-family: 'Noto Sans KR', sans-serif;
   color: #0AAB00;
   font-size: 25px;
   text-align: left;
+  margin-left: 50px;
 }
+#knowhow-more-btn{
+  font-family: 'Noto Sans KR', sans-serif;
+  color: #a8a7a7;
+  font-size: 15px;
+  font-weight: 400;
+  margin-left: 10px;
+  text-decoration: underline;
+  
+  
+}
+.main-grid{
+  width: 200px;
+  height: 200px;
+}
+.know-main-image{
+  width: 200px;
+  height: 200px;
+  grid-area: 1/1/2/2;
+}
+.knowhow-main-contents{
+  justify-content: center;
+  align-items: center;
+  display: grid;
+  place-items: center;
+  grid-template-columns: repeat(3, 15em);
+  grid-template-rows: repeat(2,15em);
+  gap: 10px;
+
+
+}
+
+
 
 
 </style>
