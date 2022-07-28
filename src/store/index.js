@@ -166,8 +166,36 @@ export default createStore({
     withDrawCheckTF: false,
 
     reviewTempData:'',
-    
 
+    knowhowOne:[
+      {
+        image: require('@/assets/knowhow/one/main-1.png'),
+        link: "/home"
+        
+      },
+      {
+        image: require('@/assets/knowhow/one/main-1.png'),
+        link: "/mypage/dashboard"
+        
+      },
+    ],
+    knowhowTwo:[
+      {
+        image: require('@/assets/knowhow/one/main-1.png'),
+        link: "/mypage/dashboard"
+        
+      },
+    ],
+    knowhowThree:[
+      {
+        image: require('@/assets/knowhow/one/main-1.png'),
+        link: "/mypage/dashboard"
+        
+      },
+    ]
+    
+    
+    
     
   },
 
