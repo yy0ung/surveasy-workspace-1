@@ -1,6 +1,7 @@
 <template>
   <div id="knowhow-main-container">
   
+
     <p class="knowhow-subtitle">서베이지의 EASY한 꿀팁 
       <router-link :to="`/knowhowimage/${1}`"><span id="knowhow-more-btn">더보기</span></router-link></p>
       <div class="knowhow-main-contents">
@@ -33,6 +34,7 @@
 </template>
 
 <script>
+
 export default {
   
   data() {
@@ -76,6 +78,7 @@ export default {
     changeIndex(num){
       this.$store.state.knowhowIndex = num
     }
+
     
   },
 }
@@ -91,11 +94,13 @@ export default {
   
 }
 
+
 .knowhow-subtitle{
   font-family: 'Noto Sans KR', sans-serif;
   color: #0AAB00;
   font-size: 25px;
   text-align: left;
+
   margin-left: 80px;
 }
 #knowhow-more-btn{
@@ -141,3 +146,4 @@ export default {
 
 
 </style>
+

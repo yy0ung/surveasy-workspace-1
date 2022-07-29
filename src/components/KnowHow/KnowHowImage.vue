@@ -1,5 +1,6 @@
 <template>
   <div id="knowhow-image-container">
+<<<<<<< HEAD
     <p class="knowhow-image-title">{{title(this.id)}}</p>
     <div v-if="this.id==1" class="knowhow-image-contents">
       <div class="grid" v-for="slide in this.$store.state.knowhowOne" :key="slide">
@@ -20,11 +21,15 @@
     </div>
     </div>
     
+=======
+    image
+>>>>>>> 7555b2e (knowhow-demo)
   </div>
 </template>
 
 <script>
 export default {
+<<<<<<< HEAD
   data() {
     return {
       id: this.$route.params.id
@@ -44,10 +49,14 @@ export default {
       }
     }
   },
+=======
+
+>>>>>>> 7555b2e (knowhow-demo)
 }
 </script>
 
 <style>
+<<<<<<< HEAD
 #knowhow-image-container{
   max-width: 1190px;
   margin-right: auto;
@@ -86,4 +95,7 @@ export default {
 .know-image:hover{
   filter: brightness(70%);
 }
+=======
+
+>>>>>>> 7555b2e (knowhow-demo)
 </style>
