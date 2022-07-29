@@ -1,6 +1,7 @@
 <template>
   <div id="knowhow-main-container">
   
+
     <p class="knowhow-subtitle">서베이지의 EASY한 꿀팁 
       <router-link :to="`/knowhowimage/${1}`"><span id="knowhow-more-btn">더보기</span></router-link></p>
       <div class="knowhow-main-contents">
@@ -28,6 +29,7 @@
 
         </div>
       </div>
+
 
   </div>
 </template>
@@ -78,7 +80,7 @@ export default {
       this.$store.state.knowhowIndex = num
     }
 
-    
+
   },
 }
 </script>
