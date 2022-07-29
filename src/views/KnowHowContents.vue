@@ -1,8 +1,11 @@
 <template>
 <div id="knowhowContents-container">
-  
-  <KnowHowTip2/>
-  
+  <div v-if="this.id==11">
+    <KnowHowTip1/>
+  </div>
+  <div v-if="this.id==12">
+    <KnowHowTip2/>
+  </div>
   <!-- <KnowHowItem />
   <KnowHowClosed /> -->
 
@@ -16,6 +19,11 @@ import KnowHowTip2 from '../components/KnowHow/KnowHowTip/KnowHowTip2.vue'
 
 
 export default {
+  data() {
+    return {
+      id: this.$route.params.id
+    }
+  },
   components:{
     KnowHowTip1,
     KnowHowTip2

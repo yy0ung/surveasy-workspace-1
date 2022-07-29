@@ -167,32 +167,54 @@ export default createStore({
 
     reviewTempData:'',
 
+    knowhowIndex:-1,
+
     knowhowOne:[
       {
-        image: require('@/assets/knowhow/one/main-1.png'),
-        link: "/home"
-        
+        index : 12,
+        image: require('@/assets/knowhow/one/surveytips2thumbnail.png')
       },
       {
-        image: require('@/assets/knowhow/one/main-1.png'),
-        link: "/mypage/dashboard"
-        
-      },
+        index : 11,
+        image: require('@/assets/knowhow/one/main-1.png')
+      }
+    
     ],
     knowhowTwo:[
       {
-        image: require('@/assets/knowhow/one/main-1.png'),
-        link: "/mypage/dashboard"
-        
+        index : 21,
+        image:  require('@/assets/knowhow/one/surveytips2thumbnail.png')
       },
+     
     ],
     knowhowThree:[
       {
-        image: require('@/assets/knowhow/one/main-1.png'),
-        link: "/mypage/dashboard"
-        
+        index : 36,
+        image:  require('@/assets/knowhow/one/surveytips2thumbnail.png')
       },
+      {
+        index : 35,
+        image:  require('@/assets/knowhow/one/main-1.png'),
+      },
+      {
+        index : 34,
+        image:  require('@/assets/knowhow/one/main-1.png'),
+      },
+      {
+        index : 33,
+        image:  require('@/assets/knowhow/one/main-1.png'),
+      },
+      {
+        index : 32,
+        image:  require('@/assets/knowhow/one/main-1.png'),
+      },
+      {
+        index : 31,
+        image:  require('@/assets/knowhow/one/main-1.png'),
+      },
+    
     ]
+    
     
     
     
