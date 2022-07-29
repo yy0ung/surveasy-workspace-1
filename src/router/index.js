@@ -120,6 +120,12 @@ const routes = [
   },   
 
   {
+    path: '/knowhowimage/:id',
+    // name: 'KnowHowImage',
+    component: KnowHowImage
+  },   
+
+  {
     path: '/story',
     name: 'Story',
     component: Story

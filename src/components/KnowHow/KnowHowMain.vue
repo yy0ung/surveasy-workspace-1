@@ -33,6 +33,7 @@
 </template>
 
 <script>
+
 export default {
   
   data() {
@@ -76,6 +77,7 @@ export default {
     changeIndex(num){
       this.$store.state.knowhowIndex = num
     }
+
     
   },
 }
@@ -96,6 +98,7 @@ export default {
   color: #0AAB00;
   font-size: 25px;
   text-align: left;
+
   margin-left: 80px;
 }
 #knowhow-more-btn{
@@ -141,3 +144,4 @@ export default {
 
 
 </style>
+
