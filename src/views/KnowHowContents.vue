@@ -6,6 +6,12 @@
   <div v-if="this.id==12">
     <KnowHowTip2/>
   </div>
+  <div v-if="this.id==13">
+    <KnowHowTip3/>
+  </div>
+  <div v-if="this.id==14">
+    <KnowHowTip4/>
+  </div>
   <!-- <KnowHowItem />
   <KnowHowClosed /> -->
 
@@ -15,7 +21,8 @@
 <script>
 import KnowHowTip1 from '../components/KnowHow/KnowHowTip/KnowHowTip1.vue'
 import KnowHowTip2 from '../components/KnowHow/KnowHowTip/KnowHowTip2.vue'
-
+import KnowHowTip3 from '../components/KnowHow/KnowHowTip/KnowHowTip3.vue'
+import KnowHowTip4 from '../components/KnowHow/KnowHowTip/KnowHowTip4.vue'
 
 
 export default {
@@ -26,7 +33,9 @@ export default {
   },
   components:{
     KnowHowTip1,
-    KnowHowTip2
+    KnowHowTip2,
+    KnowHowTip3,
+    KnowHowTip4
     
   },
   mounted() {

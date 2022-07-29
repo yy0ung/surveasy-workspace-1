@@ -45,7 +45,8 @@ export default {
   mounted() {
     this.fetchOneList(),
     this.fetchTwoList(),
-    this.fetchThreeList()
+    this.fetchThreeList(),
+    window.scrollTo(0,0)
   },
   methods: {
     fetchOneList(){
@@ -95,7 +96,7 @@ export default {
   color: #0AAB00;
   font-size: 25px;
   text-align: left;
-  margin-left: 50px;
+  margin-left: 80px;
 }
 #knowhow-more-btn{
   font-family: 'Noto Sans KR', sans-serif;
@@ -112,19 +113,21 @@ export default {
   height: 200px;
 }
 .know-main-image{
-  width: 200px;
-  height: 200px;
+  width: 230px;
+  height: 230px;
   grid-area: 1/1/2/2;
 }
 .knowhow-main-contents{
   justify-content: left;
   align-items: left;
   display: grid;
+  margin-left: 80px;
   place-items: center;
-  grid-template-columns: repeat(4, 15em);
+  padding-top: 10px;
+  padding-bottom: 50px;
+  grid-template-columns: repeat(4, 16em);
 
-  gap: 10px;
-
+ 
 
 }
 

@@ -3,7 +3,7 @@
     <p class="knowhow-image-title">{{title(this.id)}}</p>
     <div v-if="this.id==1" class="knowhow-image-contents">
       <div class="grid" v-for="slide in this.$store.state.knowhowOne" :key="slide">
-        <router-link to="/knowhowcontents"><img class="know-image" :src="slide.image"></router-link>
+        <router-link :to="`/knowhowcontents/${slide.index}`"><img class="know-image" :src="slide.image"></router-link>
 
     </div>
     </div>
@@ -29,6 +29,9 @@ export default {
     return {
       id: this.$route.params.id
     }
+  },
+  mounted() {
+    window.scrollTo(0,0)
   },
   methods: {
     title(id){
@@ -61,12 +64,12 @@ export default {
   margin-bottom: 50px;
 }
 .grid{
-  width: 200px;
-  height: 200px;
+  width: 250px;
+  height: 250px;
 }
 .know-image{
-  width: 200px;
-  height: 200px;
+  width: 250px;
+  height: 250px;
   grid-area: 1/1/2/2;
 }
 .knowhow-image-contents{
@@ -74,9 +77,9 @@ export default {
   align-items: center;
   display: grid;
   place-items: center;
-  grid-template-columns: repeat(3, 15em);
-  grid-template-rows: repeat(2,15em);
-  gap: 10px;
+  grid-template-columns: repeat(3, 17em);
+  grid-template-rows: repeat(2,18em);
+  
 
 
 }
