@@ -30,6 +30,7 @@
         </div>
       </div>
 
+
   </div>
 </template>
 
@@ -79,7 +80,7 @@ export default {
       this.$store.state.knowhowIndex = num
     }
 
-    
+
   },
 }
 </script>
