@@ -17,7 +17,7 @@
     <div class="knowhow-content">
       <p class="black-bold">그럼 어떤 주제로 설문을 진행할까</p>
       <p class="black-light">이러한 설문조사의 특징을 고려했을 때, 설문조사를 진행하기 좋은 카테고리로는 ‘인식 조사’, ‘만족도 조사’ 등이 있습니다. 또한, 설문조사는 다수를 대상으로 특정한 주제나 사회 문제에 대해 다양한 의견을 수렴하기 좋습니다.</p>
-        <p><img class="img" src="@/assets/knowhow/one/surveytips2image(1).jpeg" width="800"></p>
+        <p><img class="img" src="@/assets/knowhow/one/surveytips2image(1).jpeg" width="600"></p>
     </div>
     <div class="knowhow-content">
       <p class="black-bold">이런 식의 주제는 피하자</p>
@@ -53,9 +53,10 @@ export default {
     margin-right: auto;
     margin-left: auto;
     font-family: 'Noto Sans KR', sans-serif;
-    margin-top: 50px;
+    margin-top: 60px;
     text-align: center;
   }
+
   #knowhow-item-container .knowhow-title p{
    font-size: 1.5rem;
    margin-right: 30rem;
@@ -66,15 +67,17 @@ export default {
   #knowhow-item-container .knowhow-title .black-light{
     font-size: 1.2rem;
     margin-right: 37rem;
+    
     font-weight: 300;
     color:black;
     margin-bottom: 0;
   }
   #knowhow-item-container .img1{
-    margin-top: 20px;
+    margin-top: 50px;
   }
   #knowhow-item-container .img{
     margin-top:30px;
+    padding-left: 0 !important;
   }
   .knowhow-content {
     margin-bottom: 120px;
@@ -82,17 +85,20 @@ export default {
   .knowhow-content .black-light{
     font-weight: 300;
     text-align: left;
-    margin-left: 12.5rem;
+    margin-left: 12rem !important;
+    margin-right: 12rem !important;
     font-size: 1.1rem;
   }
   .knowhow-content .black-bold{
     font-weight: 700;
     font-size: 1.3rem;
     text-align: left;
-    margin-left: 12.5rem;
+    margin-left: 12rem !important;
   }
   .knowhow-content .img2{
-    margin-top:80px;
+    margin-top:100px;
+    padding-left: 0 !important;
+    margin-bottom: 20px;
   }
   .black-bold-{
     

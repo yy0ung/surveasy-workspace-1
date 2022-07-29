@@ -8,7 +8,7 @@
     </div>
     <div class="knowhow-content">
       <p><img class="img1" src="@/assets/knowhow/one/main-1.png" width="500"></p>
-      <p class="black-bold-">설문을 만들기 전에, 혹은 만들고나서 한 번쯤 점검해보면 좋을 6가지 요소를 소개해드립니다. 소개해드리는 6가지 요소를 잘 고려해서 만들었는지 확인해보세요.</p>
+      <p class="black-bold-">설문을 만들기 전에, 혹은 만들고나서 한 번쯤 점검해보면 좋을 6가지 요소를 소개해드립니다. <br> 소개해드리는 6가지 요소를 잘 고려해서 만들었는지 확인해보세요.</p>
     </div>
     <div class="knowhow-content">
       <p class="black-bold">1. 설문에 대한 소개, 설명은 간결하게!</p>
@@ -63,9 +63,10 @@ export default {
     margin-right: auto;
     margin-left: auto;
     font-family: 'Noto Sans KR', sans-serif;
-    margin-top: 50px;
+    margin-top: 60px;
     text-align: center;
   }
+
   #knowhow-item-container .knowhow-title p{
    font-size: 1.5rem;
    margin-right: 30rem;
@@ -76,32 +77,44 @@ export default {
   #knowhow-item-container .knowhow-title .black-light{
     font-size: 1.2rem;
     margin-right: 37rem;
+    
     font-weight: 300;
     color:black;
     margin-bottom: 0;
   }
   #knowhow-item-container .img1{
-    margin-top: 20px;
+    margin-top: 50px;
   }
   #knowhow-item-container .img{
-    margin-top:20px;
+    margin-top:30px;
+    padding-left: 0 !important;
   }
   .knowhow-content {
-    margin-bottom: 100px;
+    margin-bottom: 120px;
   }
   .knowhow-content .black-light{
     font-weight: 300;
     text-align: left;
-    margin-left: 12.5rem;
+    margin-left: 12rem !important;
+    margin-right: 12rem !important;
     font-size: 1.1rem;
   }
   .knowhow-content .black-bold{
     font-weight: 700;
     font-size: 1.3rem;
     text-align: left;
-    margin-left: 12.5rem;
+    margin-left: 12rem !important;
   }
-  
+  .knowhow-content .img2{
+    margin-top:100px;
+    padding-left: 0 !important;
+    margin-bottom: 20px;
+  }
+  .black-bold-{
+    
+    color: gray;
+    font-weight: 400;
+  }
 
  
 </style>
