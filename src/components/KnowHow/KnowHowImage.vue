@@ -1,9 +1,21 @@
 <template>
   <div id="knowhow-image-container">
     <p class="knowhow-image-title">{{title(this.id)}}</p>
-    <div class="knowhow-image-contents">
-      <div class="grid" v-for="(slide,i) in this.$store.state.knowhowOne" :key="i">
-        <img class="know-image" :src="slide.image">
+    <div v-if="this.id==1" class="knowhow-image-contents">
+      <div class="grid" v-for="slide in this.$store.state.knowhowOne" :key="slide">
+        <router-link to="/knowhowcontents"><img class="know-image" :src="slide.image"></router-link>
+
+    </div>
+    </div>
+    <div v-if="this.id==2" class="knowhow-image-contents">
+      <div class="grid" v-for="slide in this.$store.state.knowhowTwo" :key="slide">
+        <router-link to="/knowhowcontents"><img class="know-image" :src="slide.image"></router-link>
+
+    </div>
+    </div>
+    <div v-if="this.id==3" class="knowhow-image-contents">
+      <div class="grid" v-for="slide in this.$store.state.knowhowThree" :key="slide">
+        <router-link to="/knowhowcontents"><img class="know-image" :src="slide.image"></router-link>
 
     </div>
     </div>
@@ -67,5 +79,8 @@ export default {
   gap: 10px;
 
 
+}
+.know-image:hover{
+  filter: brightness(70%);
 }
 </style>

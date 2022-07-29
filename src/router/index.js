@@ -109,7 +109,7 @@ const routes = [
     component: KnowHow
   },  
   {
-    path: '/knowhowcontents',
+    path: '/knowhowcontents/:id',
     name: 'KnowHowContents',
     component: KnowHowContents
   },   
