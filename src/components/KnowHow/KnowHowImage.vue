@@ -92,4 +92,5 @@ export default {
   filter: brightness(70%);
 }
 
+
 </style>
