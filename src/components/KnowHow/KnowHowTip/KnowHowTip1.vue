@@ -42,6 +42,9 @@
         <p><img class="img" src="@/assets/knowhow/one/1-6(1).png" width="800"></p>
       <p class="black-light">예/아니오 질문을 피할 때는 리커트 척도(Likert Scale)를 이용하는 것을 추천드립니다. 이 척도는 의견과 인식을 측정하는 가장 신뢰성 있는 방법 중 하나이기도 합니다.</p>
         <p><img class="img" src="@/assets/knowhow/one/1-6(2).png"></p>
+        <p><img src="@/assets/knowhow/08.png" class="img2" width="30"></p>
+        <p class="black-bold-">명확하고 꼼꼼한 설문 설계는 유의미한 응답을 수집할 수 있게끔 합니다. <br>
+        6가지 요소를 잘 고려해서 질 높은 설문을 만들어보세요!<br></p>
  
     </div>
   </div>
@@ -115,6 +118,9 @@ export default {
     color: gray;
     font-weight: 400;
   }
-
+ .green{
+    margin-left: 9.9rem;
+    text-align: left;
+  }
  
 </style>

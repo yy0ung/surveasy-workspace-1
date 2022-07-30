@@ -95,10 +95,6 @@ export default {
   
 }
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 6a2d1ede4a20318f7d51da11531ef1e68a6ec643
 .knowhow-subtitle{
   font-family: 'Noto Sans KR', sans-serif;
   color: #0AAB00;

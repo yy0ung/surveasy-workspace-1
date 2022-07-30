@@ -32,8 +32,8 @@
       <p><img src="@/assets/knowhow/08.png" class="img2" width="30"></p>
         <p class="black-bold-">여러 군데에 설문 배포하는 것이 번거롭다면,  <br>
         서베이지의 설문 응답 서비스를 이용해 보세요.<br>
-        200명이 넘는 패널들이 설문에 참여할 준비가 되어있습니다.<br>
-        <router-link to="/service"><span id="click-go">클릭해서 이용하러 가기</span></router-link></p>
+        200명이 넘는 패널들이 설문에 참여할 준비가 되어있습니다.<br><br>
+        <router-link to="/service"><span id="click-go">이용하러 가기</span></router-link></p>
     </div>
   </div>
 </div>
@@ -109,6 +109,10 @@ export default {
   #click-go{
     color: #0AAB00;
     text-decoration: underline;
+    
   }
- 
+ .green{
+    margin-left: 9.9rem;
+    text-align: left;
+  }
 </style>

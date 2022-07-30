@@ -113,6 +113,8 @@ export default {
     color: gray;
     font-weight: 400;
   }
-
- 
+ .green{
+    margin-left: 9.9rem;
+    text-align: left;
+  }
 </style>
