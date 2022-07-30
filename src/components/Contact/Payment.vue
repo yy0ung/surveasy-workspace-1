@@ -2,7 +2,7 @@
   <div id="FAQ-detail-container">
     <div class="template-contents">
       <div>
-      <p class="title"  >
+      <p class="title">
         <span @click="toggle1" :style="{color : fontcolor1}" class="FAQ-title">결제 방법은 어떻게 되나요?</span>
         <span @click="toggle1">
           <span v-if="showDetail1==false"><i class="fas fa-chevron-down"></i></span>

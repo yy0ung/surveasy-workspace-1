@@ -43,7 +43,7 @@
       <p class="detail" v-if="showDetail4==true">상단의 ‘서비스 이용’ 배너에서 ‘설문 응답 서비스’ 클릭 시, 옵션별로 해당 가격을 확인하실 수 있습니다.</p>
     </div>
     </div>
-    
+
   </div>
 </template>
 
