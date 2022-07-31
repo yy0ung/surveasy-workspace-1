@@ -99,6 +99,7 @@ export default {
       var lastDocRef = doc(db, "lastID", "lastNoticeID")
 
       await setDoc(docN, {
+        id: this.lastNoticeID,
         title : this.noticeTitle,
         date : D,
         content : this.noticeContents,
