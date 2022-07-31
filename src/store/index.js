@@ -166,8 +166,59 @@ export default createStore({
     withDrawCheckTF: false,
 
     reviewTempData:'',
-    
 
+    knowhowIndex:-1,
+
+    knowhowOne:[
+      {
+        index : 17,
+        image: require('@/assets/knowhow/one/surveytips7thumbnail.png')
+      },
+      {
+        index : 16,
+        image: require('@/assets/knowhow/one/surveytips6thumbnail.png')
+      },
+      {
+        index : 15,
+        image: require('@/assets/knowhow/one/surveytips5thumbnail.png')
+      },
+      {
+        index : 14,
+        image: require('@/assets/knowhow/one/surveytips4thumbnail.png')
+      },
+      {
+        index : 13,
+        image: require('@/assets/knowhow/one/surveytips3thumbnail.png')
+      },
+      {
+        index : 12,
+        image: require('@/assets/knowhow/one/surveytips2thumbnail.png')
+      },
+      {
+        index : 11,
+        image: require('@/assets/knowhow/one/main-1.png')
+      }
+    
+    ],
+    knowhowTwo:[
+      {
+        index : 21,
+        image:  require('@/assets/knowhow/two/research1thumbnail.png')
+      },
+     
+    ],
+    knowhowThree:[
+      
+      {
+        index : 31,
+        image:  require('@/assets/knowhow/three/check1thumbnail.png'),
+      },
+    
+    ]
+    
+    
+    
+    
     
   },
 

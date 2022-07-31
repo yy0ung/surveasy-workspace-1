@@ -9,6 +9,7 @@
     <router-link to="/" @click="indexC(0)"><img class="logoimg" src="@/assets/logo.png" width="190"></router-link> 
   </div>
     <div class="nav-links">
+
       <div class="my-dropdown" >
         <span class="nav-element" id="nav-service" :class="{active: this.$store.state.indexColor==1}">서비스 이용
           <span class="nav-icon" >
@@ -23,7 +24,7 @@
       <span class="nav-element-">|</span>
       <router-link to="/surveylist"><span class="nav-element" @click="indexC(2)">설문 리스트</span></router-link> 
       <span class="nav-element-">|</span>
-      <router-link to="/knowhow"><span class="nav-element" @click="indexC(2)">설문 노하우</span></router-link> 
+      <router-link to="/knowhow"><span class="nav-element" @click="indexC(2)">리서치 노하우</span></router-link> 
       <span class="nav-element-">|</span>
       <router-link to="/story"><span class="nav-element" @click="indexC(2)">브랜드 스토리</span></router-link> 
       <span class="nav-element-">|</span>
