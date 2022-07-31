@@ -10,13 +10,13 @@
     </div>
     <div v-if="this.id==2" class="knowhow-image-contents">
       <div class="grid" v-for="slide in this.$store.state.knowhowTwo" :key="slide">
-        <router-link to="/knowhowcontents"><img class="know-image" :src="slide.image"></router-link>
+        <router-link :to="`/knowhowcontents/${slide.index}`"><img class="know-image" :src="slide.image"></router-link>
 
     </div>
     </div>
     <div v-if="this.id==3" class="knowhow-image-contents">
       <div class="grid" v-for="slide in this.$store.state.knowhowThree" :key="slide">
-        <router-link to="/knowhowcontents"><img class="know-image" :src="slide.image"></router-link>
+        <router-link :to="`/knowhowcontents/${slide.index}`"><img class="know-image" :src="slide.image"></router-link>
 
     </div>
     </div>
@@ -39,11 +39,11 @@ export default {
   methods: {
     title(id){
       if(id==1){
-        return "서베이지의 EASY한 꿀팁"
+        return "서베이지의 EASY한 서베이 꿀팁"
       }else if(id==2){
         return "다른 리서치도 EASY하게"
       }else{
-        return "서베이지의 매거진 : check"
+        return "서베이지 매거진 : Check"
       }
     }
   },

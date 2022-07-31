@@ -2,7 +2,7 @@
   <div id="knowhow-main-container">
   
 
-    <p class="knowhow-subtitle">서베이지의 EASY한 꿀팁 
+    <p class="knowhow-subtitle">서베이지의 EASY한 서베이 꿀팁 
       <router-link :to="`/knowhowimage/${1}`"><span id="knowhow-more-btn">더보기</span></router-link></p>
       <div class="knowhow-main-contents">
         <div class="main-grid" v-for="slide in this.list1" :key="slide">
@@ -15,17 +15,17 @@
       <router-link :to="`/knowhowimage/${2}`"><span id="knowhow-more-btn">더보기</span></router-link></p>
       <div class="knowhow-main-contents">
         <div class="main-grid" v-for="slide in this.list2" :key="slide">
-          <router-link to="/knowhowcontents"><img class="know-main-image" :src="slide.image"></router-link>
+          <router-link :to="`/knowhowcontents/${slide.index}`"><img class="know-main-image" :src="slide.image"></router-link>
 
         </div>
       </div>
 
 
-    <p class="knowhow-subtitle">서베이지의 매거진 : check
+    <p class="knowhow-subtitle">서베이지 매거진 : Check
       <router-link :to="`/knowhowimage/${3}`"><span id="knowhow-more-btn">더보기</span></router-link></p>
       <div class="knowhow-main-contents">
         <div class="main-grid" v-for="slide in this.list3" :key="slide">
-          <router-link to="/knowhowcontents"><img class="know-main-image" :src="slide.image"></router-link>
+          <router-link :to="`/knowhowcontents/${slide.index}`"><img class="know-main-image" :src="slide.image"></router-link>
 
         </div>
       </div>

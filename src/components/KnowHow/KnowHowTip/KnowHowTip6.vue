@@ -13,12 +13,12 @@
     <div class="knowhow-content">
       <p class="black-bold">응답 그래프 만들기</p>
       <p class="black-light">구글폼은 응답을 실시간으로 그래프화해서 보여주고 있습니다. 복수선택이 불가한 객관식 항목은 원그래프로, 복수선택이 가능한 객관식 항목은 가로 막대그래프로, 선형 배율 문항은 세로 막대그래프로 정리됩니다. 복사 버튼을 누르면 해당 그래프의 이미지가 복사되니, 자료에 바로 넣어 사용해 보세요.</p>
-      <p><img class="img" src="@/assets/knowhow/one/surveytips6image(1).png" width="600"></p>
+      <p><img class="img" src="@/assets/knowhow/one/image.png" width="600"></p>
     </div>
     <div class="knowhow-content">
       <p class="black-bold">일부 응답 그래프 만들기</p>
       <p class="black-light">전체 응답이 아닌, 일부의 응답만 골라 그래프를 만드는 것도 가능합니다. 응답 화면에서 우측 상단의 ‘구글 시트’ 아이콘을 클릭해 데이터를 스프레드시트 형식으로 모아보기를 설정합니다. 만들어진 구글 시트 파일에서 원하는 데이터를 선택한 후, ‘삽입’→’차트’를 클릭하면 선택한 데이터에 대해서만 그래프를 만들 수 있습니다.</p>
-      <p><img class="img" src="@/assets/knowhow/one/surveytips6image(2).png" width="500"></p>
+      <p><img class="img" src="@/assets/knowhow/one/image(1).png" width="500"></p>
       <p><img class="img" src="@/assets/knowhow/one/surveytips6image(3).png" width="500"></p>
     </div>
     <div class="knowhow-content">

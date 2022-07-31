@@ -21,7 +21,14 @@
   <div v-if="this.id==17">
     <KnowHowTip7/>
   </div>
-  <!-- <KnowHowItem />
+  <div v-if="this.id==21">
+    <KnowHowOther1/>
+  </div>
+  <div v-if="this.id==31">
+    <KnowHowCheck1/>
+  </div>
+  <!--
+     <KnowHowItem />
   <KnowHowClosed /> -->
 
 </div>
@@ -35,7 +42,8 @@ import KnowHowTip4 from '../components/KnowHow/KnowHowTip/KnowHowTip4.vue'
 import KnowHowTip5 from '../components/KnowHow/KnowHowTip/KnowHowTip5.vue'
 import KnowHowTip6 from '../components/KnowHow/KnowHowTip/KnowHowTip6.vue'
 import KnowHowTip7 from '../components/KnowHow/KnowHowTip/KnowHowTip7.vue'
-
+import KnowHowOther1 from '../components/KnowHow/KnowHowOther/KnowHowOther1.vue'
+import KnowHowCheck1 from '../components/KnowHow/KnowHowCheck/KnowHowCheck1.vue'
 
 export default {
   data() {
@@ -50,7 +58,9 @@ export default {
     KnowHowTip4,
     KnowHowTip5,
     KnowHowTip6,
-    KnowHowTip7
+    KnowHowTip7,
+    KnowHowOther1,
+    KnowHowCheck1
     
   },
   mounted() {

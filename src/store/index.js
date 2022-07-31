@@ -203,34 +203,15 @@ export default createStore({
     knowhowTwo:[
       {
         index : 21,
-        image:  require('@/assets/knowhow/one/surveytips2thumbnail.png')
+        image:  require('@/assets/knowhow/two/research1thumbnail.png')
       },
      
     ],
     knowhowThree:[
-      {
-        index : 36,
-        image:  require('@/assets/knowhow/one/surveytips2thumbnail.png')
-      },
-      {
-        index : 35,
-        image:  require('@/assets/knowhow/one/main-1.png'),
-      },
-      {
-        index : 34,
-        image:  require('@/assets/knowhow/one/main-1.png'),
-      },
-      {
-        index : 33,
-        image:  require('@/assets/knowhow/one/main-1.png'),
-      },
-      {
-        index : 32,
-        image:  require('@/assets/knowhow/one/main-1.png'),
-      },
+      
       {
         index : 31,
-        image:  require('@/assets/knowhow/one/main-1.png'),
+        image:  require('@/assets/knowhow/three/check1thumbnail.png'),
       },
     
     ]
