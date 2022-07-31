@@ -84,8 +84,6 @@ export default {
   place-items: center;
   grid-template-columns: repeat(3, 17em);
   grid-template-rows: repeat(2,18em);
-  
-
 
 }
 .know-image:hover{
