@@ -22,7 +22,7 @@
       <img :src="item[0]" class="proof-image">
 
       <input type="checkbox" @click="cancelProof(item[1])">
-      <span class="fileName" :class="{active: changeColor.indexOf(item[1].substring(38))!=-1}">{{item[1].substring(38)}}</span>
+      <span class="fileName" :class="{active: changeColor.indexOf(item[1].substring(4))!=-1}">{{item[1].substring(38)}}</span>
       
       
     </span>
@@ -76,14 +76,15 @@ export default {
       this.wrongProofUserUid.push(this.userUid)
       const db = this.$store.state.db
 
-      this.fbSaveWrongInfo.push(info.substring(38))
+      this.fbSaveWrongInfo.push(info.substring(4))
+      //console.log(this.fbSaveWrongInfo)
 
       const docSnap = await getDocs(collection(db,"panelData"))
       docSnap.forEach((doc) => {
         if(doc.id == this.userUid){
           this.userInfo.length = 0
           this.userInfo.push(doc.data())
-          console.log(this.userInfo[0].fcmToken)
+          //console.log(this.userInfo[0].fcmToken)
           this.wrongTokens.push(this.userInfo[0].fcmToken)
         }
       })
@@ -106,7 +107,7 @@ export default {
 
       if(docSnap.exists()) {
         wrongFileName.push(docSnap.data().fileName)
-        console.log("doc",wrongFileName[0])
+        //console.log("doc",wrongFileName[0])
       }
       
       const listRef = ref(storage, this.id+"/")
@@ -118,18 +119,18 @@ export default {
         });
 
         res.items.forEach((itemRef) => {
-          console.log(itemRef._location)
+          //console.log(itemRef._location)
           const path = ref(storage, itemRef._location.path_)
 
           getDownloadURL(path).then((url) => {
             var list = [url,itemRef._location.path_]
             this.urlList.push(list)
-            //console.log(list)
+            // console.log(list)
             var i =0
             //왜 안되는지 모르겠는데 숫자가 크면 됨.
             while(i<=wrongFileName.length+1000) {
-              if(wrongFileName[0][i] == list[1].substring(38)){
-                console.log(wrongFileName[0][i], list[1].substring(38))
+              if(wrongFileName[0][i] == list[1].substring(4)){
+                console.log(wrongFileName[0][i], list[1].substring(4))
                 //console.log("done")
                 this.changeColor.push(wrongFileName[0][i])
                 i++

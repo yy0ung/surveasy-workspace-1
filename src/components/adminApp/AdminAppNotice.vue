@@ -3,7 +3,7 @@
 <div id="admin-adminNotice">
   
   <div class="admin-adminNotice-container">
-    <h3>공지사항 게시</h3>
+    <h3>공지사항 게시!!</h3>
     <div class="notice-content">
       <input type="text" v-model="noticeTitle" placeholder="제목" class="notice-title"><br>
       <textarea v-model="noticeContents" placeholder="내용" class="notice-contents"></textarea>
@@ -99,6 +99,7 @@ export default {
       var lastDocRef = doc(db, "lastID", "lastNoticeID")
 
       await setDoc(docN, {
+        id: this.lastNoticeID,
         title : this.noticeTitle,
         date : D,
         content : this.noticeContents,

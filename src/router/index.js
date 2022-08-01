@@ -37,7 +37,7 @@ import ReviewDetailDone from '../views/MyPage/ReviewDetailDone.vue'
 import Term1 from '../views/Term1.vue'
 import Term2 from '../views/Term2.vue'
 import AdminApp from '../views/Admin/AdminApp.vue'
-
+import KnowHowImage from '../components/KnowHow/KnowHowImage.vue'
 import PanelProofHome from '../components/adminApp/PanelProofHome.vue'
 import AdminDetail from '../views/Admin/AdminDetail.vue'
 
@@ -54,6 +54,8 @@ import AdminAppPanelSent from '../components/adminApp/AdminAppPanelSent.vue'
 import AdminAppPanelInfo from '../components/adminApp/AdminAppPanelInfo.vue'
 import AdminAppNotice from '../components/adminApp/AdminAppNotice.vue'
 import AdminAppHome from '../components/adminApp/AdminAppHome.vue'
+
+import KnowHowContents from '../views/KnowHowContents.vue'
 
 const routes = [
   {
@@ -105,7 +107,24 @@ const routes = [
     path: '/knowhow',
     name: 'KnowHow',
     component: KnowHow
+  },  
+  {
+    path: '/knowhowcontents/:id',
+    name: 'KnowHowContents',
+    component: KnowHowContents
   },   
+  {
+    path: '/knowhowimage/:id',
+    // name: 'KnowHowImage',
+    component: KnowHowImage
+  },   
+
+  {
+    path: '/knowhowimage/:id',
+    // name: 'KnowHowImage',
+    component: KnowHowImage
+  },   
+
   {
     path: '/story',
     name: 'Story',

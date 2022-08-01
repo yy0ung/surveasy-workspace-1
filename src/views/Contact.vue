@@ -4,8 +4,9 @@
     <ContactModal />
     <ContactFinalModal />
 
-  <ContactContactUs />
+  
   <ContactFAQ />
+  
   <div v-if="this.$store.state.FAQbutton==0">
   <RespondService />
   </div>
@@ -17,7 +18,10 @@
   </div>
   <div v-if="this.$store.state.FAQbutton==3">
   <Payment />
+
   </div>
+
+    <ContactContactUs />
 
 
 </div>
