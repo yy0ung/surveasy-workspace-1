@@ -1,6 +1,6 @@
 <template>
-<div class="FAQ">
-    <div class="FAQ-title" @click="toggle">
+<div id="FAQ-Modal">
+    <div class="FAQ-title" @click="toggle(i)" :class="{active: showDetail}">
         <p>{{FAQData[i].title}}
           <span v-if="showDetail==false"><i v-if="showDetail==false" class="right fas fa-chevron-down"></i></span>
           <span v-if="showDetail==true"><i v-if="showDetail==true" class="right fas fa-chevron-up"></i></span>
@@ -36,18 +36,21 @@ methods :{
       }
 }
 
+
+
 }
 }
 </script>
 
 <style>
-.right{
+#FAQ-Modal .right{
   float: right;
+  padding-top: 6px;
 
 }
 
 
-.FAQ{
+#FAQ-Modal{
   outline-style: Solid;
   outline-color: #0AAC00;
   outline-width: 1px;
@@ -56,7 +59,7 @@ methods :{
   transition: 0.3s;
 }
 
-.FAQ-detail{
+#FAQ-Modal .FAQ-detail{
     font-weight: 300;
     font-size: 20px;
     color: Black;
@@ -65,7 +68,7 @@ methods :{
     border-top: 1px solid #0AAC00;
    }
 
-.FAQ-title{
+#FAQ-Modal .FAQ-title{
       font-weight: 400;
       font-size: 20px;
       padding: 10px 20px 10px 30px;
@@ -76,12 +79,12 @@ methods :{
       transition: 0.3s;
     }
 
-.FAQ-title:hover{
+#FAQ-Modal .FAQ-title:hover{
       color: #0AAC00;
 
 }
 
-.FAQ-title:active{
+#FAQ-Modal .active{
       color: #0AAC00;
 
 }

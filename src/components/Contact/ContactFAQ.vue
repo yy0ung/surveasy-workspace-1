@@ -2,10 +2,7 @@
 <div id="FAQ-container">
   <div><h1>FAQ</h1></div>
   <div class="FAQ-router-link-container">
-    <button @click="button(0)" class="FAQ-btn">설문 응답 서비스</button>
-    <button @click="button(1)" class="FAQ-btn">설문 템플릿</button>
-    <button @click="button(2)" class="FAQ-btn">회원 정보</button>
-    <button @click="button(3)" class="FAQ-btn">결제 / 환불</button>
+    <button class="FAQ-btn" v-for="(Catagory,i) in Catagory" :key="i" @click="button(i)" :class="{active: clickEvent[i]}">{{Catagory}}</button>
   </div>
 </div> 
 
@@ -31,6 +28,8 @@ import FAQmodal from './FAQmodal.vue';
 export default {
   data() {
     return {
+    Catagory : ['설문 응답 서비스','설문 템플릿','회원 정보','결제 / 환불'],
+    clickEvent: [true,false,false,false],
     showDetail: false,
     FAQbutton: 0,
     }
@@ -44,11 +43,14 @@ export default {
 
     button(num){
       this.FAQbutton = num;
+      for(var i = 0; i < this.clickEvent.length; i++){
+        this.clickEvent[i] = false}
+      this.clickEvent[num] = true;
+      }
     }
 
   }
- 
-}
+
 </script>
 
 <style>
@@ -67,15 +69,18 @@ export default {
      border: none;
    }
 
-.FAQ-btn:hover{
+#FAQ-container .FAQ-btn:hover{
+    font-weight: 600;
     border-bottom: 5px solid #0AAC00;
    }
 
-.FAQ-btn:active {
+#FAQ-container .active {
+    font-weight: 600;
     border-bottom: 5px solid #0AAC00;
    } 
-#left{
-      border-left: none;
+#FAQ-container .default{
+    font-weight: 600;
+    border-bottom: 5px solid #0AAC00;
     }
     
 #FAQ-detail-container{

@@ -14,11 +14,6 @@ import ContactContactUs from '../components/Contact/ContactContactUs.vue'
 import ContactFAQ from '../components/Contact/ContactFAQ.vue'
 import ContactModal from '../components/Contact/ContactModal.vue'
 import ContactFinalModal from '../components/Contact/ContactFinalModal.vue'
-import RespondService from '../components/Contact/RespondService.vue'
-import Template from '../components/Contact/Template.vue'
-import MemberInfo from '../components/Contact/MemberInfo.vue'
-import Payment from '../components/Contact/Payment.vue'
-
 
 
 export default {
@@ -28,14 +23,6 @@ export default {
     ContactFAQ,
     ContactModal,
     ContactFinalModal,
-    RespondService,
-    Template,
-    MemberInfo,
-    Payment
-    
-    
-  
-  
 
   },
   mounted() {
