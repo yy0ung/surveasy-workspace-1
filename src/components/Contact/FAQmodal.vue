@@ -28,7 +28,6 @@ props: {
 },
 
 methods :{
-  
     dataToHTML(detail){
       return String(detail)
     },
