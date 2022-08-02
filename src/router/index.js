@@ -21,10 +21,6 @@ import MyInfo from '../components/MyPage/MyInfo.vue'
 import DashBoard from '../components/MyPage/DashBoard.vue'
 import CouponPoint from '../components/MyPage/CouponPoint.vue'
 import Payment from '../components/MyPage/Payment.vue'
-import RespondService from '../components/Contact/RespondService.vue'
-import Template from '../components/Contact/Template.vue'
-import MemberInfo from '../components/Contact/MemberInfo.vue'
-import PaymentInfo from '../components/Contact/Payment.vue'
 import FinalModal from '../components/Contact/ContactFinalModal.vue'
 import AdminMain from '../views/Admin/AdminMain.vue'
 import AdminMain2 from '../views/Admin/AdminMain2.vue'
@@ -135,10 +131,6 @@ const routes = [
     name: 'Contact',
     component: Contact,
     children: [
-      { path: "respondService", component: RespondService },
-      { path: "template", component: Template },
-      { path: "memberInfo", component: MemberInfo },
-      { path: "payment", component: PaymentInfo },
       { path: "finalmodal", component: FinalModal }
     ]
   },
