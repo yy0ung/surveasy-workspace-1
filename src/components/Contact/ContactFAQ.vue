@@ -2,7 +2,7 @@
 <div id="FAQ-container">
   <div><h1>FAQ</h1></div>
   <div class="FAQ-router-link-container">
-    <button class="FAQ-btn" v-for="(Catagory,i) in Catagory" :key="i" @click="button(i)" :class="{active: clickEvent[i]}">{{Catagory}}</button>
+    <button class="FAQ-btn" v-for="(Category,i) in Category" :key="i" @click="button(i)" :class="{active: clickEvent[i]}">{{Category}}</button>
   </div>
 </div> 
 
@@ -28,7 +28,7 @@ import FAQmodal from './FAQmodal.vue';
 export default {
   data() {
     return {
-    Catagory : ['설문 응답 서비스','설문 템플릿','회원 정보','결제 / 환불'],
+    Category : ['설문 응답 서비스','설문 템플릿','회원 정보','결제 / 환불'],
     clickEvent: [true,false,false,false],
     showDetail: false,
     FAQbutton: 0,
