@@ -45,7 +45,7 @@
 </template>
 
 <script>
-import { where, getFirestore,collection, getDocs, updateDoc, doc, deleteDoc, setDoc, getDoc } from 'firebase/firestore'
+import { query, where, limit, getFirestore,collection, getDocs, updateDoc, doc, deleteDoc, setDoc, getDoc } from 'firebase/firestore'
 export default {
   mounted() {
     this.$store.state.adminAppUserData = []
@@ -55,14 +55,15 @@ export default {
     async fetchPanelInfo(){
       const db = this.$store.state.db
       const adminAppUserData = this.$store.state.adminAppUserData
+
+      const q = query(collection(db, "panelData"), where("didFirstSurvey", "==", true))
       
-      const querySnapshot = await getDocs(collection(db,"panelData"))
+      const querySnapshot = await getDocs(q)
       querySnapshot.forEach((doc) => {
         var info = []
-        if(doc.data().didFirstSurvey == true) {
-          info.push(doc.data())
-          this.fetchPanelMyList(doc.data().uid, info)
-        }
+        info.push(doc.data())
+        this.fetchPanelMyList(doc.data().uid, info)
+        // console.log(doc.data().name)
       })
       
     },
@@ -82,18 +83,19 @@ export default {
       })
 
       const docRef = collection(db, "panelData", uid, "FirstSurvey")
-      const querySnapshot2 = await getDocs(docRef)
+      const q = query(collection(db, "panelData", uid, "FirstSurvey"), where("EngSurvey", "!=", null))
+      const querySnapshot2 = await getDocs(q)
       if(querySnapshot2 != null) {
         querySnapshot2.forEach((doc) => {
           FirstSurvey.push(doc.data())
-          //console.log(FirstSurvey)
+          console.log(doc.data().EngSurvey)
         })
       }
       
 
       var panel = { uid: uid, info: info, respondedSurvey : respondedSurvey, FirstSurvey : FirstSurvey }
       adminAppUserData.push(panel)
-      //console.log(panel)
+      console.log(panel)
     }
 
 
