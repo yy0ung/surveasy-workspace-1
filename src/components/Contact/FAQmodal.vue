@@ -7,7 +7,7 @@
         </p>
     </div>
     <div class="FAQ-detail" v-if="showDetail==true">
-        <p v-html="dataToHTML(FAQData[i].detail)"></p>
+        <p>{{FAQData[i].detail}}</p>
     </div>
 </div>
 </template>
@@ -28,10 +28,6 @@ props: {
 },
 
 methods :{
-    dataToHTML(detail){
-      return String(detail)
-    },
-
     toggle(){
       if(this.showDetail == false){
         this.showDetail = true;

@@ -1,7 +1,7 @@
 <template>
   <div id='list-view-container'>
     <p></p>
-    <!--테이블 만들기! -->
+    <!--테이블 만들기 -->
     
     <table id='list-table'>
       <tr>
