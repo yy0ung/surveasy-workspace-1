@@ -28,7 +28,7 @@
       <span class="nav-element-">|</span>
       <router-link to="/story"><span class="nav-element" @click="indexC(2)">브랜드 스토리</span></router-link> 
       <span class="nav-element-">|</span>
-      <router-link to="/contact"><span class="nav-element" @click="handleFAQ, indexC(2)">문의 & FAQ</span></router-link> 
+      <router-link to="/contact"><span class="nav-element" @click="handleFAQ, indexC(2)">문의</span></router-link> 
     </div>
     <!-- <div class="nav-login" > -->
      <div class="right-login">
