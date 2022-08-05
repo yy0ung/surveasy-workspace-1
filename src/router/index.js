@@ -11,6 +11,7 @@ import SurveyTemplate from '../views/SurveyTemplate.vue'
 import KnowHow from '../views/KnowHow.vue'
 import Story from '../views/Story.vue'
 import Contact from '../views/Contact.vue'
+import B2BContact from '../views/B2BContact.vue'
 import Login from '../views/Login/Login.vue'
 import Find from '../views/Login/Find.vue'
 import Register from '../views/Login/Register.vue'
@@ -133,6 +134,13 @@ const routes = [
     children: [
       { path: "finalmodal", component: FinalModal }
     ]
+  },
+
+  {
+    path: '/b2bcontact',
+    name: 'B2BContact',
+    component: B2BContact,
+
   },
   {
     path: '/login',
