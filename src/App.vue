@@ -220,7 +220,7 @@ export default {
 
 }
 body {
- 
+
   margin: 0;
 }
 #app .router-link-active{
