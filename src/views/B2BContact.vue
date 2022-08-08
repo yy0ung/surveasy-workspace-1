@@ -76,9 +76,9 @@ export default {
         return lastID[0].B2BID
   },
     closeModal(){
-      this.$router.go('/contact')
       this.$store.state.showModal=false
       this.$store.state.showFinalModal=false
+      router.push('/')
     },
 
     validateB2B(infoData){
