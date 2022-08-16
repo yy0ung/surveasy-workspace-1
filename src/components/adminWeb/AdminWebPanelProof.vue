@@ -22,7 +22,9 @@
       <img :src="item[0]" class="proof-image">
 
       <input type="checkbox" @click="cancelProof(item[1])">
-      <span class="fileName" :class="{active: changeColor.indexOf(item[1].substring(4))!=-1}">{{item[1].substring(38)}}</span>
+      <span class="fileName" :class="{active: changeColor.indexOf(item[1].substring(4))!=-1}">
+        {{item[1].substring(4, 8)}}_{{item[1].substring(38)}}
+      </span>
       
       
     </span>
