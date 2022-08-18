@@ -59,6 +59,7 @@
         <th>출생년도</th>
         <th>정산 총액</th>
         <th>유입경로</th>
+        <th>대학명</th>
         <th>영어 설문</th>
         <th>가구형태</th>
         <th>가구형태(ios)</th>
@@ -75,6 +76,7 @@
         <td>{{item.info[0].birthDate.substring(0,4)}}</td>
         <td>{{item.info[0].reward_total}}</td>
         <td>{{item.info[0].inflowPath}}</td>
+        <td>{{item.FirstSurvey[0].university}}</td>
         <td>{{item.FirstSurvey[0].EngSurvey}}</td>
         <td>{{item.FirstSurvey[0].family}}</td>
         <td>{{item.FirstSurvey[0].housingType}}</td>
