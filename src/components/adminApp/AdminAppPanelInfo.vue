@@ -6,6 +6,7 @@
     <tr id="th">
       <th>uid</th>
       <th>이름</th>
+      <th>대학</th>
       <th>메일</th>
       <th>전화번호</th>
       <th>성별</th>
@@ -22,6 +23,7 @@
     <tr v-for="item in (this.$store.state.adminAppUserData)" :key="item.info[0].name">
       <td>{{item.info[0].uid}}</td>
       <td>{{item.info[0].name}}</td>
+      <td>{{item.FirstSurvey[0].university}}</td>
       <td>{{item.info[0].email}}</td>
       <td>{{item.info[0].phoneNumber}}</td>
       <td>{{item.info[0].gender}}</td>

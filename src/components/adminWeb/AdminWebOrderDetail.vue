@@ -15,7 +15,7 @@
         </div>
     
         <div class="detail-col">
-          <div id="detail-title">(선택) 패널 유의사항</div> 
+          <div id="detail-title">(선택) 패널 유의사항 질문형으로 수정</div> 
           <div>            
             <input id="detail-input" type="text" placeholder="패널 유의사항" v-model="noticeToPanel">
             <div id="detail-col2">고객 입력 : {{notice}}</div>
