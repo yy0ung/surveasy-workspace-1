@@ -41,10 +41,7 @@
           <td><button @click="withdraw(this.individual_panel[0].uid)">X</button></td>
         </tr>
       </table>
-
-
     </div>
-    
   </div>
 
 
