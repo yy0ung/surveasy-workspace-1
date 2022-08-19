@@ -44,6 +44,8 @@
               <option :value=2>20대 (1994~2003년생)</option>
               <option :value=3>20세 이상 24세 이하</option>
               <option :value=4>25세 이상 29세 이하</option>
+              <option :value=5>20세 이상 39세 이하</option>
+              <option :value=6>20세 이상 49세 이하</option>
             </select>
             <select class="selectbox-option" v-model="targetGenderOption">
               <option :value=0 selected disabled hidden>대상 성별 선택</option>
@@ -52,15 +54,8 @@
               <option :value=3>여성</option>
             </select>
             </div>
-            <p class="warn-msg">다음 주문 페이지에서 설문 대상 상세정보를<br> 기입할 수 있습니다.</p>
-            
+            <p class="warn-msg">다음 주문 페이지에서 설문 대상 상세정보를<br> 기입할 수 있습니다.</p>   
           </li>
-
-  
-          
-            
-          
-
 
           <li class="hasTitleOption">
             <span class="option-title">영어설문</span> 
