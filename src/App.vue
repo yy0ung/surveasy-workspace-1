@@ -68,7 +68,7 @@
     </p>
     <p><span id="sitemap-bold">문의</span>
       <router-link class="link-underline" to="/contact"><p><span id="sitemap-none">1:1 문의</span></p></router-link>
-      <router-link class="link-underline" to="/contact"><p><span id="sitemap-none">B2B 문의</span></p></router-link>
+      <router-link class="link-underline" to="/b2bcontact"><p><span id="sitemap-none">B2B 문의</span></p></router-link>
       <router-link class="link-underline" to="/contact"><p><span id="sitemap-none">FAQ</span></p></router-link>
     </p>
     
@@ -220,7 +220,7 @@ export default {
 
 }
 body {
- 
+
   margin: 0;
 }
 #app .router-link-active{

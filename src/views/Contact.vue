@@ -1,28 +1,9 @@
 <template>
 <div id="contact" >
-
     <ContactModal />
     <ContactFinalModal />
-
-  
-  <ContactFAQ />
-  
-  <div v-if="this.$store.state.FAQbutton==0">
-  <RespondService />
-  </div>
-  <div v-if="this.$store.state.FAQbutton==1">
-  <Template />
-  </div>
-  <div v-if="this.$store.state.FAQbutton==2">
-  <MemberInfo />
-  </div>
-  <div v-if="this.$store.state.FAQbutton==3">
-  <Payment />
-
-  </div>
-
+    <ContactFAQ />
     <ContactContactUs />
-
 
 </div>
 
@@ -33,13 +14,6 @@ import ContactContactUs from '../components/Contact/ContactContactUs.vue'
 import ContactFAQ from '../components/Contact/ContactFAQ.vue'
 import ContactModal from '../components/Contact/ContactModal.vue'
 import ContactFinalModal from '../components/Contact/ContactFinalModal.vue'
-import RespondService from '../components/Contact/RespondService.vue'
-import Template from '../components/Contact/Template.vue'
-import MemberInfo from '../components/Contact/MemberInfo.vue'
-import Payment from '../components/Contact/Payment.vue'
-
-
-
 
 
 export default {
@@ -49,14 +23,6 @@ export default {
     ContactFAQ,
     ContactModal,
     ContactFinalModal,
-    RespondService,
-    Template,
-    MemberInfo,
-    Payment
-    
-    
-  
-  
 
   },
   mounted() {
@@ -71,7 +37,6 @@ export default {
   margin-right: auto;
   margin-left: auto;
   margin-bottom: 100px;
-  height: 1300px;
 }
 
 #contact .f-modal{

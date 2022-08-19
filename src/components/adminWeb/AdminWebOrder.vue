@@ -24,7 +24,7 @@
         <th>선택신분</th>
 
         <tr v-for="item in (this.$store.state.adminDataSurvey)" :key="item.id" class="tds" :id="item.id"
-          :class="{red:item.progress==0 || item.progress==1, green: item.progress==2, gray: item.progress==3 || item.progress==4}">
+          :class="{red:item.progress==0 || item.progress==1, green2: item.progress==2, gray: item.progress==3 || item.progress==4}">
           <td style="font-weight:bold;">{{item.progress}}</td>
           <td class="btn-progress-admin">
             <button class="progress-buttonX" @click="show_deleteModal(item.id, item.progress)">X</button>
@@ -37,7 +37,7 @@
           <td>{{item.lastIDChecked}}</td>
           <td>{{item.id}}</td>
           <td>
-            <router-link :to="`/adminmain/adminwebpanelproof/${item.id}`" target="_blank" class="tds" :class="{red:item.progress==0 || item.progress==1, green: item.progress==2, gray: item.progress==3 || item.progress==4}">
+            <router-link :to="`/adminmain/adminwebpanelproof/${item.id}`" target="_blank" class="tds" :class="{red:item.progress==0 || item.progress==1, green2: item.progress==2, gray: item.progress==3 || item.progress==4}">
               {{item.respondedPanel.length}}명
             </router-link>
           </td>
@@ -48,7 +48,7 @@
           <td>{{item.price}}</td>
           <td>{{item.spendTime}}</td>
           <td><a :href="item.link" target="_blank" class="tds"
-          :class="{red:item.progress==0 || item.progress==1, green: item.progress==2, gray: item.progress==3 || item.progress==4}">{{item.title}}</a></td>
+          :class="{red:item.progress==0 || item.progress==1, green2: item.progress==2, gray: item.progress==3 || item.progress==4}">{{item.title}}</a></td>
           <td>{{item.target}}</td>
           <td :title=item.uploaderIdentity>{{item.priceIdentity.substring(0, 4)}}</td>
         </tr>
@@ -384,7 +384,7 @@ export default {
 .tds.red{
   color: rgb(243, 147, 147);
 }
-.tds.green{
+.tds.green2{
   color: rgb(115, 192, 44);
 }
 .tds.gray{

@@ -11,7 +11,7 @@
     <div class="AdminMain-menu-app">
       <div id="AdminMain-menu-app-detail">
         <router-link to="/adminmain/adminapppanelsent"><div id="menu-detail-item">정산하기</div></router-link>
-        <router-link to="/adminmain/adminapppanelinfo"><div id="menu-detail-item">패널정보</div></router-link>
+        <router-link to="/adminmain/adminapppanelinfo"><div id="menu-detail-item">패널 관리</div></router-link>
         <router-link to="/adminmain/adminappnotice"><div id="menu-detail-item">공지사항 / PUSH</div></router-link>
         <router-link to="/adminmain/adminapphome"><div id="menu-detail-item">홈 컨텐츠</div></router-link>
       </div>

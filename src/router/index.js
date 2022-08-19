@@ -11,6 +11,7 @@ import SurveyTemplate from '../views/SurveyTemplate.vue'
 import KnowHow from '../views/KnowHow.vue'
 import Story from '../views/Story.vue'
 import Contact from '../views/Contact.vue'
+import B2BContact from '../views/B2BContact.vue'
 import Login from '../views/Login/Login.vue'
 import Find from '../views/Login/Find.vue'
 import Register from '../views/Login/Register.vue'
@@ -21,10 +22,6 @@ import MyInfo from '../components/MyPage/MyInfo.vue'
 import DashBoard from '../components/MyPage/DashBoard.vue'
 import CouponPoint from '../components/MyPage/CouponPoint.vue'
 import Payment from '../components/MyPage/Payment.vue'
-import RespondService from '../components/Contact/RespondService.vue'
-import Template from '../components/Contact/Template.vue'
-import MemberInfo from '../components/Contact/MemberInfo.vue'
-import PaymentInfo from '../components/Contact/Payment.vue'
 import FinalModal from '../components/Contact/ContactFinalModal.vue'
 import AdminMain from '../views/Admin/AdminMain.vue'
 import AdminMain2 from '../views/Admin/AdminMain2.vue'
@@ -40,16 +37,13 @@ import AdminApp from '../views/Admin/AdminApp.vue'
 import KnowHowImage from '../components/KnowHow/KnowHowImage.vue'
 import PanelProofHome from '../components/adminApp/PanelProofHome.vue'
 import AdminDetail from '../views/Admin/AdminDetail.vue'
-
 import AdminAlert from '../views/Admin/AdminAlert.vue'
-
 import AdminWebOrder from '../components/adminWeb/AdminWebOrder.vue'
 import AdminWebOrderDetail from '../components/adminWeb/AdminWebOrderDetail.vue'
 import AdminWebOrderDelete from '../components/adminWeb/AdminWebOrderDelete.vue'
 import AdminWebPanelProof from '../components/adminWeb/AdminWebPanelProof.vue'
 import AdminWebCoupon from '../components/adminWeb/AdminWebCoupon.vue'
 import AdminWebEtc from '../components/adminWeb/AdminWebEtc.vue'
-
 import AdminAppPanelSent from '../components/adminApp/AdminAppPanelSent.vue'
 import AdminAppPanelInfo from '../components/adminApp/AdminAppPanelInfo.vue'
 import AdminAppNotice from '../components/adminApp/AdminAppNotice.vue'
@@ -135,12 +129,15 @@ const routes = [
     name: 'Contact',
     component: Contact,
     children: [
-      { path: "respondService", component: RespondService },
-      { path: "template", component: Template },
-      { path: "memberInfo", component: MemberInfo },
-      { path: "payment", component: PaymentInfo },
       { path: "finalmodal", component: FinalModal }
     ]
+  },
+
+  {
+    path: '/b2bcontact',
+    name: 'B2BContact',
+    component: B2BContact,
+
   },
   {
     path: '/login',

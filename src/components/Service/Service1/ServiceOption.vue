@@ -31,7 +31,30 @@
             <input type="time" class="time" v-model="bb" required>
             <p class="warn-msg">마감날짜와 마감시간 중 공란이 존재할 경우 <br> 설문 게시가 어려울 수 있습니다.</p>
           </li>
-          
+
+
+          <!-- 설문 대상 타겟팅 관련 -->
+          <li class="hasTitleOption">
+            <span class="option-title">설문 대상</span>
+            
+              <select class="selectbox-target" id="target_age" v-model="targetAgeOption">
+              <option :value=0 selected disabled hidden>대상 연령</option>
+              <option :value=1>전 연령</option>
+              <option :value=2>20대</option>
+              <option :value=3>20세 이상 24세 이하</option>
+              <option :value=4>25세 이상 29세 이하</option>
+              <option :value=5>20세 이상 39세 이하</option>
+              <option :value=6>20세 이상 49세 이하</option>
+            </select>
+            <select class="selectbox-target" id="target_gender" v-model="targetGenderOption">
+              <option :value=0 selected disabled hidden>대상 성별</option>
+              <option :value=1>성별 무관</option>
+              <option :value=2>남성</option>
+              <option :value=3>여성</option>
+            </select>
+            <p id="service-option-notice">다음 주문 페이지에서 설문 대상 상세정보를 기입할 수 있습니다.</p>   
+          </li>
+
           <li class="hasTitleOption">
             <span class="option-title">영어설문</span> 
             <label class="switch">
@@ -86,6 +109,9 @@ export default {
       priceRequireHeadCount:0,
       addENTarget:0,
       timeOption:0,
+      targetAgeOption:0,
+      targetGenderOption:0,
+
 
       price: 0,
       identity: '',
@@ -250,8 +276,19 @@ export default {
         this.identity = String(this.$store.state.priceTextTable[4][this.priceIdentity]);
       
       
-        this.$store.commit('setSurveyMutation1', {price: this.price, beforeCouponPrice: this.price, requiredHeadCount: this.requiredHeadCount, 
-        spendTime: this.spendTime, dueTime: this.dueTime, ENTarget: this.ENTarget, identity: this.identity, dueDate: this.aa, dueTimeTime: this.bb});
+        this.$store.commit('setSurveyMutation1', {
+          price: this.price, 
+          beforeCouponPrice: this.price, 
+          requiredHeadCount: this.requiredHeadCount, 
+          spendTime: this.spendTime, 
+          dueTime: this.dueTime, 
+          ENTarget: this.ENTarget, 
+          identity: this.identity, 
+          dueDate: this.aa, 
+          dueTimeTime: this.bb,
+          targetingAge : this.targetAgeOption,
+          targetingGender: this.targetGenderOption
+        });
 
         this.$store.commit('setSurveyDueTime', {dueDate: this.aa, dueTime: this.bb})
 
@@ -391,7 +428,7 @@ export default {
   position: sticky;
   top: 108px;
   z-index: 1;
-  height: 536px;
+  height: 650px;
   border-radius: 10px;
   margin: 80px 80px 135px 10px;
   background-color: #EEEEEE;
@@ -402,7 +439,6 @@ export default {
   color: #0CAE02;
   font-size: 1.5rem;
   font-weight: 600;
-  
   margin: 30px 0 30px 40px;
   font-family: 'Noto Sans KR', sans-serif;
 }
@@ -422,13 +458,27 @@ export default {
   outline: none;
   border: 1.5px solid #0AAB00;
 }
-.selectbox option {
+.selectbox-target {
+  font-family: 'Noto Sans KR', sans-serif;
+  font-weight: lighter;
+  margin: 4px;
+  padding-left: 3px;
+  height: 30px;
   background-color: #fafafa;
-  
+  font-size: 14px;
+  cursor: pointer;
+  border: none;
+}
+#target_age {
+  width: 150px;
+  margin-left: 10px;
+}
+#target_gender {
+  width: 100px;
 }
 .hasTitleOption {
   text-align: left;
-  margin: 10px 0 8px 0;
+  margin: 25px 0 20px 0;
   display: block;
   
 }
@@ -438,7 +488,6 @@ export default {
   font-size: 14px;
   font-weight: bolder;
   margin: 10px 0 0 41px;
-  
 }
 .hasTitleOption .date {
   font-family: 'Noto Sans KR', sans-serif;
@@ -466,13 +515,12 @@ export default {
 .hasTitleOption .time:focus{
   outline: none;
   border: 1.5px solid #0AAB00;
-  
 }
 .hasTitleOption .Eng-text {
-  font-size: 13px;
+  font-size: 14px;
   color: rgb(137, 135, 135);
+  font-weight: lighter;
 }
-
 #service-option-notice {
   text-align: left;
   color: rgba(219, 21, 21, 0.822);
@@ -488,13 +536,13 @@ export default {
 }
 .show-price-container  .service-option-totalprice-word {
   position: absolute;
-  top: 403px;
+  top: 540px;
   left: 160px;
   font-size: 18px;
 }
 .show-price-container  .service-option-totalprice-price {
   position: absolute;
-  top: 395px;
+  top: 533px;
   right: 1px;
   margin: 0 45px 0 0;
   font-size: 25px;
@@ -514,6 +562,10 @@ export default {
 .goServicePay-btn:hover{
   color: white;
   background: #0AAB00;
+}
+.option-target {
+  display: flex;
+  flex-direction: row;
 }
 
 
@@ -571,6 +623,7 @@ input:checked + .slider:before {
   text-align: left;
   margin-left: 130px;
   margin-top: 0;
+  margin-bottom: 0;
 }
 
 </style>
