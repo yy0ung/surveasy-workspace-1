@@ -10,12 +10,13 @@
           </ul>
           <ul id="info-detail">
             <ul class="info-detail-text">설문 대상</ul>
-            <div id="showOption-value">
-              
+            <div id="showOption-target">
               {{ this.$store.state.targetingTable[0][this.$store.state.localSurveyState.targetingAge] }},    
-              {{ this.$store.state.targetingTable[1][this.$store.state.localSurveyState.targetingGender] }}</div>
+              {{ this.$store.state.targetingTable[1][this.$store.state.localSurveyState.targetingGender] }}
+            </div>
+            <div class="info-detail-text">설문 대상 상세 정보 (선택)</div>
             <div class="info-detail-input"><input type="text" v-model="target" @change="setOption2()" placeholder="예) 재학생, 1인가구, 특정 서비스 이용 경험이 있는 분" required></div>
-            <div class="info-detail-notice">*서베이지 패널은 20대 위주로 구성되어 있으며, 특정 상세 설문 대상의 경우, <br>해당되는 패널이 적어 설문 응답 수집에 어려움이 있을 수 있다는 점 유의해주시기 바랍니다.</div>
+            <div class="info-detail-notice">*서베이지 패널은 20대 위주로 구성되어 있으며, 특정 상세 설문 대상의 경우, 해당되는 패널이 적어 <br>설문 응답 수집에 어려움이 있을 수 있다는 점 유의해주시기 바랍니다.</div>
           </ul>
           <ul id="info-detail">
             <ul class="info-detail-text">설문 기관</ul>
@@ -117,7 +118,7 @@ export default {
   width: 200px;
   height: 25px;
   margin-top: 15px;
-  margin-bottom: 10px;
+  margin-bottom: 0px;
   text-align: left;
   font-family: 'Noto Sans KR';
   font-size: 17px;
@@ -130,6 +131,7 @@ export default {
   border-radius: 9px;
   width: 680px;
   height: 40px;
+  margin-top: 10px;
   margin-left: 10px;
   padding-left: 15px;
   border: 0.75px solid #BCBCBC;
@@ -150,9 +152,10 @@ export default {
 }
 .info-detail-notice {
   font-family: 'Noto Sans KR', sans-serif;
-  color: #848484;
-  font-size: 0.85rem;
-  padding-top: 5px;
+  color: #9a9a9a;
+  font-size: 0.80rem;
+  font-weight: lighter;
+  padding-top: 10px;
   padding-left: 15px;
 }
 .point-notice {
@@ -182,8 +185,18 @@ export default {
 
 #showOption-value {
   font-family: 'Noto Sans KR', sans-serif;
-  font-size: 17px;
+  font-size: 14.5px;
   color: #0CAE02;
-  margin-top: 2px;
+  margin-top: 5px;
+  margin-left: 12px;
+}
+
+#showOption-target {
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 14.5px;
+  color: #0CAE02;
+  margin-top: 7px;
+  margin-bottom: 35px;
+  margin-left: 12px;
 }
 </style>
