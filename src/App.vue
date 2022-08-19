@@ -28,7 +28,7 @@
       <span class="nav-element-">|</span>
       <router-link to="/story"><span class="nav-element" @click="indexC(2)">브랜드 스토리</span></router-link> 
       <span class="nav-element-">|</span>
-      <router-link to="/contact"><span class="nav-element" @click="handleFAQ, indexC(2)">문의 & FAQ</span></router-link> 
+      <router-link to="/contact"><span class="nav-element" @click="handleFAQ, indexC(2)">문의</span></router-link> 
     </div>
     <!-- <div class="nav-login" > -->
      <div class="right-login">
@@ -68,7 +68,7 @@
     </p>
     <p><span id="sitemap-bold">문의</span>
       <router-link class="link-underline" to="/contact"><p><span id="sitemap-none">1:1 문의</span></p></router-link>
-      <router-link class="link-underline" to="/contact"><p><span id="sitemap-none">B2B 문의</span></p></router-link>
+      <router-link class="link-underline" to="/b2bcontact"><p><span id="sitemap-none">B2B 문의</span></p></router-link>
       <router-link class="link-underline" to="/contact"><p><span id="sitemap-none">FAQ</span></p></router-link>
     </p>
     
@@ -220,7 +220,7 @@ export default {
 
 }
 body {
- 
+
   margin: 0;
 }
 #app .router-link-active{

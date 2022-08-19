@@ -1,21 +1,26 @@
 <template>
 <div class="f-modal-container-box" v-if="this.$store.state.showFinalModal==true">
 <div id="f-modal-container">
-  <div id="close-icon" @click="closeModal"><i class="fas fa-times"></i></div>
+  <div></div>
   <img class="checkimg" src="@/assets/check.png" width="100">
-  <p class="green">서베이지 B2B 소개서 신청이 완료되었습니다!</p>
+  <p class="brandgreen">서베이지 B2B 소개서 신청이 완료되었습니다!</p>
   <p>입력해주신 이메일 주소로 1~2일 안에 보내드리겠습니다.</p>
+  <div>
+  <button class="ContactModal-btn" @click="closeModal">닫기</button>
+  </div>
 </div>  
 </div>
 </template>
 
 <script>
+import router from '../../router'
+
 export default {
   methods:{
     closeModal(){
-      this.$router.go('/contact')
       this.$store.state.showModal=false
       this.$store.state.showFinalModal=false
+      router.push('/')
     },
     
   }
@@ -36,12 +41,12 @@ export default {
 }
 #f-modal-container{
   position: fixed;
-  top: 50%;
+  top: 30%;
   left: 50%;
   transform: translate(-50%, -50%);
   background: white;
   width: 700px;
-  height: 300px;
+  height: 500px;
   border-radius: 15px;
   display: flex;
   flex-direction: column;
@@ -51,6 +56,7 @@ export default {
  
 }
 #f-modal-container .checkimg{
+  margin-top: 100px;
   margin-left: 300px;
   margin-bottom: 30px;
   
@@ -93,7 +99,7 @@ export default {
   border: 1px solid #848484;
   padding-left: 7px;
 }
-#f-modal-container .green{
+#f-modal-container .brandgreen{
   color : #0AAC00;
 }
 
