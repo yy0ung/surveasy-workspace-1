@@ -37,7 +37,7 @@ export default {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  height: 1850px;
+  height: 1950px;
 }
 .ServicePay-col {
   display: flex;
@@ -51,7 +51,7 @@ export default {
 }
 .SurveyInfo {
   width: 950px;
-  height: 760px;
+  height: 860px;
 }
 .Coupon {
   width: 950px;
