@@ -188,7 +188,7 @@ export default {
   font-size: 14.5px;
   color: #0CAE02;
   margin-top: 5px;
-  margin-left: 12px;
+  margin-left: 1px;
 }
 
 #showOption-target {
