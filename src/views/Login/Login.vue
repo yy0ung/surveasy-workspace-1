@@ -1,37 +1,52 @@
 <template>
-<div class="login">
-  <img class="login-checkimg" src="@/assets/check.png" width="110">
-  <div class="loginform">
-    <li>
-      <input type="email" placeholder="아이디 (이메일)" v-model="email">
-    </li>
-    <li>
-      <input type="password" placeholder="비밀번호" v-model="password" @keyup.enter="signIn">
-    </li>
-    
-    <li>
-      <div class="error">{{ error }}</div>
-    </li>
-    <li>
-      <div class="lgn-notice">{{ notice }}</div>
-    </li>
-    <li>
-      <button type="submit" class="loginbtn" @click="signIn">로그인하기</button>
-    </li>
-    
-    
+ <div class="container">
+		<div class="row justify-content-center align-items-center">
+			<div class="col-lg-6">
+				<div class="section-title text-center">
+          <div style="padding:20px"></div>
+          <img class="checkimg" src="@/assets/check.png" width="100">
+          <div style="padding:20px"></div>
+					<h2>Login</h2>
+          </div>
+			</div>
+			<div class="col-lg-8">
+				<div class="shadow rounded p-5 bg-white">
+					<div class="row">
+            <div class="col-lg-3">
+            </div>
+						<div class="col-lg-6">
+							<div class="contact-form">
+									<div class="form-group mb-4 pb-2">
+										<label for="exampleFormControlInput1" class="form-label">아이디(이메일)</label>
+										<input type="email" class="form-control shadow-none" id="id" v-model="email">
+									</div>
+									<div class="form-group mb-4 pb-2">
+										<label for="exampleFormControlInput1" class="form-label">비밀번호</label>
+										<input type="password" class="form-control shadow-none" id="pw" v-model="password" @keyup.enter="signIn">
+									</div>
+                    <li>
+                      <div class="error">{{ error }}</div>
+                    </li>
+                    <li>
+                      <div class="lgn-notice">{{ notice }}</div>
+                    </li>
+									<button class="btn btn-primary w-100" type="submit" @click="signIn">로그인하기</button>
+              </div>
+						</div>
+            <div class="col-lg-3">
+            </div>
+					</div>
+				</div>
+			</div>
+		</div>
+    <div style="padding:20px"></div>
   </div>
-  <div class="sublogin">
+
+    <div class="sublogin">
     <router-link to="/find-pw"><span class="sublogin-element">비밀번호 찾기</span></router-link> 
     <span class="sublogin-element">|</span> 
     <router-link to="/register"><span class="sublogin-element">회원가입</span></router-link> 
-     
-    
   </div>
-  
-</div>
-  
- 
   
   
 </template>

@@ -1,8 +1,5 @@
 <template>
   <div id="home">
-
-    
-
     <div class="home-contents">
       <HomeMainContent class="home-contents-child"/>
       <HomeNumberMarketing class="home-contents-child"/>
@@ -13,7 +10,7 @@
       
     </div>
     
-    
+
   </div>
 </template>
 

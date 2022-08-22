@@ -1,4 +1,54 @@
 <template>
+
+ <div class="container">
+		<div class="row justify-content-center align-items-center">
+			<div class="col-lg-6">
+				<div class="section-title text-center">
+                    <div style="padding:20px"></div>
+                    <img class="checkimg" src="@/assets/check.png" width="100">
+                    <div style="padding:20px"></div>
+					<h2>회원가입</h2>
+                </div>
+			</div>
+			<div class="col-lg-8">
+				<div class="shadow rounded p-5 bg-white">
+					<div class="row">
+            <div class="col-lg-3">
+            </div>
+						<div class="col-lg-6">
+							<div class="contact-form">
+									<div class="form-group mb-4 pb-2">
+										<label for="exampleFormControlInput1" class="form-label">아이디(이메일)</label>
+										<input type="email" class="form-control shadow-none" id="id" v-model="email">
+									</div>
+									<div class="form-group mb-4 pb-2">
+										<label for="exampleFormControlInput1" class="form-label">비밀번호</label>
+										<input type="password" class="form-control shadow-none" id="pw" v-model="password" @keyup.enter="signIn">
+									</div>
+                    <li>
+                      <div class="error">{{ error }}</div>
+                    </li>
+                    <li>
+                      <div class="lgn-notice">{{ notice }}</div>
+                    </li>
+									<button class="btn btn-primary w-100" type="submit" @click="signIn">로그인하기</button>
+              </div>
+						</div>
+            <div class="col-lg-3">
+            </div>
+					</div>
+				</div>
+			</div>
+		</div>
+    <div style="padding:20px"></div>
+  </div>
+
+
+
+
+
+
+
 <div id="Register">
 
   <form class="form-center">
@@ -353,141 +403,4 @@ export default {
 </script>
 
 <style>
-#Register {
-    height: 1580px;
-    font-family: 'Noto Sans KR', sans-serif;
-    display: block;
-    text-align: center;
-}
-.register-title {
-    margin-top: 70px;
-    margin-bottom: 50px;
-    font-size: 2rem;
-    text-align: left;
-    margin-left: 40px;
-    
-}
-.radio-text{
-    margin-top: 5px;
-}
-.register-title #green{
-    color: #0AAB00;
-}
-.form-center{
-    display: inline-block;
-    
-    
-}
-.etc-text{
-    margin-top: 3px;
-}
-#etc-t{
-    margin-left: 20px;
-    
-    width: 180px;
-    height: 18px;
-    
-}
-#radio-etc{
-    margin-top: 10px;
-}
-li {
-    list-style-type: none;
-}
-
-.cols li.col1 {
-    width: 320px;
-    text-align: left;
-    margin-bottom: 10px;
-    font-size: 15px;
-}
-
-.cols li.col2 {
-    width: 520px;
-    font-size: 8px;
-}
-.cols li.col2 input {
-  width: 580px;
-  height: 30px;
-  padding: 3px;
-  margin-bottom: 15px;
-  border: 1px solid #848484;
-  border-radius: 4px;
-  opacity: 1;
-  color: #848484;
-  font: normal normal 300 17px/20px Noto Sans KR;
-  font-size: 0.8rem;
-  padding-left: 15px;
-}
-.password-notice {
-    font-size: 0.8rem;
-    color: rgb(171, 171, 171);
-    text-align: left;
-    margin-bottom: 25px;
-    margin-top: -10px;
-}
-.cols li.col2 input.radio {
-    width: 15px;
-    margin: 0 20px 0 5px;
-}
-.radio-container {
-    display: flex;
-    
-    width: 500px;
-    
-    font-size: 13px;
-    
-    margin-bottom: 30px;
-}
-.radio-column {
-    display: flex;
-    flex-direction: column;
-    text-align: left;
-    margin-right: 20px;
-}
-.radio-option {
-    display: flex;
-    flex-direction: row;
-    margin-bottom: 5px;
-}
-.register-btn {
-  padding: 5px 30px;
-  margin: 20px;
-  color:#0CAE02;
-  background-color: #fff;
-  border: 1.5px solid #0CAE02;
-  border-radius: 30px;
-  font-size: 13px;
-  cursor: pointer;
-  font-family: 'Noto Sans KR', sans-serif;
-  font-size: 1rem;
-}
-.register-btn:hover{
-    color: white;
-    background-color:#0CAE02;
-}
-.check{
-    text-align: left;
-    margin-top: 50px;
-    font-size: 1rem;
-    margin-bottom: 80px;
-}
-.check input{
-    margin-right: 15px;
-
-}
-.check .all-title{
-    font-weight: 500;
-    
-}
-.check .all{
-    margin-left: 30px;
-    font-weight: 500;
-}
-.check #nextline{
-    margin-left: 50px;
-}
-.terms{
-    text-decoration: underline;
-}
 </style>
