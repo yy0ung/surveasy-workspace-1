@@ -1,4 +1,46 @@
 <template>
+<section class="section">
+	<div class="container">
+		<div class="row justify-content-center">
+          <div class="section-title text-center">
+          <h1>도움이 필요하신가요?</h1>
+        </div>
+			<div class="icon-box-item text-center col-lg-4 col-md-6 mb-4">
+				<div class="rounded shadow py-5 px-4">
+					<div class="icon"> <i class="fas fa-user"></i>
+					</div>
+					<h3 class="mb-3">@Surveasy 카카오톡 플러스 친구</h3>
+					<p class="mb-4">추가 후 1:1 실시간 채팅으로 문의</p> <a class="btn btn-sm btn-outline-primary" href="service-details.html">채팅하기<i class="las la-arrow-right ms-1"></i></a>
+				</div>
+			</div>
+			<div class="icon-box-item text-center col-lg-4 col-md-6 mb-4">
+				<div class="rounded shadow py-5 px-4">
+					<div class="icon"> <i class="fas fa-house-user"></i>
+					</div>
+					<h3 class="mb-3">surveasy2019@yonsei.ac.kr</h3>
+					<p class="mb-4">이메일 문의</p> <a class="btn btn-sm btn-outline-primary" href="service-details.html">이메일 복사하기<i class="las la-arrow-right ms-1"></i></a>
+				</div>
+			</div>
+			<div class="icon-box-item text-center col-lg-4 col-md-6 mb-4">
+				<div class="rounded shadow py-5 px-4">
+					<div class="icon"> <i class="fas fa-user-graduate"></i>
+					</div>
+					<h3 class="mb-3">B2B 문의</h3>
+					<p class="mb-4">기업 배너 광고, 설문 응답 서비스 등</p> <a class="btn btn-sm btn-outline-primary" href="service-details.html">소개서 받기<i class="las la-arrow-right ms-1"></i></a>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+
+
+
+
+
+
+
+
 <div class="contactus-container" :class="{active:this.$store.state.showModal}">
   <p class="title">도움이 필요하신가요?</p>
   <div class="contactus-contents" >
@@ -14,7 +56,7 @@
       <input type="text" id="email" class="email-input">
     </div>
     <div>
-      <a href="../b2bcontact/"><button class="ContactContactUs-btn">소개서 받기</button></a>
+      <a href="../b2bcontact"><button class="ContactContactUs-btn">소개서 받기</button></a>
       <p class="bold">B2B 문의</p>
       <p class="light">기업 배너 광고, 설문 응답 서비스 등</p>
     </div>

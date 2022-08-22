@@ -1,25 +1,42 @@
 <template>
-<div id="FAQ-container">
-  <div><h1>자주 묻는 질문</h1></div>
-  <div class="FAQ-router-link-container">
-    <button class="FAQ-btn" v-for="(Category,i) in Category" :key="i" @click="button(i)" :class="{active: clickEvent[i]}">{{Category}}</button>
-  </div>
-</div> 
 
-<div id="FAQ-detail-container">
-    <div v-if="FAQbutton === 0">
-    <FAQmodal v-for="(a, i) in $store.state.RespondService" :key="i" :i="i" :FAQData="$store.state.RespondService" />
+<section class="section">
+  <div class="container">
+    <div class="row justify-content-center mb-5">
+      <div class="col-lg-6">
+        <div class="section-title text-center">
+          <p class="text-primary text-uppercase fw-bold mb-3">Frequently Asked Questions</p>
+          <h1>자주 묻는 질문</h1>
+        </div>
+      </div>
     </div>
-    <div v-if="FAQbutton === 1">
-    <FAQmodal v-for="(a, i) in $store.state.Template" :key="i" :i="i" :FAQData="$store.state.Template" />
+    <div class="row justify-content-center">
+      <div class="col-lg-2">
+        	<div class="widget widget-categories row">
+              <ul class="list-unstyled widget-list">
+              <li v-for="(Category,i) in Category" :key="i" @click="button(i)" :class="{active: clickEvent[i]}" class="col-lg-12"><a>{{Category}}</a></li>
+              </ul>
+				  </div>
+      </div>
+      <div class="col-lg-10">
+        <div class="accordion accordion-border-bottom" id="accordionFAQ">
+            <div v-if="FAQbutton === 0">
+            <FAQmodal v-for="(a, i) in $store.state.RespondService" :key="i" :i="i" :FAQData="$store.state.RespondService" />
+            </div>
+            <div v-if="FAQbutton === 1">
+            <FAQmodal v-for="(a, i) in $store.state.Template" :key="i" :i="i" :FAQData="$store.state.Template" />
+            </div>
+            <div v-if="FAQbutton === 2">
+            <FAQmodal v-for="(a, i) in $store.state.MemberInfo" :key="i" :i="i" :FAQData="$store.state.MemberInfo" />
+            </div>
+            <div v-if="FAQbutton === 3">
+            <FAQmodal v-for="(a, i) in $store.state.Payment" :key="i" :i="i" :FAQData="$store.state.Payment" />
+            </div>
+      </div>
     </div>
-    <div v-if="FAQbutton === 2">
-    <FAQmodal v-for="(a, i) in $store.state.MemberInfo" :key="i" :i="i" :FAQData="$store.state.MemberInfo" />
     </div>
-    <div v-if="FAQbutton === 3">
-    <FAQmodal v-for="(a, i) in $store.state.Payment" :key="i" :i="i" :FAQData="$store.state.Payment" />
-    </div>
-</div>
+  </div>
+</section>
 
 </template>
 
@@ -54,42 +71,5 @@ export default {
 </script>
 
 <style>
-  #FAQ-container .FAQ-router-link-container{
-    display: flex;
-    justify-content: center;
-    
-  }
-.FAQ-btn{
-    background-color: white;
-     cursor: pointer;
-     margin-bottom: 15px;
-     width: 200px;
-     height: 77px;
-     font-size: 20px;
-     border: none;
-   }
 
-#FAQ-container .FAQ-btn:hover{
-    font-weight: 600;
-    border-bottom: 5px solid #0AAC00;
-   }
-
-#FAQ-container .active {
-    font-weight: 600;
-    border-bottom: 5px solid #0AAC00;
-   } 
-#FAQ-container .default{
-    font-weight: 600;
-    border-bottom: 5px solid #0AAC00;
-    }
-    
-#FAQ-detail-container{
-      max-width: 800px;
-      margin-right: auto;
-      margin-left: auto;
-      text-align: left;
-    }
-
-
- 
 </style>

@@ -1,15 +1,19 @@
 <template>
-<div id="FAQ-Modal">
-    <div class="FAQ-title" @click="toggle(i)" :class="{active: showDetail}">
-        <p>{{FAQData[i].title}}
-          <span v-if="showDetail==false"><i v-if="showDetail==false" class="right fas fa-chevron-down"></i></span>
-          <span v-if="showDetail==true"><i v-if="showDetail==true" class="right fas fa-chevron-up"></i></span>
-        </p>
-    </div>
-    <div class="FAQ-detail" v-if="showDetail==true">
+<div class="accordion-item">
+  <h2 class="accordion-header accordion-button h5 border-0 active"
+    id="heading-ebd23e34fd2ed58299b32c03c521feb0b02f19d9" type="button" data-bs-toggle="collapse"
+    data-bs-target="#collapse-ebd23e34fd2ed58299b32c03c521feb0b02f19d9" aria-expanded="true"
+    aria-controls="collapse-ebd23e34fd2ed58299b32c03c521feb0b02f19d9">{{FAQData[i].title}}
+  </h2>
+  <div id="collapse-ebd23e34fd2ed58299b32c03c521feb0b02f19d9"
+    class="accordion-collapse collapse border-0 show"
+    aria-labelledby="heading-ebd23e34fd2ed58299b32c03c521feb0b02f19d9" data-bs-parent="#accordionFAQ">
+    <div class="accordion-body py-0 content">
         <p v-html="dataToHTML(FAQData[i].detail)"></p>
     </div>
+  </div>
 </div>
+
 </template>
 
 <script>
