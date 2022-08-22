@@ -1,5 +1,4 @@
 <template>
-<<<<<<< HEAD
 <div class="accordion-item">
   <h2 class="accordion-header accordion-button h5 border-0 active"
     id="heading-ebd23e34fd2ed58299b32c03c521feb0b02f19d9" type="button" data-bs-toggle="collapse"
@@ -10,16 +9,6 @@
     class="accordion-collapse collapse border-0 show"
     aria-labelledby="heading-ebd23e34fd2ed58299b32c03c521feb0b02f19d9" data-bs-parent="#accordionFAQ">
     <div class="accordion-body py-0 content">
-=======
-<div id="FAQ-Modal">
-    <div class="FAQ-title" @click="toggle(i)" :class="{active: showDetail}">
-        <p>{{FAQData[i].title}}
-          <span v-if="showDetail==false"><i v-if="showDetail==false" class="right fas fa-chevron-down"></i></span>
-          <span v-if="showDetail==true"><i v-if="showDetail==true" class="right fas fa-chevron-up"></i></span>
-        </p>
-    </div>
-    <div class="FAQ-detail" v-if="showDetail==true">
->>>>>>> e6568c21959454948a1f9c0d96d677b5b0d1feb2
         <p v-html="dataToHTML(FAQData[i].detail)"></p>
     </div>
   </div>

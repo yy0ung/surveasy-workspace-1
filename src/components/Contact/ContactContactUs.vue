@@ -56,11 +56,7 @@
       <input type="text" id="email" class="email-input">
     </div>
     <div>
-<<<<<<< HEAD
       <a href="../b2bcontact"><button class="ContactContactUs-btn">소개서 받기</button></a>
-=======
-      <a href="../b2bcontact/"><button class="ContactContactUs-btn">소개서 받기</button></a>
->>>>>>> e6568c21959454948a1f9c0d96d677b5b0d1feb2
       <p class="bold">B2B 문의</p>
       <p class="light">기업 배너 광고, 설문 응답 서비스 등</p>
     </div>

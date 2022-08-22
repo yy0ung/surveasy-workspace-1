@@ -1,13 +1,4 @@
 <template>
-<<<<<<< HEAD
-=======
-<div id="FAQ-container">
-  <div><h1>자주 묻는 질문</h1></div>
-  <div class="FAQ-router-link-container">
-    <button class="FAQ-btn" v-for="(Category,i) in Category" :key="i" @click="button(i)" :class="{active: clickEvent[i]}">{{Category}}</button>
-  </div>
-</div> 
->>>>>>> e6568c21959454948a1f9c0d96d677b5b0d1feb2
 
 <section class="section">
   <div class="container">
