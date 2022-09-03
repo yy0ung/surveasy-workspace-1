@@ -122,7 +122,7 @@ export default {
         this.accountNum = ''
       }
       else {
-        this.accountNum = '입금 계좌: 카카오뱅크 3333-17-5341775 (장서준)'
+        this.accountNum = '입금 계좌: 카카오뱅크 3333-11-5235460 (송다예)'
       }
       this.show=1
     },
