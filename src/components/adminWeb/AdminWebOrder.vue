@@ -21,6 +21,7 @@
         <th>소요시간</th>
         <th>제목</th>
         <th>대상</th>
+        <th>나이-성별</th>
         <th>선택신분</th>
 
         <tr v-for="item in (this.$store.state.adminDataSurvey)" :key="item.id" class="tds" :id="item.id"
@@ -50,6 +51,7 @@
           <td><a :href="item.link" target="_blank" class="tds"
           :class="{red:item.progress==0 || item.progress==1, green2: item.progress==2, gray: item.progress==3 || item.progress==4}">{{item.title}}</a></td>
           <td>{{item.target}}</td>
+          <td>{{item.targetingAge}} - {{item.targetingGender}}</td>
           <td :title=item.uploaderIdentity>{{item.priceIdentity.substring(0, 4)}}</td>
         </tr>
       </table>
