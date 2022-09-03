@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/Home.vue'
 import Service from '../views/Service/Service.vue'
-import ServiceInputForm from '../views/Service/ServiceInputForm.vue'
+// import ServiceInputForm from '../views/Service/ServiceInputForm.vue'
 import ServicePay from '../views/Service/ServicePay.vue'
 import ServiceIdentity from '../views/Service/ServiceIdentity.vue'
 import ServiceIdentity_mypage from '../views/Service/ServiceIdentity_mypage.vue'
@@ -62,11 +62,11 @@ const routes = [
     name: 'Service',
     component: Service
   },
-  {
-    path: '/serviceinputform',
-    name: 'ServiceInputForm',
-    component: ServiceInputForm
-  },
+  // {
+  //   path: '/serviceinputform',
+  //   name: 'ServiceInputForm',
+  //   component: ServiceInputForm
+  // },
   {
     path: '/servicepay',
     name: 'ServicePay',
