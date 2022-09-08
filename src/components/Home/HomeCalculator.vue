@@ -7,64 +7,72 @@
       <div class="calc-option-container">
           <div class="respond-content">
             <span class="calc-option-title" id="first-t">요구 응답 수</span>
-          <div class="pro-one" :class="{active: priceRequireHeadCount>=2}">
-            <div class="step-counter" :class="{active: priceRequireHeadCount>=1}" @click="HeadCount(1)"></div>
-            <div class="step-name" :class="{active: priceRequireHeadCount>=1}">30명</div>
-          </div>
-          <div class="pro-one" :class="{active: priceRequireHeadCount>=3}">
-            <div class="step-counter" :class="{active: priceRequireHeadCount>=2}" @click="HeadCount(2)"></div>
-            <div class="step-name" :class="{active: priceRequireHeadCount>=2}">40명</div>
-          </div>
-          <div class="pro-one"  :class="{active: priceRequireHeadCount>=4}">
-            <div class="step-counter" :class="{active: priceRequireHeadCount>=3}" @click="HeadCount(3)"></div>
-            <div class="step-name" :class="{active: priceRequireHeadCount>=3}">50명</div>
-          </div>
-         <div class="pro-one" :class="{active: priceRequireHeadCount>=5}">
-            <div class="step-counter" :class="{active: priceRequireHeadCount>=4}" @click="HeadCount(4)"></div>
-            <div class="step-name" :class="{active: priceRequireHeadCount>=4}">60명</div>
-          </div>
-          <div class="pro-one" :class="{active: priceRequireHeadCount>=6}">
-            <div class="step-counter" :class="{active: priceRequireHeadCount>=5}" @click="HeadCount(5)"></div>
-            <div class="step-name" :class="{active: priceRequireHeadCount>=5}">70명</div>
-          </div>
-          <div class="pro-one" id="one-last" :class="{active: priceRequireHeadCount>=7}">
-            <div class="step-counter" :class="{active: priceRequireHeadCount>=6}" @click="HeadCount(6)"></div>
-            <div class="step-name" :class="{active: priceRequireHeadCount>=6}">80명</div>
-          </div>
-          <!-- <div class="pro-one" :class="{active: priceRequireHeadCount>=8}">
-            <div class="step-counter" :class="{active: priceRequireHeadCount>=7}" @click="HeadCount(7)"></div>
-            <div class="step-name" :class="{active: priceRequireHeadCount>=7}">90명</div>
-          </div>
-          <div class="pro-one" id="one-last" :class="{active: priceRequireHeadCount==9}">
-            <div class="step-counter" :class="{active: priceRequireHeadCount>=8}" @click="HeadCount(8)"></div>
-            <div class="step-name" :class="{active: priceRequireHeadCount>=8}">100명</div>
-          </div> -->
+            <div class="calc-option">
+              <div class="pro-one" :class="{active: priceRequireHeadCount>=2}">
+                <div class="step-counter" :class="{active: priceRequireHeadCount>=1}" @click="HeadCount(1)"></div>
+                <div class="step-name" :class="{active: priceRequireHeadCount>=1}">30명</div>
+              </div>
+              <div class="pro-one" :class="{active: priceRequireHeadCount>=3}">
+                <div class="step-counter" :class="{active: priceRequireHeadCount>=2}" @click="HeadCount(2)"></div>
+                <div class="step-name" :class="{active: priceRequireHeadCount>=2}">40명</div>
+              </div>
+              <div class="pro-one"  :class="{active: priceRequireHeadCount>=4}">
+                <div class="step-counter" :class="{active: priceRequireHeadCount>=3}" @click="HeadCount(3)"></div>
+                <div class="step-name" :class="{active: priceRequireHeadCount>=3}">50명</div>
+              </div>
+            <div class="pro-one" :class="{active: priceRequireHeadCount>=5}">
+                <div class="step-counter" :class="{active: priceRequireHeadCount>=4}" @click="HeadCount(4)"></div>
+                <div class="step-name" :class="{active: priceRequireHeadCount>=4}">60명</div>
+              </div>
+              <div class="pro-one" :class="{active: priceRequireHeadCount>=6}">
+                <div class="step-counter" :class="{active: priceRequireHeadCount>=5}" @click="HeadCount(5)"></div>
+                <div class="step-name" :class="{active: priceRequireHeadCount>=5}">70명</div>
+              </div>
+              <div class="pro-one" :class="{active: priceRequireHeadCount>=7}">
+                <div class="step-counter" :class="{active: priceRequireHeadCount>=6}" @click="HeadCount(6)"></div>
+                <div class="step-name" :class="{active: priceRequireHeadCount>=6}">80명</div>
+              </div>
+              <div class="pro-one" :class="{active: priceRequireHeadCount>=8}">
+                <div class="step-counter" :class="{active: priceRequireHeadCount>=7}" @click="HeadCount(7)"></div>
+                <div class="step-name" :class="{active: priceRequireHeadCount>=7}">90명</div>
+              </div>
+              <div class="pro-one" id="one-last" :class="{active: priceRequireHeadCount==9}">
+                <div class="step-counter" :class="{active: priceRequireHeadCount>=8}" @click="HeadCount(8)"></div>
+                <div class="step-name" :class="{active: priceRequireHeadCount>=8}">100명</div>
+              </div>
+            </div>
+            
+          
         </div>
 
         <div class="respond-content">
             <span class="calc-option-title">소요시간</span>
-          <div class="pro-one" :class="{active: priceSpendTime>=2}">
-            <div class="step-counter" :class="{active: priceSpendTime>=1}" @click="TimeCount(1)"></div>
-            <div class="step-name" :class="{active: priceSpendTime>=1}">1-3분</div>
-          </div>
-          <div class="pro-one" :class="{active: priceSpendTime>=3}">
-            <div class="step-counter" :class="{active: priceSpendTime>=2}" @click="TimeCount(2)"></div>
-            <div class="step-name" :class="{active: priceSpendTime>=2}">4-6분</div>
-          </div>
-          <div class="pro-one" :class="{active: priceSpendTime>=4}">
-            <div class="step-counter" :class="{active: priceSpendTime>=3}" @click="TimeCount(3)"></div>
-            <div class="step-name" :class="{active: priceSpendTime>=3}">7-10분</div>
-          </div>
-          <div class="pro-one" :class="{active: priceSpendTime>=5}">
-            <div class="step-counter" :class="{active: priceSpendTime>=4}" @click="TimeCount(4)"></div>
-            <div class="step-name" :class="{active: priceSpendTime>=4}">11-15분</div>
-          </div>
-          <div class="pro-one" id="two-last" :class="{active: priceSpendTime>=6}">
-            <div class="step-counter" :class="{active: priceSpendTime>=5}" @click="TimeCount(5)"></div>
-            <div class="step-name" :class="{active: priceSpendTime>=5}">16-20분</div>
-          </div>
-          
-        
+            <div class="calc-option">
+              <div class="pro-one" :class="{active: priceSpendTime>=2}">
+                <div class="step-counter" :class="{active: priceSpendTime>=1}" @click="TimeCount(1)"></div>
+                <div class="step-name" :class="{active: priceSpendTime>=1}">1분 이내</div>
+              </div>
+              <div class="pro-one" :class="{active: priceSpendTime>=3}">
+                <div class="step-counter" :class="{active: priceSpendTime>=2}" @click="TimeCount(2)"></div>
+                <div class="step-name" :class="{active: priceSpendTime>=2}">1-3분</div>
+              </div>
+              <div class="pro-one" :class="{active: priceSpendTime>=4}">
+                <div class="step-counter" :class="{active: priceSpendTime>=3}" @click="TimeCount(3)"></div>
+                <div class="step-name" :class="{active: priceSpendTime>=3}">4-6분</div>
+              </div>
+              <div class="pro-one" :class="{active: priceSpendTime>=5}">
+                <div class="step-counter" :class="{active: priceSpendTime>=4}" @click="TimeCount(4)"></div>
+                <div class="step-name" :class="{active: priceSpendTime>=4}">7-10분</div>
+              </div>
+              <div class="pro-one" :class="{active: priceSpendTime>=6}">
+                <div class="step-counter" :class="{active: priceSpendTime>=5}" @click="TimeCount(5)"></div>
+                <div class="step-name" :class="{active: priceSpendTime>=5}">11-15분</div>
+              </div>
+              <div class="pro-one" id="two-last" :class="{active: priceSpendTime>=7}">
+                <div class="step-counter" :class="{active: priceSpendTime>=6}" @click="TimeCount(6)"></div>
+                <div class="step-name" :class="{active: priceSpendTime>=6}">16-20분</div>
+              </div>
+            </div>
         </div>
        
         <div>
@@ -115,20 +123,24 @@
             <div class="calc-option-title" id="margin-right">대학생/대학원생 할인</div>
                 
             <div class="select-discount">
-              
               <div class="radio">
                 <input type="radio" id="one" name="discount" value="one" checked @click="discount(1)">
-                <label for="one">대학생입니다.</label>
+                <label for="one">중/고등학생입니다.</label>
+              </div>
+              
+              <div class="radio">
+                <input type="radio" id="two" name="discount" value="two" @click="discount(2)">
+                <label for="two">대학생입니다.</label>
               </div>
 
               <div class="radio">
-                <input type="radio" id="two" name="discount" value="two" @click="discount(2)">
-                <label for="two">대학원생입니다.</label>
+                <input type="radio" id="three" name="discount" value="three" @click="discount(3)">
+                <label for="three">대학원생입니다.</label>
               </div>
 
               <div>
-                <input type="radio" id="three" name="discount" value="three" @click="discount(3)">
-                <label for="three">할인대상이 아닙니다.</label>
+                <input type="radio" id="four" name="discount" value="four" @click="discount(4)">
+                <label for="four">할인대상이 아닙니다.</label>
               </div>
             </div>
           </div>
@@ -137,9 +149,7 @@
           <div class="price-content">
             <div class="calc-option-title" id="total">총 금액</div>
             <span class="service-option-totalprice-price">
-              {{ priceToString(Number(this.$store.state.priceTable[priceIdentity][priceSpendTime][priceRequireHeadCount])
-                +Number(this.$store.state.EngOptionArray[EngOptionCal])
-                +Number(this.$store.state.TimeOptionArray[timeOptionCal])) }}원</span>
+              {{ this.calculate }}원</span>
           </div>
         
           
@@ -312,12 +322,26 @@ export default {
       }
       // console.log(EngIndex)
       return EngIndex
+    },
+
+    calculate() {
+      var p = Number(this.$store.state.priceTable[this.priceIdentity][this.priceSpendTime][this.priceRequireHeadCount])
+
+      p = Number(
+            p + this.$store.state.TimeOptionArray[this.timeOptionCal] 
+              + p * this.$store.state.EngOptionArray[this.EngOptionCal]
+              + p * this.$store.state.AgeOptionArray[this.targetAgeOption]
+              + p * this.$store.state.genderOptionArray[this.targetGenderOption]
+          )
+      
+      this.price = p
+      return p
     }
   },
   methods: {    
     setOption1() {
       
-      if((this.priceIdentity==0) || (this.priceSpendTime==0) || (this.priceRequireHeadCount==0) || (this.timeOptionCal==0)) {
+      if((this.priceIdentity==0) || (this.priceSpendTime==0) || (this.priceRequireHeadCount==0) || (this.timeOptionCal==0) || (this.targetAgeOption==0) || (this.targetGenderOption==0)) {
         alert("모든 옵션을 입력해주세요.")
       }
 
@@ -328,10 +352,6 @@ export default {
       else {       
         this.timeOption = this.timeOptionCal;
         this.addENTarget = this.EngOptionCal;
-
-        this.price = Number(this.$store.state.priceTable[this.priceIdentity][this.priceSpendTime][this.priceRequireHeadCount])
-        +Number(this.$store.state.EngOptionArray[this.addENTarget])
-        +Number(this.$store.state.TimeOptionArray[this.timeOption]);
       
         this.requiredHeadCount = String(this.$store.state.priceTextTable[0][this.priceRequireHeadCount]);
         this.spendTime = String(this.$store.state.priceTextTable[1][this.priceSpendTime]);
@@ -357,13 +377,6 @@ export default {
         this.$store.commit('setCouponDiscountEmpty')
         this.$store.commit('setPointDiscountEmpty')
 
-
-        // console.log(this.$store.state.localSurveyState.price);
-        // console.log(this.$store.state.localSurveyState.identity);
-        // console.log(this.$store.state.localSurveyState.spendTime);
-        // console.log(this.$store.state.localSurveyState.requiredHeadCount);
-        // console.log(this.$store.state.localSurveyState.ENTarget);
-        // console.log(this.$store.state.localSurveyState.dueTime);
 
         if(this.$store.state.loginState.isLoggedIn==false) {
           alert('로그인이 필요한 서비스입니다.')
@@ -396,6 +409,8 @@ export default {
       this.aa = ''
       this.bb = ''
       this.addENTarget =0
+      this.targetAgeOption = 0
+      this.targetGenderOption = 0
     },
     priceToString(price) {
       return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
@@ -450,11 +465,12 @@ export default {
 .respond-content {
   display: flex;
   flex-direction: row;
-  
   width: 90%;
 }
-#first-t{
-  margin-right: 17px;
+.calc-option {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
 }
 .pro-one {
   position: relative;
