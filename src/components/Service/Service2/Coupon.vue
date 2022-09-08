@@ -30,7 +30,7 @@
           <button class="Coupon-btn-" id="point-btn-" @click="usePoint()">적립금 적용하기</button>
           </div>
           </div>
-          <div class="Point-notice">적립금은 주문 금액의 최대 10%까지 사용 가능합니다.</div>
+          <div class="info-detail-notice">* 적립금은 주문 금액의 최대 10%까지 사용 가능합니다.</div>
       </ul>
 
     </div>
@@ -327,7 +327,7 @@ export default {
 .Point-input::placeholder {
   font-size: 16px;
   font-family: 'Noto Sans KR';
-  color: #a2a0a0;
+  color: #BCBCBC;
 }
 .Point-input:focus {
   border:none;
@@ -338,13 +338,6 @@ export default {
   border: none;
   color: grey;
   cursor: pointer;
-}
-.Point-notice {
-  font-family: 'Noto Sans KR', sans-serif;
-  color: #848484;
-  font-size: 0.9rem;
-  padding-top: 5px;
-  padding-left: 15px;
 }
 .flex{
   display: flex;

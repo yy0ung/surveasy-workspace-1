@@ -10,18 +10,19 @@
             <option :value=3>50명</option>
             <option :value=4>60명</option>
             <option :value=5>70명</option>
-            <option :value=6>80명 (최대 응답수)</option>
-            <!-- <option :value=7>90명</option>
-            <option :value=8>100명</option> -->
+            <option :value=6>80명</option>
+            <option :value=7>90명</option>
+            <option :value=8>100명 (최대 응답수)</option>
           </select>
 
           <select class="selectbox" v-model="priceSpendTime">
             <option :value=0 selected disabled hidden>소요 시간</option>
-            <option :value=1>1-3분</option>
-            <option :value=2>4-6분</option>
-            <option :value=3>7-10분</option>
-            <option :value=4>11-15분</option>
-            <option :value=5>16-20분</option>
+            <option :value=1>1분 이내</option>
+            <option :value=2>1-3분</option>
+            <option :value=3>4-6분</option>
+            <option :value=4>7-10분</option>
+            <option :value=5>11-15분</option>
+            <option :value=6>16-20분</option>
           </select> 
 
           <br>
@@ -68,9 +69,10 @@
         
           <select class="selectbox" v-model="priceIdentity">
             <option :value=0 selected disabled hidden>대학생 / 대학원생 할인 여부</option>
-            <option :value=1>대학생입니다.</option>
-            <option :value=2>대학원생입니다.</option>
-            <option :value=3>할인대상이 아닙니다.</option>
+            <option :value=1>중/고등학생입니다.</option>
+            <option :value=2>대학생입니다.</option>
+            <option :value=3>대학원생입니다.</option>
+            <option :value=4>할인대상이 아닙니다.</option>
           </select>
 
           <p id="service-option-notice">결제 페이지에서 대학생 및 대학원생임을 인증해야만</p>
@@ -81,9 +83,7 @@
           <div class="show-price-container">
             <span class="service-option-totalprice-word">총 금액</span>
             <span class="service-option-totalprice-price">
-              {{ priceToString(Number(this.$store.state.priceTable[priceIdentity][priceSpendTime][priceRequireHeadCount])
-                +Number(this.$store.state.EngOptionArray[EngOptionCal])
-                +Number(this.$store.state.TimeOptionArray[timeOptionCal])) }}원</span>
+              {{ this.calculate }}원</span>
           </div>
         
           <div>
@@ -109,8 +109,8 @@ export default {
       priceRequireHeadCount:0,
       addENTarget:0,
       timeOption:0,
-      targetAgeOption:0,
-      targetGenderOption:0,
+      targetAgeOption: 0,
+      targetGenderOption: 0,
 
 
       price: 0,
@@ -166,8 +166,6 @@ export default {
     },
 
     getDateStr_max(){
-      
-
       var today = new Date()
       var a = today.setDate(today.getDate()+7)
       var ad = new Date(a)
@@ -211,8 +209,6 @@ export default {
       var hourGap = parseInt((asdf - this.dd.getTime())/3600000) 
       var hourOptionIndex = 0
 
-      
-
       if (hourGap >= 18 && hourGap < 24){
         hourOptionIndex = 1
       } else if (hourGap >= 24 && hourGap < 36){
@@ -227,13 +223,14 @@ export default {
         hourOptionIndex = 6
       }
 
-      //console.log('time', hourOptionIndex)
       return hourOptionIndex
     }, 
+
     EngOptionCal() {
       var EngIndex = 0
       var HeadCount = this.priceRequireHeadCount
       var Eng = this.addENTarget
+
       if(Eng==false) {
         EngIndex = 0
         this.EngText = "영어 설문이 아닙니다."
@@ -247,13 +244,27 @@ export default {
         this.EngText = "영어 설문입니다."
       }
       return EngIndex
+    },
+
+    calculate() {
+      var p = Number(this.$store.state.priceTable[this.priceIdentity][this.priceSpendTime][this.priceRequireHeadCount])
+
+      p = Number(
+            p + this.$store.state.TimeOptionArray[this.timeOptionCal] 
+              + p * this.$store.state.EngOptionArray[this.EngOptionCal]
+              + p * this.$store.state.AgeOptionArray[this.targetAgeOption]
+              + p * this.$store.state.genderOptionArray[this.targetGenderOption]
+          )
+      
+      this.price = p
+      return p
     }
   },
   methods: {    
 
     setOption1() {
       
-      if((this.priceIdentity==0) || (this.priceSpendTime==0) || (this.priceRequireHeadCount==0) || (this.timeOptionCal==0) ) {
+      if((this.priceIdentity==0) || (this.priceSpendTime==0) || (this.priceRequireHeadCount==0) || (this.timeOptionCal==0) || (this.targetAgeOption==0) || (this.targetGenderOption==0)) {
         alert("모든 옵션을 입력해주세요.")
       }
 
@@ -264,10 +275,6 @@ export default {
       else {       
         this.timeOption = this.timeOptionCal;
         this.addENTarget = this.EngOptionCal;
-
-        this.price = Number(this.$store.state.priceTable[this.priceIdentity][this.priceSpendTime][this.priceRequireHeadCount])
-        +Number(this.$store.state.EngOptionArray[this.addENTarget])
-        +Number(this.$store.state.TimeOptionArray[this.timeOption]);
       
         this.requiredHeadCount = String(this.$store.state.priceTextTable[0][this.priceRequireHeadCount]);
         this.spendTime = String(this.$store.state.priceTextTable[1][this.priceSpendTime]);
