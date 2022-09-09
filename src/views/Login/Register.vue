@@ -2,201 +2,139 @@
 
  <div class="container">
 		<div class="row justify-content-center align-items-center">
-			<div class="col-lg-6">
-				<div class="section-title text-center">
-                    <div style="padding:20px"></div>
-                    <img class="checkimg" src="@/assets/check.png" width="100">
-                    <div style="padding:20px"></div>
-					<h2>회원가입</h2>
-                </div>
-			</div>
+			<div class="col-lg-6"></div>
 			<div class="col-lg-8">
-				<div class="shadow rounded p-5 bg-white">
-					<div class="row">
-            <div class="col-lg-3">
-            </div>
-						<div class="col-lg-6">
-							<div class="contact-form">
-									<div class="form-group mb-4 pb-2">
-										<label for="exampleFormControlInput1" class="form-label">아이디(이메일)</label>
-										<input type="email" class="form-control shadow-none" id="id" v-model="email">
-									</div>
-									<div class="form-group mb-4 pb-2">
-										<label for="exampleFormControlInput1" class="form-label">비밀번호</label>
-										<input type="password" class="form-control shadow-none" id="pw" v-model="password" @keyup.enter="signIn">
-									</div>
-                    <li>
-                      <div class="error">{{ error }}</div>
-                    </li>
-                    <li>
-                      <div class="lgn-notice">{{ notice }}</div>
-                    </li>
-									<button class="btn btn-primary w-100" type="submit" @click="signIn">로그인하기</button>
-              </div>
-						</div>
-            <div class="col-lg-3">
-            </div>
-					</div>
-				</div>
-			</div>
-		</div>
-    <div style="padding:20px"></div>
-  </div>
-
-
-
-
-
-
-
-<div id="Register">
-
-  <form class="form-center">
-        <p class="register-title"><span id="green">서베이지</span> 회원가입</p>
-          <li>
-              <ul class="cols">
-                  <li class="col1">이메일 주소*</li>
-                  <li class="col2"><input type="email" id="email" v-model="dataSet.email" required></li>
-
-              </ul>
-          </li>
-
-          <li>
-              <ul class="cols">
-                  <li class="col1">비밀번호*</li>
-                  <li class="col2"><input type="password" id="password" v-model="dataSet.password" required></li>
-                  <div class="password-notice">* 8자리 이상의 비밀번호를 설정해주세요.</div>
-                  
-              </ul>
-          </li>
-
-          <li>
-              <ul class="cols">
-                  <li class="col1">비밀번호 확인*</li>
-                  <li class="col2"><input type="password" id="passwordcheck" v-model="dataSet.passCheck" required></li>
-              </ul>
-          </li>
-
-          <li>
-              <ul class="cols">
-                  <li class="col1">이름*</li>
-                  <li class="col2"><input type="text" id="name" v-model="dataSet.name" required placeholder="꼭 실명을 작성해주세요."></li>
-              </ul>
-          </li>
-
-          <li>
-              <ul class="cols">
-                  <li class="col1">휴대폰 번호*</li>
-                  <li class="col2"><input type="tel" id="tel" v-model="dataSet.phoneNumber" required placeholder="- 없이 입력해주세요."></li>
-              </ul>
-          </li>
-          <li>
-              <ul class="cols">
-                  <li class="col1">생년월일*</li>
-                  <li class="col2"><input type="tel" id="birth" v-model="dataSet.birth" required placeholder="ex. 20220101"></li>
-                 
-              </ul>
-          </li>
-
-          <li>
-              <ul class="cols">
-                  <li class="col1">유입경로*</li>
-                  <li class="col2">
-                    <div class="radio-container">
-                        <div class="radio-column">
-                            <div class="radio-option">
-                                <input type="radio" class="radio" name="from" id="everytime" v-model="dataSet.funnel" value="everytime" >
-                                <label class="radio-text">에브리타임</label> 
+			    <div class="shadow rounded p-5 bg-white">
+			        <div class="row">
+                        <div class="col-lg-2"></div>
+			            <div class="col-lg-8">
+                			<div class="section-title text-center">
+                                <div style="padding:20px"></div>
+                                <img class="checkimg" src="@/assets/check.png" width="100">
+                                <div style="padding:20px"></div>
+					            <h2>회원가입</h2>
+                                <h4>서베이지 회원가입</h4>
                             </div>
-                            <div class="radio-option">
-                                <input type="radio" class="radio" name="from" id="kakaotalk" v-model="dataSet.funnel" value="kakaotalk">
-                                <label class="radio-text">카카오톡 단톡방</label>
+                            <form class="contact-form">
+    	                        <div class="form-group mb-4 pb-2">
+                                    <p class="m-1">이메일 주소*</p>
+                                    <input type="email" class="form-control shadow-none" id="email" v-model="dataSet.email" required>
+                                </div>
+    	                        <div class="form-group mb-4 pb-2">
+                                    <p class="m-1">비밀번호*</p>
+                                    <input type="password" class="form-control shadow-none" id="password" v-model="dataSet.password" required>
+                                    <div class="password-notice">* 8자리 이상의 비밀번호를 설정해주세요.</div>
+                                </div>
+    	                        <div class="form-group mb-4 pb-2">
+                                     <p class="m-1">비밀번호 확인*</p>
+                                    <input type="password" class="form-control shadow-none" id="passwordcheck" v-model="dataSet.passCheck" required>
+                                </div>
+                                <div class="form-group mb-4 pb-2">
+                                    <p class="m-1">이름*</p>
+                                    <input type="text" class="form-control shadow-none" id="name" v-model="dataSet.name" required placeholder="꼭 실명을 작성해주세요.">
+                                </div>
+                                <div class="form-group mb-4 pb-2">
+                                    <p class="m-1">휴대폰 번호*</p>
+                                    <input type="tel" class="form-control shadow-none" id="tel" v-model="dataSet.phoneNumber" required placeholder="- 없이 입력해주세요.">
+                                </div>
+                                <div class="form-group mb-4 pb-2">
+                                    <p class="m-1">생년월일*</p>
+                                    <input type="num" class="form-control shadow-none" id="birth" v-model="dataSet.birth" required placeholder="ex. 20220101">
+                                </div>
+                                <div class="row mb-4">
+                                    <p class="m-1">가입경로*</p>
+                                    <div class="col-1"></div>
+                                    <div class="col-5">
+                                        <div class="form-check p-1">
+                                            <input type="radio" class="form-check-input" name="from" id="everytime" v-model="dataSet.funnel" value="everytime">
+                                            <label class="radio-text" for="everytime">에브리타임</label> 
+                                        </div>
+                                        <div class="form-check p-1">
+                                            <input type="radio" class="form-check-input" name="from" id="kakaotalk" v-model="dataSet.funnel" value="kakaotalk">
+                                            <label class="radio-text" for="kakaotalk">카카오톡 단톡방</label>
+                                        </div>
+                                        <div class="form-check p-1">
+                                            <input type="radio" class="form-check-input" name="from" id="google" v-model="dataSet.funnel" value="google">
+                                            <label class="radio-text" for="google">구글 검색</label>
+                                        </div>
+                                        <div class="form-check p-1">
+                                            <input type="radio" class="form-check-input" name="from" id="naver" v-model="dataSet.funnel" value="naver">
+                                            <label class="radio-text" for="naver">네이버 검색</label>
+                                        </div>
+                                        <div class="form-check p-1">
+                                            <input type="radio" class="form-check-input" name="from" id="instagram" v-model="dataSet.funnel" value="instagram">
+                                            <label class="radio-text" for="instagram">인스타그램</label>
+                                        </div>
+                                        <div class="form-check p-1">
+                                            <input type="radio" class="form-check-input" name="from" id="etc" v-model="dataSet.funnel" value="etc">
+                                            <label class="radio-text" for="etc">기타</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-5">
+                                        <div class="form-check p-1">
+                                            <input type="radio" class="form-check-input" name="from" id="blog" v-model="dataSet.funnel" value="blog">
+                                            <label class="radio-text" for="blog">네이버 블로그</label>
+                                        </div>
+                                        <div class="form-check p-1">
+                                            <input type="radio" class="form-check-input" name="from" id="지식in" v-model="dataSet.funnel" value="지식in">
+                                            <label class="radio-text" for="지식in">네이버 지식인</label>
+                                        </div>
+                                        <div class="form-check p-1">
+                                            <input type="radio" class="form-check-input" name="from" id="cafe" v-model="dataSet.funnel" value="cafe">
+                                            <label class="radio-text" for="cafe">네이버 카페</label>
+                                        </div>
+                                        <div class="form-check p-1">
+                                            <input type="radio" class="form-check-input" name="from" id="e-mail" v-model="dataSet.funnel" value="email">
+                                            <label class="radio-text" for="e-mail">이메일 홍보</label>
+                                        </div>
+                                        <div class="form-check p-1">
+                                            <input type="radio" class="form-check-input" name="from" id="offline" v-model="dataSet.funnel" value="offline">
+                                            <label class="radio-text" for="offline">오프라인 홍보</label>
+                                        </div>
+                                        <div class="form-check p-1">
+                                            <input type="radio" class="form-check-input" name="from" id="acquaintance" v-model="dataSet.funnel" value="acquaintance">
+                                            <label class="radio-text" for="acquaintance">지인 추천</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-1"></div>
+                                </div>
+                                <p class="m-1">유입경로*</p>
+                                <input type="text" class="form-control shadow-none" id="funnelDetail" v-model="dataSet.funnel_detail" required placeholder="해당 유입경로에 대한 상세내용을 작성해주세요">
+                                <p class="m-1">검색 유입인 경우 <u>검색어</u>, 에브리타임 · 카카오톡 · 네이버 카페인 경우 <u>소속</u>을 알려주세요.</p>
+                                <div>
+                                <hr class="col-12 mx-auto">
+                                <p class="m--">이용약관*</p>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="checkAll" v-model="checkAll">
+                                    <label class="form-check-label" for="checkAll"><b>전체 동의하기</b></label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" v-model="dataSet.check1">
+                                    <label class="form-check-label"><router-link :to="{name: 'Term1'}" target="_blank">서베이지 이용약관 (필수)</router-link>
+                                    </label>
+                                    </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" v-model="dataSet.check2">
+                                    <label class="form-check-label"><router-link :to="{name: 'Term2'}" target="_blank">서베이지 개인정보 보호 방침 (필수)</router-link>
+                                    </label>
+                                    </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" v-model="dataSet.check3">
+                                    <label class="form-check-label">회원가입 시 작성한 개인 정보가 모두 올바름을 확인합니다.<br>가입 오류로 인한 불이익은 이용자의 책임임을 인지하고 있습니다. (필수)
+                                    </label>
+                                    </div>
+                                    <div class="m-2"></div>
+                                    <a class="btn btn-primary w-100" @click="validateRegister(this.dataSet);">회원가입하기</a>
+                                    </div>     
+                                </form>
+                                    </div>
+                                    </div>
+                                </div>
+                                    <div class="col-lg-3"></div>
+                                </div>
+                                </div>
                             </div>
-                            <div class="radio-option">
-                                <input type="radio" class="radio" name="from" id="google" v-model="dataSet.funnel" value="google">
-                                <label class="radio-text">구글 검색</label>
-                            </div>
-                            <div class="radio-option">
-                                <input type="radio" class="radio" name="from" id="naver" v-model="dataSet.funnel" value="naver">
-                                <label class="radio-text">네이버 검색</label>
-                            </div>
-                            <div class="radio-option">
-                                <input type="radio" class="radio" name="from" id="instagram" v-model="dataSet.funnel" value="instagram">
-                                <label class="radio-text">인스타그램</label>
-                            </div>
-                            <div class="radio-option">
-                                <input type="radio" class="radio" name="from" id="etc" v-model="dataSet.funnel" value="etc">
-                                <label class="radio-text">기타</label>
-                            </div>
-                            <!-- <div class="radio-option" id="radio-etc">
-                                <input type="radio" class="radio" name="from" id="etc" v-model="dataSet.funnel" value="etc">
-                                <label class="radio-text" >기타 </label>
-                                <p class="etc-text"><input type="text" id="etc-t" v-model="dataSet.funnel_etc"></p>
-                            </div> -->
-                             
-                            
-                        </div>
-                        <div class="radio-column">
-                            <div class="radio-option">
-                                <input type="radio" class="radio" name="from" id="blog" v-model="dataSet.funnel" value="blog">
-                                <label class="radio-text">네이버 블로그</label>
-                            </div>
-                            <div class="radio-option">
-                                <input type="radio" class="radio" name="from" id="지식in" v-model="dataSet.funnel" value="지식in">
-                                <label class="radio-text">네이버 지식인</label>
-                            </div>
-                            <div class="radio-option">
-                                <input type="radio" class="radio" name="from" id="cafe" v-model="dataSet.funnel" value="cafe">
-                                <label class="radio-text">네이버 카페</label>
-                            </div>
-                            <div class="radio-option">
-                                <input type="radio" class="radio" name="from" id="email" v-model="dataSet.funnel" value="email">
-                                <label class="radio-text">이메일 홍보</label>
-                            </div>
-                            <div class="radio-option">
-                                <input type="radio" class="radio" name="from" id="offline" v-model="dataSet.funnel" value="offline">
-                                <label class="radio-text">오프라인 홍보</label>
-                            </div>
-                            <div class="radio-option">
-                                <input type="radio" class="radio" name="from" id="acquaintance" v-model="dataSet.funnel" value="acquaintance">
-                                <label class="radio-text">지인 추천</label>
-                            </div>
-                           
-                        </div> 
-
-                    </div>
-                               
-                </li>
-              </ul>
-          </li>
-          <li>
-              <ul class="cols">
-                  <li class="col1">해당 유입경로에 대한 상세 내용을 작성해주세요*</li>
-                  <li class="col2"><input type="text" id="funnelDetail" v-model="dataSet.funnel_detail" 
-                  required placeholder="검색 유입인 경우 검색어를 적어주세요. 에브리타임, 카카오톡, 네이버 카페인 경우 소속을 알려주세요."></li>
-                 
-              </ul>
-          </li>
-          
-          <div class="check">
-            <div class="all-title"><input type="checkbox" v-model="checkAll">전체 동의하기</div>
-            <div class="all"><input type="checkbox" v-model="dataSet.check1" >
-            <router-link class="terms" :to="{name: 'Term1'}" target="_blank">서베이지 이용약관 (필수)</router-link></div>
-            <div class="all"><input type="checkbox" v-model="dataSet.check2" ><router-link class="terms" :to="{name: 'Term2'}" target="_blank">서베이지 개인정보 보호 방침 (필수)</router-link></div>
-            <div class="all"><input type="checkbox" v-model="dataSet.check3" >
-                회원가입 시 작성한 개인 정보가 모두 올바름을 확인합니다. <br>
-            <span id="nextline">가입 오류로 인한 불이익은 이용자의 책임임을 인지하고 있습니다. (필수)</span></div>
-
-            
-        </div>
-          
-
-     </form>
-     <br>
-     <!-- <button @click="addUserData(this.dataSet); create();"> 가입하기 </button> -->
-     <button class="register-btn" @click="validateRegister(this.dataSet);"> 회원가입하기 </button>
-     
-</div>
+                            <div style="padding:20px"></div>
 </template>
 
 <script>

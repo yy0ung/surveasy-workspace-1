@@ -1,54 +1,46 @@
 <template>
  <div class="container">
 		<div class="row justify-content-center align-items-center">
-			<div class="col-lg-6">
-				<div class="section-title text-center">
-          <div style="padding:20px"></div>
-          <img class="checkimg" src="@/assets/check.png" width="100">
-          <div style="padding:20px"></div>
-					<h2>Login</h2>
-          </div>
-			</div>
+			<div class="col-lg-12 m-2"></div>
 			<div class="col-lg-8">
 				<div class="shadow rounded p-5 bg-white">
 					<div class="row">
-            <div class="col-lg-3">
-            </div>
+            <div class="col-lg-3"></div>
 						<div class="col-lg-6">
+              				<div class="section-title text-center p-1">
+                      <img class="checkimg" src="@/assets/check.png" width="100">
+                      <div style="padding:20px"></div>
+                      <h2>로그인</h2>
+                      </div>
 							<div class="contact-form">
 									<div class="form-group mb-4 pb-2">
-										<label for="exampleFormControlInput1" class="form-label">아이디(이메일)</label>
-										<input type="email" class="form-control shadow-none" id="id" v-model="email">
+										<label for="exampleFormControlInput1" class="form-label">아이디</label>
+										<input type="email" class="form-control shadow-none" id="id" v-model="email" placeholder="이메일">
 									</div>
 									<div class="form-group mb-4 pb-2">
 										<label for="exampleFormControlInput1" class="form-label">비밀번호</label>
 										<input type="password" class="form-control shadow-none" id="pw" v-model="password" @keyup.enter="signIn">
 									</div>
-                    <li>
-                      <div class="error">{{ error }}</div>
-                    </li>
-                    <li>
-                      <div class="lgn-notice">{{ notice }}</div>
-                    </li>
-									<button class="btn btn-primary w-100" type="submit" @click="signIn">로그인하기</button>
+                  <div class="form-group">
+                    <h5>{{ error }}</h5>
+                    <h5>{{ notice }}</h5>
+                  </div>
+                  <div class="form-group text-end">
+                      <router-link to="/find-pw">비밀번호 찾기</router-link> 
+                  </div>
+                  <div class="form-group mb-4 mt-2 pb-2">
+                    <button class="btn btn-primary w-100 mb-2" type="submit" @click="signIn">로그인</button>
+                    <a class="btn btn-outline-primary w-100"><router-link to="/register">회원가입</router-link></a>                    
+                  </div>
               </div>
-						</div>
-            <div class="col-lg-3">
             </div>
-					</div>
-				</div>
+						</div>
+						</div>            
+          <div class="col-lg-3"></div>
 			</div>
 		</div>
-    <div style="padding:20px"></div>
+    <div class="p-1"></div>
   </div>
-
-    <div class="sublogin">
-    <router-link to="/find-pw"><span class="sublogin-element">비밀번호 찾기</span></router-link> 
-    <span class="sublogin-element">|</span> 
-    <router-link to="/register"><span class="sublogin-element">회원가입</span></router-link> 
-  </div>
-  
-  
 </template>
 
 <script>
@@ -240,75 +232,4 @@ export default {
 </script>
 
 <style>
-.login {
-  padding-top: 60px;
-  margin: 100px;
-  height: 500px;
-
-
-}
-.login-checkimg {
-  margin-bottom: 30px;
-}
-.loginform li {
-  list-style-type: none;
-  margin: 10px;
-}
-.loginform li input {
-  width: 360px;
-  height: 30px;
-  padding: 4px;
-  padding-left: 10px;
-  margin: 5px;
-  border: 1.5px solid rgb(44, 37, 37);
-  border-radius: 4px;
-  opacity: 1;
-  color: #848484;
-  font: normal normal 300 17px/20px Noto Sans KR;
-  font-size: 0.8rem;
-  
-}
-.loginform li input:focus{
-  outline: none;
-  border: 1.5px solid #0AAB00;
-  
-}
-.lgn-notice {
-  font-size: 0.65rem;
-  color: rgb(225, 5, 5);
-  font-family: 'Noto Sans KR', sans-serif;
-}
-.error {
-  color: rgb(225, 5, 5);
-  font-size: 0.65rem;
-  font-family: 'Noto Sans KR', sans-serif;
-}
-.loginbtn {
-  padding: 5px 30px;
-  margin: 20px;
-  color:#0CAE02;
-  background-color: #fff;
-  border: 1.5px solid #0CAE02;
-  border-radius: 30px;
-  font-size: 1rem;
-  cursor: pointer;
-  font-family: 'Noto Sans KR', sans-serif;
-}
-.loginbtn:hover {
-  background-color: #0CAE02;
-  color: #fff;
-}
-.sublogin {
-  margin: 20px;
-  font-family: 'Noto Sans KR', sans-serif;
-  
-}
-.sublogin .sublogin-element {
-  font-size: 0.8rem;
-  margin: 20px;
-}
-a {
-  text-decoration: none;
-  color: rgb(74, 74, 74);
-}
 </style>

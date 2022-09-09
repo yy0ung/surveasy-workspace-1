@@ -1,29 +1,37 @@
 <template>
-
-<div id="number-marketing-container">
-  <div class="number-contents">
-    <p><span id="number-bold">134명</span>
-      <br>
-      <br>
-      <span id="number-none">현재 대기 중인 패널</span>
-    </p>
-    <p><span id="number-bold" >{{survey}}</span>
-      <br>
-      <br>
-      <span id="number-none">지금까지 설문 응답 서비스를 </span>
-      <br>
-      <span id="number-none">이용한 의뢰 개수</span>
-    </p>
-    <p><span id="number-bold">1시간 12분</span>
-      <br>
-      <br>
-      <span id="number-none">50개 응답까지 걸린 최단 시간 </span>
-      <br>
-      <span id="number-none">(실사례이나, 모든 설문에 해당되지는 않음)</span>
-    </p>
-  </div>
-  
-
+<div class="number-marketing">
+	<div class="container">
+		<div class="row justify-content-center align-items-center">
+			<div class="col-lg-6 m-5">
+				<div class="section-title text-center">
+        </div>
+			</div>
+		</div>
+		<div class="row justify-content-center">
+      <div class="col-lg-4 col-md-6">
+				<div class="number-marketing-card block text-center">
+					<h1 class="text-white mb-3">{{survey}}</h1>
+          <hr class="text-white m-0" style="width: 100%">
+					<h4 class="text-white mt-4">지금까지 진행된 리서치 수</h4>
+          <p class="text-white">* 설문 응답 수집, 인터뷰이 모집, 베타테스터 모집</p>
+				</div>
+			</div>
+			<div class="col-lg-4 col-md-6">
+				<div class="number-marketing-card block text-center">
+					<h1 class="text-white mb-3">134명</h1>
+          <hr class="text-white m-0" style="width: 100%">
+					<h4 class="text-white mt-4">리서치 참여를 기다리는 패널 수</h4>
+				</div>
+			</div>
+			<div class="col-lg-4 col-md-6">
+				<div class="number-marketing-card block text-center">
+					<h1 class="text-white mb-3">4.7점</h1>
+          <hr class="text-white m-0" style="width: 100%">
+					<h4 class="text-white mt-4">서비스 평균 만족도</h4>
+				</div>
+			</div>
+    </div>
+		</div>
 </div>
 </template>
 
@@ -57,40 +65,17 @@ export default {
 </script>
 
 <style>
-#number-marketing-container{
-  background: #0AAC00 0% 0% no-repeat padding-box;
-  
-  margin-top: 60px;
-  border:none;
-  border-radius: 24px;
-  
+.number-marketing {
+  background-color: #0AAC00;
 
-}
-#number-marketing-container .number-contents{
-  margin-left: 0px;
-  margin-right:0;
-  display: flex;
-  justify-content: space-evenly;
-  padding-top: 90px;
-  color: #fff;
-  padding: 60px 40px;
-  
+  padding: 50px;
 }
 
-#number-marketing-container #number-none{
-  font-family: 'Noto Sans KR', sans-serif;
-  font-size: 1.1rem;
-  font-weight: 500;
+.number-marketing-card {
+  background-color: #0AAC00;
+  width:350px;
+  height: 250px;
+  margin:auto;
   
-
 }
-
-#number-marketing-container #number-bold{
-  font-family: 'Noto Sans KR', sans-serif;
-  font-size: 4rem;
-  font-weight: 900;
-}
-
-
-
 </style>

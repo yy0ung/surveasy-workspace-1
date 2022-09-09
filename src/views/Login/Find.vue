@@ -1,17 +1,36 @@
 <template>
-<div id="Find"> 
-  <p id="title">비밀번호 찾기</p>
-  <p>서베이지에 가입했던 이메일을 입력해주시면<br>
-     비밀번호 재설정 메일을 보내드립니다.</p>
-  <p>{{resetEmail}}</p>
-  <input type="text" v-model="resetEmail" placeholder="이메일">
-  <div>
-    <button @click="resetPassword(this.resetEmail)">비밀번호 재설정하기</button>
+<div class="container">
+		<div class="row justify-content-center align-items-center">
+			<div class="col-lg-12 m-2"></div>
+			<div class="col-lg-8">
+				<div class="shadow rounded p-5 bg-white">
+					<div class="row">
+            <div class="col-lg-3"></div>
+						<div class="col-lg-6">
+              				<div class="section-title text-center p-1">
+                      <img class="checkimg" src="@/assets/check.png" width="100">
+                      <div style="padding:20px"></div>
+                      <h2>비밀번호 찾기</h2>
+                      <p>서베이지에 가입했던 이메일을 입력해주시면 비밀번호 재설정 메일을 보내드립니다.</p>
+                      <p>{{resetEmail}}</p>
+                      </div>
+							<div class="contact-form">
+									<div class="form-group mb-4 pb-2">
+										<label for="exampleFormControlInput1" class="form-label">아이디</label>
+										<input type="text" class="form-control shadow-none" id="id" v-model="resetEmail" placeholder="이메일">
+									</div>
+                  <div class="form-group mb-4 mt-2 pb-1">
+                    <button class="btn btn-primary w-100 mb-2" @click="resetPassword(this.resetEmail)">비밀번호 재설정하기</button>              
+                  </div>
+              </div>
+            </div>
+						</div>
+						</div>            
+          <div class="col-lg-3"></div>
+			</div>
+		</div>
+    <div class="p-1"></div>
   </div>
-  
-
-</div>
-  
 </template>
 
 <script>
@@ -54,45 +73,4 @@ export default {
 </script>
 
 <style>
-#Find{
-  height: 400px;
-  margin-top: 100px;
-}
-#title{
-  font-family: 'Noto Sans KR', sans-serif;
-  font-size: 2rem;
-}
-p{
-  font-family: 'Noto Sans KR', sans-serif;
-}
-#Find input{
-  margin-top: 30px;
-  width: 380px;
-  height: 25px;
-  padding: 3px;
-  margin-bottom: 15px;
-  border: 1px solid #848484;
-  border-radius: 4px;
-  opacity: 1;
-  color: #848484;
-  font: normal normal 300 17px/20px Noto Sans KR;
-  font-size: 0.9rem;
-  padding-left: 15px;
-}
-#Find button{
-  padding: 5px 30px;
-  margin: 20px;
-  color:#0CAE02;
-  background-color: #fff;
-  border: 1.5px solid #0CAE02;
-  border-radius: 30px;
-  font-size: 13px;
-  cursor: pointer;
-  font-family: 'Noto Sans KR', sans-serif;
-  font-size: 1rem;
-}
-#Find button:hover{
-  color: white;
-  background-color:#0CAE02;
-}
 </style>

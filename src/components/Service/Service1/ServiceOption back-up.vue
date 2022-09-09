@@ -1,51 +1,42 @@
 <template>
-<div class="col-xl-4">
- <div class="container">
-		<div class="row justify-content-center align-items-center">
-			    <div class="shadow rounded p-3 bg-white">
-            <h3 class="service-title m-3">설문 응답 서비스</h3>
-			        <div class="row">
-                  <div class="row form-group">
-                    <div class="col-6">
-                            <p class="form-title m-1">요구 응답수</p>
-                            <select class="form-select m-1" v-model="priceRequireHeadCount" aria-label="Default select example">
-                              <option :value=0 selected disabled hidden>요구 응답수</option>
-                              <option :value=1>30명</option>
-                              <option :value=2>40명</option>
-                              <option :value=3>50명</option>
-                              <option :value=4>60명</option>
-                              <option :value=5>70명</option>
-                              <option :value=6>80명 (최대 응답수)</option>
-                            </select>
-                            </div>
+<div class="ServiceOption">
+  <div class="serviceOption-container">
+      <div id="service-option-title"><h1>설문 응답 서비스</h1></div>
+        <div>
+          <select class="form-select" v-model="priceRequireHeadCount" aria-label="Default select example">
+            <option :value=0 selected disabled hidden>요구 응답수</option>
+            <option :value=1>30명</option>
+            <option :value=2>40명</option>
+            <option :value=3>50명</option>
+            <option :value=4>60명</option>
+            <option :value=5>70명</option>
+            <option :value=6>80명 (최대 응답수)</option>
+            <!-- <option :value=7>90명</option>
+            <option :value=8>100명</option> -->
+          </select>
+          <p class="m-0">소요시간</p>
+          <select class="form-select" v-model="priceSpendTime">
+            <option :value=0 selected disabled hidden>소요 시간</option>
+            <option :value=1>1-3분</option>
+            <option :value=2>4-6분</option>
+            <option :value=3>7-10분</option>
+            <option :value=4>11-15분</option>
+            <option :value=5>16-20분</option>
+          </select> 
 
-                            <div class="col-6">
-                            <p class="form-title m-1">소요 시간</p>
-                            <select class="form-select m-1" v-model="priceSpendTime">
-                              <option :value=0 selected disabled hidden>소요 시간</option>
-                              <option :value=1>1-3분</option>
-                              <option :value=2>4-6분</option>
-                              <option :value=3>7-10분</option>
-                              <option :value=4>11-15분</option>
-                              <option :value=5>16-20분</option>
-                            </select>
-                            </div>
-        </div>
-          <div class="form-group row">
-            <p class="form-title m-1">마감시간 지정</p>
-            <div class="col-6">
-              <input type="Date" class="form-select m-1" :min="getDateStr_min" :max="getDateStr_max" v-model="aa" required> 
-            </div>
-            <div class="col-6">
-            <input type="time" class="form-select m-1" v-model="bb" required>
-            </div>
-            <p class="warn m-2">*마감날짜와 마감시간 중 공란이 존재할 경우 설문 게시가 어려울 수 있습니다.</p>
-            </div>
+          <br>
+          <li class="hasTitleOption">
+            <span class="option-title">마감기한 지정</span>
+            <input type="Date" class="date" :min="getDateStr_min" :max="getDateStr_max" v-model="aa" required> 
+            <input type="time" class="time" v-model="bb" required>
+            <p class="warn-msg">마감날짜와 마감시간 중 공란이 존재할 경우 <br> 설문 게시가 어려울 수 있습니다.</p>
+          </li>
+
           <!-- 설문 대상 타겟팅 관련 -->
-          <div class="form-group row">
-            <p class="form-title m-1">설문 대상</p>
-              <div class="col-6">
-              <select class="form-select m-1" id="target_age" v-model="targetAgeOption">
+          <li class="hasTitleOption">
+            <span class="option-title">설문 대상</span>
+            
+              <select class="selectbox-target" id="target_age" v-model="targetAgeOption">
               <option :value=0 selected disabled hidden>대상 연령</option>
               <option :value=1>전 연령</option>
               <option :value=2>20대</option>
@@ -54,51 +45,55 @@
               <option :value=5>20세 이상 39세 이하</option>
               <option :value=6>20세 이상 49세 이하</option>
             </select>
-            </div>
-            <div class="col-6">
-            <select class="form-select m-1" id="target_gender" v-model="targetGenderOption">
+            <select class="selectbox-target" id="target_gender" v-model="targetGenderOption">
               <option :value=0 selected disabled hidden>대상 성별</option>
               <option :value=1>성별 무관</option>
               <option :value=2>남성</option>
               <option :value=3>여성</option>
             </select>
-            </div>
-            <p class="warn m-2">*다음 주문 페이지에서 설문 대상 상세정보를 기입할 수 있습니다.</p>   
-          </div>
-          <div class="row">
-            <div class="col-6">
-            <p class="form-title m-1">대학생 / 대학원생 할인 여부</p>
-            <select class="form-select m-1" v-model="priceIdentity">
+            <p id="service-option-notice">다음 주문 페이지에서 설문 대상 상세정보를 기입할 수 있습니다.</p>   
+          </li>
+
+          <li class="hasTitleOption">
+            <span class="option-title">영어설문</span> 
+            <label class="switch">
+              <input v-model="addENTarget" @click="EngOptionCal" type="checkbox" class="EngRadio" name="Eng">
+              <span class="slider"></span>
+            </label>
+            <span class="Eng-text">{{ this.EngText }}</span>
+          </li>
+          
+    
+        
+          <select class="selectbox" v-model="priceIdentity">
             <option :value=0 selected disabled hidden>대학생 / 대학원생 할인 여부</option>
             <option :value=1>대학생입니다.</option>
             <option :value=2>대학원생입니다.</option>
             <option :value=3>할인대상이 아닙니다.</option>
-            </select>
-            </div>
-            <div class="col-6">
-            <p class="form-title m-1">영어설문</p>
-            <div class="form-check m-2"> 
-              <input class="form-check-input" v-model="addENTarget" @click="EngOptionCal" type="checkbox" name="Eng" id="Eng">
-              <label class="Eng-text" for="Eng">{{ this.EngText }}</label>
-            </div>
-            </div>
-            <p class="warn m-1">*결제 페이지에서 대학생 및 대학원생임을 인증해야만 할인을 받으실 수 있습니다.</p>
-            </div>
+          </select>
+
+          <p id="service-option-notice">결제 페이지에서 대학생 및 대학원생임을 인증해야만</p>
+          <p id="service-option-notice">할인을 받으실 수 있습니다.</p>
+        
+          <br>
+        
           <div class="show-price-container">
-            <p class="service-option-totalprice-word m-0 text-right">총 금액</p>
-            <p class="service-option-totalprice-price m-0 text-right">
+            <span class="service-option-totalprice-word">총 금액</span>
+            <span class="service-option-totalprice-price">
               {{ priceToString(Number(this.$store.state.priceTable[priceIdentity][priceSpendTime][priceRequireHeadCount])
                 +Number(this.$store.state.EngOptionArray[EngOptionCal])
-                +Number(this.$store.state.TimeOptionArray[timeOptionCal])) }}원</p>
+                +Number(this.$store.state.TimeOptionArray[timeOptionCal])) }}원</span>
           </div>
-            </div>
-            <div class="text-center">
-            <a class="btn btn-primary w-50" @click="setOption1()">설문 정보 입력하러 가기</a>
+        
+          <div>
+            
+            <button class="goServicePay-btn" @click="setOption1()">설문 정보 입력하러 가기</button>
+            
           </div>
-            </div>
-            </div>   
+      </div>
+  </div>
 </div>
-</div>
+  
 </template>
 
 
@@ -420,29 +415,5 @@ export default {
   .serviceOption-container {
     max-width:950px;
     margin:auto;
-  }
-
-  .text-right {
-    text-align: right;
-  }
-
-  .form-select {
-    color:gray;
-
-  }
-
-  .warn {
-    color: rgb(81, 81, 81);
-    font-size: 0.9em;
-  }
-
-  .form-title {
-    font-weight: bold;
-    color:gray;
-  }
-
-  .service-title {
-    text-align: center;
-    color: primary;
   }
 </style>

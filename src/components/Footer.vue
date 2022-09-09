@@ -1,17 +1,18 @@
 <template>
 	<div class="container">
-		<div class="row justify-content-between bg-gray">
+	<div class="footer">
+		<div class="row justify-content-between bg-gray m-3">
             <div class="col-lg-2 col-md-4 col-6 mb-4">
                 <div class="row align-items-center mt-5 text-left text-md-start">
                         <ul class="list-unstyled">
-                            <li class="mb-4"><a href="/index.html">
+                            <li class="mb-4"><router-link to="/">
                             <img loading="prelaod" decoding="async" class="img-fluid" width="160" src="@/assets/logo.png" alt="surveasy">
-                            </a>
+                            </router-link>
                             </li>
                             <li class="text-left mb-2 text-secondary">서베이지</li>
                             <li class="text-left mb-2 text-secondary">surveasy2019@yonsei.ac.kr</li>
-                            <li class="text-left mb-2 text-secondary"><a href="/terms1">이용약관</a></li>
-                            <li class="text-left mb-2 text-secondary"><a href="/terms2">개인정보처리방침</a></li>
+                            <li class="text-left mb-2 text-secondary"><router-link to="/terms1">이용약관</router-link></li>
+                            <li class="text-left mb-2 text-secondary"><router-link to="/terms2">개인정보처리방침</router-link></li>
                         </ul>
                 </div>
 			</div>
@@ -19,13 +20,13 @@
 				<div class="row align-items-center mt-5 text-left text-md-start">
 					<h5 class="mb-4 text-primary font-secondary">서비스</h5>
 					<ul class="list-unstyled">
-						<li class="mb-2"><a href="/service">설문응답 서비스</a>
+						<li class="mb-2"><router-link to="/service">설문응답 서비스</router-link>
 						</li>
-						<li class="mb-2"><a href="/surveylist">설문 리스트</a>
+						<li class="mb-2"><router-link to="/surveylist">설문 리스트</router-link>
 						</li>
-						<li class="mb-2"><a href="/surveytemplate">설문 템플릿</a>
+						<li class="mb-2"><router-link to="/surveytemplate">설문 템플릿</router-link>
 						</li>
-						<li class="mb-2"><a href="/knowhow">설문 노하우</a>
+						<li class="mb-2"><router-link to="/knowhow">설문 노하우</router-link>
 						</li>
 					</ul>
 				</div>
@@ -34,7 +35,7 @@
 				<div class="row align-items-center mt-5 text-left text-md-start">
 					<h5 class="mb-4 text-primary font-secondary">회사</h5>
 					<ul class="list-unstyled">
-						<li class="mb-2"><a href="#!">브랜드스토리</a>
+						<li class="mb-2"><router-link to="/story">브랜드스토리</router-link>
 						</li>
 					</ul>
 				</div>
@@ -43,32 +44,35 @@
 				<div class="row align-items-center mt-5 text-left text-md-start">
 					<h5 class="mb-4 text-primary font-secondary">문의</h5>
 					<ul class="list-unstyled">
-						<li class="mb-2"><a href="/contact">1:1 문의</a>
+						<li class="mb-2"><router-link to="/contact">1:1 문의</router-link>
 						</li>
-						<li class="mb-2"><a href="/b2bcontact">B2B 문의</a>
+						<li class="mb-2"><router-link to="/b2bcontact">B2B 문의</router-link>
 						</li>
-						<li class="mb-2"><a href="/contact">FAQs</a>
+						<li class="mb-2"><router-link to="/contact">FAQs</router-link>
 						</li>
 					</ul>
 				</div>
 			</div>
 
-      	<div class="col-lg-2 col-md-4 col-6 mb-4">
-				<div class="row align-items-center mt-5 text-left text-md-start">
-          <ul class="list-unstyled list-inline mb-0 social-icons">
-          <span class="footer-icon"><img class="footerimg" src="@/assets/Footer/IHEI.jpg" width="130"></span>
-          <span class="footer-icon"><a href="https://blog.naver.com/surveasy" target="_blank"><img class="footerimg" src="@/assets/Footer/blog.jpg" width="32.05"></a></span>
-          <span class="footer-icon"><a href="http://pf.kakao.com/_xfialK/chat" target="_blank"><img class="footerimg" src="@/assets/Footer/kakao.jpg" width="33.86"></a></span>
-          <li class="list-inline-item me-3"><a title="Explorer Facebook Profile" class="text-black" href="https://facebook.com/surveasy"><i class="fab fa-facebook-f"></i></a>
-					</li>
-					<li class="list-inline-item me-3"><a title="Explorer Instagram Profile" class="text-black" href="https://instagram.com/"><i class="fab fa-instagram"></i></a>
-					</li>
-					<li class="list-inline-item me-3"><a title="Explorer Youtube Profile" class="text-black" href="https://youtube.com/c/Surveasy/featured"><i class="fab fa-youtube"></i></a>
-					</li>
-          </ul>
+      	<div class="col-lg-2 col-md-6 col-6 mb-4">
+		  <div class="row align-items-center mt-5 text-left text-md-start">
+			<ul class="list-unstyled list-inline mb-0 social-icons">
+				<span class="footer-icon"><img class="footerimg" src="@/assets/Footer/IHEI.jpg" width="140"></span>
+			</ul>
           </div>
-          </div>
-
+        </div>
+		<div class="col-lg-2 col-md-6 col-6 mb-4">
+		  <div class="row align-items-center mt-5 text-left text-md-start">
+			<ul class="list-unstyled list-inline mb-0 social-icons">
+				<li class="list-inline-item me-3 p-1"><a href="https://blog.naver.com/surveasy" target="_blank"><img class="footerimg" src="@/assets/Footer/blog.jpg" width="23"></a></li>
+				<li class="list-inline-item me-3 p-1"><a href="http://pf.kakao.com/_xfialK/chat" target="_blank"><img class="footerimg" src="@/assets/Footer/kakao.jpg" width="23"></a></li>
+				<li class="list-inline-item me-3 p-1"><a href="https://facebook.com/surveasy" target="_blank"><img class="footerimg" src="@/assets/Footer/facebook.jpg" width="23"></a></li>
+				<li class="list-inline-item me-3 p-1"><a href="https://instagram.com/surveasy/" target="_blank"><img class="footerimg" src="@/assets/Footer/insta.jpg" width="23"></a></li>
+				<li class="list-inline-item me-3 p-1"><a href="https://youtube.com/c/Surveasy/featured" target="_blank"><img class="footerimg" src="@/assets/Footer/youtube.jpg" width="23"></a></li>
+				</ul>
+				</div>
+				</div>
+		</div>
 		</div>
     </div>
 
@@ -83,4 +87,8 @@ export default {
 </script>
 
 <style>
+a{
+	color : #6c757d;
+}
+
 </style>

@@ -1,7 +1,9 @@
 <template>
-  <div class="service-container">
-      <ServiceDetail />
-      <ServiceOption />
+  <div class="service-container row">
+    <div class="col-xl-2"></div>
+    <ServiceDetail />
+    <ServiceOption />
+    <div class="col-xl-2"></div>
   </div>
   
 </template>
@@ -22,10 +24,8 @@ export default {
 </script>
 
 <style>
-.service-container {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  
+
+.service-container  {
+  max-width: 1400px;
 }
 </style>
