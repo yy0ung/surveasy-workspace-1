@@ -47,7 +47,7 @@
 
         <div class="respond-content">
             <span class="calc-option-title">소요시간</span>
-            <div class="calc-option">
+            <div class="calc-option" id="calc-time-op">
               <div class="pro-one" :class="{active: priceSpendTime>=2}">
                 <div class="step-counter" :class="{active: priceSpendTime>=1}" @click="TimeCount(1)"></div>
                 <div class="step-name" :class="{active: priceSpendTime>=1}">1분 이내</div>
@@ -492,7 +492,7 @@ export default {
   position: absolute;
   content: "";
   border-bottom: 3px solid #ccc;
-  width: 50%;
+  width: 100%;
   top: 5px;
   right: -50%;
  
@@ -530,6 +530,9 @@ export default {
 .pro-one:last-child::after {
   content: none;
   border-bottom: none;
+}
+#calc-time-op{
+  margin-left: 10px;
 }
 #one-last::before{
   content: none;
