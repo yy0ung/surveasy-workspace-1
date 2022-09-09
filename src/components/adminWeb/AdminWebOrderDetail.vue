@@ -179,6 +179,7 @@ export default {
   font-size: 25px;
   font-weight: bold;
   margin: 5px;
+  color: #626161;
 }
 #p2-id {
   font-family: 'Noto Sans KR', sans-serif;
@@ -190,6 +191,7 @@ export default {
   flex-direction: row;
   justify-content: right;
   cursor: pointer;
+  color: #626161;
 }
 .detail-col {
   display: flex;

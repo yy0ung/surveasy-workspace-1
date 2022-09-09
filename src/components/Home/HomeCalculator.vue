@@ -149,7 +149,7 @@
           <div class="price-content">
             <div class="calc-option-title" id="total">총 금액</div>
             <span class="service-option-totalprice-price">
-              {{ this.calculate }}원</span>
+              {{ this.priceToString(this.calculate) }}원</span>
           </div>
         
           
@@ -325,14 +325,13 @@ export default {
     },
 
     calculate() {
-      var p = Number(this.$store.state.priceTable[this.priceIdentity][this.priceSpendTime][this.priceRequireHeadCount])
-
-      p = Number(
-            p + this.$store.state.TimeOptionArray[this.timeOptionCal] 
-              + p * this.$store.state.EngOptionArray[this.EngOptionCal]
-              + p * this.$store.state.AgeOptionArray[this.targetAgeOption]
-              + p * this.$store.state.genderOptionArray[this.targetGenderOption]
-          )
+      var p = parseFloat(parseFloat(this.$store.state.priceTable[this.priceSpendTime][this.priceRequireHeadCount])
+                      * parseFloat(this.$store.state.IdentityOptionArray[this.priceIdentity])
+                      * parseFloat(this.$store.state.EngOptionArray[this.EngOptionCal])
+                      * parseFloat(this.$store.state.AgeOptionArray[this.targetAgeOption])
+                      * parseFloat(this.$store.state.genderOptionArray[this.targetGenderOption])
+                      + parseFloat(this.$store.state.TimeOptionArray[this.timeOptionCal])
+                    ).toFixed(0)
       
       this.price = p
       return p
@@ -608,6 +607,7 @@ export default {
 .target-content select {
   height: 30px;
   margin-left: 7px;
+  padding-left: 5px;
 }
 #select-age {
   width: 200px;
