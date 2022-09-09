@@ -51,7 +51,7 @@
           <td><a :href="item.link" target="_blank" class="tds"
           :class="{red:item.progress==0 || item.progress==1, green2: item.progress==2, gray: item.progress==3 || item.progress==4}">{{item.title}}</a></td>
           <td>{{item.target}}</td>
-          <td>{{item.targetingAge}} - {{item.targetingGender}}</td>
+          <td>{{this.$store.state.targetingTable[0][Number(item.targetingAge)]}} / {{this.$store.state.targetingTable[1][Number(item.targetingGender)]}}</td>
           <td :title=item.uploaderIdentity>{{item.priceIdentity.substring(0, 4)}}</td>
         </tr>
       </table>
