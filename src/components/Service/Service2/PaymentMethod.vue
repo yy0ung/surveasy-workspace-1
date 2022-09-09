@@ -46,17 +46,13 @@ export default {
 
       var emptyTarget = []
 
-      if(this.$store.state.localSurveyState.title=='' || this.$store.state.localSurveyState.target=='' || this.$store.state.localSurveyState.institute=='' 
+      if(this.$store.state.localSurveyState.title=='' || this.$store.state.localSurveyState.institute=='' 
       || this.$store.state.localSurveyState.link=='' || this.accont_userName=='') {
 
         var emptyTarget = []
 
         if(this.$store.state.localSurveyState.title=='') {
           emptyTarget.push(PaymentEmptyNotice[0])
-        }
-
-        if(this.$store.state.localSurveyState.target=='') {
-          emptyTarget.push(PaymentEmptyNotice[1])
         }
 
         if(this.$store.state.localSurveyState.institute=='') {
@@ -70,9 +66,6 @@ export default {
         if(this.accont_userName=='') {
           emptyTarget.push(PaymentEmptyNotice[4])
         }
-
-
-        //console.log(emptyTarget)
 
         alert(emptyTarget + '의 입력이 필요합니다.')
       }

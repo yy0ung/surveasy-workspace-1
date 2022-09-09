@@ -73,7 +73,7 @@ hr {
   color: black;
   font-size: 16px;
   margin-left: 5px;
-  margin-right: 160px;
+  margin-right: 120px;
 }
 .showPrice-detail-total #showPrice-num{
   font-family: 'Noto Sans KR', sans-serif;
