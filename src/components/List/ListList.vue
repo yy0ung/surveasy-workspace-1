@@ -61,7 +61,10 @@
         </td>
         
 
-        <td class="list-de" :class="{active:dueTime(item[0].dueDate,item[0].dueTimeTime)<0 || item[0].progress>=3}">{{item[0].target}}</td>
+        <td class="list-de" :class="{active:dueTime(item[0].dueDate,item[0].dueTimeTime)<0 || item[0].progress>=3}">
+          <div v-if="item[0].targetingAge == null && item[0].targetingGender == null">누구나</div> 
+          <div v-else>{{ this.$store.state.targetingTable[0][Number(item[0].targetingAge)]}}, {{ this.$store.state.targetingTable[1][Number(item[0].targetingGender)]}}</div>
+        </td>
         <!-- <td class="list-de" :class="{active:dueTime(item[0].dueDate,item[0].dueTimeTime)<0 || item[0].progress>=3}">{{item[0].spendTime}}</td> -->
         <td class="list-de" :class="{active:dueTime(item[0].dueDate,item[0].dueTimeTime)<0 || item[0].progress>=3}">{{countPpl(item)}}</td>
         <!-- <td class="list-de" :class="{active:dueTime(item[0].dueDate,item[0].dueTimeTime)<0 || item[0].progress>=3}">{{item[0].requiredHeadCount}}</td> -->
@@ -116,6 +119,7 @@ export default {
         uploader:'',
         id:0
       },
+
       
       
      
@@ -190,6 +194,18 @@ export default {
 
       return pageCount
     },
+
+    getTarget(age, gender) {
+      const ageIdx = Number(age) 
+      const genderIdx = Number(gender)
+
+      const target_age = this.$store.state.targetTable[0][ageIdx]
+      const target_gender = this.$store.state.targetTable[1][genderIdx]
+      const target = target_age + ", " + target_gender
+
+      return target 
+    },
+
     // disp(text){
     //   return text.length<30 ? 'none' : 'flex'
     // }

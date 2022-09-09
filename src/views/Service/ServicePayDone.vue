@@ -16,7 +16,7 @@
       </ul>
       <ul class="paydone-detail">
         <div id="paydone-detail-text">계좌번호</div> 
-        <div id="paydone-detail-value">카카오뱅크 3333-17-5341775 (장서준)</div>
+        <div id="paydone-detail-value">카카오뱅크 3333-11-5235460 (송다예)</div>
       </ul>
     </div>
     <div class="paydone-notice">설문조사의 진행 상황은 마이 페이지에서 확인하실 수 있습니다.
