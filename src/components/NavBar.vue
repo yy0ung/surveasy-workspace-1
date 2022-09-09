@@ -35,7 +35,7 @@
 						<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
 							<li><router-link class="dropdown-item " to="/mypage/dashboard">마이페이지</router-link>
 							</li>
-							<li><router-link class="dropdown-item " href="/" @click="logout">로그아웃</router-link>
+							<li><router-link class="dropdown-item " to="/" @click="logout">로그아웃</router-link>
 							</li>
 						</ul>
 					</li>
