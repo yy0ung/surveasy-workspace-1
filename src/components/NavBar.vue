@@ -13,7 +13,7 @@
 						<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
 							<li><router-link class="dropdown-item " to="/service">설문 응답 서비스</router-link>
 							</li>
-							<li><router-link class="dropdown-item " to="blog-details.html">설문 템플릿</router-link>
+							<li><router-link class="dropdown-item " to="/surveytemplate">설문 템플릿</router-link>
 							</li>
 						</ul>
 					</li>
