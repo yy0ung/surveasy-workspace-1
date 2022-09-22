@@ -1,5 +1,4 @@
 <template>
-<div class="col-xl-4">
  <div class="container">
 		<div class="row justify-content-center align-items-center">
 			    <div class="shadow rounded p-3 bg-white">
@@ -97,7 +96,6 @@
           </div>
             </div>
             </div>   
-</div>
 </div>
 </template>
 

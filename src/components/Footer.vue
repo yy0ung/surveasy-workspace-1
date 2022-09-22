@@ -10,7 +10,7 @@
                             </router-link>
                             </li>
                             <li class="text-left mb-2 text-secondary">서베이지</li>
-                            <li class="text-left mb-2 text-secondary">surveasy2019@yonsei.ac.kr</li>
+                            <li class="text-left mb-2 text-secondary">official@gosurveasy.com</li>
                             <li class="text-left mb-2 text-secondary"><router-link to="/terms1">이용약관</router-link></li>
                             <li class="text-left mb-2 text-secondary"><router-link to="/terms2">개인정보처리방침</router-link></li>
                         </ul>

@@ -1,40 +1,33 @@
 <template>
-  <div class="Coupon">
-    <div class="Coupon-container">
-      <ul id="Coupon-title">쿠폰/적립금</ul>
-
-      <ul id="Coupon-detail">
-        <ul class="Coupon-detail-text">쿠폰</ul>
-          <select class="Coupon-selectbox" v-model="selectedCoupon">
+    <div class="shadow rounded bg-white p-4 mt-4">
+      <h3>쿠폰/적립금</h3><hr>
+        <div>쿠폰</div>
+          <div class="row">
+            <div class="col-7">
+          <select class="form-select" v-model="selectedCoupon">
             <option class="select-placeholder" :value="defaultCoupon" disabled selected>사용 가능 쿠폰 {{ this.$store.state.myCoupon.length }}장</option>
             <option class="Coupon-option" v-for="item in (this.$store.state.myCoupon)" v-bind:value="{code: item.code, rate: item.rate, forGroup: item.forGroup}" :key="item">{{ item.name }}  : {{ item.duedate }} 까지</option>
           </select>
-          <button class="Coupon-btn-" @click="useCoupon()">쿠폰 적용하기</button>
-      </ul>
-
-      <ul id="Coupon-detail">
-        <ul class="Coupon-detail-text">적립금</ul>
-        <div class="flex">
-        <div class="point-detail-container">
-          <div class="Point-box">
-            <input class="Point-input" type="text" v-model="point_to_use" placeholder="사용하려는 적립금 액수를 입력하세요.">
-            <div>
-              보유 적립금 {{ show_point }}원    
-              <button class="pointDelete-btn" @click="deletePoint"><i class="fas fa-times"></i></button>
+          </div>
+          <div class="col-5">
+          <a class="btn btn-outline-primary" @click="useCoupon()">쿠폰 적용</a>
+          </div>
+          </div>
+          <div class="mb-3"></div>
+        <div class="col-6">적립금</div>
+            <div class="row">
+              <div class="col-7">
+                <input class="form-control form-control-coupon" type="text" v-model="point_to_use" placeholder="사용하려는 적립금 액수를 입력하세요.">
+                <div class="align-right">보유 적립금 {{ show_point }}원    
+              <a class="pointDelete-btn" @click="deletePoint"><i class="fas fa-times"></i></a>
+              </div>
+              </div>
+              <div class="col-5">
+              <a class="btn btn-outline-primary" id="point-btn-" @click="usePoint()">적립금 적용</a>
+              </div>
+              <div>*적립금은 주문 금액의 최대 10%까지 사용 가능합니다.</div>
             </div>
-          </div>
-          
-          
         </div>
-        <div>
-          <button class="Coupon-btn-" id="point-btn-" @click="usePoint()">적립금 적용하기</button>
-          </div>
-          </div>
-          <div class="Point-notice">적립금은 주문 금액의 최대 10%까지 사용 가능합니다.</div>
-      </ul>
-
-    </div>
-  </div>  
 </template>
 
 <script>
@@ -176,180 +169,11 @@ export default {
 </script>
 
 <style>
-.Coupon {
-  background: #EEEEEE 0% 0% no-repeat padding-box;
-  margin-top: 20px;
-  border-radius: 15px;
-  opacity: 1;
-  font-family: 'Noto Sans KR', sans-serif;
-}
-.Coupon-container {
-  width: 1123px;
-  padding: 25px;
-  z-index: 1;
-}
-.Coupon-container ul {
-  text-align: left;
-}
-.Coupon-container #Coupon-title {
-  font-family: 'Noto Sans KR', sans-serif;
-  font-size: 20px;
-  font-weight: bold;
-  color: black;
-  margin: 25px 0 30px 0;
-}
-#Coupon-detail ul {
-  display: block;
-  margin-left: 3px;
-}
-.Coupon-detail-text {
-  left: 187px;
-  width: 200px;
-  height: 25px;
-  margin-top: 38px;
-  margin-bottom: 15px;
-  padding: 0;
-  text-align: left;
-  font-family: 'Noto Sans KR';
-  font-size: 17px;
-  font-weight: normal;
-  letter-spacing: 0px;
-  color: #000000;
-  opacity: 1;
-}
-.Coupon-selectbox {
-  left: 190px;
-  width: 707px;
-  height: 55px;
-  border: 0.75px solid #afafaf;
-  opacity: 1;
-  background-color: #EEEEEE;
-  font-size: 16px;
-  padding: 12px;
-  text-align: left;
-  font-family: 'Noto Sans KR';
-  letter-spacing: 0px;
-  color: #a2a0a0;
-  padding-top: 14px;
-  padding-bottom: 13px;
-  border-radius: 9px;
-  
-}
-.Coupon-selectbox:focus {
-  outline: none;
-  border: 1.5px solid #0AAB00;
-}
-.Coupon-option {
-  padding: 10px;
-  font-size: 16px;
-  color: #1c1c1c;
-}
-/* .Coupon-btn {
-  background-color: #EEEEEE;
-  border: 1px solid #0CAE02;
-  font-weight: 400;
-  margin-left: 20px;
-  color: #0CAE02;
-  font-size: 1rem;
-  font-weight: 800;
-  border-radius: 26px;
-  cursor: pointer;  
-  padding: 13px 29px;
-  font-family: 'Noto Sans KR' lighter;
-  
-}
-.pPoint-btn{
-  background-color: #EEEEEE;
-  border: 1px solid #0CAE02;
-  font-weight: 400;
-  margin-left: 20px;
-  color: #0CAE02;
-  font-size: 1rem;
-  font-weight: 800;
-  border-radius: 26px;
-  cursor: pointer;  
-  padding: 5px 20px;
-  font-family: 'Noto Sans KR' lighter;
-}
-.Coupon-btn:hover, .pPoint-btn:hover{
-  color: white;
-  background-color: #0AAB00;
-} */
-.Coupon-btn-{
-  height: 48px;
-  width: 120px;
-  color: #0AAB00;
-  border: 1px solid #0AAB00;
-  border-radius: 18px;
-  font-family: 'Noto Sans KR';
-  margin-left: 15px;
-}
-#point-btn-{
-  margin-top: 3px;
-}
-.Coupon-btn-:hover{
-  color: white;
-  background-color: #0AAB00;
-}
-.point-detail-container {
-  display: flex;
-  flex-direction: row;
-}
-.Point-box {
-  display: flex;
-  justify-content: space-between;
-  left: 190px;
-  width: 680px;
-  height: 26px;
-  margin: 0;
-  border: 0.75px solid #afafaf;
-  opacity: 1;
-  background-color: #EEEEEE;
-  font-size: 16px;
-  padding: 13px;
-  text-align: left;
-  font-family: 'Noto Sans KR' lighter;
-  letter-spacing: 0px;
-  color: #a2a0a0;
-  padding-top: 14px;
-  padding-bottom: 13px;
-  border-radius: 9px;
-}
-.Point-input {
-  width: 400px;
-  background-color: #EEEEEE; 
-  border: none;
-  font-size: 16px;
-  font-family: 'Noto Sans KR' lighter;
-  color: #a2a0a0;
-  padding-left: 5px;
-}
-.Point-input::placeholder {
-  font-size: 16px;
-  font-family: 'Noto Sans KR';
-  color: #a2a0a0;
-}
-.Point-input:focus {
-  border:none;
-  outline: none;
-}
-.pointDelete-btn {
-  display: inline-block;
-  border: none;
-  color: grey;
-  cursor: pointer;
-}
-.Point-notice {
-  font-family: 'Noto Sans KR', sans-serif;
-  color: #848484;
-  font-size: 0.9rem;
-  padding-top: 5px;
-  padding-left: 15px;
-}
-.flex{
-  display: flex;
-}
-.select-placeholder{
-  font-family: 'Noto Sans KR', sans-serif;
-}
+  .point-use{
+    height: 42px;
+  }
+
+  .form-control-coupon:not(textarea) {
+    height: 40px;
+  }
 </style>

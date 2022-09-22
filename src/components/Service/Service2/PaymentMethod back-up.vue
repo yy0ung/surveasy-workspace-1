@@ -1,19 +1,17 @@
 <template>
-  <div class="shadow rounded bg-white p-4 mt-4">
-    <h3>결제방법</h3><hr>
-        <div class="row">
-        <div class="col-12 p-3">
-        <h5>입금 계좌</h5>
-        <h5>카카오뱅크 3333-17-5341775 (장서준)</h5>
-        </div>
-        <div class="col-12 p-3">
-          <input class="form-control" v-model="accont_userName" @change="setOption3()" id="Account-input" placeholder="입금자명">
-          </div>
-          <div class="col-12 p-3">
-            <a class="btn btn-primary btn-payment" @click="payDone()">결제하기</a>
-          </div>
-        </div>
+  <div class="PaymentMethod">
+    <div class="PaymentMethod-container">
+      <ul id="PaymentMethod-title">결제 방법</ul>
+      <ul>
+        <span id="Account-title">입금 계좌</span>
+        <span id="Account-address">카카오뱅크 3333-17-5341775 (장서준)</span>
+      </ul>
+      
+      <ul><div><input v-model="accont_userName" @change="setOption3()" id="Account-input" placeholder="입금자명"></div></ul>
+      
+      <button class="Payment-btn" @click="payDone()">결제하기</button>
     </div>
+  </div>  
 </template>
 
 <script>
@@ -409,7 +407,84 @@ export default {
 </script>
 
 <style>
-  .btn-payment {
-    width: 100%;
-  }
+.PaymentMethod {
+  background: #EEEEEE 0% 0% no-repeat padding-box;
+  margin-top: 20px;
+  margin-left: 20px;
+  border-radius: 15px;
+  font-family: 'Noto Sans KR', sans-serif;
+}
+.PaymentMethod-container {
+  width: 380px;
+  padding-top: 20px;
+  z-index: 1;
+}
+.PaymentMethod-container ul{
+  text-align: left;
+  font-size: 13px;
+  margin: 0;
+  padding-left: 45px;
+}
+#PaymentMethod-title {
+  font-family: 'Noto Sans KR', sans-serif;
+  color: black;
+  margin: 27px 0 30px 0;
+  font-size: 19px;
+  font-weight: bold;
+}
+#Account-title {
+  font-family: 'Noto Sans KR', sans-serif;
+  color: black;
+  font-size: 14px;
+  font-weight: bold;
+  margin-right: 33px;
+}
+#Account-input {
+  font-family: 'Noto Sans KR', sans-serif;
+  background-color: #EEEEEE;
+  justify-content: center;
+  width: 282px;
+  height: 10px;
+  border-radius: 9px;
+  margin-top: 25px;
+  border: 1px solid rgb(187, 187, 187);
+  padding: 15px;
+  font-size: 14px;
+ 
+}
+#Account-input:focus{
+  outline: none;
+  border: 1.5px solid #0AAB00;
+}
+.PaymentMethod-container input::placeholder {
+  text-align: left;
+  font-family: 'Noto Sans KR';
+  font-size: 15px;
+  letter-spacing: 0px;
+  color: #BCBCBC;
+  opacity: 1;
+}
+.PaymentMethod-text {
+  font-family: 'Noto Sans KR';
+  font-size: 11px;
+  font-weight: normal;
+  margin-top: 25px;
+  line-height: 19px;
+}
+.Payment-btn {
+  background-color: #EEEEEE;
+  border: 1px solid #0CAE02;
+  padding: 10px 20px;
+  margin-top: 35px;
+  color: #0CAE02;
+  font-family: 'Noto Sans KR';
+  font-size: 1.1rem;
+  font-weight: medium;
+  border-radius: 26px;
+  cursor: pointer; 
+}
+.Payment-btn:hover{
+  color: white;
+  background-color: #0AAB00;
+}
 </style>

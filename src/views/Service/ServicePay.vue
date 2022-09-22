@@ -1,17 +1,22 @@
 <template>
-<div class="ServicePay">
-  <div class="ServicePay-col">
+<div class="container">
+  <div class="row">
+  <div class="col-1"></div>
+  <div class="col-10">
+    <div class="row">
+  <div class="col-lg-7 col-xl-7 col-12">
       <OptionInfo />
       <SurveyInfo />
       <CouponPoint />
-      
-      
-    </div>  
-
-  <div class="ServicePay-col">
+  </div> 
+  <div class="col-lg-5 col-xl-5 col-12">
       <PaymentPrice />
       <PaymentMethod />
     </div>
+  </div>
+</div>
+  <div class="col-1"></div>
+</div>
 </div>
   
 </template>
@@ -33,36 +38,4 @@ export default {
 </script>
 
 <style>
-.ServicePay {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  height: 1950px;
-}
-.ServicePay-col {
-  display: flex;
-  flex-direction: column;
-  margin-top: 25px;
-}
-
-.OptionInfo {
-  width: 950px;
-  height: 440px;
-}
-.SurveyInfo {
-  width: 950px;
-  height: 860px;
-}
-.Coupon {
-  width: 950px;
-  height: 440px;
-}
-.PaymentPrice {
-  width: 400px;
-  height: 300px;
-}
-.PaymentMethod {
-  width: 400px;
-  height: 310px;
-}
 </style>
