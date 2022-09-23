@@ -136,7 +136,7 @@
 
 <script>
 import { setDoc, doc } from 'firebase/firestore';
-import TemplateFinModal from './TemplateFinModal.vue'
+import TemplateFinModal from './TemplateDone.vue'
 export default {
   data() {
     return {

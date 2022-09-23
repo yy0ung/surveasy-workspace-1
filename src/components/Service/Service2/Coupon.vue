@@ -4,26 +4,26 @@
         <div>쿠폰</div>
           <div class="row">
             <div class="col-7">
-          <select class="form-select" v-model="selectedCoupon">
+          <select class="form-select form-control-text" v-model="selectedCoupon">
             <option class="select-placeholder" :value="defaultCoupon" disabled selected>사용 가능 쿠폰 {{ this.$store.state.myCoupon.length }}장</option>
             <option class="Coupon-option" v-for="item in (this.$store.state.myCoupon)" v-bind:value="{code: item.code, rate: item.rate, forGroup: item.forGroup}" :key="item">{{ item.name }}  : {{ item.duedate }} 까지</option>
           </select>
           </div>
           <div class="col-5">
-          <a class="btn btn-outline-primary" @click="useCoupon()">쿠폰 적용</a>
+          <a class="btn btn-outline-primary btn-width100" @click="useCoupon()">쿠폰 적용</a>
           </div>
           </div>
           <div class="mb-3"></div>
         <div class="col-6">적립금</div>
             <div class="row">
               <div class="col-7">
-                <input class="form-control form-control-coupon" type="text" v-model="point_to_use" placeholder="사용하려는 적립금 액수를 입력하세요.">
+                <input class="form-control form-control-text" type="text" v-model="point_to_use" placeholder="사용하려는 적립금 액수를 입력하세요.">
                 <div class="align-right">보유 적립금 {{ show_point }}원    
               <a class="pointDelete-btn" @click="deletePoint"><i class="fas fa-times"></i></a>
               </div>
               </div>
               <div class="col-5">
-              <a class="btn btn-outline-primary" id="point-btn-" @click="usePoint()">적립금 적용</a>
+              <a class="btn btn-outline-primary btn-width100" @click="usePoint()">적립금 적용</a>
               </div>
               <div>*적립금은 주문 금액의 최대 10%까지 사용 가능합니다.</div>
             </div>
@@ -173,7 +173,12 @@ export default {
     height: 42px;
   }
 
-  .form-control-coupon:not(textarea) {
-    height: 40px;
+  .form-control-text:not(textarea) {
+    height: 48px;
+  }
+
+  .btn-width100{
+    width:100%;
+    max-width: 140px;
   }
 </style>

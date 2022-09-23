@@ -31,7 +31,7 @@
                 <router-link to="/register" class="btn btn-primary ms-2 ms-lg-3">회원가입</router-link>
                 </span>
                 <span v-else>
-                    <li class="nav-item dropdown"> <a class="nav-link" id="navbarDropdown" role="button"> 안녕하세요 {{this.$store.state.loginState.currentUser.name}}님</a>
+                    <li class="nav-item dropdown"> <a class="nav-link main-color" id="navbarDropdown" role="button"> 안녕하세요 {{this.$store.state.loginState.currentUser.name}}님</a>
 						<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
 							<li><router-link class="dropdown-item " to="/mypage/dashboard">마이페이지</router-link>
 							</li>
@@ -60,5 +60,9 @@ methods:{
 </script>
 
 <style>
+
+li {
+list-style: none;
+}
 
 </style>

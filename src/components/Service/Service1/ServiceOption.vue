@@ -17,7 +17,6 @@
                               <option :value=6>80명 (최대 응답수)</option>
                             </select>
                             </div>
-
                             <div class="col-6">
                             <p class="form-title m-1">소요 시간</p>
                             <select class="form-select m-1" v-model="priceSpendTime">
@@ -426,7 +425,6 @@ export default {
 
   .form-select {
     color:gray;
-
   }
 
   .warn {

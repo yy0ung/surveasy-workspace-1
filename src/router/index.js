@@ -8,6 +8,7 @@ import ServiceIdentity_mypage from '../views/Service/ServiceIdentity_mypage.vue'
 import ServicePayDone from '../views/Service/ServicePayDone.vue'
 import SurveyList from '../views/SurveyList.vue'
 import SurveyTemplate from '../views/SurveyTemplate.vue'
+import TemplateDone from '../components/Template/TemplateDone.vue'
 import KnowHow from '../views/KnowHow.vue'
 import Story from '../views/Story.vue'
 import Contact from '../views/Contact.vue'
@@ -97,6 +98,13 @@ const routes = [
     name: 'SurveyTemplate',
     component: SurveyTemplate
   },
+
+  {
+    path: '/templatedone',
+    name: 'TemplateDone',
+    component: TemplateDone
+  },
+
   {
     path: '/knowhow',
     name: 'KnowHow',

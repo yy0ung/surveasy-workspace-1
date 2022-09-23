@@ -7,15 +7,20 @@
             <div class="col-lg-2"></div>
 						<div class="col-lg-8">
               <div class="section-title text-center p-1">
+                <img class="checkimg" src="@/assets/check.png" width="100">
+                <div style="padding:20px"></div>
                     <h5 class="identity-title">대학생 및 대학원생 인증을 진행하시겠습니까?</h5>
                     <h5>대학(원)생 인증을 완료하셔야 대학(원)생 할인이 적용됩니다. </h5>
+                    <div style="padding:10px"></div>
                       <select name="" class="form-select" v-model="identityRequest">
                           <option value='' selected disabled >인증하려는 할인 대상을 선택하세요</option>
                           <option value='대학생'>대학생 (학부생)</option>
                           <option value='대학원생'>대학원생</option>
                       </select>
+                      <div style="padding:20px"></div>
                       <p>하단의 <span id="info-green">'인증하러 가기'</span>를 통해 카카오톡으로 대학(원)생임을 확인할 수 있는 자료를 보내주세요.</p>
                       <a class="btn btn-primary" href="http://pf.kakao.com/_xfialK/chat" target="_blank" @click="sendRequestVerifyIdentity(this.identityRequest)">인증하러 가기</a>
+                      <div style="padding:20px"></div>
                       <p class="identity-done" @click="noFunc()">이미 인증 요청을 완료했습니다.</p>
                     </div>
                 </div>

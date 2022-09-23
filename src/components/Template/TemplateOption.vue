@@ -1,43 +1,42 @@
 <template>
-<div class="TemplateOption">
-  <div class="TemplateOption-container">
-      <div id="TemplateOption-title">설문 템플릿 서비스</div>
-          <li>
-            <div class="Template-option-text">템플릿 <span class="temp-green">*</span></div>
-            <select class="selectbox" v-model="templateData.type">
-              <option :value=0>1. 사용경험 설문조사</option>
-              <option :value=1>2. 인식 설문조사</option>
-            </select> 
-          </li>
-
-          <li>
-            <div class="Template-option-text">이름 <span class="temp-green">*</span></div>
-            <input v-model="templateData.name">
-          </li>
-
-          <li>
-            <div class="Template-option-text">이메일 주소 <span class="temp-green">*</span></div>
-            <input v-model="templateData.email">
-          </li>
-
-          <li>
-            <div class="Template-option-text">서베이지에게 원하는 템플릿이 있으면 작성해주세요.</div>
-            <input v-model="templateData.etc">
-          </li>
-
-          <div>
-            <button class="Template-btn" @click="templateFin(templateData)">템플릿 신청</button>
-            <TemplateFinModal :showTempModal="showTempModal" @closeTemplateModal="closeTemplateModal()" />
-          </div>
-      </div>
-</div>
-  
+  <div class="container">
+		<div class="row justify-content-center align-items-center">
+        <div class="shadow rounded bg-white m-3">
+          <h3 class="service-title m-3">설문 템플릿 서비스</h3>
+            <div class="row form-group m-3">
+                  <div class="col-12 p-3">
+                    <div>템플릿<span class="temp-green">*</span></div>
+                    <select class="form-select form-control-text" v-model="templateData.type">
+                      <option :value=0>1. 사용경험 설문조사</option>
+                      <option :value=1>2. 인식 설문조사</option>
+                    </select>
+                    </div>
+                    <div class="col-4 p-3">
+                    <div>이름<span class="temp-green">*</span></div>
+                    <input class="form-control form-control-text" v-model="templateData.name">
+                    </div>
+                    <div class="col-8 p-3">
+                    <div>이메일 주소<span class="temp-green">*</span></div>
+                    <input class="form-control form-control-text" v-model="templateData.email">
+                    </div>
+                    <div class="col-12 p-3">
+                    <div>서베이지에게 원하는 템플릿이 있으면 작성해주세요.</div>
+                    <input class="form-control form-control-text" v-model="templateData.etc">
+                    </div>
+                    <div class="text-center p-3">
+                    <router-link to="/templatedone">
+                    <button class="btn btn-primary" @click="templateFin(templateData)">템플릿 신청</button>
+                    </router-link>
+                    </div>
+            </div>
+        </div>
+    </div>
+  </div>
 </template>
 
 
 <script>
 import { setDoc, doc } from 'firebase/firestore';
-import TemplateFinModal from './TemplateFinModal.vue'
 export default {
   data() {
     return {
@@ -56,9 +55,6 @@ export default {
     }
     
   },
-
-  components: { TemplateFinModal },
-
 
   methods: {
     templateFin(inputData) {
@@ -140,101 +136,4 @@ export default {
 </script>
 
 <style>
-.TemplateOption {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  width: auto;
-  max-width: 500px;
-  min-width: 500px;
-  height: 5468px;
-  font-family: 'Noto Sans KR', sans-serif;
-}
-.TemplateOption-container {
-  font-family: 'Noto Sans KR';
-  position: sticky;
-  top: 108px;
-  z-index: 1;
-  height: 555px;
-  border-radius: 10px;
-  margin: 80px 80px 135px 10px;
-  background-color: #EEEEEE;
-  border-radius: 10px;
-  width: 410px;
-}
-#TemplateOption-title {
-  text-align: left;
-  color: #0CAE02;
-  font-size: 1.5rem;
-  font-weight: 600;
-  margin: 30px 0 27px 35px;
-}
-.TemplateOption-container li {
-  text-align: left;
-  margin-bottom: 12px;
-  display: block;
-}
-.Template-option-text {
-  font-family: 'Noto Sans KR', sans-serif;
-  text-align: left;
-  font-size: 14px;
-  font-weight: normal;
-  margin: 20px 0 0 35px;
-  padding: 0;
-}
-.temp-green {
-  color: #0AAB00;
-}
-.TemplateOption-container select {
-  margin: 13px 0 0 35px;
-  padding: 5px;
-  width: 190px;
-  height: 45px;
-  padding: 10px;
-  background-color: #EEEEEE;
-  font-size: 14px;
-  cursor: pointer;
-  border: 0.75px solid #BCBCBC;
-  border-radius: 4px;
-}
-.TemplateOption-container select:focus{
-  outline: none;
-  border: 1.5px solid #0AAB00;
-}
-.TemplateOption-container select option {
-  background-color: #EEEEEE;
-}
-
-.TemplateOption-container input {
-  width: 325px;
-  height: 42px;
-  margin: 10px 0 0 35px;
-  padding-left: 13px;
-  background-color: #EEEEEE;
-  border: 0.75px solid #BCBCBC;
-  opacity: 1;
-  border-radius: 4px;
-}
-.Template-option input:focus{
-  outline: none;
-  border: 1.5px solid #0AAB00;
-}
-.Template-btn {
-  font-family: 'Noto Sans KR', sans-serif;
-  width: 120px;
-  height: 40px;
-  margin-top: 20px;
-  color:#0AAC00;
-  background-color: #EEEEEE;
-  border: 1.5px solid #0AAC00;
-  border-radius: 30px;
-  font-size: 15px;
-  cursor: pointer;
-}
-.Template-btn:hover{
-  color: white;
-  background-color: #0AAC00;
-}
-
-
 </style>
