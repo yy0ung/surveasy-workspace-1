@@ -75,11 +75,10 @@ export default {
       else {
         this.couponIsUsed()
         this.pointIsUsed()
-        this.pointADD()
+        this.getPointToAdd()
         this.sendToAdmin(this.$store.state.localSurveyState)
         this.$store.state.localSurveyState.coupon_use = false
         this.$store.state.localSurveyState.point_use = false
-        // console.log('else')
       }
 
       
@@ -176,9 +175,6 @@ export default {
 
       this.$store.state.loginState.currentUser.point_current = this.$store.state.loginState.currentUser.point_current - this.$store.state.localSurveyState.pointDiscount
 
-      //this.$store.state.localPointState.point_current = this.$store.state.currentUser.point_current
-     // this.$store.state.localPointState.point_total = this.$store.state.currentUser.point_total
-
       await updateDoc(docref, { 
           point_current: this.$store.state.loginState.currentUser.point_current,
     
@@ -213,7 +209,7 @@ export default {
       // console.log('current point: ' + this.$store.state.localPointState.point_current)
     },
 
-    async pointADD() {
+    async getPointToAdd() {
       var db = this.$store.state.db
       var currentUserEmail = this.$store.state.loginState.currentUser.email
       var point_addValue = 0
@@ -233,35 +229,15 @@ export default {
       }
 
       this.point_add = point_addValue
-
-      this.$store.state.loginState.currentUser.point_current = this.$store.state.loginState.currentUser.point_current + point_addValue
-      this.$store.state.loginState.currentUser.point_total = this.$store.state.loginState.currentUser.point_total + point_addValue
-
-      //this.$store.state.localPointState.point_current = this.$store.state.currentUser.point_current
-      //this.$store.state.localPointState.point_total = this.$store.state.currentUser.point_total
-
-
-      await updateDoc(docref, { 
-          point_current: this.$store.state.loginState.currentUser.point_current,
-          point_total: this.$store.state.loginState.currentUser.point_total
-        })
-
-      this.$store.state.userData = []
-      this.fetchUserData_point()
     },
 
 
     async sendToAdmin(dataset) {
       var lastID = await this.fetchLastID()
       var db = this.$store.state.db
-      // var localLastID = this.$store.state.lastID[0].lastID
       var currentUserEmail = await this.$store.state.loginState.currentUser.email
       var surveySelectedIdentity = await this.$store.state.localSurveyState.identity
       var nowDate = new Date()
-      // var fullYear = (""+nowDate.getFullYear()).substring(2,4)
-      // var month = ""+(nowDate.getMonth()+1)
-      // var date = ""+nowDate.getDate()
-      // var orderNum = fullYear + month + date + (""+lastID)  
       
       var orderNum = (nowDate.getFullYear()).toString().substring(2,4) + (nowDate.getMonth()+1).toString() + (nowDate.getDate()).toString() + lastID.toString()
       console.log(orderNum)
@@ -271,13 +247,11 @@ export default {
       var today = new Date()
       var todayPlus9 = today.setHours(today.getHours()+9)
       var todayPlus9Date = new Date(todayPlus9)
-      //console.log(todayPlus9Date)
       var min = todayPlus9Date.toISOString()
       
 
       var dddd= min.split('T')
       var ddddd = dddd[0]
-      //console.log(ddddd)
       
       var dddddd= ddddd.split('-')
       
@@ -292,7 +266,6 @@ export default {
       day = day.length == 2 ? day : '0' + day
 
       var D = year + '-' + month + '-' + day 
-      //console.log(D)
 
       
         await setDoc(doc(db, "surveyData", lastID.toString()), {
@@ -384,9 +357,7 @@ export default {
         querySnapshot.forEach((doc) => {
           lastID.push(doc.data())
         })
-        // console.log(lastID)
-        // console.log(lastID[1])
-        // console.log(lastID[1].lastID)
+        
         return lastID[1].lastID
       },
 
