@@ -65,12 +65,15 @@ export default {
     id: { typeof: Number },
     notice: { typeof: String },
     due: { typeof: String },
-    uploaderEmail: { typeof: String }
+    uploaderEmail: { typeof: String },
+    validIndexNum: { typeof: Number },
+    point_add: { typeof: Number },
 
   },
 
   data() {
     return {
+      uploadNum: 0,
       reward : "",
       noticeToPanel : "",
       link : "",
@@ -99,10 +102,11 @@ export default {
         noticeToPanel : this.noticeToPanel
       })
 
+      this.pointAdd()
+
       var lastIDChecked = await this.fetchLastIDChecked()
       var lastIDRef = doc(db,"lastID","lastIDChecked")
       var idDocref = doc(db, "surveyData", this.id.toString())
-      var userDocRef = doc(db, "userData", this.uploaderEmail.toString())
 
       if(this.link.length>5) {
         await updateDoc (idDocref, {
@@ -116,12 +120,6 @@ export default {
         })
       }
 
-
-      // await updateDoc(userDocRef, {
-      //   respondArray: arrayUnion(lastIDChecked)
-      // })
-
-
       await updateDoc( idDocref, {
         progress : 2,
         lastIDChecked : lastIDChecked,
@@ -131,8 +129,23 @@ export default {
       await updateDoc (lastIDRef, {
         lastIDChecked : (lastIDChecked + 1)
       }).then(alert('업로드 완료'))
-      
-      
+
+    },
+
+    async pointAdd() {
+      var db = this.$store.state.db
+      var docRef = doc(db, "userData", this.uploaderEmail.toString())
+      var docSnap = await getDoc(docRef)
+      const snap = []
+
+      if(docSnap.exists()) {
+        snap.push(docSnap.data())
+      }
+
+      await updateDoc(docRef, { 
+        point_current: Number(snap[0].point_current + this.point_add),
+        point_total: Number(snap[0].point_total + this.point_add)
+      })
 
     },
     
