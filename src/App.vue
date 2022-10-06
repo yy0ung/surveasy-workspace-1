@@ -80,7 +80,7 @@
   <div id="footer-container">
     <div class="footer-contents">
       <p>서베이지 Surveasy</p>
-      <p>상호 : 서베이지</p>
+      <p>상호 : 턴업컴퍼니</p>
       <p>이메일 : official@gosurveasy.com</p>
       <p><router-link :to="{name: 'Term1'}" target="_blank">이용약관</router-link> | 
     <router-link :to="{name: 'Term2'}" target="_blank">개인정보처리방침</router-link></p>
