@@ -160,6 +160,10 @@ export default createStore({
 
     knowhowOne:[
       {
+        index : 18,
+        image: require('@/assets/knowhow/one/surveytips8thumbnail.png')
+      },
+      {
         index : 17,
         image: require('@/assets/knowhow/one/surveytips7thumbnail.png')
       },
