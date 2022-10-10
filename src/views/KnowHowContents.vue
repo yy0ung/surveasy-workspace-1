@@ -21,6 +21,9 @@
   <div v-if="this.id==17">
     <KnowHowTip7/>
   </div>
+  <div v-if="this.id==18">
+    <KnowHowTip8/>
+  </div>
   <div v-if="this.id==21">
     <KnowHowOther1/>
   </div>
@@ -45,6 +48,7 @@ import KnowHowTip4 from '../components/KnowHow/KnowHowTip/KnowHowTip4.vue'
 import KnowHowTip5 from '../components/KnowHow/KnowHowTip/KnowHowTip5.vue'
 import KnowHowTip6 from '../components/KnowHow/KnowHowTip/KnowHowTip6.vue'
 import KnowHowTip7 from '../components/KnowHow/KnowHowTip/KnowHowTip7.vue'
+import KnowHowTip8 from '../components/KnowHow/KnowHowTip/KnowHowTip8.vue'
 import KnowHowOther1 from '../components/KnowHow/KnowHowOther/KnowHowOther1.vue'
 import KnowHowCheck1 from '../components/KnowHow/KnowHowCheck/KnowHowCheck1.vue'
 import KnowHowCheck2 from '../components/KnowHow/KnowHowCheck/KnowHowCheck2.vue'
@@ -63,6 +67,7 @@ export default {
     KnowHowTip5,
     KnowHowTip6,
     KnowHowTip7,
+    KnowHowTip8,
     KnowHowOther1,
     KnowHowCheck1,
     KnowHowCheck2
