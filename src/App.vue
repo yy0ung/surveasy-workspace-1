@@ -356,10 +356,10 @@ body {
 
 }
 .right-login{
-  
+  z-index: 500;
   padding-top: 25px;
   padding-right: 25px;
-  
+  background-color: #FFFFFF;
 }
 #right-drop{
   padding-top: 17px;

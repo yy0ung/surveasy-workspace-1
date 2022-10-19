@@ -372,8 +372,10 @@ export default {
 
 <style>
 .PaymentMethod {
+  z-index: 1;
   background: #EEEEEE 0% 0% no-repeat padding-box;
   margin-top: 20px;
+  margin-bottom: 75px;
   margin-left: 20px;
   border-radius: 15px;
   font-family: 'Noto Sans KR', sans-serif;

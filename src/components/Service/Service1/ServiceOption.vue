@@ -432,7 +432,7 @@ export default {
 }
 .serviceOption-container {
   position: sticky;
-  top: 108px;
+  top: 0px;
   z-index: 1;
   height: 650px;
   border-radius: 10px;
