@@ -9,8 +9,11 @@
     </div>  
 
   <div class="ServicePay-col">
+    <div class="sticky-container">
       <PaymentPrice />
       <PaymentMethod />
+    </div>
+      
     </div>
 </div>
   
@@ -42,7 +45,11 @@ export default {
 .ServicePay-col {
   display: flex;
   flex-direction: column;
-  margin-top: 25px;
+}
+.sticky-container {
+  position: sticky;
+  top: 40px;
+  margin-bottom: 25px;
 }
 
 .OptionInfo {
