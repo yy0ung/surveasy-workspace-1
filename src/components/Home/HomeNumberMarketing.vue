@@ -2,7 +2,7 @@
 
 <div id="number-marketing-container">
   <div class="number-contents">
-    <p><span id="number-bold">134명</span>
+    <p><span id="number-bold">675명</span>
       <br>
       <br>
       <span id="number-none">현재 대기 중인 패널</span>
