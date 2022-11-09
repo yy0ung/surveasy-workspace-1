@@ -13,7 +13,7 @@
   </div>
   <div class="rev-contents">
     <div class="rev-column">
-    <p class="rev-black-bold">1. 서베이지의 가장 큰 장접은 무엇이라고 생각하시나요? (복수 선택 가능) *</p>
+    <p class="rev-black-bold">1. 서베이지의 가장 큰 장점은 무엇이라고 생각하시나요? (복수 선택 가능) *</p>
     
       <div class="rev-option">
         <input type="checkbox" class="check" name="good" id="A1" v-model="reviewDetailData.Q1" value="A1" >
