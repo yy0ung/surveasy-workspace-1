@@ -87,6 +87,8 @@ export default {
         }
 
         this.$store.state.localSurveyState.coupon_use = true
+
+        alert("쿠폰 적용이 완료되었습니다.")
       }
 
       else if(this.$store.state.localSurveyState.coupon_use==true) {
