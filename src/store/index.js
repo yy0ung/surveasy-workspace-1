@@ -203,6 +203,11 @@ export default createStore({
     knowhowThree:[
 
       {
+        index : 33,
+        image:  require('@/assets/knowhow/three/check3thumbnail.png'),
+      },
+
+      {
         index : 32,
         image:  require('@/assets/knowhow/three/check2thumbnail.png'),
       },
