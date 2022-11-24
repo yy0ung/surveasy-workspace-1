@@ -1,6 +1,9 @@
 <template>
   <div class="service-container">
+    <div class="service-detail">
+      <ServiceActivePannel/>
       <ServiceDetail />
+    </div>
       <ServiceOption />
   </div>
   
@@ -9,10 +12,12 @@
 <script>
 import ServiceDetail from '../../components/Service/Service1/ServiceDetail.vue'
 import ServiceOption from '../../components/Service/Service1/ServiceOption.vue'
+import ServiceActivePannel from '../../components/Service/Service1/ServiceActivePannel.vue'
 export default {
   components:{
     ServiceDetail,
-    ServiceOption
+    ServiceOption,
+    ServiceActivePannel
   },
   mounted() {
     window.scrollTo(0,0)

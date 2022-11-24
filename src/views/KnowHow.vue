@@ -1,6 +1,5 @@
 <template>
 <div id="knohow-container">
-  
   <KnowHowMain/>
   
   <!-- <KnowHowItem />
@@ -13,7 +12,6 @@
 import KnowHowMain from '../components/KnowHow/KnowHowMain.vue'
 import KnowHowItem from '../components/KnowHow/KnowHowItem.vue'
 import KnowHowClosed from '../components/KnowHow/KnowHowClosed.vue'
-
 
 export default {
   components:{
