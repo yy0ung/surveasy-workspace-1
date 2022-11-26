@@ -99,7 +99,7 @@
 </template>
 <script>
 import { initializeApp } from 'firebase/app'
-import { getFirestore,collection, getDocs } from 'firebase/firestore'
+import { collection, doc, getDoc, getDocs, getFirestore, setDoc, query, where } from "firebase/firestore"
 import { getAnalytics } from 'firebase/analytics'
 // import browserDetect from 'vue-browser-detect-plugin'
 // import { event } from 'vue-gtag'
@@ -200,7 +200,9 @@ export default {
     },
     indexC(num){
       this.$store.state.indexColor = num
-    }
+    },
+    
+ 
     }
 }
 </script>

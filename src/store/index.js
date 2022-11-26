@@ -1,6 +1,6 @@
 
 import { createStore } from 'vuex'
-import { doc, getDoc } from 'firebase/firestore'
+import { collection, doc, getDoc, getDocs, getFirestore, setDoc, query, where } from "firebase/firestore"
 import createPersistedState from 'vuex-persistedstate'
 import loginState from './loginState.js'
 import { getStorage } from 'firebase/storage'
@@ -251,6 +251,15 @@ export default createStore({
       { "title" : "결제 후 전액 환불이 가능한가요?","detail":"설문 진행이 어려운 경우를 제외하고, 설문이 바로 패널에게 전달되므로 전액 환불은 불가합니다.<br>단, 진행이 어려운 설문의 경우, 전액 환불을 위해 설문 검수 과정에서 저희가 따로 연락드리고 있습니다."},
       { "title" : "응답 수가 미달될 경우, 환불 절차는 어떻게 되나요?","detail":"응답 수가 미달될 경우, 미달된 응답수에 해당하는 비율만큼 부분 환불을 도와드리고 있습니다.<br>환불 절차는 회원가입 시 기입하신 연락처 또는 카카오톡 채널(@surveasy)을 통해 안내드립니다.<br><br><i>환불 예시: 응답 수 30명 요청, 20명 응답 시 → 결제 금액의 1/3 환불 진행</i>"},
     ],
+
+    //active pannel
+    activePannel: {
+      totalCount: 0,
+      maleCount: 0,
+      femaleCount: 0,
+      maleAges: [0,0,0,0,0],
+      femaleAges: [0,0,0,0,0]
+    }
 
 
   },

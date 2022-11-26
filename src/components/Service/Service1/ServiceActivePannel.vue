@@ -75,6 +75,20 @@ export default {
   },
   methods: {
     async panelTest() {
+      let cnt = this.$store.state.activePannel
+      if(cnt.totalCount==0){
+        console.log("기다려")
+        this.inner()
+      }else{
+        console.log(cnt.totalCount)
+        console.log(cnt.femaleCount)
+        console.log(cnt.maleCount)
+        console.log(cnt.maleAges)
+        console.log(cnt.femaleAges)
+      }
+    },
+
+    async inner(){
       let db = this.$store.state.db
       let now = new Date().getTime()
       var weekago = new Date(new Date().getTime() - 7 * 24 * 60 * 60 * 1000);
@@ -127,20 +141,13 @@ export default {
           } 
         }
       });
-      console.log("남 ->", maleCount)
-      console.log(maleNames)
-      console.log(femaleNames)
-      console.log("여 ->", femaleCount)
-      console.log("활성패널 수")
-      console.log(maleAges)
+      console.log(totalCount)
       this.totalCount = totalCount
       this.maleAges = maleAges
       this.maleCount = maleCount
       this.femaleAges = femaleAges
       this.femaleCount = femaleCount
     }
-  
-
 }
 }
 </script>
