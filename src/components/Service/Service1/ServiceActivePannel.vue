@@ -1,56 +1,56 @@
 <template>
   <div id="service-active-pannel">
     <div class="content-container">
-      <p class="black-bold">설문대상별 수집 가능한</p>
-      <p class="green-bold">최대 응답 수</p>
-      <p class="black-content">설문 대상의 연령과 성별에 따라<br>수집 가능한 최대 응답 수 입니다.
+      <p class="p-black-bold">설문대상별 수집 가능한</p>
+      <p class="p-green-bold">최대 응답 수</p>
+      <p class="p-black-content">설문 대상의 연령과 성별에 따라<br>수집 가능한 최대 응답 수 입니다.
       <br>옵션 선택 시 참고해주세요.</p>
-      <p class="black-content">예를들어, 20대 성별 무관 선택 시,<br>
+      <p class="p-black-content">예를들어, 20대 성별 무관 선택 시,<br>
       최대 170명의 응답을 받으실 수 있어요!</p>
     </div>
     <div class="table-container">
-      <table>
-        <tr>
-          <th></th>
-          <th>성별무관</th>
-          <th>남성</th>
-          <th>여성</th>
+      <table class="active-table">
+        <tr class="table-topline">
+          <th class="table-topline" id="table-draw"></th>
+          <th class="table-topline">성별무관</th>
+          <th class="table-topline">남성</th>
+          <th class="table-topline">여성</th>
         </tr>
         <tr>
-          <td>전연령</td>
-          <td>{{ maleCount+femaleCount }}</td>
-          <td>{{ maleCount }}</td>
-          <td>{{ femaleCount }}</td>
+          <td class="table-leftline">전연령</td>
+          <td>{{ maleCount+femaleCount }}명</td>
+          <td>{{ maleCount }}명</td>
+          <td>{{ femaleCount }}명</td>
         </tr>
         <tr>
-          <td>20대</td>
-          <td>{{ maleAges[0] + maleAges[1] + femaleAges[0] + femaleAges[1]}}</td>
-          <td>{{ maleAges[0] + maleAges[1] }}</td>
-          <td>{{ femaleAges[0] + femaleAges[1] }}</td>
+          <td class="table-leftline">20대</td>
+          <td>{{ maleAges[0] + maleAges[1] + femaleAges[0] + femaleAges[1]}}명</td>
+          <td>{{ maleAges[0] + maleAges[1] }}명</td>
+          <td>{{ femaleAges[0] + femaleAges[1] }}명</td>
         </tr>
         <tr>
-          <td>20세 이상 24세 이하</td>
-          <td>{{ maleAges[0] + femaleAges[0] }}</td>
-          <td>{{ maleAges[0] }}</td>
-          <td>{{ femaleAges[0] }}</td>
+          <td class="table-leftline">20세 이상 24세 이하</td>
+          <td>{{ maleAges[0] + femaleAges[0] }}명</td>
+          <td>{{ maleAges[0] }}명</td>
+          <td>{{ femaleAges[0] }}명</td>
         </tr>
         <tr>
-          <td>25세 이상 29세 이하</td>
-          <td>{{ maleAges[1] + femaleAges[1] }}</td>
-          <td>{{ maleAges[1] }}</td>
-          <td>{{ femaleAges[1] }}</td>
+          <td class="table-leftline">25세 이상 29세 이하</td>
+          <td>{{ maleAges[1] + femaleAges[1] }}명</td>
+          <td>{{ maleAges[1] }}명</td>
+          <td>{{ femaleAges[1] }}명</td>
         </tr>
         <tr>
-          <td>20세 이상 39세 이하</td>
-          <td>{{ maleAges[0] + maleAges[1] + maleAges[2] + femaleAges[0] + femaleAges[1] + femaleAges[2] }}</td>
-          <td>{{ maleAges[0] + maleAges[1] + maleAges[2] }}</td>
-          <td>{{ femaleAges[0] + femaleAges[1] + femaleAges[2] }}</td>
+          <td class="table-leftline">20세 이상 39세 이하</td>
+          <td>{{ maleAges[0] + maleAges[1] + maleAges[2] + femaleAges[0] + femaleAges[1] + femaleAges[2] }}명</td>
+          <td>{{ maleAges[0] + maleAges[1] + maleAges[2] }}명</td>
+          <td>{{ femaleAges[0] + femaleAges[1] + femaleAges[2] }}명</td>
         </tr>
         <tr>
-          <td>20세 이상 49세 이하</td>
-          <td>{{ maleAges[0] + maleAges[1] + maleAges[2] + maleAges[3] + femaleAges[0] + femaleAges[1] + femaleAges[2] + femaleAges[3] }}</td>
-          <td>{{ maleAges[0] + maleAges[1] + maleAges[2] + maleAges[3] }}</td>
-          <td>{{ femaleAges[0] + femaleAges[1] + femaleAges[2] +femaleAges[3] }}</td>
+          <td class="table-leftline">20세 이상 49세 이하</td>
+          <td>{{ maleAges[0] + maleAges[1] + maleAges[2] + maleAges[3] + femaleAges[0] + femaleAges[1] + femaleAges[2] + femaleAges[3] }}명</td>
+          <td>{{ maleAges[0] + maleAges[1] + maleAges[2] + maleAges[3] }}명</td>
+          <td>{{ femaleAges[0] + femaleAges[1] + femaleAges[2] +femaleAges[3] }}명</td>
         </tr>
         
       </table>
@@ -80,11 +80,11 @@ export default {
         console.log("기다려")
         this.inner()
       }else{
-        console.log(cnt.totalCount)
-        console.log(cnt.femaleCount)
-        console.log(cnt.maleCount)
-        console.log(cnt.maleAges)
-        console.log(cnt.femaleAges)
+        this.totalCount = cnt.totalCount
+        this.maleCount = cnt.maleCount
+        this.femaleCount = cnt.femaleCount
+        this.maleAges = cnt.maleAges
+        this.femaleAges = cnt.femaleAges
       }
     },
 
@@ -157,28 +157,79 @@ export default {
 #service-active-pannel{
   width: auto;
   margin: 80px 23px 35px 80px;
+  padding: 35px 43px;
   background-color: #EEEEEE;
   border-radius: 10px;
   display: flex;
   flex-direction: row;
+  
 }
 .content-container{
   font-family: 'Noto Sans KR', sans-serif;
   text-align: left;
+  margin-right: 50px;
+  margin-top: 20px;
   }
-#service-active-pannel .black-bold{
+
+.table-container{
+  margin-right: 0;
+}
+
+#table-draw{
+  background: transparent url('~@/assets/service/draw.png') no-repeat padding-box;
+}
+
+#service-active-pannel .p-black-bold{
+  margin-bottom: 0;
   text-align: left;
   font-size: 1.2rem;
-  font-weight: 600;
+  font-weight: 700;
   font-family: 'Noto Sans KR', sans-serif;
 }
-#service-active-pannel .green-bold{
+.p-green-bold{
+  margin-top: 0;
   text-align: left;
   color: #0CAE02;
-  text-align: left;
   font-size: 1.2rem;
-  font-weight: 600;
+  font-weight: 700;
+  margin-bottom: 30px;
   font-family: 'Noto Sans KR', sans-serif;
+}
+
+.p-black-content{
+  text-align: left;
+  font-size: 0.95rem;
+  font-weight: 400;
+  font-family: 'Noto Sans KR', sans-serif;
+}
+
+
+.active-table{
+  font-size: 0.95rem;
+  font-weight: 400;
+  font-family: 'Noto Sans KR', sans-serif;
+  background: #FFFFFF;
+  border : #0000009C 0.5px solid;
+  border-collapse: collapse;
+}
+
+.table-container th, td{
+  border: #0000009C 0.5px solid;
+  font-weight: 400;
+  padding: 7px 30px;
+}
+
+.table-leftline{
+  background: #0AAB0040;
+  font-size: 1.1rem;
+  font-weight: 600;
+  padding: 7px 35px;
+}
+
+.table-topline{
+  font-weight: 600;
+  font-size: 1.1rem;
+
 }
 
 </style>

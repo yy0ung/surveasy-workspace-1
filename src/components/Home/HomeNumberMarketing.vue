@@ -22,45 +22,6 @@
       <span id="number-none">(실사례이나, 모든 설문에 해당되지는 않음)</span>
     </p>
   </div>
-  <div>
-    <table>
-      <tr>
-        <th></th>
-        <th>남</th>
-        <th>여</th>
-      </tr>
-      <tr>
-        <td>10대</td>
-        <td>{{ maleAges[0] }}</td>
-        <td>{{ femaleAges[0] }}</td>
-      </tr>
-      <tr>
-        <td>20대</td>
-        <td>{{ maleAges[1] }}</td>
-        <td>{{ femaleAges[1] }}</td>
-      </tr>
-      <tr>
-        <td>30대</td>
-        <td>{{ maleAges[2] }}</td>
-        <td>{{ femaleAges[2] }}</td>
-      </tr>
-      <tr>
-        <td>40대</td>
-        <td>{{ maleAges[3] }}</td>
-        <td>{{ femaleAges[3] }}</td>
-      </tr>
-      <tr>
-        <td>50대이상</td>
-        <td>{{ maleAges[4] }}</td>
-        <td>{{ femaleAges[4] }}</td>
-      </tr>
-      <tr>
-        <td>합계</td>
-        <td>{{ maleCount }}</td>
-        <td>{{ femaleCount }}</td>
-      </tr>
-    </table>
-  </div>
 </div>
 </template>
 
