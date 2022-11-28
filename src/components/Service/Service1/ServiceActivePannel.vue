@@ -156,8 +156,10 @@ export default {
 <style>
 #service-active-pannel{
   width: auto;
+  
   margin: 80px 23px 35px 80px;
-  padding: 35px 43px;
+  padding: 35px 20px;
+  padding-left : 35px;
   background-color: #EEEEEE;
   border-radius: 10px;
   display: flex;
@@ -172,6 +174,11 @@ export default {
   }
 
 .table-container{
+  margin-right: 0;
+  min-width: 580px;
+}
+
+.active-table{
   margin-right: 0;
 }
 
@@ -223,7 +230,7 @@ export default {
   background: #0AAB0040;
   font-size: 1.1rem;
   font-weight: 600;
-  padding: 7px 35px;
+  padding: 7px 30px;
 }
 
 .table-topline{
