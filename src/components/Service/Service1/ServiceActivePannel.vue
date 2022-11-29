@@ -1,13 +1,13 @@
 <template>
   <div id="service-active-pannel">
-    <div class="content-container">
-      <p class="p-black-bold">설문대상별 수집 가능한</p>
-      <p class="p-green-bold">최대 응답 수</p>
-      <p class="p-black-content">설문 대상의 연령과 성별에 따라<br>수집 가능한 최대 응답 수 입니다.
-      <br>옵션 선택 시 참고해주세요.</p>
-      <p class="p-black-content">예를들어, 20대 성별 무관 선택 시,<br>
-      최대 170명의 응답을 받으실 수 있어요!</p>
+    <p class="p-black-bold">설문대상별 수집 가능한 <span class="p-green-bold">최대 응답 수</span></p>
+    <div class="loading-contianer" v-if="!this.loading">
+      <p class="spinner-loading">
+        <i class="fas fa-spinner"></i>
+          불러오는 중 
+      </p>
     </div>
+    <div class="active-pannel-box-continer" v-if="this.loading">
     <div class="table-container">
       <table class="active-table">
         <tr class="table-topline">
@@ -18,43 +18,54 @@
         </tr>
         <tr>
           <td class="table-leftline">전연령</td>
-          <td>{{ maleCount+femaleCount }}명</td>
-          <td>{{ maleCount }}명</td>
-          <td>{{ femaleCount }}명</td>
+          <td>{{ Math.floor(totalCount/10)*10 }}명</td>
+          <td>{{ Math.floor(maleCount/10)*10 }}명</td>
+          <td>{{ Math.floor(femaleCount/10)*10 }}명</td>
         </tr>
         <tr>
           <td class="table-leftline">20대</td>
-          <td>{{ maleAges[0] + maleAges[1] + femaleAges[0] + femaleAges[1]}}명</td>
-          <td>{{ maleAges[0] + maleAges[1] }}명</td>
-          <td>{{ femaleAges[0] + femaleAges[1] }}명</td>
+          <td>{{ Math.floor((maleAges[0] + maleAges[1] + femaleAges[0] + femaleAges[1])/10)*10 }}명</td>
+          <td>{{ Math.floor((maleAges[0] + maleAges[1])/10)*10 }}명</td>
+          <td>{{ Math.floor((femaleAges[0] + femaleAges[1])/10)*10 }}명</td>
         </tr>
         <tr>
           <td class="table-leftline">20세 이상 24세 이하</td>
-          <td>{{ maleAges[0] + femaleAges[0] }}명</td>
-          <td>{{ maleAges[0] }}명</td>
-          <td>{{ femaleAges[0] }}명</td>
+          <td>{{ Math.floor((maleAges[0] + femaleAges[0])/10)*10 }}명</td>
+          <td>{{ Math.floor(maleAges[0]/10)*10 }}명</td>
+          <td>{{ Math.floor(femaleAges[0]/10)*10 }}명</td>
         </tr>
         <tr>
           <td class="table-leftline">25세 이상 29세 이하</td>
-          <td>{{ maleAges[1] + femaleAges[1] }}명</td>
-          <td>{{ maleAges[1] }}명</td>
-          <td>{{ femaleAges[1] }}명</td>
+          <td>{{ Math.floor((maleAges[1] + femaleAges[1])/10)*10 }}명</td>
+          <td>{{ Math.floor((maleAges[1])/10)*10 }}명</td>
+          <td>{{ Math.floor((femaleAges[1])/10)*10 }}명</td>
         </tr>
         <tr>
           <td class="table-leftline">20세 이상 39세 이하</td>
-          <td>{{ maleAges[0] + maleAges[1] + maleAges[2] + femaleAges[0] + femaleAges[1] + femaleAges[2] }}명</td>
-          <td>{{ maleAges[0] + maleAges[1] + maleAges[2] }}명</td>
-          <td>{{ femaleAges[0] + femaleAges[1] + femaleAges[2] }}명</td>
+          <td>{{ Math.floor((maleAges[0] + maleAges[1] + maleAges[2] + femaleAges[0] + femaleAges[1] + femaleAges[2])/10)*10 }}명</td>
+          <td>{{ Math.floor((maleAges[0] + maleAges[1] + maleAges[2])/10)*10 }}명</td>
+          <td>{{ Math.floor((femaleAges[0] + femaleAges[1] + femaleAges[2])/10)*10 }}명</td>
         </tr>
         <tr>
           <td class="table-leftline">20세 이상 49세 이하</td>
-          <td>{{ maleAges[0] + maleAges[1] + maleAges[2] + maleAges[3] + femaleAges[0] + femaleAges[1] + femaleAges[2] + femaleAges[3] }}명</td>
-          <td>{{ maleAges[0] + maleAges[1] + maleAges[2] + maleAges[3] }}명</td>
-          <td>{{ femaleAges[0] + femaleAges[1] + femaleAges[2] +femaleAges[3] }}명</td>
+          <td>{{ Math.floor((maleAges[0] + maleAges[1] + maleAges[2] + maleAges[3] + femaleAges[0] + femaleAges[1] + femaleAges[2] + femaleAges[3])/10)*10 }}명</td>
+          <td>{{ Math.floor((maleAges[0] + maleAges[1] + maleAges[2] + maleAges[3])/10)*10 }}명</td>
+          <td>{{ Math.floor((femaleAges[0] + femaleAges[1] + femaleAges[2] + femaleAges[3])/10)*10  }}명</td>
         </tr>
         
       </table>
+      
+    </div>  
+    
+      <div class="content-container">
+      <p class="p-black-content">설문 대상의 연령과 성별에 따라<br>수집 가능한 최대 응답 수 입니다.
+      <br>옵션 선택 시 참고해주세요.</p>
+      <p class="p-black-content">예를 들어, 20대 성별 무관 선택 시,<br>
+      최대 {{ Math.floor((maleAges[0] + maleAges[1] + femaleAges[0] + femaleAges[1])/10)*10 }}명의 응답을 받으실 수 있어요!</p>
     </div>
+    
+    </div>  
+    
   </div>  
 </template>
 
@@ -67,7 +78,8 @@ export default {
       maleCount: 0,
       femaleCount: 0,
       maleAges: [],
-      femaleAges : []
+      femaleAges : [],
+      loading : true
     }
   },
   mounted() {
@@ -77,7 +89,8 @@ export default {
     async panelTest() {
       let cnt = this.$store.state.activePannel
       if(cnt.totalCount==0){
-        console.log("기다려")
+        this.loading = false
+        
         this.inner()
       }else{
         this.totalCount = cnt.totalCount
@@ -91,7 +104,7 @@ export default {
     async inner(){
       let db = this.$store.state.db
       let now = new Date().getTime()
-      var weekago = new Date(new Date().getTime() - 7 * 24 * 60 * 60 * 1000);
+      var weekago = new Date(new Date().getTime() - 10 * 24 * 60 * 60 * 1000);
       const ref = collection(db, "panelData")
       const q = query(ref, where("lastParticipatedDate", ">", weekago))
       var totalCount = 0
@@ -141,12 +154,14 @@ export default {
           } 
         }
       });
-      console.log(totalCount)
+      
       this.totalCount = totalCount
       this.maleAges = maleAges
       this.maleCount = maleCount
       this.femaleAges = femaleAges
       this.femaleCount = femaleCount
+      this.loading = true
+      
     }
 }
 }
@@ -159,9 +174,27 @@ export default {
   
   margin: 80px 23px 35px 80px;
   padding: 35px 20px;
-  padding-left : 35px;
+  padding-left : 50px;
   background-color: #EEEEEE;
   border-radius: 10px;
+  
+}
+.loading-container{
+  padding-top: 50px;
+  text-align: center;
+  margin-top: 100px;
+}
+.loading-container .spinner-loading{
+  width: auto;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 1.3rem;
+  margin-top: 100px;
+  
+}
+
+
+.active-pannel-box-continer{
+  margin-top: 30px;
   display: flex;
   flex-direction: row;
   
@@ -169,13 +202,15 @@ export default {
 .content-container{
   font-family: 'Noto Sans KR', sans-serif;
   text-align: left;
+  
   margin-right: 50px;
-  margin-top: 20px;
+  margin-top: 55px;
   }
 
 .table-container{
   margin-right: 0;
   min-width: 580px;
+  
 }
 
 .active-table{
@@ -187,9 +222,10 @@ export default {
 }
 
 #service-active-pannel .p-black-bold{
-  margin-bottom: 0;
-  text-align: left;
-  font-size: 1.2rem;
+  margin-bottom: 40px;
+  margin-top: 0px;
+  text-align: center;
+  font-size: 1.3rem;
   font-weight: 700;
   font-family: 'Noto Sans KR', sans-serif;
 }
@@ -197,7 +233,7 @@ export default {
   margin-top: 0;
   text-align: left;
   color: #0CAE02;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   font-weight: 700;
   margin-bottom: 30px;
   font-family: 'Noto Sans KR', sans-serif;
@@ -220,7 +256,7 @@ export default {
   border-collapse: collapse;
 }
 
-.table-container th, td{
+.table-container .active-table th, .table-container .active-table td{
   border: #0000009C 0.5px solid;
   font-weight: 400;
   padding: 7px 30px;

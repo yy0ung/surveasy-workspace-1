@@ -188,7 +188,7 @@ export default {
       let cnt = this.$store.state.activePannel
       let db = this.$store.state.db
       let now = new Date().getTime()
-      var weekago = new Date(new Date().getTime() - 7 * 24 * 60 * 60 * 1000);
+      var weekago = new Date(new Date().getTime() - 10 * 24 * 60 * 60 * 1000);
       const ref = collection(db, "panelData")
       const q = query(ref, where("lastParticipatedDate", ">", weekago))
       var totalCount = 0
@@ -238,7 +238,7 @@ export default {
           } 
         }
       });
-      console.log(totalCount)
+      
       cnt.totalCount = totalCount
       cnt.maleAges = maleAges
       cnt.maleCount = maleCount
