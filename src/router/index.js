@@ -48,7 +48,6 @@ import AdminAppPanelSent from '../components/adminApp/AdminAppPanelSent.vue'
 import AdminAppPanelInfo from '../components/adminApp/AdminAppPanelInfo.vue'
 import AdminAppNotice from '../components/adminApp/AdminAppNotice.vue'
 import AdminAppHome from '../components/adminApp/AdminAppHome.vue'
-
 import KnowHowContents from '../views/KnowHowContents.vue'
 
 const routes = [
