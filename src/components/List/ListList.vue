@@ -253,16 +253,17 @@ export default {
 }
 
 #list-table td{
-  border-bottom: 1px solid black;
-  padding-top: 20px;
-  padding-bottom: 20px;
+  
+  border-bottom: 1px solid black !important;
+  padding-top: 20px !important;
+  padding-bottom: 20px !important;
   
 }
 
 #list-table th{
-  border-bottom: 1px solid #0CAE02;
-  padding-bottom: 20px;
-  color: #0CAE02;
+  border-bottom: 1px solid #0CAE02 !important;
+  padding-bottom: 20px !important;
+  color: #0CAE02 !important;
 }
 #list-table-title {
   width: 70%;

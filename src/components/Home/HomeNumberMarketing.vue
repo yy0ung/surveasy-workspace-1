@@ -22,45 +22,6 @@
       <span id="number-none">(실사례이나, 모든 설문에 해당되지는 않음)</span>
     </p>
   </div>
-  <div>
-    <table>
-      <tr>
-        <th></th>
-        <th>남</th>
-        <th>여</th>
-      </tr>
-      <tr>
-        <td>10대</td>
-        <td>{{ maleAges[0] }}</td>
-        <td>{{ femaleAges[0] }}</td>
-      </tr>
-      <tr>
-        <td>20대</td>
-        <td>{{ maleAges[1] }}</td>
-        <td>{{ femaleAges[1] }}</td>
-      </tr>
-      <tr>
-        <td>30대</td>
-        <td>{{ maleAges[2] }}</td>
-        <td>{{ femaleAges[2] }}</td>
-      </tr>
-      <tr>
-        <td>40대</td>
-        <td>{{ maleAges[3] }}</td>
-        <td>{{ femaleAges[3] }}</td>
-      </tr>
-      <tr>
-        <td>50대이상</td>
-        <td>{{ maleAges[4] }}</td>
-        <td>{{ femaleAges[4] }}</td>
-      </tr>
-      <tr>
-        <td>합계</td>
-        <td>{{ maleCount }}</td>
-        <td>{{ femaleCount }}</td>
-      </tr>
-    </table>
-  </div>
 </div>
 </template>
 
@@ -80,7 +41,6 @@ export default {
   },
   mounted() {
     this.surveyCount()
-    this.panelTest()
   },
   methods: {
     async surveyCount(){
@@ -93,72 +53,7 @@ export default {
       }
     },
 
-    async panelTest() {
-      let db = this.$store.state.db
-      let now = new Date().getTime()
-      var weekago = new Date(new Date().getTime() - 7 * 24 * 60 * 60 * 1000);
-      const ref = collection(db, "panelData")
-      const q = query(ref, where("lastParticipatedDate", ">", weekago))
-      var totalCount = 0
-      var maleCount = 0
-      var maleNames = []
-      var maleAges = [0,0,0,0,0]
-      var femaleNames = []
-      var femaleAges = [0,0,0,0,0]
-      var femaleCount = 0
-      const querySnapshot = await getDocs(q);
-      querySnapshot.forEach((doc) => {
-        totalCount +=1
-        let gender = doc.data().gender;
-        if (gender == "남") {
-          maleCount += 1
-          maleNames.push(doc.data().name)
-          var birthDate = new Date(doc.data().birthDate)
-          var dif = Math.floor((now - birthDate.getTime()) / 1000) 
-          var age = Math.ceil(dif / (60 * 60 * 24 * 365))
-          if (age < 20) {
-            maleAges[0] += 1
-          } else if (age >= 20 && age < 30){
-            maleAges[1] +=1 
-          } else if (age >= 30 && age < 40){
-            maleAges[2] +=1 
-          } else if (age >= 40 && age < 50){
-            maleAges[3] +=1 
-          } else {
-            maleAges[4] +=1 
-          } 
-        } else {
-          femaleCount += 1
-          femaleNames.push(doc.data().name)
-          var birthDate = new Date(doc.data().birthDate)
-          var dif = Math.floor((now - birthDate.getTime()) / 1000) 
-          var age = Math.ceil(dif / (60 * 60 * 24 * 365))
-          if (age < 20) {
-            femaleAges[0] += 1
-          } else if (age >= 20 && age < 30){
-            femaleAges[1] +=1 
-          } else if (age >= 30 && age < 40){
-            femaleAges[2] +=1 
-          } else if (age >= 40 && age < 50){
-            femaleAges[3] +=1 
-          } else {
-            femaleAges[4] +=1 
-          } 
-        }
-      });
-      console.log("남 ->", maleCount)
-      console.log(maleNames)
-      console.log(femaleNames)
-      console.log("여 ->", femaleCount)
-      console.log("활성패널 수")
-      console.log(maleAges)
-      this.totalCount = totalCount
-      this.maleAges = maleAges
-      this.maleCount = maleCount
-      this.femaleAges = femaleAges
-      this.femaleCount = femaleCount
-    }
-  },
+  }
 
 }
 </script>

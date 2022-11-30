@@ -15,7 +15,7 @@ export default {
 <style>
 .serviceDetail-container {
   width: auto;
-  margin: 80px 23px 135px 80px;
+  margin: 0px 23px 135px 80px;
 }
 
 </style>
