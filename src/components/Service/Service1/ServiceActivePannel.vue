@@ -18,37 +18,37 @@
         </tr>
         <tr>
           <td class="table-leftline">전연령</td>
-          <td>{{ Math.floor(totalCount/10)*10 }}명</td>
+          <td>{{ Math.floor(maleCount/10)*10 + Math.floor(femaleCount/10)*10 }}명</td>
           <td>{{ Math.floor(maleCount/10)*10 }}명</td>
           <td>{{ Math.floor(femaleCount/10)*10 }}명</td>
         </tr>
         <tr>
           <td class="table-leftline">20대</td>
-          <td>{{ Math.floor((maleAges[0] + maleAges[1] + femaleAges[0] + femaleAges[1])/10)*10 }}명</td>
+          <td>{{ Math.floor((maleAges[0] + maleAges[1])/10)*10 + Math.floor((femaleAges[0] + femaleAges[1])/10)*10 }}명</td>
           <td>{{ Math.floor((maleAges[0] + maleAges[1])/10)*10 }}명</td>
           <td>{{ Math.floor((femaleAges[0] + femaleAges[1])/10)*10 }}명</td>
         </tr>
         <tr>
           <td class="table-leftline">20세 이상 24세 이하</td>
-          <td>{{ Math.floor((maleAges[0] + femaleAges[0])/10)*10 }}명</td>
+          <td>{{ Math.floor(maleAges[0]/10)*10 + Math.floor(femaleAges[0]/10)*10 }}명</td>
           <td>{{ Math.floor(maleAges[0]/10)*10 }}명</td>
           <td>{{ Math.floor(femaleAges[0]/10)*10 }}명</td>
         </tr>
         <tr>
           <td class="table-leftline">25세 이상 29세 이하</td>
-          <td>{{ Math.floor((maleAges[1] + femaleAges[1])/10)*10 }}명</td>
+          <td>{{ Math.floor((maleAges[1])/10)*10 + Math.floor((femaleAges[1])/10)*10 }}명</td>
           <td>{{ Math.floor((maleAges[1])/10)*10 }}명</td>
           <td>{{ Math.floor((femaleAges[1])/10)*10 }}명</td>
         </tr>
         <tr>
           <td class="table-leftline">20세 이상 39세 이하</td>
-          <td>{{ Math.floor((maleAges[0] + maleAges[1] + maleAges[2] + femaleAges[0] + femaleAges[1] + femaleAges[2])/10)*10 }}명</td>
+          <td>{{ Math.floor((maleAges[0] + maleAges[1] + maleAges[2])/10)*10 + Math.floor((femaleAges[0] + femaleAges[1] + femaleAges[2])/10)*10 }}명</td>
           <td>{{ Math.floor((maleAges[0] + maleAges[1] + maleAges[2])/10)*10 }}명</td>
           <td>{{ Math.floor((femaleAges[0] + femaleAges[1] + femaleAges[2])/10)*10 }}명</td>
         </tr>
         <tr>
           <td class="table-leftline">20세 이상 49세 이하</td>
-          <td>{{ Math.floor((maleAges[0] + maleAges[1] + maleAges[2] + maleAges[3] + femaleAges[0] + femaleAges[1] + femaleAges[2] + femaleAges[3])/10)*10 }}명</td>
+          <td>{{ Math.floor((maleAges[0] + maleAges[1] + maleAges[2] + maleAges[3])/10)*10 + Math.floor((femaleAges[0] + femaleAges[1] + femaleAges[2] + femaleAges[3])/10)*10 }}명</td>
           <td>{{ Math.floor((maleAges[0] + maleAges[1] + maleAges[2] + maleAges[3])/10)*10 }}명</td>
           <td>{{ Math.floor((femaleAges[0] + femaleAges[1] + femaleAges[2] + femaleAges[3])/10)*10  }}명</td>
         </tr>
