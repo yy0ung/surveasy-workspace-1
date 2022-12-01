@@ -12,7 +12,12 @@
             <option :value=5>70명</option>
             <option :value=6>80명</option>
             <option :value=7>90명</option>
-            <option :value=8>100명 (최대 응답수)</option>
+            <option :value=8>100명</option>
+            <option :value=9>120명</option>
+            <option :value=10>140명</option>
+            <option :value=11>160명</option>
+            <option :value=12>180명</option>
+            <option :value=13>200명 (최대 응답수)</option>
           </select>
 
           <select class="selectbox" v-model="priceSpendTime">
@@ -64,8 +69,14 @@
             </label>
             <span class="Eng-text">{{ this.EngText }}</span>
           </li>
-          
+
+          <div class="service-option-sub-price">
+            <span id="sub-price-title">주문 금액</span>
+            <span id="sub-price-num">{{ this.priceToString(this.calculate_before) }}</span>
+            <span id="sub-price-title">원</span>
+          </div>
     
+          <br><hr id="line">
         
           <select class="selectbox" v-model="priceIdentity">
             <option :value=0 selected disabled hidden>대학생 / 대학원생 할인 여부</option>
@@ -77,13 +88,20 @@
 
           <p id="service-option-notice">결제 페이지에서 대학생 및 대학원생임을 인증해야만</p>
           <p id="service-option-notice">할인을 받으실 수 있습니다.</p>
+
+
+          <div class="service-option-sub-price">
+            <span id="sub-price-title">할인 금액</span>
+            <span id="sub-price-num">- {{ this.priceToString(this.calculate_before - this.calculate) }}</span>
+            <span id="sub-price-title">원</span>
+          </div>
         
-          <br>
+          <br><hr id="line">
         
           <div class="show-price-container">
-            <span class="service-option-totalprice-word">총 금액</span>
-            <span class="service-option-totalprice-price">
-              {{ this.priceToString(this.calculate) }}원</span>
+            <span class="service-option-totalprice-word">결제 금액</span>
+            <span class="service-option-totalprice-price">{{ this.priceToString(this.calculate)}}</span>
+            <span class="service-option-totalprice-word">원</span>
           </div>
         
           <div>
@@ -244,6 +262,19 @@ export default {
         this.EngText = "영어 설문입니다."
       }
       return EngIndex
+    },
+
+    calculate_before() {
+      var p = parseFloat(parseFloat(this.$store.state.priceTable[this.priceSpendTime][this.priceRequireHeadCount])
+                      // * parseFloat(this.$store.state.IdentityOptionArray[this.priceIdentity])
+                      * parseFloat(this.$store.state.EngOptionArray[this.EngOptionCal])
+                      * parseFloat(this.$store.state.AgeOptionArray[this.targetAgeOption])
+                      * parseFloat(this.$store.state.genderOptionArray[this.targetGenderOption])
+                      + parseFloat(this.$store.state.TimeOptionArray[this.timeOptionCal])
+                    ).toFixed(0)
+      
+      this.price = p
+      return p
     },
 
     calculate() {
@@ -434,7 +465,7 @@ export default {
   position: sticky;
   top: 0px;
   z-index: 1;
-  height: 650px;
+  height: 800px;
   border-radius: 10px;
   margin: 80px 80px 135px 10px;
   background-color: #EEEEEE;
@@ -453,7 +484,7 @@ export default {
   font-weight: lighter;
   margin: 8px;
   padding-left: 5px;
-  width: 330px;
+  width: 320px;
   height: 30px;
   background-color: #fafafa;
   font-size: 15px;
@@ -526,37 +557,34 @@ export default {
   font-size: 14px;
   color: rgb(137, 135, 135);
   font-weight: lighter;
+  margin-bottom: 10px;
 }
 #service-option-notice {
   text-align: left;
   color: rgba(219, 21, 21, 0.822);
   font-size: 11.5px;
-  margin: 1px 0 0 42px;
+  margin: 1px 0 0 46px;
   font-weight: 300;
 }
 .show-price-container {
-  margin-top: 10px;
-  padding: 15px;
+  margin-right: 55px;
   text-align: right;
   color:#0CAE02;
 }
-.show-price-container  .service-option-totalprice-word {
-  position: absolute;
-  top: 540px;
-  left: 160px;
-  font-size: 18px;
+.show-price-container  .service-option-totalprice-word {  
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 16px;
 }
-.show-price-container  .service-option-totalprice-price {
-  position: absolute;
-  top: 533px;
-  right: 1px;
-  margin: 0 45px 0 0;
+.show-price-container  .service-option-totalprice-price {  
+  font-family: 'Noto Sans KR', sans-serif;
+  color:#088902;
+  margin: 0 10px 0 30px;
   font-size: 25px;
-  font-weight: bold;
+  font-weight: bolder;
 }
 .goServicePay-btn {
   padding: 5px 70px;
-  margin-top: 20px;
+  margin-top: 35px;
   color:#0CAE02;
   background-color: #EEEEEE;
   border: 1.5px solid #0CAE02;
@@ -573,7 +601,28 @@ export default {
   display: flex;
   flex-direction: row;
 }
-
+.service-option-sub-price {
+  font-family: 'Noto Sans KR', sans-serif;
+  margin-top: 30px;
+  margin-right: 55px;
+  text-align: right;
+  font-size: 14px;
+  font-weight: bolder;
+  color: #000000;
+}
+#sub-price-num {
+  font-family: 'Noto Sans KR', sans-serif;
+  color: #9a9999;
+  margin-left: 27px;
+  margin-right: 10px;
+  font-weight: normal;
+}
+#line {
+  background:rgb(198, 198, 198);
+  height:1px;
+  border:0;
+  margin-top: 0;
+}
 
 /* Eng switch */
 .switch {
