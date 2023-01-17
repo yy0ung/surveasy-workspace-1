@@ -19,11 +19,11 @@
 					</li>
 					<li class="nav-item"> <router-link class="nav-link" to="/surveylist">설문 리스트</router-link>
 					</li>
-					<li class="nav-item "> <router-link class="nav-link" to="/knowhow">리서치 노하우</router-link>
+					<li class="nav-item"> <router-link class="nav-link" to="/knowhow">리서치 노하우</router-link>
 					</li>
-					<li class="nav-item "> <router-link class="nav-link" to="/story">브랜드 스토리</router-link>
+					<li class="nav-item"> <router-link class="nav-link" to="/story">브랜드 스토리</router-link>
 					</li>
-					<li class="nav-item "> <router-link class="nav-link" to="/contact">문의</router-link>
+					<li class="nav-item"> <router-link class="nav-link" to="/contact">문의</router-link>
 					</li>
 				</ul>
                 <span v-if="this.$store.state.loginState.isLoggedIn == false" >

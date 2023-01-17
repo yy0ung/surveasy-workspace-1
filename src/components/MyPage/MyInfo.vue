@@ -1,99 +1,70 @@
 <template>
-  <div id="myinfo-container">
-    <!-- <h1>myinfo</h1>
-    <p>{{this.$store.state.currentUser}}</p>
-    <div>
-      <p>닉네임 : {{this.$store.state.currentUser['nickname']}}</p>
-      <p>핸드폰번호 : {{this.$store.state.currentUser['phoneNumber']}}</p>
-      <p>이메일 : {{this.$store.state.currentUser['email']}}</p>
-      <p>신분 : {{this.$store.state.currentUser['identity']}}</p>
-      <p>패널 여부 : {{this.$store.state.currentUser['isPanel']}}</p>
-      <p>업로드 설문 : {{this.$store.state.currentUser['uploadIndex']}}</p>
-    </div>
-    
-    <div>
+        <div class="col-lg-12 pt-4 mx-2">
+        <h5>나의 정보</h5>
+      </div>
+  <div class="col-xl-12">
+      <div class="rounded border-green shadow py-4 px-4 my-4 mx-2">
+      <p class="text-primary">회원 정보</p>
       <hr>
-      <h1>신분 인증 요청하기</h1>
-      <p>{{identityRequest.request}}</p>
-      <div>
-        <select name="" id="" v-model="identityRequest">
-          <option disabled >요청할 신분을 선택하세요</option>
-          <option :value="{request: 'undergraduate'}">대학생 (학부생)</option>
-          <option :value="{request: 'postgraduate'}">대학원생</option>
-        </select>
-        <br>
-        <button @click="sendRequestVerifyIdentity(this.identityRequest)">요청 보내기</button>
-        <br>
-        <router-link to="/withdraw" class="go-link">회원 탈퇴하기 ></router-link>
+      <div class="row p-3">
+        <span class="col-auto">이메일</span>
+        <span class="col"></span>
+        <span class="col-auto">{{this.$store.state.loginState.currentUser['email']}}</span>
       </div>
-
-    </div> -->
-    <div class="top-box">
-      <p class="green-title">회원 정보</p>
-      <div class="info-content">
-      <div class="info-contents1">
-        <p class="info-title">이메일</p>
-        <!-- <p class="info-title">비밀번호</p> -->
-        <p class="info-title">이름</p>
-        <p class="info-title">휴대폰 번호</p>
-        <p class="info-title">생년월일</p>
-        <p class="info-title">할인대상</p>
-       
+      <div class="row p-3">
+        <span class="col-auto">이름</span>
+        <span class="col"></span>
+        <span class="col-auto">{{this.$store.state.loginState.currentUser['name']}}</span>
       </div>
-      <div class="info-contents2">
-        <p class="info-detail">{{this.$store.state.loginState.currentUser['email']}}</p>
-        <!-- <p class="info-detail">비밀번호</p> -->
-        <p class="info-detail">{{this.$store.state.loginState.currentUser['name']}}</p>
-        <p class="info-detail">{{this.$store.state.loginState.currentUser['phoneNumber']}}</p>
-        <p class="info-detail">{{this.$store.state.loginState.currentUser['birth']}}</p>
-        <p class="info-detail">{{this.$store.state.PointUserData[0].identity}}</p>
-        <!-- <p class="info-detail">환불 계좌</p> -->
-        <!-- 환불계좌 언제 작성하게 하는지? -->
+      <div class="row p-3">
+        <span class="col-auto">휴대폰 번호</span>
+        <span class="col"></span>
+        <span class="col-auto">{{this.$store.state.loginState.currentUser['phoneNumber']}}</span>
       </div>
+      <div class="row p-3">
+        <span class="col-auto">생년월일</span>
+        <span class="col"></span>
+        <span class="col-auto">{{this.$store.state.loginState.currentUser['birth']}}</span>
       </div>
-      <!-- <div class="btn">
-        <button class="btn-info">회원정보수정</button>
-        router로 해야하는지..? 
-      </div> -->
-      <p class="edit-ment">회원정보 수정을 원하실 경우 <a id="k-link" href="http://pf.kakao.com/_xfialK/chat" target="_blank">서베이지 카카오톡 채널</a>로 문의 바랍니다.</p>
-      
-    </div>
-
-    <!-- <div class="middle-box"> 
-      <p class="green-title">대학(원)생 인증 완료 요청 보내기 </p>
-      <select name="" id="middle-select" v-model="identityRequest">
-          <option :value="{request: ''}" selected disabled >인증하려는 할인 대상을 선택하세요</option>
-          <option :value="{request: '대학생'}">대학생 (학부생)</option>
-          <option :value="{request: '대학원생'}">대학원생</option>
-      </select>
-      <button class="mi-btn" @click="sendRequestVerifyIdentity(this.identityRequest)">요청 보내기</button>
-      <p class="mi-detail">상단의 <span id="info-green">'대학(원)생 인증하러 가기'</span>를 통해 카카오톡으로 대학(원)생임을 확인할 수 있는 자료를 보내주세요.
-        <br>자료 전송 후 인증 완료 <span id="info-green">'요청 보내기'</span>까지 눌러주셔야 원활한 인증이 가능합니다.
-      </p>
-    </div> -->
-
-
-    <div class="bottom-box">
-      <p class="green-title">수신 설정</p>
-      <div class="info-contents">
-        <p class="info-title">이벤트 혜택 (마케팅 정보 수신)
-        <span class="info-detail-gray">구매 정보, 회원정보 수정, 공지, CS 알림은 수신설정에 상관없이 발송됩니다.</span></p>
-        <div class="input-">
-          <input type="checkbox" name="message" v-model="marketingTF.marketingSMS"> SMS / 카카오톡
-          <input type="checkbox" name="mail" v-model="marketingTF.marketingEmail"> 이메일
-          
-        </div>
-        
+      <div class="row p-3">
+        <span class="col-auto">할인대상</span>
+        <span class="col"></span>
+        <span class="col-auto">{{this.$store.state.PointUserData[0].identity}}</span>
       </div>
-      <div class="btn">
-      <button @click="marketingAgree(this.marketingTF)" class="btn-info">저장</button>
+      <hr>
+      <ul class="text-right pt-3">
+      <li>*회원정보 수정을 원하실 경우<u><a class="text-primary" href="http://pf.kakao.com/_xfialK/chat" target="_blank">서베이지 카카오톡 채널</a></u>로 문의 바랍니다.</li>
+      </ul>
       </div>
     </div>
-    <div class="more">
-      <router-link to="/withdraw">회원 탈퇴하기 ></router-link>
+    <div class="col-xl-12">
+      <div class="rounded border-green shadow py-4 px-4 my-4 mx-2">
+      <span class="text-primary">이벤트혜택 수신 설정 (마케팅 정보)</span>
+      <hr>
+      <div class="row">
+            <ul>
+            <li>*구매 정보, 회원정보 수정, 공지, CS 알림은 수신설정에 상관없이 발송됩니다.</li>
+            </ul>
+            <div class="form-check m-2 col-6"> 
+              <input class="form-check-input" type="checkbox" name="message" v-model="marketingTF.marketingSMS"> SMS / 카카오톡
+            </div>
+            <div class="form-check m-2 col-6"> 
+              <input class="form-check-input" type="checkbox" name="mail" v-model="marketingTF.marketingEmail"> 이메일
+            </div>
+            <div class="text-center pt-2">
+              <a class="btn btn-primary w-30" @click="marketingAgree(this.marketingTF)">저장</a>
+           </div>
+      </div>
+      </div>
+      </div>
       <!-- 회원탈퇴 7일 내에 재로그인 <- 어떤 방식으로 할건지 -->
-    </div>
-  </div>
+      <div class="row">
+        <div class="col-xl-12">
+        <div class="text-right m-2">
+        <router-link to="/withdraw"><a class="btn btn-outline-primary">회원 탈퇴하기 ></a></router-link>
+        </div>
+        </div>
+      </div>
 </template>
 
 <script>

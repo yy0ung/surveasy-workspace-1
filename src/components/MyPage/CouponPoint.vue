@@ -1,75 +1,67 @@
 <template>
-<div>
-<div id="mycoupon-container">
-  <div class="mycoupon-title">쿠폰</div>
-  <div class="mycoupon-container">
-    <span class="code-title">쿠폰코드</span>
-    <input class="code-input" type="text" placeholder="쿠폰 코드를 입력해주세요." v-model="localCode">
-    <button class="code-add-btn" @click="addCoupon_user(localCode)">쿠폰 등록</button>
-  </div>
-
-  <div class="mycoupon-list">
-    <div class="mycoupon-list-detail" v-for="item in (this.$store.state.myCoupon)" :key="item.code">
-      <div class="mycoupon-list-name">{{ item.name }}</div> 
-      <div class="mycoupon-list-duedate">D-{{ item.duediff }} &nbsp; ({{ item.duedate }}까지)</div> 
+  <div class="row">
+      <div class="col-lg-12 pt-4 mx-2">
+        <h5>쿠폰</h5>
+      </div>
+  <div class="col-lg-12">
+      <div class="rounded border-green shadow py-4 px-4 my-4 mx-2">
+      <p class="black-title">쿠폰등록하기</p>
+      <div class="row">
+      <div class="col-7">
+        <input class="form-control form-control-text" type="text" placeholder="쿠폰 코드를 입력해주세요." v-model="localCode">
+      </div>
+      <div class="col-auto">
+        <button class="btn btn-primary" @click="addCoupon_user(localCode)">쿠폰 등록</button>
+      </div>
+      <div class="col"></div>
+      </div>
+      <div class="py-3">
+      <hr>
+      </div>
+      <p class="black-title">나의 쿠폰</p>
+      <div class="row">
+        <div class="col">
+      <div class="rounded border-green py-4 px-4" v-for="item in (this.$store.state.myCoupon)" :key="item.code">
+        <h4 class="text-primary">{{ item.name }}</h4>
+        <hr>
+        <span class="label duelabel">D-{{ item.duediff }} &nbsp; ({{ item.duedate }}까지)</span> 
+      </div>
+      </div>
+      </div>
+      </div>
+      </div>
+    </div>
+  <div class="row">
+      <div class="col-lg-12 pt-4 mx-2">
+        <h5>적립금</h5>
+      </div>
+      <div class="col-lg-12">
+        <div class="rounded border-green shadow py-4 px-4 my-4 mx-2">
+          <div class="row">
+          <span class="col-auto">현재 적립금</span>
+          <span class="col"></span>
+          <span class="col-auto text-primary">{{ priceToString(this.$store.state.PointUserData[0].point_current) }}원</span>
+        </div>
+          <hr>
+          <div class="row">
+          <span class="col-auto">사용한 적립금</span>
+          <span class="col"></span>
+          <span class="col-auto text-primary">{{ priceToString(point_used) }}원</span>
+          </div>
+          <hr>
+          <div class="row">
+          <span class="col-auto">누적 적립금</span>
+          <span class="col"></span>
+          <span class="col-auto text-primary">{{ priceToString(this.$store.state.PointUserData[0].point_total) }}원</span>
+          </div>
+        </div>
+      <ul>
+        <li>- 구매 후기 작성 시 적립금 500원이 지급됩니다.</li>
+        <li>- 적립금은 결제 금액이 10,000원 이상일 때만 사용 가능하며, 서비스 금액의 10%까지만 사용 가능합니다.</li>
+      </ul>
     </div>
   </div>
-</div>
 
-<div id="mypoint-container">
-  <div class="mycoupon-title">적립금</div>
-  <div class="mypoint-container">
-    <div class="mypoint-list">
-      <ul>
-        <div class="point-text">현재 적립금</div>
-        <div class="point-value">{{ priceToString(this.$store.state.PointUserData[0].point_current) }}원</div>
-      </ul>
-      <ul>
-        <div class="point-text">사용한 적립금</div>
-        <div class="point-value">{{ priceToString(point_used) }}원</div>
-      </ul>
-      <ul>
-        <div class="point-text">누적 적립금</div>
-        <div class="point-value">{{ priceToString(this.$store.state.PointUserData[0].point_total) }}원</div>
-      </ul>
-    </div>
-    <div class="mypoint-notice">
-      - 구매 후기 작성 시 적립금 500원이 지급됩니다. <br>
-      - 적립금은 결제 금액이 10,000원 이상일 때만 사용 가능하며, <br>
-      &nbsp; 서비스 금액의 10%까지만 사용 가능합니다.
-    </div>
-  </div>
-
-  <!-- 
-  <div class="mypoint-table">
-    <table>
-      <tr>
-        <th>상태</th>
-        <th>적립금</th>
-        <th>적립 내용</th>
-        <th>주문 번호</th>
-        <th>적용 일시</th>
-      </tr>
-      <tr>
-        <td>적립</td>
-        <td>+310원</td>
-        <td>서비스 이용</td>
-        <td>211104-49</td>
-        <td>2021.11.04</td>
-      </tr>  
-      <tr>
-        <td>사용</td>
-        <td>-500원</td>
-        <td>서비스 결제</td>
-        <td>211104-49</td>
-        <td>2021.11.04</td>
-      </tr>     
-    </table>
-  </div>
-  -->
-
-</div>
-</div>
 </template>
 
 <script>

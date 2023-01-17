@@ -1,8 +1,11 @@
 <template>
-<div id="dashboard-container">
-  <div class="top">
-  <div class="top-left">
-    <div class="first-box">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 pt-4 mx-2">
+        <h5>나의 설문</h5>
+      </div>
+  <div class="col-lg-6">
+      <div class="rounded border-green shadow py-4 px-4 my-4 mx-2">
       <p class="black-title">진행 중인 설문</p>
       <div>
         <p class="spinner-" v-if="show==0">
@@ -12,7 +15,9 @@
         <p class="green-bold" v-if="show==1">{{myCount1.length}}개</p>
         </div>
     </div>
-    <div class="first-box">
+    </div>
+    <div class="col-lg-6">
+    <div class="rounded border-green shadow py-4 px-4 my-4 mx-2">
       <p class="black-title">완료된 설문</p>
       <p class="spinner-" v-if="show==0">
         <i class="fas fa-spinner"></i>
@@ -21,29 +26,36 @@
       <p class="green-bold" v-if="show==1">{{myCount2.length}}개</p>
     </div>
   </div>
-  <div class="top-right">
-    <div class="third-box">
-      <p class="black-title">쿠폰 / 적립금</p>
-      <div class="green-box">
-      <img class="couponimg" src="@/assets/myPage/coupon.png" width="50" height="30">
-
-        <p class="coupon-title">쿠폰 {{ couponNum }}개</p></div>
-        <div class="green-box">
-          <img class="pointimg" src="@/assets/myPage/point.png" width="40" height="40">
-      <p class="coupon-title">적립금 {{ priceToString(this.$store.state.PointUserData[0].point_current) }}원</p>
-        </div>
-        
+  </div>
+  <div class="col-lg-12 pt-4 mx-2">
+        <h5>쿠폰 / 적립금</h5>
+      </div>
+      <div class="row">
+    <div class="col-sm-6">
+      <div class="rounded border-green shadow py-4 px-4 my-4 mx-2">
+        <p>쿠폰</p>
+          <h5>
+          <i class="bi bi-c-circle-fill mx-2 text-primary"></i>
+          <span class="coupon-title">쿠폰 {{ couponNum }}개</span>
+          </h5>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="rounded border-green shadow py-4 px-4 my-4 mx-2">
+        <p>적립금</p>
+        <h5>
+        <i class="bi bi-p-circle-fill mx-2 text-primary"></i>
+        <span class="coupon-title">{{ priceToString(this.$store.state.PointUserData[0].point_current) }}원</span>
+        </h5>
     </div>
   </div>
+</div>
     
   </div>
- 
-  <div class="bottom" >
-    <p class="black-title">나의 설문</p>
-    <div class="bottom-title">
-      
-      <p class="gray-title1" v-if="show==1">결제 금액</p>
-      <p class="gray-title2" v-if="show==1">주문 상세</p>
+ <div class="container">
+  <div class="row">
+    <div class="col-lg-12 pt-4 mx-2">
+        <h5>나의 설문 목록</h5>
     </div>
     <div class="dash-spinner" v-if="show==0">
         <i class="fas fa-spinner"></i>
@@ -52,26 +64,39 @@
     <div class="empty-ment">
       {{ment}}
       </div>
-    <div class="bottom-list" v-for="item in (currentUserUploadInfo4)" :key="item.title">
+      <div class="container">
+    <div class="rounded shadow border-green col-12 py-4 px-4 my-4" v-for="item in (currentUserUploadInfo4)" :key="item.title">
       <p class="list-detail" v-if="show==1">
-        <span id="sur-date">{{item.uploadDate}}</span>
-        <span id="sur-title" v-if="item.title.length<17">{{item.title}}</span>
-        <span id="sur-title" v-else>{{(item.title).substring(0,18)}}...</span>
-        <span id="sur-pay">{{priceToString(item.price)}}원</span>
-        <router-link to="/surveylist" id="sur-detail" v-if="item.progress==2">설문 보러가기</router-link>
-        <span id="sur-detail-" v-if="item.progress==0 || item.progress==1 ">설문 검수 중</span>
-        <span id="sur-detail-fin" v-if="item.progress==5 || dueFin(item.uploadDate)>=10">설문 완료</span>
-        <router-link :to="`/review/${item.id}/${item.title}`" id="sur-detail" v-if="item.progress==3">후기 작성하기</router-link>
-        <router-link :to="`/reviewdetail/${item.id}/${item.title}`" v-if="item.progress==4 && dueFin(item.uploadDate)<10" id="sur-detail">후기 작성하기</router-link>
-        
-      </p>
-      
+        <div class="row">
+        <div class="col-12">
+          <span class="label endlabel m-1">{{item.uploadDate}}</span>
+          <h5 class="my-4 mx-1">{{item.title}}</h5>
+          <hr>
+        </div>
+      </div>
+      <p>
+        <div class="row">
+          <div class="col-auto">
+            <router-link to="/surveylist" class="list-de label duelabel m-1" v-if="item.progress==2">설문 보러가기</router-link>
+            <span class="list-de label duelabel m-1" v-if="item.progress==0 || item.progress==1 ">설문 검수 중</span>
+            <span class="list-de label duelabel m-1" v-if="item.progress==5 || dueFin(item.uploadDate)>=10">설문 완료</span>
+            <router-link :to="`/review/${item.id}/${item.title}`" class="list-de label duelabel m-1" v-if="item.progress==3">후기 작성하기</router-link>
+            <router-link :to="`/reviewdetail/${item.id}/${item.title}`" v-if="item.progress==4 && dueFin(item.uploadDate)<10" class="list-de label duelabel m-1">후기 작성하기</router-link>
+          </div>
+          <div class="col">
+      </div>
+          <div class="col-auto">
+        <span class="list-de label contentslabel m-1">결제금액</span>
+        <span class="label">{{priceToString(item.price)}}원</span>
+      </div>
     </div>
-    
+      </p>
+      </p>
+    </div>
   </div>
-  
-  <!-- <p class="more">더보기 ></p> -->
+  </div>
 </div>
+
 </template>
 
 <script>
@@ -274,163 +299,18 @@ export default {
 </script>
 
 <style>
-#dashboard-container{
-  font-family: 'Noto Sans KR', sans-serif;
-  
-}
-.top{
-  display: flex;
-  justify-content: center;
-}
-.top-left{
-  margin-right: 20px;
-}
-.top .first-box{
-  background: #FFFFFF 0% 0% no-repeat padding-box;
-  box-shadow: 0px 0px 5px #0000000D;
-  border-radius: 15px;
-  opacity: 1;
-  width: 310px;
-  height: 150px;
-  padding-top: 10px;
-  padding-left: 30px;
-  margin-bottom: 15px;
-}
-.top .third-box{
-  background: #FFFFFF 0% 0% no-repeat padding-box;
-  box-shadow: 0px 0px 5px #0000000D;
-  border-radius: 15px;
-  opacity: 1;
-  width: 310px;
-  height: 324px;
-  padding-top: 10px;
-  padding-left: 30px;
-  
-}
+
 .green-bold{
-  margin-left: 110px;
-  margin-top: 15px;
   font-size: 2.5rem;
   color: #0AAC00;
-  font-weight: 700;
-}
-.black-title{
-  margin-bottom: 0;
-}
-.top-right .black-title{
-  margin-bottom: 25px;;
-}
-.green-box{
-  margin-left: 0;
-  background: #0AAC00 0% 0% no-repeat padding-box;
-  box-shadow: 0px 0px 5px #02AF2F80;
-  border-radius: 15px;
-  
-  opacity: 1;
-  width: 280px;
-  padding-top: 27px;
-  padding-bottom: 27px;
-  margin-bottom: 15px;
-  color: white;
-  display: flex;
-  justify-content: center;
-}
-.bottom{
-  width: 700px;
-  margin: auto;
-}
-.bottom-title{
-  display: flex;
-  color: #848484;
-  font-size: 0.9rem;
-  margin-top: 4px;
-}
-.bottom-title .black-title{
-  color: black;
-  font-size: 1rem;
-  margin-top: 12px;
-}
-.list-detail{
-  display: flex;
-  justify-content: space-between;
-  background: #FFFFFF 0% 0% no-repeat padding-box;
-  box-shadow: 0px 0px 5px #0000000D;
-  border-radius: 15px;
-  opacity: 1;
-  padding-top: 15px;
-  padding-bottom: 15px;
-  font-size: 0.9rem;
-}
-#sur-title{
-  margin-right: 10px;
-  color: #0AAC00;
-  width: 220px;
-}
-#sur-date{
-  margin-right: -10px;
-  margin-left: 30px;
-  width: 80px;
-}
-#sur-pay{
-  /* margin-left: 40px; */
-
-  width: 85px;
+  font-weight: 400;
   text-align: right;
 }
-#sur-detail{
-  text-decoration: underline;
-  margin-right: 30px;
-  width: 90px;
-}
-#sur-detail-{
-  color: #848484;
-  margin-right: 30px;
-  width: 90px;
-}
-#sur-detail-fin{
-  margin-left: 15px;
-  margin-right: 15px;
-  width: 90px;
-  color: #848484;
-}
-.gray-title1{
-  margin-left: 465px;
-}
-.gray-title2{
-  margin-left: 70px;
-}
-.more{
-  color: #848484;
-  margin-top: 50px;
-  margin-left: 680px;  
-  font-size: 0.9rem;
-  
-}
-.couponimg{
-  padding-top: 13px;
-}
+
 .coupon-title{
-  margin-left: 40px;
-}
-.pointimg{
-  padding-top: 10px;
-  padding-left: 10px;
-}
-.dash-spinner{
-  text-align: center;
-  font-family: 'Noto Sans KR', sans-serif;
   color: #0AAC00;
-  margin-top: 50px;
-}
-.spinner-{
-  color: #0AAC00;
-  margin-top: 35px;
-  margin-left: 90px;
-}
-.empty-ment{
-  text-align: center;
-  margin-top: 30px;
-  color: #848484;
+  font-weight: 400;
+  text-align: right;
 }
 
 
