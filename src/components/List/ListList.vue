@@ -1,90 +1,91 @@
 <template>
-  <div id='list-view-container'>
-    <p></p>
-    <!--테이블 만들기 -->
-    
-    <table id='list-table'>
-      <tr>
-        <th>#</th>
-        <th id="title-left">설문 제목</th>
-        <th>설문 대상</th>
-        <!-- <th>소요시간</th> -->
-        <th>응답수</th>
-        <th>의뢰자</th>
-        
-        <th></th>
-      </tr>
-      <tr v-for="item in (this.$store.state.surveyData.slice(currentPage*10-10,currentPage*10))" :key="item.id">
-
-        <td class="list-de" :class="{active: (dueTime(item[0].dueDate,item[0].dueTimeTime)<0 || item[0].progress>=3)}">{{item[0].lastIDChecked}}</td>
-
-          
-
-
-          <!-- <router-link :to="`/surveylist/${item[0].id}`" class="list-title" :class="{active:item[0].progress==3}">{{item[0].title}}</router-link> -->
-
-
-
-        <td id="title-left">
-          <div v-if="item[0].progress >= 3">
-            <span class="list-title" :class="{active:dueTime(item[0].dueDate,item[0].dueTimeTime)<0|| item[0].progress>=3}" ><span v-if="(item[0].title).length<43">{{item[0].title}}</span>
-            <span v-else>{{(item[0].title).substring(0,40)}}...</span></span>
-            <span class="due" v-if="dueTime(item[0].dueDate,item[0].dueTimeTime)>=0 && item[0].progress>=3" :class="{active:dueTime(item[0].dueDate,item[0].dueTimeTime)>=0 && item[0].progress>=3}">마감</span>
-            <span class="due" v-else :class="{active:dueTime(item[0].dueDate,item[0].dueTimeTime)<0 || item[0].progress>=3}">{{calTime(item[0].dueDate,item[0].dueTimeTime)}}</span>
-          </div>
-          <div v-else>
-            <span @mouseover="item[0].notice = true" @mouseleave="item[0].notice = false">
-              <span v-if="item[0].notice == true">
-                <a :href="item[0].link" target="_blank" class="list-title" :class="{active:dueTime(item[0].dueDate,item[0].dueTimeTime)<0|| item[0].progress>=3}" >
-                  <span v-if="item[0].title.length > 44">{{(item[0].title).substring(0,38)}}<br>{{(item[0].title).substring(38,item[0].title.length)}}</span>
-                  <span v-else>{{item[0].title}}</span>
-                </a>
-                
-              </span>
-              <span v-else>
-                <a :href="item[0].link" target="_blank" class="list-title" :class="{active:dueTime(item[0].dueDate,item[0].dueTimeTime)<0|| item[0].progress>=3}" >
-                  <span v-if="item[0].title.length > 44">{{(item[0].title).substring(0,35)}}...</span>
-                  <span v-else>{{item[0].title}}</span>
-                </a>
-              </span>
-              
-            
-            </span>
-            
-            
-            <span class="due" v-if="dueTime(item[0].dueDate,item[0].dueTimeTime)>=0 && item[0].progress>=3" :class="{active:dueTime(item[0].dueDate,item[0].dueTimeTime)>=0 && item[0].progress>=3}">마감</span>
-            <span class="due" v-else :class="{active:dueTime(item[0].dueDate,item[0].dueTimeTime)<0 || item[0].progress>=3}">{{calTime(item[0].dueDate,item[0].dueTimeTime)}}</span>
-          </div>
-          
-          
-
-        </td>
-        
-
-        <td class="list-de" :class="{active:dueTime(item[0].dueDate,item[0].dueTimeTime)<0 || item[0].progress>=3}">{{item[0].target}}</td>
-        <!-- <td class="list-de" :class="{active:dueTime(item[0].dueDate,item[0].dueTimeTime)<0 || item[0].progress>=3}">{{item[0].spendTime}}</td> -->
-        <td class="list-de" :class="{active:dueTime(item[0].dueDate,item[0].dueTimeTime)<0 || item[0].progress>=3}">{{countPpl(item)}}</td>
-        <!-- <td class="list-de" :class="{active:dueTime(item[0].dueDate,item[0].dueTimeTime)<0 || item[0].progress>=3}">{{item[0].requiredHeadCount}}</td> -->
-        <td class="list-de" :class="{active:dueTime(item[0].dueDate,item[0].dueTimeTime)<0 || item[0].progress>=3}">
-          {{item[0].uploader.substring(0,item[0].uploader.length-1)+"*"}} 
-        </td>
-
-         
-      </tr>
-    </table>
-    <br>
-    <div id='page-button'>
-      <button :disabled="currentPage==1" @click="dec">이전 </button>
-      {{currentPage}}
-      <button :disabled="currentPage==totalPage" @click="inc">다음</button>
-      
-    </div>
-    <br>
-    <br><br>
-    
-  </div>
+  <section class="section">
+	<div class="container">
+		<div class="row">
+      <div class="section-title text-center">
+        <p class="text-primary text-uppercase fw-bold mb-3">Survey List</p>
+          <h1>설문 리스트</h1>
+        </div>
+						<div class="col-12 col-xl-6" data-aos="fade" v-for="item in (this.$store.state.surveyData.slice(currentPage*10-10,currentPage*10))" :key="item.id">
+              <div class="rounded border-green shadow py-4 px-4 my-4 mx-2">
+									<h5><a class="text-black">
+                    <div v-if="item[0].progress >= 3">
+                      <p>
+                      <span class="list-de label endlabel m-1" :class="{active: (dueTime(item[0].dueDate,item[0].dueTimeTime)<0 || item[0].progress>=3)}"><u>{{item[0].lastIDChecked}}</u></span>
+                        <span class="list-de label endlabel m-1" v-if="dueTime(item[0].dueDate,item[0].dueTimeTime)>=0 && item[0].progress>=3" :class="{active:dueTime(item[0].dueDate,item[0].dueTimeTime)>=0 && item[0].progress>=3}">마감</span>
+                      <span class="list-de label endlabel m-1" v-else :class="{active:dueTime(item[0].dueDate,item[0].dueTimeTime)<0 || item[0].progress>=3}">{{calTime(item[0].dueDate,item[0].dueTimeTime)}}</span>
+                      </p>
+                      <span class="list-title m-1" :class="{active:dueTime(item[0].dueDate,item[0].dueTimeTime)<0|| item[0].progress>=3}">{{item[0].title}}</span>
+                    </div>
+                    <div v-else>
+                      <span @mouseover="item[0].notice = true" @mouseleave="item[0].notice = false">
+                        <span v-if="item[0].notice == true">
+                          <p>
+                          <span class="label duelabel m-1" :class="{active: (dueTime(item[0].dueDate,item[0].dueTimeTime)<0 || item[0].progress>=3)}"><u>{{item[0].lastIDChecked}}</u></span>
+                          <span class="label duelabel m-1" v-if="dueTime(item[0].dueDate,item[0].dueTimeTime)>=0 && item[0].progress>=3" :class="{active:dueTime(item[0].dueDate,item[0].dueTimeTime)>=0 && item[0].progress>=3}">마감</span>
+                          <span class="label duelabel m-1" v-else :class="{active:dueTime(item[0].dueDate,item[0].dueTimeTime)<0 || item[0].progress>=3}">{{calTime(item[0].dueDate,item[0].dueTimeTime)}}</span>
+                          </p>
+                          <a :href="item[0].link" target="_blank" class="list-title" :class="{active:dueTime(item[0].dueDate,item[0].dueTimeTime)<0|| item[0].progress>=3}" >
+                            <span class="text-green m-1">{{item[0].title}}</span>
+                          </a>
+                        </span>
+                        <span v-else>
+                          <p>
+                          <span class="label duelabel m-1" :class="{active: (dueTime(item[0].dueDate,item[0].dueTimeTime)<0 || item[0].progress>=3)}"><u>{{item[0].lastIDChecked}}</u></span>
+                          <span class="label duelabel m-1" v-if="dueTime(item[0].dueDate,item[0].dueTimeTime)>=0 && item[0].progress>=3" :class="{active:dueTime(item[0].dueDate,item[0].dueTimeTime)>=0 && item[0].progress>=3}">마감</span>
+                          <span class="label duelabel m-1" v-else :class="{active:dueTime(item[0].dueDate,item[0].dueTimeTime)<0 || item[0].progress>=3}">{{calTime(item[0].dueDate,item[0].dueTimeTime)}}</span>
+                          </p>
+                          <a :href="item[0].link" target="_blank" class="list-title" :class="{active:dueTime(item[0].dueDate,item[0].dueTimeTime)<0|| item[0].progress>=3}" >
+                            <span class="text-green m-1">{{item[0].title}}</span>
+                          </a>
+                        </span>
+                      </span>
+                    </div>
+                  </a>
+                </h5>
+                <hr>
+                <!-- 설문대상 -->
+                <div class="col-12">
+                <p class="list-de" :class="{active:dueTime(item[0].dueDate,item[0].dueTimeTime)<0 || item[0].progress>=3}"><span class="label contentslabel m-2">설문대상</span>{{item[0].target}}</p>
+                  </div>
+                <div class="col-12">
+                <p class="list-de" :class="{active:dueTime(item[0].dueDate,item[0].dueTimeTime)<0 || item[0].progress>=3}"><span class="label contentslabel m-2">응답수</span> {{countPpl(item)}}</p>
+                </div>
+                <div class="col-12">
+                <p class="list-de" :class="{active:dueTime(item[0].dueDate,item[0].dueTimeTime)<0 || item[0].progress>=3}"><span class="label contentslabel m-2">의뢰자</span>
+                {{item[0].uploader.substring(0,item[0].uploader.length-1)+"*"}} 
+                </p>
+								</div>
+              </div>
+						</div>
+						<div class="col-12">
+							<nav class="mt-4">
+								<!-- pagination -->
+								<nav class="mb-md-50">
+									<ul class="pagination justify-content-center">
+										<li class="page-item inactive"> 
+                        <a class="page-link" :disabled="currentPage==1" @click="dec">
+                        이전
+                      </a>
+										</li>
+										<li class="page-item">
+                      <a class="page-link">
+                      {{currentPage}}
+                      </a>
+										</li>
+										<li class="page-item">
+											<a class="page-link" :disabled="currentPage==totalPage" @click="inc">
+                        다음
+											</a>
+										</li>
+									</ul>
+								</nav>
+							</nav>
+						</div>
+					</div>
+				</div>
+</section>
 </template>
-
 <script>
 
 import { collection, doc, getDoc, getDocs, getFirestore, setDoc } from "firebase/firestore"
@@ -123,7 +124,12 @@ export default {
     }
   },
   
+  mounted() {
+    window.scrollTo(0,0)
+    },
+
   methods:{
+
     countPpl(item){
       if(item[0].progress>=3){
         return item[0].requiredHeadCount
@@ -202,111 +208,54 @@ export default {
 </script>
 
 <style>
-#list-view-container{
-  font-family: 'Noto Sans KR', sans-serif;
-  margin-bottom: 50px;
-  padding-top: 10px;
-  height: 1100px;
+.contentslabel{
+  border: 1px solid #519d9e;
+    color: darkgray;
+  width:100px;
+
 }
-#list-table{
-  border: 0px solid black;
-  width: 70%;
-  margin: auto;
-  border-spacing: 0;
-  margin-top: 120px;
-  margin-bottom: 50px;
-  
+.duelabel{
+  background-color: #51B56D;
+    color: white;
+}
+
+.endlabel{
+  background-color: darkgray;
+    color: white;
+}
+
+.label {
+  position: relative;
+    padding: 6px 10px;
+    border-radius: 10px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.text-green {
+  color: #51B56D;
+}
+.border-green {
+  border: 1px solid #51B56D;
 }
 .due{
-  margin-left: 20px;
-  background: #0AAB00 0% 0% no-repeat padding-box;
-  border-radius: 10px;
-  font-family: 'Noto Sans KR', sans-serif;
-  font-size: 0.8rem;
-  padding: 3px 7px;
-  color: white;
-  font-weight: 300;
-}
-.due.active{
-  background-color: #9b9a9a;
-}
-#title-left{
-  text-align: left;
-  padding-left: 100px;
-  min-width: 600px;
+  border-radius: 20px;
 }
 
-#list-table td{
-  border-bottom: 1px solid black;
-  padding-top: 20px;
-  padding-bottom: 20px;
-  
+.rounded-button{
+  width:30px;
+  height:30px;
+  background:gray;
+  color:white;
+  display:inline-flex;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 50%;
+  border:none;
+  text-decoration: none;
 }
 
-#list-table th{
-  border-bottom: 1px solid #0CAE02;
-  padding-bottom: 20px;
-  color: #0CAE02;
-}
-#list-table-title {
-  width: 70%;
-  border: 0px solid black;
-  margin: auto;
-  text-align: left;
-  padding-bottom: 60px;
-  padding-top: 100px;
-}
-
-#page-button{
-  display: inline;
-  
-  
-}
-#page-button button{
-  border: 1px solid #0AAB00;
-  color: #0AAB00;
-  background: white;
-  padding: 5px 8px;
-  font-family: 'Noto Sans KR', sans-serif;
-  margin: 10px;
-  border-radius: 10px;
-  cursor: pointer;
-  
-}
-#page-button button:hover{
-  color: white;
-  background: #0AAB00;
-  cursor: pointer;
-}
-#page-button button:disabled{
-  cursor: pointer;
-  color: #848484;
-  border: #848484 1px solid;
-}
-#page-button button:disabled:hover{
-  color: #848484;
-  background: white;
-  cursor: pointer;
-}
-
-.responded {
-  color: #af2232
-}
 .list-de{
-  min-width: 80px;
+  font-size: 0.8rem;
 }
-.list-de.active{
-  color: #7A7A7A;
-  font-weight: 300;
-}
-.list-title.active{
-  color: #7A7A7A;
-  font-weight: 300;
-}
-.list-title{
-  color: #0CAE02;
-
-}
-
-
 </style>

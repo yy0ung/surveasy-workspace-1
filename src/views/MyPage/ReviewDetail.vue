@@ -40,7 +40,6 @@
         <label class="check-text">높은 신뢰도</label> 
       </div>
       <div class="rev-option">
-        <input type="checkbox" class="check" name="good" id="A7" v-model="reviewDetailData.Q1" value="A7" >
         <label class="check-text">기타: </label> <br>
         <input type="text" class="text-etc" v-model="reviewDetailData.Q1etc">
       </div>
