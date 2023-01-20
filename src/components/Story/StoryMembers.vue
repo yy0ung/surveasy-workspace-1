@@ -3,20 +3,17 @@
   <p>Surveasy의 멤버를 소개합니다.</p>
   <div class="members-contents">
     <div class="mem-first">
-      <span class="mem-green">기획운영 Team</span><br>
-      <div class="mem-name"><span>송다예</span><span>장서준</span><span>김민지</span><span>장혜진</span></div>
-      <img class="mem-img" src="@/assets/brandstory/다예.png" width="180">
-      <img class="mem-img" src="@/assets/brandstory/서준.png" width="180">
-      <img class="mem-img" src="@/assets/brandstory/민지.png" width="180">
-      <img class="mem-img" src="@/assets/brandstory/혜진.png" width="180">
+      <div class="mem-green">기획운영 Team</div>
+      <div class="mem-name"><span>송다예</span><span>박지호</span></div>
+      <img class="mem-img" src="@/assets/brandstory/다예.png" width="180"/>
+      <!-- #지호 사진 추가 -->
+      <img class="mem-img" src="@/assets/brandstory/다예.png" width="180" />
+      
      
     </div>
     <div class="mem-second">
-      <div class="mem-green"><span class="a">마케팅 Team</span><span class="mem-de">개발 Team</span></div>
-      <div class="mem-name-"><span>마서희</span><span>이서영</span><span id="right">이예린</span><span>김민서</span><span>최진혁</span><span>오세영</span></div>
-      <img class="mem-img" src="@/assets/brandstory/서희.png" width="180">
-      <img class="mem-img" src="@/assets/brandstory/서영.png" width="180">
-      <img class="mem-img" id="right" src="@/assets/brandstory/예린.png" width="180">
+      <div class="mem-green">개발 Team</div>
+      <div class="mem-name-"><span>김민서</span><span>최진혁</span><span>오세영</span></div>
       
       <img class="mem-img" src="@/assets/brandstory/민서.png" width="180">
       <img class="mem-img" src="@/assets/brandstory/진혁.png" width="180">
@@ -35,7 +32,7 @@ export default {
 </script>
 
 <style>
-  #members-container{
+#members-container{
    max-width: 1190px;
     margin-right: auto;
    margin-left: auto;
@@ -46,6 +43,10 @@ export default {
   font-weight: 300;
   margin-top: 110px;
   margin-bottom: 70px;
+}
+.members-contents{
+  display: flex;
+    justify-content: space-around;
 }
 #members-container .members-contents .mem-first{
   margin-bottom: 60px;
@@ -81,6 +82,4 @@ export default {
 #members-container .members-contents .mem-name- #right{
   margin-right:130px;
 }
-
-
 </style>
