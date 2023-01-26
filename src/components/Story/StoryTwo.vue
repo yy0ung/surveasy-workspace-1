@@ -25,7 +25,7 @@ export default {
 </script>
 
 <style>
-  #two-container{
+#two-container{
     margin-top: 100px;
     max-width: 1190px;
     margin-right: auto;
@@ -52,13 +52,16 @@ export default {
   color:#0AA600;
   font-weight: 300;
   font-size: 2.1rem;
+  margin-left: 0;
+  text-align: center;
   margin-top: 0;
 }
 
+#two-container .two-contents .black{
+  text-align: center;
+}
 #two-container .two-contents .checkimg{
   margin-right: 7px;
   filter: grayscale(100%);
 }
-
-
 </style>

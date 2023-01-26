@@ -9,13 +9,7 @@
 			</button>
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav mx-auto mt-1 mb-lg-10">
-                    <li class="nav-item dropdown"> <router-link class="nav-link dropdown-toggle" to="/" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">서비스 이용</router-link>
-						<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-							<li><router-link class="dropdown-item " to="/service">설문 응답 서비스</router-link>
-							</li>
-							<li><router-link class="dropdown-item " to="/surveytemplate">설문 템플릿</router-link>
-							</li>
-						</ul>
+                    <li class="nav-item"><router-link class="nav-link" to="/service">설문 응답 서비스</router-link>
 					</li>
 					<li class="nav-item"> <router-link class="nav-link" to="/surveylist">설문 리스트</router-link>
 					</li>

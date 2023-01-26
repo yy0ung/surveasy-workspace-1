@@ -100,7 +100,7 @@
                                 </div>
                                 <p class="m-1">유입경로*</p>
                                 <input type="text" class="form-control shadow-none" id="funnelDetail" v-model="dataSet.funnel_detail" required placeholder="해당 유입경로에 대한 상세내용을 작성해주세요">
-                                <p class="m-1">검색 유입인 경우 <u>검색어</u>, 에브리타임 · 카카오톡 · 네이버 카페인 경우 <u>소속</u>을 알려주세요.</p>
+                                <p class="m-1">검색 유입인 경우 <u>검색어</u>, <br>에브리타임 · 카카오톡 · 네이버 카페인 경우 <u>소속</u>을 알려주세요.</p>
                                 <div>
                                 <hr class="col-12 mx-auto">
                                 <p class="m--">이용약관*</p>

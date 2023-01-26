@@ -80,7 +80,7 @@
               <label class="Eng-text" for="Eng">{{ this.EngText }}</label>
             </div>
             </div>
-            <p class="warn m-1">*결제 페이지에서 대학생 및 대학원생임을 인증해야만 할인을 받으실 수 있습니다.</p>
+            
             </div>
           <div class="show-price-container">
             <p class="service-option-totalprice-word m-0 text-right">총 금액</p>

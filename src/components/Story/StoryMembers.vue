@@ -40,9 +40,10 @@ export default {
 }
 #members-container p{
   font-size: 1.7rem;
-  font-weight: 300;
+  font-weight: 400;
   margin-top: 110px;
   margin-bottom: 70px;
+  text-align: center;
 }
 .members-contents{
   display: flex;

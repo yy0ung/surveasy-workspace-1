@@ -27,6 +27,7 @@ export default {
    height: 300px;
    font-family: 'Noto Sans KR', sans-serif;
   font-weight: 200;
+  text-align: center;
 }
 #pain-point-container .pain-contents{
   margin-top: 180px;

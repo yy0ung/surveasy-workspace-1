@@ -38,6 +38,7 @@ export default {
 #picture-container .logoimg{
   width: 250px;
   height: auto;
+  margin-left: 60px;
   margin-top: 70px;
   margin-bottom: 15px;
 }

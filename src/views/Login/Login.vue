@@ -19,7 +19,7 @@
 									</div>
 									<div class="form-group mb-4 pb-2">
 										<label for="exampleFormControlInput1" class="form-label">비밀번호</label>
-										<input type="password" class="form-control shadow-none" id="pw" v-model="password" @keyup.enter="signIn">
+										<input type="password" class="form-control shadow-none" id="pw" v-model="password" @keyup.enter="signIn" placeholder="비밀번호">
 									</div>
                   <div class="form-group">
                     <h5>{{ error }}</h5>
@@ -232,4 +232,5 @@ export default {
 </script>
 
 <style>
+
 </style>

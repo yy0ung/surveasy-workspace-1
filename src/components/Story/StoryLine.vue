@@ -1,6 +1,6 @@
 <template>
 <div id="line-container">
-  <p>그래서 저희는 설문 배포자와 응답자 모두 편리하게 설문을 <br>
+  <p class="white-content">그래서 저희는 설문 배포자와 응답자 모두 편리하게 설문을 <br>
     진행할 수 있는 플랫폼이 필요하다고 생각했습니다.</p>
   
 </div>
@@ -28,6 +28,11 @@ export default {
   align-items: center;
   color: #ffff;
   font-size: 2rem;
+}
+
+#line-container .white-content{
+  font-size: 1.3rem;
+  text-align: center;
 }
 
 </style>
