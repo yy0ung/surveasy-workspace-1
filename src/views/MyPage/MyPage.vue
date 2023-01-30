@@ -78,10 +78,11 @@
       <h4>
     안녕하세요, <span class="text-primary">{{this.$store.state.loginState.currentUser['name']}}</span>님 </h4>
   </div>
-  <div class="go-link">
+  <!-- <div class="go-link">
     <router-link to="/serviceidentity_mypage" class="go-link">대학(원)생 인증하러가기 ></router-link>
     <hr>
-  </div>
+  </div> -->
+  <hr>
   <div class="widget widget-categories">
               <ul class="list-unstyled widget-list">
                 <li><router-link to="/mypage/dashboard" class="mypage-router-link">대시보드</router-link></li>

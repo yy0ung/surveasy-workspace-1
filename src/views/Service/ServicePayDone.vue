@@ -13,7 +13,7 @@
                                 <img class="checkimg" src="@/assets/check.png" width="100">
                                 <div style="padding:20px"></div>
                                 <h3>주문 완료되었습니다!</h3>
-                                <p>안내된 계좌로 입금을 완료하셔야 서비스 이용이 가능합니다. 설문은 입금 확인과 빠른 검수 후 패널들에게 전달됩니다.</p>
+                                <p>안내된 계좌로 입금을 완료하셔야 서비스 이용이 가능합니다.<br>설문은 입금 확인과 빠른 검수 후 패널들에게 전달됩니다.</p>
                                 <div style="padding:20px"></div>
                               </div>
                                 <div class="row">
@@ -34,7 +34,7 @@
                                 </div>
                                 <div style="padding:20px"></div>
                                 <div class="text-center">
-                                <p>설문조사의 진행 상황은 마이 페이지에서 확인하실 수 있습니다. 문의 사항은 카카오채널 @surveasy로 보내주세요.</p>
+                                <p>설문조사의 진행 상황은 마이 페이지에서 확인하실 수 있습니다.<br>문의 사항은 카카오채널 @surveasy로 보내주세요.</p>
                                   <div class="m-5"></div>
                                   <router-link to="/mypage/dashboard"><button class="btn btn-outline-primary">마이 페이지 가기</button></router-link>
                                 </div>

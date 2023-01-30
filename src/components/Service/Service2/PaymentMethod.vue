@@ -4,7 +4,7 @@
         <div class="row">
         <div class="col-12 p-3">
         <h5>입금 계좌</h5>
-        <h5>카카오뱅크 3333-17-5341775 (장서준)</h5>
+        <h5>카카오뱅크 3333-11-5235460 (송다예)</h5>
         </div>
         <div class="col-12 p-3">
           <input class="form-control" v-model="accont_userName" @change="setOption3()" id="Account-input" placeholder="입금자명">

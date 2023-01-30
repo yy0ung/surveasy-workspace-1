@@ -19,10 +19,12 @@
 <script>
 import ServiceDetail from '../../components/Service/Service1/ServiceDetail.vue'
 import ServiceOption from '../../components/Service/Service1/ServiceOption.vue'
+
 export default {
   components:{
     ServiceDetail,
-    ServiceOption
+    ServiceOption,
+    
   },
   mounted() {
     window.scrollTo(0,0)
