@@ -15,7 +15,8 @@
                         <span class="list-de label endlabel m-1" v-if="dueTime(item[0].dueDate,item[0].dueTimeTime)>=0 && item[0].progress>=3" :class="{active:dueTime(item[0].dueDate,item[0].dueTimeTime)>=0 && item[0].progress>=3}">마감</span>
                       <span class="list-de label endlabel m-1" v-else :class="{active:dueTime(item[0].dueDate,item[0].dueTimeTime)<0 || item[0].progress>=3}">{{calTime(item[0].dueDate,item[0].dueTimeTime)}}</span>
                       </p>
-                      <span class="list-title m-1" :class="{active:dueTime(item[0].dueDate,item[0].dueTimeTime)<0|| item[0].progress>=3}">{{item[0].title}}</span>
+                      <span v-if="item[0].title.length>33" class="list-title m-1" :class="{active:dueTime(item[0].dueDate,item[0].dueTimeTime)<0|| item[0].progress>=3}">{{item[0].title.substring(0,32)}}...</span>
+                      <span v-if="item[0].title.length<=32" class="list-title m-1" :class="{active:dueTime(item[0].dueDate,item[0].dueTimeTime)<0|| item[0].progress>=3}">{{item[0].title}}</span>
                     </div>
                     <div v-else>
                       <span @mouseover="item[0].notice = true" @mouseleave="item[0].notice = false">
@@ -26,7 +27,8 @@
                           <span class="label duelabel m-1" v-else :class="{active:dueTime(item[0].dueDate,item[0].dueTimeTime)<0 || item[0].progress>=3}">{{calTime(item[0].dueDate,item[0].dueTimeTime)}}</span>
                           </p>
                           <a :href="item[0].link" target="_blank" class="list-title" :class="{active:dueTime(item[0].dueDate,item[0].dueTimeTime)<0|| item[0].progress>=3}" >
-                            <span class="text-green m-1">{{item[0].title}}</span>
+                            <span v-if="item[0].title.length>33" class="text-green m-1">{{item[0].title.substring(0,32)}}...</span>
+                            <span v-if="item[0].title.length<=32" class="text-green m-1">{{item[0].title}}</span>
                           </a>
                         </span>
                         <span v-else>
@@ -36,7 +38,8 @@
                           <span class="label duelabel m-1" v-else :class="{active:dueTime(item[0].dueDate,item[0].dueTimeTime)<0 || item[0].progress>=3}">{{calTime(item[0].dueDate,item[0].dueTimeTime)}}</span>
                           </p>
                           <a :href="item[0].link" target="_blank" class="list-title" :class="{active:dueTime(item[0].dueDate,item[0].dueTimeTime)<0|| item[0].progress>=3}" >
-                            <span class="text-green m-1">{{item[0].title}}</span>
+                            <span v-if="item[0].title.length>33" class="text-green m-1">{{item[0].title.substring(0,32)}}...</span>
+                            <span v-if="item[0].title.length<=32" class="text-green m-1">{{item[0].title}}</span>
                           </a>
                         </span>
                       </span>
@@ -46,7 +49,12 @@
                 <hr>
                 <!-- 설문대상 -->
                 <div class="col-12">
+<<<<<<< HEAD
                 <p class="list-de" :class="{active:dueTime(item[0].dueDate,item[0].dueTimeTime)<0 || item[0].progress>=3}"><span class="label contentslabel m-2">설문대상</span>{{(item[0].target != "") ? item[0].target : "누구나"}}</p>
+=======
+                <p v-if="item[0].target.length>36" class="list-de" :class="{active:dueTime(item[0].dueDate,item[0].dueTimeTime)<0 || item[0].progress>=3}"><span class="label contentslabel m-2">설문대상</span>{{item[0].target.substring(0,36)}}...</p>
+                <p v-if="item[0].target.length<=36" class="list-de" :class="{active:dueTime(item[0].dueDate,item[0].dueTimeTime)<0 || item[0].progress>=3}"><span class="label contentslabel m-2">설문대상</span>{{item[0].target}}</p>
+>>>>>>> 3869440aceb9c29d00a7e663f844f008ad7f0794
                   </div>
                 <div class="col-12">
                 <p class="list-de" :class="{active:dueTime(item[0].dueDate,item[0].dueTimeTime)<0 || item[0].progress>=3}"><span class="label contentslabel m-2">응답수</span> {{countPpl(item)}}</p>

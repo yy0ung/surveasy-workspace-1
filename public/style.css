@@ -4397,7 +4397,7 @@ textarea.form-control-lg {
   width: 100%;
   height: 100%;
   overflow-x: hidden;
-  overflow-y: auto;
+  overflow-y: hidden;
   outline: 0;
 }
 
@@ -9779,9 +9779,16 @@ blockquote::before {
   z-index: 3;
 }
 .icon-box-item .block {
-  padding: 35px 27px;
+  text-align: center;
+  height: 220px;
+  padding-top: 20px;
+  padding-left: 40px;
+  padding-right: 40px;
   box-shadow: 0px 25px 65px 0px rgba(0, 0, 0, 0.05);
   border-radius: 15px;
+}
+.icon-box-item #block-center{
+  padding-top: 35px;
 }
 .icon-box-item .icon {
   display: inline-block;
