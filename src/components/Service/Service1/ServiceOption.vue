@@ -63,8 +63,7 @@
             </div>
             <p class="warn m-2">*다음 주문 페이지에서 설문 대상 상세정보를 기입할 수 있습니다.</p>   
           </div>
-          <div class="row">
-            <div class="col-6">
+          <div class="row-cols-2">
             <p class="form-title m-1">대학생 / 대학원생 할인 여부</p>
             <select class="form-select m-1" v-model="priceIdentity">
             <option :value=0 selected disabled hidden>대학생 / 대학원생 할인 여부</option>
@@ -72,16 +71,15 @@
             <option :value=2>대학원생입니다.</option>
             <option :value=3>할인대상이 아닙니다.</option>
             </select>
-            </div>
-            <div class="col-6">
+          </div>
+          <br>
+          <div class="row-cols-2">
             <p class="form-title m-1">영어설문</p>
             <div class="form-check m-2"> 
               <input class="form-check-input" v-model="addENTarget" @click="EngOptionCal" type="checkbox" name="Eng" id="Eng">
               <label class="Eng-text" for="Eng">{{ this.EngText }}</label>
             </div>
-            </div>
-            
-            </div>
+          </div>        
           <div class="show-price-container">
             <p class="service-option-totalprice-word m-0 text-right">총 금액</p>
             <p class="service-option-totalprice-price m-0 text-right">
@@ -90,9 +88,12 @@
                 +Number(this.$store.state.TimeOptionArray[timeOptionCal])) }}원</p>
           </div>
             </div>
-            <div class="text-center">
-            <a class="btn btn-primary w-50" @click="setOption1()">설문 정보 입력하러 가기</a>
-          </div>
+            <div id="btn-fin">
+              <div class="text-center">
+                <a class="btn btn-primary w-75" @click="setOption1()">설문 정보 입력하러 가기</a>
+              </div>
+            </div>
+            
             </div>
             </div>   
 </div>
@@ -428,17 +429,23 @@ export default {
   }
 
   .warn {
-    color: rgb(81, 81, 81);
-    font-size: 0.9em;
+    color: rgb(31, 189, 0);
+    font-size: 0.6em;
   }
 
   .form-title {
     font-weight: bold;
     color:gray;
+    font-size: 1.0em;
   }
 
   .service-title {
     text-align: center;
     color: primary;
+  }
+
+  #btn-fin {
+    margin-top: 30px;
+    margin-bottom: 20px;
   }
 </style>

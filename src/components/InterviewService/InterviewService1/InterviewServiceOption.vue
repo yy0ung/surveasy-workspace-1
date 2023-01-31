@@ -447,8 +447,8 @@ export default {
   }
 
   .warn {
-    color: rgb(81, 81, 81);
-    font-size: 0.9em;
+    color: rgb(31, 189, 0);
+    font-size: 0.6em;
   }
 
   .form-title {
