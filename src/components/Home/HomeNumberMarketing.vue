@@ -18,7 +18,7 @@
 			</div>
 			<div class="col-lg-4 col-md-6">
 				<div class="number-marketing-card block text-center">
-					<h1 class="text-white mb-3">134명</h1>
+					<h1 class="text-white mb-3">{{panel}}명</h1>
           <hr class="text-white m-0" style="width: 100%">
 					<h4 class="text-white mt-4">리서치 참여를 기다리는 패널 수</h4>
 				</div>
@@ -36,17 +36,19 @@
 </template>
 
 <script>
-import { collection, doc, getDoc, getDocs, getFirestore, setDoc } from "firebase/firestore"
+import { collection, doc, getDoc, getDocs, getFirestore, setDoc, query, where } from "firebase/firestore"
 
 export default {
   data() {
     return {
       survey : "• • •",
+      panel : "• • •",
       
     }
   },
   mounted() {
     this.surveyCount()
+    this.panelCount()
   },
   methods: {
     async surveyCount(){
@@ -57,8 +59,90 @@ export default {
         
         this.survey = docSnap.data().lastIDChecked + 57 + "개"
       }
+    },
+
+    // async panelCount() {
+    //   const db = this.$store.state.db
+    //   const ref = collection(db, "panelData")
+    //   // 패널 수 테스트
+    //   const qt = query(ref, where("name", "!=", "야야야"));
+
+    //   const qquerySnapshot = await getDocs(qt);
+    //   qquerySnapshot.forEach((doc) => {
       
-    }
+    //   });
+    //   console.log("개수")
+    //   this.panel = qquerySnapshot.size
+    // },
+
+    async panelCount() {
+    let cnt = this.$store.state.activePannel
+    let db = this.$store.state.db
+    let now = new Date().getTime()
+    var weekago = new Date(new Date().getTime() - 7 * 24 * 60 * 60 * 1000);
+    const ref = collection(db, "panelData")
+    const q = query(ref, where("lastParticipatedDate", ">", weekago))
+    var totalCount = 0
+    var maleCount = 0
+    var maleNames = []
+    var maleAges = [0,0,0,0,0]
+    var femaleNames = []
+    var femaleAges = [0,0,0,0,0]
+    var femaleCount = 0
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((doc) => {
+      totalCount +=1
+      let gender = doc.data().gender;
+      if (gender == "남") {
+        maleCount += 1
+        maleNames.push(doc.data().name)
+        var birthDate = new Date(doc.data().birthDate)
+        var dif = Math.floor((now - birthDate.getTime()) / 1000) 
+        var age = Math.ceil(dif / (60 * 60 * 24 * 365))
+        if (age >= 20 && age < 25) {
+          maleAges[0] += 1
+        } else if (age >= 25 && age < 30){
+          maleAges[1] +=1 
+        } else if (age >= 30 && age < 40){
+          maleAges[2] +=1 
+        } else if (age >= 40 && age < 50){
+          maleAges[3] +=1 
+        } else {
+          maleAges[4] +=1 
+        } 
+      } else {
+        femaleCount += 1
+        femaleNames.push(doc.data().name)
+        var birthDate = new Date(doc.data().birthDate)
+        var dif = Math.floor((now - birthDate.getTime()) / 1000) 
+        var age = Math.ceil(dif / (60 * 60 * 24 * 365))
+        if (age >= 20 && age < 25) {
+          femaleAges[0] += 1
+        } else if (age >= 25 && age < 30){
+          femaleAges[1] +=1 
+        } else if (age >= 30 && age < 40){
+          femaleAges[2] +=1 
+        } else if (age >= 40 && age < 50){
+          femaleAges[3] +=1 
+        } else {
+          femaleAges[4] +=1 
+        } 
+      }
+  
+    });
+    
+    cnt.totalCount = totalCount
+    this.panel = totalCount
+    cnt.maleCount = maleCount
+    cnt.femaleCount = femaleCount
+    cnt.femaleAges = femaleAges
+    cnt.maleAges = maleAges
+    // this.totalCount = totalCount
+    // this.maleAges = maleAges
+    // this.maleCount = maleCount
+    // this.femaleAges = femaleAges
+    // this.femaleCount = femaleCount
+  }
   },
 
 }

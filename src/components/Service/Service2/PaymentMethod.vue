@@ -373,7 +373,7 @@ export default {
         }
 
         else {
-          this.$router.push('/serviceidentity')
+          this.$router.push('/servicepaydone')
         }
         
         this.$store.state.localSurveyState.couponDiscount = 0

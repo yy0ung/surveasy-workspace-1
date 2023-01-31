@@ -34,7 +34,7 @@
           <div class="row">
             <div class="col-auto m-auto text-left">
               <div class="banner-text">
-              <span class="banner-text-title">대학생, 대학원생이라면<br>최대 00%할인까지</span>
+              <span class="banner-text-title">대학생, 대학원생이라면<br>최대 40%할인까지</span>
               <p class="banner-text-contents">횟수 제한 없이, 인증만 하면 누구나</p>
             </div>
             </div>
@@ -45,7 +45,7 @@
       </div>
       </div>
 
-      <div class="carousel-item">
+      <!-- <div class="carousel-item">
         <div class="mainbanner03">
           <div class="row">
             <div class="col-auto m-auto text-left">
@@ -60,7 +60,7 @@
         </div>
         </div>
         </div>
-      </div>
+      </div> -->
     </div>
   
   </div>

@@ -21,7 +21,7 @@
                       <p>하단의 <span id="info-green">'인증하러 가기'</span>를 통해 카카오톡으로 대학(원)생임을 확인할 수 있는 자료를 보내주세요.</p>
                       <a class="btn btn-primary" href="http://pf.kakao.com/_xfialK/chat" target="_blank" @click="sendRequestVerifyIdentity(this.identityRequest)">인증하러 가기</a>
                       <div style="padding:20px"></div>
-                      <p class="identity-done" @click="noFunc()">이미 인증 요청을 완료했습니다.</p>
+                      <a class="btn btn-primary" @click="noFunc()">이미 인증 요청을 완료했습니다.</a>
                     </div>
                 </div>
 						  </div>
