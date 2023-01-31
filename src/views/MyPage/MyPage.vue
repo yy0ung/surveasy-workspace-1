@@ -142,7 +142,8 @@ export default {
 }
 
 .modal {
-  position: absolute;
+  position: fixed;
+  overflow: hidden;
   z-index:3;
   top: 0;
   left: 0;

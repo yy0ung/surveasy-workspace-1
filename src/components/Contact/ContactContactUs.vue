@@ -39,17 +39,16 @@
 </template>
 
 <script>
+import VueClipBoard from 'vue-clipboard2'
 export default {
   methods:{
     handleModal(){
       this.$store.state.showModal=true
       this.$store.state.showFinalModal=false
     },
-    copyEmail(){
-      const mail = document.getElementById("email")
-      mail.value = "official@gosurveasy.com"
-      mail.select()
-      document.execCommand("copy")
+    copyEmail(){	
+      const mail = "official@gosurveasy.com"
+	  this.$copyText(mail)
       alert("이메일 주소가 복사되었습니다.")
     }
   }
