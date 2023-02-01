@@ -38,4 +38,12 @@ export default {
 .showOption-value {
   color:#0CAE02;
 }
+.form-title{
+  font-size: 0.9rem;
+  margin-bottom: 3px;
+}
+.showOption-value{
+  font-size: 0.9rem;
+  margin-top: 0;
+}
 </style>

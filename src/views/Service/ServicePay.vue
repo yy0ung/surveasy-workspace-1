@@ -10,8 +10,8 @@
       <CouponPoint />
   </div> 
   <div class="col-lg-5 col-xl-5 col-12">
-      <PaymentPrice />
-      <PaymentMethod />
+        <PaymentPrice />
+        <PaymentMethod />
     </div>
   </div>
 </div>
@@ -38,4 +38,8 @@ export default {
 </script>
 
 <style>
+.cl{
+  position: sticky;
+  align-self : flex-start;
+}
 </style>
