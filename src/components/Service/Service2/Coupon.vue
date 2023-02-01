@@ -2,7 +2,7 @@
     <div class="shadow rounded bg-white p-4 mt-4">
       <h3>쿠폰/적립금</h3><hr>
         <div>쿠폰</div>
-          <div class="row">
+          <div class="row" id="coupon-row1">
             <div class="col-7">
           <select class="form-select form-control-text" v-model="selectedCoupon">
             <option class="select-placeholder" :value="defaultCoupon" disabled selected>사용 가능 쿠폰 {{ this.$store.state.myCoupon.length }}장</option>
@@ -15,7 +15,7 @@
           </div>
           <div class="mb-3"></div>
         <div class="col-6">적립금</div>
-            <div class="row">
+            <div class="row" id="coupon-row2">
               <div class="col-7">
                 <input class="form-control form-control-text" type="text" v-model="point_to_use" placeholder="사용하려는 적립금 액수를 입력하세요.">
                 <div class="align-right">보유 적립금 {{ show_point }}원    
@@ -169,7 +169,7 @@ export default {
 </script>
 
 <style>
-  .point-use{
+.point-use{
     height: 42px;
   }
 
@@ -181,4 +181,27 @@ export default {
     width:100%;
     max-width: 140px;
   }
+
+  #coupon-row1{
+    display: flex !important;
+  }
+
+  #coupon-row1 .form-select{
+    width: 125%;
+  }
+  #coupon-row1 .col-5{
+    text-align: right;
+  }
+
+    #coupon-row2 {
+      display: flex !important;
+    }
+  
+    #coupon-row2 .form-control {
+      width: 125%;
+    }
+  
+    #coupon-row2 .col-5 {
+      text-align: right;
+    }
 </style>
