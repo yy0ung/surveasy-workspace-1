@@ -10,7 +10,7 @@
 					<div class="icon"> <i class="fas fa-comments"></i>
 					</div>
 					<h3 class="mb-3">카카오톡 플러스 친구</h3>
-					<p class="mb-4">@surveasy 추가 후 1:1 실시간 채팅으로 문의</p> <a class="btn btn-sm btn-outline-primary" href="http://pf.kakao.com/_xfialK/chat" target="_blank">채팅하기<i class="las la-arrow-right ms-1"></i></a>
+					<p class="mb-4">@surveasy 1:1 실시간 채팅으로 문의</p> <a class="btn btn-sm btn-outline-primary" href="http://pf.kakao.com/_xfialK/chat" target="_blank">채팅하기<i class="las la-arrow-right ms-1"></i></a>
 				</div>
 			</div>
 			<div class="icon-box-item text-center col-lg-4 col-md-6 mb-4">
