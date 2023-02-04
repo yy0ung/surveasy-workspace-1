@@ -99,14 +99,18 @@ export default {
   width: 1190px;
   margin-left: auto;
   margin-right: auto;
+  text-align: center;
 }
-.review-title{
-  font-size: 1.1rem;
+.review-title p{
+  font-size: 1.2rem;
   text-align: left;
+  font-weight: 700;
   margin-left: 300px;
   margin-top: 50px;
 }
 #re-green{
+  font-size: 1.2rem;
+    font-weight: 700;
   color:#0AAB00;
 }
 .con-title{
