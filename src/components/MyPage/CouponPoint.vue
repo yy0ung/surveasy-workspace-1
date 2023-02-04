@@ -500,5 +500,7 @@ export default {
   width: 120px;
   height: 30px;
 }
-
+.rounded.border-green.py-4.px-4{
+  margin-bottom: 20px;
+}
 </style>

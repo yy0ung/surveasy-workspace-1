@@ -147,6 +147,9 @@ export default {
   margin-left: 20px;
   margin-right: 20px;
 }
+.admin-title{
+  text-align: center;
+}
 .notice-contents, .notice-title{
   width: 300px;
 }
