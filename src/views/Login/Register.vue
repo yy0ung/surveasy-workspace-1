@@ -120,7 +120,7 @@
                                     </div>
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" v-model="dataSet.check3">
-                                    <label class="form-check-label">회원가입 시 작성한 개인 정보가 모두 올바름을 확인합니다.<br>가입 오류로 인한 불이익은 이용자의 책임임을 인지하고 있습니다. (필수)
+                                    <label class="form-check-label">회원가입 시 작성한 개인 정보가 모두 올바름을 확인합니다. 가입 오류로 인한 불이익은 이용자의 책임임을 인지하고 있습니다. (필수)
                                     </label>
                                     </div>
                                     <div class="m-2"></div>

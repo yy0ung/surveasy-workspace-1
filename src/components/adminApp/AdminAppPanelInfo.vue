@@ -8,10 +8,10 @@
 
 <div id="panelInfo-container">
   <div v-if="this.panelType==0">
-    <h2 style="color: #0AAB00;">패널 검색하기</h2>
+    <h2 style="color: #0AAB00; margin-bottom:20px">패널 검색하기</h2>
     <div>
-      <input id="panel-search-input" type="text" v-model="uid" placeholder="찾고 싶은 패널의 uid를 입력하세요">
-      <button id="panel-search-button" @click="searchPanel(this.uid)">검색</button>
+      <input id="panel-search-input" type="text" v-model="input" placeholder="찾고 싶은 패널의 uid나 이메일을 입력하세요">
+      <button id="panel-search-button" @click="searchPanel(this.input)">검색</button>
     </div>
 
     <div id="panel-search-notice">{{this.message}}</div>
@@ -94,7 +94,7 @@ export default {
   data() {
     return {
       panelType: 0,
-      uid: '',
+      input: '',
       individual_panel: [],
       message:  '',
     
@@ -114,7 +114,12 @@ export default {
       }
     },
 
-    async searchPanel(uid) {
+    searchPanel(input) {
+      if(input.includes('@')) this.searchPanelEmail(input);
+      else this.searchPanelUid(input);
+    },
+
+    async searchPanelUid(uid) {
       this.individual_panel = []
       const db = this.$store.state.db
       const _uid = uid
@@ -130,6 +135,25 @@ export default {
       else {
         this.message = "해당 uid를 가진 패널이 없습니다."
         this.uid = ""
+      }
+    },
+
+    async searchPanelEmail(email) {
+      this.individual_panel = []
+      const db = this.$store.state.db
+      const _email = email
+      const q = query(collection(db, "panelData"), where("email", "==", String(_email)))
+      const querySnapshot = await getDocs(q)
+
+      querySnapshot.forEach((doc) => {
+        this.message = ""
+        this.individual_panel.push(doc.data())
+      })
+
+      if(this.individual_panel.length == 0) {
+        this.message = "해당 uid를 가진 패널이 없습니다."
+        this.input = ""
+        return;
       }
     },
 
@@ -200,8 +224,10 @@ export default {
   padding-top: 20px;
   display: inline-block;
   justify-content: center;
-  width: 80%;
+  width: 100%;
   padding-bottom: 70px;
+  text-align: center;
+  align-content: center;
 }
 .admin-title {
   margin: 30px 0 40px 0;
@@ -217,8 +243,8 @@ export default {
   font-weight: lighter;
 }
 #panel-search-input {
-  width: 300px;
-  height: 30px;
+  width: 400px;
+  height: 34px;
   padding-left: 5px;
 }
 #panel-search-button {
