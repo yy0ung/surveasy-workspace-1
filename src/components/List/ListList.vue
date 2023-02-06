@@ -49,9 +49,8 @@
                 <hr>
                 <!-- 설문대상 -->
                 <div class="col-12">
-
                 <p v-if="item[0].target.length>36" class="list-de" :class="{active:dueTime(item[0].dueDate,item[0].dueTimeTime)<0 || item[0].progress>=3}"><span class="label contentslabel m-2">설문대상</span>{{item[0].target.substring(0,36)}}...</p>
-                <p v-if="item[0].target.length<=36" class="list-de" :class="{active:dueTime(item[0].dueDate,item[0].dueTimeTime)<0 || item[0].progress>=3}"><span class="label contentslabel m-2">설문대상</span>{{item[0].target}}</p>
+                <p v-if="item[0].target.length<=36" class="list-de" :class="{active:dueTime(item[0].dueDate,item[0].dueTimeTime)<0 || item[0].progress>=3}"><span class="label contentslabel m-2">설문대상</span>{{(item[0].target != "") ? item[0].target : "누구나"}}</p>
                   </div>
                 <div class="col-12">
                 <p class="list-de" :class="{active:dueTime(item[0].dueDate,item[0].dueTimeTime)<0 || item[0].progress>=3}"><span class="label contentslabel m-2">응답수</span> {{countPpl(item)}}</p>

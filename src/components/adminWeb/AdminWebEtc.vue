@@ -2,16 +2,16 @@
   <div id="WebEtc-container">
 
     <div id="WebEtc-container-title">
-      <div class="WebEtc-title" @click="setListType(0)" :class="{black:this.listType==0, grey:this.listType==1||this.listType==2}">템플릿</div>
-      <div class="WebEtc-title">|</div>
+      <!-- <div class="WebEtc-title" @click="setListType(0)" :class="{black:this.listType==0, grey:this.listType==1||this.listType==2}">템플릿</div>
+      <div class="WebEtc-title">|</div> -->
       <div class="WebEtc-title" @click="this.setListType(1)" :class="{black:this.listType==1, grey:this.listType==0||this.listType==2}">B2B</div>
-      <div class="WebEtc-title">|</div>
-      <div class="WebEtc-title" @click="this.setListType(2)" :class="{black:this.listType==2, grey:this.listType==0||this.listType==1}">신분요청</div>
+      <!-- <div class="WebEtc-title">|</div>
+      <div class="WebEtc-title" @click="this.setListType(2)" :class="{black:this.listType==2, grey:this.listType==0||this.listType==1}">신분요청</div> -->
     </div>
 
 
     <div id="WebEtc-container-table">
-      <div v-if="this.listType==0" id="WebEtc-container-table-template">
+      <!-- <div v-if="this.listType==0" id="WebEtc-container-table-template">
         <table id="WebEtc-table" class="admin-table">
           <tr>
             <th>신청일</th>
@@ -56,7 +56,7 @@
           </tr>
         </table>
 
-      </div>
+      </div> -->
 
 
       <div v-if="this.listType==1" id="WebEtc-container-table-B2B">
@@ -82,7 +82,7 @@
       </div>
 
 
-      <div v-if="this.listType==2" id="WebEtc-container-table-identity">
+      <!-- <div v-if="this.listType==2" id="WebEtc-container-table-identity">
         <table id="WebEtc-table" class="admin-table">
           <tr>
             <th>신청자</th>
@@ -117,7 +117,7 @@
             <td>{{item.requestApproved}}</td>
           </tr>
         </table>
-      </div>
+      </div> -->
 
     </div>
 
@@ -134,7 +134,7 @@ import {doc, query, where, collection, getDocs, updateDoc, deleteDoc} from 'fire
 export default {
   data() {
     return {
-      listType: 0,
+      listType: 1,
 
       showTemplateText: "지난 기록 보기",
       showTemplate_history: false,
@@ -155,73 +155,73 @@ export default {
   },
 
   methods: {
-    setListType(type) {
-      this.listType = type;
-    },
+    // setListType(type) {
+    //   this.listType = type;
+    // },
 
-    setTemplateBtn(showTemplate_history) {
-      if(showTemplate_history == false) {
-        this.showTemplateText = "지난 기록 숨기기"
-        this.showTemplate_history = !this.showTemplate_history;
-        this.fetchTemplate_history()
-      } 
-      else {
-        this.showTemplateText = "지난 기록 보기"
-        this.showTemplate_history = !this.showTemplate_history;
-      }
-    },
+    // setTemplateBtn(showTemplate_history) {
+    //   if(showTemplate_history == false) {
+    //     this.showTemplateText = "지난 기록 숨기기"
+    //     this.showTemplate_history = !this.showTemplate_history;
+    //     this.fetchTemplate_history()
+    //   } 
+    //   else {
+    //     this.showTemplateText = "지난 기록 보기"
+    //     this.showTemplate_history = !this.showTemplate_history;
+    //   }
+    // },
 
-    setIdentityBtn(showIdentity_history) {
-      if(showIdentity_history == false) {
-        this.showIdentityText = "지난 기록 숨기기"
-        this.showIdentity_history = !this.showIdentity_history;
-        this.fetchIdentity_history()
-      } 
-      else {
-        this.showIdentityText = "지난 기록 보기"
-        this.showIdentity_history = !this.showIdentity_history;
-      }
-    },
+    // setIdentityBtn(showIdentity_history) {
+    //   if(showIdentity_history == false) {
+    //     this.showIdentityText = "지난 기록 숨기기"
+    //     this.showIdentity_history = !this.showIdentity_history;
+    //     this.fetchIdentity_history()
+    //   } 
+    //   else {
+    //     this.showIdentityText = "지난 기록 보기"
+    //     this.showIdentity_history = !this.showIdentity_history;
+    //   }
+    // },
 
 
 
     // Template
-    async fetchTemplate_yet() {
-      this.templateList = []
-      const db = this.$store.state.db
-      const docRef = collection(db, "TemplateData")
-      const q = query(docRef, where("isresponded", "==", false))
+    // async fetchTemplate_yet() {
+    //   this.templateList = []
+    //   const db = this.$store.state.db
+    //   const docRef = collection(db, "TemplateData")
+    //   const q = query(docRef, where("isresponded", "==", false))
 
-      const querySnapshot = await getDocs(q)
-      querySnapshot.forEach((doc) => {
-        this.templateList.push(doc.data())
-      })
-      this.$store.state.adminDataTemplate_yet = this.templateList
-    },
+    //   const querySnapshot = await getDocs(q)
+    //   querySnapshot.forEach((doc) => {
+    //     this.templateList.push(doc.data())
+    //   })
+    //   this.$store.state.adminDataTemplate_yet = this.templateList
+    // },
 
-    async fetchTemplate_history() {
-      this.templateList = []
-      const db = this.$store.state.db
-      const docRef = collection(db, "TemplateData")
-      const q = query(docRef, where("isresponded", "==", true))
+    // async fetchTemplate_history() {
+    //   this.templateList = []
+    //   const db = this.$store.state.db
+    //   const docRef = collection(db, "TemplateData")
+    //   const q = query(docRef, where("isresponded", "==", true))
 
-      const querySnapshot = await getDocs(q)
-      querySnapshot.forEach((doc) => {
-        this.templateList.push(doc.data())
-      })
+    //   const querySnapshot = await getDocs(q)
+    //   querySnapshot.forEach((doc) => {
+    //     this.templateList.push(doc.data())
+    //   })
 
-      this.$store.state.adminDataTemplate_history = this.templateList
-    },
+    //   this.$store.state.adminDataTemplate_history = this.templateList
+    // },
 
-    async changeTemplate(identifyTime) {
-      const db = this.$store.state.db
-      const docRef = doc(db, "TemplateData", identifyTime.toString())
+    // async changeTemplate(identifyTime) {
+    //   const db = this.$store.state.db
+    //   const docRef = doc(db, "TemplateData", identifyTime.toString())
 
-      await updateDoc(docRef, {
-        isresponded : true
-      })
-      window.alert("변경 완료")
-    },
+    //   await updateDoc(docRef, {
+    //     isresponded : true
+    //   })
+    //   window.alert("변경 완료")
+    // },
 
 
 
@@ -253,49 +253,49 @@ export default {
 
 
     // Identity
-    async fetchIdentity_yet() {
-      this.identityList = []
-      const db = this.$store.state.db
-      const docRef = collection(db, "identityVerifyRequired")
-      const q = query(docRef, where("requestApproved", "==", false))
+    // async fetchIdentity_yet() {
+    //   this.identityList = []
+    //   const db = this.$store.state.db
+    //   const docRef = collection(db, "identityVerifyRequired")
+    //   const q = query(docRef, where("requestApproved", "==", false))
 
-      const querySnapshot = await getDocs(q)
-      querySnapshot.forEach((doc) => {
-        this.identityList.push(doc.data())
-      })
+    //   const querySnapshot = await getDocs(q)
+    //   querySnapshot.forEach((doc) => {
+    //     this.identityList.push(doc.data())
+    //   })
 
-      this.$store.state.adminDataIdentity_yet = this.identityList
-    },
+    //   this.$store.state.adminDataIdentity_yet = this.identityList
+    // },
 
-    async fetchIdentity_history() {
-      this.identityList = []
-      const db = this.$store.state.db
-      const docRef = collection(db, "identityVerifyRequired")
-      const q = query(docRef, where("requestApproved", "==", true))
+    // async fetchIdentity_history() {
+    //   this.identityList = []
+    //   const db = this.$store.state.db
+    //   const docRef = collection(db, "identityVerifyRequired")
+    //   const q = query(docRef, where("requestApproved", "==", true))
 
-      const querySnapshot = await getDocs(q)
-      querySnapshot.forEach((doc) => {
-        this.identityList.push(doc.data())
-      })
+    //   const querySnapshot = await getDocs(q)
+    //   querySnapshot.forEach((doc) => {
+    //     this.identityList.push(doc.data())
+    //   })
 
-      this.$store.state.adminDataIdentity_history = this.identityList
-    },
+    //   this.$store.state.adminDataIdentity_history = this.identityList
+    // },
 
-    async changeIdentity(email, requestIdentity) {
-      const db = this.$store.state.db
-      const docRef = doc(db, "userData", email.toString())
-      const docRef2 = doc(db, "identityVerifyRequired", email.toString())
+    // async changeIdentity(email, requestIdentity) {
+    //   const db = this.$store.state.db
+    //   const docRef = doc(db, "userData", email.toString())
+    //   const docRef2 = doc(db, "identityVerifyRequired", email.toString())
 
-      await updateDoc(docRef, {
-        identity_responded : true,
-        identity : requestIdentity
-      })
+    //   await updateDoc(docRef, {
+    //     identity_responded : true,
+    //     identity : requestIdentity
+    //   })
 
-      await updateDoc(docRef2, {
-        requestApproved: true
-      })
-      window.alert("수락 완료")
-    },
+    //   await updateDoc(docRef2, {
+    //     requestApproved: true
+    //   })
+    //   window.alert("수락 완료")
+    // },
 
   }
 

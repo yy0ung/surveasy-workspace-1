@@ -3,7 +3,7 @@
     <h1 class="admin-title">쿠폰 관리</h1>
     <div class="coupon">
       <div class="coupon-register">
-        <h2 style="color:#000000;">쿠폰 발급</h2>
+        <h3 style="color:#000000;">쿠폰 발급</h3>
         <div class="coupon-type">
           <button @click="show(false)" :class="{active_green : (couponInfo.forGroup==false)}">개인 쿠폰</button>
           <button @click="show(true)" :class="{active_green : (couponInfo.forGroup==true)}">공유 쿠폰</button>
@@ -55,7 +55,7 @@
 
 
       <div class="coupon-list">
-        <h1 style="color:#000000;">쿠폰 리스트</h1>
+        <h3 style="color:#000000;">쿠폰 리스트</h3>
         <!-- <button @click="this.delete()">삭제</button> -->
         <!-- <button @click="fetchAdminData_coupon()">쿠폰 리스트 보기</button> -->
         <table class="admin-table">
@@ -389,7 +389,9 @@ export default {
 </script>
 
 <style>
-
+.admin-title  {
+  text-align: center;
+}
 .coupon {
   display: flex;
   flex-direction: row;
