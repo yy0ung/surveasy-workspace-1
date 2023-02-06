@@ -329,6 +329,9 @@ export default {
 #WebOrder-table-order #WebOrder-table-detail {
   margin-top: 15px;
 }
+.admin-table {
+  text-align: center;
+}
 .admin-th{
   background: #a3a1a1;
 }

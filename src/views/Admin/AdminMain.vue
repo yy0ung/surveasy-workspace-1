@@ -4,7 +4,7 @@
   <div class="AdminMain-menu">
     <div class="AdminMain-menu-web">
       <router-link to="/adminmain/adminweborder"><div id="menu-detail-item">주문 목록</div></router-link> 
-      <router-link to="/adminmain/adminwebetc"><div id="menu-detail-item">템플릿 / B2B</div></router-link>
+      <router-link to="/adminmain/adminwebetc"><div id="menu-detail-item">B2B</div></router-link>
       <router-link to="/adminmain/adminwebcoupon"><div id="menu-detail-item">쿠폰 관리</div></router-link>
     </div>
 

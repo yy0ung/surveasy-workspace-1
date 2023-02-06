@@ -355,6 +355,7 @@ export default {
   flex-direction: row;
   justify-content: center;
   margin: 50px;
+  text-align: center;
 }
 .coupon-register {
   margin: 80px;
