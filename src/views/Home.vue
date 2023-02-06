@@ -1,9 +1,10 @@
 <template>
-
-  <HomeSlideImage/>
-  <HomeContents/>
-  <HomeNumberMarketing/>
-  <HomeReview/>
+  <div>
+    <HomeSlideImage/>
+    <HomeContents/>
+    <HomeNumberMarketing/>
+    <HomeReview/>
+  </div>
 </template>
 
 <script>

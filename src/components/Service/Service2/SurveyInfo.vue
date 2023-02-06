@@ -14,7 +14,7 @@
             <div class="mb-4"></div>
             <div class="info-detail-text">설문 대상 상세 정보 (선택)</div>
             <input class="form-control shadow-none" type="text" v-model="target" @change="setOption2()" placeholder="예) 재학생, 1인가구, 특정 서비스 이용 경험이 있는 분" required>
-            <div class="info-detail-notice">*서베이지 패널은 20대 위주로 구성되어 있으며, 특정 상세 설문 대상의 경우, 해당되는 패널이 적어 설문 응답 수집에 어려움이 있을 수 있다는 점 유의해주시기 바랍니다.</div>
+            <div class="info-detail-notice">*서베이지 패널은 20대 위주로 구성되어 있으며, 특정 상세 설문 대상의 경우,<br> 해당되는 패널이 적어 설문 응답 수집에 어려움이 있을 수 있다는 점 유의해주시기 바랍니다.</div>
             <div class="mb-4"></div>
             <div class="info-detail-text">설문 기관</div>
           <input class="form-control shadow-none" type="text" v-model="institute" @change="setOption2()" placeholder="예) OO학교 ㅁㅁ수업, @@학회, **기업" required>
@@ -67,7 +67,11 @@ export default {
 </script>
 
 <style>
-  .showOption-target{
+.showOption-target{
     color:#0AAB00;
+  }
+  .info-detail-notice{
+    margin-top: 5px;
+    font-size: 0.8em;
   }
 </style>

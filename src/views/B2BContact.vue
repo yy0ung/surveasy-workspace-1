@@ -33,7 +33,7 @@
 										<input type="company" class="form-control shadow-none" id="contact_company" v-model="infoData.company">
 									</div>
                   <div class="mb-30">
-                      <label><input type="checkbox" v-model="checked"><span class="brandgreen"> 개인정보수집 </span>및<span class="brandgreen"> 이용약관</span>에 동의합니다.</label>
+                      <label><input type="checkbox" v-model="checked"><span class="brandgreen"> <router-link :to="{name: 'Term2'}" target="_blank">개인정보수집</router-link></span> 및<span><router-link :to="{name: 'Term1'}" target="_blank"> 이용약관</router-link></span>에 동의합니다.</label>
                   </div>
 									<button class="btn btn-primary w-100" type="submit" @click="validateB2B(this.infoData);">소개서 받기</button>
 								</form>
@@ -131,4 +131,10 @@ export default {
 </script>
 
 <style>
+.contact-form .btn{
+  margin-top: 15px;
+}
+.contact-form .brandgreen {
+  margin-left: 5px;
+}
 </style>
