@@ -15,12 +15,13 @@
                               <option :value=4>60명</option>
                               <option :value=5>70명</option>
                               <option :value=6>80명</option>
-                              <option :value=7>100명</option>
-                              <option :value=8>120명</option>
-                              <option :value=9>140명</option>
-                              <option :value=10>160명</option>
-                              <option :value=11>180명</option>
-                              <option :value=12>200명 (최대 응답수)</option>
+                              <option :value=7>90명</option>
+                              <option :value=8>100명</option>
+                              <option :value=9>120명</option>
+                              <option :value=10>140명</option>
+                              <option :value=11>160명</option>
+                              <option :value=12>180명</option>
+                              <option :value=13>200명 (최대 응답수)</option>
                             </select>
                             </div>
                             <div class="col-6">
