@@ -27,7 +27,7 @@
               <h3 class="mb-3 mt-3">인터뷰이 모집</h3>
               <p class="mb-0 detail-text">인터뷰를 해야할 땐, 인터뷰이 모집 서비스를 이용해보세요. 원하는 인터뷰이를, 원하는 일정에 맞게 구해드립니다.</p>
               <div class="service-button">
-              <button class="btn btn-primary mt-4"><router-link class="font-white" to="/service">더 알아보기</router-link></button>
+              <button class="btn btn-primary mt-4"><div class="font-white" to="/service">오픈 예정</div></button>
               </div>
               </div>
             </div>
@@ -41,7 +41,7 @@
               <h3 class="mb-3 mt-3">베타테스터 모집</h3>
                 <p class="mb-0 detail-text">앱이나 웹사이트 출시를 앞두고 계신가요? 정식 출시에 앞서, 베타테스터를 모집해 오류는 없는지 미리 확인해보세요!</p>
                 <div class="service-button">
-                <button class="btn btn-primary mt-4"><router-link class="font-white" to="/service">더 알아보기</router-link></button>
+                <a class="font-white" href="https://surveasy.oopy.io/betaservice"><button class="btn btn-primary mt-4">더 알아보기</button></a>
                 </div>
             </div>
             </div>
