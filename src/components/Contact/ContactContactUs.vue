@@ -21,14 +21,6 @@
 					<p class="mb-4">official@gosurveasy.com</p><button class="btn btn-sm btn-outline-primary" id="email" @click="copyEmail">이메일 복사하기<i class="las la-arrow-right ms-1"></i></button>
 				</div>
 			</div>
-			<div class="icon-box-item text-center col-lg-4 col-md-6 mb-4">
-				<div class="rounded shadow py-5 px-4">
-					<div class="icon"> <i class="fas fa-building"></i>
-					</div>
-					<h3 class="mb-3">B2B 문의</h3>
-					<p class="mb-4">기업 배너 광고, 설문 응답 서비스 등</p> <a class="btn btn-sm btn-outline-primary" href="../b2bcontact">소개서 받기<i class="las la-arrow-right ms-1"></i></a>
-				</div>
-			</div>
 		</div>
 	</div>
 	<div class="contactus-container" :class="{active:this.$store.state.showModal}">
