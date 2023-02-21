@@ -15,12 +15,12 @@
                               <option :value=4>60명</option>
                               <option :value=5>70명</option>
                               <option :value=6>80명</option>
-                              <option :value=8>100명</option>
-                              <option :value=9>120명</option>
-                              <option :value=10>140명</option>
-                              <option :value=11>160명</option>
-                              <option :value=12>180명</option>
-                              <option :value=13>200명 (최대 응답수)</option>
+                              <option :value=7>100명</option>
+                              <option :value=8>120명</option>
+                              <option :value=9>140명</option>
+                              <option :value=10>160명</option>
+                              <option :value=11>180명</option>
+                              <option :value=12>200명 (최대 응답수)</option>
                             </select>
                             </div>
                             <div class="col-6">
@@ -296,7 +296,7 @@ export default {
 
     setOption1() {
       
-      if((this.priceIdentity==0) || (this.priceSpendTime==0) || (this.priceRequireHeadCount==0) || (this.timeOptionCal==0) ) {
+      if((this.priceIdentity==0) || (this.priceSpendTime==0) || (this.priceRequireHeadCount==0) || (this.timeOptionCal==0) || (this.targetAgeOption==0) || (this.targetGenderOption==0) ) {
         alert("모든 옵션을 입력해주세요.")
       }
 
@@ -308,10 +308,6 @@ export default {
         this.timeOption = this.timeOptionCal;
         this.addENTarget = this.EngOptionCal;
 
-        this.price = Number(this.$store.state.priceTable[this.priceIdentity][this.priceSpendTime][this.priceRequireHeadCount])
-        +Number(this.$store.state.EngOptionArray[this.addENTarget])
-        +Number(this.$store.state.TimeOptionArray[this.timeOption]);
-      
         this.requiredHeadCount = String(this.$store.state.priceTextTable[0][this.priceRequireHeadCount]);
         this.spendTime = String(this.$store.state.priceTextTable[1][this.priceSpendTime]);
         this.dueTime = String(this.$store.state.priceTextTable[2][this.timeOption]);
