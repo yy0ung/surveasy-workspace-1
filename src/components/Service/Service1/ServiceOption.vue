@@ -27,58 +27,68 @@
                             <p class="form-title m-1">소요 시간</p>
                             <select class="form-select m-1" v-model="priceSpendTime">
                               <option :value=0 selected disabled hidden>소요 시간</option>
-                              <option :value=1>1-3분</option>
-                              <option :value=2>4-6분</option>
-                              <option :value=3>7-10분</option>
-                              <option :value=4>11-15분</option>
-                              <option :value=5>16-20분</option>
+                              <option :value=1>1분 이내</option>
+                              <option :value=2>1-3분</option>
+                              <option :value=3>4-6분</option>
+                              <option :value=4>7-10분</option>
+                              <option :value=5>11-15분</option>
+                              <option :value=6>16-20분</option>
                             </select>
                             </div>
         </div>
+
+          <!-- 마감 시간 -->
           <div class="form-group row">
             <p class="form-title m-1">마감시간 지정</p>
             <div class="col-6">
               <input type="Date" class="form-select m-1" :min="getDateStr_min" :max="getDateStr_max" v-model="aa" required> 
             </div>
             <div class="col-6">
-            <input type="time" class="form-select m-1" v-model="bb" required>
+              <input type="time" class="form-select m-1" v-model="bb" required>
             </div>
             <p class="warn m-2">*마감날짜와 마감시간 중 공란이 존재할 경우 설문 게시가 어려울 수 있습니다.</p>
-            </div>
-          <!-- 설문 대상 타겟팅 관련 -->
+          </div>
+
+          <!-- 설문 대상 타겟팅 -->
           <div class="form-group row">
             <p class="form-title m-1">설문 대상</p>
               <div class="col-6">
-              <select class="form-select m-1" id="target_age" v-model="targetAgeOption">
-              <option :value=0 selected disabled hidden>대상 연령</option>
-              <option :value=1>전 연령</option>
-              <option :value=2>20대</option>
-              <option :value=3>20세 이상 24세 이하</option>
-              <option :value=4>25세 이상 29세 이하</option>
-              <option :value=5>20세 이상 39세 이하</option>
-              <option :value=6>20세 이상 49세 이하</option>
-            </select>
-            </div>
+                <select class="form-select m-1" id="target_age" v-model="targetAgeOption">
+                  <option :value=0 selected disabled hidden>대상 연령</option>
+                  <option :value=1>전 연령</option>
+                  <option :value=2>20대</option>
+                  <option :value=3>20세 이상 24세 이하</option>
+                  <option :value=4>25세 이상 29세 이하</option>
+                  <option :value=5>20세 이상 39세 이하</option>
+                  <option :value=6>20세 이상 49세 이하</option>
+                </select>
+              </div>
+
             <div class="col-6">
-            <select class="form-select m-1" id="target_gender" v-model="targetGenderOption">
-              <option :value=0 selected disabled hidden>대상 성별</option>
-              <option :value=1>성별 무관</option>
-              <option :value=2>남성</option>
-              <option :value=3>여성</option>
-            </select>
+              <select class="form-select m-1" id="target_gender" v-model="targetGenderOption">
+                <option :value=0 selected disabled hidden>대상 성별</option>
+                <option :value=1>성별 무관</option>
+                <option :value=2>남성</option>
+                <option :value=3>여성</option>
+              </select>
             </div>
             <p class="warn m-2">*다음 주문 페이지에서 설문 대상 상세정보를 기입할 수 있습니다.</p>   
           </div>
+
+          <!-- 할인 대상  -->
           <div class="row-cols-2">
             <p class="form-title m-1">대학생 / 대학원생 할인 여부</p>
-            <select class="form-select m-1" v-model="priceIdentity">
-            <option :value=0 selected disabled hidden>대학생 / 대학원생 할인 여부</option>
-            <option :value=1>대학생입니다.</option>
-            <option :value=2>대학원생입니다.</option>
-            <option :value=3>할인대상이 아닙니다.</option>
+            <select class="form-select m-1" id="identity" v-model="priceIdentity">
+              <option :value=0 selected disabled hidden>대학생 / 대학원생 할인 여부</option>
+              <option :value=1>중/고등학생입니다.</option>
+              <option :value=2>대학생입니다.</option>
+              <option :value=3>대학원생입니다.</option>
+              <option :value=4>할인대상이 아닙니다.</option>
             </select>
           </div>
           <br>
+
+          <!-- 영어 설문 -->
           <div class="row-cols-2">
             <p class="form-title m-1">영어설문</p>
             <div class="form-check m-2"> 
@@ -86,12 +96,11 @@
               <label class="Eng-text" for="Eng">{{ this.EngText }}</label>
             </div>
           </div>        
+
           <div class="show-price-container">
-            <p class="service-option-totalprice-word m-0 text-right">총 금액</p>
+            <p class="service-option-totalprice-word m-0 text-right">주문 금액</p>
             <p class="service-option-totalprice-price m-0 text-right">
-              {{ priceToString(Number(this.$store.state.priceTable[priceIdentity][priceSpendTime][priceRequireHeadCount])
-                +Number(this.$store.state.EngOptionArray[EngOptionCal])
-                +Number(this.$store.state.TimeOptionArray[timeOptionCal])) }}원</p>
+              {{ this.priceToString(this.calculate)}}원</p>
           </div>
             </div>
             <div id="btn-fin">
@@ -458,6 +467,7 @@ export default {
 
   .form-select {
     color:gray;
+    font-size: 0.9em;
   }
 
   .warn {
