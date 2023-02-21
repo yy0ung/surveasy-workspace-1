@@ -65,18 +65,18 @@ export default {
         this.$store.state.localSurveyState.beforeCouponPrice = this.$store.state.localSurveyState.price
       
         if(this.selectedCoupon.rate == 5) {
-          this.$store.state.localSurveyState.couponDiscount = this.$store.state.localSurveyState.price * 0.05
-          this.$store.state.localSurveyState.price = this.$store.state.localSurveyState.price * 0.95
+          this.$store.state.localSurveyState.couponDiscount = parseFloat(this.$store.state.localSurveyState.price * 0.05).toFixed(0)
+          this.$store.state.localSurveyState.price = parseFloat(this.$store.state.localSurveyState.price * 0.95).toFixed(0)
         }
 
         if(this.selectedCoupon.rate == 10) {
-          this.$store.state.localSurveyState.couponDiscount = this.$store.state.localSurveyState.price * 0.1
-          this.$store.state.localSurveyState.price = this.$store.state.localSurveyState.price* 0.9
+          this.$store.state.localSurveyState.couponDiscount = parseFloat(this.$store.state.localSurveyState.price * 0.1).toFixed(0)
+          this.$store.state.localSurveyState.price = parseFloat(this.$store.state.localSurveyState.price* 0.9).toFixed(0)
         }
 
         if(this.selectedCoupon.rate == 20) {
-          this.$store.state.localSurveyState.couponDiscount = this.$store.state.localSurveyState.price * 0.2
-          this.$store.state.localSurveyState.price = this.$store.state.localSurveyState.price* 0.8
+          this.$store.state.localSurveyState.couponDiscount = parseFloat(this.$store.state.localSurveyState.price * 0.2).toFixed(0)
+          this.$store.state.localSurveyState.price = parseFloat(this.$store.state.localSurveyState.price* 0.8).toFixed(0)
         }
 
         this.$store.state.localSurveyState.coupon_use = true
