@@ -149,9 +149,9 @@ export default {
   },
 
   mounted() {
-    this.fetchTemplate_yet()
+    // this.fetchTemplate_yet()
     this.fetchB2B()
-    this.fetchIdentity_yet()
+    // this.fetchIdentity_yet()
   },
 
   methods: {
