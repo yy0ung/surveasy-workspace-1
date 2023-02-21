@@ -3,6 +3,7 @@
     <div class="row">
       <div class="col-xl-1 col-lg-1"></div>
       <div id="desktop" class="col-xl-6 col-lg-6">
+      <ServiceActivePanel/>
       <img class="serviceDetail-img" src="@/assets/service/설문응답_상세페이지.png">
       </div>
       <div class="col-xl-4 col-lg-4">
@@ -19,11 +20,13 @@
 <script>
 import ServiceDetail from '../../components/Service/Service1/ServiceDetail.vue'
 import ServiceOption from '../../components/Service/Service1/ServiceOption.vue'
+import ServiceActivePanel from '../../components/Service/Service1/ServiceActivePanel.vue'
 
 export default {
   components:{
     ServiceDetail,
     ServiceOption,
+    ServiceActivePanel
     
   },
   mounted() {

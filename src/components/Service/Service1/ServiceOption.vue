@@ -14,7 +14,13 @@
                               <option :value=3>50명</option>
                               <option :value=4>60명</option>
                               <option :value=5>70명</option>
-                              <option :value=6>80명 (최대 응답수)</option>
+                              <option :value=6>80명</option>
+                              <option :value=8>100명</option>
+                              <option :value=9>120명</option>
+                              <option :value=10>140명</option>
+                              <option :value=11>160명</option>
+                              <option :value=12>180명</option>
+                              <option :value=13>200명 (최대 응답수)</option>
                             </select>
                             </div>
                             <div class="col-6">
@@ -249,6 +255,32 @@ export default {
         this.EngText = "영어 설문입니다."
       }
       return EngIndex
+    },
+
+    calculate_before() {
+      var p = parseFloat(parseFloat(this.$store.state.priceTable[this.priceSpendTime][this.priceRequireHeadCount])
+                      // * parseFloat(this.$store.state.IdentityOptionArray[this.priceIdentity])
+                      * parseFloat(this.$store.state.EngOptionArray[this.EngOptionCal])
+                      * parseFloat(this.$store.state.AgeOptionArray[this.targetAgeOption])
+                      * parseFloat(this.$store.state.genderOptionArray[this.targetGenderOption])
+                      + parseFloat(this.$store.state.TimeOptionArray[this.timeOptionCal])
+                    ).toFixed(0)
+      
+      this.price = p
+      return p
+    },
+
+    calculate() {
+      var p = parseFloat(parseFloat(this.$store.state.priceTable[this.priceSpendTime][this.priceRequireHeadCount])
+                      * parseFloat(this.$store.state.IdentityOptionArray[this.priceIdentity])
+                      * parseFloat(this.$store.state.EngOptionArray[this.EngOptionCal])
+                      * parseFloat(this.$store.state.AgeOptionArray[this.targetAgeOption])
+                      * parseFloat(this.$store.state.genderOptionArray[this.targetGenderOption])
+                      + parseFloat(this.$store.state.TimeOptionArray[this.timeOptionCal])
+                    ).toFixed(0)
+      
+      this.price = p
+      return p
     }
   },
   methods: {    

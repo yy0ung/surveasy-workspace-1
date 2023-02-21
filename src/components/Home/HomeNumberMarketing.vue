@@ -137,6 +137,8 @@ export default {
     cnt.femaleCount = femaleCount
     cnt.femaleAges = femaleAges
     cnt.maleAges = maleAges
+    console.log(maleAges)
+    console.log(femaleAges)
     // this.totalCount = totalCount
     // this.maleAges = maleAges
     // this.maleCount = maleCount
