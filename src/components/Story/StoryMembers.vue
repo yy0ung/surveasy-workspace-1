@@ -4,10 +4,12 @@
   <div class="members-contents">
     <div class="mem-first">
       <div class="mem-green">기획운영 Team</div>
-      <div class="mem-name"><span>송다예</span><span>박지호</span></div>
+      <div class="mem-name"><span>송다예</span><span>박지호</span><span>장서준</span></div>
       <img class="mem-img" src="@/assets/brandstory/다예.png" width="180"/>
       <!-- #지호 사진 추가 -->
-      <img class="mem-img" src="@/assets/brandstory/다예.png" width="180" />
+      <img class="mem-img" src="@/assets/brandstory/지호.png" width="180" />
+      <img class="mem-img" src="@/assets/brandstory/서준.png" width="180" />
+
       
      
     </div>

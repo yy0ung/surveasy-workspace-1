@@ -58,10 +58,9 @@
     </div>  
     
       <div class="content-container">
-      <p class="p-black-content">설문 대상의 연령과 성별에 따라<br>수집 가능한 최대 응답 수 입니다.
-      <br>옵션 선택 시 참고해주세요.</p>
-      <p class="p-black-content">예를 들어, 20대 성별 무관 선택 시,<br>
-      최대 {{ Math.floor((maleAges[0] + maleAges[1] + femaleAges[0] + femaleAges[1])/10)*10 }}명의 응답을 받으실 수 있어요!</p>
+      <span class="p-black-content">설문 대상의 연령과 성별에 따라 수집 가능한 최대 응답 수 입니다.<br></span>
+      <span class="p-black-content">예를 들어, 20대 성별 무관 선택 시, 
+      최대 {{ Math.floor((maleAges[0] + maleAges[1]) / 10) * 10 + Math.floor((femaleAges[0] + femaleAges[1]) / 10) * 10 }}명의 응답을 받으실 수 있어요!</span>
     </div>
     
     </div>  
@@ -172,31 +171,32 @@ export default {
 #service-active-pannel{
   width: auto;
   
-  margin: 80px 23px 35px 80px;
+  margin-bottom: 20px;
   padding: 35px 20px;
-  padding-left : 50px;
+  
   background-color: #EEEEEE;
   border-radius: 10px;
   
 }
 .loading-container{
   padding-top: 50px;
-  text-align: center;
   margin-top: 100px;
+  text-align: center !important;
+  
 }
 .loading-container .spinner-loading{
   width: auto;
   font-family: 'Noto Sans KR', sans-serif;
   font-size: 1.3rem;
   margin-top: 100px;
-  
 }
 
 
 .active-pannel-box-continer{
   margin-top: 30px;
   display: flex;
-  flex-direction: row;
+  flex-direction:column;
+  align-items: center;
   
 }
 .content-container{
@@ -204,12 +204,14 @@ export default {
   text-align: left;
   
   margin-right: 50px;
-  margin-top: 55px;
+  margin-top: 25px;
   }
 
 .table-container{
   margin-right: 0;
-  min-width: 580px;
+  max-width: 580px;
+  
+  text-align: center;
   
 }
 
@@ -237,7 +239,7 @@ export default {
 }
 
 .p-black-content{
-  text-align: left;
+  
   font-size: 0.95rem;
   font-weight: 400;
   font-family: 'Noto Sans KR', sans-serif;
