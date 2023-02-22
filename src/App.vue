@@ -1,4 +1,4 @@
-<template>
+<template id="app">
   <NavBar/>
   <router-view/>
   <Footer/>
@@ -121,4 +121,7 @@ export default {
 
 
 <style>
+#app {
+  font-family: 'Noto Sans KR', sans-serif;
+}
 </style>

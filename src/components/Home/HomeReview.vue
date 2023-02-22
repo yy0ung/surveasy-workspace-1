@@ -14,8 +14,8 @@
 				<div class="block">
 					<div class="icon-review text-center p-3"><i class="fas fa-star main-color"></i><i class="fas fa-star main-color"></i><i class="fas fa-star main-color"></i><i class="fas fa-star main-color"></i><i class="fas fa-star main-color"></i>
 					</div>
-					<h5 class="mb-3">“원하는 기간 내에 많은 응답자를 모을 수<br>있어서 정말 만족스러웠습니다!”</h5>
-					<p class="mb-0">- 사회학과 전공수업 조별과제를 위해 <br>사용한 고객</p>
+					<h5 class="mb-3">“원하는 기간 내에 많은 응답자를 모을 수 있어서 정말 만족스러웠습니다!”</h5>
+					<p class="mb-0">- 사회학과 전공수업 조별과제를 위해 사용한 고객</p>
 				</div>
 			</div>
 			<div class="icon-box-item col-lg-4 col-md-6 review-card">
