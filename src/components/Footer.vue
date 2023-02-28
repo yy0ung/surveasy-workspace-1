@@ -20,7 +20,7 @@
 				<div class="row align-items-center mt-5 text-left text-md-start">
 					<h5 class="mb-4 text-primary font-secondary">서비스</h5>
 					<ul class="list-unstyled">
-						<li class="mb-2"><router-link to="/service">설문응답 서비스</router-link>
+						<li class="mb-2"><router-link to="/service">설문 응답 서비스</router-link>
 						</li>
 						<li class="mb-2"><router-link to="/surveylist">설문 리스트</router-link>
 						</li>
@@ -35,7 +35,7 @@
 				<div class="row align-items-center mt-5 text-left text-md-start">
 					<h5 class="mb-4 text-primary font-secondary">회사</h5>
 					<ul class="list-unstyled">
-						<li class="mb-2"><router-link to="/story">브랜드스토리</router-link>
+						<li class="mb-2"><router-link to="/story">브랜드 스토리</router-link>
 						</li>
 					</ul>
 				</div>
