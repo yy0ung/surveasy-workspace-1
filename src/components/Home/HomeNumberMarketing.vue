@@ -10,7 +10,7 @@
 		<div class="row justify-content-center">
       <div class="col-lg-4 col-md-6">
 				<div class="number-marketing-card block text-center">
-					<h1 class="text-white mb-3">{{survey}}</h1>
+					<h1 class="text-white mb-5">{{survey}}</h1>
           <hr class="text-white m-0" style="width: 100%">
 					<h4 class="text-white mt-4">지금까지 진행된 리서치 수</h4>
           <p class="text-white">* 설문 응답 수집, 인터뷰이 모집, 베타테스터 모집</p>
@@ -18,14 +18,14 @@
 			</div>
 			<div class="col-lg-4 col-md-6">
 				<div class="number-marketing-card block text-center">
-					<h1 class="text-white mb-3">{{panel}}명</h1>
+					<h1 class="text-white mb-5">{{panel}}명</h1>
           <hr class="text-white m-0" style="width: 100%">
 					<h4 class="text-white mt-4">리서치 참여를 기다리는 패널 수</h4>
 				</div>
 			</div>
 			<div class="col-lg-4 col-md-6">
 				<div class="number-marketing-card block text-center">
-					<h1 class="text-white mb-3">4.7점</h1>
+					<h1 class="text-white mb-5">4.7점</h1>
           <hr class="text-white m-0" style="width: 100%">
 					<h4 class="text-white mt-4">서비스 평균 만족도</h4>
 				</div>

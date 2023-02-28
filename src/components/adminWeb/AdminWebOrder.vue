@@ -21,6 +21,7 @@
         <th>소요시간</th>
         <th>제목</th>
         <th>대상</th>
+        <th>나이-성별</th>
         <th>선택신분</th>
 
         <tr v-for="item in (this.$store.state.adminDataSurvey)" :key="item.id" class="tds" :id="item.id"
@@ -30,8 +31,9 @@
             <button class="progress-buttonX" @click="show_deleteModal(item.id, item.progress)">X</button>
             <AdminWebOrderDelete :deleteModal="deleteModal" :id_delete="id_delete" :progress_delete="progress_delete" @closeD="close_deleteModal()"></AdminWebOrderDelete>
             <button class="progress-button1" @click="changeProgress1(item.id)">1</button> 
-            <button class="progress-button2" @click="show_Modal(item.id, item.notice, item.dueTimeTime, item.uploaderEmail)">2</button>
-            <AdminWebOrderDetail :progress2Modal="progress2Modal" :id="id" :notice="notice" :due="due" :uploaderEmail="uploaderEmail" @close="close_Modal()"></AdminWebOrderDetail>
+            <button class="progress-button2" @click="show_Modal(item.id, item.notice, item.dueTimeTime, item.uploaderEmail, item.point_add)">2</button>
+            <AdminWebOrderDetail :progress2Modal="progress2Modal" :id="id" :notice="notice" :due="due" 
+            :uploaderEmail="uploaderEmail" :point_add="point_add" :validIndexNum="validIndexNum" @close="close_Modal()"></AdminWebOrderDetail>
             <button class="progress-button3" @click="changeProgress3(item.id)">3</button>
           </td>
           <td>{{item.lastIDChecked}}</td>
@@ -50,7 +52,8 @@
           <td><a :href="item.link" target="_blank" class="tds"
           :class="{red:item.progress==0 || item.progress==1, green2: item.progress==2, gray: item.progress==3 || item.progress==4}">{{item.title}}</a></td>
           <td>{{item.target}}</td>
-          <td :title=item.uploaderIdentity>{{item.priceIdentity.substring(0, 4)}}</td>
+          <td>{{this.$store.state.targetingTable[0][Number(item.targetingAge)]}} / {{this.$store.state.targetingTable[1][Number(item.targetingGender)]}}</td>
+          <td :title="item.uploaderIdentity">{{item.priceIdentity.substring(0, 4)}}</td>
         </tr>
       </table>
 
@@ -127,6 +130,8 @@ export default {
       notice: '',
       due: '',
       uploaderEmail: '',
+      point_add: 0,
+      validIndexNum: 0
     }
   },
 
@@ -261,13 +266,15 @@ export default {
     },
 
 
-    show_Modal(itemId, itemNotice, itemDue, itemUploaderEmail) {
+    show_Modal(itemId, itemNotice, itemDue, itemUploaderEmail, itemPoint) {
       this.id = itemId
       this.notice = itemNotice
       this.due = itemDue
       this.uploaderEmail = itemUploaderEmail
       this.progress2Modal = true
-      
+      this.point_add = itemPoint
+      this.validIndexNum = this.fetchValidIndex(itemId)
+
     },
 
     close_Modal() {
@@ -330,7 +337,7 @@ export default {
   margin-top: 15px;
 }
 .admin-table {
-  text-align: center;
+  text-align: center
 }
 .admin-th{
   background: #a3a1a1;
