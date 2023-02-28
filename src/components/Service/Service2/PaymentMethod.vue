@@ -48,7 +48,7 @@ export default {
 
       var emptyTarget = []
 
-      if(this.$store.state.localSurveyState.title=='' || this.$store.state.localSurveyState.target=='' || this.$store.state.localSurveyState.institute=='' 
+      if(this.$store.state.localSurveyState.title=='' || this.$store.state.localSurveyState.institute=='' 
       || this.$store.state.localSurveyState.link=='' || this.accont_userName=='') {
 
         var emptyTarget = []
@@ -57,9 +57,9 @@ export default {
           emptyTarget.push(PaymentEmptyNotice[0])
         }
 
-        if(this.$store.state.localSurveyState.target=='') {
-          emptyTarget.push(PaymentEmptyNotice[1])
-        }
+        // if(this.$store.state.localSurveyState.target=='') {
+        //   emptyTarget.push(PaymentEmptyNotice[1])
+        // }
 
         if(this.$store.state.localSurveyState.institute=='') {
           emptyTarget.push(PaymentEmptyNotice[2])

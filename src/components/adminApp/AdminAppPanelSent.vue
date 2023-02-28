@@ -8,7 +8,13 @@
     <!-- 내가 다 없애버리면 너가 테스트 못할 거 같아서 아직 나는 테스트 안했어! -->
     <div class="sent-container">
       <div class="sent-title">전체 정산</div>
-      <p><input type="checkbox" id="done" @click="appendAllList" > {{allList.length}}개 모두 선택됨 <button id="sent-all-btn" @click="sentAllFin(allList)">{{allList.length}}개 정산하기</button></p>
+      <div id="sent-all-content-container">
+        <div>
+          <input type="checkbox" id="done" @click="appendAllList"> {{allList.length}}개 모두 선택됨
+          <div id="sent-onlyFS">( onlyFs : {{onlyFS}} / {{allCount}}명 )</div>
+        </div>
+        <button id="sent-all-btn" @click="sentAllFin(allList)">{{allList.length}}개 정산하기</button>
+      </div>
     </div>
     
     
@@ -17,6 +23,7 @@
  
   <div id="sent-list">
     <div class="admin-info-content">
+      <div id="sent-loading" v-if="this.$store.state.adminAppUserData.length==0">불러오는 중</div>
       <table class="admin-table" >
         <tr>
           <th>uid</th>
@@ -59,7 +66,9 @@ export default {
     return {
       sentCheckArray :[],
       allList : [],
-      check : false
+      check : false,
+      allCount : 0,
+      onlyFS: 0
       
     }
   },
@@ -77,30 +86,17 @@ export default {
     async addArray(Id, reward_current, respondedSurvey){
       const item = {Id: Id, reward_current: reward_current, respondedSurvey: respondedSurvey}
       
-      
-
-      if(this.sentCheckArray.some(e => e.Id == Id)){
+      if(this.sentCheckArray.some(e => e.Id == Id)) {
         this.sentCheckArray = this.sentCheckArray.filter(e => e.Id != Id)
-        //console.log('***' + this.sentCheckArray)
-      }else{
+      }
+      else {
         this.sentCheckArray.push({Id: Id, reward_current: reward_current, respondedSurvey: respondedSurvey})
-        //console.log('$$$' + this.sentCheckArray)
       }
     },
     
     async sentAllFin(arr){
       const db = this.$store.state.db
       for(var i=0; i<arr.length; i++){
-        // var respondedSurvey = []
-      
-        // const querySnapshot = await getDocs(collection(db, "panelData", arr[i].Id, "UserSurveyList"))
-        // querySnapshot.forEach((doc) => {
-        //   if(doc.data().isSent == false) {
-        //     console.log("survey list : " + doc.data().lastIDChecked)
-        //     respondedSurvey.push(doc.data().lastIDChecked.toString())
-        //   }
-        // })
-
         
         console.log("~~~~~~~~" + arr[i].reward_current + '~~~~~~~' + arr[i].respondedSurvey)
         await this.clearCurrent(arr[i].Id, arr[i].reward_current)
@@ -151,8 +147,9 @@ export default {
     async fetchPanelInfo(){
       const db = this.$store.state.db
       const adminAppUserData = this.$store.state.adminAppUserData
+      const q = query(collection(db,"panelData"), where("reward_current", ">", 0))
       
-      const querySnapshot = await getDocs(collection(db,"panelData"))
+      const querySnapshot = await getDocs(q)
       querySnapshot.forEach((doc) => {
         var info = []
         info.push(doc.data())
@@ -165,8 +162,10 @@ export default {
       const db = this.$store.state.db
       const adminAppUserData = this.$store.state.adminAppUserData
       var respondedSurvey = []
-      
-      const querySnapshot = await getDocs(collection(db, "panelData", uid, "UserSurveyList"))
+
+      const q = query(collection(db, "panelData", uid, "UserSurveyList"), where("isSent", "==", false))
+      const querySnapshot = await getDocs(q)
+
       querySnapshot.forEach((doc) => {
           if(doc.data().isSent == false) {
             console.log("survey list : " + doc.data().lastIDChecked)
@@ -180,16 +179,23 @@ export default {
     async appendAllList(){
       this.check = !this.check
       var lst = this.$store.state.adminAppUserData
+      
       if(this.check){
         for(var i =0; i<lst.length; i++){
-        if(lst[i].info[0].reward_current>0){
-          var item = {Id : lst[i].uid, reward_current : lst[i].info[0].reward_current, respondedSurvey: lst[i].respondedSurvey}
-          this.allList.push(item)
+          this.allCount++
+          if(!(lst[i].respondedSurvey.length==1 && lst[i].respondedSurvey[0]=="0")) {
+            var item = {Id : lst[i].uid, reward_current : lst[i].info[0].reward_current, respondedSurvey: lst[i].respondedSurvey}
+            this.allList.push(item)
+            console.log(item)
+          }
+          else {this.onlyFS++}
         }
-      
       }
-      }else{
+      
+      else {
         this.allList.length = 0
+        this.allCount = 0
+        this.onlyFS = 0
       }
       
       console.log('#######' + this.allList)
@@ -215,11 +221,24 @@ export default {
   width: 400px;
   padding: 15px;
   margin: 0 20px 20px 20px;
+  text-align: center;
 }
 .sent-title {
   font-size: 24px;
   font-weight: bold;
   color: #343434;
+}
+#sent-all-content-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 15px;
+}
+#sent-onlyFS {
+  font-size: 13px;
+  font-weight: lighter;
+  color: #2b2b2b;
+  margin-top: 4px;
 }
 #sent-all-btn {
   width: 130px;
@@ -227,14 +246,21 @@ export default {
   margin-left: 50px;
   color:#247524;
   background-color: #FFFFFF;
-  border: 1.5px solid #247524;
+  border: 1.5px solid #a2a2a2;
   border-radius: 10px;
   font-size: 15px;
   font-weight: 600;
   cursor: pointer;
 }
+#sent-loading {
+  font-size: 30px;
+  font-weight: lighter;
+  color: #bcbcbc;
+  margin: 70px;
+  text-align: center;
+}
 #sent-list {
-  display: inline-block;
+  display: inline;
   justify-content: center;
   width: 90%;
 }
