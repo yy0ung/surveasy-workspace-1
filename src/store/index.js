@@ -59,7 +59,7 @@ export default createStore({
       
     EngOptionArray: [ 1.0, 1.8, 2.2 ],
 
-    AgeOptionArray: [ 1.0, 1.0, 1.2, 1.3, 1.3, 1.1, 1.1],
+    AgeOptionArray: [1.0, 2.0, 1.875, 1.75, 1.625, 1.5, 1.375, 1.25, 1.125],
 
     genderOptionArray: [1.0, 1.0, 1.4, 1.4],
 
@@ -75,7 +75,7 @@ export default createStore({
     ],
 
     targetingTable: [
-      ['','전 연령','20대 (1994~2003년생)', '20세 이상 24세 이하','25세 이상 29세 이하','20세 이상 39세 이하','20세 이상 49세 이하'],
+      ["", "연령 무관", "연령 옵션 선택"],
       ['','성별 무관','남성', '여성']
     ],
       
@@ -88,6 +88,7 @@ export default createStore({
       ENTarget: '',
       identity: '',
       targetingAge: 0,
+      targetingAgeList: [],
       targetingGender: 0,
       
       title: '',
@@ -266,8 +267,8 @@ export default createStore({
       state.localSurveyState.dueDate = payload.dueDate,
       state.localSurveyState.dueTimeTime = payload.dueTimeTime,
       state.localSurveyState.targetingAge = payload.targetingAge,
-      state.localSurveyState.targetingGender = payload.targetingGender
-     
+      state.localSurveyState.targetingAgeList = payload.targetingAgeList,
+      state.localSurveyState.targetingGender = payload.targetingGender     
     },
     
     setSurveyMutation2(state, payload){

@@ -334,6 +334,7 @@ export default {
           dueTimeTimeTime: dataset.dueTimeTimeTime,
           priceIdentity: dataset.identity,
           targetingAge : dataset.targetingAge,
+          targetingAgeList : dataset.targetingAgeList,
           targetingGender : dataset.targetingGender,
 
 

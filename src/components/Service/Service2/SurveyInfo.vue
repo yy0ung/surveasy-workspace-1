@@ -8,8 +8,11 @@
             <div class="mb-4"></div>
             <div class="info-detail-text">설문 대상</div>
             <div class="showOption-target">
-              {{ this.$store.state.targetingTable[0][this.$store.state.localSurveyState.targetingAge] }},    
-              {{ this.$store.state.targetingTable[1][this.$store.state.localSurveyState.targetingGender] }}
+              {{ this.$store.state.targetingTable[0][this.$store.state.localSurveyState.targetingAge] }} 
+              , {{ this.$store.state.targetingTable[1][this.$store.state.localSurveyState.targetingGender] }}
+            </div>
+            <div class="showOption-target" v-if="this.$store.state.localSurveyState.targetingAge==2">
+              <div id="showOption-target-age-item" v-for="item in (this.$store.state.localSurveyState.targetingAgeList)" :key="item">{{item}}</div>
             </div>
             <div class="mb-4"></div>
             <div class="info-detail-text">설문 대상 상세 정보 (선택)</div>
@@ -33,6 +36,13 @@
 <script>
 import LinkCheckModal from './LinkCheckModal.vue'
 export default {
+  mounted() {
+    for(var i=0 ; i<this.$store.state.localSurveyState.targetingAgeList.length ; i++) {
+      console.log(this.$store.state.localSurveyState.targetingAgeList[i])
+    }
+    // console.log(this.$store.state.localSurveyState.targetingAgeList)
+  },
+
   data() {
         return {
             title: '',
@@ -40,7 +50,6 @@ export default {
             institute: '',
             link: '',
             notice:'',
-          
 
             showLinkIframe: false,
         }
@@ -67,8 +76,20 @@ export default {
 </script>
 
 <style>
-.showOption-target{
+  .showOption-target{
+    display: flex;
+    flex-direction: row;
     color:#0AAB00;
+  }
+  #showOption-target-age-item {
+    color: #ffffff;
+    background: #0AAB00;
+    border-radius: 7px;
+    margin-top: 5px;
+    margin-right: 8px;
+    padding-left: 8px;
+    padding-right: 8px;
+    font-size: 0.85rem;
   }
   .info-detail-notice{
     margin-top: 5px;

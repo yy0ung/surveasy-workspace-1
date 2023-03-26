@@ -53,18 +53,6 @@
           <!-- 설문 대상 타겟팅 -->
           <div class="form-group row">
             <p class="form-title m-1">설문 대상</p>
-              <div class="col-6">
-                <select class="form-select m-1" id="target_age" v-model="targetAgeOption">
-                  <option :value=0 selected disabled hidden>대상 연령</option>
-                  <option :value=1>전 연령</option>
-                  <option :value=2>20대</option>
-                  <option :value=3>20세 이상 24세 이하</option>
-                  <option :value=4>25세 이상 29세 이하</option>
-                  <option :value=5>20세 이상 39세 이하</option>
-                  <option :value=6>20세 이상 49세 이하</option>
-                </select>
-              </div>
-
             <div class="col-6">
               <select class="form-select m-1" id="target_gender" v-model="targetGenderOption">
                 <option :value=0 selected disabled hidden>대상 성별</option>
@@ -72,9 +60,82 @@
                 <option :value=2>남성</option>
                 <option :value=3>여성</option>
               </select>
+            </div> 
+
+            <div class="col-6">
+              <select class="form-select m-1" id="target_age" v-model="targetAgeOption">
+                <option :value=0 selected disabled hidden>대상 연령</option>
+                <option :value=1>연령 무관</option>
+                <option :value=2>연령 옵션 선택하기</option>
+              </select>
+            </div>          
+
+            <div v-if="targetAgeOption==2" class="col-11" id="checkbox-container">
+              <div id="checkbox-row">
+                <div id="checkbox-item">
+                  <input v-model="targetAgeOptionList" :true-value="[]" type="checkbox" name="selectedAges" value="20-24세"> 
+                  <div id="checkbox-text">20-24세</div>
+                </div>
+                <div id="checkbox-item">
+                  <input v-model="targetAgeOptionList" :true-value="[]" type="checkbox" name="selectedAges" value="40-44세">
+                  <div id="checkbox-text">40-44세</div>
+                </div>
+              </div>
+
+              <div id="checkbox-row">
+                <div id="checkbox-item">
+                  <input v-model="targetAgeOptionList" :true-value="[]" @click="calculateAge" type="checkbox" name="selectedAges" value="25-29세">
+                  <div id="checkbox-text">25-29세</div>
+                </div>
+                <div id="checkbox-item">
+                  <input v-model="targetAgeOptionList" :true-value="[]" @click="calculateAge" type="checkbox" name="selectedAges" value="45-49세">
+                  <div id="checkbox-text">45-49세</div>
+                </div>           
+              </div>
+
+              <div id="checkbox-row">
+                <div id="checkbox-item">
+                  <input v-model="targetAgeOptionList" :true-value="[]" @click="calculateAge" type="checkbox" name="selectedAges" value="30-34세">
+                  <div id="checkbox-text">30-34세</div>
+                </div>
+                <div id="checkbox-item">
+                  <input v-model="targetAgeOptionList" :true-value="[]" @click="calculateAge" type="checkbox" name="selectedAges" value="50대">
+                  <div id="checkbox-text">50대</div>
+                </div>           
+              </div>
+
+              <div id="checkbox-row">
+                <div id="checkbox-item">
+                  <input v-model="targetAgeOptionList" :true-value="[]" @click="calculateAge" type="checkbox" name="selectedAges" value="35-39세">
+                  <div id="checkbox-text">35-39세</div>
+                </div>
+                <div id="checkbox-item">
+                  <input v-model="targetAgeOptionList" :true-value="[]" @click="calculateAge" type="checkbox" name="selectedAges" value="60대">
+                  <div id="checkbox-text">60대</div>
+                </div>           
+              </div>
             </div>
+                 
             <p class="warn m-2">*다음 주문 페이지에서 설문 대상 상세정보를 기입할 수 있습니다.</p>   
           </div>
+
+          <div id="blank"></div>          
+
+          <!-- 영어 설문 -->
+          <div class="row-cols-2">
+            <p class="form-title m-1">영어설문</p>
+            <div id="checkbox-item-eng"> 
+              <input class="form-check-input" v-model="addENTarget" @click="EngOptionCal" type="checkbox" name="Eng" id="Eng">
+              <label id="checkbox-text-eng" for="Eng">{{ this.EngText }}</label>
+            </div>            
+          </div> 
+
+          <div id="show-price-container">
+            <span id="show-price-title">주문 금액</span>
+            <span class="service-option-discountprice-price m-0 text-right">{{ this.priceToString(this.calculate_before)}}원</span>
+          </div>
+
+          <hr id="line">
 
           <!-- 할인 대상  -->
           <div class="row-cols-2">
@@ -87,31 +148,31 @@
               <option :value=4>할인대상이 아닙니다.</option>
             </select>
           </div>
-          <br>
 
-          <!-- 영어 설문 -->
-          <div class="row-cols-2">
-            <p class="form-title m-1">영어설문</p>
-            <div class="form-check m-2"> 
-              <input class="form-check-input" v-model="addENTarget" @click="EngOptionCal" type="checkbox" name="Eng" id="Eng">
-              <label class="Eng-text" for="Eng">{{ this.EngText }}</label>
-            </div>
-          </div>        
-
-          <div class="show-price-container">
-            <p class="service-option-totalprice-word m-0 text-right">주문 금액</p>
-            <p class="service-option-totalprice-price m-0 text-right">
-              {{ this.priceToString(this.calculate)}}원</p>
+          <div id="show-price-container">
+            <span id="show-price-title">할인 금액</span>
+            <span class="service-option-discountprice-price m-0 text-right">
+              - {{ this.priceToString(this.calculate_before - this.calculate)}}원</span>
           </div>
-            </div>
-            <div id="btn-fin">
-              <div class="text-center">
-                <a class="btn btn-primary w-75" @click="setOption1()">설문 정보 입력하러 가기</a>
-              </div>
-            </div>
+
+          <hr id="line">
+
+          <div id="show-price-container">
+            <span id="show-price-title">결제 금액</span>
+            <span class="service-option-totalprice-price m-0 text-right">
+              {{ this.priceToString(this.calculate)}}원</span>
+          </div>
+
+        </div>
+
+        <div id="btn-fin">
+          <div class="text-center">
+            <a class="btn btn-primary w-75" @click="setOption1()">설문 정보 입력하러 가기</a>
+          </div>
+        </div>
             
-            </div>
-            </div>   
+      </div>
+    </div>   
 </div>
 </template>
 
@@ -127,7 +188,10 @@ export default {
       priceRequireHeadCount:0,
       addENTarget:0,
       timeOption:0,
-      targetAgeOption:0,
+
+      targetAgeOption: 0,        // 1 (연령무관)   2 (옵션선택)
+      targetAgeOptionList: [],   // 선택한 연령 옵션
+
       targetGenderOption:0,
 
 
@@ -248,6 +312,7 @@ export default {
       //console.log('time', hourOptionIndex)
       return hourOptionIndex
     }, 
+
     EngOptionCal() {
       var EngIndex = 0
       var HeadCount = this.priceRequireHeadCount
@@ -267,11 +332,16 @@ export default {
       return EngIndex
     },
 
+    calculateAge() {
+      console.log(this.targetAgeOptionList)
+    },
+
+
     calculate_before() {
       var p = parseFloat(parseFloat(this.$store.state.priceTable[this.priceSpendTime][this.priceRequireHeadCount])
                       // * parseFloat(this.$store.state.IdentityOptionArray[this.priceIdentity])
                       * parseFloat(this.$store.state.EngOptionArray[this.EngOptionCal])
-                      * parseFloat(this.$store.state.AgeOptionArray[this.targetAgeOption])
+                      * parseFloat(this.$store.state.AgeOptionArray[this.targetAgeOptionList.length])
                       * parseFloat(this.$store.state.genderOptionArray[this.targetGenderOption])
                       + parseFloat(this.$store.state.TimeOptionArray[this.timeOptionCal])
                     ).toFixed(0)
@@ -284,7 +354,7 @@ export default {
       var p = parseFloat(parseFloat(this.$store.state.priceTable[this.priceSpendTime][this.priceRequireHeadCount])
                       * parseFloat(this.$store.state.IdentityOptionArray[this.priceIdentity])
                       * parseFloat(this.$store.state.EngOptionArray[this.EngOptionCal])
-                      * parseFloat(this.$store.state.AgeOptionArray[this.targetAgeOption])
+                      * parseFloat(this.$store.state.AgeOptionArray[this.targetAgeOptionList.length])
                       * parseFloat(this.$store.state.genderOptionArray[this.targetGenderOption])
                       + parseFloat(this.$store.state.TimeOptionArray[this.timeOptionCal])
                     ).toFixed(0)
@@ -294,6 +364,9 @@ export default {
     }
   },
   methods: {    
+    show() {
+      console.log(this.targetAgeList)
+    },
 
     setOption1() {
       
@@ -301,11 +374,16 @@ export default {
         alert("모든 옵션을 입력해주세요.")
       }
 
+      else if(this.targetAgeOption == 2 && this.targetAgeOptionList.length == 0) {
+        alert("연령 옵션을 1개 이상 선택해주세요.")
+      }
+
       else if(this.timeOptionCal==6) {
         alert("마감 기한은 최소 18시간 이상부터 선택 가능합니다.")
       }
 
       else {       
+        this.targetAgeOptionList.sort();
         this.timeOption = this.timeOptionCal;
         this.addENTarget = this.EngOptionCal;
 
@@ -314,6 +392,8 @@ export default {
         this.dueTime = String(this.$store.state.priceTextTable[2][this.timeOption]);
         this.ENTarget = String(this.$store.state.priceTextTable[3][this.addENTarget]);
         this.identity = String(this.$store.state.priceTextTable[4][this.priceIdentity]);
+
+        console.log(this.targetAgeOption + " " + this.targetAgeOptionList)
       
       
         this.$store.commit('setSurveyMutation1', {
@@ -327,6 +407,7 @@ export default {
           dueDate: this.aa, 
           dueTimeTime: this.bb,
           targetingAge : this.targetAgeOption,
+          targetingAgeList : this.targetAgeOptionList,
           targetingGender: this.targetGenderOption
         });
 
@@ -481,6 +562,72 @@ export default {
   .service-title {
     text-align: center;
     color: primary;
+  }
+
+  #blank{
+    margin-bottom: 10px;
+  }
+
+  #checkbox-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 10px;
+    margin-left: 16px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;  
+  }
+
+  #checkbox-row {
+    display: flex;
+    flex-direction: column;
+  }
+
+  #checkbox-item-eng {
+    display: flex;
+    flex-direction: row;
+    margin-left: 10px;
+    align-items: center;
+  }
+
+  #checkbox-text-eng {
+    margin-left: 7px;
+    color: rgb(88, 88, 88);
+    font-size: 0.85rem;
+  }
+
+  #checkbox-item {
+    display: flex;
+    flex-direction: row;
+  }
+
+  #checkbox-text {
+    margin-left: 3px;
+    color: rgb(122, 122, 122);
+    font-size: 0.8rem;
+  }
+
+  #show-price-container {
+    align-items: center;
+    text-align: right;
+    padding-right: 20px;
+    margin-top: 15px;
+  }
+
+  #show-price-title {
+    margin-right: 15px;
+  }
+
+  #line {
+    background:rgb(205, 205, 205);
+    height: 1px;
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 15px;
   }
 
   #btn-fin {
