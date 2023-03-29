@@ -365,7 +365,7 @@ export default {
   },
   methods: {    
     show() {
-      console.log(this.targetAgeList)
+      //console.log(this.targetAgeOptionList)
     },
 
     setOption1() {
@@ -406,8 +406,8 @@ export default {
           identity: this.identity, 
           dueDate: this.aa, 
           dueTimeTime: this.bb,
-          targetingAge : this.targetAgeOption,
-          targetingAgeList : this.targetAgeOptionList,
+          targetingAgeOption : this.targetAgeOption,
+          targetingAgeOptionList : this.targetAgeOptionList,
           targetingGender: this.targetGenderOption
         });
 

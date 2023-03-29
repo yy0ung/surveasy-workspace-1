@@ -8,11 +8,11 @@
             <div class="mb-4"></div>
             <div class="info-detail-text">설문 대상</div>
             <div class="showOption-target">
-              {{ this.$store.state.targetingTable[0][this.$store.state.localSurveyState.targetingAge] }} 
+              {{ this.$store.state.targetingTable[0][this.$store.state.localSurveyState.targetingAgeOption] }} 
               , {{ this.$store.state.targetingTable[1][this.$store.state.localSurveyState.targetingGender] }}
             </div>
-            <div class="showOption-target" v-if="this.$store.state.localSurveyState.targetingAge==2">
-              <div id="showOption-target-age-item" v-for="item in (this.$store.state.localSurveyState.targetingAgeList)" :key="item">{{item}}</div>
+            <div class="showOption-target" v-if="this.$store.state.localSurveyState.targetingAgeOption==2">
+              <div id="showOption-target-age-item" v-for="item in (this.$store.state.localSurveyState.targetingAgeOptionList)" :key="item">{{item}}</div>
             </div>
             <div class="mb-4"></div>
             <div class="info-detail-text">설문 대상 상세 정보 (선택)</div>
@@ -37,9 +37,9 @@
 import LinkCheckModal from './LinkCheckModal.vue'
 export default {
   mounted() {
-    for(var i=0 ; i<this.$store.state.localSurveyState.targetingAgeList.length ; i++) {
-      console.log(this.$store.state.localSurveyState.targetingAgeList[i])
-    }
+    // for(var i=0 ; i<this.$store.state.localSurveyState.targetingAgeOptionList.length ; i++) {
+    //   console.log(this.$store.state.localSurveyState.targetingAgeOptionList[i])
+    // }
     // console.log(this.$store.state.localSurveyState.targetingAgeList)
   },
 

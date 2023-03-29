@@ -76,7 +76,8 @@ export default createStore({
 
     targetingTable: [
       ["", "연령 무관", "연령 옵션 선택"],
-      ['','성별 무관','남성', '여성']
+      ['','성별 무관','남성', '여성'],
+      ['','전 연령','20대 (1994~2003년생)', '20세 이상 24세 이하','25세 이상 29세 이하','20세 이상 39세 이하','20세 이상 49세 이하'],
     ],
       
 
@@ -87,8 +88,9 @@ export default createStore({
       dueTime: '',
       ENTarget: '',
       identity: '',
-      targetingAge: 0,
-      targetingAgeList: [],
+      targetingAge: -1,
+      targetingAgeOption : 0,
+      targetingAgeOptionList: [],
       targetingGender: 0,
       
       title: '',
@@ -266,8 +268,8 @@ export default createStore({
       state.localSurveyState.ENTarget = payload.ENTarget,
       state.localSurveyState.dueDate = payload.dueDate,
       state.localSurveyState.dueTimeTime = payload.dueTimeTime,
-      state.localSurveyState.targetingAge = payload.targetingAge,
-      state.localSurveyState.targetingAgeList = payload.targetingAgeList,
+      state.localSurveyState.targetingAgeOption = payload.targetingAgeOption,
+      state.localSurveyState.targetingAgeOptionList = payload.targetingAgeOptionList,
       state.localSurveyState.targetingGender = payload.targetingGender     
     },
     
