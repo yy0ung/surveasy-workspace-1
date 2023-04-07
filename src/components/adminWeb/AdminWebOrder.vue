@@ -159,7 +159,7 @@ export default {
       const db = this.$store.state.db
       const docRef = collection(db, "surveyData")
       
-      const q = query(docRef, orderBy("id", "desc"), limit(20))
+      const q = query(docRef, orderBy("id", "desc"), limit(40))
       const querySnapshot = await getDocs(q)
       querySnapshot.forEach((doc) => {
         if(doc.data().id > 340) this.surveyList.push(doc.data())
