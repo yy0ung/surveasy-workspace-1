@@ -1,17 +1,17 @@
 <template>
-  <div v-if="deleteModal==true" class="delete-modal">
-    <div class="delete-contentsbox">
-      <div id="delete-top">
-        <div @click="$emit('closeD')" class="delete-close"><i class="fas fa-times"></i></div>
-        <p class="delete-title">설문을 삭제하시겠습니까?</p>
+  <div v-if="memoModal==true" class="memo-modal">
+    <div class="memo-contentsbox">
+      <div id="p2-top">
+        <div @click="$emit('closeM')" class="memo-close"><i class="fas fa-times"></i></div>
+        <p class="memo-title">메모장</p>
       </div>
       
-      <div id="delete-container">
-        <div id="delete-id"><div>ID :  {{id_delete}}</div></div>
-        <div style="color:#000000">Progress : {{progress_delete}}</div>
+      <div id="memo-container">
+        <div id="memo-id"><div>ID :  {{id_memo}}</div></div>
+
         
       </div>
-      <button id="delete-fin-btn" @click="deleteSurvey(id_delete)">삭제하기</button>
+      <button id="memo-fin-btn" @click="postMemo()">메모 업로드하기</button>
       
     </div>
       
@@ -20,60 +20,58 @@
 
 <script>
 import AdminWebOrderVue from './AdminWebOrder.vue'
-import { doc, deleteDoc } from 'firebase/firestore'
+import { getFirestore,collection, getDocs, updateDoc, doc, deleteDoc, setDoc, getDoc } from 'firebase/firestore'
 
 export default {
   name: AdminWebOrderVue,
   props: {
-    deleteModal : {
+    memoModal : {
       typeof: Boolean,
       require: true,
       default: false
     },
 
-    id_delete: { typeof: Number },
-    progress_delete: { typeof: Number }
+    id_memo: { typeof: Number }
+
   },
 
   data() {
     return {
+      reward : "",
+      noticeToPanel : "",
+      link : "",
+      newDuetimetime : ""
     }
   },
 
   methods: {
-    async deleteSurvey(id_delete) {
-      const db = this.$store.state.db
+    async postMemo() {
 
-      await deleteDoc(doc(db, "surveyData", id_delete.toString()))
-      window.alert("삭제 완료")
-      
-      this.$router.go('/adminmain')
     }
-    
   }
 }
 </script>
 
 <style>
-.delete-modal {
+.memo-modal {
   position: fixed;
   z-index: 9998;
   top: 0;
   left: 0;
   width: 100%;
   height: 3140px;
-  background-color: rgba(141, 141, 141, 0.026);
+  background-color: rgba(255, 255, 255, 0.02);
   display: table;
   transition: opacity .3s ease;
 }
-.delete-contentsbox {
+.memo-contentsbox {
   display: flex;
   flex-direction: column;
   padding: 20px;
   font-family: 'Noto Sans KR', sans-serif;
-  width: 420px;
-  height: 290px;
-  margin: 300px auto;
+  width: 700px;
+  height: 530px;
+  margin: 150px auto;
   padding-top: 15px;
   padding-bottom: 30px;
   background-color: rgb(255, 255, 255);
@@ -82,37 +80,35 @@ export default {
   transition: all .3s ease;
   z-index: 2;
 }
-#delete-container {
+#p2-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 20px;
+  padding: 10px;
 }
-.delete-title {
+.memo-title {
   font-family: 'Noto Sans KR', sans-serif;
   font-size: 25px;
-  font-weight: lighter;
-  color: #585858;
-  margin-top: 30px;
-  margin-bottom: 7px;
+  font-weight: bold;
+  margin: 5px;
+  color:#444444;
 }
-#delete-id {
+#memo-id {
   font-family: 'Noto Sans KR', sans-serif;
   color:#0CAE02;
   font-size: 18px;
-  margin-top: 0px;
 }
-.delete-close {
+.memo-close {
   display: flex;
   flex-direction: row;
   justify-content: right;
-  color:#444444;
   cursor: pointer;
+  color:#444444;
 }
 
-#delete-fin-btn {
+#memo-fin-btn {
   padding: 5px 70px;
-  margin: 20px 70px 0px 70px;
+  margin: 37px 180px 0px 180px;
   color:#0CAE02;
   background-color: #FFFFFF;
   border: 1.5px solid #0CAE02;
@@ -121,7 +117,7 @@ export default {
   cursor: pointer;
   font-family: 'Noto Sans KR', sans-serif;
 }
-#delete-fin-btn:hover{
+#memo-fin-btn:hover{
   color: white;
   background: #0AAB00;
 }

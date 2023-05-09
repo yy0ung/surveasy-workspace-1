@@ -49,8 +49,11 @@
           <td>{{item.uploader}}</td>
           <td>{{item.price}}</td>
           <td>{{item.spendTime}}</td>
-          <td><a :href="item.link" target="_blank" class="tds"
-          :class="{red:item.progress==0 || item.progress==1, green2: item.progress==2, gray: item.progress==3 || item.progress==4}">{{item.title}}</a></td>
+          <td>
+            <a :href="item.link" target="_blank" class="tds" :class="{red:item.progress==0 || item.progress==1, green2: item.progress==2, gray: item.progress==3 || item.progress==4}">{{item.title}}</a>
+            <button id="button-memo" v-if="item.hasMemo" @click="show_memoModal(item.id)">📝</button>
+            <AdminWebOrderMemo :memoModal="memoModal" :id_memo="id_memo" @closeM="close_memoModal()"></AdminWebOrderMemo>            
+          </td>
           <td>{{item.target}}</td>
           <td>{{this.$store.state.targetingTable[0][Number(item.targetingAge)]}} / {{this.$store.state.targetingTable[1][Number(item.targetingGender)]}}</td>
           <td :title="item.uploaderIdentity">{{item.priceIdentity.substring(0, 4)}}</td>
@@ -112,6 +115,7 @@
 import { doc, collection, query, getDoc, getDocs, updateDoc, orderBy, limit, startAfter } from "firebase/firestore"
 import AdminWebOrderDetail from './AdminWebOrderDetail.vue'
 import AdminWebOrderDelete from './AdminWebOrderDelete.vue'
+import AdminWebOrderMemo from './AdminWebOrderMemo.vue'
 
 
 export default {
@@ -121,11 +125,15 @@ export default {
       surveyList: [],
       detailList: [],
 
+      progress2Modal: false,
+
       deleteModal: false,
       id_delete: 0,
       progress_delete: 0,
 
-      progress2Modal: false,
+      memoModal: false,
+      id_memo: 0,
+
       id: 0,
       notice: '',
       due: '',
@@ -135,7 +143,7 @@ export default {
     }
   },
 
-  components: { AdminWebOrderDetail, AdminWebOrderDelete },
+  components: { AdminWebOrderDetail, AdminWebOrderDelete, AdminWebOrderMemo},
 
   mounted() {
     this.fetchSurveyData()
@@ -289,9 +297,16 @@ export default {
 
     close_deleteModal() {
       this.deleteModal = false
+    },
+
+    show_memoModal(itemId) {
+      this.id_memo = itemId
+      this.memoModal = true
+    },
+
+    close_memoModal() {
+      this.memoModal = false
     }
-
-
 
   }
 
@@ -410,5 +425,9 @@ export default {
   position: absolute;
   height: 300px;
   width: 500px;
+}
+#button-memo {
+  border: 0;
+  background: 0;
 }
 </style>
