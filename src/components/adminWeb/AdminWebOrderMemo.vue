@@ -1,17 +1,27 @@
 <template>
-  <div v-if="memoModal==true" class="memo-modal">
+  <div class="memo-modal">
     <div class="memo-contentsbox">
       <div id="p2-top">
-        <div @click="$emit('closeM')" class="memo-close"><i class="fas fa-times"></i></div>
         <p class="memo-title">메모장</p>
       </div>
       
       <div id="memo-container">
-        <div id="memo-id"><div>ID :  {{id_memo}}</div></div>
+        <div id="memo-id">ID :  {{id}} </div>
+        <div>Title : {{title}}</div>
+        <!-- <div v-if="this.hasMemo!=true">현재까지 작성된 메모가 없습니다.</div> -->
+        <div>
+          <div>메모 목록</div>
+          <div v-if="this.memoList==[]">로 딩 중</div>
+          <div v-for="item in (this.memoList)" :key="item.id">
+            <p>{{item.contents}}</p>
+            <p>{{item.created_at}}</p>
+          </div>
+        </div>
+        
 
         
       </div>
-      <button id="memo-fin-btn" @click="postMemo()">메모 업로드하기</button>
+      <button id="memo-fin-btn" @click="fetchMemoList()">메모 업로드하기</button>
       
     </div>
       
@@ -20,31 +30,39 @@
 
 <script>
 import AdminWebOrderVue from './AdminWebOrder.vue'
-import { getFirestore,collection, getDocs, updateDoc, doc, deleteDoc, setDoc, getDoc } from 'firebase/firestore'
+import { getFirestore,collection, getDocs, updateDoc, doc, deleteDoc, setDoc, getDoc, orderBy, limit } from 'firebase/firestore'
 
 export default {
   name: AdminWebOrderVue,
-  props: {
-    memoModal : {
-      typeof: Boolean,
-      require: true,
-      default: false
-    },
-
-    id_memo: { typeof: Number }
-
-  },
 
   data() {
     return {
-      reward : "",
-      noticeToPanel : "",
-      link : "",
-      newDuetimetime : ""
+      id : this.$route.params.id,
+      title : this.$route.params.title,
+      hasMemo : this.$route.params.hasMemo,
+      memoList: []
+
     }
   },
 
+  mounted() {
+    this.fetchMemoList()
+  },
+
   methods: {
+    async fetchMemoList() {
+      this.memoList = []
+      const db = this.$store.state.db
+      console.log(this.id + " !!")
+      const docRef = collection(db, "memoData", this.id.toString(), "memoList")
+      const querySnapshot = await getDocs(docRef)
+      querySnapshot.forEach((doc) => {
+        console.log("___ " + doc.data())
+        this.memoList.push(doc.data())
+      }) 
+      console.log(this.memoList)
+    },
+
     async postMemo() {
 
     }

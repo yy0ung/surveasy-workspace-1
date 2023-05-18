@@ -6,12 +6,11 @@
       <div class="WebOrder-title" @click="this.setListType(1)" :class="{black:this.listType==1, grey:this.listType==0}">상세 목록</div>
     </div>
 
-
       <table id="WebOrder-table-order" class="admin-table" v-if="this.listType==0">
         <th>Pro</th>
         <th>P 관리</th>
         <th>lastID</th>
-        <th>ID</th>
+        <th>ID</th>        
         <th>참여인원</th>
         <th>응답수</th>
         <th>D-day</th>
@@ -23,6 +22,7 @@
         <th>대상</th>
         <th>나이-성별</th>
         <th>선택신분</th>
+        <th>메모</th>
 
         <tr v-for="item in (this.$store.state.adminDataSurvey)" :key="item.id" class="tds" :id="item.id"
           :class="{red:item.progress==0 || item.progress==1, green2: item.progress==2, gray: item.progress==3 || item.progress==4}">
@@ -51,12 +51,18 @@
           <td>{{item.spendTime}}</td>
           <td>
             <a :href="item.link" target="_blank" class="tds" :class="{red:item.progress==0 || item.progress==1, green2: item.progress==2, gray: item.progress==3 || item.progress==4}">{{item.title}}</a>
-            <button id="button-memo" v-if="item.hasMemo" @click="show_memoModal(item.id)">📝</button>
-            <AdminWebOrderMemo :memoModal="memoModal" :id_memo="id_memo" @closeM="close_memoModal()"></AdminWebOrderMemo>            
           </td>
           <td>{{item.target}}</td>
           <td>{{this.$store.state.targetingTable[0][Number(item.targetingAge)]}} / {{this.$store.state.targetingTable[1][Number(item.targetingGender)]}}</td>
           <td :title="item.uploaderIdentity">{{item.priceIdentity.substring(0, 4)}}</td>
+          <td>
+            <router-link :to="`/adminmain/adminwebordermemo/${item.id}/${item.title}/${item.hasMemo}`" target="_blank" class="tds">
+              <button id="button-memo" v-if="item.hasMemo">🍎</button>
+              <button id="button-memo" v-else>🍏</button>
+            </router-link>
+            
+            <!-- <AdminWebOrderMemo :memoModal="memoModal" :id_memo="id_memo" :hasMemo="hasMemo" @closeM="close_memoModal()"></AdminWebOrderMemo>  -->
+          </td>
         </tr>
       </table>
 
@@ -112,7 +118,7 @@
 </template>
 
 <script>
-import { doc, collection, query, getDoc, getDocs, updateDoc, orderBy, limit, startAfter } from "firebase/firestore"
+import { doc, collection, query, getDoc, getDocs, updateDoc, orderBy, limit, startAfter, where } from "firebase/firestore"
 import AdminWebOrderDetail from './AdminWebOrderDetail.vue'
 import AdminWebOrderDelete from './AdminWebOrderDelete.vue'
 import AdminWebOrderMemo from './AdminWebOrderMemo.vue'
@@ -133,6 +139,7 @@ export default {
 
       memoModal: false,
       id_memo: 0,
+      hasMemo: false,
 
       id: 0,
       notice: '',
@@ -167,7 +174,8 @@ export default {
       const db = this.$store.state.db
       const docRef = collection(db, "surveyData")
       
-      const q = query(docRef, orderBy("id", "desc"), limit(20))
+      // const q = query(docRef, orderBy("id", "desc"), limit(12))
+      const q = query(docRef, where("id", "<=", 1095), where("id", ">=", 1094))
       const querySnapshot = await getDocs(q)
       querySnapshot.forEach((doc) => {
         if(doc.data().id > 340) this.surveyList.push(doc.data())
@@ -299,8 +307,9 @@ export default {
       this.deleteModal = false
     },
 
-    show_memoModal(itemId) {
+    show_memoModal(itemId, itemHasMemo) {
       this.id_memo = itemId
+      this.hasMemo = itemHasMemo
       this.memoModal = true
     },
 
@@ -429,5 +438,6 @@ export default {
 #button-memo {
   border: 0;
   background: 0;
+  font-size: 20px;
 }
 </style>
