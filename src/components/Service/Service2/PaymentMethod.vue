@@ -333,7 +333,9 @@ export default {
           dueTimeTime: dataset.dueTimeTime,
           dueTimeTimeTime: dataset.dueTimeTimeTime,
           priceIdentity: dataset.identity,
-          targetingAge : dataset.targetingAge,
+          targetingAge: dataset.targetingAge,
+          targetingAgeOption : dataset.targetingAgeOption,
+          targetingAgeOptionList : dataset.targetingAgeOptionList,
           targetingGender : dataset.targetingGender,
 
 

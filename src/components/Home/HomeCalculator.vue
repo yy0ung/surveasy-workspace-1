@@ -648,6 +648,14 @@ export default {
   font-size: 1.3rem;
   font-weight: 700;
 }
+.service-option-discountprice-price{
+  margin-top: 15px;
+  margin-bottom: 15px;
+  margin-right: 50px;
+  font-size: 1.0rem;
+  font-weight: 700;
+  color: #3f3f3f;
+}
 #go-btn{
   text-align: center;
   letter-spacing: 0px;
