@@ -56,7 +56,7 @@
           <td>{{this.$store.state.targetingTable[0][Number(item.targetingAge)]}} / {{this.$store.state.targetingTable[1][Number(item.targetingGender)]}}</td>
           <td :title="item.uploaderIdentity">{{item.priceIdentity.substring(0, 4)}}</td>
           <td>
-            <router-link :to="`/adminmain/adminwebordermemo/${item.id}/${item.title}/${item.hasMemo}`" target="_blank" class="tds">
+            <router-link :to="`/adminmain/adminwebordermemo/${item.id}/${item.title}`" :hasMemo="item.hasMemo" target="_blank" class="tds">
               <button id="button-memo" v-if="item.hasMemo">🍎</button>
               <button id="button-memo" v-else>🍏</button>
             </router-link>
@@ -174,8 +174,7 @@ export default {
       const db = this.$store.state.db
       const docRef = collection(db, "surveyData")
       
-      // const q = query(docRef, orderBy("id", "desc"), limit(12))
-      const q = query(docRef, where("id", "<=", 1095), where("id", ">=", 1094))
+      const q = query(docRef, orderBy("id", "desc"), limit(40))
       const querySnapshot = await getDocs(q)
       querySnapshot.forEach((doc) => {
         if(doc.data().id > 340) this.surveyList.push(doc.data())

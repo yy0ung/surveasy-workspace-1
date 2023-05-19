@@ -229,7 +229,7 @@ const routes = [
       { path: "adminweborder", component: AdminWebOrder },
       { path: "adminweborderdetail", component: AdminWebOrderDetail },
       { path: "adminweborderdelete", component: AdminWebOrderDelete },
-      { path: "adminwebordermemo/:id/:title/:hasMemo", component: AdminWebOrderMemo },
+      { path: "adminwebordermemo/:id/:title", component: AdminWebOrderMemo },
       { path: "adminwebpanelproof/:id", component: AdminWebPanelProof },
       { path: "adminwebcoupon", component: AdminWebCoupon },
       { path: "adminwebetc", component: AdminWebEtc },

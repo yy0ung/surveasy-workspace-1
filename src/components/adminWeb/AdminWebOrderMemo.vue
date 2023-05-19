@@ -1,132 +1,194 @@
 <template>
-  <div class="memo-modal">
-    <div class="memo-contentsbox">
-      <div id="p2-top">
-        <p class="memo-title">메모장</p>
-      </div>
-      
-      <div id="memo-container">
-        <div id="memo-id">ID :  {{id}} </div>
-        <div>Title : {{title}}</div>
-        <!-- <div v-if="this.hasMemo!=true">현재까지 작성된 메모가 없습니다.</div> -->
-        <div>
-          <div>메모 목록</div>
-          <div v-if="this.memoList==[]">로 딩 중</div>
-          <div v-for="item in (this.memoList)" :key="item.id">
-            <p>{{item.contents}}</p>
-            <p>{{item.created_at}}</p>
-          </div>
-        </div>
-        
-
-        
-      </div>
-      <button id="memo-fin-btn" @click="fetchMemoList()">메모 업로드하기</button>
-      
+  <div class="memo-container">
+    <div class="memo-container-title">
+      <h2>메모장</h2>
+      <div>ID :  {{id}} </div>
+      <div>Title : {{title}}</div>
     </div>
       
+    <div class="memo-container-main">
+      <div id="memo-container-sub">
+        <h3>메모 목록</h3>
+
+        <!-- 기존 메모 목록 있음 -->
+        <div id="memo-notice" v-if="this.loading">로딩중</div>
+        <div v-else>
+          <div v-if="this.hasMemo" id="memo-container-sub-list">
+            <div v-for="item in (this.memoList)" :key="item.id" id="memo-item">
+              <p id="memo-item-contents">{{item.contents}}</p>
+              <p id="memo-item-date">{{item.created_at}}</p>
+            </div>
+          </div>
+          <div v-else id="memo-notice">현재까지 작성된 메모가 없습니다.</div>
+        </div>    
+
+        <!-- 기존 메모 목록 없음 -->
+        
+        
+      </div>
+
+      <div id="memo-container-sub">
+        <h3>메모 작성</h3>
+        <textarea id="memo-input" v-model="contents" placeholder="메모 내용 입력하기"></textarea>
+        <div>
+          <button id="memo-write-btn" @click="uploadMemo()">메모 업로드하기</button>
+        </div>
+      </div>
+    </div>
   </div>
+      
 </template>
 
 <script>
-import AdminWebOrderVue from './AdminWebOrder.vue'
-import { getFirestore,collection, getDocs, updateDoc, doc, deleteDoc, setDoc, getDoc, orderBy, limit } from 'firebase/firestore'
-
+import { getFirestore,collection, getDocs, updateDoc, doc, deleteDoc, setDoc, getDoc, orderBy, query } from 'firebase/firestore'
 export default {
-  name: AdminWebOrderVue,
-
   data() {
     return {
       id : this.$route.params.id,
       title : this.$route.params.title,
-      hasMemo : this.$route.params.hasMemo,
-      memoList: []
+      hasMemo : false,
+      loading : true,
+      memoList: [],
 
+      contents: ""
     }
   },
 
   mounted() {
-    this.fetchMemoList()
+    this.fetchHasMemo()
   },
 
   methods: {
-    async fetchMemoList() {
-      this.memoList = []
+    async fetchHasMemo() {
       const db = this.$store.state.db
-      console.log(this.id + " !!")
-      const docRef = collection(db, "memoData", this.id.toString(), "memoList")
-      const querySnapshot = await getDocs(docRef)
-      querySnapshot.forEach((doc) => {
-        console.log("___ " + doc.data())
-        this.memoList.push(doc.data())
-      }) 
-      console.log(this.memoList)
+      const docRef = doc(db, "surveyData", this.id.toString())
+      const docSnap = await getDoc(docRef)
+
+      if(docSnap.exists()) {
+        this.hasMemo = docSnap.data().hasMemo
+        if(this.hasMemo) this.fetchMemoList()
+        else this.loading = false
+      }
     },
 
-    async postMemo() {
+    async fetchMemoList() {
+      this.loading = true
+      this.memoList = []
 
+      const db = this.$store.state.db
+      const docRef = collection(db, "memoData", this.id.toString(), "memoList")
+      const q = query(docRef, orderBy("created_at", "desc"))
+      const querySnapshot = await getDocs(q)
+
+      querySnapshot.forEach((doc) => {
+        this.memoList.push(doc.data())
+      })
+
+      this.loading = false
+    },
+
+    async uploadMemo() {
+      if(this.contents == '') {
+        window.alert("메모 내용을 입력해주세요")
+        return
+      }
+
+      const db = this.$store.state.db
+      var now = this.timestamp()
+      var docRef = doc(db, "memoData", this.id.toString(), "memoList", now)
+
+      var surveyRef = doc(db, "surveyData", this.id.toString())
+
+      if(!this.hasMemo) {
+        console.log("!")
+        await updateDoc(surveyRef, {
+          hasMemo : true
+        })
+      }
+      
+      await setDoc(doc(db, "memoData", this.id.toString()), {
+        id: this.id.toString()
+      })
+
+      await setDoc(docRef, {
+        contents: this.contents,
+        created_at: now
+      }).then(
+        alert('메모 업로드 완료'),
+        this.$router.go()
+      )      
+      
+    },
+    
+    timestamp() {
+      var today = new Date();
+      today.setHours(today.getHours() + 9);
+      console.log(today.toISOString().replace('T', ' ').substring(0, 19))
+      return today.toISOString().replace('T', ' ').substring(0, 19);
     }
   }
 }
 </script>
 
 <style>
-.memo-modal {
-  position: fixed;
-  z-index: 9998;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 3140px;
-  background-color: rgba(255, 255, 255, 0.02);
-  display: table;
-  transition: opacity .3s ease;
-}
-.memo-contentsbox {
-  display: flex;
-  flex-direction: column;
+.memo-container {
   padding: 20px;
-  font-family: 'Noto Sans KR', sans-serif;
-  width: 700px;
-  height: 530px;
-  margin: 150px auto;
-  padding-top: 15px;
-  padding-bottom: 30px;
-  background-color: rgb(255, 255, 255);
-  border-radius: 20px;
-  box-shadow: 0 2px 3px rgba(56, 56, 56, 0.042);
-  transition: all .3s ease;
-  z-index: 2;
+  text-align: center;
 }
-#p2-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 10px;
-}
-.memo-title {
-  font-family: 'Noto Sans KR', sans-serif;
-  font-size: 25px;
-  font-weight: bold;
-  margin: 5px;
-  color:#444444;
-}
-#memo-id {
-  font-family: 'Noto Sans KR', sans-serif;
-  color:#0CAE02;
-  font-size: 18px;
-}
-.memo-close {
+.memo-container-main {
   display: flex;
   flex-direction: row;
-  justify-content: right;
-  cursor: pointer;
-  color:#444444;
+  justify-content: center;
+}
+#memo-container-sub {
+  width: 40%;
+  margin-top: 30px;
+  margin-left: 30px;
+  margin-right: 30px;
+  padding: 20px;
+  justify-content: center;
+  border: 2px solid #e9e9e9;
+  border-radius: 10px;
+}
+#memo-container-sub-list {
+  margin-top: 30px;
+}
+#memo-notice {
+  color: rgb(185, 185, 185);
+  font-size: 18px;
+  margin-top: 50px;
+}
+#memo-item {
+  padding: 20px;
+  background-color: rgb(236, 236, 236);
+  border-radius: 10px;
+  margin-top: 10px;
+  color: rgb(86, 86, 86);
+}
+#memo-item-contents {
+  width: 100%;
+  text-align: left;
+  font-size: 16px;
+}
+#memo-item-date {
+  width: 100%;
+  text-align: right;
+  font-size: 13px;
+  color: rgb(148, 148, 148);
+}
+#memo-input {
+  width: 90%;
+  height: 200px;
+  margin-top: 20px;
+  padding: 10px;
+  color: rgb(0, 0, 0);
+  font-size: 17px;
 }
 
-#memo-fin-btn {
-  padding: 5px 70px;
-  margin: 37px 180px 0px 180px;
+#memo-write-btn {
+  width: 180px;
+  height: 30px;
+  margin-top: 20px;
   color:#0CAE02;
   background-color: #FFFFFF;
   border: 1.5px solid #0CAE02;
@@ -135,7 +197,7 @@ export default {
   cursor: pointer;
   font-family: 'Noto Sans KR', sans-serif;
 }
-#memo-fin-btn:hover{
+#memo-write-btn:hover{
   color: white;
   background: #0AAB00;
 }
