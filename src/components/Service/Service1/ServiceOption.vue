@@ -338,26 +338,26 @@ export default {
 
 
     calculate_before() {
-      var p = parseFloat(parseFloat(this.$store.state.priceTable[this.priceSpendTime][this.priceRequireHeadCount])
+      var p = Math.ceil(parseFloat(parseFloat(this.$store.state.priceTable[this.priceSpendTime][this.priceRequireHeadCount])
                       // * parseFloat(this.$store.state.IdentityOptionArray[this.priceIdentity])
                       * parseFloat(this.$store.state.EngOptionArray[this.EngOptionCal])
                       * parseFloat(this.$store.state.AgeOptionArray[this.targetAgeOptionList.length])
                       * parseFloat(this.$store.state.genderOptionArray[this.targetGenderOption])
                       + parseFloat(this.$store.state.TimeOptionArray[this.timeOptionCal])
-                    ).toFixed(0)
+                    ).toFixed(0) / 10) * 10
       
       this.price = p
       return p
     },
 
     calculate() {
-      var p = parseFloat(parseFloat(this.$store.state.priceTable[this.priceSpendTime][this.priceRequireHeadCount])
+      var p = Math.ceil(parseFloat(parseFloat(this.$store.state.priceTable[this.priceSpendTime][this.priceRequireHeadCount])
                       * parseFloat(this.$store.state.IdentityOptionArray[this.priceIdentity])
                       * parseFloat(this.$store.state.EngOptionArray[this.EngOptionCal])
                       * parseFloat(this.$store.state.AgeOptionArray[this.targetAgeOptionList.length])
                       * parseFloat(this.$store.state.genderOptionArray[this.targetGenderOption])
                       + parseFloat(this.$store.state.TimeOptionArray[this.timeOptionCal])
-                    ).toFixed(0)
+                    ).toFixed(0) / 10) * 10
       
       this.price = p
       return p
