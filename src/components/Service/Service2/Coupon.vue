@@ -80,6 +80,7 @@ export default {
         }
 
         this.$store.state.localSurveyState.coupon_use = true
+        alert("쿠폰 적용이 완료되었습니다.")
       }
 
       else if(this.$store.state.localSurveyState.coupon_use==true) {
@@ -116,6 +117,7 @@ export default {
               this.$store.state.localSurveyState.price = this.$store.state.localSurveyState.price - point_to_use_num
 
               this.$store.state.localSurveyState.point_use = true
+              alert("적립금이 사용되었습니다")
               //console.log(this.point_apply)
             }
 
