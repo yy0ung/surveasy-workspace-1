@@ -45,6 +45,7 @@ import AdminWebOrderDelete from '../components/adminWeb/AdminWebOrderDelete.vue'
 import AdminWebPanelProof from '../components/adminWeb/AdminWebPanelProof.vue'
 import AdminWebCoupon from '../components/adminWeb/AdminWebCoupon.vue'
 import AdminWebEtc from '../components/adminWeb/AdminWebEtc.vue'
+import AdminWebReview from '../components/adminWeb/AdminWebReview'
 import AdminAppPanelSent from '../components/adminApp/AdminAppPanelSent.vue'
 import AdminAppPanelInfo from '../components/adminApp/AdminAppPanelInfo.vue'
 import AdminAppNotice from '../components/adminApp/AdminAppNotice.vue'
@@ -231,6 +232,7 @@ const routes = [
       { path: "adminwebpanelproof/:id", component: AdminWebPanelProof },
       { path: "adminwebcoupon", component: AdminWebCoupon },
       { path: "adminwebetc", component: AdminWebEtc },
+      { path: "adminwebreview", component: AdminWebReview },
       { path: "adminapppanelsent", component: AdminAppPanelSent },
       { path: "adminapppanelinfo", component: AdminAppPanelInfo },
       { path: "adminappnotice", component: AdminAppNotice },
