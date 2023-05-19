@@ -6,6 +6,7 @@
       <router-link to="/adminmain/adminweborder"><div id="menu-detail-item">주문 목록</div></router-link> 
       <!-- <router-link to="/adminmain/adminwebetc"><div id="menu-detail-item">B2B</div></router-link> -->
       <router-link to="/adminmain/adminwebcoupon"><div id="menu-detail-item">쿠폰 관리</div></router-link>
+      <router-link to="/adminmain/adminwebreview"><div id="menu-detail-item">리뷰 보기</div></router-link> 
     </div>
 
     <div class="AdminMain-menu-app">

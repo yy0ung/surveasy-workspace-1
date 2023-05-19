@@ -33,6 +33,9 @@ export default createStore({
     adminDataTemplate_yet:[],
     adminDataTemplate_history:[],
 
+    adminDataReview:[],
+    adminDataReviewDetail:[],
+
     adminCoupon: [],
     adminCouponValid: [],
     myCoupon: [],
