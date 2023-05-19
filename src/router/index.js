@@ -42,6 +42,7 @@ import AdminAlert from '../views/Admin/AdminAlert.vue'
 import AdminWebOrder from '../components/adminWeb/AdminWebOrder.vue'
 import AdminWebOrderDetail from '../components/adminWeb/AdminWebOrderDetail.vue'
 import AdminWebOrderDelete from '../components/adminWeb/AdminWebOrderDelete.vue'
+import AdminWebOrderMemo from '../components/adminWeb/AdminWebOrderMemo.vue'
 import AdminWebPanelProof from '../components/adminWeb/AdminWebPanelProof.vue'
 import AdminWebCoupon from '../components/adminWeb/AdminWebCoupon.vue'
 import AdminWebEtc from '../components/adminWeb/AdminWebEtc.vue'
@@ -228,6 +229,7 @@ const routes = [
       { path: "adminweborder", component: AdminWebOrder },
       { path: "adminweborderdetail", component: AdminWebOrderDetail },
       { path: "adminweborderdelete", component: AdminWebOrderDelete },
+      { path: "adminwebordermemo/:id/:title", component: AdminWebOrderMemo },
       { path: "adminwebpanelproof/:id", component: AdminWebPanelProof },
       { path: "adminwebcoupon", component: AdminWebCoupon },
       { path: "adminwebetc", component: AdminWebEtc },

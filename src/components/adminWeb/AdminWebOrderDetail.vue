@@ -11,13 +11,13 @@
 
         <div class="detail-col">
           <div id="detail-title">* Reward 설정</div>
-          <div><input id="detail-input" type="text" placeholder="reward (숫자만)" v-model="reward" required></div>
+          <div><input class="detail-input" type="text" placeholder="reward (숫자만)" v-model="reward" required></div>
         </div>
     
         <div class="detail-col">
-          <div id="detail-title">(선택) 패널 유의사항 질문형으로 수정</div> 
+          <div id="detail-title">(선택) 패널 유의사항 질문형으로 수정</div>
           <div>            
-            <input id="detail-input" type="text" placeholder="패널 유의사항" v-model="noticeToPanel">
+            <input class="detail-input" type="text" placeholder="패널 유의사항" v-model="noticeToPanel">
             <div id="detail-col2">고객 입력 : {{notice}}</div>
           </div>
           
@@ -26,8 +26,8 @@
         <div class="detail-col">
           <div id="detail-title">(선택) 설문 링크 수정</div>
           <div>
-            <input id="detail-input" type="text" placeholder="미단축 링크" v-model="link">
-            <div id="link-btn"><button><a :href="link" target="_blank">링크 확인</a></button></div>
+            <input class="detail-input" type="text" placeholder="미단축 링크" v-model="link">
+            <div id="container-link-btn"><button id="link-btn"><a :href="link" target="_blank">링크 확인</a></button></div>
           </div>
           
         </div>
@@ -35,7 +35,7 @@
         <div class="detail-col">
           <div id="detail-title">(선택) dueTimeTime 추가</div>
           <div>
-            <input id="detail-input" type="text" placeholder="duetimetime" v-model="newDuetimetime">
+            <input class="detail-input" type="text" placeholder="duetimetime" v-model="newDuetimetime">
             <div id="detail-col2">현재 duetimetime : {{due}} </div>
           </div>
           
@@ -158,8 +158,8 @@ export default {
   padding: 20px;
   font-family: 'Noto Sans KR', sans-serif;
   width: 680px;
-  height: 530px;
-  margin: 150px auto;
+  height: 550px;
+  margin: 140px auto;
   padding-top: 15px;
   padding-bottom: 30px;
   background-color: rgb(255, 255, 255);
@@ -179,23 +179,25 @@ export default {
   font-size: 25px;
   font-weight: bold;
   margin: 5px;
+  color:#494949;
 }
 #p2-id {
   font-family: 'Noto Sans KR', sans-serif;
   color:#0CAE02;
-  font-size: 18px;
+  font-size: 16px;
 }
 .p2-close {
   display: flex;
   flex-direction: row;
   justify-content: right;
   cursor: pointer;
+  color:#494949;
 }
 .detail-col {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin-top: 40px;
+  margin-top: 30px;
 }
 #detail-col2 {
   display: flex;
@@ -205,16 +207,23 @@ export default {
   font-weight: lighter;
 }
 #detail-title {
-  font-size: px;
+  font-size: 14px;
   color: #000000;
 }
-#detail-input {
-  width: 400px;
-  height: 25px;
+.detail-input {
+  width: 370px;
+  height: 30px;
+  font-size: 14px;
+  padding-left: 5px;
 }
-#link-btn {
+#container-link-btn {
   display: flex;
   justify-content: right;
+}
+#link-btn {
+  border: 0;
+  font-size: 15px;
+  color: #0CAE02;
 }
 #p2-fin-btn {
   padding: 5px 70px;

@@ -8,7 +8,7 @@
       
       <div id="delete-container">
         <div id="delete-id"><div>ID :  {{id_delete}}</div></div>
-        <div>Progress : {{progress_delete}}</div>
+        <div style="color:#000000">Progress : {{progress_delete}}</div>
         
       </div>
       <button id="delete-fin-btn" @click="deleteSurvey(id_delete)">삭제하기</button>
@@ -72,7 +72,7 @@ export default {
   padding: 20px;
   font-family: 'Noto Sans KR', sans-serif;
   width: 420px;
-  height: 260px;
+  height: 290px;
   margin: 300px auto;
   padding-top: 15px;
   padding-bottom: 30px;
@@ -106,12 +106,13 @@ export default {
   display: flex;
   flex-direction: row;
   justify-content: right;
-  cursor: pointer
+  color:#444444;
+  cursor: pointer;
 }
 
 #delete-fin-btn {
   padding: 5px 70px;
-  margin: 30px 100px 0px 100px;
+  margin: 20px 70px 0px 70px;
   color:#0CAE02;
   background-color: #FFFFFF;
   border: 1.5px solid #0CAE02;
