@@ -66,6 +66,7 @@
         <router-link :to="`/review/${item.id}/${item.title}`" v-if="item.progress==3"><a class="btn btn-outline-primary">후기 작성하기 ></a></router-link>
         <router-link :to="`/reviewdetail/${item.id}/${item.title}`" v-if="item.progress==4"><a class="btn btn-outline-primary">후기 작성하기 ></a></router-link>
         <router-link to="/surveylist" v-if="item.progress==2"><a class="btn btn-outline-primary">설문 보러가기 ></a></router-link>
+        <a class="btn btn-outline-primary" v-if="item.progress <= 1" @click="deleteSurvey(item.id)">삭제</a>
         </div>
       </div>    
       </div>
@@ -94,12 +95,30 @@ export default {
   },
 
   methods:{
+    async deleteSurvey(id_delete) {
+      const db = this.$store.state.db
+
+      //적립금 빼기 
+      // id 의 pointadd fetch
+      // current user 의 point cur ? point total 에서 지우기
+      console.log(id_delete)
+      // var d = doc(db, "userData", this.$store.state.loginState.currentUser['email'].toString())
+      // var ds = await getDoc(d)
+      // if (ds.exists()) {
+      //   console.log(ds.data().point_current)
+      // }
+
+      //await deleteDoc(doc(db, "surveyData", id_delete.toString()))
+      window.alert("삭제 완료")
+
+      this.$router.go('/mypage/payment')
+    },
     
     async fetchMyPayment(){
       const db = this.$store.state.db
       const currentUserUploadIndex = this.$store.state.loginState.currentUser['uploadIndex']
       
-
+      
       for (var index in currentUserUploadIndex){
         
         var docRef = doc(db, "surveyData", currentUserUploadIndex[index].toString())
