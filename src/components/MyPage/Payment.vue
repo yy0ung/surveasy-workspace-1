@@ -66,6 +66,7 @@
         <router-link :to="`/review/${item.id}/${item.title}`" v-if="item.progress==3"><a class="btn btn-outline-primary">후기 작성하기 ></a></router-link>
         <router-link :to="`/reviewdetail/${item.id}/${item.title}`" v-if="item.progress==4"><a class="btn btn-outline-primary">후기 작성하기 ></a></router-link>
         <router-link to="/surveylist" v-if="item.progress==2"><a class="btn btn-outline-primary">설문 보러가기 ></a></router-link>
+        <a class="btn btn-outline-primary" v-if="item.progress <= 1" @click="deleteSurvey(item.id)"><img width=25 src="@/assets/myPage/delete_icon.png"></a>
         </div>
       </div>    
       </div>
@@ -75,7 +76,7 @@
 </template>
 
 <script>
-import { collection, getDocs, getDoc, doc } from '@firebase/firestore'
+import { collection, getDocs, getDoc, doc, updateDoc, deleteDoc } from '@firebase/firestore'
 export default {
   data(){
     return {
@@ -94,12 +95,35 @@ export default {
   },
 
   methods:{
+    async deleteSurvey(id_delete) {
+      const db = this.$store.state.db
+      window.alert("삭제 중")
+      const doc1 = doc(db, "userData", this.$store.state.loginState.currentUser['email'].toString())
+      const doc2 = doc(db, "surveyData", id_delete.toString())
+      var ds1 = await getDoc(doc1)
+      var ds2 = await getDoc(doc2)
+      if (ds1.exists() && ds2.exists()) {
+        var current = ds1.data().point_current
+        var total = ds1.data().point_total
+        var add = ds2.data().point_add
+        
+        await updateDoc(doc1, {
+          point_current: current - add,
+          point_total: total - add
+        })
+
+        await deleteDoc(doc(db, "surveyData", id_delete.toString()))
+      }
+      window.alert("삭제 완료")
+
+      this.$router.go('/mypage/dashboard')
+    },
     
     async fetchMyPayment(){
       const db = this.$store.state.db
       const currentUserUploadIndex = this.$store.state.loginState.currentUser['uploadIndex']
       
-
+      
       for (var index in currentUserUploadIndex){
         
         var docRef = doc(db, "surveyData", currentUserUploadIndex[index].toString())
