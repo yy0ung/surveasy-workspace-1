@@ -23,44 +23,67 @@
           <td>{{ Math.floor(femaleCount/10)*10 }}명</td>
         </tr>
         <tr>
-          <td class="table-leftline">20대</td>
-          <td>{{ Math.floor((maleAges[0] + maleAges[1])/10)*10 + Math.floor((femaleAges[0] + femaleAges[1])/10)*10 }}명</td>
-          <td>{{ Math.floor((maleAges[0] + maleAges[1])/10)*10 }}명</td>
-          <td>{{ Math.floor((femaleAges[0] + femaleAges[1])/10)*10 }}명</td>
-        </tr>
-        <tr>
           <td class="table-leftline">20세 이상 24세 이하</td>
           <td>{{ Math.floor(maleAges[0]/10)*10 + Math.floor(femaleAges[0]/10)*10 }}명</td>
           <td>{{ Math.floor(maleAges[0]/10)*10 }}명</td>
           <td>{{ Math.floor(femaleAges[0]/10)*10 }}명</td>
+          <!-- <td>{{ Math.floor((maleAges[0] + maleAges[1])/10)*10 + Math.floor((femaleAges[0] + femaleAges[1])/10)*10 }}명</td>
+          <td>{{ Math.floor((maleAges[0] + maleAges[1])/10)*10 }}명</td>
+          <td>{{ Math.floor((femaleAges[0] + femaleAges[1])/10)*10 }}명</td> -->
         </tr>
         <tr>
           <td class="table-leftline">25세 이상 29세 이하</td>
-          <td>{{ Math.floor((maleAges[1])/10)*10 + Math.floor((femaleAges[1])/10)*10 }}명</td>
-          <td>{{ Math.floor((maleAges[1])/10)*10 }}명</td>
-          <td>{{ Math.floor((femaleAges[1])/10)*10 }}명</td>
+          <td>{{ Math.floor(maleAges[1]/10)*10 + Math.floor(femaleAges[1]/10)*10 }}명</td>
+          <td>{{ Math.floor(maleAges[1]/10)*10 }}명</td>
+          <td>{{ Math.floor(femaleAges[1]/10)*10 }}명</td>
         </tr>
         <tr>
-          <td class="table-leftline">20세 이상 39세 이하</td>
-          <td>{{ Math.floor((maleAges[0] + maleAges[1] + maleAges[2])/10)*10 + Math.floor((femaleAges[0] + femaleAges[1] + femaleAges[2])/10)*10 }}명</td>
+          <td class="table-leftline">30세 이상 34세 이하</td>
+          <td>{{ Math.floor((maleAges[2])/10)*10 + Math.floor((femaleAges[2])/10)*10 }}명</td>
+          <td>{{ Math.floor((maleAges[2])/10)*10 }}명</td>
+          <td>{{ Math.floor((femaleAges[2])/10)*10 }}명</td>
+        </tr>
+        <tr>
+          <td class="table-leftline">34세 이상 39세 이하</td>
+          <td>{{ Math.floor((maleAges[3])/10)*10 + Math.floor((femaleAges[3])/10)*10 }}명</td>
+          <td>{{ Math.floor((maleAges[3])/10)*10 }}명</td>
+          <td>{{ Math.floor((femaleAges[3])/10)*10 }}명</td>
+          <!-- <td>{{ Math.floor((maleAges[0] + maleAges[1] + maleAges[2])/10)*10 + Math.floor((femaleAges[0] + femaleAges[1] + femaleAges[2])/10)*10 }}명</td>
           <td>{{ Math.floor((maleAges[0] + maleAges[1] + maleAges[2])/10)*10 }}명</td>
-          <td>{{ Math.floor((femaleAges[0] + femaleAges[1] + femaleAges[2])/10)*10 }}명</td>
+          <td>{{ Math.floor((femaleAges[0] + femaleAges[1] + femaleAges[2])/10)*10 }}명</td> -->
         </tr>
         <tr>
-          <td class="table-leftline">20세 이상 49세 이하</td>
-          <td>{{ Math.floor((maleAges[0] + maleAges[1] + maleAges[2] + maleAges[3])/10)*10 + Math.floor((femaleAges[0] + femaleAges[1] + femaleAges[2] + femaleAges[3])/10)*10 }}명</td>
-          <td>{{ Math.floor((maleAges[0] + maleAges[1] + maleAges[2] + maleAges[3])/10)*10 }}명</td>
-          <td>{{ Math.floor((femaleAges[0] + femaleAges[1] + femaleAges[2] + femaleAges[3])/10)*10  }}명</td>
+          <td class="table-leftline">40세 이상 44세 이하</td>
+          <td>{{ Math.floor((maleAges[4])/10)*10 + Math.floor((femaleAges[4])/10)*10 }}명</td>
+          <td>{{ Math.floor((maleAges[4])/10)*10 }}명</td>
+          <td>{{ Math.floor((femaleAges[4])/10)*10 }}명</td>
         </tr>
-        
+        <tr>
+          <td class="table-leftline">45세 이상 49세 이하</td>
+          <td>{{ Math.floor((maleAges[5])/10)*10 + Math.floor((femaleAges[5])/10)*10 }}명</td>
+          <td>{{ Math.floor((maleAges[5])/10)*10 }}명</td>
+          <td>{{ Math.floor((femaleAges[5])/10)*10 }}명</td>
+        </tr>
+        <tr>
+          <td class="table-leftline">50대</td>
+          <td>{{ Math.floor((maleAges[6])/10)*10 + Math.floor((femaleAges[6])/10)*10 }}명</td>
+          <td>{{ Math.floor((maleAges[6])/10)*10 }}명</td>
+          <td>{{ Math.floor((femaleAges[6])/10)*10 }}명</td>
+        </tr>
+        <tr>
+          <td class="table-leftline">60대</td>
+          <td>{{ Math.floor((maleAges[7])/10)*10 + Math.floor((femaleAges[7])/10)*10 }}명</td>
+          <td>{{ Math.floor((maleAges[7])/10)*10 }}명</td>
+          <td>{{ Math.floor((femaleAges[7])/10)*10 }}명</td>
+        </tr>
       </table>
       
     </div>  
     
       <div class="content-container">
       <span class="p-black-content">설문 대상의 연령과 성별에 따라 수집 가능한 최대 응답 수 입니다.<br></span>
-      <span class="p-black-content">예를 들어, 20대 성별 무관 선택 시, 
-      최대 {{ Math.floor((maleAges[0] + maleAges[1]) / 10) * 10 + Math.floor((femaleAges[0] + femaleAges[1]) / 10) * 10 }}명의 응답을 받으실 수 있어요!</span>
+      <span class="p-black-content">예를 들어, 20세 이상 24세 이하 성별 무관 선택 시, 
+      최대 {{ Math.floor((maleAges[0]) / 10) * 10 + Math.floor((femaleAges[0]) / 10) * 10 }}명의 응답을 받으실 수 있어요!</span>
     </div>
     
     </div>  
@@ -109,9 +132,9 @@ export default {
       var totalCount = 0
       var maleCount = 0
       var maleNames = []
-      var maleAges = [0,0,0,0,0]
+      var maleAges = [0,0,0,0,0,0,0,0]
       var femaleNames = []
-      var femaleAges = [0,0,0,0,0]
+      var femaleAges = [0,0,0,0,0,0,0,0]
       var femaleCount = 0
       const querySnapshot = await getDocs(q);
       querySnapshot.forEach((doc) => {
@@ -127,12 +150,18 @@ export default {
             maleAges[0] += 1
           } else if (age >= 25 && age < 30){
             maleAges[1] +=1 
-          } else if (age >= 30 && age < 40){
+          } else if (age >= 30 && age < 35){
             maleAges[2] +=1 
-          } else if (age >= 40 && age < 50){
+          } else if (age >= 35 && age < 40){
             maleAges[3] +=1 
-          } else {
+          } else if (age >= 40 && age < 45){
             maleAges[4] +=1 
+          } else if (age >= 45 && age < 50){
+            maleAges[5] +=1 
+          } else if (age >= 50 && age < 60){
+            maleAges[6] +=1 
+          } else if (age >= 60){
+            maleAges[7] +=1 
           } 
         } else {
           femaleCount += 1
@@ -144,14 +173,22 @@ export default {
             femaleAges[0] += 1
           } else if (age >= 25 && age < 30){
             femaleAges[1] +=1 
-          } else if (age >= 30 && age < 40){
+          } else if (age >= 30 && age < 35){
             femaleAges[2] +=1 
-          } else if (age >= 40 && age < 50){
+          } else if (age >= 35 && age < 40){
             femaleAges[3] +=1 
-          } else {
+          } else if (age >= 40 && age < 45){
             femaleAges[4] +=1 
+          } else if (age >= 45 && age < 50){
+            femaleAges[5] +=1 
+          } else if (age >= 50 && age < 60){
+            femaleAges[6] +=1 
+          } else if (age >= 60){
+            femaleAges[7] +=1 
           } 
         }
+        console.log(maleAges)
+        console.log(femaleAges)
       });
       
       this.totalCount = totalCount
@@ -160,6 +197,7 @@ export default {
       this.femaleAges = femaleAges
       this.femaleCount = femaleCount
       this.loading = true
+
       
     }
 }
