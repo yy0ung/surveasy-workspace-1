@@ -97,26 +97,27 @@ export default {
   methods:{
     async deleteSurvey(id_delete) {
       const db = this.$store.state.db
-      window.alert("삭제 중")
       const doc1 = doc(db, "userData", this.$store.state.loginState.currentUser['email'].toString())
       const doc2 = doc(db, "surveyData", id_delete.toString())
       var ds1 = await getDoc(doc1)
       var ds2 = await getDoc(doc2)
-      if (ds1.exists() && ds2.exists()) {
-        var current = ds1.data().point_current
-        var total = ds1.data().point_total
-        var add = ds2.data().point_add
-        
-        await updateDoc(doc1, {
-          point_current: current - add,
-          point_total: total - add
-        })
+      if(confirm("설문을 삭제하시겠습니까?")){
+        if (ds1.exists() && ds2.exists()) {
+          var current = ds1.data().point_current
+          var total = ds1.data().point_total
+          var add = ds2.data().point_add
 
-        await deleteDoc(doc(db, "surveyData", id_delete.toString()))
+          await updateDoc(doc1, {
+            point_current: current - add,
+            point_total: total - add
+          })
+
+          await deleteDoc(doc(db, "surveyData", id_delete.toString()))
+        }
+        window.alert("삭제 완료")
+        this.$router.go('/mypage/dashboard')
       }
-      window.alert("삭제 완료")
-
-      this.$router.go('/mypage/dashboard')
+      
     },
     
     async fetchMyPayment(){
