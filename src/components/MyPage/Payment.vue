@@ -21,7 +21,7 @@
         </div>
     
         <div id="edit-container">
-          <div id="detail-title">요구 응답수{{requiredHeadCount_idx}}</div>
+          <div id="detail-title">요구 응답수</div>
             <select class="form-select m-0" id="edit-select" v-model="requiredHeadCount_idx" aria-label="Default select example">
               <option v-for="item in requiredHeadCount_list" :key="item.key" :value=item[1]>{{item[0]}}</option>
             </select>
