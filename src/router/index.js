@@ -175,10 +175,11 @@ const routes = [
     name: 'MyPage',
     component: MyPage,
     children: [
-      { path: "payment", component: Payment },
+      { path: "payment", component: Payment },      
       { path: "myinfo", component: MyInfo },
       { path: "dashboard", component: DashBoard },
-      { path: "couponpoint", component: CouponPoint }
+      { path: "couponpoint", component: CouponPoint },
+      
     ]
   },
   {
