@@ -5,7 +5,7 @@
 </template>
 <script>
 import { initializeApp } from 'firebase/app'
-import { getFirestore,collection, getDocs } from 'firebase/firestore'
+import { getFirestore,collection, getDocs, getDoc, snapshotEqual } from 'firebase/firestore'
 import { getAnalytics } from 'firebase/analytics'
 // import browserDetect from 'vue-browser-detect-plugin'
 // import { event } from 'vue-gtag'
@@ -31,6 +31,7 @@ export default {
     this.fetchSurveyData()
     this.getCookie()
     window.scrollTo(0,0)
+    this.test()
     // this.bd()
     // alert(this.$browserDetect.meta.name)
     // this.fetchLastID()
@@ -70,6 +71,23 @@ export default {
         userData.push(doc.data())
       })
       
+    },
+
+    /*
+
+    */
+    async test(){
+      const db = this.$store.state.db
+      const snapShot = await getDocs(collection(db, "panelData"))
+      const set = new Set()
+      snapShot.forEach((doc) =>{
+        var temp = doc.data().fcmToken
+        if(temp!="" && set.has(temp)){
+          console.log(doc.data().uid, doc.data().fcmToken, doc.data().name)
+        }else{
+          set.add(temp)
+        }
+      })
     },
 
     async fetchSurveyData(){
