@@ -1,4 +1,46 @@
 <template>
+
+ <!-- 설문 수정 모달창 -->
+  <div v-if="editModal==true" class="edit-modal">
+    <div class="edit-contentsbox">
+      <div id="edit-top">
+        <a class="edit-close" @click="close_modal()"><i class="fas fa-times"></i></a>
+        <p class="edit-title">설문 수정하기</p>
+
+      </div>
+      
+      <div id="edit-container">
+        <div id="detail-title">설문 제목</div>
+          <input class="form-control shadow-none" type="text" v-model="title" required>
+        </div>
+
+        <div id="edit-container">
+          <div id="detail-title">설문 링크</div>
+          <input class="form-control shadow-none" type="text" v-model="link" required>
+          <div id="container-link-btn"><button id="link-btn"><a :href="link" target="_blank">링크 확인</a></button></div>
+        </div>
+    
+        <div id="edit-container">
+          <div id="detail-title">요구 응답수</div>
+            <select class="form-select m-0" id="edit-select" v-model="requiredHeadCount_idx" aria-label="Default select example">
+              <option v-for="item in requiredHeadCount_list" :key="item.key" :value=item[1]>{{item[0]}}</option>
+            </select>
+        </div>
+
+        <div id="edit-container">
+          <div id="edit-container-price"> 
+            <span>{{this.priceToString(this.price_before)}} (기존 금액) + </span>
+            <span id="edit-container-price-diff">{{ this.priceToString(this.calculate_diff)}} (추가 금액)</span>
+            <span> = </span>
+            <span id="edit-container-price-after">{{ this.priceToString(this.calculate)}}원</span>
+          </div>
+          
+        </div>
+        <button id="edit-fin-btn" @click="editSurveyInfo()">수정 완료</button>
+    </div>    
+  </div>
+
+
   <div class="row">
     <div class="col-lg-12">
     <div class="rounded border-green shadow py-4 px-4 my-4 mx-2">
@@ -66,7 +108,11 @@
         <router-link :to="`/review/${item.id}/${item.title}`" v-if="item.progress==3"><a class="btn btn-outline-primary">후기 작성하기 ></a></router-link>
         <router-link :to="`/reviewdetail/${item.id}/${item.title}`" v-if="item.progress==4"><a class="btn btn-outline-primary">후기 작성하기 ></a></router-link>
         <router-link to="/surveylist" v-if="item.progress==2"><a class="btn btn-outline-primary">설문 보러가기 ></a></router-link>
-        <a class="btn btn-outline-primary" v-if="item.progress <= 1" @click="deleteSurvey(item.id)"><img width=25 src="@/assets/myPage/delete_icon.png"></a>
+        <div class="btn btn-outline-primary" id="mypage-btn-edit" v-if="item.progress <= 1" @click="showModal(item.id, item.title, item.requiredHeadCount, item.spendTime, item.link, item.price)">
+          <!-- <PaymentEdit :editModal="editModal" :id="id" :requiredHeadCount_list="requiredHeadCount_list" @closeE="closeModal()"/> -->
+          <img id="mypage-img-edit" width=22 src="@/assets/myPage/edit_icon.png">
+        </div>
+        <a class="btn btn-outline-primary" v-if="item.progress <= 1" @click="deleteSurvey(item.id)"><img width=25 src="@/assets/myPage/delete_icon.png"></a>        
         </div>
       </div>    
       </div>
@@ -77,6 +123,7 @@
 
 <script>
 import { collection, getDocs, getDoc, doc, updateDoc, deleteDoc } from '@firebase/firestore'
+
 export default {
   data(){
     return {
@@ -87,14 +134,88 @@ export default {
       go:'',
       accountNum:'',
       
+      editModal: false,
+      requiredHeadCount_list: [],
+      id: 0,
+      title: '',
+      link: '',
+      requiredHeadCount: '',
+      requiredHeadCount_idx_before: 0,
+      requiredHeadCount_idx: 0,
+      requiredHeadCount_list: [],
+      spendTime_idx: 0,
+      price_before: 0,
+      price: 0
     }
   },
+
   mounted(){
     this.fetchMyPayment()
+  },
 
+  computed: {
+    calculate() {
+      var p = Math.ceil(parseFloat(this.price_before
+      * ((this.$store.state.priceTable[this.spendTime_idx][this.requiredHeadCount_idx]) / this.$store.state.priceTable[this.spendTime_idx][this.requiredHeadCount_idx_before])).toFixed(0) / 10) * 10
+
+      this.price = p
+      return p
+    },
+
+    calculate_diff() {
+      return this.price - this.price_before
+    }
   },
 
   methods:{
+    showModal(id, title, requiredHeadCount, spendTime, link, price) {
+      this.id = id
+      this.title = title
+      this.requiredHeadCount_idx_before = this.$store.state.requiredHeadCountIdxMap.get(requiredHeadCount)
+      this.requiredHeadCount_idx = this.$store.state.requiredHeadCountIdxMap.get(requiredHeadCount)
+      this.requiredHeadCount_list = this.$store.state.requiredHeadCountIdxArray.slice(this.requiredHeadCount_idx)
+      this.spendTime_idx = this.$store.state.spendTimeIdxMap.get(spendTime)
+      this.link = link
+      this.price_before = price
+      this.price = price
+
+      this.editModal = true
+    },
+
+    close_modal() {
+      this.editModal = false
+    },
+
+    async editSurveyInfo() {
+      if(this.title.length==0) {
+        alert("제목을 입력해주세요")
+        return
+      } else if(this.link.length==0) {
+        alert("링크를 입력해주세요")
+        return
+      } 
+
+      const db = this.$store.state.db
+      const surveyRef = doc(db,"surveyData", this.id.toString())
+
+      console.log(this.id + " " + this.title + " " + String(this.$store.state.priceTextTable[0][this.requiredHeadCount_idx]) + " " + this.link + " " + this.price)
+
+      await updateDoc(surveyRef, {
+        title: this.title,
+        requiredHeadCount : String(this.$store.state.priceTextTable[0][this.requiredHeadCount_idx]),
+        link: this.link,
+        price: this.price
+      })
+
+      window.alert('수정이 완료되었습니다.')
+      this.close_modal()
+      this.$router.go('/mypage/payment')      
+    },
+
+    priceToString(price) {
+      return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+    },
+
     async deleteSurvey(id_delete) {
       const db = this.$store.state.db
       const doc1 = doc(db, "userData", this.$store.state.loginState.currentUser['email'].toString())
@@ -163,4 +284,107 @@ export default {
 </script>
 
 <style>
+#mypage-btn-edit {
+  margin-right: 8px;
+}
+#mypage-img-edit {
+  padding-top: 2.5px;
+  padding-bottom: 2.5px;
+}
+.edit-modal {
+  position: fixed;
+  z-index: 9998;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.202);
+  display: table;
+  transition: opacity .3s ease;
+}
+.edit-contentsbox {
+  display: flex;
+  flex-direction: column;
+  padding: 10px 40px 10px 40px;
+  font-family: 'Noto Sans KR', sans-serif;
+  width: 700px;
+  height: 560px;
+  margin: 120px auto;
+  padding-top: 15px;
+  padding-bottom: 30px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 20px;
+  box-shadow: 0 2px 3px rgba(56, 56, 56, 0.042);
+  transition: all .3s ease;
+  z-index: 2;
+}
+#edit-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 17px;
+}
+#edit-container-price {
+  text-align: right;
+}
+#edit-container-price-diff {
+  text-align: center;
+  color: #0AAB00;
+}
+#edit-container-price-after {
+  padding: 3px;
+  font-size: 20px;
+  text-align: center;
+  background: #0AAB00;
+  color: #FFFFFF;
+}
+.edit-title {
+  text-align: center;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 23px;
+  font-weight: bold;
+  margin-bottom: 9px;
+  color: #0CAE02;
+}
+.edit-close {
+  display: flex;
+  flex-direction: row;
+  justify-content: right;
+  cursor: pointer;
+  color:#494949;
+}
+#detail-title {
+  font-size: 16px;
+  color: #000000;
+  text-align: left;
+  margin: 5px;
+}
+#container-link-btn {
+  display: flex;
+  justify-content: right;
+}
+#link-btn {
+  border: 0;
+  font-size: 15px;
+  color: #0CAE02;
+}
+#edit-select {
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+#edit-fin-btn {
+  padding: 7px;
+  margin: 15px 0px 0px 0px;
+  color:#0CAE02;
+  background-color: #FFFFFF;
+  border: 1.5px solid #0CAE02;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  font-family: 'Noto Sans KR', sans-serif;
+}
+#edit-fin-btn:hover{
+  color: white;
+  background: #0AAB00;
+}
 </style>
