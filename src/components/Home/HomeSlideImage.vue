@@ -18,6 +18,37 @@
           <div class="row">
             <div class="col-auto m-auto text-left">
               <div class="banner-text">
+              <span class="banner-text-title">설문 응답 서비스<br>일시 중단</span>
+              <p class="banner-text-contents"><br>재정비를 위해 잠깐 쉬어갑니다. <br> *중단 기간: 2024.04.01 ~ 04.04</p>
+            </div>
+          </div>
+              <div class="col-auto mx-auto align-items-right">
+              <img src="@/assets/Home/bannercontent02.png" class="d-block banner-icon" alt="...">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="carousel-item">
+        <div class="mainbanner02">
+          <div class="row">
+            <div class="col-auto m-auto text-left">
+              <div class="banner-text">
+              <span class="banner-text-title">쉽고 빠르게,<br>설문 응답 수집하기</span>
+              <p class="banner-text-contents">여기저기 올릴 필요 없이 서베이지에만 올리세요!</p>
+            </div>
+            </div>
+            <div class="col-auto mx-auto align-items-right">
+            <img src="@/assets/Home/bannercontent01.png" class="d-block banner-icon" alt="...">
+        </div>
+      </div>
+      </div>
+      </div>
+      <!-- <div class="carousel-item active">
+        <div class="mainbanner01">
+          <div class="row">
+            <div class="col-auto m-auto text-left">
+              <div class="banner-text">
               <span class="banner-text-title">쉽고 빠르게,<br>설문 응답 수집하기</span>
               <p class="banner-text-contents">여기저기 올릴 필요 없이 서베이지에만 올리세요!</p>
             </div>
@@ -43,7 +74,7 @@
         </div>
       </div>
       </div>
-      </div>
+      </div> -->
 
       <!-- <div class="carousel-item">
         <div class="mainbanner03">
