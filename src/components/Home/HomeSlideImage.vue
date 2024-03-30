@@ -19,7 +19,7 @@
             <div class="col-auto m-auto text-left">
               <div class="banner-text">
               <span class="banner-text-title">설문 응답 서비스<br>일시 중단</span>
-              <p class="banner-text-contents"><br>재정비를 위해 잠깐 쉬어갑니다. <br> *중단 기간: 2024.04.01 ~ 04.04</p>
+              <p class="banner-text-contents"><br>재정비를 위해 잠깐 쉬어갑니다. <br> *중단 기간: 2024.03.31 ~ 04.04</p>
             </div>
           </div>
               <div class="col-auto mx-auto align-items-right">

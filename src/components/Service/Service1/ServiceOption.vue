@@ -168,7 +168,7 @@
         <div id="btn-fin">
           <div class="text-center">
             <!-- <a class="btn btn-primary w-75" @click="setOption1()">설문 정보 입력하러 가기</a> -->
-            <span id="stop-temp-title"><br>재정비를 위해 잠깐 쉬어갑니다.<br>중단 기간 : 2024.04.01 ~ 2024.04.04</span>
+            <span id="stop-temp-title"><br>재정비를 위해 잠깐 쉬어갑니다.<br>중단 기간 : 2024.03.31 ~ 2024.04.04</span>
 
           </div>
         </div>
